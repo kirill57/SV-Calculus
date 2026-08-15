@@ -1,0 +1,5594 @@
+% Requires in the preamble:
+% \usepackage{amsmath,amssymb}
+% \usepackage{tikz,pgfplots}
+% \pgfplotsset{compat=1.18}
+
+\chapter{The Integral as Accumulation}
+\label{chap:integral-as-accumulation}
+
+The last chapter showed how much a derivative can do.  A derivative can relate
+changing quantities, find a best choice, estimate error, and express laws such as
+
+\[
+T'=-k(T-T_s)
+\]
+
+or
+
+\[
+P'=rP\left(1-\frac{P}{K}\right).
+\]
+
+But a derivative is local.  It tells what is happening at an instant.
+
+Many questions ask for the accumulated result of those instant-by-instant changes.
+
+\[
+\text{If velocity is known, how far did the object travel?}
+\]
+
+\[
+\text{If power is used over time, how much energy was used?}
+\]
+
+\[
+\text{If density varies along a rod, what is the rod's total mass?}
+\]
+
+\[
+\text{If a rate of change is known, what is the total change?}
+\]
+
+These questions return us to the dashboard from the beginning of the book.  The
+speedometer gives a rate.  The odometer gives an accumulated amount.
+
+Differentiation went from accumulation to rate:
+
+\[
+\text{position} \longrightarrow \text{velocity}.
+\]
+
+Integration goes in the opposite direction:
+
+\[
+\text{velocity} \longrightarrow \text{position change}.
+\]
+
+This chapter builds the integral from the ground up.  We will not begin with
+antiderivatives.  We will begin with the simpler and older idea: break a quantity into
+small pieces, estimate each piece, and add.
+
+\section{Distance from velocity}
+\label{sec:distance-from-velocity}
+
+A derivative tells how fast a quantity is changing.  To recover the quantity itself, we
+must add up many small changes.
+
+If \(s(t)\) is position and \(v(t)=s'(t)\) is velocity, then for a short time interval of
+length \(\Delta t\),
+
+\[
+\Delta s \approx v(t)\Delta t.
+\]
+
+This is the local linear idea in reverse.  The derivative says
+
+\[
+s(t+\Delta t)\approx s(t)+v(t)\Delta t.
+\]
+
+So the small position change is approximately
+
+\[
+v(t)\Delta t.
+\]
+
+The integral begins by adding many expressions of this kind.
+
+\subsection{Constant velocity revisited}
+\label{subsec:constant-velocity-revisited}
+
+Suppose a car moves at a constant velocity
+
+\[
+v(t)=60
+\]
+
+miles per hour from \(t=0\) to \(t=3\).  Then its displacement is
+
+\[
+60\cdot 3=180
+\]
+
+miles.
+
+There is no calculus hidden here.  It is only
+
+\[
+\text{distance}=\text{velocity}\cdot\text{time}.
+\]
+
+But the graph already contains the key idea.  The velocity graph is horizontal.  The
+region under it from \(0\) to \(3\) is a rectangle with height \(60\) and width \(3\).
+
+\[
+\text{rectangle area}=60\cdot 3=180.
+\]
+
+The units also agree:
+
+\[
+\frac{\text{miles}}{\text{hour}}\cdot \text{hour}=\text{miles}.
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=3.4,
+    ymin=0, ymax=75,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,1,2,3},
+    ytick={0,60},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:3,60);
+\addplot[very thick, domain=0:3, samples=2] {60};
+\node at (axis cs:1.5,30) {\(\text{area}=60\cdot3\)};
+\node[anchor=west] at (axis cs:3.05,60) {\(v=60\)};
+\end{axis}
+\end{tikzpicture}
+\caption{For constant velocity, displacement is the area of a rectangle under the velocity graph.}
+\label{fig:constant-velocity-area}
+\end{figure}
+
+If the same constant velocity lasts from \(t=a\) to \(t=b\), then the displacement is
+
+\[
+60(b-a).
+\]
+
+More generally, if
+
+\[
+v(t)=v_0
+\]
+
+on the interval \([a,b]\), then
+
+\[
+\boxed{
+\text{displacement}=v_0(b-a).
+}
+\]
+
+If the initial position is \(s(a)\), then
+
+\[
+\boxed{
+s(b)=s(a)+v_0(b-a).
+}
+\]
+
+This is the simplest accumulation formula.
+
+\paragraph{Example.}
+A train is already \(12\) miles from a station at noon.  It moves away from the station
+at \(50\) miles per hour until \(2{:}30\) p.m.  What is its position then?
+
+The time elapsed is
+
+\[
+2.5\text{ hours}.
+\]
+
+The displacement is
+
+\[
+50(2.5)=125
+\]
+
+miles.  Since the train started \(12\) miles from the station,
+
+\[
+s(2.5)=12+125=137.
+\]
+
+So the train is \(137\) miles from the station at \(2{:}30\) p.m.
+
+The starting value \(12\) is not produced by the velocity.  The velocity produces the
+change.  Accumulation adds that change to the starting value.
+
+\subsection{Piecewise constant velocity}
+\label{subsec:piecewise-constant-velocity}
+
+Real velocity is rarely constant for a whole trip.  The next simplest case is
+\emph{piecewise constant} velocity: constant for a while, then another constant, then
+another.
+
+Suppose a cart moves with the following velocity.
+
+\[
+v(t)=
+\begin{cases}
+30, & 0\le t<1,\\
+50, & 1\le t<3,\\
+20, & 3\le t\le 4,
+\end{cases}
+\]
+
+where time is measured in hours and velocity in miles per hour.
+
+During the first hour, the cart travels
+
+\[
+30\cdot1=30
+\]
+
+miles.
+
+During the next two hours, it travels
+
+\[
+50\cdot2=100
+\]
+
+miles.
+
+During the last hour, it travels
+
+\[
+20\cdot1=20
+\]
+
+miles.
+
+So the total displacement is
+
+\[
+30+100+20=150
+\]
+
+miles.
+
+The graph tells the same story.  The area under the velocity graph is the sum of three
+rectangle areas.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=4.3,
+    ymin=0, ymax=60,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,1,2,3,4},
+    ytick={0,20,30,50},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!12, draw=gray!60] (axis cs:0,0) rectangle (axis cs:1,30);
+\draw[fill=gray!22, draw=gray!60] (axis cs:1,0) rectangle (axis cs:3,50);
+\draw[fill=gray!12, draw=gray!60] (axis cs:3,0) rectangle (axis cs:4,20);
+
+\addplot[very thick] coordinates {(0,30) (1,30)};
+\addplot[very thick] coordinates {(1,50) (3,50)};
+\addplot[very thick] coordinates {(3,20) (4,20)};
+
+\node at (axis cs:0.5,15) {\(30\cdot1\)};
+\node at (axis cs:2,25) {\(50\cdot2\)};
+\node at (axis cs:3.5,10) {\(20\cdot1\)};
+\end{axis}
+\end{tikzpicture}
+\caption{For piecewise constant velocity, displacement is a sum of rectangle areas.}
+\label{fig:piecewise-constant-velocity}
+\end{figure}
+
+This is already the basic structure of integration:
+
+\[
+\text{total change}
+=
+\text{first small change}
++
+\text{second small change}
++
+\cdots.
+\]
+
+For piecewise constant velocity, the small changes are exact.  On each interval,
+
+\[
+\text{change in position}
+=
+\text{velocity on that interval}\cdot\text{length of that interval}.
+\]
+
+\paragraph{Example.}
+A cyclist's velocity is
+
+\[
+v(t)=
+\begin{cases}
+12, & 0\le t<0.5,\\
+18, & 0.5\le t<1.5,\\
+10, & 1.5\le t\le 2,
+\end{cases}
+\]
+
+where \(t\) is measured in hours and \(v\) in miles per hour.  Find the displacement
+from \(t=0\) to \(t=2\).
+
+The three time intervals have lengths
+
+\[
+0.5,\qquad 1,\qquad 0.5.
+\]
+
+So the displacement is
+
+\[
+12(0.5)+18(1)+10(0.5)=6+18+5=29.
+\]
+
+The cyclist travels \(29\) miles.
+
+\subsection{Estimating distance from sampled speeds}
+\label{subsec:estimating-distance-from-sampled-speeds}
+
+In practice, we often do not know a velocity formula.  We may only have speedometer
+readings at certain times.
+
+Suppose a car's velocity is sampled every half hour.
+
+\[
+\begin{array}{c|ccccc}
+t\text{ (hours)} & 0 & 0.5 & 1.0 & 1.5 & 2.0 \\ \hline
+v(t)\text{ (miles/hour)} & 20 & 28 & 34 & 38 & 40
+\end{array}
+\]
+
+How far did the car travel in the two hours?
+
+The table does not tell us exactly what happened between readings.  But we can
+estimate.
+
+If we use the velocity at the beginning of each half-hour interval, we get
+
+\[
+0.5(20)+0.5(28)+0.5(34)+0.5(38).
+\]
+
+Thus
+
+\[
+\text{left estimate}
+=
+0.5(20+28+34+38)
+=
+60
+\]
+
+miles.
+
+If we use the velocity at the end of each half-hour interval, we get
+
+\[
+0.5(28)+0.5(34)+0.5(38)+0.5(40).
+\]
+
+Thus
+
+\[
+\text{right estimate}
+=
+0.5(28+34+38+40)
+=
+70
+\]
+
+miles.
+
+The two estimates are different because the velocity is changing.  If the velocity was
+increasing throughout the trip, the left estimate is too small and the right estimate is
+too large.
+
+\begin{quote}
+\textbf{The principle of rectangular estimation.}
+On a short interval, pretend the velocity is constant.  Then
+
+\[
+\text{small displacement}\approx \text{sampled velocity}\cdot \text{time width}.
+\]
+
+Add the small displacements.
+\end{quote}
+
+If we also know midpoint speeds, we can often do better.  Suppose the readings at the
+midpoints of the four half-hour intervals are
+
+\[
+\begin{array}{c|cccc}
+t\text{ (hours)} & 0.25 & 0.75 & 1.25 & 1.75 \\ \hline
+v(t)\text{ (miles/hour)} & 24 & 31 & 36 & 39
+\end{array}
+\]
+
+Then the midpoint estimate is
+
+\[
+0.5(24+31+36+39)=65
+\]
+
+miles.
+
+The estimates
+
+\[
+60,\qquad 65,\qquad 70
+\]
+
+are not three different truths.  They are three attempts to recover one accumulated
+distance from incomplete velocity information.
+
+Smaller time intervals usually give better estimates.  If we sample every minute
+instead of every half hour, each rectangle covers less time, so the assumption
+``velocity is nearly constant here'' becomes more trustworthy.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.6\textwidth,
+    xmin=0, xmax=2.05,
+    ymin=0, ymax=45,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,20,28,34,38,40},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% left rectangles
+\draw[fill=gray!12, draw=gray!55] (axis cs:0,0) rectangle (axis cs:0.5,20);
+\draw[fill=gray!12, draw=gray!55] (axis cs:0.5,0) rectangle (axis cs:1,28);
+\draw[fill=gray!12, draw=gray!55] (axis cs:1,0) rectangle (axis cs:1.5,34);
+\draw[fill=gray!12, draw=gray!55] (axis cs:1.5,0) rectangle (axis cs:2,38);
+
+% a smooth suggested velocity curve
+\addplot[very thick, domain=0:2, samples=100] {-4*x^2 + 18*x + 20};
+
+% measured points
+\addplot[only marks, mark=*] coordinates {(0,20) (0.5,28) (1,34) (1.5,38) (2,40)};
+
+\node[anchor=west] at (axis cs:0.1,42) {left rectangles from sampled velocities};
+\end{axis}
+\end{tikzpicture}
+\caption{A sampled velocity table leads naturally to rectangular distance estimates.}
+\label{fig:sampled-velocity-rectangles}
+\end{figure}
+
+This is the practical heart of the integral.  We do not need a perfect formula at the
+start.  We need a way to add many small rate-times-width contributions.
+
+\subsection{Signed displacement versus total distance}
+\label{subsec:signed-displacement-total-distance}
+
+Velocity has a sign.  Positive velocity means motion in the positive direction.
+Negative velocity means motion in the negative direction.
+
+That creates two different questions.
+
+\[
+\text{What is the net change in position?}
+\]
+
+\[
+\text{How much distance was actually traveled?}
+\]
+
+The first question asks for \emph{signed displacement}.  The second asks for
+\emph{total distance traveled}.
+
+\paragraph{Example.}
+A particle moves along a line with velocity
+
+\[
+v(t)=
+\begin{cases}
+4, & 0\le t<3,\\
+-2, & 3\le t\le 8,
+\end{cases}
+\]
+
+where \(t\) is measured in seconds and \(v(t)\) in feet per second.
+
+From \(0\) to \(3\), the particle moves
+
+\[
+4\cdot3=12
+\]
+
+feet in the positive direction.
+
+From \(3\) to \(8\), the particle moves
+
+\[
+(-2)\cdot5=-10
+\]
+
+feet in the negative direction.
+
+So the signed displacement is
+
+\[
+12+(-10)=2
+\]
+
+feet.
+
+The particle ends \(2\) feet to the right of where it started.
+
+But the total distance traveled is
+
+\[
+12+10=22
+\]
+
+feet.
+
+The particle traveled \(12\) feet one way and \(10\) feet back.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.6\textwidth,
+    xmin=0, xmax=9.0,
+    ymin=-3, ymax=5,
+    axis lines=middle,
+    xlabel={\(t\) (seconds)},
+    ylabel={\(v(t)\) (feet/second)},
+    xtick={0,3,8},
+    ytick={-2,0,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!18, draw=gray!60, opacity=0.5] (axis cs:0,0) rectangle (axis cs:3,4);
+\draw[fill=gray!35, draw=gray!60, opacity=0.5] (axis cs:3,0) rectangle (axis cs:8,-2);
+
+\addplot[very thick] coordinates {(0,4) (3,4)};
+\addplot[very thick] coordinates {(3,-2) (8,-2)};
+
+\node at (axis cs:1.5,2) {\(+12\)};
+\node at (axis cs:5.5,-1) {\(-10\)};
+\node[anchor=west] at (axis cs:0.2,4.25) {positive displacement};
+\node[anchor=west] at (axis cs:3.2,-2.5) {negative displacement};
+\end{axis}
+\end{tikzpicture}
+\caption{Area above the time axis counts positive.  Area below the time axis counts negative for displacement.}
+\label{fig:signed-velocity-area}
+\end{figure}
+
+For piecewise constant velocity,
+
+\[
+\text{signed displacement}
+=
+v_1\Delta t_1+v_2\Delta t_2+\cdots+v_n\Delta t_n.
+\]
+
+The total distance traveled is
+
+\[
+\text{total distance}
+=
+|v_1|\Delta t_1+|v_2|\Delta t_2+\cdots+|v_n|\Delta t_n.
+\]
+
+The absolute values remove the signs because distance traveled does not cancel.
+
+\begin{quote}
+\textbf{Two accumulations from velocity.}
+
+Signed displacement accumulates velocity:
+
+\[
+\text{displacement}=\text{positive contributions}+\text{negative contributions}.
+\]
+
+Total distance accumulates speed:
+
+\[
+\text{distance traveled}=\text{accumulation of } |v(t)|.
+\]
+\end{quote}
+
+The picture suggests a new geometric language.  Positive velocity gives area above
+the axis.  Negative velocity gives area below the axis.  For displacement, area below
+the axis counts negatively.
+
+So the next problem is geometric:
+
+\[
+\text{How do we measure area under a curved graph?}
+\]
+
+\section{Area under a graph}
+\label{sec:area-under-a-graph}
+
+When velocity is nonnegative, distance traveled is the area under the velocity graph.
+That observation is too useful to keep only for motion.
+
+Given a nonnegative function \(f\) on an interval \([a,b]\), we want to measure the area
+between the graph and the \(x\)-axis.
+
+For a rectangle, area is easy:
+
+\[
+\text{area}=\text{height}\cdot\text{width}.
+\]
+
+For a curved graph, the height changes.  The central idea is to replace the curved
+region by many thin rectangles.
+
+\[
+\text{curved area}
+\approx
+\text{sum of many rectangular areas}.
+\]
+
+As the rectangles become thinner, the approximation should improve.
+
+\subsection{Rectangular estimates}
+\label{subsec:rectangular-estimates}
+
+Consider the area under
+
+\[
+f(x)=x^2
+\]
+
+from \(x=0\) to \(x=2\).
+
+The region is not a triangle or a rectangle.  We do not yet have an exact formula for
+its area.  But we can estimate it.
+
+Divide \([0,2]\) into four equal intervals:
+
+\[
+[0,0.5],\qquad [0.5,1],\qquad [1,1.5],\qquad [1.5,2].
+\]
+
+Each interval has width
+
+\[
+\Delta x=0.5.
+\]
+
+On each interval, choose one height from the function and build a rectangle.
+
+If we use the left endpoint of each interval, the heights are
+
+\[
+f(0),\qquad f(0.5),\qquad f(1),\qquad f(1.5).
+\]
+
+Thus the rectangular estimate is
+
+\[
+0.5f(0)+0.5f(0.5)+0.5f(1)+0.5f(1.5).
+\]
+
+Since \(f(x)=x^2\),
+
+\[
+0.5\left(0^2+0.5^2+1^2+1.5^2\right)
+=
+0.5(0+0.25+1+2.25).
+\]
+
+Therefore
+
+\[
+\text{left rectangle estimate}=1.75.
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=0, ymax=4.4,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% left rectangles for x^2 on [0,2], n=4
+\draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0);
+\draw[fill=gray!15, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
+\draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,1);
+\draw[fill=gray!15, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
+
+\addplot[very thick, domain=0:2, samples=100] {x^2};
+\node[anchor=west] at (axis cs:1.15,3.45) {\(f(x)=x^2\)};
+\node[anchor=west] at (axis cs:0.15,0.65) {left rectangles};
+\end{axis}
+\end{tikzpicture}
+\caption{Left endpoint rectangles estimate the area under \(y=x^2\) on \([0,2]\).}
+\label{fig:left-rectangles-x-squared}
+\end{figure}
+
+Because \(x^2\) is increasing on \([0,2]\), every left endpoint rectangle lies below the
+curve on its interval.  So this estimate is too small.
+
+If we use right endpoints, the rectangles lie above the curve.  That estimate will be
+too large.
+
+This gives a useful strategy:
+
+\[
+\text{trap the unknown area between a lower estimate and an upper estimate.}
+\]
+
+\subsection{Left, right, and midpoint sums}
+\label{subsec:left-right-midpoint-sums}
+
+The choice of rectangle height matters.  Three common choices are left endpoints,
+right endpoints, and midpoints.
+
+For \(f(x)=x^2\) on \([0,2]\), with four equal subintervals and \(\Delta x=0.5\), the
+left estimate is
+
+\[
+L_4
+=
+0.5\left(f(0)+f(0.5)+f(1)+f(1.5)\right).
+\]
+
+We computed
+
+\[
+L_4=1.75.
+\]
+
+The right estimate is
+
+\[
+R_4
+=
+0.5\left(f(0.5)+f(1)+f(1.5)+f(2)\right).
+\]
+
+So
+
+\[
+R_4
+=
+0.5\left(0.5^2+1^2+1.5^2+2^2\right)
+=
+0.5(0.25+1+2.25+4).
+\]
+
+Thus
+
+\[
+R_4=3.75.
+\]
+
+The midpoint estimate uses the midpoint of each subinterval:
+
+\[
+0.25,\qquad 0.75,\qquad 1.25,\qquad 1.75.
+\]
+
+So
+
+\[
+M_4
+=
+0.5\left(f(0.25)+f(0.75)+f(1.25)+f(1.75)\right).
+\]
+
+For \(f(x)=x^2\),
+
+\[
+M_4
+=
+0.5\left(0.25^2+0.75^2+1.25^2+1.75^2\right).
+\]
+
+Compute:
+
+\[
+M_4
+=
+0.5(0.0625+0.5625+1.5625+3.0625)
+=
+0.5(5.25)
+=
+2.625.
+\]
+
+So the three estimates are
+
+\[
+\boxed{
+L_4=1.75,\qquad M_4=2.625,\qquad R_4=3.75.
+}
+\]
+
+For an increasing function, the left estimate is below the true area and the right
+estimate is above it.  The midpoint estimate often does better, but it is not guaranteed
+to be an upper or lower estimate.
+
+\begin{quote}
+\textbf{Rectangular sums.}
+A rectangular estimate has the form
+
+\[
+\text{area estimate}
+=
+(\text{height}_1)(\text{width}_1)
++
+(\text{height}_2)(\text{width}_2)
++
+\cdots.
+\]
+
+The height is a sampled value of the function.  The width is the length of the
+corresponding subinterval.
+\end{quote}
+
+The word ``sum'' is important.  The integral will be a limit of these sums.
+
+\subsection{Upper and lower sums}
+\label{subsec:upper-lower-sums}
+
+Left and right rectangles are easy to compute, but they are not always upper or lower
+estimates.  If a function decreases, the left rectangles lie above the curve and the right
+rectangles lie below it.  If a function rises and falls, both can be mixed.
+
+A more reliable idea is to use the largest and smallest function values on each small
+interval.
+
+On a subinterval, define:
+
+\[
+\text{lower height}=\text{smallest value of }f\text{ on that subinterval},
+\]
+
+\[
+\text{upper height}=\text{largest value of }f\text{ on that subinterval}.
+\]
+
+Then:
+
+\[
+\text{lower rectangle area}
+=
+(\text{lower height})(\text{width}),
+\]
+
+and
+
+\[
+\text{upper rectangle area}
+=
+(\text{upper height})(\text{width}).
+\]
+
+Adding all the lower rectangle areas gives a lower sum.  Adding all the upper
+rectangle areas gives an upper sum.
+
+For a continuous function, the Extreme Value Theorem guarantees that each small
+closed interval really has a largest and smallest value.  This is one reason the
+theorems about continuity matter.
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=2.15,
+    ymin=0, ymax=4.3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,1,2},
+    ytick={0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={lower sum}
+]
+\draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0);
+\draw[fill=gray!15, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
+\draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,1);
+\draw[fill=gray!15, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
+\addplot[very thick, domain=0:2, samples=100] {x^2};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=2.15,
+    ymin=0, ymax=4.3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,1,2},
+    ytick={0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={upper sum}
+]
+\draw[fill=gray!25, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0.25);
+\draw[fill=gray!25, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,1);
+\draw[fill=gray!25, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,2.25);
+\draw[fill=gray!25, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,4);
+\addplot[very thick, domain=0:2, samples=100] {x^2};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\caption{For an increasing function, left rectangles give a lower sum and right rectangles give an upper sum.}
+\label{fig:lower-upper-x-squared}
+\end{figure}
+
+For \(f(x)=x^2\) on \([0,2]\), the function is increasing.  So the lower sum with four
+equal rectangles is the left estimate:
+
+\[
+1.75.
+\]
+
+The upper sum with four equal rectangles is the right estimate:
+
+\[
+3.75.
+\]
+
+Thus the true area \(A\), whatever it is, must satisfy
+
+\[
+1.75\le A\le 3.75.
+\]
+
+This is not very sharp.  But if we use more rectangles, the trap tightens.
+
+\[
+\begin{array}{c|c|c|c}
+\text{number of rectangles} & \text{lower sum} & \text{upper sum} & \text{gap} \\ \hline
+4 & 1.75 & 3.75 & 2 \\
+8 & 2.1875 & 3.1875 & 1 \\
+16 & 2.421875 & 2.921875 & 0.5
+\end{array}
+\]
+
+The lower sums rise.  The upper sums fall.  The area is squeezed between them.
+
+For \(f(x)=x^2\) on \([0,2]\), if we use \(n\) equal intervals, the width is
+
+\[
+\Delta x=\frac{2}{n}.
+\]
+
+Because the function is increasing, the upper sum exceeds the lower sum by
+
+\[
+\Delta x\bigl(f(2)-f(0)\bigr).
+\]
+
+Here that is
+
+\[
+\frac{2}{n}(4-0)=\frac{8}{n}.
+\]
+
+As \(n\) grows, the gap
+
+\[
+\frac{8}{n}
+\]
+
+approaches \(0\).  Therefore the lower and upper estimates are being forced toward
+one common number.  That common number is the area.
+
+\begin{quote}
+\textbf{The squeezing idea for area.}
+If upper sums and lower sums can be made as close as we want, then there is only one
+reasonable number for the area between them.
+\end{quote}
+
+This is the geometric ancestor of the definite integral.
+
+\subsection{Area as a limiting process}
+\label{subsec:area-as-limiting-process}
+
+A curved area is not found by one rectangle.  It is found by a limiting process.
+
+\[
+\text{area}
+=
+\lim_{\text{rectangle widths}\to0}
+\text{rectangular sums}.
+\]
+
+This sentence is not yet a formal definition.  The formal definition will come after we
+develop better notation.  But the idea is already clear:
+
+\[
+\text{thin rectangles make the curved region measurable.}
+\]
+
+It is helpful to test this idea on a region whose area we already know.
+
+Consider
+
+\[
+f(x)=x
+\]
+
+on the interval \([0,2]\).  The region under the graph is a right triangle with base
+\(2\) and height \(2\).  Its area is
+
+\[
+\frac12(2)(2)=2.
+\]
+
+Now see how rectangles find the same number.
+
+Divide \([0,2]\) into \(n\) equal intervals.  Then
+
+\[
+\Delta x=\frac{2}{n}.
+\]
+
+The left endpoints are
+
+\[
+0,\quad \frac{2}{n},\quad \frac{4}{n},\quad \ldots,\quad \frac{2(n-1)}{n}.
+\]
+
+The left rectangle estimate is
+
+\[
+L_n
+=
+\frac{2}{n}
+\left[
+0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n}
+\right].
+\]
+
+Factor out \(\frac{2}{n}\) from the bracket:
+
+\[
+L_n
+=
+\frac{2}{n}\cdot \frac{2}{n}
+\left[
+0+1+2+\cdots+(n-1)
+\right].
+\]
+
+Using
+
+\[
+0+1+2+\cdots+(n-1)=\frac{n(n-1)}{2},
+\]
+
+we get
+
+\[
+L_n
+=
+\frac{4}{n^2}\cdot \frac{n(n-1)}{2}
+=
+2\cdot\frac{n-1}{n}.
+\]
+
+As \(n\to\infty\),
+
+\[
+2\cdot\frac{n-1}{n}\to2.
+\]
+
+The right endpoint estimate is
+
+\[
+R_n
+=
+\frac{2}{n}
+\left[
+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2n}{n}
+\right].
+\]
+
+So
+
+\[
+R_n
+=
+\frac{2}{n}\cdot \frac{2}{n}
+\left[
+1+2+\cdots+n
+\right].
+\]
+
+Using
+
+\[
+1+2+\cdots+n=\frac{n(n+1)}{2},
+\]
+
+we get
+
+\[
+R_n
+=
+\frac{4}{n^2}\cdot \frac{n(n+1)}{2}
+=
+2\cdot\frac{n+1}{n}.
+\]
+
+As \(n\to\infty\),
+
+\[
+2\cdot\frac{n+1}{n}\to2.
+\]
+
+Thus
+
+\[
+L_n\to2
+\qquad\text{and}\qquad
+R_n\to2.
+\]
+
+The rectangle sums recover the triangle area.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=0, ymax=2.3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% 8 left rectangles for f=x on [0,2]
+\pgfplotsinvokeforeach{0,...,7}{
+    \draw[fill=gray!15, draw=gray!55]
+      (axis cs: {0.25*#1}, 0) rectangle (axis cs: {0.25*(#1+1)}, {0.25*#1});
+}
+\addplot[very thick, domain=0:2, samples=2] {x};
+\node[anchor=west] at (axis cs:1.05,1.75) {\(y=x\)};
+\node[anchor=west] at (axis cs:0.1,2.1) {rectangles approach the triangle area};
+\end{axis}
+\end{tikzpicture}
+\caption{For \(y=x\) on \([0,2]\), rectangular sums approach the known triangle area \(2\).}
+\label{fig:rectangles-triangle-area}
+\end{figure}
+
+For \(y=x\), geometry already knew the answer.  Rectangles confirmed it.
+
+For \(y=x^2\), geometry does not give such an immediate answer.  Rectangles become
+the method itself.  Later, the Fundamental Theorem of Calculus will give a fast way
+to compute the same area exactly.
+
+For now, the main point is this:
+
+\[
+\boxed{
+\text{Area under a graph is an accumulation of thin rectangular pieces.}
+}
+\]
+
+There is one caution.  Not every wild function behaves well enough for this process.
+If a function jumps too violently at every scale, upper and lower sums may refuse to
+come together.  Continuous functions do behave well, and we will return to that fact
+later.
+
+The next obstacle is notation.  Rectangular sums quickly become long:
+
+\[
+\frac{2}{n}
+\left[
+0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n}
+\right].
+\]
+
+To define the integral cleanly, we need a compact language for finite sums.  That is
+where sigma notation enters.
+% Requires in the preamble:
+% \usepackage{amsmath,amssymb}
+% \usepackage{tikz,pgfplots}
+% \pgfplotsset{compat=1.18}
+
+\section{Sigma notation and finite sums}
+\label{sec:sigma-notation-finite-sums}
+
+The last section ended with sums that quickly became too long to write by hand.  Even
+a simple rectangular estimate can look like
+
+\[
+\frac{2}{n}
+\left[
+0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n}
+\right].
+\]
+
+The pattern is clear, but the notation is heavy.
+
+Calculus needs a compact way to say:
+
+\[
+\text{add all the terms of this pattern.}
+\]
+
+That compact language is \emph{sigma notation}.  It is not a new idea.  It is just a
+short name for a finite sum.
+
+\subsection{Summation notation}
+\label{subsec:summation-notation}
+
+Suppose we want to write
+
+\[
+1^2+2^2+3^2+4^2+5^2.
+\]
+
+Instead of writing every term, we write
+
+\[
+\sum_{i=1}^{5} i^2.
+\]
+
+The symbol \(\sum\) is the Greek capital letter sigma.  It stands for ``sum.''
+
+The notation
+
+\[
+\sum_{i=1}^{5} i^2
+\]
+
+means:
+
+\[
+\text{let \(i\) take the values }1,2,3,4,5,\text{ and add the results.}
+\]
+
+So
+
+\[
+\sum_{i=1}^{5} i^2
+=
+1^2+2^2+3^2+4^2+5^2
+=
+1+4+9+16+25
+=
+55.
+\]
+
+\begin{quote}
+\textbf{Sigma notation.}
+If \(m\le n\) are integers, then
+
+\[
+\boxed{
+\sum_{i=m}^{n} a_i
+=
+a_m+a_{m+1}+a_{m+2}+\cdots+a_n.
+}
+\]
+
+The letter \(i\) is called the \emph{index of summation}.  The number \(m\) is the
+lower limit, and \(n\) is the upper limit.
+\end{quote}
+
+\paragraph{Example.}
+Expand and evaluate
+
+\[
+\sum_{k=1}^{4}(2k-1).
+\]
+
+As \(k\) runs from \(1\) to \(4\), the terms are
+
+\[
+2(1)-1,\qquad 2(2)-1,\qquad 2(3)-1,\qquad 2(4)-1.
+\]
+
+So
+
+\[
+\sum_{k=1}^{4}(2k-1)
+=
+1+3+5+7
+=
+16.
+\]
+
+\paragraph{Example.}
+Expand
+
+\[
+\sum_{j=0}^{3} 2^j.
+\]
+
+The index begins at \(0\), so
+
+\[
+\sum_{j=0}^{3} 2^j
+=
+2^0+2^1+2^2+2^3
+=
+1+2+4+8
+=
+15.
+\]
+
+\paragraph{The index letter is a placeholder.}
+The sums
+
+\[
+\sum_{i=1}^{5} i^2,
+\qquad
+\sum_{k=1}^{5} k^2,
+\qquad
+\sum_{r=1}^{5} r^2
+\]
+
+all mean the same thing:
+
+\[
+1^2+2^2+3^2+4^2+5^2.
+\]
+
+The index letter is temporary.  It disappears after the sum is evaluated.  This is why it
+is sometimes called a \emph{dummy index}.
+
+This is similar to the variable in a function rule.  The expressions
+
+\[
+f(x)=x^2
+\qquad\text{and}\qquad
+f(t)=t^2
+\]
+
+describe the same function.  The letter changes, but the rule does not.
+
+\paragraph{A warning about endpoints.}
+The number of terms in
+
+\[
+\sum_{i=m}^{n} a_i
+\]
+
+is not \(n-m\).  It is
+
+\[
+n-m+1.
+\]
+
+For example,
+
+\[
+\sum_{i=3}^{7} a_i
+=
+a_3+a_4+a_5+a_6+a_7
+\]
+
+has \(5\) terms, and
+
+\[
+7-3+1=5.
+\]
+
+This small detail matters when we count rectangles.
+
+\subsection{Sigma notation for rectangular sums}
+\label{subsec:sigma-notation-rectangular-sums}
+
+Return to the left rectangle estimate for
+
+\[
+f(x)=x^2
+\]
+
+on \([0,2]\) with four equal subintervals.  The width is
+
+\[
+\Delta x=\frac12.
+\]
+
+The left endpoints are
+
+\[
+0,\qquad \frac12,\qquad 1,\qquad \frac32.
+\]
+
+We previously wrote the estimate as
+
+\[
+\frac12\left[
+0^2+\left(\frac12\right)^2+1^2+\left(\frac32\right)^2
+\right].
+\]
+
+Using sigma notation, the same sum is
+
+\[
+\sum_{i=0}^{3}
+\left(\frac{i}{2}\right)^2
+\left(\frac12\right).
+\]
+
+Here
+
+\[
+\frac{i}{2}
+\]
+
+runs through
+
+\[
+0,\qquad \frac12,\qquad 1,\qquad \frac32
+\]
+
+as \(i\) runs from \(0\) to \(3\).
+
+This may not look much shorter for four rectangles.  But for \(n\) rectangles, the
+advantage is enormous.
+
+Divide \([0,2]\) into \(n\) equal subintervals.  Then
+
+\[
+\Delta x=\frac{2}{n}.
+\]
+
+The right endpoints are
+
+\[
+\frac{2}{n},\quad \frac{4}{n},\quad \frac{6}{n},\quad \ldots,\quad \frac{2n}{n}.
+\]
+
+The right rectangle sum for \(f(x)=x^2\) is
+
+\[
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)^2
+\left(\frac{2}{n}\right).
+\]
+
+This one line represents all \(n\) rectangles.
+
+\[
+\boxed{
+\text{Sigma notation lets us write a finite rectangular sum without writing every rectangle.}
+}
+\]
+
+\subsection{Arithmetic sums}
+\label{subsec:arithmetic-sums}
+
+Some finite sums have simple formulas.  The first one is the sum of the first \(n\)
+positive integers:
+
+\[
+1+2+3+\cdots+n.
+\]
+
+Write
+
+\[
+S=1+2+3+\cdots+n.
+\]
+
+Now write the same sum backward:
+
+\[
+S=n+(n-1)+(n-2)+\cdots+1.
+\]
+
+Add the two lines term by term:
+
+\[
+\begin{aligned}
+2S
+&=
+(1+n)+(2+n-1)+(3+n-2)+\cdots+(n+1)\\
+&=
+(n+1)+(n+1)+(n+1)+\cdots+(n+1).
+\end{aligned}
+\]
+
+There are \(n\) copies of \(n+1\), so
+
+\[
+2S=n(n+1).
+\]
+
+Therefore
+
+\[
+\boxed{
+\sum_{i=1}^{n} i
+=
+1+2+3+\cdots+n
+=
+\frac{n(n+1)}{2}.
+}
+\]
+
+\paragraph{Example.}
+Find
+
+\[
+1+2+3+\cdots+100.
+\]
+
+Using the formula,
+
+\[
+\sum_{i=1}^{100} i
+=
+\frac{100(101)}{2}
+=
+5050.
+\]
+
+\paragraph{Example.}
+Evaluate
+
+\[
+\sum_{i=1}^{n}(3i+2).
+\]
+
+Use the fact that sums distribute over addition:
+
+\[
+\sum_{i=1}^{n}(3i+2)
+=
+\sum_{i=1}^{n}3i+\sum_{i=1}^{n}2.
+\]
+
+Now pull out the constant \(3\):
+
+\[
+=
+3\sum_{i=1}^{n}i+\sum_{i=1}^{n}2.
+\]
+
+Since there are \(n\) copies of \(2\),
+
+\[
+\sum_{i=1}^{n}2=2n.
+\]
+
+Therefore
+
+\[
+\sum_{i=1}^{n}(3i+2)
+=
+3\cdot \frac{n(n+1)}{2}+2n.
+\]
+
+So
+
+\[
+\boxed{
+\sum_{i=1}^{n}(3i+2)
+=
+\frac{3n(n+1)}{2}+2n.
+}
+\]
+
+We can simplify further if we want:
+
+\[
+\frac{3n(n+1)}{2}+2n
+=
+\frac{3n^2+3n+4n}{2}
+=
+\frac{3n^2+7n}{2}.
+\]
+
+\subsection{Basic rules for finite sums}
+\label{subsec:basic-rules-for-finite-sums}
+
+The example used rules that are worth naming.
+
+\begin{quote}
+\textbf{Rules for finite sums.}
+For constants \(c\) and finite lists \(a_i,b_i\),
+
+\[
+\boxed{
+\sum_{i=m}^{n} c
+=
+c(n-m+1),
+}
+\]
+
+\[
+\boxed{
+\sum_{i=m}^{n} c a_i
+=
+c\sum_{i=m}^{n} a_i,
+}
+\]
+
+and
+
+\[
+\boxed{
+\sum_{i=m}^{n} (a_i+b_i)
+=
+\sum_{i=m}^{n} a_i+\sum_{i=m}^{n} b_i.
+}
+\]
+\end{quote}
+
+These rules are not mysterious.  They come from ordinary addition.
+
+For example,
+
+\[
+\sum_{i=1}^{n}(a_i+b_i)
+\]
+
+means
+
+\[
+(a_1+b_1)+(a_2+b_2)+\cdots+(a_n+b_n).
+\]
+
+Regroup the terms:
+
+\[
+(a_1+a_2+\cdots+a_n)+(b_1+b_2+\cdots+b_n).
+\]
+
+That is
+
+\[
+\sum_{i=1}^{n} a_i+\sum_{i=1}^{n} b_i.
+\]
+
+A finite sum behaves like a long addition problem because that is exactly what it is.
+
+\subsection{Geometric sums}
+\label{subsec:geometric-sums}
+
+Another important pattern is
+
+\[
+1+r+r^2+r^3+\cdots+r^{n-1}.
+\]
+
+This is called a \emph{geometric sum}.  Each term is obtained from the previous term
+by multiplying by \(r\).
+
+Let
+
+\[
+G=1+r+r^2+\cdots+r^{n-1}.
+\]
+
+Multiply by \(r\):
+
+\[
+rG=r+r^2+r^3+\cdots+r^n.
+\]
+
+Subtract:
+
+\[
+G-rG
+=
+(1+r+r^2+\cdots+r^{n-1})
+-
+(r+r^2+\cdots+r^{n-1}+r^n).
+\]
+
+Most terms cancel, leaving
+
+\[
+G-rG=1-r^n.
+\]
+
+So
+
+\[
+(1-r)G=1-r^n.
+\]
+
+If \(r\neq1\), then
+
+\[
+\boxed{
+1+r+r^2+\cdots+r^{n-1}
+=
+\frac{1-r^n}{1-r}.
+}
+\]
+
+In sigma notation,
+
+\[
+\boxed{
+\sum_{i=0}^{n-1} r^i
+=
+\frac{1-r^n}{1-r},
+\qquad r\neq1.
+}
+\]
+
+If \(r=1\), then every term is \(1\), so
+
+\[
+\sum_{i=0}^{n-1}1^i=n.
+\]
+
+\paragraph{Example.}
+Evaluate
+
+\[
+1+\frac12+\frac14+\frac18+\cdots+\frac{1}{2^{n-1}}.
+\]
+
+Here
+
+\[
+r=\frac12.
+\]
+
+So
+
+\[
+\sum_{i=0}^{n-1}\left(\frac12\right)^i
+=
+\frac{1-\left(\frac12\right)^n}{1-\frac12}.
+\]
+
+Since
+
+\[
+1-\frac12=\frac12,
+\]
+
+we get
+
+\[
+\sum_{i=0}^{n-1}\left(\frac12\right)^i
+=
+2\left(1-\frac{1}{2^n}\right).
+\]
+
+As \(n\) grows, the term \(\frac{1}{2^n}\) becomes very small.  So the sum approaches
+
+\[
+2.
+\]
+
+This is a preview of infinite series.  A finite geometric sum has an exact formula.  When
+the number of terms grows without bound, the finite formula tells us what the infinite
+process approaches.
+
+\subsection{Sums of powers}
+\label{subsec:sums-of-powers}
+
+Rectangular sums often contain powers of the index:
+
+\[
+\sum_{i=1}^{n} i,
+\qquad
+\sum_{i=1}^{n} i^2,
+\qquad
+\sum_{i=1}^{n} i^3.
+\]
+
+The first formula is already known:
+
+\[
+\sum_{i=1}^{n} i=\frac{n(n+1)}{2}.
+\]
+
+The next two are:
+
+\[
+\boxed{
+\sum_{i=1}^{n} i^2
+=
+\frac{n(n+1)(2n+1)}{6},
+}
+\]
+
+and
+
+\[
+\boxed{
+\sum_{i=1}^{n} i^3
+=
+\left(\frac{n(n+1)}{2}\right)^2.
+}
+\]
+
+Together:
+
+\[
+\begin{array}{c|c}
+\textbf{sum} & \textbf{formula} \\ \hline
+\displaystyle \sum_{i=1}^{n} 1 & n \\[8pt]
+\displaystyle \sum_{i=1}^{n} i & \displaystyle \frac{n(n+1)}{2} \\[10pt]
+\displaystyle \sum_{i=1}^{n} i^2 & \displaystyle \frac{n(n+1)(2n+1)}{6} \\[10pt]
+\displaystyle \sum_{i=1}^{n} i^3 & \displaystyle \left(\frac{n(n+1)}{2}\right)^2
+\end{array}
+\]
+
+These formulas are useful because powers of \(i\) appear when we evaluate Riemann
+sums for functions such as \(x\), \(x^2\), and \(x^3\).
+
+\paragraph{Why the sum of squares formula is the right one.}
+One way to find the formula for
+
+\[
+\sum_{i=1}^{n} i^2
+\]
+
+is to use a telescoping sum.
+
+Start with the identity
+
+\[
+(k+1)^3-k^3=3k^2+3k+1.
+\]
+
+Now add this identity from \(k=1\) to \(k=n\):
+
+\[
+\sum_{k=1}^{n}\bigl((k+1)^3-k^3\bigr)
+=
+\sum_{k=1}^{n}(3k^2+3k+1).
+\]
+
+The left side telescopes:
+
+\[
+(2^3-1^3)+(3^3-2^3)+\cdots+((n+1)^3-n^3)
+=
+(n+1)^3-1.
+\]
+
+The right side is
+
+\[
+3\sum_{k=1}^{n}k^2
++
+3\sum_{k=1}^{n}k
++
+\sum_{k=1}^{n}1.
+\]
+
+So
+
+\[
+(n+1)^3-1
+=
+3\sum_{k=1}^{n}k^2
++
+3\cdot \frac{n(n+1)}{2}
++
+n.
+\]
+
+Solving for \(\sum k^2\) gives
+
+\[
+\sum_{k=1}^{n}k^2
+=
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+The formula comes from adding finite differences.
+
+This is another hint of the larger story:
+
+\[
+\text{differences telescope, and sums accumulate.}
+\]
+
+\paragraph{Example.}
+Evaluate
+
+\[
+\sum_{i=1}^{n}(4i^2-3i+2).
+\]
+
+Use the sum rules:
+
+\[
+\sum_{i=1}^{n}(4i^2-3i+2)
+=
+4\sum_{i=1}^{n}i^2
+-
+3\sum_{i=1}^{n}i
++
+2\sum_{i=1}^{n}1.
+\]
+
+Substitute the formulas:
+
+\[
+=
+4\cdot \frac{n(n+1)(2n+1)}{6}
+-
+3\cdot \frac{n(n+1)}{2}
++
+2n.
+\]
+
+So
+
+\[
+\boxed{
+\sum_{i=1}^{n}(4i^2-3i+2)
+=
+\frac{2n(n+1)(2n+1)}{3}
+-
+\frac{3n(n+1)}{2}
++
+2n.
+}
+\]
+
+We could simplify the expression, but in calculus it is often more useful to see which
+standard sums produced it.
+
+\paragraph{Iterating for higher powers.}
+This telescoping technique generalizes to any integer power \(p \ge 1\). To find a closed-form formula for \(\sum_{i=1}^{n} i^p\), we start with the binomial expansion of the difference of \((p+1)\)-th powers:
+
+\[
+(k+1)^{p+1} - k^{p+1}
+=
+(p+1)k^p + \binom{p+1}{2}k^{p-1} + \cdots + \binom{p+1}{p}k + 1.
+\]
+
+Summing both sides from \(k=1\) to \(n\) telescopes the left side entirely:
+
+\[
+(n+1)^{p+1}-1
+=
+(p+1)\sum_{k=1}^{n}k^p 
++ 
+\binom{p+1}{2}\sum_{k=1}^{n}k^{p-1} 
++ \cdots + 
+\sum_{k=1}^{n}1.
+\]
+
+Because the right side isolates \((p+1)\sum k^p\) alongside a linear combination of sums of strictly lower degree, we can solve for \(\sum k^p\) as long as we have already computed the formulas for all lower powers.
+\subsection{From finite sums to integrals}
+\label{subsec:finite-sums-to-integrals}
+
+Sigma notation was introduced because rectangular sums need it.
+
+Divide the interval \([a,b]\) into \(n\) equal subintervals.  Then the common width is
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+If we use right endpoints, then the \(i\)th sample point is
+
+\[
+x_i=a+i\Delta x.
+\]
+
+The right rectangle sum is
+
+\[
+\sum_{i=1}^{n} f(x_i)\Delta x
+=
+\sum_{i=1}^{n} f(a+i\Delta x)\Delta x.
+\]
+
+This is the basic finite object that will become an integral.
+
+\paragraph{Example: \(y=x\) on \([0,2]\).}
+Here
+
+\[
+f(x)=x,
+\qquad
+a=0,
+\qquad
+b=2,
+\qquad
+\Delta x=\frac{2}{n}.
+\]
+
+The right endpoints are
+
+\[
+x_i=\frac{2i}{n}.
+\]
+
+So the right rectangle sum is
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)
+\left(\frac{2}{n}\right).
+\]
+
+Pull out the constants:
+
+\[
+R_n
+=
+\frac{4}{n^2}\sum_{i=1}^{n} i.
+\]
+
+Use
+
+\[
+\sum_{i=1}^{n} i=\frac{n(n+1)}{2}.
+\]
+
+Then
+
+\[
+R_n
+=
+\frac{4}{n^2}\cdot \frac{n(n+1)}{2}
+=
+2\cdot \frac{n+1}{n}.
+\]
+
+As \(n\to\infty\),
+
+\[
+2\cdot \frac{n+1}{n}\to2.
+\]
+
+So the right rectangle sums approach
+
+\[
+2.
+\]
+
+That matches the triangle area under \(y=x\) from \(0\) to \(2\).
+
+\paragraph{Example: \(y=x^2\) on \([0,2]\).}
+This is the curved region from the last section.
+
+Again
+
+\[
+\Delta x=\frac{2}{n},
+\qquad
+x_i=\frac{2i}{n}.
+\]
+
+The right rectangle sum is
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)^2
+\left(\frac{2}{n}\right).
+\]
+
+Simplify:
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\frac{4i^2}{n^2}\cdot \frac{2}{n}
+=
+\frac{8}{n^3}\sum_{i=1}^{n}i^2.
+\]
+
+Use the sum of squares formula:
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+Then
+
+\[
+R_n
+=
+\frac{8}{n^3}\cdot
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+So
+
+\[
+R_n
+=
+\frac{4}{3}\cdot
+\frac{(n+1)(2n+1)}{n^2}.
+\]
+
+Expand the numerator:
+
+\[
+(n+1)(2n+1)=2n^2+3n+1.
+\]
+
+Therefore
+
+\[
+R_n
+=
+\frac{4}{3}
+\left(
+2+\frac{3}{n}+\frac{1}{n^2}
+\right).
+\]
+
+As \(n\to\infty\),
+
+\[
+R_n\to
+\frac{4}{3}\cdot2
+=
+\frac{8}{3}.
+\]
+
+The exact area under \(y=x^2\) from \(0\) to \(2\) should therefore be
+
+\[
+\frac{8}{3}.
+\]
+
+The next section gives this limiting number a name and a notation.
+
+\[
+\boxed{
+\text{The definite integral is the limit of Riemann sums.}
+}
+\]
+
+\section{The definite integral}
+\label{sec:definite-integral}
+
+Sigma notation made rectangular sums readable.  Now we give the limiting process a
+name.
+
+The definite integral is the number that rectangular sums approach when every
+rectangle becomes thin.
+
+\[
+\text{finite sum of rectangles}
+\quad\longrightarrow\quad
+\text{definite integral}.
+\]
+
+This definition is the formal version of the accumulation idea that began the chapter.
+
+\subsection{Partitions and sample points}
+\label{subsec:partitions-sample-points}
+
+To build rectangular sums carefully, we first divide an interval into pieces.
+
+Let
+
+\[
+[a,b]
+\]
+
+be a closed interval.  A \emph{partition} \(P\) of \([a,b]\) is a finite list of points
+
+\[
+a=x_0<x_1<x_2<\cdots<x_n=b.
+\]
+
+The subintervals are
+
+\[
+[x_0,x_1],
+\quad
+[x_1,x_2],
+\quad
+\ldots,
+\quad
+[x_{n-1},x_n].
+\]
+
+The width of the \(i\)th subinterval is
+
+\[
+\Delta x_i=x_i-x_{i-1}.
+\]
+
+If all widths are equal, then
+
+\[
+\Delta x_i=\Delta x=\frac{b-a}{n}.
+\]
+
+But equal widths are not required.
+
+The largest width is called the \emph{mesh} of the partition:
+
+\[
+\lVert P\rVert
+=
+\max\{\Delta x_1,\Delta x_2,\ldots,\Delta x_n\}.
+\]
+
+The condition
+
+\[
+\lVert P\rVert\to0
+\]
+
+means that every subinterval is becoming small.
+
+On each subinterval \([x_{i-1},x_i]\), choose a sample point
+
+\[
+x_i^*
+\]
+
+inside that subinterval:
+
+\[
+x_i^*\in[x_{i-1},x_i].
+\]
+
+The sample point determines the height of the rectangle:
+
+\[
+f(x_i^*).
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.15,
+    ymin=0, ymax=4.3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.6,1.25,2.1,3},
+    xticklabels={\(x_0\),\(x_1\),\(x_2\),\(x_3\),\(x_4\)},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% Function f(x)=1+0.25x+0.35x^2
+\foreach \a/\b/\s in {0/0.6/0.35, 0.6/1.25/0.95, 1.25/2.1/1.65, 2.1/3/2.55} {
+    \pgfmathsetmacro{\height}{1+0.25*\s+0.35*\s*\s}
+    \edef\temp{
+        \noexpand\draw[fill=gray!15, draw=gray!60]
+            (axis cs:\a,0) rectangle (axis cs:\b,\height);
+        \noexpand\addplot[only marks, mark=*] coordinates {(\s,\height)};
+    }
+    \temp
+}
+\addplot[very thick, domain=0:3, samples=150] {1+0.25*x+0.35*x^2};
+\node[anchor=west] at (axis cs:1.7,3.65) {\(y=f(x)\)};
+\node[anchor=west] at (axis cs:0.15,0.45) {sample-point rectangles};
+\end{axis}
+\end{tikzpicture}
+\caption{A partition divides the interval. A sample point in each subinterval determines the rectangle height.}
+\label{fig:partition-sample-points}
+\end{figure}
+
+The sample point may be the left endpoint:
+
+\[
+x_i^*=x_{i-1}.
+\]
+
+It may be the right endpoint:
+
+\[
+x_i^*=x_i.
+\]
+
+It may be the midpoint:
+
+\[
+x_i^*=\frac{x_{i-1}+x_i}{2}.
+\]
+
+Or it may be some other point in the subinterval.  The definition of the integral will
+ask whether all reasonable choices are forced toward the same number as the partition
+becomes fine.
+
+\subsection{Riemann sums}
+\label{subsec:riemann-sums}
+
+For each subinterval, the rectangle has width
+
+\[
+\Delta x_i
+\]
+
+and height
+
+\[
+f(x_i^*).
+\]
+
+So its signed rectangular contribution is
+
+\[
+f(x_i^*)\Delta x_i.
+\]
+
+Adding all the contributions gives a \emph{Riemann sum}.
+
+\begin{quote}
+\textbf{Riemann sum.}
+Given a partition
+
+\[
+P:\quad a=x_0<x_1<\cdots<x_n=b
+\]
+
+and sample points
+
+\[
+x_i^*\in[x_{i-1},x_i],
+\]
+
+the corresponding Riemann sum for \(f\) on \([a,b]\) is
+
+\[
+\boxed{
+\sum_{i=1}^{n} f(x_i^*)\Delta x_i.
+}
+\]
+\end{quote}
+
+If \(f(x)\ge0\), this sum approximates area under the graph.
+
+If \(f\) can be negative, the sum still makes sense.  Terms below the axis contribute
+negatively.  That signed interpretation will become central in the next section.
+
+\paragraph{Example.}
+Let
+
+\[
+f(x)=1+x^2
+\]
+
+on \([0,2]\).  Divide the interval into four equal subintervals and use right endpoints.
+
+Then
+
+\[
+\Delta x=\frac{2-0}{4}=\frac12.
+\]
+
+The right endpoints are
+
+\[
+\frac12,\qquad 1,\qquad \frac32,\qquad 2.
+\]
+
+The Riemann sum is
+
+\[
+\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12.
+\]
+
+Compute:
+
+\[
+\begin{aligned}
+\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12
+&=
+\frac12\left[
+f\left(\frac12\right)+f(1)+f\left(\frac32\right)+f(2)
+\right] \\[4pt]
+&=
+\frac12\left[
+\left(1+\frac14\right)+(1+1)+\left(1+\frac94\right)+(1+4)
+\right].
+\end{aligned}
+\]
+
+Thus
+
+\[
+\begin{aligned}
+\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12
+&=
+\frac12\left[
+\frac54+2+\frac{13}{4}+5
+\right] \\[4pt]
+&=
+\frac12\left(\frac{42}{4}\right) \\[4pt]
+&=
+\frac{21}{4}.
+\end{aligned}
+\]
+
+So this particular Riemann sum is
+
+\[
+\boxed{\frac{21}{4}=5.25.}
+\]
+
+It is one approximation.  The integral is what these approximations approach as the
+subintervals become thin.
+
+\subsection{Definition of the definite integral}
+\label{subsec:definite-integral-definition}
+
+We are ready for the definition.
+
+\begin{quote}
+\textbf{Definite integral.}
+Let \(f\) be a bounded function on \([a,b]\).  If the Riemann sums
+
+\[
+\sum_{i=1}^{n} f(x_i^*)\Delta x_i
+\]
+
+approach one common number as
+
+\[
+\lVert P\rVert\to0,
+\]
+
+no matter how the partitions and sample points are chosen, then \(f\) is called
+\emph{integrable} on \([a,b]\).
+
+That common number is the \emph{definite integral} of \(f\) from \(a\) to \(b\), written
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{\lVert P\rVert\to0}
+\sum_{i=1}^{n} f(x_i^*)\Delta x_i.
+}
+\]
+\end{quote}
+
+The notation is full of memory.
+
+\[
+\int
+\]
+
+is an elongated \(S\), reminding us of a sum.
+
+The expression
+
+\[
+f(x)
+\]
+
+reminds us of the rectangle height.
+
+The symbol
+
+\[
+dx
+\]
+
+reminds us of the small horizontal width, the limiting descendant of \(\Delta x_i\).
+
+So
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+means:
+
+\[
+\text{accumulate \(f(x)\) along the interval from \(a\) to \(b\).}
+\]
+
+The \(dx\) is not decoration.  It tells us which variable is being accumulated and
+points to the small step in the input.  Later, when we reverse direction along the
+interval, that orientation will matter:
+
+\[
+\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.
+\]
+
+For now, when \(a<b\), the widths \(\Delta x_i\) are positive.
+
+\paragraph{The variable of integration is temporary.}
+The expressions
+
+\[
+\int_a^b f(x)\,dx,
+\qquad
+\int_a^b f(t)\,dt,
+\qquad
+\int_a^b f(u)\,du
+\]
+
+mean the same number.  The variable is a placeholder inside the integral, just as the
+index in a finite sum is a placeholder:
+
+\[
+\sum_{i=1}^{n} i^2
+=
+\sum_{k=1}^{n} k^2.
+\]
+
+The bounds \(a\) and \(b\) are not temporary.  They determine the interval of
+accumulation.
+
+\subsection{Equal-width Riemann sums}
+\label{subsec:equal-width-riemann-sums}
+
+Many calculations use equal subintervals.  If \([a,b]\) is divided into \(n\) equal
+pieces, then
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+Using right endpoints,
+
+\[
+x_i=a+i\Delta x,
+\qquad i=1,2,\ldots,n.
+\]
+
+The right Riemann sum is
+
+\[
+\sum_{i=1}^{n} f(a+i\Delta x)\Delta x.
+\]
+
+If \(f\) is integrable, then this particular sequence of sums approaches the integral:
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\lim_{n\to\infty}
+\sum_{i=1}^{n} f(a+i\Delta x)\Delta x,
+\qquad
+\Delta x=\frac{b-a}{n}.
+}
+\]
+
+This formula is not the definition in its full strength, because it uses only equal
+widths and right endpoints.  But for integrable functions, it is often the most convenient
+way to compute from the definition.
+
+\subsection{Computing an integral from the definition}
+\label{subsec:computing-integral-definition}
+
+The area under
+
+\[
+y=x^2
+\]
+
+from \(0\) to \(2\) was estimated in the previous section.  Now we compute its exact
+integral from Riemann sums.
+
+Let
+
+\[
+f(x)=x^2,
+\qquad
+0\le x\le2.
+\]
+
+Divide \([0,2]\) into \(n\) equal subintervals.  Then
+
+\[
+\Delta x=\frac{2}{n}.
+\]
+
+Use right endpoints:
+
+\[
+x_i=\frac{2i}{n}.
+\]
+
+The right Riemann sum is
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+f(x_i)\Delta x.
+\]
+
+Since \(f(x)=x^2\),
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)^2
+\left(\frac{2}{n}\right).
+\]
+
+Simplify:
+
+\[
+R_n
+=
+\sum_{i=1}^{n}
+\frac{4i^2}{n^2}\cdot\frac{2}{n}
+=
+\frac{8}{n^3}\sum_{i=1}^{n}i^2.
+\]
+
+Use
+
+\[
+\sum_{i=1}^{n}i^2
+=
+\frac{n(n+1)(2n+1)}{6}.
+\]
+
+Then
+
+\[
+R_n
+=
+\frac{8}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}.
+\]
+
+Thus
+
+\[
+R_n
+=
+\frac{4}{3}
+\cdot
+\frac{(n+1)(2n+1)}{n^2}.
+\]
+
+Expand:
+
+\[
+R_n
+=
+\frac{4}{3}
+\left(
+2+\frac{3}{n}+\frac{1}{n^2}
+\right).
+\]
+
+Therefore
+
+\[
+\lim_{n\to\infty}R_n
+=
+\frac{4}{3}\cdot2
+=
+\frac{8}{3}.
+\]
+
+So
+
+\[
+\boxed{
+\int_0^2 x^2\,dx=\frac{8}{3}.
+}
+\]
+
+Because \(x^2\ge0\) on \([0,2]\), this number is also the area under the curve.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=2.15,
+    ymin=0, ymax=4.4,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% right rectangles, n=8
+\pgfplotsinvokeforeach{1,...,8}{
+    \draw[fill=gray!15, draw=gray!55]
+        (axis cs: {0.25*(#1-1)}, 0) rectangle (axis cs: {0.25*#1}, {(0.25*#1)^2});
+}
+\addplot[very thick, domain=0:2, samples=150] {x^2};
+\node[anchor=west] at (axis cs:0.9,3.55) {\(y=x^2\)};
+\node[anchor=west] at (axis cs:0.15,1.2) {right Riemann rectangles};
+\end{axis}
+\end{tikzpicture}
+\caption{The exact area under \(y=x^2\) on \([0,2]\) is the limit of these rectangular sums: \(\int_0^2 x^2\,dx=8/3\).}
+\label{fig:riemann-x-squared-right}
+\end{figure}
+
+This calculation is the first exact curved area in the chapter.  It came from three
+ingredients:
+
+\[
+\text{partition},
+\qquad
+\text{Riemann sum},
+\qquad
+\text{limit}.
+\]
+
+\subsection{Why the sample point should not matter}
+\label{subsec:why-sample-point-should-not-matter}
+
+The definition of the integral asks for more than the convergence of one special sum.
+It asks that all sufficiently fine Riemann sums approach the same number.
+
+Why such a strong requirement?
+
+Because the integral should belong to the function and the interval, not to our particular
+choice of sample points.
+
+For a smooth graph, this is natural.  If a subinterval is very narrow, the values of \(f\)
+inside it are close to one another.  A left endpoint, a right endpoint, and a midpoint give
+nearly the same height.  The rectangle heights may differ a little, but the differences
+become negligible as the widths shrink.
+
+For \(f(x)=x^2\) on \([0,2]\), the left and right sums have the same limit.  The right
+sum is
+
+\[
+R_n=
+\sum_{i=1}^{n}
+\left(\frac{2i}{n}\right)^2
+\left(\frac{2}{n}\right)
+\to
+\frac83.
+\]
+
+The left sum is
+
+\[
+L_n=
+\sum_{i=0}^{n-1}
+\left(\frac{2i}{n}\right)^2
+\left(\frac{2}{n}\right).
+\]
+
+Using the same sum-of-squares formula, one finds
+
+\[
+L_n\to\frac83.
+\]
+
+The upper and lower sums also squeeze toward the same number.  That is why the
+integral exists and equals
+
+\[
+\frac83.
+\]
+
+\[
+\boxed{
+\text{When all fine rectangular sums are forced toward one number, that number is the integral.}
+}
+\]
+
+\subsection{Integrability, informally first}
+\label{subsec:integrability-informally-first}
+
+The definition says:
+
+\[
+\text{all fine Riemann sums must approach one common value.}
+\]
+
+This is a strong condition, but most functions we meet in first-year calculus satisfy it.
+
+\begin{quote}
+\textbf{Working theorem.}
+If \(f\) is continuous on \([a,b]\), then \(f\) is integrable on \([a,b]\).
+\end{quote}
+
+We will discuss this more carefully later.  The intuition is that a continuous function
+cannot jump wildly inside tiny intervals.  When the subintervals are small, the function
+values inside each subinterval are forced to stay close together.
+
+Continuity is not required, though.  A function with a finite number of jump
+discontinuities can still be integrable.
+
+For example, the step function
+
+\[
+H(x)=
+\begin{cases}
+0, & 0\le x<1,\\
+1, & 1\le x\le2
+\end{cases}
+\]
+
+is integrable on \([0,2]\).  The jump at \(x=1\) affects only one point.  Riemann sums
+still settle down to the total area:
+
+\[
+1.
+\]
+
+But not every bounded function is integrable.
+
+\paragraph{Warning example: too much oscillation.}
+Define a function \(D\) on \([0,1]\) by
+
+\[
+D(x)=
+\begin{cases}
+1, & x\text{ is rational},\\
+0, & x\text{ is irrational}.
+\end{cases}
+\]
+
+Every interval, no matter how small, contains rational numbers and irrational numbers.
+So on every subinterval, we can choose a rational sample point and get height \(1\), or
+choose an irrational sample point and get height \(0\).
+
+If every sample point is rational, the Riemann sum is
+
+\[
+\sum_{i=1}^{n}1\cdot \Delta x_i
+=
+\sum_{i=1}^{n}\Delta x_i
+=
+1.
+\]
+
+If every sample point is irrational, the Riemann sum is
+
+\[
+\sum_{i=1}^{n}0\cdot \Delta x_i
+=
+0.
+\]
+
+These two outcomes do not approach one common number.  They remain separated by
+\(1\), no matter how fine the partition is.
+
+Therefore \(D\) is not Riemann integrable on \([0,1]\).
+
+\begin{quote}
+\textbf{Moral.}
+The definite integral is not just any limit of convenient sums.  It exists only when
+fine Riemann sums are forced toward the same value, regardless of the sample points.
+\end{quote}
+
+This warning is not meant to frighten us.  It tells us why the definition is honest.
+The continuous functions, piecewise continuous functions, and ordinary models of
+science and geometry are integrable.  But the definition knows how to reject functions
+that oscillate too violently at every scale.
+
+We now have the central object of integral calculus:
+
+\[
+\int_a^b f(x)\,dx.
+\]
+
+When \(f\ge0\), it is area under the graph.  But the original motivation came from
+velocity, and velocity can be negative.  The next step is to understand the integral as
+\emph{signed} accumulation: area above the axis counts positively, area below the axis
+counts negatively.
+\section{Signed area and net change}
+\label{sec:signed-area-net-change}
+
+The definite integral was built from Riemann sums:
+
+\[
+\sum_{j=1}^{n} f(x_j^*)\Delta x_j.
+\]
+
+Each term has two parts.  The width \(\Delta x_j\) is positive when we move from left to
+right.  The height \(f(x_j^*)\) can be positive, zero, or negative.
+
+That one fact changes the meaning of area.
+
+If the graph lies above the \(x\)-axis, the rectangles contribute positively.  If the graph
+lies below the \(x\)-axis, the rectangles contribute negatively.  So the definite integral is
+not ordinary area first.  It is \emph{signed accumulation}.
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\text{area above the axis}
+-
+\text{area below the axis}.
+}
+\]
+
+Ordinary area is never negative.  A definite integral can be negative, because it is designed
+to remember direction.
+
+\subsection{Area above the axis}
+\label{subsec:area-above-axis}
+
+When
+
+\[
+f(x)\ge 0
+\]
+
+on \([a,b]\), all the small rectangles in a Riemann sum have nonnegative height.  In that
+case,
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+is the ordinary area under the graph.
+
+For example, suppose \(f(x)=2\) on \([0,5]\).  Then the graph is a horizontal line, and the
+area is a rectangle:
+
+\[
+\int_0^5 2\,dx=2\cdot5=10.
+\]
+
+The integral is positive because the graph is above the axis.
+
+More generally, if \(f(x)\ge0\), then the integral accumulates positive amount.  In a
+motion problem, this might mean forward displacement.  In a density problem, it might
+mean mass.  In a power problem, it might mean energy used.
+
+The same rectangle picture from the beginning of the book is still present:
+
+\[
+\text{height}\cdot\text{width}
+=
+\text{rate}\cdot\text{input step}.
+\]
+
+The integral adds infinitely many such pieces.
+
+\subsection{Area below the axis}
+\label{subsec:area-below-axis}
+
+When
+
+\[
+f(x)\le 0
+\]
+
+on \([a,b]\), all the small rectangles have negative height.  The ordinary geometric area
+between the graph and the axis is positive, but the integral is negative.
+
+For example,
+
+\[
+f(x)=-3
+\]
+
+on \([0,4]\) gives
+
+\[
+\int_0^4 -3\,dx=-3\cdot4=-12.
+\]
+
+The ordinary area of the rectangle is \(12\).  The signed area is \(-12\).
+
+This is not a defect.  It is the point.
+
+If \(v(t)=-3\) meters/second for \(4\) seconds, then the object moves \(12\) meters in
+the negative direction.  Its displacement is
+
+\[
+-12\text{ meters}.
+\]
+
+So the signed integral matches the signed physical change.
+
+\subsection{A graph with both signs}
+\label{subsec:graph-with-both-signs}
+
+Let
+
+\[
+f(x)=x-1
+\]
+
+on the interval \([0,3]\).
+
+The graph crosses the \(x\)-axis at \(x=1\).  It lies below the axis on \([0,1]\), and above
+the axis on \([1,3]\).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.2,
+    ymin=-1.3, ymax=2.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,3},
+    ytick={-1,0,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!25, draw=none]
+  (axis cs:0,0) -- (axis cs:1,0) -- (axis cs:0,-1) -- cycle;
+\draw[fill=gray!15, draw=none]
+  (axis cs:1,0) -- (axis cs:3,0) -- (axis cs:3,2) -- cycle;
+\addplot[very thick, domain=0:3, samples=2] {x-1};
+\node[anchor=north] at (axis cs:0.45,-0.12) {\(-\frac12\)};
+\node[anchor=south] at (axis cs:2.2,0.45) {\(+2\)};
+\node[anchor=west] at (axis cs:2.05,1.65) {\(y=x-1\)};
+\end{axis}
+\end{tikzpicture}
+\caption{The integral counts area below the axis negatively and area above the axis positively.}
+\label{fig:signed-area-linear}
+\end{figure}
+
+The triangle below the axis has base \(1\) and height \(1\), so its ordinary area is
+
+\[
+\frac12.
+\]
+
+Because it lies below the axis, it contributes
+
+\[
+-\frac12
+\]
+
+to the integral.
+
+The triangle above the axis has base \(2\) and height \(2\), so its ordinary area is
+
+\[
+\frac12(2)(2)=2.
+\]
+
+Therefore
+
+\[
+\int_0^3 (x-1)\,dx
+=
+-\frac12+2
+=
+\frac32.
+\]
+
+The integral is positive, even though part of the graph is below the axis, because the
+positive part is larger than the negative part.
+
+\subsection{Cancellation and meaning}
+\label{subsec:cancellation-meaning}
+
+Signed area can cancel.
+
+For example, consider
+
+\[
+f(x)=x
+\]
+
+on \([-1,1]\).  The graph lies below the axis on \([-1,0]\) and above the axis on
+\([0,1]\).  The two triangles have the same ordinary area:
+
+\[
+\frac12.
+\]
+
+The signed integral is
+
+\[
+\int_{-1}^{1} x\,dx
+=
+-\frac12+\frac12
+=
+0.
+\]
+
+But the graph is not zero.  The function does not vanish.  The integral is zero because the
+negative and positive contributions balance exactly.
+
+\begin{quote}
+\textbf{An integral can be zero for two different reasons.}
+
+It may be zero because there is no accumulation.
+
+It may also be zero because positive and negative accumulation cancel.
+\end{quote}
+
+This distinction is crucial in motion.
+
+If a car travels \(40\) miles east and then \(40\) miles west, its displacement is \(0\).  But
+it did not stay still.  It traveled \(80\) miles.
+
+The signed integral measures net change.  It does not measure total activity.
+
+\subsection{Velocity: displacement versus distance traveled}
+\label{subsec:velocity-displacement-distance-integrals}
+
+Suppose the velocity of a particle is
+
+\[
+v(t)=
+\begin{cases}
+2, & 0\le t<1,\\
+-1, & 1\le t<3,\\
+3, & 3\le t\le4.
+\end{cases}
+\]
+
+The signed displacement is
+
+\[
+\int_0^4 v(t)\,dt.
+\]
+
+Since the velocity is constant on each piece, we can compute this with rectangles:
+
+\[
+\int_0^4 v(t)\,dt
+=
+2(1)+(-1)(2)+3(1)
+=
+2-2+3
+=
+3.
+\]
+
+So the particle ends \(3\) units ahead of where it started.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=4.35,
+    ymin=-1.6, ymax=3.5,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(v(t)\)},
+    xtick={0,1,3,4},
+    ytick={-1,0,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\foreach \a/\b/\height in {0/1/2,1/3/-1,3/4/3} {
+    \edef\temp{
+        \noexpand\draw[fill=gray!15, draw=gray!60, fill opacity=0.5]
+            (axis cs:\a,0) rectangle (axis cs:\b,\height);
+    }
+    \temp
+}
+\addplot[very thick] coordinates {(0,2) (1,2)};
+\addplot[very thick] coordinates {(1,-1) (3,-1)};
+\addplot[very thick] coordinates {(3,3) (4,3)};
+\draw[dashed] (axis cs:1,-1.45) -- (axis cs:1,3.3);
+\draw[dashed] (axis cs:3,-1.45) -- (axis cs:3,3.3);
+\node[anchor=south] at (axis cs:0.5,2) {\(+2\)};
+\node[anchor=north] at (axis cs:2,-1) {\(-2\)};
+\node[anchor=south] at (axis cs:3.5,3) {\(+3\)};
+\end{axis}
+\end{tikzpicture}
+\caption{The signed rectangle areas are \(2\), \(-2\), and \(3\).  Their sum is the displacement.}
+\label{fig:piecewise-velocity-signed-area}
+\end{figure}
+
+The total distance traveled is different.  It counts backward motion positively:
+
+\[
+2(1)+1(2)+3(1)
+=
+2+2+3
+=
+7.
+\]
+
+The formula for total distance is
+
+\[
+\boxed{
+\text{distance traveled}
+=
+\int_a^b |v(t)|\,dt.
+}
+\]
+
+The absolute value removes the sign of the velocity before accumulation.
+
+\[
+\boxed{
+\text{displacement}
+=
+\int_a^b v(t)\,dt.
+}
+\]
+
+The signed integral answers:
+
+\[
+\text{Where did the object end compared with where it started?}
+\]
+
+The integral of the absolute value answers:
+
+\[
+\text{How much ground did the object cover?}
+\]
+
+\subsection{Total accumulation from absolute value}
+\label{subsec:total-accumulation-absolute-value}
+
+The same distinction appears outside motion.
+
+Suppose \(f(x)\) represents a signed rate of change.  Positive values increase a quantity.
+Negative values decrease it.
+
+Then
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+measures the \emph{net change}.  Positive and negative contributions may cancel.
+
+But
+
+\[
+\int_a^b |f(x)|\,dx
+\]
+
+measures the \emph{total size of the accumulated change}, ignoring direction.
+
+For the earlier example \(f(x)=x-1\) on \([0,3]\), we found
+
+\[
+\int_0^3 (x-1)\,dx=\frac32.
+\]
+
+The total accumulated size is
+
+\[
+\int_0^3 |x-1|\,dx.
+\]
+
+This adds both triangles positively:
+
+\[
+\int_0^3 |x-1|\,dx
+=
+\frac12+2
+=
+\frac52.
+\]
+
+So
+
+\[
+\text{net signed accumulation}=\frac32,
+\]
+
+while
+
+\[
+\text{total accumulation}=\frac52.
+\]
+
+The total is larger because cancellation has been removed.
+
+\begin{quote}
+\textbf{Net versus total.}
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\text{positive accumulation}
+-
+\text{negative accumulation}.
+}
+\]
+
+\[
+\boxed{
+\int_a^b |f(x)|\,dx
+=
+\text{positive accumulation}
++
+\text{negative accumulation}.
+}
+\]
+\end{quote}
+
+The definite integral is therefore more flexible than ordinary area.  It can measure area,
+displacement, accumulated signed change, or cancellation.  To use it well, we must always
+ask what the sign means.
+
+The next section collects the algebraic rules that make integrals useful.  These rules will
+look familiar because they come from the same place as the integral itself: finite sums.
+
+\section{Properties of the integral}
+\label{sec:properties-of-the-integral}
+
+The integral was born from sums.  Its basic properties are inherited from sums.
+
+A Riemann sum has the form
+
+\[
+\sum_{j=1}^{n} f(x_j^*)\Delta x_j.
+\]
+
+Finite sums are linear.  They can be split into pieces.  They preserve inequalities.  They
+respect symmetry.  When the Riemann sums approach a limit, those same habits survive
+in the integral.
+
+This section is not a list of tricks.  It is the arithmetic of accumulation.
+
+\subsection{Linearity}
+\label{subsec:integral-linearity}
+
+Suppose two functions \(f\) and \(g\) are integrable on \([a,b]\).  If we accumulate their
+sum, we get the sum of their accumulations:
+
+\[
+\int_a^b \bigl(f(x)+g(x)\bigr)\,dx
+=
+\int_a^b f(x)\,dx+\int_a^b g(x)\,dx.
+\]
+
+If we multiply a function by a constant \(c\), the accumulated amount is multiplied by
+the same constant:
+
+\[
+\int_a^b c f(x)\,dx
+=
+c\int_a^b f(x)\,dx.
+\]
+
+Together these give the linearity rule.
+
+\begin{quote}
+\textbf{Linearity of the integral.}
+If \(f\) and \(g\) are integrable on \([a,b]\), and \(A\) and \(B\) are constants, then
+
+\[
+\boxed{
+\int_a^b \bigl(Af(x)+Bg(x)\bigr)\,dx
+=
+A\int_a^b f(x)\,dx
++
+B\int_a^b g(x)\,dx.
+}
+\]
+\end{quote}
+
+\paragraph{Why it is true.}
+For one partition and one set of sample points,
+
+\[
+\sum_{j=1}^{n} \bigl(Af(x_j^*)+Bg(x_j^*)\bigr)\Delta x_j
+\]
+
+equals
+
+\[
+A\sum_{j=1}^{n} f(x_j^*)\Delta x_j
++
+B\sum_{j=1}^{n} g(x_j^*)\Delta x_j.
+\]
+
+This is just the distributive law for finite sums.  As the widths of the subintervals go to
+zero, the left side approaches
+
+\[
+\int_a^b (Af+Bg)\,dx,
+\]
+
+and the two sums on the right approach
+
+\[
+A\int_a^b f\,dx
++
+B\int_a^b g\,dx.
+\]
+
+So the integral obeys the same linearity.
+
+\paragraph{Example.}
+Find
+
+\[
+\int_0^4 (3+2x)\,dx
+\]
+
+using geometry.
+
+By linearity,
+
+\[
+\int_0^4 (3+2x)\,dx
+=
+\int_0^4 3\,dx+2\int_0^4 x\,dx.
+\]
+
+The first integral is a rectangle:
+
+\[
+\int_0^4 3\,dx=12.
+\]
+
+The second is the area of a triangle with base \(4\) and height \(4\):
+
+\[
+\int_0^4 x\,dx=\frac12(4)(4)=8.
+\]
+
+Therefore
+
+\[
+\int_0^4 (3+2x)\,dx
+=
+12+2(8)
+=
+28.
+\]
+
+Linearity lets us break a complicated accumulation into simpler accumulations.
+
+\subsection{Additivity over intervals}
+\label{subsec:integral-additivity-intervals}
+
+Accumulation over a long interval can be split into accumulation over shorter intervals.
+
+If \(a<c<b\), then
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+accumulates from \(a\) to \(b\).  We may first accumulate from \(a\) to \(c\), then from
+\(c\) to \(b\):
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx
++
+\int_c^b f(x)\,dx.
+}
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=5.2,
+    ymin=0, ymax=5.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,2,5},
+    xticklabels={\(a\),\(c\),\(b\)},
+    ytick={0,1,2,3,4,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:2, samples=100, fill=gray!15, draw=none] {1+0.25*x+0.10*x^2} \closedcycle;
+\addplot[domain=2:5, samples=100, fill=gray!25, draw=none] {1+0.25*x+0.10*x^2} \closedcycle;
+\addplot[very thick, domain=0:5, samples=150] {1+0.25*x+0.10*x^2};
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,1.9);
+\node[anchor=west] at (axis cs:0.45,0.55) {\(\int_a^c f\)};
+\node[anchor=west] at (axis cs:3.0,0.85) {\(\int_c^b f\)};
+\node[anchor=west] at (axis cs:2.7,3.2) {\(y=f(x)\)};
+\end{axis}
+\end{tikzpicture}
+\caption{Accumulation over \([a,b]\) is the sum of accumulation over \([a,c]\) and \([c,b]\).}
+\label{fig:additivity-over-intervals}
+\end{figure}
+
+\paragraph{Example.}
+Suppose a particle has velocity \(v(t)\).  Then
+
+\[
+\int_0^5 v(t)\,dt
+=
+\int_0^2 v(t)\,dt+\int_2^5 v(t)\,dt.
+\]
+
+The displacement over \(5\) seconds is the displacement over the first \(2\) seconds plus
+the displacement over the next \(3\) seconds.  This remains true even if one of the pieces
+is negative.
+
+\subsection{Orientation of the interval}
+\label{subsec:orientation-of-interval-integral}
+
+So far, we have usually assumed \(a<b\).  But the notation
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+also remembers direction.
+
+Moving from \(a\) to \(b\) is the opposite of moving from \(b\) to \(a\).  To make the
+algebra of accumulation respect that direction, we define
+
+\[
+\boxed{
+\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.
+}
+\]
+
+Also,
+
+\[
+\boxed{
+\int_a^a f(x)\,dx=0.
+}
+\]
+
+There is no width, so there is no accumulation.
+
+With these conventions, the interval-addition rule becomes especially clean:
+
+\[
+\boxed{
+\int_a^b f(x)\,dx+\int_b^c f(x)\,dx=\int_a^c f(x)\,dx.
+}
+\]
+
+This formula works no matter where \(a\), \(b\), and \(c\) lie on the number line, as long
+as the integrals exist.
+
+\paragraph{Warning.}
+Order matters when the interval is reversed.  Even though
+
+\[
+1>0,
+\]
+
+we have
+
+\[
+\int_1^0 1\,dx=-1.
+\]
+
+The function is positive, but the direction of travel is negative.  The symbol \(dx\) carries
+that orientation.
+
+For order properties, unless we say otherwise, we assume
+
+\[
+a<b.
+\]
+
+\subsection{Order properties}
+\label{subsec:integral-order-properties}
+
+If one function is always below another, its integral is no larger.
+
+\begin{quote}
+\textbf{Order property.}
+Assume \(a<b\).  If \(f\) and \(g\) are integrable on \([a,b]\), and
+
+\[
+f(x)\le g(x)
+\]
+
+for every \(x\in[a,b]\), then
+
+\[
+\boxed{
+\int_a^b f(x)\,dx
+\le
+\int_a^b g(x)\,dx.
+}
+\]
+\end{quote}
+
+\paragraph{Why it is true.}
+For every sample point,
+
+\[
+f(x_j^*)\le g(x_j^*).
+\]
+
+Since \(\Delta x_j>0\),
+
+\[
+f(x_j^*)\Delta x_j\le g(x_j^*)\Delta x_j.
+\]
+
+Adding gives
+
+\[
+\sum_{j=1}^{n} f(x_j^*)\Delta x_j
+\le
+\sum_{j=1}^{n} g(x_j^*)\Delta x_j.
+\]
+
+Taking limits preserves the inequality.
+
+Several useful facts follow immediately.
+
+If
+
+\[
+f(x)\ge0
+\]
+
+on \([a,b]\), then
+
+\[
+\boxed{
+\int_a^b f(x)\,dx\ge0.
+}
+\]
+
+If
+
+\[
+m\le f(x)\le M
+\]
+
+on \([a,b]\), then
+
+\[
+\boxed{
+m(b-a)
+\le
+\int_a^b f(x)\,dx
+\le
+M(b-a).
+}
+\]
+
+This says that the accumulation of \(f\) is trapped between two rectangles: one with
+height \(m\), and one with height \(M\).
+
+\paragraph{Example.}
+Suppose a machine uses power \(P(t)\) between \(2\) and \(5\) kilowatts during a
+\(6\)-hour work period.  The total energy used is
+
+\[
+\int_0^6 P(t)\,dt.
+\]
+
+Because
+
+\[
+2\le P(t)\le5,
+\]
+
+we know
+
+\[
+2(6)\le \int_0^6 P(t)\,dt\le5(6).
+\]
+
+So the energy used is between
+
+\[
+12
+\]
+
+and
+
+\[
+30
+\]
+
+kilowatt-hours.
+
+We do not need the exact power curve to get a useful bound.
+
+\subsection{Net change is no larger than total change}
+\label{subsec:net-change-total-change-inequality}
+
+The order property also explains the relation between signed accumulation and total
+accumulation.
+
+For every \(x\),
+
+\[
+-|f(x)|\le f(x)\le |f(x)|.
+\]
+
+Integrating over \([a,b]\), with \(a<b\), gives
+
+\[
+-\int_a^b |f(x)|\,dx
+\le
+\int_a^b f(x)\,dx
+\le
+\int_a^b |f(x)|\,dx.
+\]
+
+This is the same as
+
+\[
+\boxed{
+\left|\int_a^b f(x)\,dx\right|
+\le
+\int_a^b |f(x)|\,dx.
+}
+\]
+
+In words:
+
+\[
+\boxed{
+\text{the size of the net accumulation is at most the total accumulation.}
+}
+\]
+
+This matches common sense.  A person who walks forward and backward may end close to
+the starting point, but the total walking distance cannot be smaller than the net
+displacement.
+
+Equality happens only when there is no cancellation, or when all cancellation is absent in
+one direction.  For instance, if \(f(x)\ge0\) on the whole interval, then
+
+\[
+\left|\int_a^b f(x)\,dx\right|
+=
+\int_a^b |f(x)|\,dx.
+\]
+
+If \(f\) changes sign, the inequality is usually strict.
+
+\subsection{Average value of a function}
+\label{subsec:average-value-function}
+
+A definite integral accumulates total signed amount.  Sometimes we want to spread that
+amount evenly over the interval.
+
+Suppose \(f(x)\) represents temperature over time.  The integral
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+has units
+
+\[
+\text{temperature}\cdot\text{time}.
+\]
+
+To get an average temperature, divide by the time length \(b-a\).
+
+\begin{quote}
+\textbf{Average value.}
+If \(f\) is integrable on \([a,b]\), with \(a<b\), then the average value of \(f\) on
+\([a,b]\) is
+
+\[
+\boxed{
+f_{\text{avg}}
+=
+\frac{1}{b-a}\int_a^b f(x)\,dx.
+}
+\]
+\end{quote}
+
+This number is the constant height that gives the same signed area:
+
+\[
+f_{\text{avg}}(b-a)=\int_a^b f(x)\,dx.
+\]
+
+\paragraph{Example.}
+Find the average value of
+
+\[
+f(x)=1+x
+\]
+
+on \([0,4]\).
+
+The region under the graph is a trapezoid.  Its parallel sides have lengths
+
+\[
+f(0)=1
+\]
+
+and
+
+\[
+f(4)=5,
+\]
+
+and its width is \(4\).  Therefore
+
+\[
+\int_0^4 (1+x)\,dx
+=
+\frac12(1+5)(4)
+=
+12.
+\]
+
+The average value is
+
+\[
+f_{\text{avg}}
+=
+\frac{1}{4}\cdot12
+=
+3.
+\]
+
+So the slanted graph \(y=1+x\) has the same accumulated area over \([0,4]\) as the
+constant function \(y=3\).
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=4.4,
+    ymin=0, ymax=5.6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,4},
+    ytick={1,3,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15, draw=gray!60]
+  (axis cs:0,0) -- (axis cs:0,1) -- (axis cs:4,5) -- (axis cs:4,0) -- cycle;
+\addplot[very thick, domain=0:4, samples=2] {1+x};
+\node[anchor=west] at (axis cs:1.1,4.2) {\(y=1+x\)};
+\node at (axis cs:2,1.25) {area \(=12\)};
+\end{axis}
+\end{tikzpicture}
+
+actual graph
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=4.4,
+    ymin=0, ymax=5.6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,4},
+    ytick={1,3,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15, draw=gray!60]
+  (axis cs:0,0) rectangle (axis cs:4,3);
+\addplot[very thick, domain=0:4, samples=2] {3};
+\node[anchor=west] at (axis cs:1.1,3.25) {\(y=3\)};
+\node at (axis cs:2,1.25) {area \(=12\)};
+\end{axis}
+\end{tikzpicture}
+
+average height
+\end{minipage}
+\caption{The average value is the constant height that gives the same accumulated area.}
+\label{fig:average-value-equal-area}
+\end{figure}
+
+\subsection{The average value is really attained when \(f\) is continuous}
+\label{subsec:average-value-attained}
+
+For a continuous function, the average value is not only a number.  It is a height the
+function actually reaches.
+
+\begin{quote}
+\textbf{Mean Value Theorem for Integrals.}
+If \(f\) is continuous on \([a,b]\), with \(a<b\), then there is some point
+\(c\in[a,b]\) such that
+
+\[
+\boxed{
+f(c)=\frac{1}{b-a}\int_a^b f(x)\,dx.
+}
+\]
+\end{quote}
+
+\paragraph{Why it is true.}
+Because \(f\) is continuous on a closed interval, it has a minimum value \(m\) and a
+maximum value \(M\).  Thus
+
+\[
+m\le f(x)\le M
+\]
+
+for every \(x\in[a,b]\).  The order property gives
+
+\[
+m(b-a)
+\le
+\int_a^b f(x)\,dx
+\le
+M(b-a).
+\]
+
+Divide by \(b-a>0\):
+
+\[
+m
+\le
+\frac{1}{b-a}\int_a^b f(x)\,dx
+\le
+M.
+\]
+
+So the average value lies between the minimum and maximum values of \(f\).  Since
+\(f\) is continuous, the Intermediate Value Theorem says that \(f\) takes every value
+between \(m\) and \(M\).  Therefore it takes the average value.
+
+\paragraph{Why continuity matters.}
+Consider the step function
+
+\[
+f(x)=
+\begin{cases}
+0, & 0\le x\le \frac12,\\
+1, & \frac12<x\le1.
+\end{cases}
+\]
+
+The area under the graph is
+
+\[
+\int_0^1 f(x)\,dx=\frac12.
+\]
+
+So the average value is
+
+\[
+f_{\text{avg}}=\frac12.
+\]
+
+But the function only takes the values \(0\) and \(1\).  There is no point \(c\) where
+
+\[
+f(c)=\frac12.
+\]
+
+The function is integrable, but it is not continuous.  The average value exists, but the
+function never actually equals its average.
+
+This is why the theorem requires continuity.
+
+\subsection{Symmetry}
+\label{subsec:integral-symmetry}
+
+Symmetry can make integrals much easier.
+
+Recall two kinds of symmetry:
+
+\[
+f(-x)=f(x)
+\]
+
+means \(f\) is even.  Its graph is symmetric across the \(y\)-axis.
+
+\[
+f(-x)=-f(x)
+\]
+
+means \(f\) is odd.  Its graph is symmetric through the origin.
+
+On a symmetric interval \([-a,a]\), these symmetries become integral shortcuts.
+
+\begin{quote}
+\textbf{Symmetry rules.}
+If \(f\) is integrable on \([-a,a]\), then:
+
+\[
+\boxed{
+\text{if }f\text{ is even,}\qquad
+\int_{-a}^{a} f(x)\,dx
+=
+2\int_0^a f(x)\,dx.
+}
+\]
+
+\[
+\boxed{
+\text{if }f\text{ is odd,}\qquad
+\int_{-a}^{a} f(x)\,dx
+=
+0.
+}
+\]
+\end{quote}
+
+For an even function, the left half and right half contribute equal signed areas.
+
+For an odd function, the left half and right half contribute opposite signed areas.  They
+cancel.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-1.35, xmax=1.35,
+    ymin=-1.35, ymax=1.35,
+    axis lines=middle,
+    axis on top,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=-1:0, samples=100, fill=gray!25, draw=none] {x^3} \closedcycle;
+\addplot[domain=0:1, samples=100, fill=gray!15, draw=none, fill opacity=0.5] {x^3} \closedcycle;
+\addplot[very thick, domain=-1.15:1.15, samples=150] {x^3};
+\node[anchor=south east] at (axis cs:-0.25,-0.55) {negative};
+\node[anchor=south west] at (axis cs:0.35,0.25) {positive};
+\node[anchor=west] at (axis cs:0.55,0.9) {\(y=x^3\)};
+\end{axis}
+\end{tikzpicture}
+\caption{For an odd function on a symmetric interval, the two signed areas cancel.}
+\label{fig:odd-function-cancellation}
+\end{figure}
+
+\paragraph{Example.}
+Since
+
+\[
+f(x)=x^3
+\]
+
+is odd,
+
+\[
+\int_{-2}^{2} x^3\,dx=0.
+\]
+
+No antiderivative is needed.  The cancellation comes from symmetry.
+
+\paragraph{Example.}
+The function
+
+\[
+g(x)=x^2+3
+\]
+
+is even.  Therefore
+
+\[
+\int_{-2}^{2} (x^2+3)\,dx
+=
+2\int_0^2 (x^2+3)\,dx.
+\]
+
+This does not yet give the final numerical value, but it cuts the work in half.  Later, the
+Fundamental Theorem will make the remaining integral easy to evaluate.
+
+\paragraph{Even plus odd.}
+Many functions split into an even part and an odd part.  For example,
+
+\[
+x^2+x
+\]
+
+is the sum of the even function \(x^2\) and the odd function \(x\).  On \([-1,1]\),
+
+\[
+\int_{-1}^{1} (x^2+x)\,dx
+=
+\int_{-1}^{1} x^2\,dx+\int_{-1}^{1} x\,dx.
+\]
+
+The odd part cancels:
+
+\[
+\int_{-1}^{1} x\,dx=0.
+\]
+
+So
+
+\[
+\int_{-1}^{1} (x^2+x)\,dx
+=
+\int_{-1}^{1} x^2\,dx.
+\]
+
+Symmetry lets us see cancellation before doing any calculation.
+
+\subsection{Where the properties come from}
+\label{subsec:where-integral-properties-come-from}
+
+The properties of the integral are not mysterious.  They are the properties of finite sums
+surviving a limiting process.
+
+\[
+\begin{array}{c|c}
+\textbf{finite sums} & \textbf{integrals} \\ \hline
+\sum (Af_j+Bg_j)\Delta x_j
+=
+A\sum f_j\Delta x_j+B\sum g_j\Delta x_j
+&
+\int_a^b (Af+Bg)\,dx
+=
+A\int_a^b f\,dx+B\int_a^b g\,dx
+\\[2mm]
+\text{a long sum can be split into shorter sums}
+&
+\int_a^b f\,dx
+=
+\int_a^c f\,dx+\int_c^b f\,dx
+\\[2mm]
+f_j\le g_j \text{ for all }j
+\Rightarrow
+\sum f_j\Delta x_j\le \sum g_j\Delta x_j
+&
+f\le g
+\Rightarrow
+\int_a^b f\,dx\le \int_a^b g\,dx
+\\[2mm]
+\text{matched positive and negative terms can cancel}
+&
+\text{odd functions cancel on symmetric intervals}
+\end{array}
+\]
+
+These rules make the integral usable before we know many exact antiderivatives.  They
+allow us to split, estimate, compare, and simplify accumulated quantities.
+
+One question remains before we can rely on the integral fully:
+
+\[
+\text{Which functions actually have integrals?}
+\]
+
+Continuous functions do.  So do many functions with jumps.  But not every bounded
+function is integrable.  The next section explains where the line is.
+\section{Existence of integrals}
+\label{sec:existence-of-integrals}
+
+The last section used the integral as if it were already available.  We split it, compared
+it, averaged it, and used symmetry to simplify it.
+
+But one question is still waiting:
+
+\[
+\text{When does a function actually have a Riemann integral?}
+\]
+
+For the functions that appear in most applications, the answer is reassuring.  Continuous
+functions are integrable.  Monotone functions are integrable.  Functions with finitely
+many jumps are integrable.
+
+But boundedness alone is not enough.  A function can be bounded and still be too
+wild for its Riemann sums to settle down.
+
+The test is this:
+
+\[
+\text{Can upper and lower estimates be forced together?}
+\]
+
+\subsection{The upper-lower test}
+\label{subsec:upper-lower-test-integrability}
+
+Let \(f\) be bounded on \([a,b]\).  Choose a partition
+
+\[
+P:\qquad a=x_0<x_1<\cdots<x_n=b.
+\]
+
+On the \(j\)-th subinterval
+
+\[
+[x_{j-1},x_j],
+\]
+
+let
+
+\[
+m_j=\inf\{f(x):x_{j-1}\le x\le x_j\}
+\]
+
+and
+
+\[
+M_j=\sup\{f(x):x_{j-1}\le x\le x_j\}.
+\]
+
+For friendly functions, these are just the minimum and maximum values of \(f\) on
+that subinterval.
+
+The lower sum is
+
+\[
+L(P,f)=\sum_{j=1}^{n}m_j\Delta x_j,
+\qquad
+\Delta x_j=x_j-x_{j-1}.
+\]
+
+The upper sum is
+
+\[
+U(P,f)=\sum_{j=1}^{n}M_j\Delta x_j.
+\]
+
+Every Riemann sum using sample points inside these subintervals is trapped between
+them:
+
+\[
+L(P,f)\le
+\sum_{j=1}^{n}f(x_j^*)\Delta x_j
+\le U(P,f).
+\]
+
+The gap is
+
+\[
+U(P,f)-L(P,f)
+=
+\sum_{j=1}^{n}(M_j-m_j)\Delta x_j.
+\]
+
+This gap measures the total uncertainty left by the partition.  If the graph does not
+vary much inside each subinterval, then \(M_j-m_j\) is small.  If the graph jumps
+or oscillates badly inside every subinterval, then the gap may refuse to shrink.
+
+\begin{quote}
+\textbf{Upper-lower integrability test.}
+
+A bounded function \(f\) on \([a,b]\) is Riemann integrable if and only if, for every
+\(\varepsilon>0\), there is a partition \(P\) such that
+
+\[
+\boxed{
+U(P,f)-L(P,f)<\varepsilon.
+}
+\]
+
+In words: the upper and lower estimates can be made as close as we wish.
+\end{quote}
+
+This criterion is the cleanest way to understand which functions are integrable.  It says
+that the integral exists when the remaining uncertainty can be squeezed down to zero.
+
+\subsection{Continuous functions are integrable}
+\label{subsec:continuous-functions-integrable}
+
+A continuous graph on a closed interval cannot jump.  If we look at a short enough
+piece of the graph, the output values stay close together.
+
+That is exactly what the upper-lower test needs.
+
+\paragraph{A first example.}
+Consider
+
+\[
+f(x)=x^2
+\]
+
+on \([0,1]\).  Divide the interval into \(n\) equal pieces:
+
+\[
+0,\frac1n,\frac2n,\ldots,\frac{n-1}{n},1.
+\]
+
+Since \(x^2\) is increasing on \([0,1]\), the lower height on
+
+\[
+\left[\frac{j-1}{n},\frac{j}{n}\right]
+\]
+
+is
+
+\[
+\left(\frac{j-1}{n}\right)^2,
+\]
+
+and the upper height is
+
+\[
+\left(\frac{j}{n}\right)^2.
+\]
+
+The width is \(1/n\).  Therefore
+
+\[
+U_n-L_n
+=
+\sum_{j=1}^{n}
+\left[
+\left(\frac{j}{n}\right)^2
+-
+\left(\frac{j-1}{n}\right)^2
+\right]\frac1n.
+\]
+
+Factor out \(1/n\):
+
+\[
+U_n-L_n
+=
+\frac1n
+\sum_{j=1}^{n}
+\left[
+\left(\frac{j}{n}\right)^2
+-
+\left(\frac{j-1}{n}\right)^2
+\right].
+\]
+
+The sum telescopes:
+
+\[
+\sum_{j=1}^{n}
+\left[
+\left(\frac{j}{n}\right)^2
+-
+\left(\frac{j-1}{n}\right)^2
+\right]
+=
+1^2-0^2
+=
+1.
+\]
+
+So
+
+\[
+U_n-L_n=\frac1n.
+\]
+
+As \(n\to\infty\),
+
+\[
+\frac1n\to0.
+\]
+
+Thus the upper and lower sums squeeze together, and \(x^2\) is integrable on
+\([0,1]\).
+
+The same idea works for every continuous function, although the arithmetic may not
+telescope so neatly.
+
+\begin{quote}
+\textbf{Theorem.}
+If \(f\) is continuous on a closed interval \([a,b]\), then \(f\) is Riemann integrable
+on \([a,b]\).
+\end{quote}
+
+\paragraph{Proof idea.}
+A continuous function on a closed interval has a special kind of steadiness:
+
+\[
+\text{if }x\text{ and }y\text{ are close enough, then }f(x)\text{ and }f(y)\text{ are close,}
+\]
+
+and the same meaning of ``close enough'' works everywhere on the interval.
+
+More precisely, for every \(\eta>0\), there is a \(\delta>0\) such that
+
+\[
+|x-y|<\delta
+\qquad\Longrightarrow\qquad
+|f(x)-f(y)|<\eta
+\]
+
+for all \(x,y\in[a,b]\).
+
+Now choose a partition whose subinterval widths are all less than \(\delta\).  Then on
+each subinterval,
+
+\[
+M_j-m_j<\eta.
+\]
+
+Therefore
+
+\[
+U(P,f)-L(P,f)
+=
+\sum_{j=1}^{n}(M_j-m_j)\Delta x_j
+<
+\sum_{j=1}^{n}\eta\,\Delta x_j.
+\]
+
+But
+
+\[
+\sum_{j=1}^{n}\Delta x_j=b-a.
+\]
+
+So
+
+\[
+U(P,f)-L(P,f)<\eta(b-a).
+\]
+
+Given any desired error \(\varepsilon>0\), choose
+
+\[
+\eta=\frac{\varepsilon}{b-a}.
+\]
+
+Then
+
+\[
+U(P,f)-L(P,f)<\varepsilon.
+\]
+
+By the upper-lower test, \(f\) is integrable.
+
+\paragraph{Why the closed interval matters.}
+The function
+
+\[
+f(x)=\frac1x
+\]
+
+is continuous on \((0,1]\), but it is not bounded near \(0\).  It is not an ordinary
+Riemann integrable function on \([0,1]\).
+
+This does not mean we can never discuss
+
+\[
+\int_0^1 \frac1x\,dx.
+\]
+
+It means that such a question is not an ordinary definite integral.  It belongs to the
+later topic of \emph{improper integrals}, where unbounded behavior must be handled
+with a new limiting process.
+
+\subsection{Monotone functions are integrable}
+\label{subsec:monotone-functions-integrable}
+
+Continuity is enough for integrability, but it is not necessary.
+
+A function may jump and still be integrable.  The simplest reason is monotonicity:
+a monotone function can move only one way.  It may jump, but it cannot oscillate
+up and down forever inside every small interval.
+
+Suppose \(f\) is increasing on \([a,b]\).  Divide \([a,b]\) into \(n\) equal pieces, each
+of width
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+On the \(j\)-th interval,
+
+\[
+[x_{j-1},x_j],
+\]
+
+the lower height is \(f(x_{j-1})\), and the upper height is \(f(x_j)\).  Therefore
+
+\[
+U_n-L_n
+=
+\sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr)\Delta x.
+\]
+
+Since \(\Delta x\) is the same for every interval,
+
+\[
+U_n-L_n
+=
+\Delta x
+\sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr).
+\]
+
+The sum telescopes:
+
+\[
+\sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr)
+=
+f(b)-f(a).
+\]
+
+Thus
+
+\[
+U_n-L_n
+=
+\frac{b-a}{n}\bigl(f(b)-f(a)\bigr).
+\]
+
+As \(n\to\infty\), this goes to \(0\).  So the upper and lower sums squeeze together.
+
+\begin{quote}
+\textbf{Theorem.}
+If \(f\) is monotone on \([a,b]\), then \(f\) is Riemann integrable on \([a,b]\).
+\end{quote}
+
+For a decreasing function, the same proof works with \(f(a)-f(b)\) in place of
+\(f(b)-f(a)\).
+
+\begin{figure}[h]
+\centering
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=4.25,
+    ymin=0, ymax=3.35,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\foreach \xleft/\xright in {0/1,1/2,2/3,3/4} {
+    \pgfmathsetmacro{\rectheight}{1+0.20*\xleft+0.12*\xleft*\xleft}
+    \edef\temp{
+        \noexpand\draw[fill=gray!15, draw=gray!60]
+            (axis cs:\xleft,0) rectangle (axis cs:\xright,\rectheight);
+    }
+    \temp
+}
+\addplot[very thick, domain=0:4, samples=150] {1+0.20*x+0.12*x^2};
+\node[anchor=west] at (axis cs:0.25,2.75) {lower sum};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\hfill
+\begin{minipage}{0.47\textwidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=4.25,
+    ymin=0, ymax=3.35,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\foreach \xleft/\xright in {0/1,1/2,2/3,3/4} {
+    \pgfmathsetmacro{\rectheight}{1+0.20*\xright+0.12*\xright*\xright}
+    \edef\temp{
+        \noexpand\draw[fill=gray!15, draw=gray!60]
+            (axis cs:\xleft,0) rectangle (axis cs:\xright,\rectheight);
+    }
+    \temp
+}
+\addplot[very thick, domain=0:4, samples=150] {1+0.20*x+0.12*x^2};
+\node[anchor=west] at (axis cs:0.25,2.75) {upper sum};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+\caption{For an increasing function, left endpoint rectangles give lower sums and right endpoint rectangles give upper sums.  As the widths shrink, the two sums squeeze together.}
+\label{fig:monotone-upper-lower-sums}
+\end{figure}
+
+This theorem explains why jumps are not automatically dangerous.  A step function
+can be monotone, and a monotone step function is integrable.
+
+\paragraph{Example.}
+Let
+
+\[
+H(x)=
+\begin{cases}
+0, & 0\le x<\frac12,\\
+1, & \frac12\le x\le1.
+\end{cases}
+\]
+
+This function jumps at \(x=\frac12\), but it is increasing.  Therefore it is integrable.
+The area under the graph is a rectangle of width \(1/2\) and height \(1\), so
+
+\[
+\int_0^1 H(x)\,dx=\frac12.
+\]
+
+The value at the single point \(x=\frac12\) does not affect the integral.  A single point
+has no width.
+
+\subsection{Functions with finitely many jump discontinuities}
+\label{subsec:finitely-many-jumps-integrable}
+
+A function may have several jumps and still be integrable.  The reason is the same:
+finitely many points can be covered by intervals whose total width is as small as we
+wish.
+
+\begin{quote}
+\textbf{Theorem.}
+If \(f\) is bounded on \([a,b]\) and is continuous except at finitely many points, then
+\(f\) is Riemann integrable on \([a,b]\).
+\end{quote}
+
+\paragraph{Proof idea.}
+Suppose the discontinuities occur at finitely many points.  Put tiny intervals around
+those points.  Since there are only finitely many of them, we can make the total width
+of all the tiny intervals very small.
+
+On those tiny intervals, the function may behave badly, but it is bounded.  So the
+upper-lower contribution is at worst
+
+\[
+\text{bounded height}\times\text{tiny total width},
+\]
+
+which can be made small.
+
+On the rest of the interval, the function is continuous on closed pieces.  So the
+upper-lower contribution there can also be made small.
+
+Putting the two parts together, the total upper-lower gap can be made smaller than
+any chosen \(\varepsilon\).  Hence the function is integrable.
+
+\paragraph{Example.}
+Consider
+
+\[
+f(x)=
+\begin{cases}
+x, & 0\le x<1,\\
+x+2, & 1\le x\le2.
+\end{cases}
+\]
+
+The graph has one jump at \(x=1\).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=2.25,
+    ymin=0, ymax=4.4,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={0,1,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15, draw=none]
+    (axis cs:0,0) -- (axis cs:1,1) -- (axis cs:1,0) -- cycle;
+\draw[fill=gray!25, draw=none]
+    (axis cs:1,0) -- (axis cs:1,3) -- (axis cs:2,4) -- (axis cs:2,0) -- cycle;
+\addplot[very thick, domain=0:1, samples=2] {x};
+\addplot[very thick, domain=1:2, samples=2] {x+2};
+\addplot[only marks, mark=o] coordinates {(1,1)};
+\addplot[only marks, mark=*] coordinates {(1,3)};
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,3.2);
+\node[anchor=west] at (axis cs:0.25,0.65) {\(y=x\)};
+\node[anchor=west] at (axis cs:1.25,3.85) {\(y=x+2\)};
+\node[anchor=west] at (axis cs:1.04,1.9) {jump};
+\end{axis}
+\end{tikzpicture}
+\caption{A finite jump does not prevent integrability.  The jump occurs at one point, and one point has no width.}
+\label{fig:finite-jump-integrable}
+\end{figure}
+
+The integral exists.  We can compute it by ordinary geometry.
+
+On \([0,1]\), the area under \(y=x\) is a triangle:
+
+\[
+\frac12.
+\]
+
+On \([1,2]\), the area under \(y=x+2\) is a trapezoid of width \(1\), with heights
+\(3\) and \(4\).  Its area is
+
+\[
+\frac12(3+4)(1)=\frac72.
+\]
+
+Therefore
+
+\[
+\int_0^2 f(x)\,dx
+=
+\frac12+\frac72
+=
+4.
+\]
+
+If we changed the value of \(f(1)\), the integral would still be \(4\).  The height at one
+point cannot change accumulated area.
+
+\begin{quote}
+\textbf{Changing finitely many values does not change a Riemann integral.}
+
+If two bounded functions differ only at finitely many points, then either both are
+integrable with the same integral, or neither is integrable.
+\end{quote}
+
+\subsection{A bounded function that is not Riemann integrable}
+\label{subsec:bounded-not-riemann-integrable}
+
+Now for the warning.
+
+Define
+
+\[
+D(x)=
+\begin{cases}
+1, & x\text{ is rational},\\
+0, & x\text{ is irrational}
+\end{cases}
+\]
+
+on \([0,1]\).
+
+This function is bounded:
+
+\[
+0\le D(x)\le1.
+\]
+
+But it is not Riemann integrable.
+
+The reason is that every interval, no matter how short, contains rational numbers and
+irrational numbers.  Therefore, on every subinterval,
+
+\[
+m_j=0
+\]
+
+and
+
+\[
+M_j=1.
+\]
+
+So for every partition \(P\),
+
+\[
+L(P,D)=0
+\]
+
+and
+
+\[
+U(P,D)=1.
+\]
+
+The upper-lower gap is always
+
+\[
+U(P,D)-L(P,D)=1.
+\]
+
+It never shrinks.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.42\textwidth,
+    xmin=0, xmax=1,
+    ymin=-0.25, ymax=1.25,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(D(x)\)},
+    xtick={0,0.25,0.5,0.75,1},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*, mark size=1.4pt] coordinates {
+    (0.03,1) (0.07,1) (0.11,1) (0.16,1) (0.22,1) (0.29,1)
+    (0.34,1) (0.41,1) (0.48,1) (0.53,1) (0.61,1) (0.67,1)
+    (0.72,1) (0.81,1) (0.88,1) (0.94,1)
+};
+\addplot[only marks, mark=*, mark size=1.4pt] coordinates {
+    (0.02,0) (0.09,0) (0.14,0) (0.19,0) (0.27,0) (0.31,0)
+    (0.38,0) (0.45,0) (0.57,0) (0.63,0) (0.70,0) (0.76,0)
+    (0.84,0) (0.91,0) (0.97,0)
+};
+\node[anchor=west] at (axis cs:0.12,1.08) {rational inputs give height \(1\)};
+\node[anchor=west] at (axis cs:0.12,0.13) {irrational inputs give height \(0\)};
+\end{axis}
+\end{tikzpicture}
+\caption{This picture can only hint at the function \(D\).  In every interval, the graph has points at height \(1\) and points at height \(0\).}
+\label{fig:dirichlet-function-not-integrable}
+\end{figure}
+
+This example is extreme.  It is discontinuous at every point.  It shows why the
+definition of the integral cannot simply say ``bounded functions have area.''
+
+They do not.
+
+\begin{quote}
+\textbf{Safe classes of integrable functions.}
+
+The following functions are Riemann integrable on closed intervals:
+
+\[
+\begin{array}{c|c}
+\textbf{kind of function} & \textbf{reason} \\ \hline
+\text{continuous functions} & \text{small intervals have small oscillation} \\
+\text{monotone functions} & \text{upper-lower gaps telescope} \\
+\text{bounded functions with} & \text{discontinuity points can be covered} \\
+\text{finitely many discontinuities} & \text{by tiny intervals}
+\end{array}
+\]
+\paragraph{The general rule.}
+The ultimate test for Riemann integrability was proven by Henri Lebesgue. A bounded function is integrable if and only if its set of discontinuity points has \emph{measure zero}---meaning all the bad points can be covered by a collection of intervals whose total cumulative length is arbitrarily small.
+\end{quote}
+
+The integral is now on solid ground.  We know what it means, how to estimate it,
+what signs do, what algebraic rules it obeys, and which common functions actually
+have one.
+
+The chapter ends by practicing the setup.  The next chapter will reveal the surprise:
+if the upper endpoint moves, an integral becomes a function, and its derivative is the
+function we started with.
+
+\section{Chapter review and discovery problems}
+\label{sec:chapter8-review-discovery}
+
+This chapter built the integral from the ground up.
+
+We started with velocity and distance:
+
+\[
+\text{distance}\approx \sum \text{velocity}\cdot\text{time}.
+\]
+
+Then we saw the geometric version:
+
+\[
+\text{area}\approx \sum \text{height}\cdot\text{width}.
+\]
+
+The definite integral is the limiting version of those sums:
+
+\[
+\int_a^b f(x)\,dx.
+\]
+
+It measures signed accumulation.  When \(f\ge0\), it also measures ordinary area.
+When \(f\) changes sign, it measures positive accumulation minus negative
+accumulation.
+
+\[
+\begin{array}{c|c|c}
+\textbf{idea} & \textbf{formula} & \textbf{meaning} \\ \hline
+\text{Riemann sum}
+&
+\displaystyle \sum_{j=1}^n f(x_j^*)\Delta x_j
+&
+\text{finite estimate}
+\\[2mm]
+\text{definite integral}
+&
+\displaystyle \int_a^b f(x)\,dx
+&
+\text{limit of Riemann sums}
+\\[2mm]
+\text{displacement}
+&
+\displaystyle \int_a^b v(t)\,dt
+&
+\text{net change in position}
+\\[2mm]
+\text{distance traveled}
+&
+\displaystyle \int_a^b |v(t)|\,dt
+&
+\text{total motion}
+\\[2mm]
+\text{average value}
+&
+\displaystyle \frac{1}{b-a}\int_a^b f(x)\,dx
+&
+\text{constant height with same area}
+\end{array}
+\]
+
+\subsection{Skills: set up Riemann sums}
+\label{subsec:skills-set-up-riemann-sums}
+
+A Riemann sum setup has four parts:
+
+\[
+\text{interval},\qquad
+\text{partition},\qquad
+\text{sample points},\qquad
+\text{sum}.
+\]
+
+For an equal partition of \([a,b]\) into \(n\) pieces,
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+The endpoints are
+
+\[
+x_j=a+j\Delta x.
+\]
+
+Right endpoints use \(x_j\).  Left endpoints use \(x_{j-1}\).  Midpoints use
+
+\[
+\frac{x_{j-1}+x_j}{2}
+=
+a+\left(j-\frac12\right)\Delta x.
+\]
+
+\paragraph{Worked example.}
+Write
+
+\[
+\int_0^2 (1+x^2)\,dx
+\]
+
+as a limit of right endpoint Riemann sums.  Then evaluate the limit using the power
+sum formula.
+
+The interval is \([0,2]\), so
+
+\[
+\Delta x=\frac{2}{n}.
+\]
+
+The right endpoint of the \(j\)-th subinterval is
+
+\[
+x_j=\frac{2j}{n}.
+\]
+
+Thus
+
+\[
+\int_0^2 (1+x^2)\,dx
+=
+\lim_{n\to\infty}
+\sum_{j=1}^{n}
+\left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n}.
+\]
+
+Simplify the sum:
+
+\[
+\sum_{j=1}^{n}
+\left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n}
+=
+\sum_{j=1}^{n}\frac{2}{n}
++
+\sum_{j=1}^{n}\frac{8j^2}{n^3}.
+\]
+
+The first sum is
+
+\[
+\sum_{j=1}^{n}\frac{2}{n}=2.
+\]
+
+The second sum is
+
+\[
+\frac{8}{n^3}\sum_{j=1}^{n}j^2.
+\]
+
+Using
+
+\[
+\sum_{j=1}^{n}j^2=\frac{n(n+1)(2n+1)}{6},
+\]
+
+we get
+
+\[
+\frac{8}{n^3}\sum_{j=1}^{n}j^2
+=
+\frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}.
+\]
+
+As \(n\to\infty\),
+
+\[
+\frac{n(n+1)(2n+1)}{n^3}\to2.
+\]
+
+Therefore
+
+\[
+\frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}
+\to
+\frac{8\cdot2}{6}
+=
+\frac83.
+\]
+
+So
+
+\[
+\boxed{
+\int_0^2 (1+x^2)\,dx
+=
+2+\frac83
+=
+\frac{14}{3}.
+}
+\]
+
+No antiderivative was used.  This came directly from the definition.
+
+\paragraph{Setup practice.}
+For each integral, write a Riemann sum using the requested sample points.  Do not
+evaluate the limit unless asked.
+
+\begin{enumerate}
+\item Use left endpoints:
+
+\[
+\int_1^5 \sqrt{x}\,dx.
+\]
+
+Here
+
+\[
+\Delta x=\frac4n,
+\qquad
+x_{j-1}=1+\frac{4(j-1)}{n}.
+\]
+
+So the sum is
+
+\[
+\sum_{j=1}^{n}
+\sqrt{1+\frac{4(j-1)}{n}}\cdot \frac4n.
+\]
+
+\item Use midpoints:
+
+\[
+\int_{-2}^{2}(3-x^2)\,dx.
+\]
+
+Here
+
+\[
+\Delta x=\frac4n,
+\qquad
+x_j^*=-2+\left(j-\frac12\right)\frac4n.
+\]
+
+So the sum is
+
+\[
+\sum_{j=1}^{n}
+\left[
+3-
+\left(
+-2+\left(j-\frac12\right)\frac4n
+\right)^2
+\right]\frac4n.
+\]
+
+\item Use right endpoints:
+
+\[
+\int_0^\pi \sin x\,dx.
+\]
+
+Here
+
+\[
+\Delta x=\frac{\pi}{n},
+\qquad
+x_j=\frac{j\pi}{n}.
+\]
+
+So the sum is
+
+\[
+\sum_{j=1}^{n}
+\sin\left(\frac{j\pi}{n}\right)\frac{\pi}{n}.
+\]
+
+\item A particle has velocity
+
+\[
+v(t)=t^2+1
+\]
+
+meters per second for \(0\le t\le3\).  Write a right endpoint sum for its displacement.
+
+The displacement is
+
+\[
+\int_0^3 (t^2+1)\,dt.
+\]
+
+With
+
+\[
+\Delta t=\frac3n,
+\qquad
+t_j=\frac{3j}{n},
+\]
+
+the sum is
+
+\[
+\sum_{j=1}^{n}
+\left[
+\left(\frac{3j}{n}\right)^2+1
+\right]\frac3n.
+\]
+\end{enumerate}
+
+\paragraph{Common traps.}
+A Riemann sum fails for predictable reasons.
+
+\[
+\begin{array}{c|c}
+\textbf{trap} & \textbf{fix} \\ \hline
+\text{forgetting the factor }\Delta x
+&
+\text{every rectangle needs width}
+\\[1mm]
+\text{using }j\text{ instead of }x_j^*
+&
+\text{the function is evaluated at an }x\text{-value}
+\\[1mm]
+\text{using the wrong interval length}
+&
+\Delta x=(b-a)/n
+\\[1mm]
+\text{mixing left and right endpoints unintentionally}
+&
+\text{write }x_{j-1},x_j,\text{ or }x_j^*\text{ clearly}
+\\[1mm]
+\text{forgetting units}
+&
+\text{height units}\cdot\text{width units}=\text{accumulated units}
+\end{array}
+\]
+
+\subsection{Project: estimate energy use from power data}
+\label{subsec:project-estimate-energy-power-data}
+
+Power is the rate at which energy is used.  If power is measured in kilowatts and time
+is measured in hours, then
+
+\[
+\text{kilowatts}\cdot\text{hours}=\text{kilowatt-hours}.
+\]
+
+So the energy used from time \(a\) to time \(b\) is
+
+\[
+E=\int_a^b P(t)\,dt,
+\]
+
+where \(P(t)\) is power.
+
+Suppose a small building has the following power readings during an \(8\)-hour period.
+
+\[
+\begin{array}{c|ccccccccc}
+t\text{ (hours)} & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\ \hline
+P(t)\text{ (kW)} & 1.1 & 1.3 & 2.4 & 3.1 & 2.7 & 2.2 & 3.6 & 4.0 & 2.5
+\end{array}
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=8.3,
+    ymin=0, ymax=4.5,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(P(t)\) (kW)},
+    xtick={0,1,2,3,4,5,6,7,8},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
+    (5,2.2) (6,3.6) (7,4.0) (8,2.5)
+};
+\addplot[thick] coordinates {
+    (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
+    (5,2.2) (6,3.6) (7,4.0) (8,2.5)
+};
+\node[anchor=west] at (axis cs:1.0,4.15) {sampled power data};
+\end{axis}
+\end{tikzpicture}
+\caption{Energy use is accumulated power.  The area under the power graph has units of kilowatt-hours.}
+\label{fig:power-data-energy-project}
+\end{figure}
+
+\paragraph{Project tasks.}
+Use the data to estimate the total energy used.
+
+\begin{enumerate}
+\item Compute the left endpoint estimate
+
+\[
+L_8=
+1\bigl(P(0)+P(1)+\cdots+P(7)\bigr).
+\]
+
+What are its units?
+
+\item Compute the right endpoint estimate
+
+\[
+R_8=
+1\bigl(P(1)+P(2)+\cdots+P(8)\bigr).
+\]
+
+\item Compute the trapezoid estimate
+
+\[
+T_8=\frac{L_8+R_8}{2}.
+\]
+
+Equivalently,
+
+\[
+T_8=
+\frac12P(0)+P(1)+P(2)+\cdots+P(7)+\frac12P(8),
+\]
+
+because the time width is \(1\) hour.
+
+\item Which estimate would you trust most from this data: \(L_8\), \(R_8\), or \(T_8\)?
+Explain.
+
+\item The power rises and falls during the interval.  Why is it not correct to say that
+the left estimate is automatically an underestimate or automatically an overestimate?
+
+\item Suppose the utility company charges \(\$0.18\) per kilowatt-hour.  Use your
+energy estimate to estimate the cost of this \(8\)-hour period.
+
+\item What additional data would improve the estimate?
+\end{enumerate}
+
+\begin{quote}
+\textbf{What the project tests.}
+
+An integral is not only an area under a drawn curve.  It is accumulated rate.
+Power accumulates into energy, just as velocity accumulates into displacement.
+\end{quote}
+
+\subsection{Computing: compare left, right, midpoint, and trapezoid estimates}
+\label{subsec:computing-compare-riemann-estimates}
+
+Different rectangle choices can converge to the same integral at different speeds.
+
+For an equal partition of \([a,b]\), let
+
+\[
+\Delta x=\frac{b-a}{n}.
+\]
+
+The standard estimates are:
+
+\[
+L_n=\sum_{j=0}^{n-1} f(a+j\Delta x)\Delta x,
+\]
+
+\[
+R_n=\sum_{j=1}^{n} f(a+j\Delta x)\Delta x,
+\]
+
+\[
+M_n=\sum_{j=1}^{n}
+f\left(a+\left(j-\frac12\right)\Delta x\right)\Delta x,
+\]
+
+and
+
+\[
+T_n=
+\frac{\Delta x}{2}
+\left[
+f(a)+2\sum_{j=1}^{n-1}f(a+j\Delta x)+f(b)
+\right].
+\]
+
+The estimate \(T_n\) is the trapezoid estimate.  It replaces rectangles by trapezoids.
+For equal partitions,
+
+\[
+T_n=\frac{L_n+R_n}{2}.
+\]
+
+\paragraph{Experiment.}
+Use
+
+\[
+f(x)=1+x^2
+\]
+
+on \([0,2]\).  From the worked example,
+
+\[
+\int_0^2(1+x^2)\,dx=\frac{14}{3}\approx4.666667.
+\]
+
+The following table compares the estimates.
+
+\[
+\begin{array}{c|cccc}
+n & L_n & R_n & M_n & T_n \\ \hline
+4  & 3.750000 & 5.750000 & 4.625000 & 4.750000 \\
+8  & 4.187500 & 5.187500 & 4.656250 & 4.687500 \\
+16 & 4.421875 & 4.921875 & 4.664063 & 4.671875 \\
+32 & 4.542969 & 4.792969 & 4.666016 & 4.667969
+\end{array}
+\]
+
+The left and right estimates move toward the integral.  The midpoint and trapezoid
+estimates move toward it faster in this example.
+
+\paragraph{Computing tasks.}
+Use a calculator, spreadsheet, or short program.
+
+\begin{enumerate}
+\item Extend the table to \(n=64\) and \(n=128\).
+
+\item Compute the absolute errors
+
+\[
+|L_n-\tfrac{14}{3}|,
+\qquad
+|R_n-\tfrac{14}{3}|,
+\qquad
+|M_n-\tfrac{14}{3}|,
+\qquad
+|T_n-\tfrac{14}{3}|.
+\]
+
+\item What happens to the errors when \(n\) doubles?
+
+\item Repeat the experiment for
+
+\[
+f(x)=\sqrt{1+x^2}
+\]
+
+on \([0,2]\).  Since we do not yet have an exact value, use a very fine estimate,
+such as \(M_{10000}\), as a reference value.
+
+\item Try a function that changes direction, such as
+
+\[
+f(x)=2+\sin x
+\]
+
+on \([0,2\pi]\).  Does the left estimate always stay below the right estimate?
+Explain.
+\end{enumerate}
+
+This experiment prepares a later topic: numerical integration.  The integral is exact,
+but in many real problems we can only approximate it.  Then the real question is not
+only
+
+\[
+\text{What estimate did we compute?}
+\]
+
+but also
+
+\[
+\text{How trustworthy is the estimate?}
+\]
+
+\paragraph{Concept checks.}
+Answer each question in words before using formulas.
+
+\begin{enumerate}
+\item What does \(\Delta x\) represent in a Riemann sum?
+
+\item Why does
+
+\[
+\int_a^b f(x)\,dx
+\]
+
+measure signed area rather than ordinary area?
+
+\item What is the difference between
+
+\[
+\int_a^b v(t)\,dt
+\]
+
+and
+
+\[
+\int_a^b |v(t)|\,dt?
+\]
+
+\item Why does changing a function at one point not change its Riemann integral?
+
+\item Give an example of an integrable function with a jump discontinuity.
+
+\item Give an example of a bounded function that is not Riemann integrable.
+
+\item If \(f(x)\le g(x)\) on \([a,b]\), with \(a<b\), why must
+
+\[
+\int_a^b f(x)\,dx\le \int_a^b g(x)\,dx?
+\]
+
+\item What does the average value
+
+\[
+\frac1{b-a}\int_a^b f(x)\,dx
+\]
+
+mean geometrically?
+\end{enumerate}
+
+\subsection{Hook: an accumulation function has a slope}
+\label{subsec:hook-accumulation-function-slope}
+
+The integral adds up a function over an interval.  But what happens if one endpoint
+moves?
+
+Let
+
+\[
+A(x)=\int_0^x f(t)\,dt.
+\]
+
+Now \(A\) is a function.  Its input is the endpoint \(x\).  Its output is accumulated
+signed area from \(0\) to \(x\).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=3.6,
+    ymin=0, ymax=3.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(f(t)\)},
+    xtick={0,2,2.45,3},
+    xticklabels={\(0\),\(x\),\(x+h\),\(3\)},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:2, samples=100, fill=gray!15, draw=none]
+    {1+0.25*x+0.15*x^2} \closedcycle;
+\addplot[domain=2:2.45, samples=100, fill=gray!35, draw=none]
+    {1+0.25*x+0.15*x^2} \closedcycle;
+\addplot[very thick, domain=0:3.2, samples=150] {1+0.25*x+0.15*x^2};
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,2.1);
+\draw[dashed] (axis cs:2.45,0) -- (axis cs:2.45,2.51);
+\node[anchor=west] at (axis cs:0.55,0.55) {\(A(x)=\int_0^x f(t)\,dt\)};
+\node[rotate=90, anchor=center] at (axis cs:2.225,1.25) {new thin strip};
+\node[anchor=west] at (axis cs:2.05,2.8) {\(y=f(t)\)};
+\end{axis}
+\end{tikzpicture}
+\caption{When the endpoint moves from \(x\) to \(x+h\), the accumulation changes by the area of a thin strip.}
+\label{fig:accumulation-moving-endpoint-hook}
+\end{figure}
+
+If the endpoint moves from \(x\) to \(x+h\), the change in accumulated area is
+
+\[
+A(x+h)-A(x)
+=
+\int_x^{x+h} f(t)\,dt.
+\]
+
+For small \(h\), the graph has little time to change.  The thin strip is approximately a
+rectangle with width \(h\) and height \(f(x)\):
+
+\[
+A(x+h)-A(x)\approx f(x)h.
+\]
+
+Divide by \(h\):
+
+\[
+\frac{A(x+h)-A(x)}{h}\approx f(x).
+\]
+
+Now let \(h\to0\).  The approximation should become exact:
+
+\[
+A'(x)=f(x).
+\]
+
+This is the next great surprise.
+
+The derivative of accumulated area is the original height.
+
+The next chapter proves this carefully.  It is the first half of the Fundamental Theorem
+of Calculus, and it completes the loop that began with the dashboard:
+
+\[
+\text{rate accumulates into amount},
+\qquad
+\text{and accumulated amount differentiates back to rate.}
+\]

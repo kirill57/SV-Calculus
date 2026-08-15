@@ -1,0 +1,154 @@
+% =====================================================================
+%  preamble.tex
+%
+%  Packages, page geometry, theorem environments, and color setup.
+%  Edit this file to change the document's overall look.
+% =====================================================================
+
+% --- Encoding & fonts -------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Page geometry ----------------------------------------------------
+\usepackage[
+  letterpaper,
+  inner=1in, outer=1.4in,
+  top=1in,   bottom=1in,
+  marginparwidth=1.1in,
+  marginparsep=4mm,
+  headsep=14pt
+]{geometry}
+
+% --- Math -------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% --- Graphics & color -------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{pgfplots}
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows.meta,decorations.pathreplacing,patterns}
+
+\pgfplotsset{compat=1.18}
+
+% --- Tables, lists, captions -----------------------------------------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=2pt}
+\usepackage{caption}
+\captionsetup{font=small,labelfont=bf}
+
+% --- Headers & footers ------------------------------------------------
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\addtolength{\topmargin}{-2pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+\fancypagestyle{plain}{%
+  \fancyhf{}\fancyfoot[C]{\thepage}\renewcommand{\headrulewidth}{0pt}}
+
+% --- Index ------------------------------------------------------------
+\usepackage{imakeidx}
+
+% --- Bibliography (BibTeX) -------------------------------------------
+% Default: classic BibTeX (\bibliography{} in main.tex).
+% To switch to biblatex+biber instead, comment out \bibliographystyle/
+% \bibliography in main.tex and uncomment the two lines below, then
+% replace \bibliography{bibliography} with \printbibliography.
+% \usepackage[backend=biber,style=alphabetic]{biblatex}
+% \addbibresource{bibliography.bib}
+
+% --- Hyperref (load late) --------------------------------------------
+\usepackage[
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=Maroon,
+  urlcolor=NavyBlue,
+  bookmarksnumbered=true,
+  bookmarksopen=true,
+  pdfencoding=auto
+]{hyperref}
+
+% --- Theorem environments --------------------------------------------
+% Numbered within chapters; shared counter for "theorem-like" results.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{problem}[exercise]{Problem}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+% A "counterexample" is highlighted because the book uses it
+% systematically as a tag in the TOC.
+\newtheoremstyle{counterex}%
+  {\topsep}{\topsep}%               above/below
+  {\itshape}%                       body font
+  {}%                               indent
+  {\bfseries\color{Maroon}}%        head font
+  {.}%                              punctuation
+  {.5em}%                           space after head
+  {}%                               head spec
+\theoremstyle{counterex}
+\newtheorem{counterexample}[theorem]{Counterexample}
+
+% Optional "warning" callout, useful in subsections marked Counterexample.
+\newtheoremstyle{warningstyle}%
+  {\topsep}{\topsep}{}{}%
+  {\bfseries\color{BurntOrange}}{:}{.5em}{}
+\theoremstyle{warningstyle}
+\newtheorem*{warning}{Warning}
+
+% --- Floats -----------------------------------------------------------
+\usepackage{float}
+\usepackage{wrapfig}
+
+% --- Margin notes that stay put (used by \sectag) --------------------
+\usepackage{marginnote}
+
+% --- Cleveref (load after hyperref) ----------------------------------
+\usepackage[capitalize,noabbrev]{cleveref}
+
+% --- Misc -------------------------------------------------------------
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{0.55\textwidth}
+\renewcommand{\epigraphsize}{\small}
+\renewcommand{\epigraphflush}{flushright}
+
+% Tighter chapter title spacing (book class default is generous).
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\sffamily\huge\bfseries}
+  {\chaptertitlename\ \thechapter}{12pt}{\Huge}
+\titlespacing*{\chapter}{0pt}{-20pt}{30pt}
+
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries}{\thesubsection}{1em}{}
+
+% Show paragraph and subparagraph numbers in TOC if the author wants
+% deeper detail later (set tocdepth higher to expose them).
+\setcounter{tocdepth}{2}     % part, chapter, section, subsection
+\setcounter{secnumdepth}{3}  % number through subsection

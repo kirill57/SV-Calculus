@@ -1,0 +1,7438 @@
+% Requires in the preamble:
+% \usepackage{amsmath,amssymb}
+% \usepackage{tikz,pgfplots}
+% \pgfplotsset{compat=1.18}
+
+\chapter{Differential Equations: Laws Written as Derivatives}
+\label{chap:differential-equations}
+
+The last chapter was about approximation with responsibility.  We approximated
+accumulated quantities, roots of equations, and derivatives from finite data.  Each
+time, the question was not only what number an algorithm produced, but how much
+that number could be trusted.
+
+Differential equations carry the same lesson into a larger setting.
+
+A differential equation does not usually give us the function directly.  It gives a law
+for the function's derivative.  The unknown is not a number.  The unknown is a whole
+function.
+
+\[
+\boxed{
+\text{A differential equation is a law written in the language of change.}
+}
+\]
+
+We have already seen hints of this idea.  Exponential growth was written as
+
+\[
+P'=kP.
+\]
+
+Cooling was written as
+
+\[
+T'=-k(T-T_s).
+\]
+
+Logistic growth was written as
+
+\[
+P'=rP\left(1-\frac{P}{K}\right).
+\]
+
+Those equations say how a quantity changes.  Solving them means finding the
+function whose change obeys the law.
+
+\section{Modeling with differential equations}
+\label{sec:modeling-with-differential-equations}
+
+A derivative measures an instant-by-instant rate.  A differential equation starts when a
+situation gives that rate before it gives the function.
+
+\[
+\text{law of change}
+\quad\Longrightarrow\quad
+\text{equation for a derivative}
+\quad\Longrightarrow\quad
+\text{unknown function}.
+\]
+
+The direction is different from many earlier problems.  We are not given \(y(t)\) and
+asked to find \(y'(t)\).  We are given information about \(y'(t)\) and asked to find
+\(y(t)\).
+
+\subsection{A law that gives a rate}
+\label{subsec:law-gives-rate}
+
+A hot cup of coffee cools quickly when it is much hotter than the room.  Later, when it
+is only a little warmer than the room, it cools slowly.
+
+That observation is the heart of Newton's law of cooling:
+
+\[
+\text{rate of cooling is proportional to the temperature difference}.
+\]
+
+Let
+
+\[
+T(t)=\text{temperature of the coffee after \(t\) minutes},
+\]
+
+and suppose the room temperature is
+
+\[
+T_s=20^\circ\text{C}.
+\]
+
+The temperature difference is
+
+\[
+T(t)-20.
+\]
+
+Cooling means this difference decreases.  A simple model is
+
+\[
+\boxed{
+T'=-k(T-20),
+}
+\]
+
+where \(k>0\) is a constant.
+
+If \(k=0.08\), then
+
+\[
+T'=-0.08(T-20).
+\]
+
+When the coffee is \(80^\circ\text{C}\),
+
+\[
+T'=-0.08(80-20)=-4.8.
+\]
+
+So at that instant, the coffee is cooling at
+
+\[
+4.8^\circ\text{C per minute}.
+\]
+
+When the coffee is \(30^\circ\text{C}\),
+
+\[
+T'=-0.08(30-20)=-0.8.
+\]
+
+Now the cooling rate is only
+
+\[
+0.8^\circ\text{C per minute}.
+\]
+
+The equation captures the behavior:
+
+\[
+\text{large temperature difference} \quad\Longrightarrow\quad \text{fast cooling},
+\]
+
+\[
+\text{small temperature difference} \quad\Longrightarrow\quad \text{slow cooling}.
+\]
+
+The constant \(k\) has units of \(1/\text{minute}\).  This is necessary because
+
+\[
+T'
+\]
+
+has units of degrees per minute, while
+
+\[
+T-20
+\]
+
+has units of degrees.
+
+\begin{quote}
+\textbf{A differential equation.}
+A \emph{differential equation} is an equation involving an unknown function and one
+or more of its derivatives.
+
+The equation
+
+\[
+T'=-0.08(T-20)
+\]
+
+is a first-order differential equation because it involves the first derivative \(T'\), but
+not higher derivatives such as \(T''\).
+\end{quote}
+
+The equation does not yet tell us the temperature at every time.  It tells us how the
+temperature should be changing once the temperature is known.
+
+That is the new kind of problem.
+
+\subsection{Solution as an unknown function}
+\label{subsec:solution-as-unknown-function}
+
+A solution of a differential equation is a function that makes the equation true.
+
+Start with a simpler equation:
+
+\[
+y'=1-y.
+\]
+
+This says that the rate of change of \(y\) depends on the current value of \(y\).
+
+If \(y\) is below \(1\), then \(1-y>0\), so the solution should rise.
+
+If \(y\) is above \(1\), then \(1-y<0\), so the solution should fall.
+
+If \(y=1\), then \(1-y=0\), so the solution should stay flat.
+
+Before solving the equation by a method, we can check proposed functions.
+
+\paragraph{Example.}
+Show that
+
+\[
+y(t)=1-e^{-t}
+\]
+
+is a solution of
+
+\[
+y'=1-y.
+\]
+
+Differentiate:
+
+\[
+y'(t)=e^{-t}.
+\]
+
+Now compute the right side of the differential equation:
+
+\[
+1-y(t)=1-\bigl(1-e^{-t}\bigr)=e^{-t}.
+\]
+
+The two sides agree:
+
+\[
+y'=e^{-t}
+\qquad\text{and}\qquad
+1-y=e^{-t}.
+\]
+
+Therefore
+
+\[
+\boxed{
+y(t)=1-e^{-t}
+}
+\]
+
+solves
+
+\[
+y'=1-y.
+\]
+
+\paragraph{Example.}
+The function
+
+\[
+y(t)=1+2e^{-t}
+\]
+
+also solves the same equation.
+
+Indeed,
+
+\[
+y'(t)=-2e^{-t},
+\]
+
+and
+
+\[
+1-y(t)=1-\bigl(1+2e^{-t}\bigr)=-2e^{-t}.
+\]
+
+So
+
+\[
+y'=1-y.
+\]
+
+The same differential equation has many solutions.  That should not be surprising.
+An antiderivative also comes with a constant \(C\).  A differential equation often gives
+a whole family of possible functions.
+
+\begin{quote}
+\textbf{Solution of a differential equation.}
+A function \(y(t)\) is a \emph{solution} of a differential equation on an interval \(I\)
+if \(y\) is differentiable on \(I\) and the equation is true for every \(t\) in \(I\).
+\end{quote}
+
+The interval matters.  A formula may solve an equation on one interval but fail to make
+sense on another.  This is the same domain discipline we used for logarithms, square
+roots, inverse trigonometric functions, and improper integrals.
+
+\paragraph{A false proposed solution.}
+Check whether
+
+\[
+y(t)=1+t
+\]
+
+solves
+
+\[
+y'=1-y.
+\]
+
+The derivative is
+
+\[
+y'(t)=1.
+\]
+
+But the right side is
+
+\[
+1-y(t)=1-(1+t)=-t.
+\]
+
+These are not equal for all \(t\).  They agree only when
+
+\[
+1=-t,
+\]
+
+or
+
+\[
+t=-1.
+\]
+
+A differential equation must hold on an interval, not just at one point.  Therefore
+
+\[
+\boxed{
+y(t)=1+t \text{ is not a solution of } y'=1-y.
+}
+\]
+
+\subsection{Initial conditions}
+\label{subsec:initial-conditions}
+
+A differential equation often describes a family of possible motions or histories.  A
+starting value chooses one member of the family.
+
+For
+
+\[
+y'=1-y,
+\]
+
+the functions
+
+\[
+y(t)=1+Ce^{-t}
+\]
+
+all solve the equation, for any constant \(C\).  Check:
+
+\[
+y'(t)=-Ce^{-t},
+\]
+
+and
+
+\[
+1-y(t)=1-\bigl(1+Ce^{-t}\bigr)=-Ce^{-t}.
+\]
+
+So
+
+\[
+y'=1-y.
+\]
+
+Now suppose we also know
+
+\[
+y(0)=0.
+\]
+
+Substitute \(t=0\):
+
+\[
+0=y(0)=1+Ce^0=1+C.
+\]
+
+Thus
+
+\[
+C=-1.
+\]
+
+So the solution with \(y(0)=0\) is
+
+\[
+\boxed{
+y(t)=1-e^{-t}.
+}
+\]
+
+If instead
+
+\[
+y(0)=2,
+\]
+
+then
+
+\[
+2=1+C,
+\]
+
+so
+
+\[
+C=1,
+\]
+
+and the solution is
+
+\[
+\boxed{
+y(t)=1+e^{-t}.
+}
+\]
+
+\begin{quote}
+\textbf{Initial value problem.}
+An \emph{initial value problem} combines a differential equation with a starting value.
+For example,
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+The differential equation gives the law of change.  The initial condition tells which
+solution curve we are on.
+\end{quote}
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.3, ymax=2.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.98)}, anchor=north east}
+]
+\addplot[very thick, domain=0:4, samples=150] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=150] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y=1\)}
+\addplot[only marks, mark=*] coordinates {(0,0) (0,2)};
+\node[anchor=west] at (axis cs:2.15,1.07) {same equation};
+\node[anchor=west] at (axis cs:2.15,0.82) {different initial values};
+\end{axis}
+\end{tikzpicture}
+\caption{The equation \(y'=1-y\) gives a family of solution curves.  An initial condition selects one curve.}
+\label{fig:initial-values-select-solutions}
+\end{figure}
+
+The picture shows what the algebra said.  Both solutions move toward \(y=1\).  One
+starts below \(1\) and rises.  The other starts above \(1\) and falls.
+
+\subsection{Checking a proposed solution}
+\label{subsec:checking-proposed-solution}
+
+Checking a solution is often easier than finding one.  It is also one of the best ways to
+understand what the equation means.
+
+\begin{quote}
+\textbf{How to check a proposed solution.}
+
+To check a proposed solution of a differential equation:
+
+\begin{enumerate}
+\item State the interval where the function is being considered.
+
+\item Differentiate the proposed function.
+
+\item Substitute the function and its derivative into the differential equation.
+
+\item Check that the equation is true for every point of the interval.
+
+\item If there is an initial condition, check it separately.
+\end{enumerate}
+\end{quote}
+
+\paragraph{Example: checking a cooling model.}
+Suppose the room temperature is \(20^\circ\text{C}\), and the proposed coffee
+temperature is
+
+\[
+T(t)=20+60e^{-0.08t},
+\qquad t\ge0.
+\]
+
+Check that it solves
+
+\[
+T'=-0.08(T-20),
+\qquad
+T(0)=80.
+\]
+
+First differentiate:
+
+\[
+T'(t)=60(-0.08)e^{-0.08t}=-4.8e^{-0.08t}.
+\]
+
+Now compute the right side:
+
+\[
+-0.08(T(t)-20)
+=
+-0.08\bigl(20+60e^{-0.08t}-20\bigr)
+=
+-4.8e^{-0.08t}.
+\]
+
+So
+
+\[
+T'=-0.08(T-20).
+\]
+
+Now check the initial condition:
+
+\[
+T(0)=20+60e^0=80.
+\]
+
+Therefore
+
+\[
+\boxed{
+T(t)=20+60e^{-0.08t}
+}
+\]
+
+solves the initial value problem.
+
+\paragraph{What the formula says.}
+The number \(20\) is the equilibrium temperature.  The term
+
+\[
+60e^{-0.08t}
+\]
+
+is the remaining temperature difference above the room.  It decays toward \(0\), so
+
+\[
+T(t)\to20
+\]
+
+as
+
+\[
+t\to\infty.
+\]
+
+The coffee approaches room temperature.  It does not pass below it in this model.
+
+\begin{quote}
+\textbf{A model check.}
+A solution should satisfy the differential equation, the initial condition, and the
+behavior of the situation.  Algebra alone is not enough if the model's interpretation
+has been forgotten.
+\end{quote}
+
+Many differential equations cannot be solved by guessing a familiar formula.  But even
+without a formula, the equation still gives information.  Since
+
+\[
+y'=F(t,y)
+\]
+
+tells the slope a solution must have at each point \((t,y)\), we can draw those slopes.
+That picture is the next step.
+
+\section{Direction fields}
+\label{sec:direction-fields}
+
+A first-order differential equation of the form
+
+\[
+y'=F(t,y)
+\]
+
+assigns a slope to each point in the \((t,y)\)-plane.  At the point \((t,y)\), a solution
+curve passing through that point must have slope
+
+\[
+F(t,y).
+\]
+
+So even before solving the equation, we can draw a small line segment at many points.
+The collection of these little segments is a picture of the differential equation.
+
+\subsection{Slope field as a picture of a differential equation}
+\label{subsec:slope-field-picture}
+
+Return to the equation
+
+\[
+y'=1-y.
+\]
+
+At a point where \(y=0\),
+
+\[
+y'=1-0=1.
+\]
+
+So the solution curve has slope \(1\).
+
+At a point where \(y=1\),
+
+\[
+y'=1-1=0.
+\]
+
+So the solution curve is horizontal.
+
+At a point where \(y=2\),
+
+\[
+y'=1-2=-1.
+\]
+
+So the solution curve has slope \(-1\).
+
+Notice that the right side does not depend on \(t\).  Every point along the same
+horizontal line has the same slope.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.52\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.2, ymax=2.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+% direction field for y' = 1-y
+\foreach \xx in {0,0.5,...,4} {
+  \foreach \yy in {0,0.25,...,2.25} {
+    \pgfmathsetmacro{\m}{1-\yy}
+    \pgfmathsetmacro{\len}{0.14}
+    \pgfmathsetmacro{\dx}{\len/sqrt(1+\m*\m)}
+    \pgfmathsetmacro{\dy}{\m*\dx}
+    
+    % Pre-calculate coordinate points to avoid parsing issues in axis cs
+    \pgfmathsetmacro{\xOne}{\xx-\dx}
+    \pgfmathsetmacro{\yOne}{\yy-\dy}
+    \pgfmathsetmacro{\xTwo}{\xx+\dx}
+    \pgfmathsetmacro{\yTwo}{\yy+\dy}
+    
+    % \edef expands the variables into hard numbers immediately
+    \edef\temp{%
+      \noexpand\draw[gray!65] (axis cs:\xOne,\yOne) -- (axis cs:\xTwo,\yTwo);%
+    }
+    % Execute the expanded command
+    \temp
+  }
+}
+% solution curves y=1+C e^{-t}
+\addplot[very thick, domain=0:4, samples=150] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=150] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y=1\)}
+\end{axis}
+\end{tikzpicture}
+\caption{A direction field draws the slope prescribed by \(y'=1-y\) at many points.  Solution curves follow the field.}
+\label{fig:direction-field-one-minus-y}
+\end{figure}
+
+The little segments are not solution curves.  They are instructions for solution curves.
+A true solution curve must pass through the field by matching the local direction at
+each point.
+
+\begin{quote}
+\textbf{Direction field.}
+For a differential equation
+
+\[
+y'=F(t,y),
+\]
+
+a \emph{direction field} or \emph{slope field} is a plot of small line segments, where
+the segment at \((t,y)\) has slope \(F(t,y)\).
+\end{quote}
+
+The direction field is especially helpful when the equation is hard to solve exactly.  It
+can show whether solutions rise or fall, whether they approach a stable value, and how
+different initial conditions change the behavior.
+
+\subsection{Equilibrium solutions}
+\label{subsec:equilibrium-solutions}
+
+Some solutions do not move at all.
+
+For
+
+\[
+y'=1-y,
+\]
+
+the constant function
+
+\[
+y(t)=1
+\]
+
+is a solution.  Its derivative is
+
+\[
+y'=0,
+\]
+
+and the right side is
+
+\[
+1-y=1-1=0.
+\]
+
+So the equation is true.
+
+This constant solution is called an equilibrium solution.
+
+\begin{quote}
+\textbf{Equilibrium solution.}
+For an equation
+
+\[
+y'=F(t,y),
+\]
+
+a constant solution \(y(t)=c\) is called an \emph{equilibrium solution}.
+
+If the equation is autonomous,
+
+\[
+y'=f(y),
+\]
+
+then equilibria occur at values \(c\) satisfying
+
+\[
+f(c)=0.
+\]
+\end{quote}
+
+The word \emph{autonomous} means that the independent variable \(t\) does not appear
+explicitly on the right side.  For example,
+
+\[
+y'=1-y
+\]
+
+is autonomous, while
+
+\[
+y'=t-y
+\]
+
+is not.
+
+For an autonomous equation, all points with the same \(y\)-value have the same slope.
+That is why the direction field in Figure \ref{fig:direction-field-one-minus-y} looks the
+same across each horizontal row.
+
+\subsection{Qualitative behavior}
+\label{subsec:qualitative-behavior-direction-fields}
+
+A direction field can tell us how solutions behave without giving exact formulas.
+
+For
+
+\[
+y'=1-y,
+\]
+
+the sign of \(y'\) depends on whether \(y\) is below, equal to, or above \(1\).
+
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{region} & \textbf{sign of \(y'=1-y\)} & \textbf{behavior of solution} \\ \hline
+\(y<1\) & positive & rises \\
+\(y=1\) & zero & stays constant \\
+\(y>1\) & negative & falls
+\end{tabular}
+\end{center}
+
+So the line
+
+\[
+y=1
+\]
+
+acts like a attracting level.  Solutions below it rise toward it.  Solutions above it fall
+toward it.
+
+We can read this from the equation, from the sign table, or from the direction field.
+The three views agree.
+
+\paragraph{Example: logistic behavior without solving.}
+Consider
+
+\[
+y'=y(1-y).
+\]
+
+This is the normalized logistic equation.  It appears when a quantity grows almost
+exponentially when it is small, but slows as it approaches a carrying capacity.  Here the
+carrying capacity has been scaled to \(1\).
+
+Equilibrium solutions occur when
+
+\[
+y(1-y)=0.
+\]
+
+Thus
+
+\[
+y=0
+\qquad\text{and}\qquad
+y=1
+\]
+
+are equilibrium solutions.
+
+Now read the sign of \(y(1-y)\).
+
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{region} & \textbf{sign of \(y(1-y)\)} & \textbf{behavior} \\ \hline
+\(y<0\) & negative & falls \\
+\(0<y<1\) & positive & rises \\
+\(y>1\) & negative & falls
+\end{tabular}
+\end{center}
+
+For a population model, we care mainly about
+
+\[
+y\ge0.
+\]
+
+If
+
+\[
+0<y(0)<1,
+\]
+
+the solution rises.
+
+If
+
+\[
+y(0)>1,
+\]
+
+the solution falls.
+
+In both cases, the solution is pushed toward
+
+\[
+y=1.
+\]
+
+The equilibrium \(y=1\) is stable.  The equilibrium \(y=0\) is unstable: a solution that
+starts exactly at \(0\) stays there, but a solution that starts slightly above \(0\) moves
+away from \(0\).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[xscale=1.2, yscale=1.2, every node/.style={font=\small}]
+  \draw[->, thick] (0,-0.9) -- (0,2.0);
+  \node[above] at (0,2.0) {\(y\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,1) -- (0.08,1);
+
+  \node[left] at (-0.08,0) {\(0\)};
+  \node[left] at (-0.08,1) {\(1\)};
+
+  % arrows
+  \draw[->, thick] (0,-0.65) -- (0,-0.25);
+  \draw[->, thick] (0,0.25) -- (0,0.65);
+  \draw[->, thick] (0,1.65) -- (0,1.25);
+
+  \node[right] at (0.18,-0.45) {\(y'<0\)};
+  \node[right] at (0.18,0.45) {\(y'>0\)};
+  \node[right] at (0.18,1.45) {\(y'<0\)};
+
+  \node[right] at (0.18,0) {unstable equilibrium};
+  \node[right] at (0.18,1) {stable equilibrium};
+\end{tikzpicture}
+\caption{For \(y'=y(1-y)\), the arrows show whether solutions move up or down.}
+\label{fig:logistic-phase-line}
+\end{figure}
+
+This small vertical picture is a compressed direction field.  Because the equation is
+autonomous, the sign depends only on \(y\), so one vertical line can summarize the
+rise-and-fall behavior.
+
+\subsection{Reading long-term behavior from the field}
+\label{subsec:reading-long-term-behavior-field}
+
+A direction field can answer questions that do not require an exact formula.
+
+For
+
+\[
+y'=1-y,
+\]
+
+the field shows that solutions approach
+
+\[
+y=1
+\]
+
+as \(t\) increases.  The field also shows that the approach slows down, because slopes
+near \(y=1\) are small.
+
+For
+
+\[
+y'=y(1-y),
+\]
+
+the sign chart shows:
+
+\[
+0<y(0)<1
+\quad\Longrightarrow\quad
+\text{the solution rises toward }1,
+\]
+
+and
+
+\[
+y(0)>1
+\quad\Longrightarrow\quad
+\text{the solution falls toward }1.
+\]
+
+These conclusions are qualitative.  They tell the shape and long-term trend, not the
+exact value at a specific time.
+
+That is often enough for a first understanding of a model.  Before computing, we should
+know what kind of behavior to expect.
+
+\paragraph{Warning: the physical domain matters.}
+The logistic equation
+
+\[
+y'=y(1-y)
+\]
+
+may be used for a normalized population.  In that interpretation,
+
+\[
+y<0
+\]
+
+does not make physical sense.  The equation still has mathematical behavior there, but
+the model should not be interpreted as a population model for negative \(y\).
+
+A differential equation is not the world.  It is a model of selected features of the world.
+
+\paragraph{Warning: a direction field is not a uniqueness proof.}
+A direction field can suggest that one solution curve passes through each point.  For
+many equations in this chapter, that is true.  But it is not automatic.
+
+Consider
+
+\[
+y'=\sqrt{|y|},
+\qquad
+y(0)=0.
+\]
+
+The constant function
+
+\[
+y(t)=0
+\]
+
+is a solution.
+
+Another solution is
+
+\[
+y(t)=
+\begin{cases}
+0, & t\le 0,\\[3pt]
+\dfrac{t^2}{4}, & t\ge 0.
+\end{cases}
+\]
+
+For \(t>0\),
+
+\[
+y'(t)=\frac{t}{2}
+\]
+
+and
+
+\[
+\sqrt{|y(t)|}
+=
+\sqrt{\frac{t^2}{4}}
+=
+\frac{t}{2}.
+\]
+
+For \(t<0\), both sides are \(0\).  At \(t=0\), the derivative is also \(0\).  So this
+piecewise function solves the same initial value problem.
+
+Two different solution curves pass through the same initial point.
+
+\begin{quote}
+\textbf{What the warning teaches.}
+A direction field is a powerful picture, but it is still a picture.  Clean uniqueness
+requires hypotheses on the function \(F(t,y)\).  In this chapter, our examples will be
+well behaved, but we should remember that the warning exists.
+\end{quote}
+
+The direction field gives the geometry of a differential equation.  The next question is
+computational.  If the field tells us the slope at every point, can we follow those slopes
+one small step at a time and build an approximate solution curve?
+
+That step-by-step method is Euler's method.
+\section{Euler's method}
+\label{sec:eulers-method}
+
+A direction field tells us the slope a solution must have at each point.  If we cannot
+find a formula for the solution, we can still try to follow those slopes.
+
+This is an old idea in new clothing.  The derivative gives a local linear approximation:
+
+\[
+y(x+h)\approx y(x)+y'(x)h.
+\]
+
+If the differential equation says
+
+\[
+y'=F(x,y),
+\]
+
+then at the point \((x,y)\), the slope is
+
+\[
+F(x,y).
+\]
+
+So one small step should look like
+
+\[
+y(x+h)\approx y(x)+hF(x,y).
+\]
+
+Euler's method is this local linear approximation repeated again and again.
+
+\subsection{Following the slope field step by step}
+\label{subsec:following-slope-field-step-by-step}
+
+Start with the initial value problem
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+We already know the direction field.  Below the line \(y=1\), slopes are positive, so
+solutions rise.  Above \(y=1\), slopes are negative, so solutions fall.
+
+Suppose we want an approximate value of \(y(2)\), but we pretend for the moment that
+we do not know the exact formula for the solution.
+
+Choose a step size
+
+\[
+h=0.5.
+\]
+
+At the starting point
+
+\[
+(x_0,y_0)=(0,0),
+\]
+
+the differential equation gives the slope
+
+\[
+y'=1-y=1-0=1.
+\]
+
+The local linear approximation says:
+
+\[
+y(0.5)\approx y(0)+0.5(1)=0.5.
+\]
+
+So our first approximate point is
+
+\[
+(x_1,y_1)=(0.5,0.5).
+\]
+
+Now repeat the same idea.  At \((0.5,0.5)\), the slope is
+
+\[
+1-y_1=1-0.5=0.5.
+\]
+
+Therefore
+
+\[
+y_2=y_1+h(1-y_1)=0.5+0.5(0.5)=0.75.
+\]
+
+So
+
+\[
+(x_2,y_2)=(1,0.75).
+\]
+
+Continue:
+
+\[
+y_3=0.75+0.5(1-0.75)=0.875,
+\]
+
+and
+
+\[
+y_4=0.875+0.5(1-0.875)=0.9375.
+\]
+
+Thus Euler's method gives
+
+\[
+\boxed{
+y(2)\approx0.9375.
+}
+\]
+
+The computation is best seen in a table.
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+\textbf{step} & \(x_k\) & \(y_k\) & slope \(1-y_k\) & next value \(y_{k+1}\) \\ \hline
+\(0\) & \(0\) & \(0\) & \(1\) & \(0+0.5(1)=0.5\) \\
+\(1\) & \(0.5\) & \(0.5\) & \(0.5\) & \(0.5+0.5(0.5)=0.75\) \\
+\(2\) & \(1.0\) & \(0.75\) & \(0.25\) & \(0.75+0.5(0.25)=0.875\) \\
+\(3\) & \(1.5\) & \(0.875\) & \(0.125\) & \(0.875+0.5(0.125)=0.9375\)
+\end{tabular}
+\end{center}
+
+Each row says:
+
+\[
+\text{current height}+\text{step size}\cdot\text{current slope}
+=
+\text{next height}.
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.52\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=-0.1, ymax=1.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.25)}, anchor=south east}
+]
+% direction field for y' = 1-y
+% direction field for y' = 1-y
+\foreach \xx in {0,0.5,...,4} {
+  \foreach \yy in {0,0.25,...,2.25} {
+    \pgfmathsetmacro{\m}{1-\yy}
+    \pgfmathsetmacro{\len}{0.14}
+    \pgfmathsetmacro{\dx}{\len/sqrt(1+\m*\m)}
+    \pgfmathsetmacro{\dy}{\m*\dx}
+    
+    % Pre-calculate coordinates
+    \pgfmathsetmacro{\xOne}{\xx-\dx}
+    \pgfmathsetmacro{\yOne}{\yy-\dy}
+    \pgfmathsetmacro{\xTwo}{\xx+\dx}
+    \pgfmathsetmacro{\yTwo}{\yy+\dy}
+    
+    % \edef forces expansion of the variables into raw numbers immediately
+    \edef\temp{%
+      \noexpand\draw[gray!65] (axis cs:\xOne,\yOne) -- (axis cs:\xTwo,\yTwo);%
+    }
+    % Execute the expanded command, passing hard coordinates to the axis
+    \temp
+  }
+}
+
+% exact solution
+\addplot[very thick, domain=0:2.05, samples=150] {1-exp(-x)};
+\addlegendentry{exact \(y=1-e^{-x}\)}
+
+% Euler broken line
+\addplot[very thick, dashed, mark=*] coordinates {
+  (0,0) (0.5,0.5) (1,0.75) (1.5,0.875) (2,0.9375)
+};
+\addlegendentry{Euler, \(h=0.5\)}
+
+% equilibrium
+\addplot[thick, dotted, domain=0:2.05, samples=2] {1};
+\node[anchor=west] at (axis cs:0.08,1.04) {\(y=1\)};
+\end{axis}
+\end{tikzpicture}
+\caption{Euler's method follows the slope field by taking one tangent-line step at a time.}
+\label{fig:euler-y-prime-one-minus-y}
+\end{figure}
+
+In this example, we can compare with the exact solution.  The initial value problem
+
+\[
+y'=1-y,
+\qquad
+y(0)=0
+\]
+
+has solution
+
+\[
+y=1-e^{-x}.
+\]
+
+Therefore
+
+\[
+y(2)=1-e^{-2}\approx0.8647.
+\]
+
+Euler's method with step size \(h=0.5\) gave
+
+\[
+0.9375.
+\]
+
+So it overestimates the true value.  The reason is visible in the picture: the solution is
+concave down while it rises toward \(1\), so tangent-line steps tend to sit above the
+curve.
+
+\begin{quote}
+\textbf{Euler's method.}
+For an initial value problem
+
+\[
+y'=F(x,y),
+\qquad
+y(x_0)=y_0,
+\]
+
+choose a step size \(h\).  Define
+
+\[
+x_{k+1}=x_k+h
+\]
+
+and
+
+\[
+\boxed{
+y_{k+1}=y_k+hF(x_k,y_k).
+}
+\]
+
+The points
+
+\[
+(x_0,y_0),\ (x_1,y_1),\ (x_2,y_2),\ldots
+\]
+
+approximate points on the solution curve.
+\end{quote}
+
+Euler's method is simple because it uses only the slope at the beginning of each step.
+That simplicity is also its weakness.
+
+\subsection{Step size and accumulated error}
+\label{subsec:step-size-accumulated-error}
+
+Euler's method makes a small error at each step.  Then it uses the approximate point
+from that step to compute the next slope.  So errors do not merely appear; they can
+accumulate.
+
+For the same problem,
+
+\[
+y'=1-y,
+\qquad
+y(0)=0,
+\]
+
+we can approximate \(y(2)\) with several step sizes.
+
+\[
+\text{exact value}=1-e^{-2}\approx0.864665.
+\]
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\textbf{step size} & \textbf{number of steps} & \textbf{Euler approximation to \(y(2)\)} & \textbf{absolute error} \\ \hline
+\(1\) & \(2\) & \(1.000000\) & \(0.135335\) \\
+\(0.5\) & \(4\) & \(0.937500\) & \(0.072835\) \\
+\(0.25\) & \(8\) & \(0.899887\) & \(0.035222\) \\
+\(0.1\) & \(20\) & \(0.878423\) & \(0.013759\) \\
+\(0.05\) & \(40\) & \(0.871488\) & \(0.006823\)
+\end{tabular}
+\end{center}
+
+The smaller step sizes give better approximations here.  This is what we hope for:
+more, shorter tangent-line steps should trace the solution curve more faithfully.
+
+But there is a cost.  Smaller steps require more computation.
+
+\[
+h=0.5
+\quad\Longrightarrow\quad
+4\text{ steps to reach }x=2,
+\]
+
+while
+
+\[
+h=0.05
+\quad\Longrightarrow\quad
+40\text{ steps to reach }x=2.
+\]
+
+The tradeoff is familiar from numerical integration:
+
+\[
+\text{smaller step size}
+\quad\Longrightarrow\quad
+\text{usually smaller error, but more work}.
+\]
+
+The word ``usually'' belongs in the sentence.  A numerical method is not magic.  If the
+step size is too large, the method may follow the wrong behavior.
+
+\paragraph{A large-step warning.}
+Consider
+
+\[
+y'=-4y,
+\qquad
+y(0)=1.
+\]
+
+The exact solution is
+
+\[
+y=e^{-4x}.
+\]
+
+It stays positive and decays toward \(0\).
+
+Euler's method gives
+
+\[
+y_{k+1}=y_k+h(-4y_k)=(1-4h)y_k.
+\]
+
+If
+
+\[
+h=1,
+\]
+
+then
+
+\[
+y_{k+1}=-3y_k.
+\]
+
+The Euler values are
+
+\[
+1,\ -3,\ 9,\ -27,\ldots
+\]
+
+They alternate signs and grow in size.  That is the opposite of the true solution.
+
+The differential equation describes stable decay.  The numerical method, with a large
+step, creates fake instability.
+
+\begin{quote}
+\textbf{Numerical warning.}
+A differential equation and a numerical method are different objects.  The equation may
+have one behavior, while a poor step size in the method can produce another.
+\end{quote}
+
+This does not make Euler's method useless.  It makes it honest.  We should use it with
+step-size discipline and with checks against qualitative behavior.
+
+\subsection{Improved Euler method}
+\label{subsec:improved-euler-method}
+
+Euler's method uses the slope at the beginning of the step.  But if the slope changes
+during the step, the beginning slope may be a poor representative of the whole interval.
+
+A natural improvement is to use two slopes:
+
+\[
+\text{beginning slope}
+\qquad\text{and}\qquad
+\text{estimated ending slope}.
+\]
+
+Then average them.
+
+Start at
+
+\[
+(x_k,y_k).
+\]
+
+Let
+
+\[
+k_1=F(x_k,y_k)
+\]
+
+be the beginning slope.  Euler's ordinary prediction is
+
+\[
+\widetilde y_{k+1}=y_k+hk_1.
+\]
+
+This gives a predicted endpoint
+
+\[
+(x_k+h,\widetilde y_{k+1}).
+\]
+
+Now compute the slope there:
+
+\[
+k_2=F(x_k+h,\widetilde y_{k+1}).
+\]
+
+The improved Euler step uses the average slope:
+
+\[
+\boxed{
+y_{k+1}
+=
+y_k+\frac{h}{2}(k_1+k_2).
+}
+\]
+
+\begin{quote}
+\textbf{Improved Euler method.}
+For
+
+\[
+y'=F(x,y),
+\qquad
+y(x_0)=y_0,
+\]
+
+set
+
+\[
+k_1=F(x_k,y_k),
+\]
+
+\[
+\widetilde y_{k+1}=y_k+hk_1,
+\]
+
+\[
+k_2=F(x_k+h,\widetilde y_{k+1}),
+\]
+
+and
+
+\[
+\boxed{
+y_{k+1}=y_k+\frac{h}{2}(k_1+k_2).
+}
+\]
+\end{quote}
+
+This method is also called Heun's method.  It is not the most powerful numerical method
+for differential equations, but it fixes one clear defect of Euler's method: it does not rely
+only on the starting slope.
+
+\paragraph{Example.}
+Use improved Euler with \(h=0.5\) for
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+The computations are:
+
+\begin{center}
+\begin{tabular}{c|c|c|c|c|c}
+\textbf{step} & \(x_k\) & \(y_k\) & \(k_1\) & \(k_2\) & \(y_{k+1}\) \\ \hline
+\(0\) & \(0\) & \(0\) & \(1\) & \(0.5\) & \(0.375\) \\
+\(1\) & \(0.5\) & \(0.375\) & \(0.625\) & \(0.3125\) & \(0.609375\) \\
+\(2\) & \(1.0\) & \(0.609375\) & \(0.390625\) & \(0.1953125\) & \(0.755859\) \\
+\(3\) & \(1.5\) & \(0.755859\) & \(0.244141\) & \(0.122070\) & \(0.847412\)
+\end{tabular}
+\end{center}
+
+So
+
+\[
+y(2)\approx0.847412.
+\]
+
+The exact value is
+
+\[
+0.864665.
+\]
+
+Euler's method with the same step size gave
+
+\[
+0.937500.
+\]
+
+In this example, improved Euler is much closer.
+
+The price is also clear.  Ordinary Euler evaluates \(F\) once per step.  Improved Euler
+evaluates \(F\) twice per step.  Better information usually costs more computation.
+
+\subsection{Numerical solutions as approximate functions}
+\label{subsec:numerical-solutions-approximate-functions}
+
+Euler's method does not produce a formula like
+
+\[
+y=1-e^{-x}.
+\]
+
+It produces a list of points:
+
+\[
+(x_0,y_0),\ (x_1,y_1),\ (x_2,y_2),\ldots.
+\]
+
+If we connect those points by straight line segments, we get a piecewise linear
+approximation to the solution curve.  So Euler's method approximates not only one
+number, but a whole function.
+
+This distinction matters.
+
+A numerical answer such as
+
+\[
+y(2)\approx0.9375
+\]
+
+is not complete unless we know how it was produced.  We should report:
+
+\[
+\text{the method},
+\qquad
+\text{the step size},
+\qquad
+\text{the interval},
+\qquad
+\text{and any available error information}.
+\]
+
+For example,
+
+\[
+\boxed{
+\text{Euler's method with \(h=0.5\) gives \(y(2)\approx0.9375\).}
+}
+\]
+
+That statement is honest.  It names the approximation.
+
+\begin{quote}
+\textbf{What Euler's method teaches.}
+
+A differential equation gives local instructions.  Euler's method turns those instructions
+into a path by repeating one simple idea:
+
+\[
+\text{new value}=\text{old value}+\text{slope}\cdot\text{step}.
+\]
+\end{quote}
+
+This is enough when no exact formula is available.  But sometimes the equation itself
+contains a hidden integral.  In those cases, we can do better than following short
+tangent steps.  We can solve the equation exactly.
+
+The first such equations are separable.
+
+\section{Separable equations}
+\label{sec:separable-equations}
+
+Euler's method follows a differential equation numerically.  A separable equation can
+sometimes be solved by integration.
+
+The idea is simple.  Some differential equations can be rearranged so that all the \(y\)'s
+are on one side and all the \(x\)'s are on the other.
+
+Then the equation becomes an integral statement.
+
+\[
+\text{separate}
+\quad\Longrightarrow\quad
+\text{integrate}
+\quad\Longrightarrow\quad
+\text{solve for the constant}.
+\]
+
+\subsection{Separating variables}
+\label{subsec:separating-variables}
+
+Start with the differential equation
+
+\[
+\frac{dy}{dx}=xy.
+\]
+
+This says that the rate of change of \(y\) is the product of the current input \(x\) and
+the current output \(y\).
+
+If \(y\neq0\), we can divide by \(y\):
+
+\[
+\frac{1}{y}\frac{dy}{dx}=x.
+\]
+
+In differential notation, this is written
+
+\[
+\frac{dy}{y}=x\,dx.
+\]
+
+Now integrate both sides:
+
+\[
+\int \frac{1}{y}\,dy=\int x\,dx.
+\]
+
+Thus
+
+\[
+\ln|y|=\frac{x^2}{2}+C.
+\]
+
+Exponentiating gives
+
+\[
+|y|=e^C e^{x^2/2}.
+\]
+
+The sign of \(y\) can be absorbed into the constant, so the nonzero solutions are
+
+\[
+y=Ce^{x^2/2}.
+\]
+
+Now apply an initial condition.  If
+
+\[
+y(0)=2,
+\]
+
+then
+
+\[
+2=Ce^0,
+\]
+
+so
+
+\[
+C=2.
+\]
+
+Therefore
+
+\[
+\boxed{
+y=2e^{x^2/2}.
+}
+\]
+
+Check the answer:
+
+\[
+y'=2e^{x^2/2}\cdot x
+=
+xy.
+\]
+
+The formula satisfies the differential equation and the initial condition.
+
+\begin{quote}
+\textbf{Separable equation.}
+A first-order differential equation is \emph{separable} if it can be written in the form
+
+\[
+\frac{dy}{dx}=g(x)h(y).
+\]
+
+On intervals where \(h(y)\neq0\), we can write
+
+\[
+\frac{1}{h(y)}\,dy=g(x)\,dx
+\]
+
+and integrate:
+
+\[
+\boxed{
+\int \frac{1}{h(y)}\,dy=\int g(x)\,dx+C.
+}
+\]
+\end{quote}
+
+The separation notation is compact, but it is not meaningless symbol pushing.  It is the
+chain rule in disguise.
+
+Suppose
+
+\[
+H'(y)=\frac{1}{h(y)}
+\]
+
+and
+
+\[
+G'(x)=g(x).
+\]
+
+If \(y=y(x)\) satisfies
+
+\[
+y'=g(x)h(y),
+\]
+
+then
+
+\[
+\frac{d}{dx}H(y(x))
+=
+H'(y)y'
+=
+\frac{1}{h(y)}g(x)h(y)
+=
+g(x)
+=
+G'(x).
+\]
+
+Therefore
+
+\[
+H(y(x))=G(x)+C.
+\]
+
+That is exactly what separation and integration produced.
+
+\paragraph{Workflow.}
+To solve a separable equation:
+
+\begin{enumerate}
+\item Write it in the form
+
+\[
+\frac{dy}{dx}=g(x)h(y).
+\]
+
+\item Move all \(y\)-factors to the left and all \(x\)-factors to the right:
+
+\[
+\frac{1}{h(y)}\,dy=g(x)\,dx.
+\]
+
+\item Integrate both sides.
+
+\item Use the initial condition to determine the constant.
+
+\item Solve explicitly for \(y\), if possible.
+
+\item Check for constant solutions lost by division.
+\end{enumerate}
+
+The last step is easy to forget and important.
+
+\paragraph{Warning: division can lose solutions.}
+Consider
+
+\[
+y'=y(1-y).
+\]
+
+This equation is separable.  But if we divide by
+
+\[
+y(1-y),
+\]
+
+we have assumed
+
+\[
+y\neq0
+\qquad\text{and}\qquad
+y\neq1.
+\]
+
+The constant functions
+
+\[
+y=0
+\qquad\text{and}\qquad
+y=1
+\]
+
+are both solutions, because in each case
+
+\[
+y'=0
+\]
+
+and
+
+\[
+y(1-y)=0.
+\]
+
+If we divide by \(y(1-y)\) before noticing them, we may lose them.
+
+\begin{quote}
+\textbf{Separation rule of honesty.}
+When you divide by an expression involving \(y\), separately check the values of \(y\)
+that make that expression zero.  They often give equilibrium solutions.
+\end{quote}
+
+This warning will matter even more for logistic models in the next section.
+
+\subsection{Growth and decay revisited}
+\label{subsec:growth-decay-revisited-separable}
+
+The most famous separable equation is
+
+\[
+y'=ky,
+\]
+
+where \(k\) is constant.
+
+This says:
+
+\[
+\text{rate of change is proportional to current amount}.
+\]
+
+Separate variables:
+
+\[
+\frac{dy}{y}=k\,dt,
+\qquad y\neq0.
+\]
+
+Integrate:
+
+\[
+\ln|y|=kt+C.
+\]
+
+Exponentiate:
+
+\[
+y=Ce^{kt}.
+\]
+
+If
+
+\[
+y(0)=y_0,
+\]
+
+then
+
+\[
+C=y_0.
+\]
+
+So
+
+\[
+\boxed{
+y(t)=y_0e^{kt}.
+}
+\]
+
+The formula also works when \(y_0=0\), giving the equilibrium solution
+
+\[
+y(t)=0.
+\]
+
+The sign of \(k\) determines the long-term behavior.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{equation} & \textbf{condition} & \textbf{behavior} \\ \hline
+\(y'=ky\) & \(k>0\) & exponential growth \\
+\(y'=ky\) & \(k<0\) & exponential decay \\
+\(y'=ky\) & \(k=0\) & constant solution
+\end{tabular}
+\end{center}
+
+\paragraph{Example: radioactive decay.}
+A radioactive sample has mass \(M(t)\), measured in grams, and satisfies
+
+\[
+M'=-0.03M,
+\qquad
+M(0)=80.
+\]
+
+The solution is
+
+\[
+M(t)=80e^{-0.03t}.
+\]
+
+The mass decays toward \(0\), but never reaches \(0\) in finite time.
+
+To find the half-life, solve
+
+\[
+40=80e^{-0.03t}.
+\]
+
+Divide by \(80\):
+
+\[
+\frac12=e^{-0.03t}.
+\]
+
+Take logarithms:
+
+\[
+\ln\left(\frac12\right)=-0.03t.
+\]
+
+Since
+
+\[
+\ln\left(\frac12\right)=-\ln2,
+\]
+
+we get
+
+\[
+t=\frac{\ln2}{0.03}.
+\]
+
+Thus
+
+\[
+\boxed{
+t\approx23.1.
+}
+\]
+
+The half-life is about \(23.1\) time units.
+
+\paragraph{Example: variable relative growth.}
+Solve
+
+\[
+y'=ty,
+\qquad
+y(0)=3.
+\]
+
+Separate:
+
+\[
+\frac{dy}{y}=t\,dt.
+\]
+
+Integrate:
+
+\[
+\ln|y|=\frac{t^2}{2}+C.
+\]
+
+Since \(y(0)=3\), we get
+
+\[
+C=\ln3.
+\]
+
+Thus
+
+\[
+\boxed{
+y=3e^{t^2/2}.
+}
+\]
+
+Here the relative growth rate is not constant.  It is \(t\).  The exponent is therefore the
+accumulated growth rate:
+
+\[
+\int_0^t s\,ds=\frac{t^2}{2}.
+\]
+
+This is a useful way to remember the answer:
+
+\[
+\boxed{
+\text{amount}=\text{initial amount}\cdot e^{\text{accumulated relative rate}}.
+}
+\]
+
+\subsection{Cooling and mixing}
+\label{subsec:cooling-and-mixing}
+
+Many physical models become separable because the rate depends on a difference from
+equilibrium.
+
+Newton's law of cooling says
+
+\[
+T'=-k(T-T_s),
+\qquad k>0,
+\]
+
+where \(T_s\) is the surrounding temperature.
+
+Separate variables:
+
+\[
+\frac{dT}{T-T_s}=-k\,dt.
+\]
+
+Integrate:
+
+\[
+\ln|T-T_s|=-kt+C.
+\]
+
+Exponentiate:
+
+\[
+T-T_s=Ce^{-kt}.
+\]
+
+If
+
+\[
+T(0)=T_0,
+\]
+
+then
+
+\[
+C=T_0-T_s.
+\]
+
+So
+
+\[
+\boxed{
+T(t)=T_s+(T_0-T_s)e^{-kt}.
+}
+\]
+
+This single formula describes cooling and warming.
+
+If \(T_0>T_s\), then \(T_0-T_s>0\), and the object cools down toward \(T_s\).
+
+If \(T_0<T_s\), then \(T_0-T_s<0\), and the object warms up toward \(T_s\).
+
+The exponential term decays to \(0\), so in both cases
+
+\[
+T(t)\to T_s
+\qquad\text{as}\qquad
+t\to\infty.
+\]
+
+\paragraph{Example: coffee cooling.}
+A cup of coffee is initially
+
+\[
+80^\circ\text{C}.
+\]
+
+The room is
+
+\[
+20^\circ\text{C}.
+\]
+
+Suppose
+
+\[
+T'=-0.08(T-20),
+\qquad
+T(0)=80.
+\]
+
+Then
+
+\[
+T(t)=20+(80-20)e^{-0.08t}.
+\]
+
+Thus
+
+\[
+\boxed{
+T(t)=20+60e^{-0.08t}.
+}
+\]
+
+When will the coffee reach \(40^\circ\text{C}\)?
+
+Solve
+
+\[
+40=20+60e^{-0.08t}.
+\]
+
+Then
+
+\[
+20=60e^{-0.08t},
+\]
+
+so
+
+\[
+\frac13=e^{-0.08t}.
+\]
+
+Take logarithms:
+
+\[
+-\ln3=-0.08t.
+\]
+
+Therefore
+
+\[
+t=\frac{\ln3}{0.08}\approx13.7.
+\]
+
+The coffee reaches \(40^\circ\text{C}\) after about
+
+\[
+\boxed{13.7\text{ minutes}.}
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=35,
+    ymin=15, ymax=85,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(T(t)\) (\(^\circ\)C)},
+    xtick={0,10,20,30},
+    ytick={20,40,60,80},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.98)}, anchor=north east}
+]
+\addplot[very thick, domain=0:35, samples=200] {20+60*exp(-0.08*x)};
+\addlegendentry{\(T=20+60e^{-0.08t}\)}
+\addplot[thick, dotted, domain=0:35, samples=2] {20};
+\addlegendentry{\(T=20\)}
+\addplot[thick, dashed, domain=0:35, samples=2] {40};
+\addplot[only marks, mark=*] coordinates {(13.7327,40)};
+\node[anchor=south west] at (axis cs:13.7327,40) {\(t\approx13.7\)};
+\end{axis}
+\end{tikzpicture}
+\caption{Newton's law of cooling gives exponential approach to the surrounding temperature.}
+\label{fig:cooling-separable}
+\end{figure}
+
+Mixing can produce the same kind of equation.
+
+\paragraph{Example: flushing salt from a tank.}
+A tank contains \(100\) liters of well-mixed salt water.  Initially there are \(10\) grams of
+salt in the tank.  Pure water flows in at \(5\) liters per minute, and the well-mixed
+solution flows out at the same rate.
+
+Let
+
+\[
+S(t)=\text{grams of salt in the tank after \(t\) minutes}.
+\]
+
+Since the volume stays \(100\) liters, the concentration in the tank is
+
+\[
+\frac{S(t)}{100}
+\]
+
+grams per liter.
+
+Pure water brings in no salt.  Salt leaves at the rate
+
+\[
+5\cdot\frac{S(t)}{100}
+=
+\frac{S(t)}{20}
+\]
+
+grams per minute.
+
+Therefore
+
+\[
+S'=-\frac{S}{20}.
+\]
+
+This is separable:
+
+\[
+\frac{dS}{S}=-\frac{1}{20}\,dt.
+\]
+
+Integrate:
+
+\[
+\ln|S|=-\frac{t}{20}+C.
+\]
+
+Since \(S(0)=10\), we get
+
+\[
+\boxed{
+S(t)=10e^{-t/20}.
+}
+\]
+
+The salt amount decays exponentially.
+
+When will only \(1\) gram remain?
+
+\[
+1=10e^{-t/20}.
+\]
+
+So
+
+\[
+\frac{1}{10}=e^{-t/20}.
+\]
+
+Taking logarithms gives
+
+\[
+-\ln10=-\frac{t}{20}.
+\]
+
+Thus
+
+\[
+\boxed{
+t=20\ln10\approx46.1\text{ minutes}.
+}
+\]
+
+The tank never becomes perfectly salt-free in finite time, but the amount of salt can be
+made as small as desired.
+
+\begin{quote}
+\textbf{Equilibrium difference pattern.}
+Equations of the form
+
+\[
+Q'=-k(Q-Q_{\text{eq}})
+\]
+
+have solutions
+
+\[
+\boxed{
+Q(t)=Q_{\text{eq}}+\bigl(Q(0)-Q_{\text{eq}}\bigr)e^{-kt}.
+}
+\]
+
+The quantity \(Q\) approaches the equilibrium value \(Q_{\text{eq}}\) exponentially.
+\end{quote}
+
+Cooling, charging circuits, simple mixing, and many adjustment models share this same
+mathematical skeleton.
+
+\subsection{Implicit solutions}
+\label{subsec:implicit-solutions-separable}
+
+Separation does not always lead to a clean formula
+
+\[
+y=\text{something involving }x.
+\]
+
+Sometimes the best answer is an equation that \(x\) and \(y\) satisfy together.  Such an
+answer is called an implicit solution.
+
+Consider
+
+\[
+y'=\frac{x}{1+y^2},
+\qquad
+y(0)=0.
+\]
+
+Separate variables:
+
+\[
+(1+y^2)\,dy=x\,dx.
+\]
+
+Integrate:
+
+\[
+\int(1+y^2)\,dy=\int x\,dx.
+\]
+
+So
+
+\[
+y+\frac{y^3}{3}=\frac{x^2}{2}+C.
+\]
+
+Use the initial condition \(y(0)=0\):
+
+\[
+0+\frac{0^3}{3}=0+C,
+\]
+
+so
+
+\[
+C=0.
+\]
+
+Thus the solution is given implicitly by
+
+\[
+\boxed{
+y+\frac{y^3}{3}=\frac{x^2}{2}.
+}
+\]
+
+This equation is a perfectly meaningful solution.  It tells us which points \((x,y)\)
+lie on the solution curve.
+
+We can also check it without solving for \(y\).  Differentiate both sides with respect to
+\(x\):
+
+\[
+\frac{d}{dx}\left(y+\frac{y^3}{3}\right)
+=
+\frac{d}{dx}\left(\frac{x^2}{2}\right).
+\]
+
+By the chain rule,
+
+\[
+y'+y^2y'=x.
+\]
+
+Factor:
+
+\[
+(1+y^2)y'=x.
+\]
+
+Therefore
+
+\[
+y'=\frac{x}{1+y^2}.
+\]
+
+So the implicit equation really does describe a solution of the differential equation.
+
+\begin{quote}
+\textbf{Implicit solution.}
+An \emph{implicit solution} of a differential equation is an equation involving \(x\)
+and \(y\) whose differentiable branches satisfy the differential equation.
+
+An explicit solution gives \(y\) directly as a function of \(x\).  An implicit solution may
+leave \(x\) and \(y\) tied together.
+\end{quote}
+
+\paragraph{Example: a family of hyperbolas.}
+Solve
+
+\[
+y'=\frac{x}{y},
+\qquad
+y(0)=2.
+\]
+
+Separate:
+
+\[
+y\,dy=x\,dx.
+\]
+
+Integrate:
+
+\[
+\frac{y^2}{2}=\frac{x^2}{2}+C.
+\]
+
+Multiply by \(2\):
+
+\[
+y^2=x^2+C_1.
+\]
+
+Use the initial condition:
+
+\[
+2^2=0^2+C_1,
+\]
+
+so
+
+\[
+C_1=4.
+\]
+
+Thus
+
+\[
+\boxed{
+y^2-x^2=4.
+}
+\]
+
+This implicit equation has two branches:
+
+\[
+y=\sqrt{x^2+4}
+\]
+
+and
+
+\[
+y=-\sqrt{x^2+4}.
+\]
+
+The initial condition \(y(0)=2\) selects the upper branch:
+
+\[
+\boxed{
+y=\sqrt{x^2+4}.
+}
+\]
+
+The differential equation
+
+\[
+y'=\frac{x}{y}
+\]
+
+does not make sense when \(y=0\).  The selected branch never reaches \(y=0\), so the
+solution stays safely inside the domain of the equation.
+
+\paragraph{Domains still matter.}
+Solving a differential equation is not just manipulating symbols until a formula appears.
+A solution must live on an interval where the function is differentiable and the equation
+makes sense.
+
+For
+
+\[
+y'=\frac{x}{y},
+\]
+
+any solution must have
+
+\[
+y\neq0.
+\]
+
+For
+
+\[
+y'=\frac{1}{x}y,
+\]
+
+any solution interval must avoid
+
+\[
+x=0.
+\]
+
+A formula without a domain is not yet a complete solution.
+
+\begin{quote}
+\textbf{What separable equations give us.}
+Separation turns some differential equations into integral problems.  It connects this
+chapter back to the Fundamental Theorem:
+
+\[
+\text{a law for a derivative}
+\quad\Longrightarrow\quad
+\text{an integral relation}
+\quad\Longrightarrow\quad
+\text{a solution curve}.
+\]
+\end{quote}
+
+The next separable model has two equilibrium solutions instead of one.  It grows almost
+exponentially at first, slows as it approaches a limit, and has a characteristic
+slow--fast--slow shape.
+
+That model is the logistic equation.
+\section{Logistic and threshold models}
+\label{sec:logistic-threshold-models}
+
+Separable equations gave us exact formulas when the variables could be pulled apart.
+But the formula is not always the first thing we should look for.
+
+For an autonomous equation
+
+\[
+y'=f(y),
+\]
+
+the graph of \(f\) already tells a story.  It tells where solutions rise, where they fall,
+and which equilibrium values attract nearby solutions.
+
+The logistic equation is the best first example.  It can be solved by separation, but it is
+often understood first from its phase line.
+
+\subsection{Carrying capacity}
+\label{subsec:carrying-capacity}
+
+Pure exponential growth says
+
+\[
+P'=rP,
+\qquad r>0.
+\]
+
+The rate is proportional to the current population.  That can describe early growth, when
+resources are plentiful.  It cannot describe growth forever.
+
+A population in a fixed environment has limited food, space, or available hosts.  The
+model should slow down as the population approaches a maximum sustainable size.
+
+Let
+
+\[
+K=\text{carrying capacity}.
+\]
+
+The simplest slowing factor is
+
+\[
+1-\frac{P}{K}.
+\]
+
+When
+
+\[
+P\ll K,
+\]
+
+this factor is close to \(1\), so the equation looks almost exponential:
+
+\[
+P'\approx rP.
+\]
+
+When
+
+\[
+P=K,
+\]
+
+the factor becomes \(0\), so growth stops.
+
+This gives the logistic equation:
+
+\[
+\boxed{
+P'=rP\left(1-\frac{P}{K}\right),
+\qquad r>0,\quad K>0.
+}
+\]
+
+The two factors have different meanings:
+
+\[
+rP
+\]
+
+says that a larger current population creates more births, while
+
+\[
+1-\frac{P}{K}
+\]
+
+says that limited remaining capacity slows the growth.
+
+\paragraph{Solving the logistic equation.}
+Assume for the moment that
+
+\[
+P\neq0
+\qquad\text{and}\qquad
+P\neq K.
+\]
+
+Then we can separate variables:
+
+\[
+\frac{dP}{P\left(1-\frac{P}{K}\right)}=r\,dt.
+\]
+
+Since
+
+\[
+P\left(1-\frac{P}{K}\right)=\frac{P(K-P)}{K},
+\]
+
+we have
+
+\[
+\frac{1}{P\left(1-\frac{P}{K}\right)}
+=
+\frac{K}{P(K-P)}.
+\]
+
+Use partial fractions:
+
+\[
+\frac{K}{P(K-P)}
+=
+\frac1P+\frac1{K-P}.
+\]
+
+Therefore
+
+\[
+\int\left(\frac1P+\frac1{K-P}\right)\,dP
+=
+\int r\,dt.
+\]
+
+The left side is
+
+\[
+\ln|P|-\ln|K-P|.
+\]
+
+So
+
+\[
+\ln\left|\frac{P}{K-P}\right|=rt+C.
+\]
+
+Exponentiating gives
+
+\[
+\frac{P}{K-P}=Ae^{rt},
+\]
+
+where \(A\) is a nonzero constant.  Solving for \(P\),
+
+\[
+P=Ae^{rt}(K-P),
+\]
+
+so
+
+\[
+P(1+Ae^{rt})=KAe^{rt}.
+\]
+
+Thus
+
+\[
+P(t)=\frac{KAe^{rt}}{1+Ae^{rt}}.
+\]
+
+Dividing numerator and denominator by \(Ae^{rt}\), we get the usual form:
+
+\[
+\boxed{
+P(t)=\frac{K}{1+Be^{-rt}}.
+}
+\]
+
+If
+
+\[
+P(0)=P_0,
+\qquad P_0>0,
+\]
+
+then
+
+\[
+P_0=\frac{K}{1+B}.
+\]
+
+So
+
+\[
+1+B=\frac{K}{P_0},
+\]
+
+and therefore
+
+\[
+\boxed{
+B=\frac{K-P_0}{P_0}.
+}
+\]
+
+Thus, for \(P_0>0\),
+
+\[
+\boxed{
+P(t)=\frac{K}{1+\left(\frac{K-P_0}{P_0}\right)e^{-rt}}.
+}
+\]
+
+This formula includes the case \(P_0=K\), where the constant in the denominator is
+\(0\), and the solution is
+
+\[
+P(t)=K.
+\]
+
+The solution \(P(t)=0\) is also an equilibrium solution, but it was lost when we divided
+by \(P\).  This is the same warning we saw in separable equations: division can erase
+constant solutions.
+
+\paragraph{Example.}
+A population grows according to
+
+\[
+P'=0.4P\left(1-\frac{P}{1000}\right),
+\qquad
+P(0)=100.
+\]
+
+Here
+
+\[
+r=0.4,
+\qquad
+K=1000,
+\qquad
+P_0=100.
+\]
+
+So
+
+\[
+B=\frac{1000-100}{100}=9.
+\]
+
+The solution is
+
+\[
+\boxed{
+P(t)=\frac{1000}{1+9e^{-0.4t}}.
+}
+\]
+
+When does the population reach half the carrying capacity?
+
+Set
+
+\[
+P(t)=500.
+\]
+
+Then
+
+\[
+500=\frac{1000}{1+9e^{-0.4t}}.
+\]
+
+So
+
+\[
+1+9e^{-0.4t}=2,
+\]
+
+and therefore
+
+\[
+9e^{-0.4t}=1.
+\]
+
+Thus
+
+\[
+e^{-0.4t}=\frac19.
+\]
+
+Taking logarithms,
+
+\[
+-0.4t=-\ln9.
+\]
+
+So
+
+\[
+\boxed{
+t=\frac{\ln9}{0.4}\approx5.49.
+}
+\]
+
+The population reaches \(500\) after about \(5.49\) time units.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=20,
+    ymin=0, ymax=1300,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(P(t)\)},
+    xtick={0,5,10,15,20},
+    ytick={0,500,1000},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.97,0.35)}, anchor=east}
+]
+\addplot[very thick, domain=0:20, samples=200] {1000/(1+9*exp(-0.4*x))};
+\addlegendentry{\(P_0=100\)}
+
+\addplot[very thick, dashed, domain=0:20, samples=200] {1000/(1-0.1666667*exp(-0.4*x))};
+\addlegendentry{\(P_0=1200\)}
+
+\addplot[thick, dotted, domain=0:20, samples=2] {1000};
+\addlegendentry{\(P=K\)}
+
+\addplot[only marks, mark=*] coordinates {(5.493,500)};
+\node[anchor=west] at (axis cs:5.8,520) {\(P=K/2\)};
+\node[anchor=west] at (axis cs:11,1030) {carrying capacity};
+\end{axis}
+\end{tikzpicture}
+\caption{Logistic solutions move toward the carrying capacity.  From below they rise toward \(K\); from above they fall toward \(K\).}
+\label{fig:logistic-solutions-ch13}
+\end{figure}
+
+The formula gives exact values.  But the most important behavior was already visible
+from the differential equation:
+
+\[
+0<P<K
+\quad\Longrightarrow\quad
+P'>0,
+\]
+
+and
+
+\[
+P>K
+\quad\Longrightarrow\quad
+P'<0.
+\]
+
+So the equation pushes positive solutions toward \(K\).
+
+\subsection{Phase line}
+\label{subsec:phase-line}
+
+For an autonomous equation
+
+\[
+y'=f(y),
+\]
+
+the sign of \(f(y)\) depends only on \(y\).  That means one vertical line can summarize
+the motion.
+
+This vertical summary is called a phase line.
+
+For the logistic equation
+
+\[
+P'=rP\left(1-\frac{P}{K}\right),
+\]
+
+the equilibria occur where
+
+\[
+rP\left(1-\frac{P}{K}\right)=0.
+\]
+
+Thus
+
+\[
+P=0
+\qquad\text{and}\qquad
+P=K
+\]
+
+are equilibrium solutions.
+
+Now read the sign:
+
+\[
+P<0
+\quad\Longrightarrow\quad
+P'<0,
+\]
+
+\[
+0<P<K
+\quad\Longrightarrow\quad
+P'>0,
+\]
+
+\[
+P>K
+\quad\Longrightarrow\quad
+P'<0.
+\]
+
+The phase line is:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[xscale=1.25, yscale=1.2, every node/.style={font=\small}]
+  \draw[->, thick] (0,-1.0) -- (0,3.0);
+  \node[above] at (0,3.0) {\(P\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,2) -- (0.08,2);
+
+  \node[left] at (-0.1,0) {\(0\)};
+  \node[left] at (-0.1,2) {\(K\)};
+
+  \draw[->, thick] (0,-0.8) -- (0,-0.35);
+  \draw[->, thick] (0,0.45) -- (0,1.45);
+  \draw[->, thick] (0,2.75) -- (0,2.25);
+
+  \node[right] at (0.15,-0.6) {\(P'<0\)};
+  \node[right] at (0.15,0.95) {\(P'>0\)};
+  \node[right] at (0.15,2.55) {\(P'<0\)};
+
+  \node[right] at (0.15,0) {unstable};
+  \node[right] at (0.15,2) {stable};
+\end{tikzpicture}
+\caption{The logistic phase line shows how the equation pushes solutions along the \(P\)-axis.}
+\label{fig:logistic-phase-line-ch13}
+\end{figure}
+
+The arrows tell us the long-term behavior.
+
+If
+
+\[
+0<P(0)<K,
+\]
+
+then \(P\) rises toward \(K\).
+
+If
+
+\[
+P(0)>K,
+\]
+
+then \(P\) falls toward \(K\).
+
+If
+
+\[
+P(0)=K,
+\]
+
+then \(P(t)=K\) forever.
+
+If
+
+\[
+P(0)=0,
+\]
+
+then \(P(t)=0\) forever.
+
+For a population model, the physically meaningful domain is usually
+
+\[
+P\ge0.
+\]
+
+The mathematical equation also has behavior for \(P<0\), but negative population is
+not part of the model's interpretation.
+
+\begin{quote}
+\textbf{Phase line.}
+For an autonomous equation
+
+\[
+y'=f(y),
+\]
+
+a \emph{phase line} marks the equilibrium values \(f(y)=0\) and uses arrows to show
+where \(y'>0\) and where \(y'<0\).
+\end{quote}
+
+A phase line is a compressed direction field.  Since the slope depends only on \(y\),
+the whole plane can be summarized on one vertical axis.
+
+\paragraph{A threshold model.}
+The logistic equation says that any small positive population grows.  Some populations
+do not behave that way.  If the population is too small, individuals may have trouble
+finding mates, protecting each other, or maintaining enough genetic variety.  Below a
+threshold, the population may decline.
+
+Let
+
+\[
+A=\text{threshold population},
+\qquad
+K=\text{carrying capacity},
+\]
+
+where
+
+\[
+0<A<K.
+\]
+
+A simple threshold model is
+
+\[
+\boxed{
+P'=rP\left(1-\frac{P}{K}\right)\left(\frac{P}{A}-1\right),
+\qquad r>0.
+}
+\]
+
+This equation has three equilibria:
+
+\[
+P=0,\qquad P=A,\qquad P=K.
+\]
+
+The signs are:
+
+\[
+0<P<A
+\quad\Longrightarrow\quad
+P'<0,
+\]
+
+\[
+A<P<K
+\quad\Longrightarrow\quad
+P'>0,
+\]
+
+\[
+P>K
+\quad\Longrightarrow\quad
+P'<0.
+\]
+
+So the phase line is:
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}[xscale=1.25, yscale=1.05, every node/.style={font=\small}]
+  \draw[->, thick] (0,-0.5) -- (0,3.3);
+  \node[above] at (0,3.3) {\(P\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,1.2) -- (0.08,1.2);
+  \draw[thick] (-0.08,2.6) -- (0.08,2.6);
+
+  \node[left] at (-0.1,0) {\(0\)};
+  \node[left] at (-0.1,1.2) {\(A\)};
+  \node[left] at (-0.1,2.6) {\(K\)};
+
+  \draw[->, thick] (0,0.95) -- (0,0.35);
+  \draw[->, thick] (0,1.55) -- (0,2.25);
+  \draw[->, thick] (0,3.05) -- (0,2.75);
+
+  \node[right] at (0.15,0.65) {\(P'<0\)};
+  \node[right] at (0.15,1.9) {\(P'>0\)};
+  \node[right] at (0.15,2.95) {\(P'<0\)};
+
+  \node[right] at (0.15,0) {stable from the right};
+  \node[right] at (0.15,1.2) {unstable threshold};
+  \node[right] at (0.15,2.6) {stable};
+\end{tikzpicture}
+\caption{In a threshold model, the population must start above \(A\) to move toward the carrying capacity \(K\).}
+\label{fig:threshold-phase-line}
+\end{figure}
+
+This model has a different story from logistic growth.
+
+If
+
+\[
+0<P(0)<A,
+\]
+
+the population declines toward extinction.
+
+If
+
+\[
+A<P(0)<K,
+\]
+
+the population grows toward \(K\).
+
+If
+
+\[
+P(0)>K,
+\]
+
+the population decreases toward \(K\).
+
+The value \(A\) is a tipping threshold.  Starting just above it and starting just below it
+lead to opposite long-term outcomes.
+
+\subsection{Stable and unstable equilibria}
+\label{subsec:stable-unstable-equilibria}
+
+An equilibrium solution is a constant solution.  But not all equilibria behave the same
+way.
+
+For
+
+\[
+y'=f(y),
+\]
+
+an equilibrium \(y=c\) occurs when
+
+\[
+f(c)=0.
+\]
+
+The arrows near \(c\) decide whether nearby solutions move toward \(c\) or away from it.
+
+\begin{quote}
+\textbf{Stable and unstable equilibrium.}
+An equilibrium \(y=c\) is \emph{stable} if solutions that start near \(c\) move toward
+\(c\) as \(t\) increases.
+
+It is \emph{unstable} if solutions that start near \(c\) move away from \(c\) as \(t\)
+increases.
+\end{quote}
+
+For the logistic equation,
+
+\[
+P'=rP\left(1-\frac{P}{K}\right),
+\]
+
+the equilibrium \(P=K\) is stable.  Solutions below \(K\) move upward, and solutions
+above \(K\) move downward.
+
+The equilibrium \(P=0\) is unstable.  A solution that starts exactly at \(0\) stays there,
+but a solution that starts slightly above \(0\) moves away from \(0\).
+
+For the threshold model,
+
+\[
+P'=rP\left(1-\frac{P}{K}\right)\left(\frac{P}{A}-1\right),
+\]
+
+the equilibrium \(P=A\) is unstable.  A tiny change in the initial condition can change
+the long-term outcome.
+
+\[
+P(0)=A+\text{small positive amount}
+\quad\Longrightarrow\quad
+P(t)\to K,
+\]
+
+while
+
+\[
+P(0)=A-\text{small positive amount}
+\quad\Longrightarrow\quad
+P(t)\to0.
+\]
+
+The threshold \(A\) is not a resting place that attracts the population.  It is a dividing
+line.
+
+\begin{quote}
+\textbf{What stability means in a model.}
+A stable equilibrium is forgiving: small errors in the starting value still lead back to it.
+
+An unstable equilibrium is delicate: small errors in the starting value move the solution
+away from it.
+\end{quote}
+
+This matters in applications.  A population near a stable carrying capacity can recover
+from small disturbances.  A population near an unstable threshold may not.
+
+\subsection{Harvesting and tipping points}
+\label{subsec:harvesting-tipping-points}
+
+A fish population may grow logistically, but people may also remove fish by harvesting.
+A simple constant-harvest model is
+
+\[
+\boxed{
+P'=rP\left(1-\frac{P}{K}\right)-h,
+}
+\]
+
+where
+
+\[
+h=\text{harvest rate}.
+\]
+
+The term
+
+\[
+rP\left(1-\frac{P}{K}\right)
+\]
+
+is natural growth.  The term \(h\) is removal.
+
+Equilibria occur when
+
+\[
+rP\left(1-\frac{P}{K}\right)=h.
+\]
+
+So the equilibrium populations are intersection points between the logistic growth curve
+and the horizontal harvest line.
+
+The growth curve
+
+\[
+G(P)=rP\left(1-\frac{P}{K}\right)
+\]
+
+is a parabola.  Its maximum occurs at
+
+\[
+P=\frac K2.
+\]
+
+The maximum value is
+
+\[
+G\left(\frac K2\right)
+=
+r\frac K2\left(1-\frac12\right)
+=
+\boxed{\frac{rK}{4}}.
+\]
+
+This number is the largest sustainable constant harvest in the model.
+
+\[
+\boxed{
+h_{\max}=\frac{rK}{4}.
+}
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=1000,
+    ymin=0, ymax=190,
+    axis lines=left,
+    xlabel={\(P\)},
+    ylabel={rate},
+    xtick={0,200,500,800,1000},
+    ytick={0,96,150,180},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.97,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:1000, samples=200] {0.6*x*(1-x/1000)};
+\addlegendentry{\(G(P)=0.6P(1-P/1000)\)}
+
+\addplot[thick, dashed, domain=0:1000, samples=2] {96};
+\addlegendentry{\(h=96\)}
+
+\addplot[thick, dotted, domain=0:1000, samples=2] {150};
+\addlegendentry{\(h=150\)}
+
+\addplot[thick, dash dot, domain=0:1000, samples=2] {180};
+\addlegendentry{\(h=180\)}
+
+\addplot[only marks, mark=*] coordinates {(200,96) (800,96) (500,150)};
+\node[anchor=south] at (axis cs:500,152) {maximum sustainable harvest};
+\end{axis}
+\end{tikzpicture}
+\caption{A constant harvest is sustainable only if the harvest line meets the natural growth curve.}
+\label{fig:harvesting-growth-curve}
+\end{figure}
+
+\paragraph{Example.}
+Suppose
+
+\[
+r=0.6,
+\qquad
+K=1000.
+\]
+
+Then
+
+\[
+h_{\max}=\frac{rK}{4}=\frac{0.6(1000)}{4}=150.
+\]
+
+If the harvest rate is
+
+\[
+h=96,
+\]
+
+then equilibria satisfy
+
+\[
+0.6P\left(1-\frac{P}{1000}\right)=96.
+\]
+
+Expand:
+
+\[
+0.6P-0.0006P^2=96.
+\]
+
+Move all terms to one side:
+
+\[
+0.0006P^2-0.6P+96=0.
+\]
+
+Divide by \(0.0006\):
+
+\[
+P^2-1000P+160000=0.
+\]
+
+Factor:
+
+\[
+(P-200)(P-800)=0.
+\]
+
+So the equilibria are
+
+\[
+P=200
+\qquad\text{and}\qquad
+P=800.
+\]
+
+To determine stability, examine the sign of
+
+\[
+P'=G(P)-96.
+\]
+
+When \(P<200\), the harvest is larger than natural growth, so
+
+\[
+P'<0.
+\]
+
+When \(200<P<800\), natural growth is larger than harvest, so
+
+\[
+P'>0.
+\]
+
+When \(P>800\), natural growth is again smaller than harvest, so
+
+\[
+P'<0.
+\]
+
+Thus \(P=200\) is unstable, and \(P=800\) is stable.
+
+The lower equilibrium is a threshold.  If the population falls below \(200\), the model
+predicts decline toward extinction.  If the population stays above \(200\), it can recover
+toward \(800\).
+
+\paragraph{Three harvesting regimes.}
+The model has three cases.
+
+\begin{center}
+\begin{tabular}{c|c|c}
+\textbf{harvest rate} & \textbf{equilibria} & \textbf{behavior} \\ \hline
+\(0<h<\dfrac{rK}{4}\) & two positive equilibria & lower unstable, upper stable \\[8pt]
+\(h=\dfrac{rK}{4}\) & one positive equilibrium at \(K/2\) & tipping point \\[8pt]
+\(h>\dfrac{rK}{4}\) & no positive equilibrium & harvest exceeds natural growth
+\end{tabular}
+\end{center}
+
+The middle case is delicate.  If
+
+\[
+h=\frac{rK}{4},
+\]
+
+then
+
+\[
+P'=rP\left(1-\frac{P}{K}\right)-\frac{rK}{4}.
+\]
+
+For \(K=1000\) and \(r=0.6\), this becomes
+
+\[
+P'=0.6P\left(1-\frac{P}{1000}\right)-150.
+\]
+
+The right side is
+
+\[
+-0.0006(P-500)^2.
+\]
+
+So
+
+\[
+P'\le0
+\]
+
+for every \(P\), and equality occurs only at \(P=500\).  A population starting above
+\(500\) decreases toward \(500\).  A population starting below \(500\) decreases away
+from \(500\) toward extinction.
+
+\begin{quote}
+\textbf{Model warning.}
+The equation
+
+\[
+P'=rP\left(1-\frac{P}{K}\right)-h
+\]
+
+continues mathematically below \(P=0\), but the population model does not.
+
+If the population reaches extinction, harvesting cannot continue at the same constant
+rate.  The physical domain \(P\ge0\) is part of the model.
+\end{quote}
+
+The logistic and threshold models show why a differential equation is more than a
+formula to solve.  It is a field of tendencies.  It tells what the system tries to do from
+each starting value.
+
+The next class of equations has a different structure.  It may include an outside input,
+such as salt entering a tank or money deposited into an account.  The equation is not
+always separable, but the product rule gives it a way forward.
+
+\section{First-order linear equations}
+\label{sec:first-order-linear-equations}
+
+Separable equations can be solved by pulling all \(y\)'s to one side and all \(x\)'s to the
+other.  Many useful equations do not separate.
+
+A tank may have salt entering and salt leaving.  A bank account may earn interest while
+money is also being deposited.  A cooling object may sit in a room whose temperature is
+changing.
+
+These models have a common form:
+
+\[
+\text{rate of change}
++
+\text{known multiple of the current amount}
+=
+\text{outside input}.
+\]
+
+That is the shape of a first-order linear equation.
+
+\subsection{Standard form}
+\label{subsec:first-order-linear-standard-form}
+
+A first-order differential equation is \emph{linear} if the unknown function and its
+derivative appear only to the first power and are not multiplied together.
+
+The standard form is
+
+\[
+\boxed{
+y'+p(t)y=q(t).
+}
+\]
+
+Here
+
+\[
+p(t)
+\qquad\text{and}\qquad
+q(t)
+\]
+
+are known functions of \(t\).  The unknown is \(y(t)\).
+
+\begin{quote}
+\textbf{First-order linear equation.}
+A first-order linear differential equation has the form
+
+\[
+\boxed{
+y'+p(t)y=q(t).
+}
+\]
+
+If \(q(t)=0\), the equation is called \emph{homogeneous}.  If \(q(t)\neq0\), it is called
+\emph{nonhomogeneous}.
+\end{quote}
+
+The word linear means linear in \(y\) and \(y'\).  The coefficient functions \(p(t)\) and
+\(q(t)\) may be complicated functions of \(t\).
+
+\[
+y'+(\sin t)y=e^{-t}
+\]
+
+is linear.
+
+\[
+y'+t^2y=\cos t
+\]
+
+is linear.
+
+But
+
+\[
+y'=y^2
+\]
+
+is not linear, and
+
+\[
+y'+y\,y'=t
+\]
+
+is not linear, because the unknown function appears nonlinearly.
+
+\paragraph{A first linear example.}
+Consider
+
+\[
+y'+0.2y=6.
+\]
+
+This says that \(y\) is being pushed upward by a constant input \(6\), while the term
+\(0.2y\) pulls against the current amount.
+
+We can rewrite it as
+
+\[
+y'=6-0.2y.
+\]
+
+The equilibrium occurs when
+
+\[
+6-0.2y=0.
+\]
+
+Thus
+
+\[
+y=30.
+\]
+
+If \(y<30\), then \(y'>0\), so the solution rises.
+
+If \(y>30\), then \(y'<0\), so the solution falls.
+
+So we expect solutions to approach \(30\).
+
+This particular equation can be solved by shifting the variable:
+
+\[
+z=y-30.
+\]
+
+Then
+
+\[
+z'=y',
+\]
+
+and
+
+\[
+y'=6-0.2y
+=
+6-0.2(z+30)
+=
+6-0.2z-6
+=
+-0.2z.
+\]
+
+So
+
+\[
+z'=-0.2z.
+\]
+
+Therefore
+
+\[
+z=Ce^{-0.2t}.
+\]
+
+Since
+
+\[
+z=y-30,
+\]
+
+we get
+
+\[
+\boxed{
+y(t)=30+Ce^{-0.2t}.
+}
+\]
+
+If
+
+\[
+y(0)=0,
+\]
+
+then
+
+\[
+0=30+C,
+\]
+
+so
+
+\[
+C=-30.
+\]
+
+The solution is
+
+\[
+\boxed{
+y(t)=30\left(1-e^{-0.2t}\right).
+}
+\]
+
+This example was friendly because the right side was constant.  We need a method that
+also works when \(p(t)\) and \(q(t)\) vary with time.
+
+\subsection{Integrating factors}
+\label{subsec:integrating-factors}
+
+The product rule says
+
+\[
+(\mu y)'=\mu y'+\mu' y.
+\]
+
+A linear equation has the left side
+
+\[
+y'+p(t)y.
+\]
+
+If we multiply the equation by a function \(\mu(t)\), we get
+
+\[
+\mu y'+\mu p(t)y=\mu q(t).
+\]
+
+We want the left side to be
+
+\[
+(\mu y)'.
+\]
+
+For that to happen, we need
+
+\[
+\mu'=\mu p(t).
+\]
+
+That is a separable equation for \(\mu\):
+
+\[
+\frac{\mu'}{\mu}=p(t).
+\]
+
+Integrate:
+
+\[
+\ln|\mu|=\int p(t)\,dt.
+\]
+
+So we may choose
+
+\[
+\boxed{
+\mu(t)=e^{\int p(t)\,dt}.
+}
+\]
+
+This function is called an integrating factor.
+
+\begin{quote}
+\textbf{Integrating factor method.}
+To solve
+
+\[
+y'+p(t)y=q(t),
+\]
+
+choose
+
+\[
+\boxed{
+\mu(t)=e^{\int p(t)\,dt}.
+}
+\]
+
+Then
+
+\[
+\mu'=\mu p(t),
+\]
+
+so multiplying the equation by \(\mu\) gives
+
+\[
+(\mu y)'=\mu q(t).
+\]
+
+Integrate both sides and solve for \(y\).
+\end{quote}
+
+The method is not a trick.  It is the product rule used backward.
+
+\paragraph{Example.}
+Solve
+
+\[
+y'+2y=e^t,
+\qquad
+y(0)=1.
+\]
+
+Here
+
+\[
+p(t)=2,
+\qquad
+q(t)=e^t.
+\]
+
+An integrating factor is
+
+\[
+\mu(t)=e^{\int 2\,dt}=e^{2t}.
+\]
+
+Multiply the equation by \(e^{2t}\):
+
+\[
+e^{2t}y'+2e^{2t}y=e^{3t}.
+\]
+
+The left side is
+
+\[
+(e^{2t}y)'.
+\]
+
+So
+
+\[
+(e^{2t}y)'=e^{3t}.
+\]
+
+Integrate:
+
+\[
+e^{2t}y=\int e^{3t}\,dt=\frac13e^{3t}+C.
+\]
+
+Therefore
+
+\[
+y=\frac13e^t+Ce^{-2t}.
+\]
+
+Use the initial condition:
+
+\[
+1=y(0)=\frac13+C.
+\]
+
+So
+
+\[
+C=\frac23.
+\]
+
+Thus
+
+\[
+\boxed{
+y(t)=\frac13e^t+\frac23e^{-2t}.
+}
+\]
+
+\paragraph{Check.}
+Differentiate:
+
+\[
+y'(t)=\frac13e^t-\frac43e^{-2t}.
+\]
+
+Then
+
+\[
+y'+2y
+=
+\left(\frac13e^t-\frac43e^{-2t}\right)
++
+2\left(\frac13e^t+\frac23e^{-2t}\right).
+\]
+
+The exponential decay terms cancel:
+
+\[
+-\frac43e^{-2t}+\frac43e^{-2t}=0.
+\]
+
+The \(e^t\) terms add:
+
+\[
+\frac13e^t+\frac23e^t=e^t.
+\]
+
+So
+
+\[
+y'+2y=e^t.
+\]
+
+Also,
+
+\[
+y(0)=\frac13+\frac23=1.
+\]
+
+The solution checks.
+
+\subsection{Mixing and finance examples}
+\label{subsec:linear-mixing-finance-examples}
+
+Linear equations appear whenever there is a current amount and an outside input.
+
+\paragraph{Example: salt entering and leaving a tank.}
+A tank contains \(100\) liters of water.  Brine flows in at \(5\) liters per minute with
+concentration
+
+\[
+0.2\text{ grams/liter}.
+\]
+
+The well-mixed solution flows out at \(5\) liters per minute, so the volume remains
+\(100\) liters.
+
+Let
+
+\[
+A(t)=\text{grams of salt in the tank after \(t\) minutes}.
+\]
+
+Salt enters at the rate
+
+\[
+5(0.2)=1
+\]
+
+gram per minute.
+
+The concentration in the tank is
+
+\[
+\frac{A(t)}{100}
+\]
+
+grams per liter, so salt leaves at the rate
+
+\[
+5\cdot \frac{A(t)}{100}=\frac{A(t)}{20}
+\]
+
+grams per minute.
+
+Thus
+
+\[
+A'=1-\frac{A}{20}.
+\]
+
+In linear standard form,
+
+\[
+\boxed{
+A'+\frac1{20}A=1.
+}
+\]
+
+Use an integrating factor:
+
+\[
+\mu(t)=e^{\int (1/20)\,dt}=e^{t/20}.
+\]
+
+Multiply by \(e^{t/20}\):
+
+\[
+e^{t/20}A'+\frac1{20}e^{t/20}A=e^{t/20}.
+\]
+
+The left side is
+
+\[
+(e^{t/20}A)'.
+\]
+
+So
+
+\[
+(e^{t/20}A)'=e^{t/20}.
+\]
+
+Integrate:
+
+\[
+e^{t/20}A=20e^{t/20}+C.
+\]
+
+Therefore
+
+\[
+A=20+Ce^{-t/20}.
+\]
+
+If the tank initially contains pure water, then
+
+\[
+A(0)=0.
+\]
+
+So
+
+\[
+0=20+C,
+\]
+
+and
+
+\[
+C=-20.
+\]
+
+Thus
+
+\[
+\boxed{
+A(t)=20\left(1-e^{-t/20}\right).
+}
+\]
+
+The amount of salt approaches
+
+\[
+20\text{ grams}.
+\]
+
+That makes sense.  The incoming concentration is \(0.2\) grams per liter, and the tank
+holds \(100\) liters.  If the tank eventually matches the incoming concentration, it should
+contain
+
+\[
+0.2(100)=20
+\]
+
+grams of salt.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=100,
+    ymin=0, ymax=23,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(A(t)\) (grams)},
+    xtick={0,20,40,60,80,100},
+    ytick={0,10,20},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:100, samples=200] {20*(1-exp(-x/20))};
+\addplot[thick, dotted, domain=0:100, samples=2] {20};
+\node[anchor=west] at (axis cs:52,20.4) {equilibrium \(20\) grams};
+\node[anchor=west] at (axis cs:24,11) {\(A(t)=20(1-e^{-t/20})\)};
+\end{axis}
+\end{tikzpicture}
+\caption{With a constant incoming concentration, the salt amount approaches an equilibrium.}
+\label{fig:linear-mixing-salt}
+\end{figure}
+
+\paragraph{Example: continuous deposits with interest.}
+A bank account earns continuous interest at annual rate
+
+\[
+4\%.
+\]
+
+Money is deposited continuously at
+
+\[
+1200\text{ dollars per year}.
+\]
+
+Let
+
+\[
+B(t)=\text{account balance after \(t\) years}.
+\]
+
+Interest contributes
+
+\[
+0.04B
+\]
+
+dollars per year.  Deposits contribute
+
+\[
+1200
+\]
+
+dollars per year.  Therefore
+
+\[
+B'=0.04B+1200.
+\]
+
+Write this in standard linear form:
+
+\[
+B'-0.04B=1200.
+\]
+
+Here
+
+\[
+p(t)=-0.04.
+\]
+
+An integrating factor is
+
+\[
+\mu(t)=e^{\int -0.04\,dt}=e^{-0.04t}.
+\]
+
+Multiply:
+
+\[
+e^{-0.04t}B'-0.04e^{-0.04t}B=1200e^{-0.04t}.
+\]
+
+The left side is
+
+\[
+(e^{-0.04t}B)'.
+\]
+
+So
+
+\[
+(e^{-0.04t}B)'=1200e^{-0.04t}.
+\]
+
+Integrate:
+
+\[
+e^{-0.04t}B
+=
+1200\int e^{-0.04t}\,dt
+=
+1200\left(-\frac1{0.04}e^{-0.04t}\right)+C.
+\]
+
+Since
+
+\[
+\frac{1200}{0.04}=30000,
+\]
+
+we get
+
+\[
+e^{-0.04t}B=-30000e^{-0.04t}+C.
+\]
+
+Thus
+
+\[
+B=-30000+Ce^{0.04t}.
+\]
+
+If the account starts empty,
+
+\[
+B(0)=0,
+\]
+
+then
+
+\[
+0=-30000+C,
+\]
+
+so
+
+\[
+C=30000.
+\]
+
+Therefore
+
+\[
+\boxed{
+B(t)=30000\left(e^{0.04t}-1\right).
+}
+\]
+
+The formula has a natural interpretation.  The deposits alone would add \(1200t\).  The
+interest makes earlier deposits grow, so the balance is larger than \(1200t\) for \(t>0\).
+
+After \(10\) years,
+
+\[
+B(10)=30000\left(e^{0.4}-1\right).
+\]
+
+Since
+
+\[
+e^{0.4}\approx1.4918,
+\]
+
+we get
+
+\[
+B(10)\approx30000(0.4918)=14754.
+\]
+
+The account has about
+
+\[
+\boxed{\$14{,}754}
+\]
+
+after \(10\) years.
+
+\subsection{Why the integrating factor works}
+\label{subsec:why-integrating-factor-works}
+
+The integrating factor method is worth seeing in one clean line.
+
+Start with
+
+\[
+y'+p(t)y=q(t).
+\]
+
+Suppose we can find a positive function \(\mu(t)\) such that
+
+\[
+\mu'=p(t)\mu.
+\]
+
+Then multiplying the equation by \(\mu\) gives
+
+\[
+\mu y'+\mu p(t)y=\mu q(t).
+\]
+
+But
+
+\[
+\mu p(t)=\mu',
+\]
+
+so the left side becomes
+
+\[
+\mu y'+\mu' y.
+\]
+
+By the product rule,
+
+\[
+\mu y'+\mu' y=(\mu y)'.
+\]
+
+Therefore
+
+\[
+(\mu y)'=\mu q(t).
+\]
+
+Now integrate.
+
+The whole method rests on choosing \(\mu\) so that the left side becomes one derivative.
+
+Since
+
+\[
+\frac{\mu'}{\mu}=p(t),
+\]
+
+we may take
+
+\[
+\mu(t)=e^{\int p(t)\,dt}.
+\]
+
+The exponential is useful because its derivative brings down the derivative of the
+exponent:
+
+\[
+\frac{d}{dt}e^{\int p(t)\,dt}
+=
+p(t)e^{\int p(t)\,dt}.
+\]
+
+So
+
+\[
+\mu'=p(t)\mu.
+\]
+
+\begin{quote}
+\textbf{The product-rule sentence.}
+The integrating factor is chosen so that
+
+\[
+\mu y'+\mu p(t)y
+\]
+
+becomes
+
+\[
+(\mu y)'.
+\]
+
+That is why the method works.
+\end{quote}
+
+There is also a definite-integral version that is useful for initial value problems.
+
+Suppose
+
+\[
+y'+p(t)y=q(t),
+\qquad
+y(t_0)=y_0,
+\]
+
+and \(p,q\) are continuous on an interval containing \(t_0\).  Define
+
+\[
+\Phi(t)=\int_{t_0}^{t}p(s)\,ds
+\]
+
+and
+
+\[
+\mu(t)=e^{\Phi(t)}.
+\]
+
+Then
+
+\[
+\mu(t_0)=e^0=1.
+\]
+
+Multiplying the equation by \(\mu\) gives
+
+\[
+(\mu y)'=\mu q.
+\]
+
+Integrate from \(t_0\) to \(t\):
+
+\[
+\mu(t)y(t)-\mu(t_0)y(t_0)
+=
+\int_{t_0}^{t}\mu(s)q(s)\,ds.
+\]
+
+Since \(\mu(t_0)=1\) and \(y(t_0)=y_0\),
+
+\[
+\mu(t)y(t)-y_0
+=
+\int_{t_0}^{t}\mu(s)q(s)\,ds.
+\]
+
+Therefore
+
+\[
+\boxed{
+y(t)
+=
+e^{-\Phi(t)}
+\left[
+y_0+\int_{t_0}^{t}e^{\Phi(s)}q(s)\,ds
+\right].
+}
+\]
+
+This formula is not always the easiest way to compute, but it tells the whole structure:
+
+\[
+\text{initial amount}
++
+\text{accumulated weighted input}.
+\]
+
+\paragraph{Why the interval matters.}
+The formula assumes that \(p(t)\) and \(q(t)\) are continuous on the interval where we
+solve the equation.  If a coefficient breaks, the solution may have to be handled on
+separate intervals.
+
+Consider
+
+\[
+y'+\frac1t y=1.
+\]
+
+This is linear, but the coefficient
+
+\[
+\frac1t
+\]
+
+is not defined at
+
+\[
+t=0.
+\]
+
+So we solve on intervals that avoid \(0\), such as
+
+\[
+(0,\infty)
+\]
+
+or
+
+\[
+(-\infty,0).
+\]
+
+On \(t>0\), an integrating factor is
+
+\[
+\mu(t)=e^{\int (1/t)\,dt}=e^{\ln t}=t.
+\]
+
+Then
+
+\[
+ty'+y=t,
+\]
+
+so
+
+\[
+(ty)'=t.
+\]
+
+Integrate:
+
+\[
+ty=\frac{t^2}{2}+C.
+\]
+
+Thus
+
+\[
+\boxed{
+y=\frac t2+\frac{C}{t},
+\qquad t>0.
+}
+\]
+
+The formula cannot be continued through \(t=0\) because of the term \(C/t\), and the
+original equation itself is not defined at \(0\).
+
+\begin{quote}
+\textbf{Coefficient warning.}
+A solution of a differential equation lives on an interval where the equation makes
+sense.  Singular coefficients split the real line into separate problems.
+\end{quote}
+
+First-order equations already show several personalities.  Some are separable.  Some
+are linear.  Some are best understood by a phase line.  Some require numerical methods.
+
+But many laws of motion do not stop at the first derivative.  A spring, a pendulum in a
+small-angle approximation, and a vibrating string involve acceleration.  Their laws begin
+with
+
+\[
+y''.
+\]
+
+That is the next door: differential equations where the unknown function is governed by
+its second derivative.
+\section{Second-order equations and vibration}
+\label{sec:second-order-equations-vibration}
+
+The first-order equations in this chapter described quantities whose rates were governed
+by their current state or by an outside input.  But many physical laws do not begin with
+velocity.  They begin with acceleration.
+
+A spring does not merely say where a mass is.  It pulls harder when the mass is farther
+from equilibrium.  Newton's second law then connects that force to acceleration.
+
+\[
+\text{force}
+\quad\Longrightarrow\quad
+\text{acceleration}
+\quad\Longrightarrow\quad
+\text{second derivative}.
+\]
+
+That is why vibrating systems naturally lead to second-order differential equations.
+
+\subsection{Simple harmonic motion}
+\label{subsec:simple-harmonic-motion}
+
+Imagine a mass attached to a spring on a frictionless table.  Pull the mass to the right,
+let go, and it moves back and forth.
+
+Let
+
+\[
+y(t)=\text{displacement from equilibrium at time }t.
+\]
+
+So
+
+\[
+y=0
+\]
+
+means the mass is at its resting position.  Positive \(y\) means it is displaced to the
+right.  Negative \(y\) means it is displaced to the left.
+
+A spring obeying Hooke's law pulls back toward equilibrium:
+
+\[
+F=-ky,
+\qquad k>0.
+\]
+
+The constant \(k\) measures the stiffness of the spring.  The minus sign is the important
+part.  If \(y>0\), the force is negative.  If \(y<0\), the force is positive.  The force always
+points back toward \(0\).
+
+Newton's second law says
+
+\[
+F=ma,
+\]
+
+where
+
+\[
+a=y''.
+\]
+
+Therefore
+
+\[
+my''=-ky.
+\]
+
+Rearrange:
+
+\[
+y''+\frac{k}{m}y=0.
+\]
+
+It is customary to write
+
+\[
+\omega^2=\frac{k}{m},
+\]
+
+where
+
+\[
+\omega>0.
+\]
+
+Then the spring equation becomes
+
+\[
+\boxed{
+y''+\omega^2 y=0.
+}
+\]
+
+This equation says:
+
+\[
+\boxed{
+\text{acceleration is proportional to displacement, but in the opposite direction.}
+}
+\]
+
+That is the mathematical heart of simple harmonic motion.
+
+\paragraph{Example.}
+Check that
+
+\[
+y(t)=3\cos(2t)
+\]
+
+solves
+
+\[
+y''+4y=0.
+\]
+
+Differentiate:
+
+\[
+y'(t)=-6\sin(2t),
+\]
+
+and
+
+\[
+y''(t)=-12\cos(2t).
+\]
+
+Now compute the left side:
+
+\[
+y''+4y
+=
+-12\cos(2t)+4\bigl(3\cos(2t)\bigr)
+=
+0.
+\]
+
+So
+
+\[
+\boxed{
+y(t)=3\cos(2t)
+}
+\]
+
+is a solution.
+
+The initial position is
+
+\[
+y(0)=3,
+\]
+
+and the initial velocity is
+
+\[
+y'(0)=0.
+\]
+
+That matches the picture of a mass pulled \(3\) units from equilibrium and released
+from rest.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=7,
+    ymin=-3.6, ymax=3.6,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1.5708,3.1416,4.7124,6.2832},
+    xticklabels={\(0\),\(\frac{\pi}{2}\),\(\pi\),\(\frac{3\pi}{2}\),\(2\pi\)},
+    ytick={-3,0,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:7, samples=300] {3*cos(deg(2*x))};
+\addplot[thick, dotted, domain=0:7, samples=2] {0};
+\node[anchor=south west] at (axis cs:0.15,3) {\(y=3\cos(2t)\)};
+\node[anchor=west] at (axis cs:3.35,0.35) {equilibrium};
+\end{axis}
+\end{tikzpicture}
+\caption{Simple harmonic motion oscillates around the equilibrium \(y=0\).}
+\label{fig:simple-harmonic-motion-cos}
+\end{figure}
+
+The graph repeats.  The mass returns to the same position and velocity again and again.
+
+The number \(\omega\) is called the angular frequency.  The period is
+
+\[
+\boxed{
+T=\frac{2\pi}{\omega}.
+}
+\]
+
+For \(y=3\cos(2t)\), we have \(\omega=2\), so
+
+\[
+T=\frac{2\pi}{2}=\pi.
+\]
+
+\subsection{\texorpdfstring{The equation \(y''+\omega^2y=0\)}{The equation y'' + omega^2 y = 0}}
+\label{subsec:equation-ypp-omega2-y}
+
+The equation
+
+\[
+y''+\omega^2y=0
+\]
+
+is friendly because sine and cosine repeat under differentiation.
+
+\[
+(\cos \omega t)'=-\omega\sin\omega t,
+\]
+
+\[
+(\cos \omega t)''=-\omega^2\cos\omega t.
+\]
+
+So
+
+\[
+y=\cos\omega t
+\]
+
+satisfies
+
+\[
+y''+\omega^2y=0.
+\]
+
+The same is true for
+
+\[
+y=\sin\omega t,
+\]
+
+because
+
+\[
+(\sin \omega t)''=-\omega^2\sin\omega t.
+\]
+
+Since the equation is linear, any linear combination is also a solution:
+
+\[
+\boxed{
+y(t)=C_1\cos(\omega t)+C_2\sin(\omega t).
+}
+\]
+
+This is the general solution.
+
+\begin{quote}
+\textbf{Simple harmonic oscillator.}
+The differential equation
+
+\[
+\boxed{
+y''+\omega^2y=0,
+\qquad \omega>0,
+}
+\]
+
+has general solution
+
+\[
+\boxed{
+y(t)=C_1\cos(\omega t)+C_2\sin(\omega t).
+}
+\]
+\end{quote}
+
+The constants are determined by two initial conditions.  A second-order equation needs
+two starting values because motion needs both position and velocity.
+
+Suppose
+
+\[
+y(0)=y_0
+\qquad\text{and}\qquad
+y'(0)=v_0.
+\]
+
+From
+
+\[
+y(t)=C_1\cos(\omega t)+C_2\sin(\omega t),
+\]
+
+we get
+
+\[
+y(0)=C_1.
+\]
+
+So
+
+\[
+C_1=y_0.
+\]
+
+Differentiate:
+
+\[
+y'(t)=-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t).
+\]
+
+Then
+
+\[
+y'(0)=\omega C_2.
+\]
+
+So
+
+\[
+C_2=\frac{v_0}{\omega}.
+\]
+
+Thus the solution of
+
+\[
+y''+\omega^2y=0,
+\qquad
+y(0)=y_0,
+\qquad
+y'(0)=v_0
+\]
+
+is
+
+\[
+\boxed{
+y(t)=y_0\cos(\omega t)+\frac{v_0}{\omega}\sin(\omega t).
+}
+\]
+
+\paragraph{Example.}
+Solve
+
+\[
+y''+9y=0,
+\qquad
+y(0)=2,
+\qquad
+y'(0)=6.
+\]
+
+Here
+
+\[
+\omega^2=9,
+\qquad
+\omega=3.
+\]
+
+The solution is
+
+\[
+y(t)=C_1\cos(3t)+C_2\sin(3t).
+\]
+
+The initial position gives
+
+\[
+C_1=2.
+\]
+
+Differentiate:
+
+\[
+y'(t)=-3C_1\sin(3t)+3C_2\cos(3t).
+\]
+
+Then
+
+\[
+y'(0)=3C_2.
+\]
+
+Since \(y'(0)=6\),
+
+\[
+3C_2=6,
+\]
+
+so
+
+\[
+C_2=2.
+\]
+
+Therefore
+
+\[
+\boxed{
+y(t)=2\cos(3t)+2\sin(3t).
+}
+\]
+
+\paragraph{Energy check.}
+The undamped spring keeps oscillating because no energy is lost.
+
+For
+
+\[
+my''+ky=0,
+\]
+
+define the energy
+
+\[
+E(t)=\frac12m\bigl(y'(t)\bigr)^2+\frac12k\bigl(y(t)\bigr)^2.
+\]
+
+The first term is kinetic energy.  The second is spring potential energy.
+
+Differentiate:
+
+\[
+E'(t)
+=
+m y'y''+k yy'.
+\]
+
+Factor out \(y'\):
+
+\[
+E'(t)=y'(my''+ky).
+\]
+
+But the equation says
+
+\[
+my''+ky=0.
+\]
+
+Therefore
+
+\[
+E'(t)=0.
+\]
+
+So
+
+\[
+\boxed{
+E(t)\text{ is constant.}
+}
+\]
+
+The energy moves back and forth between motion and spring stretch.  It does not
+disappear.
+
+\subsection{Damping}
+\label{subsec:damping}
+
+Real vibrations usually die down.  A guitar string grows quiet.  A shock absorber settles
+after a bump.  A swinging door stops swinging.
+
+The missing ingredient is damping.
+
+Damping is a force that opposes velocity.  A simple model is
+
+\[
+F_{\text{damping}}=-c y',
+\qquad c>0.
+\]
+
+The spring force is still
+
+\[
+F_{\text{spring}}=-ky.
+\]
+
+Newton's law gives
+
+\[
+my''=-cy'-ky.
+\]
+
+So
+
+\[
+\boxed{
+my''+cy'+ky=0.
+}
+\]
+
+This is a second-order linear differential equation with constant coefficients.  The new
+term
+
+\[
+cy'
+\]
+
+is responsible for energy loss.
+
+\begin{quote}
+\textbf{Damped oscillator.}
+A damped spring-mass system is modeled by
+
+\[
+\boxed{
+my''+cy'+ky=0,
+}
+\]
+
+where
+
+\[
+m>0,\qquad c>0,\qquad k>0.
+\]
+
+The mass \(m\) resists acceleration, the damping coefficient \(c\) resists velocity, and
+the spring constant \(k\) resists displacement.
+\end{quote}
+
+For light damping, the motion still oscillates, but the oscillations shrink.  One common
+form of such a solution is
+
+\[
+y(t)=e^{-\beta t}\bigl(A\cos(\mu t)+B\sin(\mu t)\bigr),
+\]
+
+where
+
+\[
+\beta>0.
+\]
+
+The exponential factor
+
+\[
+e^{-\beta t}
+\]
+
+is the shrinking envelope.  The sine and cosine still oscillate, but their amplitude decays.
+
+\paragraph{Example.}
+Check that
+
+\[
+y(t)=e^{-0.2t}\cos(2t)
+\]
+
+solves
+
+\[
+y''+0.4y'+4.04y=0.
+\]
+
+First compute
+
+\[
+y'(t)=e^{-0.2t}\bigl(-0.2\cos(2t)-2\sin(2t)\bigr).
+\]
+
+Differentiate again:
+
+\[
+y''(t)=e^{-0.2t}\bigl(-3.96\cos(2t)+0.8\sin(2t)\bigr).
+\]
+
+Now substitute:
+
+\[
+y''+0.4y'+4.04y
+\]
+
+equals
+
+\[
+e^{-0.2t}\bigl(-3.96\cos(2t)+0.8\sin(2t)\bigr)
+\]
+
+\[
++0.4e^{-0.2t}\bigl(-0.2\cos(2t)-2\sin(2t)\bigr)
++
+4.04e^{-0.2t}\cos(2t).
+\]
+
+Collect the cosine terms:
+
+\[
+-3.96-0.08+4.04=0.
+\]
+
+Collect the sine terms:
+
+\[
+0.8-0.8=0.
+\]
+
+So the expression is \(0\).  Therefore the function solves the damped oscillator
+equation.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=18,
+    ymin=-1.2, ymax=1.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,5,10,15},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:18, samples=500] {exp(-0.2*x)*cos(deg(2*x))};
+\addlegendentry{\(e^{-0.2t}\cos(2t)\)}
+\addplot[thick, dashed, domain=0:18, samples=200] {exp(-0.2*x)};
+\addlegendentry{\(e^{-0.2t}\)}
+\addplot[thick, dashed, domain=0:18, samples=200] {-exp(-0.2*x)};
+\end{axis}
+\end{tikzpicture}
+\caption{Damping multiplies the oscillation by a decaying envelope.}
+\label{fig:damped-oscillation}
+\end{figure}
+
+The solution still crosses the equilibrium many times, but each swing is smaller than the
+previous one.
+
+\paragraph{Energy with damping.}
+For the damped equation
+
+\[
+my''+cy'+ky=0,
+\]
+
+use the same energy
+
+\[
+E(t)=\frac12m(y')^2+\frac12ky^2.
+\]
+
+Then
+
+\[
+E'(t)=y'(my''+ky).
+\]
+
+From the differential equation,
+
+\[
+my''+ky=-cy'.
+\]
+
+Therefore
+
+\[
+E'(t)=y'(-cy')=-c(y')^2.
+\]
+
+Since
+
+\[
+c>0,
+\]
+
+we have
+
+\[
+\boxed{
+E'(t)\le0.
+}
+\]
+
+Energy decreases, except at instants when \(y'=0\).  The damping term drains energy
+from the motion.
+
+\subsection{Driven oscillation and resonance}
+\label{subsec:driven-oscillation-resonance}
+
+A system can also be forced from outside.  A child on a swing is pushed.  A bridge is hit
+by periodic wind.  A guitar string is driven by a vibrating body.
+
+The simplest driven oscillator has the form
+
+\[
+\boxed{
+y''+\omega^2y=A\cos(\gamma t).
+}
+\]
+
+The left side describes the natural oscillator.  The right side is an outside periodic force.
+
+The number
+
+\[
+\omega
+\]
+
+is the natural angular frequency.  The number
+
+\[
+\gamma
+\]
+
+is the driving angular frequency.
+
+If
+
+\[
+\gamma\neq\omega,
+\]
+
+try a particular solution of the form
+
+\[
+y_p(t)=C\cos(\gamma t).
+\]
+
+Then
+
+\[
+y_p''(t)=-C\gamma^2\cos(\gamma t).
+\]
+
+Substitute into the equation:
+
+\[
+y_p''+\omega^2y_p
+=
+C(\omega^2-\gamma^2)\cos(\gamma t).
+\]
+
+We want this to equal
+
+\[
+A\cos(\gamma t).
+\]
+
+So
+
+\[
+C(\omega^2-\gamma^2)=A,
+\]
+
+and therefore
+
+\[
+\boxed{
+C=\frac{A}{\omega^2-\gamma^2}.
+}
+\]
+
+Thus, when \(\gamma\neq\omega\),
+
+\[
+\boxed{
+y_p(t)=\frac{A}{\omega^2-\gamma^2}\cos(\gamma t).
+}
+\]
+
+The denominator tells the story.  If the driving frequency \(\gamma\) is close to the
+natural frequency \(\omega\), then
+
+\[
+|\omega^2-\gamma^2|
+\]
+
+is small, and the response amplitude can be large.
+
+\begin{quote}
+\textbf{Resonance, first view.}
+A system resonates when the driving frequency is close to the natural frequency.  The
+forcing then reinforces the natural motion instead of fighting it.
+\end{quote}
+
+At exact resonance, the trial form above fails because the denominator becomes \(0\).
+For
+
+\[
+y''+\omega^2y=A\cos(\omega t),
+\]
+
+one particular solution is
+
+\[
+\boxed{
+y_p(t)=\frac{A}{2\omega}t\sin(\omega t).
+}
+\]
+
+The factor \(t\) means that the amplitude grows with time in the ideal undamped model.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.5,
+    ymin=0, ymax=6.2,
+    axis lines=left,
+    xlabel={driving frequency \(\gamma\)},
+    ylabel={response size},
+    xtick={0,1,2,3},
+    ytick={0,2,4,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:1.88, samples=200] {1/(4-x^2)};
+\addplot[very thick, domain=2.12:3.45, samples=200] {1/(x^2-4)};
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,6);
+\node[anchor=south] at (axis cs:2,6) {\(\gamma=\omega\)};
+\node[anchor=west] at (axis cs:2.15,4.4) {large response};
+\node[anchor=west] at (axis cs:0.3,0.65) {\(\omega=2,\ A=1\)};
+\end{axis}
+\end{tikzpicture}
+\caption{In the undamped model \(y''+\omega^2y=A\cos(\gamma t)\), the response grows large as \(\gamma\) approaches \(\omega\).}
+\label{fig:resonance-response}
+\end{figure}
+
+Real systems have damping, so the amplitude does not grow forever.  But the warning
+survives: forcing near the natural frequency can create a much larger response than
+forcing far from it.
+
+\begin{quote}
+\textbf{Model warning.}
+The equation
+
+\[
+y''+\omega^2y=A\cos(\omega t)
+\]
+
+predicts unbounded growth at resonance because it ignores damping and structural
+limits.  It is a warning model, not a complete physical description.
+\end{quote}
+
+Second-order equations already show that the state of a system may need more than one
+number.  A spring is not determined by position alone.  To know what happens next, we
+also need velocity.
+
+That idea leads naturally to systems of differential equations.
+
+\section{Systems and interaction models}
+\label{sec:systems-interaction-models}
+
+A first-order equation such as
+
+\[
+y'=f(y)
+\]
+
+uses one number to describe the current state.  A spring needs two numbers: position and
+velocity.  Two interacting populations need two numbers: one for each population.
+
+When the state has several components, one differential equation becomes a system.
+
+\[
+\text{one changing quantity}
+\quad\Longrightarrow\quad
+\text{one differential equation},
+\]
+
+\[
+\text{several changing quantities}
+\quad\Longrightarrow\quad
+\text{several linked differential equations}.
+\]
+
+\subsection{Two populations}
+\label{subsec:two-populations}
+
+A single population model may look like
+
+\[
+P'=rP.
+\]
+
+That can describe a species living alone with plentiful resources.  But species do not
+usually live alone.  They compete, cooperate, eat, flee, and depend on one another.
+
+Let
+
+\[
+R(t)=\text{number of rabbits at time }t,
+\]
+
+and
+
+\[
+W(t)=\text{number of wolves at time }t.
+\]
+
+The rabbits are prey.  The wolves are predators.
+
+If there were no wolves, the rabbits might grow approximately exponentially:
+
+\[
+R'=0.8R.
+\]
+
+If there were no rabbits, the wolves might decline:
+
+\[
+W'=-0.6W.
+\]
+
+But when both are present, they meet.  The number of encounters should increase when
+there are more rabbits and also when there are more wolves.  A simple model makes the
+encounter term proportional to
+
+\[
+RW.
+\]
+
+Predation decreases the rabbit population and increases the wolf population.  One model
+is
+
+\[
+\boxed{
+\begin{aligned}
+R'&=0.8R-0.02RW,\\
+W'&=-0.6W+0.01RW.
+\end{aligned}
+}
+\]
+
+The first equation says that rabbits reproduce, but are eaten.  The second says that wolves
+decline without food, but benefit from encounters with rabbits.
+
+This is not one equation.  It is a system.
+
+\begin{quote}
+\textbf{System of differential equations.}
+A \emph{system of differential equations} is a set of differential equations for several
+unknown functions.
+
+A solution of
+
+\[
+\begin{aligned}
+R'&=F(R,W),\\
+W'&=G(R,W)
+\end{aligned}
+\]
+
+is a pair of functions
+
+\[
+R(t),\qquad W(t)
+\]
+
+that satisfies both equations on the same time interval.
+\end{quote}
+
+The equations are coupled.  The derivative \(R'\) depends on \(W\), and the derivative
+\(W'\) depends on \(R\).  We cannot solve one equation first and then the other.  The two
+populations move together.
+
+\paragraph{Equilibria.}
+An equilibrium occurs when both derivatives are zero:
+
+\[
+R'=0
+\qquad\text{and}\qquad
+W'=0.
+\]
+
+For the model
+
+\[
+R'=0.8R-0.02RW=R(0.8-0.02W),
+\]
+
+so
+
+\[
+R'=0
+\]
+
+when
+
+\[
+R=0
+\qquad\text{or}\qquad
+W=40.
+\]
+
+Also,
+
+\[
+W'=-0.6W+0.01RW=W(-0.6+0.01R),
+\]
+
+so
+
+\[
+W'=0
+\]
+
+when
+
+\[
+W=0
+\qquad\text{or}\qquad
+R=60.
+\]
+
+Thus there are two biologically meaningful equilibria:
+
+\[
+(R,W)=(0,0)
+\]
+
+and
+
+\[
+(R,W)=(60,40).
+\]
+
+The equilibrium
+
+\[
+(0,0)
+\]
+
+means no rabbits and no wolves.  The equilibrium
+
+\[
+(60,40)
+\]
+
+means the two populations balance each other in the model.
+
+\subsection{Predator-prey equations as a picture}
+\label{subsec:predator-prey-picture}
+
+For one autonomous equation,
+
+\[
+y'=f(y),
+\]
+
+a phase line summarized the motion.  For two autonomous equations,
+
+\[
+\begin{aligned}
+R'&=F(R,W),\\
+W'&=G(R,W),
+\end{aligned}
+\]
+
+the state is a point in the \((R,W)\)-plane.  The differential equation assigns a velocity
+vector to each point:
+
+\[
+(R,W)
+\quad\longmapsto\quad
+(R',W').
+\]
+
+So the phase line becomes a phase plane.
+
+For the predator-prey model,
+
+\[
+\begin{aligned}
+R'&=R(0.8-0.02W),\\
+W'&=W(-0.6+0.01R),
+\end{aligned}
+\]
+
+the lines
+
+\[
+W=40
+\]
+
+and
+
+\[
+R=60
+\]
+
+divide the plane into four regions.
+
+If
+
+\[
+W<40,
+\]
+
+then
+
+\[
+R'>0.
+\]
+
+If
+
+\[
+W>40,
+\]
+
+then
+
+\[
+R'<0.
+\]
+
+If
+
+\[
+R<60,
+\]
+
+then
+
+\[
+W'<0.
+\]
+
+If
+
+\[
+R>60,
+\]
+
+then
+
+\[
+W'>0.
+\]
+
+The signs give the direction of motion.
+
+\[
+\begin{array}{c|c|c|c}
+\textbf{region} & \textbf{sign of \(R'\)} & \textbf{sign of \(W'\)} & \textbf{motion} \\ \hline
+R<60,\ W<40 & + & - & \text{right and down} \\
+R>60,\ W<40 & + & + & \text{right and up} \\
+R>60,\ W>40 & - & + & \text{left and up} \\
+R<60,\ W>40 & - & - & \text{left and down}
+\end{array}
+\]
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.56\textwidth,
+    xmin=0, xmax=120,
+    ymin=0, ymax=85,
+    axis lines=left,
+    xlabel={rabbits \(R\)},
+    ylabel={wolves \(W\)},
+    xtick={0,60,120},
+    ytick={0,40,80},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% nullclines
+\addplot[thick, dashed, domain=0:120, samples=2] {40};
+\draw[thick, dashed] (axis cs:60,0) -- (axis cs:60,85);
+
+\node[anchor=south west] at (axis cs:63,40) {equilibrium \((60,40)\)};
+\addplot[only marks, mark=*] coordinates {(60,40)};
+
+% approximate closed orbit
+\addplot[very thick, domain=0:360, samples=240]
+  ({60+35*cos(x)}, {40+22*sin(x)});
+
+% direction arrows
+\draw[->, thick] (axis cs:25,20) -- (axis cs:38,12);
+\draw[->, thick] (axis cs:90,20) -- (axis cs:104,31);
+\draw[->, thick] (axis cs:95,65) -- (axis cs:80,75);
+\draw[->, thick] (axis cs:25,65) -- (axis cs:12,54);
+
+\node[anchor=west] at (axis cs:63,7) {\(R=60\)};
+\node[anchor=west] at (axis cs:5,42) {\(W=40\)};
+\node[anchor=west] at (axis cs:72,18) {prey abundant};
+\node[anchor=west] at (axis cs:72,12) {predators rise};
+\end{axis}
+\end{tikzpicture}
+\caption{A predator-prey system is read in the phase plane.  The point \((R(t),W(t))\) moves according to the vector \((R',W')\).}
+\label{fig:predator-prey-phase-plane}
+\end{figure}
+
+The picture suggests a cycle.
+
+When wolves are few, rabbits increase.  Then the abundance of rabbits lets wolves
+increase.  More wolves reduce the rabbits.  With fewer rabbits, wolves decline.  Then the
+rabbits can recover.
+
+The equations do not describe one population rising or falling by itself.  They describe
+a moving point in the plane.
+
+\paragraph{A numerical glimpse.}
+Suppose
+
+\[
+R(0)=80,
+\qquad
+W(0)=20.
+\]
+
+Then
+
+\[
+R'(0)=80(0.8-0.02(20))=80(0.4)=32,
+\]
+
+and
+
+\[
+W'(0)=20(-0.6+0.01(80))=20(0.2)=4.
+\]
+
+So at the starting point,
+
+\[
+(R',W')=(32,4).
+\]
+
+Both populations are increasing, but rabbits are increasing faster.  In the phase plane,
+the point initially moves mostly to the right and slightly upward.
+
+At a different point, say
+
+\[
+R=30,\qquad W=70,
+\]
+
+we get
+
+\[
+R'=30(0.8-0.02(70))=30(-0.6)=-18,
+\]
+
+and
+
+\[
+W'=70(-0.6+0.01(30))=70(-0.3)=-21.
+\]
+
+Both populations are decreasing.  The point moves left and down.
+
+This is the system version of a direction field.  Instead of little line segments with a
+slope, we draw little arrows with two components.
+
+\begin{quote}
+\textbf{Phase plane.}
+For a system
+
+\[
+\begin{aligned}
+x'&=F(x,y),\\
+y'&=G(x,y),
+\end{aligned}
+\]
+
+the \emph{phase plane} is the \((x,y)\)-plane together with direction arrows
+
+\[
+(F(x,y),G(x,y)).
+\]
+
+A solution traces a curve in this plane as time passes.
+\end{quote}
+
+The phase plane does not usually give exact formulas for \(R(t)\) and \(W(t)\).  It gives
+the shape of the interaction.
+
+That is often the first thing we need.
+
+\subsection{Why systems lead naturally to multivariable calculus}
+\label{subsec:systems-lead-to-multivariable-calculus}
+
+A system changes the meaning of state.
+
+For one equation,
+
+\[
+y'=f(y),
+\]
+
+the state is one number:
+
+\[
+y.
+\]
+
+For two equations,
+
+\[
+\begin{aligned}
+x'&=F(x,y),\\
+y'&=G(x,y),
+\end{aligned}
+\]
+
+the state is a point:
+
+\[
+(x,y).
+\]
+
+The right side is not a function of one variable.  It is built from functions of two
+variables:
+
+\[
+F(x,y)
+\qquad\text{and}\qquad
+G(x,y).
+\]
+
+That is the doorway to multivariable calculus.
+
+Even a second-order equation has this structure hiding inside it.  Consider
+
+\[
+y''+\omega^2y=0.
+\]
+
+Let
+
+\[
+v=y'.
+\]
+
+Then
+
+\[
+y'=v.
+\]
+
+Also, from the differential equation,
+
+\[
+v'=y''=-\omega^2y.
+\]
+
+So the second-order equation is equivalent to the first-order system
+
+\[
+\boxed{
+\begin{aligned}
+y'&=v,\\
+v'&=-\omega^2y.
+\end{aligned}
+}
+\]
+
+The state is now
+
+\[
+(y,v),
+\]
+
+position and velocity together.
+
+For \(\omega=1\), the system is
+
+\[
+\begin{aligned}
+y'&=v,\\
+v'&=-y.
+\end{aligned}
+\]
+
+The curves in the \((y,v)\)-plane are circles, because the quantity
+
+\[
+y^2+v^2
+\]
+
+stays constant.  Indeed,
+
+\[
+\frac{d}{dt}(y^2+v^2)=2yy'+2vv'.
+\]
+
+Substitute
+
+\[
+y'=v,
+\qquad
+v'=-y:
+\]
+
+\[
+2y v+2v(-y)=0.
+\]
+
+So
+
+\[
+y^2+v^2=\text{constant}.
+\]
+
+The oscillator moves around closed curves in the position-velocity plane.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.62\textwidth,
+    height=0.62\textwidth,
+    xmin=-3.2, xmax=3.2,
+    ymin=-3.2, ymax=3.2,
+    axis lines=middle,
+    xlabel={position \(y\)},
+    ylabel={velocity \(v\)},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={-3,-2,-1,0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% vector field for y'=v, v'=-y
+\foreach \xx in {-3,-2,-1,0,1,2,3} {
+  \foreach \yy in {-3,-2,-1,0,1,2,3} {
+    \pgfmathsetmacro{\vx}{\yy}
+    \pgfmathsetmacro{\vy}{-\xx}
+    \pgfmathsetmacro{\s}{sqrt(\vx*\vx+\vy*\vy)}
+    \ifdim \s pt > 0pt
+      \pgfmathsetmacro{\dx}{0.22*\vx/\s}
+      \pgfmathsetmacro{\dy}{0.22*\vy/\s}
+      
+      % Pre-calculate target coordinates
+      \pgfmathsetmacro{\xTwo}{\xx+\dx}
+      \pgfmathsetmacro{\yTwo}{\yy+\dy}
+      
+      % Expand variables into hard numbers before plotting
+      \edef\temp{%
+        \noexpand\draw[gray!65,->] (axis cs:\xx,\yy) -- (axis cs:\xTwo,\yTwo);%
+      }
+      % Execute the expanded command
+      \temp
+    \fi
+  }
+}
+\addplot[very thick, domain=0:360, samples=240] ({2*cos(x)}, {2*sin(x)});
+\addplot[very thick, dashed, domain=0:360, samples=240] ({1.2*cos(x)}, {1.2*sin(x)});
+\node[anchor=west] at (axis cs:1.6,1.6) {\(y^2+v^2=\text{constant}\)};
+\end{axis}
+\end{tikzpicture}
+\caption{The simple oscillator becomes a first-order system in the position-velocity plane.}
+\label{fig:oscillator-phase-plane}
+\end{figure}
+
+This is a different kind of graph from \(y(t)\) versus \(t\).  It does not show time on an
+axis.  It shows the state of the system.  Time is the parameter that traces the curve.
+
+\begin{quote}
+\textbf{The bridge.}
+A solution of a system is a moving point:
+
+\[
+t\longmapsto (x(t),y(t)).
+\]
+
+So differential equations lead naturally to parametrized curves, vector fields, and
+functions of several variables.
+\end{quote}
+
+This is where single-variable calculus begins to lean toward the next subject.  The
+derivative of one function was enough for motion on a line.  Motion in a plane needs two
+coordinate functions.  Interactions need functions of several variables.  The geometry of
+change begins to expand.
+
+Before leaving differential equations, we should collect the warnings that protect the
+methods we have used: solutions can be lost by division, numerical methods can invent
+false behavior, and the same differential equation can describe many different histories
+until an initial condition chooses one.
+\section{Warning examples}
+\label{sec:de-warning-examples}
+
+Differential equations are laws written as derivatives.  In this chapter, we learned to
+read those laws in several ways:
+
+\[
+\text{direction fields},
+\qquad
+\text{Euler steps},
+\qquad
+\text{separation},
+\qquad
+\text{integrating factors},
+\qquad
+\text{phase lines}.
+\]
+
+Each method is useful.  Each method also has a danger.
+
+Before leaving differential equations, we collect three warnings.  They are not side
+remarks.  They protect the meaning of the whole chapter.
+
+\[
+\boxed{
+\text{Algebra can lose solutions.}
+}
+\]
+
+\[
+\boxed{
+\text{Numerical methods can create false behavior.}
+}
+\]
+
+\[
+\boxed{
+\text{A differential equation is not complete without enough starting information.}
+}
+\]
+
+\subsection{A solution lost by dividing by zero}
+\label{subsec:solution-lost-by-dividing-zero}
+
+Separation often begins by dividing by an expression involving the unknown function.
+That division may be illegal at some values of the solution.  Those values often give
+constant solutions.
+
+Start with a simple equation:
+
+\[
+y'=y^2.
+\]
+
+If \(y\neq0\), we can separate:
+
+\[
+\frac{dy}{y^2}=dt.
+\]
+
+Integrate:
+
+\[
+\int y^{-2}\,dy=\int 1\,dt.
+\]
+
+Thus
+
+\[
+-\frac1y=t+C.
+\]
+
+Solving for \(y\), we get
+
+\[
+y=-\frac{1}{t+C}.
+\]
+
+Equivalently, after renaming the constant,
+
+\[
+\boxed{
+y=\frac{1}{C-t}.
+}
+\]
+
+These are nonzero solutions.  For example, if
+
+\[
+y(0)=1,
+\]
+
+then
+
+\[
+1=\frac1C,
+\]
+
+so \(C=1\), and
+
+\[
+\boxed{
+y(t)=\frac{1}{1-t}.
+}
+\]
+
+This solution increases and becomes unbounded as \(t\to1^{-}\).  The differential
+equation predicts faster growth when \(y\) is larger, and that feedback becomes
+violent.
+
+But the separation step divided by \(y^2\).  It excluded the case
+
+\[
+y=0.
+\]
+
+Check that case separately.  The constant function
+
+\[
+y(t)=0
+\]
+
+has derivative
+
+\[
+y'(t)=0,
+\]
+
+and the right side is
+
+\[
+y(t)^2=0.
+\]
+
+So
+
+\[
+\boxed{
+y(t)=0
+}
+\]
+
+is also a solution of
+
+\[
+y'=y^2.
+\]
+
+It was lost by dividing by \(y^2\).
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2.0, xmax=2.0,
+    ymin=-3.2, ymax=3.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-3,-2,-1,0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.98)}, anchor=north east}
+]
+\addplot[very thick, domain=-2:0.85, samples=200] {1/(1-x)};
+\addlegendentry{\(y(0)=1\)}
+\addplot[very thick, dashed, domain=-0.85:2, samples=200] {1/(-1-x)};
+\addlegendentry{\(y(0)=-1\)}
+\addplot[thick, dotted, domain=-2:2, samples=2] {0};
+\addlegendentry{\(y=0\)}
+\draw[dashed] (axis cs:1,-3.2) -- (axis cs:1,3.2);
+\node[anchor=west] at (axis cs:1.05,2.4) {\(t=1\)};
+\end{axis}
+\end{tikzpicture}
+\caption{The separated family \(y=1/(C-t)\) misses the equilibrium solution \(y=0\).}
+\label{fig:yprime-y-squared-lost-solution}
+\end{figure}
+
+The same warning appears in population models.  For example,
+
+\[
+P'=rP\left(1-\frac{P}{K}\right)
+\]
+
+has equilibrium solutions
+
+\[
+P=0
+\qquad\text{and}\qquad
+P=K.
+\]
+
+If we divide by
+
+\[
+P\left(1-\frac{P}{K}\right),
+\]
+
+then we have already assumed
+
+\[
+P\neq0
+\qquad\text{and}\qquad
+P\neq K.
+\]
+
+Those two constant solutions must be checked separately.
+
+\begin{quote}
+\textbf{Division rule for separable equations.}
+When separating variables, if you divide by an expression involving \(y\), first ask:
+
+\[
+\text{For which constant values of \(y\) does this expression equal zero?}
+\]
+
+Those values are candidates for equilibrium solutions.
+\end{quote}
+
+This is not only a technical warning.  In models, equilibrium solutions often carry the
+main interpretation.  Extinction, carrying capacity, room temperature, and chemical
+balance all appear as constant solutions.
+
+Losing them would lose the story.
+
+\subsection{Euler's method follows the wrong behavior with a large step}
+\label{subsec:euler-wrong-behavior-large-step}
+
+Euler's method follows local slopes one step at a time:
+
+\[
+y_{k+1}=y_k+hF(x_k,y_k).
+\]
+
+The method is built from local linear approximation.  That is its strength.  It is also its
+weakness.  If the step is too large, the tangent-line instruction may no longer represent
+the curve.
+
+Consider the initial value problem
+
+\[
+y'=-4y,
+\qquad
+y(0)=1.
+\]
+
+The exact solution is
+
+\[
+\boxed{
+y=e^{-4x}.
+}
+\]
+
+This solution is always positive and decreases smoothly toward \(0\).
+
+Now apply Euler's method.  Since
+
+\[
+F(x,y)=-4y,
+\]
+
+the Euler step is
+
+\[
+y_{k+1}=y_k+h(-4y_k).
+\]
+
+So
+
+\[
+\boxed{
+y_{k+1}=(1-4h)y_k.
+}
+\]
+
+If
+
+\[
+h=0.6,
+\]
+
+then
+
+\[
+1-4h=1-2.4=-1.4.
+\]
+
+Thus
+
+\[
+y_{k+1}=-1.4y_k.
+\]
+
+Starting from \(y_0=1\), the Euler values are
+
+\[
+1,\quad -1.4,\quad 1.96,\quad -2.744,\quad 3.8416,\ldots
+\]
+
+The numerical solution alternates signs and grows in size.  The exact solution does
+neither.
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\textbf{step} & \(x_k\) & \textbf{Euler value \(y_k\)} & \textbf{exact value \(e^{-4x_k}\)} \\ \hline
+\(0\) & \(0\) & \(1\) & \(1\) \\
+\(1\) & \(0.6\) & \(-1.4\) & \(e^{-2.4}\approx0.0907\) \\
+\(2\) & \(1.2\) & \(1.96\) & \(e^{-4.8}\approx0.00823\) \\
+\(3\) & \(1.8\) & \(-2.744\) & \(e^{-7.2}\approx0.000747\) \\
+\(4\) & \(2.4\) & \(3.8416\) & \(e^{-9.6}\approx0.0000677\)
+\end{tabular}
+\end{center}
+
+The equation says decay.  Euler's method, with this step size, says explosive
+oscillation.  The method is lying.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=2.55,
+    ymin=-3.2, ymax=4.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.6,1.2,1.8,2.4},
+    ytick={-3,-2,-1,0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:2.5, samples=250] {exp(-4*x)};
+\addlegendentry{exact \(e^{-4x}\)}
+\addplot[very thick, dashed, mark=*] coordinates {
+  (0,1) (0.6,-1.4) (1.2,1.96) (1.8,-2.744) (2.4,3.8416)
+};
+\addlegendentry{Euler, \(h=0.6\)}
+\end{axis}
+\end{tikzpicture}
+\caption{With a large step, Euler's method can invent behavior opposite to the true solution.}
+\label{fig:euler-large-step-false-behavior}
+\end{figure}
+
+The problem can be seen from the multiplier
+
+\[
+1-4h.
+\]
+
+For the exact differential equation, positive solutions decay.  For the Euler values to
+decay in size, we need
+
+\[
+|1-4h|<1.
+\]
+
+This inequality gives
+
+\[
+-1<1-4h<1.
+\]
+
+Subtract \(1\):
+
+\[
+-2<-4h<0.
+\]
+
+Divide by \(-4\), reversing the inequalities:
+
+\[
+0<h<\frac12.
+\]
+
+So for this equation, Euler's method behaves like decay only when
+
+\[
+0<h<0.5.
+\]
+
+The step \(h=0.6\) is too large.
+
+\begin{quote}
+\textbf{Numerical warning.}
+A numerical method has its own behavior.  It is not the same object as the
+differential equation.
+
+Before trusting a numerical solution, check whether it agrees with the qualitative
+behavior of the equation.
+\end{quote}
+
+For
+
+\[
+y'=-4y,
+\]
+
+the qualitative behavior is easy:
+
+\[
+y>0 \Longrightarrow y'<0,
+\qquad
+y<0 \Longrightarrow y'>0.
+\]
+
+So solutions are pushed toward \(0\).  A numerical solution that shoots away from
+\(0\) is suspect.
+
+This is why numerical methods and direction fields belong together.  The direction field
+does not give exact values, but it can catch a numerical approximation that is following
+the wrong story.
+
+\subsection{Same differential equation, different initial conditions}
+\label{subsec:same-de-different-initial-conditions}
+
+A differential equation gives a law of change.  It does not usually give a single history.
+
+For example,
+
+\[
+y'=1-y
+\]
+
+has the family of solutions
+
+\[
+\boxed{
+y(t)=1+Ce^{-t}.
+}
+\]
+
+Different constants \(C\) give different solution curves.
+
+If
+
+\[
+y(0)=0,
+\]
+
+then
+
+\[
+0=1+C,
+\]
+
+so
+
+\[
+C=-1,
+\]
+
+and
+
+\[
+\boxed{
+y(t)=1-e^{-t}.
+}
+\]
+
+This solution starts below \(1\) and rises toward \(1\).
+
+If
+
+\[
+y(0)=2,
+\]
+
+then
+
+\[
+2=1+C,
+\]
+
+so
+
+\[
+C=1,
+\]
+
+and
+
+\[
+\boxed{
+y(t)=1+e^{-t}.
+}
+\]
+
+This solution starts above \(1\) and falls toward \(1\).
+
+If
+
+\[
+y(0)=1,
+\]
+
+then
+
+\[
+C=0,
+\]
+
+and
+
+\[
+\boxed{
+y(t)=1.
+}
+\]
+
+This solution is constant.
+
+The same equation gives all three behaviors.  The initial condition selects which one
+happens.
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.2, ymax=2.3,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:4, samples=200] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=200] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[very thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y(0)=1\)}
+\addplot[only marks, mark=*] coordinates {(0,0) (0,1) (0,2)};
+\end{axis}
+\end{tikzpicture}
+\caption{The equation \(y'=1-y\) gives a family.  The initial condition selects one solution.}
+\label{fig:same-de-different-initial-conditions}
+\end{figure}
+
+For a first-order equation, one initial condition usually chooses one solution curve.
+For a second-order equation, one initial condition is usually not enough.
+
+Consider the oscillator equation
+
+\[
+y''+y=0.
+\]
+
+The general solution is
+
+\[
+y(t)=C_1\cos t+C_2\sin t.
+\]
+
+If we know only
+
+\[
+y(0)=1,
+\]
+
+then
+
+\[
+1=C_1.
+\]
+
+But \(C_2\) is still free.  Both functions
+
+\[
+y_1(t)=\cos t
+\]
+
+and
+
+\[
+y_2(t)=\cos t+2\sin t
+\]
+
+solve
+
+\[
+y''+y=0
+\]
+
+and both satisfy
+
+\[
+y(0)=1.
+\]
+
+They differ because their initial velocities differ:
+
+\[
+y_1'(0)=0,
+\qquad
+y_2'(0)=2.
+\]
+
+A second-order motion needs position and velocity.
+
+\begin{quote}
+\textbf{Initial data rule.}
+A differential equation gives the rule of motion.  Initial conditions give the starting
+state.
+
+A first-order equation usually needs one starting value.  A second-order equation
+usually needs two: position and velocity.
+\end{quote}
+
+This is why a spring cannot be described by its position alone.  If the mass is at
+equilibrium, it may stay there, or it may be passing through with high speed.  The
+position is the same.  The future is not.
+
+\subsection{The three warnings together}
+\label{subsec:three-warnings-together}
+
+The warnings can be remembered as three questions.
+
+\begin{center}
+\begin{tabular}{p{0.30\textwidth}|p{0.58\textwidth}}
+\textbf{Before trusting the result, ask} & \textbf{What can go wrong?} \\ \hline
+Did we divide by an expression that might be zero? &
+We may have lost equilibrium solutions. \\[4pt]
+Is a numerical step size too large? &
+Euler's method may create false oscillation or false growth. \\[4pt]
+Have we supplied enough initial information? &
+The differential equation may describe a family, not one solution.
+\end{tabular}
+\end{center}
+
+Differential equations are powerful because they describe change locally.  That same
+local nature makes them sensitive to algebraic assumptions, numerical choices, and
+initial data.
+
+The chapter ends by gathering the main methods and putting them back to work in
+applications.
+
+\section{Chapter review and applications}
+\label{sec:de-chapter-review-applications}
+
+This chapter began with a sentence:
+
+\[
+\text{A differential equation is a law written in the language of change.}
+\]
+
+We have now seen several versions of that sentence.
+
+A cooling cup obeys a law involving temperature difference.  A population obeys a law
+involving current population and available capacity.  A tank obeys a law involving inflow
+and outflow.  A spring obeys a law involving displacement, velocity, and acceleration.
+Two populations can obey linked laws.
+
+The methods differ, but the pattern is the same:
+
+\[
+\boxed{
+\text{model the rate, then understand the function.}
+}
+\]
+
+\subsection{Skills: solve and interpret first-order equations}
+\label{subsec:skills-solve-interpret-first-order-equations}
+
+The first task in a differential equation is not to solve.  It is to recognize what kind of
+equation is in front of us and what kind of answer is reasonable.
+
+\begin{center}
+\begin{tabular}{p{0.24\textwidth}|p{0.29\textwidth}|p{0.34\textwidth}}
+\textbf{form} & \textbf{main method} & \textbf{main question it answers} \\ \hline
+\(y'=F(t,y)\) & direction field or Euler's method & What do solution curves seem to do? \\[4pt]
+\(y'=f(y)\) & phase line & Where are equilibria, and are they stable? \\[4pt]
+\(y'=g(t)h(y)\) & separation & Can the variables be separated and integrated? \\[4pt]
+\(y'+p(t)y=q(t)\) & integrating factor & Can the product rule be used backward? \\[4pt]
+\(P'=rP(1-P/K)\) & logistic formula and phase line & How does growth slow near carrying capacity? \\[4pt]
+\(Q'=-k(Q-Q_{\text{eq}})\) & exponential approach to equilibrium & How does a quantity approach a stable level?
+\end{tabular}
+\end{center}
+
+The following examples review the central skills.
+
+\paragraph{Example 1: separable growth.}
+Solve
+
+\[
+y'=3ty,
+\qquad
+y(0)=2.
+\]
+
+Separate:
+
+\[
+\frac{dy}{y}=3t\,dt.
+\]
+
+Integrate:
+
+\[
+\ln|y|=\frac32t^2+C.
+\]
+
+Since \(y(0)=2\),
+
+\[
+C=\ln2.
+\]
+
+Therefore
+
+\[
+\boxed{
+y(t)=2e^{(3/2)t^2}.
+}
+\]
+
+The exponent is the accumulated relative growth rate:
+
+\[
+\int_0^t 3s\,ds=\frac32t^2.
+\]
+
+\paragraph{Example 2: cooling toward equilibrium.}
+Solve
+
+\[
+T'=-0.1(T-22),
+\qquad
+T(0)=82.
+\]
+
+This has the equilibrium-difference form
+
+\[
+Q'=-k(Q-Q_{\text{eq}}).
+\]
+
+So
+
+\[
+T(t)=22+(82-22)e^{-0.1t}.
+\]
+
+Thus
+
+\[
+\boxed{
+T(t)=22+60e^{-0.1t}.
+}
+\]
+
+The temperature approaches \(22^\circ\text{C}\), not \(0^\circ\text{C}\), because \(22\) is
+the surrounding temperature.
+
+\paragraph{Example 3: a first-order linear equation.}
+Solve
+
+\[
+y'+2y=4e^{-t},
+\qquad
+y(0)=3.
+\]
+
+Here
+
+\[
+p(t)=2,
+\qquad
+q(t)=4e^{-t}.
+\]
+
+An integrating factor is
+
+\[
+\mu(t)=e^{\int 2\,dt}=e^{2t}.
+\]
+
+Multiply the equation by \(e^{2t}\):
+
+\[
+e^{2t}y'+2e^{2t}y=4e^t.
+\]
+
+The left side is
+
+\[
+(e^{2t}y)'.
+\]
+
+Therefore
+
+\[
+(e^{2t}y)'=4e^t.
+\]
+
+Integrate:
+
+\[
+e^{2t}y=4e^t+C.
+\]
+
+So
+
+\[
+y=4e^{-t}+Ce^{-2t}.
+\]
+
+Use \(y(0)=3\):
+
+\[
+3=4+C.
+\]
+
+Thus
+
+\[
+C=-1.
+\]
+
+Therefore
+
+\[
+\boxed{
+y(t)=4e^{-t}-e^{-2t}.
+}
+\]
+
+\paragraph{Example 4: logistic interpretation.}
+Suppose
+
+\[
+P'=0.5P\left(1-\frac{P}{800}\right).
+\]
+
+The equilibria are
+
+\[
+P=0
+\qquad\text{and}\qquad
+P=800.
+\]
+
+If
+
+\[
+0<P<800,
+\]
+
+then
+
+\[
+P'>0.
+\]
+
+If
+
+\[
+P>800,
+\]
+
+then
+
+\[
+P'<0.
+\]
+
+So positive solutions move toward
+
+\[
+P=800.
+\]
+
+The number \(800\) is the carrying capacity.  The equilibrium \(P=800\) is stable, while
+\(P=0\) is unstable from the right.
+
+\begin{quote}
+\textbf{Review habit.}
+After solving a differential equation, ask:
+
+\begin{enumerate}
+\item Does the solution satisfy the differential equation?
+
+\item Does it satisfy the initial condition?
+
+\item Does its long-term behavior match the model?
+
+\item Do the units make sense?
+
+\item Were any solutions lost by division?
+\end{enumerate}
+\end{quote}
+
+\subsection{Concept check}
+\label{subsec:de-concept-check}
+
+These questions are meant to test meanings before procedures.
+
+\begin{enumerate}
+\item What is the difference between a differential equation and a solution of a
+differential equation?
+
+\item Why does the equation
+
+\[
+y'=1-y
+\]
+
+suggest that solutions should move toward \(y=1\)?
+
+\item What does a direction field draw at each point \((t,y)\)?
+
+\item What is an equilibrium solution of an autonomous equation
+
+\[
+y'=f(y)?
+\]
+
+\item Why can a phase line summarize an autonomous equation but not a general
+equation
+
+\[
+y'=F(t,y)?
+\]
+
+\item Why does Euler's method usually improve when the step size is smaller?
+
+\item Why is smaller step size not the same thing as a proof of accuracy?
+
+\item When separating variables, why must we check constant solutions separately?
+
+\item What is the difference between a stable equilibrium and an unstable equilibrium?
+
+\item Why does a second-order equation usually require two initial conditions?
+\end{enumerate}
+
+\subsection{Skills practice}
+\label{subsec:de-skills-practice}
+
+Solve or analyze each problem.
+
+\begin{enumerate}
+\item Verify that
+
+\[
+y(t)=2e^{-3t}
+\]
+
+solves
+
+\[
+y'=-3y,
+\qquad
+y(0)=2.
+\]
+
+\item Solve
+
+\[
+y'=5y,
+\qquad
+y(0)=4.
+\]
+
+\item Solve
+
+\[
+y'=t^2y,
+\qquad
+y(0)=1.
+\]
+
+\item Solve
+
+\[
+y'=\frac{x}{1+y^2},
+\qquad
+y(0)=0,
+\]
+
+leaving the answer implicitly if needed.
+
+\item Solve
+
+\[
+T'=-0.04(T-18),
+\qquad
+T(0)=78.
+\]
+
+Then find the limiting temperature as \(t\to\infty\).
+
+\item A tank contains \(200\) liters of water.  Brine with concentration \(0.3\) grams per
+liter enters at \(4\) liters per minute, and the well-mixed solution leaves at the same
+rate.  Let \(A(t)\) be the grams of salt in the tank.  Set up and solve the initial value
+problem if the tank initially contains pure water.
+
+\item Solve the linear equation
+
+\[
+y'+3y=6,
+\qquad
+y(0)=10.
+\]
+
+\item Solve
+
+\[
+y'-2y=e^t,
+\qquad
+y(0)=0.
+\]
+
+\item For
+
+\[
+y'=y(y-2),
+\]
+
+find the equilibria and draw a phase line.  Classify each equilibrium as stable or
+unstable.
+
+\item For
+
+\[
+P'=0.2P\left(1-\frac{P}{500}\right),
+\qquad
+P(0)=50,
+\]
+
+write the logistic solution.
+
+\item Use Euler's method with \(h=0.25\) to approximate \(y(1)\) for
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+\item Use improved Euler's method with \(h=0.5\) to approximate \(y(1)\) for
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+\item Check that
+
+\[
+y(t)=3\cos(2t)-\sin(2t)
+\]
+
+solves
+
+\[
+y''+4y=0.
+\]
+
+Find \(y(0)\) and \(y'(0)\).
+
+\item Rewrite
+
+\[
+y''+9y=0
+\]
+
+as a first-order system using \(v=y'\).
+\end{enumerate}
+
+\subsection{Interpretation and modeling practice}
+\label{subsec:de-interpretation-modeling-practice}
+
+\begin{enumerate}
+\item The equation
+
+\[
+M'=-0.02M
+\]
+
+models the mass of a radioactive substance.  Explain in words what the equation says.
+What are the units of \(0.02\) if time is measured in years?
+
+\item The equation
+
+\[
+T'=-k(T-T_s)
+\]
+
+has \(k>0\).  Explain why the sign of \(T'\) is correct both when \(T>T_s\) and when
+\(T<T_s\).
+
+\item A population satisfies
+
+\[
+P'=0.1P\left(1-\frac{P}{1000}\right).
+\]
+
+Explain why the model predicts nearly exponential growth when \(P\) is small compared
+with \(1000\).
+
+\item A population satisfies the threshold model
+
+\[
+P'=0.01P(100-P)(P-20).
+\]
+
+Find the equilibria and explain what happens if
+
+\[
+P(0)=15
+\]
+
+and if
+
+\[
+P(0)=25.
+\]
+
+\item A fish population satisfies
+
+\[
+P'=0.4P\left(1-\frac{P}{1000}\right)-h.
+\]
+
+Find the largest sustainable constant harvest rate in this model.
+
+\item The solution of a cooling model is
+
+\[
+T(t)=20+70e^{-0.05t}.
+\]
+
+What are the surrounding temperature, the initial temperature, and the cooling
+constant?
+
+\item A bank account balance satisfies
+
+\[
+B'=0.03B+1000.
+\]
+
+Explain the meaning of each term.  What are the units of \(1000\)?
+
+\item A numerical solution of
+
+\[
+y'=-5y,
+\qquad
+y(0)=1
+\]
+
+produces values that alternate sign and grow in size.  Explain why this contradicts
+the direction field.
+\end{enumerate}
+
+\subsection{Project: model a cooling cup of coffee}
+\label{subsec:project-cooling-cup-coffee}
+
+Newton's law of cooling says
+
+\[
+T'=-k(T-T_s),
+\]
+
+where \(T_s\) is the surrounding temperature and \(k>0\).
+
+The solution is
+
+\[
+\boxed{
+T(t)=T_s+(T_0-T_s)e^{-kt}.
+}
+\]
+
+This project asks you to test that model with data.
+
+\paragraph{Data collection.}
+Use a hot drink, soup, or warm water in a cup.
+
+\begin{enumerate}
+\item Measure the room temperature \(T_s\).
+
+\item Measure the initial temperature \(T_0\).
+
+\item Record the temperature every \(2\) or \(3\) minutes for at least \(20\) minutes.
+
+\item Make a table of \(t\), \(T(t)\), and \(T(t)-T_s\).
+\end{enumerate}
+
+\paragraph{Linearizing the model.}
+If the cooling model is correct, then
+
+\[
+T(t)-T_s=(T_0-T_s)e^{-kt}.
+\]
+
+Assuming \(T(t)>T_s\), take logarithms:
+
+\[
+\ln(T(t)-T_s)=\ln(T_0-T_s)-kt.
+\]
+
+So a plot of
+
+\[
+\ln(T(t)-T_s)
+\]
+
+against \(t\) should be approximately a straight line with slope
+
+\[
+-k.
+\]
+
+\paragraph{Project tasks.}
+
+\begin{enumerate}
+\item Plot \(T(t)\) against \(t\).  Does the curve look like exponential approach to room
+temperature?
+
+\item Plot \(\ln(T(t)-T_s)\) against \(t\).  Does the graph look approximately linear?
+
+\item Estimate \(k\) from the slope of the logarithmic plot.
+
+\item Use your estimated \(k\) to predict when the drink will reach a chosen temperature,
+such as \(45^\circ\text{C}\).
+
+\item Compare your prediction with the observed data.
+
+\item Describe at least two possible reasons why real data might not perfectly follow the
+model.
+\end{enumerate}
+
+\begin{quote}
+\textbf{Model reflection.}
+A differential equation is a simplified law.  Real cups lose heat through the cup, the
+surface, evaporation, stirring, and changing room conditions.  The model is useful
+because it captures the main pattern, not because it records every physical detail.
+\end{quote}
+
+\subsection{Project: compare Euler approximations with exact solutions}
+\label{subsec:project-euler-compare-exact}
+
+Euler's method turns a differential equation into a sequence:
+
+\[
+y_{k+1}=y_k+hF(x_k,y_k).
+\]
+
+This project compares Euler approximations with exact solutions.
+
+\paragraph{Part A: a stable approach.}
+Use
+
+\[
+y'=1-y,
+\qquad
+y(0)=0.
+\]
+
+The exact solution is
+
+\[
+y=1-e^{-x}.
+\]
+
+For each step size
+
+\[
+h=0.5,\qquad h=0.25,\qquad h=0.1,
+\]
+
+use Euler's method to approximate \(y(2)\).
+
+Make a table:
+
+\begin{center}
+\begin{tabular}{c|c|c|c}
+\textbf{step size} & \textbf{Euler approximation} & \textbf{exact value} & \textbf{absolute error} \\ \hline
+\(0.5\) & & & \\
+\(0.25\) & & & \\
+\(0.1\) & & &
+\end{tabular}
+\end{center}
+
+Then answer:
+
+\begin{enumerate}
+\item Does the error decrease as \(h\) decreases?
+
+\item Does Euler's method overestimate or underestimate the exact solution?
+
+\item How does the concavity of \(y=1-e^{-x}\) help explain the sign of the error?
+\end{enumerate}
+
+\paragraph{Part B: a step-size warning.}
+Use
+
+\[
+y'=-4y,
+\qquad
+y(0)=1.
+\]
+
+The exact solution is
+
+\[
+y=e^{-4x}.
+\]
+
+Use Euler's method up to \(x=2.4\) with
+
+\[
+h=0.2
+\qquad\text{and}\qquad
+h=0.6.
+\]
+
+Then answer:
+
+\begin{enumerate}
+\item Which step size gives values that behave like the exact solution?
+
+\item Which step size gives values that alternate sign?
+
+\item For this equation, Euler's multiplier is
+
+\[
+1-4h.
+\]
+
+Explain why the condition
+
+\[
+|1-4h|<1
+\]
+
+is related to numerical decay.
+\end{enumerate}
+
+\paragraph{Part C: optional improved Euler.}
+Repeat Part A with improved Euler's method:
+
+\[
+k_1=F(x_k,y_k),
+\]
+
+\[
+\widetilde y_{k+1}=y_k+hk_1,
+\]
+
+\[
+k_2=F(x_k+h,\widetilde y_{k+1}),
+\]
+
+\[
+y_{k+1}=y_k+\frac h2(k_1+k_2).
+\]
+
+Compare its error with ordinary Euler's method for the same step sizes.
+
+\begin{quote}
+\textbf{Project conclusion.}
+A numerical method should be judged by both computation and behavior.  A table of
+numbers is not enough.  The numbers should agree with the direction field, the phase
+line, and any exact solution available.
+\end{quote}
+
+\subsection{A final map of the chapter}
+\label{subsec:final-map-differential-equations}
+
+The main ideas of the chapter can be summarized in one picture of dependencies.
+
+\[
+\text{law of change}
+\quad\Longrightarrow\quad
+\text{differential equation}
+\]
+
+and then we choose a route:
+
+\[
+\begin{aligned}
+\text{qualitative route} &:\quad \text{direction field, phase line, equilibria},\\
+\text{numerical route} &:\quad \text{Euler's method and step-size checks},\\
+\text{exact route} &:\quad \text{separation or integrating factors},\\
+\text{modeling route} &:\quad \text{interpret constants, units, and long-term behavior}.
+\end{aligned}
+\]
+
+No one route is the whole subject.  Often the best solution uses several at once.
+
+For example, in a logistic model, the phase line tells us that a positive solution should
+approach \(K\).  The exact formula tells us when it reaches \(K/2\).  Euler's method
+can approximate values when parameters are changing or when the equation becomes too
+complicated to solve exactly.  The model interpretation tells us which values of \(P\)
+make physical sense.
+
+\begin{quote}
+\textbf{What differential equations add to calculus.}
+Earlier, calculus measured change and accumulated change.  Differential equations use
+those ideas to describe laws.
+
+They turn
+
+\[
+\text{the derivative}
+\]
+
+from something we compute into something we are given.
+\end{quote}
+
+This chapter ends one story and opens another.
+
+Differential equations often describe motion by using time as the input:
+
+\[
+t\longmapsto y(t).
+\]
+
+But many curves are not naturally graphs of the form
+
+\[
+y=f(x).
+\]
+
+A point on a wheel, a planet moving in an orbit, or a particle tracing a loop may pass
+above the same \(x\)-value more than once.  The curve may still be easy to describe if
+we let time trace both coordinates:
+
+\[
+x=x(t),
+\qquad
+y=y(t).
+\]
+
+That is the next idea.  Instead of forcing every curve to be a graph, we let a moving
+point draw it.

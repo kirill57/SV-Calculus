@@ -1,0 +1,109 @@
+% =====================================================================
+%  commands.tex
+%
+%  Custom commands.  The most important one is \sectag: a small margin
+%  label that flags a section as Core / Bridge / Proof / Counterexample
+%  / Computing / Optional / Project, matching the TOC's tag system.
+% =====================================================================
+
+% --- Section tags (Core, Bridge, Proof, ...) -------------------------
+% Usage: \section{Title}\sectag{Core}
+% Or to combine: \section{Title}\sectag{Core, Proof}
+%
+% We use \marginnote (not \marginpar) so the tag stays anchored next
+% to the section title even on a page with little body text.  The
+% optional [vertical] offset pulls the tag up by ~3 baselines so it
+% lines up with the section heading rather than the first subsection.
+\newcommand{\sectag}[1]{%
+  \marginnote{%
+    \footnotesize\sffamily\color{Sepia}%
+    \fcolorbox{Sepia}{white}{%
+      \begin{minipage}{\dimexpr\marginparwidth-2\fboxsep-2\fboxrule\relax}%
+        \centering\strut #1\strut%
+      \end{minipage}%
+    }%
+  }[-3\baselineskip]%
+}
+
+% Shorter aliases for the seven tag types — purely a convenience.
+\newcommand{\Core}{\sectag{Core}}
+\newcommand{\Bridge}{\sectag{Bridge}}
+\newcommand{\Proof}{\sectag{Proof}}
+\newcommand{\Counter}{\sectag{Counterexample}}
+\newcommand{\Computing}{\sectag{Computing}}
+\newcommand{\Optional}{\sectag{Optional}}
+\newcommand{\Project}{\sectag{Project}}
+
+% Combine two tags neatly, e.g. \CoreProof, \CoreBridge, etc.
+\newcommand{\CoreProof}{\sectag{Core / Proof}}
+\newcommand{\CoreBridge}{\sectag{Core / Bridge}}
+\newcommand{\CoreComputing}{\sectag{Core / Computing}}
+\newcommand{\OptionalProject}{\sectag{Optional / Project}}
+\newcommand{\OptionalBridge}{\sectag{Optional / Bridge}}
+\newcommand{\ComputingProject}{\sectag{Computing / Project}}
+\newcommand{\ProofOptional}{\sectag{Proof / Optional}}
+
+% --- Pedagogical inline markers --------------------------------------
+% A small "hook" callout the chapter ends use to tease the next chapter.
+\newcommand{\hook}[1]{%
+  \par\medskip
+  \noindent\textbf{\color{NavyBlue}Hook.}\quad #1\par\medskip
+}
+
+% Margin "tip" / "note" used sparingly inside body text.
+\newcommand{\margintip}[1]{\marginpar{\footnotesize\itshape #1}}
+
+% --- Common math operators (declared once, used everywhere) ----------
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\range}{range}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+
+% --- Number sets ------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+
+% --- Calculus shortcuts ----------------------------------------------
+% Differential d (upright): use as \diff x, \diff t, etc.
+\newcommand{\diff}{\mathop{}\!\mathrm{d}}
+
+% Derivative as a fraction: \dd{y}{x}, \ddn{2}{y}{x}
+\newcommand{\dd}[2]{\dfrac{\diff #1}{\diff #2}}
+\newcommand{\ddn}[3]{\dfrac{\diff^{#1} #2}{\diff #3^{#1}}}
+
+% Partial derivative: \pd{f}{x}, \pdn{2}{f}{x}
+\newcommand{\pd}[2]{\dfrac{\partial #1}{\partial #2}}
+\newcommand{\pdn}[3]{\dfrac{\partial^{#1} #2}{\partial #3^{#1}}}
+
+% Definite integral with neat spacing: \dint{a}{b}{f(x)}{x}
+\newcommand{\dint}[4]{\int_{#1}^{#2}\! #3 \,\diff #4}
+
+% Limit shortcut: \lmt{x}{a}{ f(x) }
+\newcommand{\lmt}[3]{\lim_{#1\to #2} #3}
+
+% --- Vectors & norms -------------------------------------------------
+\newcommand{\vect}[1]{\mathbf{#1}}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+
+% --- Convenience environments ----------------------------------------
+% A "Project" environment for the chapter-end project subsections.
+\newenvironment{project}[1][Project]%
+  {\par\medskip\noindent\textbf{\color{ForestGreen}#1.}\quad}%
+  {\par\medskip}
+
+% A "Discovery" callout for guided-discovery problems.
+\newenvironment{discovery}[1][Discovery]%
+  {\par\medskip\noindent\textbf{\color{Plum}#1.}\quad}%
+  {\par\medskip}
+
+% A simple "Worked example" environment whose body is set off in a box.
+% (Optional; remove if you prefer plain example numbering.)
+\newenvironment{worked}[1][Worked Example]%
+  {\par\medskip\noindent\textsc{#1.}\quad\itshape}%
+  {\par\medskip}
