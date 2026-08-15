@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-derivatives-trigonometric-functions">
+  <title>Derivatives of trigonometric functions</title>
+
+  <p>The chain rule let us follow change through layers. Implicit differentiation let us find slopes on curves that were not solved for <m>y</m>. But many motions are not built from powers and products. They repeat.</p>
+
+  <p>A wheel turns. A pendulum swings. A spring moves down, then up, then down again. The functions that describe repeating motion are sine and cosine.</p>
+
+  <p>The surprise is that their derivatives are not new functions. They are sine and cosine again, shifted and signed.</p>
+
+  <subsection xml:id="subsec-radians-sin-h-over-h">
+    <title>Radians and the limit <m>\sin h/h\to 1</m></title>
+
+    <p>Before differentiating sine, we need to be careful about angle measure.</p>
+
+    <p>On the unit circle, an angle of <m>h</m> radians cuts off an arc of length <m>h</m>. That is why radians are the natural angle unit for calculus. A small angle <m>h</m> is also a small distance traveled along the circle.</p>
+
+    <p>Degrees do not have this property. A degree is a human subdivision of a full turn. A radian is built from length.</p>
+
+    <figure xml:id="fig-sin-h-over-h-geometry">
+      <caption>For <m>0\lt h\lt \pi/2</m>, the small triangle lies inside the sector, which lies inside the larger triangle.</caption>
+      <image width="75%">
+        <latex-image>
+          \begin{tikzpicture}[scale=3.0, every node/.style={font=\small}]
+            % axes
+            \draw[-&gt;] (-0.1,0) -- (1.35,0) node[right] {\(x\)};
+            \draw[-&gt;] (0,-0.08) -- (0,0.9) node[above] {\(y\)};
+
+            % unit circle arc
+            \draw[thick] (0,0) circle (1);
+
+            % fixed angle h = 35 degrees for picture
+            \coordinate (O) at (0,0);
+            \coordinate (A) at (1,0);
+            \coordinate (P) at (0.819,0.574);
+            \coordinate (T) at (1,0.700);
+
+            % sector and triangles
+            \fill[gray!12] (O) -- (A) arc[start angle=0,end angle=35,radius=1] -- cycle;
+            \draw[thick] (O) -- (P);
+            \draw[thick] (O) -- (T);
+            \draw[thick] (A) -- (T);
+            \draw[very thick] (A) arc[start angle=0,end angle=35,radius=1];
+
+            % points
+            \fill (O) circle (0.7pt) node[below left] {\(O\)};
+            \fill (A) circle (0.7pt) node[below] {\(A=(1,0)\)};
+            \fill (P) circle (0.7pt) node[left] {\(P=(\cos h,\sin h)\)};
+            \fill (T) circle (0.7pt) node[right] {\(T=(1,\tan h)\)};
+
+            % angle label
+            \draw (0.24,0) arc[start angle=0,end angle=35,radius=0.24];
+            \node at (0.32,0.10) {\(h\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>For <m>0\lt h\lt \pi/2</m>, compare three areas in <xref ref="fig-sin-h-over-h-geometry"/>:</p>
+    <md>\text{area of } \triangle OAP \lt \text{area of sector } OAP \lt \text{area of } \triangle OAT.</md>
+
+    <p>These areas are</p>
+    <md>\frac{1}{2} \sin h, \qquad \frac{1}{2} h, \qquad \frac{1}{2} \tan h.</md>
+
+    <p>So</p>
+    <md>\frac{1}{2}\sin h\lt \frac{1}{2}h\lt \frac{1}{2}\tan h.</md>
+
+    <p>Multiplying by <m>2</m>,</p>
+    <md>\sin h\lt h\lt \tan h.</md>
+
+    <p>Since <m>\tan h=\dfrac{\sin h}{\cos h}</m>, we have</p>
+    <md>\sin h\lt h\lt \frac{\sin h}{\cos h}.</md>
+
+    <p>Divide by the positive number <m>\sin h</m>:</p>
+    <md>1\lt \frac{h}{\sin h}\lt \frac{1}{\cos h}.</md>
+
+    <p>Taking reciprocals reverses the inequalities:</p>
+    <md>\cos h\lt \frac{\sin h}{h}\lt 1.</md>
+
+    <p>As <m>h\to 0^+</m>,</p>
+    <md>\cos h\to 1.</md>
+
+    <p>Therefore, by the Squeeze Theorem,</p>
+    <md>\lim_{h\to 0^+}\frac{\sin h}{h}=1.</md>
+
+    <p>The function <m>\dfrac{\sin h}{h}</m> is even, because</p>
+    <md>\frac{\sin(-h)}{-h}=\frac{\sin h}{h}.</md>
+
+    <p>Thus the left-hand limit is the same as the right-hand limit. Therefore</p>
+    <md>\lim_{h\to 0}\frac{\sin h}{h}=1.</md>
+
+    <p>This limit is the small-angle fact behind the derivative of sine. For very small <m>h</m>, measured in radians,</p>
+    <md>\sin h\approx h.</md>
+
+    <p>On the unit circle, the vertical rise and the arc length are almost the same when the angle is tiny.</p>
+
+    <p>We will also need one companion limit:</p>
+    <md>\lim_{h\to 0}\frac{\cos h-1}{h}=0.</md>
+
+    <p>Use the identity</p>
+    <md>1-\cos h=2\sin^2\left(\frac{h}{2}\right).</md>
+
+    <p>Then</p>
+    <md>\frac{\cos h-1}{h} = -\frac{2\sin^2(h/2)}{h} = -\left(\frac{\sin(h/2)}{h/2}\right)\sin\left(\frac{h}{2}\right).</md>
+
+    <p>As <m>h\to 0</m>,</p>
+    <md>\frac{\sin(h/2)}{h/2}\to 1 \qquad\text{and}\qquad \sin\left(\frac{h}{2}\right)\to 0.</md>
+
+    <p>So</p>
+    <md>\lim_{h\to 0}\frac{\cos h-1}{h}=0.</md>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-sine">
+    <title>The derivative of sine</title>
+
+    <p>Let <m>f(x)=\sin x</m>. We compute the derivative from the definition:</p>
+    <md>f'(x) = \lim_{h\to 0}\frac{\sin(x+h)-\sin x}{h}.</md>
+
+    <p>Use the addition formula</p>
+    <md>\sin(x+h)=\sin x\cos h+\cos x\sin h.</md>
+
+    <p>Then</p>
+    <md>\frac{\sin(x+h)-\sin x}{h} = \frac{\sin x\cos h+\cos x\sin h-\sin x}{h}.</md>
+
+    <p>Group the terms:</p>
+    <md>\frac{\sin(x+h)-\sin x}{h} = \sin x\left(\frac{\cos h-1}{h}\right) + \cos x\left(\frac{\sin h}{h}\right).</md>
+
+    <p>Now take the limit:</p>
+    <md>\frac{d}{dx}\sin x = \sin x\cdot 0+\cos x\cdot 1.</md>
+
+    <p>Thus</p>
+    <theorem xml:id="thm-derivative-of-sine">
+      <title>Derivative of sine</title>
+      <statement>
+        <p><md>\frac{d}{dx}\sin x=\cos x.</md></p>
+      </statement>
+    </theorem>
+
+    <p>This formula has a simple geometric meaning. At <m>x=0</m>, the sine curve is rising with slope <m>1</m>, and <m>\cos 0=1</m>. At <m>x=\pi/2</m>, the sine curve has a high point, so its slope is <m>0</m>, and <m>\cos\left(\frac{\pi}{2}\right)=0</m>. At <m>x=\pi</m>, the sine curve is falling with slope <m>-1</m>, and <m>\cos\pi=-1</m>.</p>
+
+    <figure xml:id="fig-sine-derivative-cosine">
+      <caption>The derivative of the sine curve is the cosine curve.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.45\textwidth,
+              xmin=-6.283, xmax=6.283,
+              ymin=-1.35, ymax=1.35,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-6.283,-3.142,0,3.142,6.283},
+              xticklabels={\(-2\pi\),\(-\pi\),\(0\),\(\pi\),\(2\pi\)},
+              ytick={-1,0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+          ]
+          \addplot[thick, domain=-6.283:6.283, samples=200] {sin(deg(x))};
+          \addlegendentry{\(\sin x\)}
+          \addplot[thick, dashed, domain=-6.283:6.283, samples=200] {cos(deg(x))};
+          \addlegendentry{\((\sin x)'=\cos x\)}
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex-product-sine">
+      <title>Product rule with sine</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=x^2\sin x.</md>
+        <p>Use the product rule:</p>
+        <md>y' = 2x\sin x+x^2\cos x.</md>
+        <p>So</p>
+        <md>\frac{d}{dx}\left(x^2\sin x\right) = 2x\sin x+x^2\cos x.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-chain-sine">
+      <title>Chain rule with sine</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\sin(3x^2).</md>
+        <p>The outside function is sine. The inside function is <m>u=3x^2</m>. By the chain rule,</p>
+        <md>y'=\cos(3x^2)\cdot 6x.</md>
+        <p>Thus</p>
+        <md>\frac{d}{dx}\sin(3x^2)=6x\cos(3x^2).</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-cosine">
+    <title>The derivative of cosine</title>
+
+    <p>Cosine is a shifted sine:</p>
+    <md>\cos x=\sin\left(\frac{\pi}{2}+x\right).</md>
+
+    <p>Differentiate using the chain rule:</p>
+    <md>\frac{d}{dx}\cos x = \frac{d}{dx}\sin\left(\frac{\pi}{2}+x\right).</md>
+
+    <p>The derivative of sine is cosine, so</p>
+    <md>\frac{d}{dx}\cos x = \cos\left(\frac{\pi}{2}+x\right)\cdot 1.</md>
+
+    <p>But <m>\cos\left(\frac{\pi}{2}+x\right)=-\sin x</m>. Therefore</p>
+
+    <theorem xml:id="thm-derivative-of-cosine">
+      <title>Derivative of cosine</title>
+      <statement>
+        <p><md>\frac{d}{dx}\cos x=-\sin x.</md></p>
+      </statement>
+    </theorem>
+
+    <p>The minus sign matters. At <m>x=0</m>, cosine has a high point, so the slope is <m>0</m>. At small positive <m>x</m>, cosine is decreasing, so the slope is negative. The formula <m>(\cos x)'=-\sin x</m> records exactly that.</p>
+
+    <example xml:id="ex-chain-cosine">
+      <title>Chain rule with cosine</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\cos(5x-1).</md>
+        <p>Let <m>u=5x-1</m>. Then <m>y=\cos u</m>. By the chain rule,</p>
+        <md>y'=-\sin u\cdot u'.</md>
+        <p>Since <m>u'=5</m>, we get</p>
+        <md>y'=-5\sin(5x-1).</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-product-sin-cos">
+      <title>Differentiating <m>\sin t\cos t</m></title>
+      <statement>
+        <p>Differentiate</p>
+        <md>f(t)=\sin t\cos t.</md>
+        <p>Using the product rule,</p>
+        <md>f'(t) = (\cos t)(\cos t)+(\sin t)(-\sin t).</md>
+        <p>Thus</p>
+        <md>f'(t)=\cos^2 t-\sin^2 t.</md>
+        <p>Using the identity <m>\cos(2t)=\cos^2 t-\sin^2 t</m>, we can also write</p>
+        <md>f'(t)=\cos(2t).</md>
+        <p>This is a useful reminder: different-looking derivative answers can be the same after a trigonometric identity.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-other-trig-derivatives">
+    <title>Tangent, secant, cosecant, and cotangent</title>
+
+    <p>The remaining trigonometric derivatives follow from sine and cosine together with the quotient and reciprocal rules.</p>
+
+    <p>Start with tangent:</p>
+    <md>\tan x=\frac{\sin x}{\cos x}.</md>
+
+    <p>By the quotient rule,</p>
+    <md>\frac{d}{dx}\tan x = \frac{\cos x(\cos x)-\sin x(-\sin x)}{\cos^2 x}.</md>
+
+    <p>So</p>
+    <md>\frac{d}{dx}\tan x = \frac{\cos^2 x+\sin^2 x}{\cos^2 x}.</md>
+
+    <p>Since <m>\sin^2 x+\cos^2 x=1</m>, we get</p>
+    <md>\frac{d}{dx}\tan x=\sec^2 x.</md>
+
+    <p>Now use reciprocal forms.</p>
+
+    <p>Since <m>\sec x=\frac{1}{\cos x}</m>, the reciprocal rule gives</p>
+    <md>\frac{d}{dx}\sec x = -\frac{-\sin x}{\cos^2 x} = \frac{\sin x}{\cos^2 x}.</md>
+
+    <p>Rewrite:</p>
+    <md>\frac{\sin x}{\cos^2 x} = \frac{1}{\cos x}\frac{\sin x}{\cos x} = \sec x\tan x.</md>
+
+    <p>Thus</p>
+    <md>\frac{d}{dx}\sec x=\sec x\tan x.</md>
+
+    <p>Similarly,</p>
+    <md>\csc x=\frac{1}{\sin x}.</md>
+
+    <p>Therefore</p>
+    <md>\frac{d}{dx}\csc x = -\frac{\cos x}{\sin^2 x} = -\csc x\cot x.</md>
+
+    <p>So</p>
+    <md>\frac{d}{dx}\csc x=-\csc x\cot x.</md>
+
+    <p>Finally,</p>
+    <md>\cot x=\frac{\cos x}{\sin x}.</md>
+
+    <p>Using the quotient rule,</p>
+    <md>\frac{d}{dx}\cot x = \frac{\sin x(-\sin x)-\cos x(\cos x)}{\sin^2 x} = -\frac{\sin^2 x+\cos^2 x}{\sin^2 x}.</md>
+
+    <p>Thus</p>
+    <md>\frac{d}{dx}\cot x=-\csc^2 x.</md>
+
+    <p>We collect the six formulas:</p>
+
+    <table>
+      <title>Derivatives of the six trigonometric functions</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>function</term></cell>
+          <cell><term>derivative</term></cell>
+        </row>
+        <row>
+          <cell><m>\sin x</m></cell>
+          <cell><m>\cos x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos x</m></cell>
+          <cell><m>-\sin x</m></cell>
+        </row>
+        <row>
+          <cell><m>\tan x</m></cell>
+          <cell><m>\sec^2 x</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec x</m></cell>
+          <cell><m>\sec x\tan x</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc x</m></cell>
+          <cell><m>-\csc x\cot x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cot x</m></cell>
+          <cell><m>-\csc^2 x</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The negative signs belong to the cofunctions:</p>
+    <md>\cos x,\qquad \csc x,\qquad \cot x.</md>
+
+    <p>That is a useful memory aid, but the formulas should also make sense from the graphs.</p>
+
+    <example xml:id="ex-trig-quotient-simplify">
+      <title>Simplifying a trigonometric quotient derivative</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\frac{\cos x}{1+\sin x}.</md>
+        <p>Use the quotient rule:</p>
+        <md>y' = \frac{(1+\sin x)(-\sin x)-\cos x(\cos x)}{(1+\sin x)^2}.</md>
+        <p>Expand the numerator:</p>
+        <md>-\sin x-\sin^2 x-\cos^2 x.</md>
+        <p>Since <m>\sin^2 x+\cos^2 x=1</m>, the numerator becomes</p>
+        <md>-\sin x-1=-(1+\sin x).</md>
+        <p>Therefore</p>
+        <md>y' = -\frac{1+\sin x}{(1+\sin x)^2} = -\frac{1}{1+\sin x}.</md>
+        <p>So</p>
+        <md>\frac{d}{dx}\left(\frac{\cos x}{1+\sin x}\right) = -\frac{1}{1+\sin x}.</md>
+        <p>This derivative exists wherever the original function exists, so we exclude points where <m>1+\sin x=0</m>. That happens when <m>\sin x=-1</m>, or</p>
+        <md>x=\frac{3\pi}{2}+2\pi k, \qquad k\in\mathbb Z.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-radians-required">
+    <title>Why radians are required</title>
+
+    <p>The formulas</p>
+    <md>\frac{d}{dx}\sin x=\cos x \qquad\text{and}\qquad \frac{d}{dx}\cos x=-\sin x</md>
+    <p>are true when <m>x</m> is measured in radians.</p>
+
+    <p>If <m>x</m> is measured in degrees, then the function</p>
+    <md>S(x)=\sin(x^\circ)</md>
+    <p>really means</p>
+    <md>S(x)=\sin\left(\frac{\pi x}{180}\right).</md>
+
+    <p>By the chain rule,</p>
+    <md>S'(x) = \cos\left(\frac{\pi x}{180}\right)\cdot\frac{\pi}{180}.</md>
+
+    <p>So</p>
+    <md>\frac{d}{dx}\sin(x^\circ) = \frac{\pi}{180}\cos(x^\circ).</md>
+
+    <p>The extra factor <m>\pi/180</m> appears because one degree is only <m>\pi/180</m> radians.</p>
+
+    <warning xml:id="warning-radians-mandatory">
+      <title>Warning: Radians are required</title>
+      <p>The standard trigonometric derivative formulas assume radian measure. Radians are not a convention added later. They are the unit in which small angle and small arc length agree.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-simple-harmonic-motion-preview">
+    <title>A preview of simple harmonic motion</title>
+
+    <p>A spring gives a concrete reason why sine and cosine derivatives matter.</p>
+
+    <p>Suppose a mass hangs from a spring. Pull it down <m>4</m> centimeters from its resting position and release it. A simple model for its position is</p>
+    <md>s(t)=4\cos(2t),</md>
+    <p>where <m>t</m> is measured in seconds and <m>s(t)</m> is measured in centimeters from the rest position. Positive <m>s</m> means downward.</p>
+
+    <p>The velocity is <m>v(t)=s'(t)</m>. Using the chain rule,</p>
+    <md>v(t)=4\cdot(-\sin(2t))\cdot 2.</md>
+    <p>So</p>
+    <md>v(t)=-8\sin(2t).</md>
+
+    <p>The acceleration is <m>a(t)=v'(t)</m>. Differentiate again:</p>
+    <md>a(t)=-8\cdot\cos(2t)\cdot 2.</md>
+    <p>Thus</p>
+    <md>a(t)=-16\cos(2t).</md>
+
+    <p>But <m>s(t)=4\cos(2t)</m>, so</p>
+    <md>a(t)=-4s(t).</md>
+
+    <p>Therefore</p>
+    <md>a(t)=-4s(t).</md>
+
+    <p>The acceleration points opposite the displacement. When the mass is below its rest position, the acceleration points upward. When it is above its rest position, the acceleration points downward. The spring pulls back toward equilibrium.</p>
+
+    <figure xml:id="fig-simple-harmonic-motion-preview">
+      <caption>For simple harmonic motion, acceleration is proportional to displacement and points in the opposite direction.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.45\textwidth,
+              xmin=0, xmax=6.283,
+              ymin=-4.6, ymax=4.6,
+              axis lines=middle,
+              xlabel={\(t\)},
+              ylabel={},
+              xtick={0,1.571,3.142,4.712,6.283},
+              xticklabels={\(0\),\(\pi/2\),\(\pi\),\(3\pi/2\),\(2\pi\)},
+              ytick={-4,0,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+          ]
+          \addplot[thick, domain=0:6.283, samples=200] {4*cos(deg(2*x))};
+          \addlegendentry{\(s(t)=4\cos(2t)\)}
+          \addplot[thick, dashed, domain=0:6.283, samples=200] {-4*cos(deg(2*x))};
+          \addlegendentry{\(\frac14a(t)=-4\cos(2t)\)}
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>This is the first glimpse of a differential equation:</p>
+    <md>s''(t)=-4s(t).</md>
+    <p>It says the law of motion in terms of derivatives. Later we will study such equations directly. For now, the important point is that sine and cosine are built for repeated motion because their derivatives cycle back to sine and cosine.</p>
+
+    <p>Trigonometric functions describe quantities that repeat. Another family describes quantities that grow or decay by multiplying: populations, radioactive substances, and continuously compounded money. Their derivatives lead to the number <m>e</m>.</p>
+  </subsection>
+
+</section>
