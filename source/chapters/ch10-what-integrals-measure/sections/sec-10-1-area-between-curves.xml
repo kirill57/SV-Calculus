@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-10-1-area-between-curves">
+  <title>Area between curves</title>
+
+  <p>Area under a graph measures the region between the graph and the <m>x</m>-axis. But the <m>x</m>-axis is only one possible lower boundary.</p>
+
+  <p>Often a region lies between two curves. Then the vertical thickness of a small strip is not <q>height above the axis.</q> It is</p>
+  <md>\text{top value}-\text{bottom value}.</md>
+
+  <p>That is the first new small piece.</p>
+
+  <subsection xml:id="subsec-top-minus-bottom">
+    <title>Top minus bottom</title>
+
+    <p>Suppose two continuous functions <m>f</m> and <m>g</m> satisfy</p>
+    <md>g(x)\ge f(x)</md>
+    <p>on the interval <m>[a,b]</m>. The region between their graphs is made of thin vertical strips.</p>
+
+    <p>At a particular <m>x</m>, the top of the strip has height <m>g(x)</m>, and the bottom has height <m>f(x)</m>. So the strip height is</p>
+    <md>g(x)-f(x).</md>
+
+    <p>If the strip has small width <m>\Delta x</m>, then its area is approximately</p>
+    <md>\bigl(g(x)-f(x)\bigr)\Delta x.</md>
+
+    <p>Adding the strips and taking the limit gives the area.</p>
+
+    <definition xml:id="def-area-between-curves-vertical">
+      <title>Area between two curves, vertical slices</title>
+      <statement>
+        <p>If <m>g(x)\ge f(x)</m> on <m>[a,b]</m>, then the area between the graphs of <m>y=g(x)</m> and <m>y=f(x)</m> from <m>x=a</m> to <m>x=b</m> is</p>
+        <md>A=\int_a^b \bigl(g(x)-f(x)\bigr)\,dx.</md>
+      </statement>
+    </definition>
+
+    <p>In words:</p>
+    <md>\text{area}=\int(\text{top}-\text{bottom})\,dx.</md>
+
+    <p>The order matters. Area is positive. The height of a vertical strip is top minus bottom, not bottom minus top.</p>
+
+    <example xml:id="ex-area-line-parabola">
+      <title>A line over a parabola</title>
+      <statement>
+        <p>Find the area enclosed by</p>
+        <md>y=2x</md>
+        <p>and</p>
+        <md>y=x^2.</md>
+        <p>First find the intersection points:</p>
+        <md>2x=x^2.</md>
+        <p>So</p>
+        <md>x^2-2x=0,</md>
+        <p>and therefore</p>
+        <md>x(x-2)=0.</md>
+        <p>The curves meet at</p>
+        <md>x=0 \qquad\text{and}\qquad x=2.</md>
+        <p>On <m>0\lt x\lt 2</m>, the line is above the parabola. For example, at <m>x=1</m>,</p>
+        <md>2x=2 \qquad\text{and}\qquad x^2=1.</md>
+        <p>Thus</p>
+        <md>\text{top}=2x, \qquad \text{bottom}=x^2.</md>
+        <p>The area is</p>
+        <md>A=\int_0^2 (2x-x^2)\,dx.</md>
+        <p>Compute:</p>
+        <md>A = \left(x^2-\frac{x^3}{3}\right)\Big|_0^2 = \left(4-\frac83\right)-0 = \frac43.</md>
+
+        <figure xml:id="fig-area-line-parabola">
+          <caption>A vertical strip has height <m>2x-x^2</m>, so the area is <m>\int_0^2(2x-x^2)\,dx</m>.</caption>
+          <image width="78%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.78\textwidth,
+                  height=0.48\textwidth,
+                  xmin=-0.2, xmax=2.4,
+                  ymin=0, ymax=4.8,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2},
+                  ytick={0,1,2,3,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[domain=0:2, samples=100, fill=gray!18, draw=none] {2*x} \closedcycle;
+              \addplot[domain=0:2, samples=100, fill=white, draw=none] {x^2} \closedcycle;
+
+              \addplot[very thick, domain=0:2.25, samples=2] {2*x};
+              \addplot[very thick, domain=0:2.25, samples=100] {x^2};
+
+              \draw[&lt;-&gt;] (axis cs:0.5,0.25) -- (axis cs:0.5,1);
+              \node[anchor=west] at (axis cs:0.48,0.825) {\(2x-x^2\)};
+
+              \addplot[only marks, mark=*] coordinates {(0,0) (2,4)};
+
+              \node[anchor=south east] at (axis cs:1.8, 3.6) {\(y=2x\)};
+              \node[anchor=north west] at (axis cs:1.6, 2.76) {\(y=x^2\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>The integral did not measure area under one graph. It measured accumulated strip heights between two graphs.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-why-area-picture-matters">
+    <title>Why we cannot skip the picture</title>
+
+    <p>The formula</p>
+    <md>\int_a^b (\text{top}-\text{bottom})\,dx</md>
+    <p>requires knowing which graph is on top. That may change.</p>
+
+    <p>Consider the curves</p>
+    <md>y=x</md>
+    <p>and</p>
+    <md>y=x^3.</md>
+
+    <p>They intersect when</p>
+    <md>x=x^3.</md>
+    <p>So</p>
+    <md>x^3-x=0,</md>
+    <p>or</p>
+    <md>x(x-1)(x+1)=0.</md>
+
+    <p>The intersection points occur at</p>
+    <md>x=-1,\quad x=0,\quad x=1.</md>
+
+    <p>On the interval <m>[-1,0]</m>, the cubic is above the line. For example, at <m>x=-1/2</m>,</p>
+    <md>x^3=-\frac18 \qquad\text{and}\qquad x=-\frac12,</md>
+    <p>so</p>
+    <md>x^3\gt x.</md>
+
+    <p>On the interval <m>[0,1]</m>, the line is above the cubic. For example, at <m>x=1/2</m>,</p>
+    <md>x=\frac12 \qquad\text{and}\qquad x^3=\frac18,</md>
+    <p>so</p>
+    <md>x\gt x^3.</md>
+
+    <p>Therefore the area is</p>
+    <md>A = \int_{-1}^0 (x^3-x)\,dx + \int_0^1 (x-x^3)\,dx.</md>
+
+    <p>Compute the two equal parts:</p>
+    <md>\int_0^1 (x-x^3)\,dx = \left(\frac{x^2}{2}-\frac{x^4}{4}\right)\Big|_0^1 = \frac12-\frac14 = \frac14.</md>
+    <p>Thus</p>
+    <md>A=\frac14+\frac14=\frac12.</md>
+
+    <p>If we had written</p>
+    <md>\int_{-1}^1 (x-x^3)\,dx,</md>
+    <p>we would have gotten</p>
+    <md>0,</md>
+    <p>because the positive and negative signed areas cancel. That is not the area of the region.</p>
+
+    <warning xml:id="warning-split-area-top-changes">
+      <p>Area between curves is not found by blindly integrating one function minus the other. The integrand must be</p>
+      <md>\text{top}-\text{bottom}.</md>
+      <p>If the top curve changes, split the integral.</p>
+    </warning>
+
+    <p>This is the same lesson we learned with signed area. A definite integral may cancel positive and negative contributions. Ordinary area does not cancel.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-right-minus-left">
+    <title>Right minus left</title>
+
+    <p>Vertical slices are not always the easiest choice. Sometimes a horizontal strip has a simpler length.</p>
+
+    <p>For a horizontal strip, the small thickness is <m>dy</m>. Its length is</p>
+    <md>\text{right value}-\text{left value}.</md>
+
+    <p>So the small area is</p>
+    <md>(\text{right}-\text{left})\,dy.</md>
+
+    <definition xml:id="def-area-between-curves-horizontal">
+      <title>Area between curves, horizontal slices</title>
+      <statement>
+        <p>If <m>r(y)\ge \ell(y)</m> on <m>[c,d]</m>, then the area between the curves <m>x=r(y)</m> and <m>x=\ell(y)</m> is</p>
+        <md>A=\int_c^d \bigl(r(y)-\ell(y)\bigr)\,dy.</md>
+      </statement>
+    </definition>
+
+    <p>In words:</p>
+    <md>\text{area}=\int(\text{right}-\text{left})\,dy.</md>
+
+    <example xml:id="ex-area-sideways-parabolas">
+      <title>Two sideways parabolas</title>
+      <statement>
+        <p>Find the area enclosed by</p>
+        <md>x=y^2</md>
+        <p>and</p>
+        <md>x=2-y^2.</md>
+        <p>The curves meet when</p>
+        <md>y^2=2-y^2.</md>
+        <p>Thus</p>
+        <md>2y^2=2,</md>
+        <p>so</p>
+        <md>y^2=1, \qquad y=\pm 1.</md>
+        <p>For <m>-1\le y\le 1</m>, the right boundary is</p>
+        <md>x=2-y^2,</md>
+        <p>and the left boundary is</p>
+        <md>x=y^2.</md>
+        <p>Therefore the area is</p>
+        <md>A=\int_{-1}^1 \bigl((2-y^2)-y^2\bigr)\,dy.</md>
+        <p>So</p>
+        <md>A=\int_{-1}^1 (2-2y^2)\,dy.</md>
+        <p>Compute:</p>
+        <md>A = \left(2y-\frac{2y^3}{3}\right)\Big|_{-1}^{1}.</md>
+        <p>At <m>y=1</m>, this gives</p>
+        <md>2-\frac23=\frac43.</md>
+        <p>At <m>y=-1</m>, it gives</p>
+        <md>-2+\frac23=-\frac43.</md>
+        <p>So</p>
+        <md>A=\frac43-\left(-\frac43\right)=\frac83.</md>
+
+        <figure xml:id="fig-right-minus-left-sideways-parabolas">
+          <caption>A horizontal strip has length <m>(2-y^2)-y^2</m>, so we integrate with respect to <m>y</m>.</caption>
+          <image width="72%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.72\textwidth,
+                  height=0.52\textwidth,
+                  xmin=-0.2, xmax=2.3,
+                  ymin=-1.4, ymax=1.4,
+                  axis lines=middle,
+                  axis on top,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2},
+                  ytick={-1,0,1},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[fill=gray!18, draw=none] coordinates {
+                  (1, -1) (0.81, -0.9) (0.64, -0.8) (0.49, -0.7) (0.36, -0.6) (0.25, -0.5)
+                  (0.16, -0.4) (0.09, -0.3) (0.04, -0.2) (0.01, -0.1) (0, 0) (0.01, 0.1)
+                  (0.04, 0.2) (0.09, 0.3) (0.16, 0.4) (0.25, 0.5) (0.36, 0.6) (0.49, 0.7)
+                  (0.64, 0.8) (0.81, 0.9) (1, 1) (1, 1) (1.19, 0.9) (1.36, 0.8) (1.51, 0.7)
+                  (1.64, 0.6) (1.75, 0.5) (1.84, 0.4) (1.91, 0.3) (1.96, 0.2) (1.99, 0.1)
+                  (2, 0) (1.99, -0.1) (1.96, -0.2) (1.91, -0.3) (1.84, -0.4) (1.75, -0.5)
+                  (1.64, -0.6) (1.51, -0.7) (1.36, -0.8) (1.19, -0.9) (1, -1)
+              };
+
+              \addplot[very thick, domain=-1.15:1.15, samples=100] ({x^2},{x});
+              \addplot[very thick, domain=-1.15:1.15, samples=100] ({2-x^2},{x});
+
+              \draw[thick] (axis cs:0.0625,0.25) -- (axis cs:1.9375,0.25);
+              \draw[&lt;-&gt;] (axis cs:0.1225,0.35) -- (axis cs:1.8775,0.35);
+
+              \node[anchor=south] at (axis cs:1.0,0.38) {\((2-y^2)-y^2\)};
+
+              \node[anchor=east] at (axis cs:0.3,-0.6) {\(x=y^2\)};
+              \node[anchor=west] at (axis cs:1.7,-0.6) {\(x=2-y^2\)};
+
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>A vertical slice would have forced us to split the region into several pieces. A horizontal slice sees the whole region at once.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-splitting-at-intersections">
+    <title>Splitting at intersections</title>
+
+    <p>Intersections are not just endpoints. They are places where the description of the region may change.</p>
+
+    <p>Here is a safe procedure.</p>
+
+    <paragraphs>
+      <title>Setting up an area between curves</title>
+      <ol>
+        <li><p>Draw or imagine the region.</p></li>
+        <li><p>Find the intersection points.</p></li>
+        <li><p>Decide whether vertical or horizontal slices are simpler.</p></li>
+        <li><p>Write the height or length of a typical slice.</p></li>
+        <li><p>Split the integral wherever the top/bottom or right/left description changes.</p></li>
+      </ol>
+    </paragraphs>
+
+    <p>The picture is not decoration. It tells which subtraction is legal.</p>
+
+    <example xml:id="ex-area-split-intersections">
+      <title>One region, two vertical descriptions</title>
+      <statement>
+        <p>Find the area of the region bounded by</p>
+        <md>y=x^2</md>
+        <p>and</p>
+        <md>y=2-x.</md>
+        <p>First find intersections:</p>
+        <md>x^2=2-x.</md>
+        <p>So</p>
+        <md>x^2+x-2=0,</md>
+        <p>and therefore</p>
+        <md>(x+2)(x-1)=0.</md>
+        <p>The curves meet at</p>
+        <md>x=-2 \qquad\text{and}\qquad x=1.</md>
+        <p>On the interval <m>[-2,1]</m>, test <m>x=0</m>:</p>
+        <md>x^2=0, \qquad 2-x=2.</md>
+        <p>Thus the line is on top and the parabola is on the bottom. The area is</p>
+        <md>A=\int_{-2}^1 \bigl((2-x)-x^2\bigr)\,dx.</md>
+        <p>Compute:</p>
+        <md>A = \int_{-2}^1 (2-x-x^2)\,dx = \left(2x-\frac{x^2}{2}-\frac{x^3}{3}\right)\Big|_{-2}^{1}.</md>
+        <p>At <m>x=1</m>,</p>
+        <md>2-\frac12-\frac13=\frac76.</md>
+        <p>At <m>x=-2</m>,</p>
+        <md>-4-2+\frac83=-\frac{10}{3}.</md>
+        <p>So</p>
+        <md>A=\frac76-\left(-\frac{10}{3}\right) = \frac76+\frac{20}{6} = \frac{27}{6} = \frac92.</md>
+        <p>In this example the top curve did not change. But we still found the intersections first because they gave the interval of integration.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-area-from-data-and-graphs">
+    <title>Area from data and graphs</title>
+
+    <p>A formula is not always available. If a graph or table gives the vertical distance between two boundaries, the same idea still works.</p>
+
+    <p>Suppose a surveyor measures the distance between two shorelines at equally spaced values of <m>x</m>. The distances are:</p>
+
+    <table>
+      <title>Surveyor distance measurements</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <row>
+          <cell><m>x</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>4</m></cell>
+        </row>
+        <row>
+          <cell>vertical distance</cell>
+          <cell><m>0</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>0</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The spacing is</p>
+    <md>\Delta x=1.</md>
+
+    <p>Using the trapezoid rule, the area is approximately</p>
+    <md>1\left(\frac12(0)+3+4+2+\frac12(0)\right)=9.</md>
+
+    <p>So the area is approximately</p>
+    <md>9</md>
+    <p>square units.</p>
+
+    <p>The same calculation can be written as an approximate integral:</p>
+    <md>A=\int_0^4 (\text{top}-\text{bottom})\,dx \approx 9.</md>
+
+    <p>The data gave the height difference directly. If the data instead gave separate top and bottom values, we would subtract first and then estimate the integral.</p>
+
+    <note xml:id="note-data-version-area">
+      <title>Data version</title>
+      <p>When the boundary is measured rather than given by formulas, the integral is still built from the same small piece:</p>
+      <md>(\text{measured strip height})(\text{strip width}).</md>
+      <p>A table changes how we estimate the integral, not what the integral means.</p>
+    </note>
+
+    <p>Area between curves is still area. We have only replaced a rectangle under one curve by a strip between two curves. The next step changes dimension. A strip becomes a slice.</p>
+  </subsection>
+
+</section>
