@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-chapter-review-differentiation-rules">
+  <title>Chapter review and discovery problems</title>
+
+  <p>Chapter 4 defined the derivative:</p>
+  <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
+
+  <p>That definition gave meaning, but it was too slow for everyday use.</p>
+
+  <p>Chapter 5 built a working language. We learned how derivatives behave under algebra, composition, implicit relations, inverse functions, and the elementary functions. The point was not to memorize a long table. The point was to read structure.</p>
+
+  <subsection xml:id="subsec-chapter-5-map">
+    <title>Chapter map</title>
+
+    <p>The chapter has one main story:</p>
+    <md>\text{how a function is built} \quad\Longrightarrow\quad \text{how its derivative is built}.</md>
+
+    <table>
+      <title>Map of differentiation constructions and rules</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="center"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><term>construction</term></cell>
+          <cell><term>derivative rule</term></cell>
+          <cell><term>main idea</term></cell>
+        </row>
+        <row>
+          <cell>sum and constant multiple</cell>
+          <cell><m>(af+bg)'=af'+bg'</m></cell>
+          <cell>derivatives are linear</cell>
+        </row>
+        <row>
+          <cell>product</cell>
+          <cell><m>(fg)'=f'g+fg'</m></cell>
+          <cell>each factor changes once</cell>
+        </row>
+        <row>
+          <cell>quotient</cell>
+          <cell><m>\displaystyle \left(\frac{f}{g}\right)'=\frac{gf'-fg'}{g^2}</m></cell>
+          <cell>quotient is product with a reciprocal</cell>
+        </row>
+        <row>
+          <cell>composition</cell>
+          <cell><m>(f\circ g)'=f'(g(x))g'(x)</m></cell>
+          <cell>outside change times inside change</cell>
+        </row>
+        <row>
+          <cell>implicit equation</cell>
+          <cell>differentiate both sides</cell>
+          <cell><m>y</m> changes because <m>x</m> changes</cell>
+        </row>
+        <row>
+          <cell>inverse</cell>
+          <cell><m>\displaystyle (f^{-1})'(b)=\frac{1}{f'(a)}</m></cell>
+          <cell>reversing a graph reverses slope</cell>
+        </row>
+        <row>
+          <cell>logarithmic differentiation</cell>
+          <cell><m>\displaystyle \frac{y'}{y}=(\ln y)'</m></cell>
+          <cell>products become sums</cell>
+        </row>
+        <row>
+          <cell>elementary functions</cell>
+          <cell>tables below</cell>
+          <cell>special functions have special rates</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <figure xml:id="fig-chapter-5-derivative-workflow">
+      <caption>A good derivative calculation reads the function first and checks the result afterward.</caption>
+      <image width="85%">
+        <latex-image>
+          \begin{tikzpicture}[every node/.style={font=\small}, node distance=2.2cm]
+            \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.9cm] (structure) at (0,0)
+            {read the\\ structure};
+
+            \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.9cm] (rule) at (4.2,0)
+            {choose the\\ rule};
+
+            \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.9cm] (formula) at (8.4,0)
+            {compute the\\ derivative};
+
+            \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.9cm] (meaning) at (4.2,-2.0)
+            {check meaning:\\ units, sign, domain};
+
+            \draw[-&gt;, thick] (structure) -- (rule);
+            \draw[-&gt;, thick] (rule) -- (formula);
+            \draw[-&gt;, thick] (formula) -- (meaning);
+            \draw[-&gt;, thick] (meaning) -- (structure);
+
+            \node[align=center] at (4.2,1.25)
+            {Derivative calculations are not a race.\\
+            They are a reading task.};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-derivative-table">
+    <title>Derivative table</title>
+
+    <p>The main elementary derivative formulas from this chapter are collected below. Each formula is valid on intervals where the function is defined and differentiable.</p>
+
+    <table>
+      <title>Elementary derivative formulas</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>function</term></cell>
+          <cell><term>derivative</term></cell>
+        </row>
+        <row>
+          <cell><m>c</m></cell>
+          <cell><m>0</m></cell>
+        </row>
+        <row>
+          <cell><m>x</m></cell>
+          <cell><m>1</m></cell>
+        </row>
+        <row>
+          <cell><m>x^r</m></cell>
+          <cell><m>rx^{r-1}</m></cell>
+        </row>
+        <row>
+          <cell><m>e^x</m></cell>
+          <cell><m>e^x</m></cell>
+        </row>
+        <row>
+          <cell><m>a^x</m></cell>
+          <cell><m>(\ln a)a^x,\quad a\gt 0</m></cell>
+        </row>
+        <row>
+          <cell><m>ln x</m></cell>
+          <cell><m>\dfrac{1}{x},\quad x\gt 0</m></cell>
+        </row>
+        <row>
+          <cell><m>\ln|x|</m></cell>
+          <cell><m>\dfrac{1}{x},\quad x\neq 0</m></cell>
+        </row>
+        <row>
+          <cell><m>\sin x</m></cell>
+          <cell><m>\cos x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos x</m></cell>
+          <cell><m>-\sin x</m></cell>
+        </row>
+        <row>
+          <cell><m>\tan x</m></cell>
+          <cell><m>\sec^2 x</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec x</m></cell>
+          <cell><m>\sec x\tan x</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc x</m></cell>
+          <cell><m>-\csc x\cot x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cot x</m></cell>
+          <cell><m>-\csc^2 x</m></cell>
+        </row>
+        <row>
+          <cell><m>\arcsin x</m></cell>
+          <cell><m>\dfrac{1}{\sqrt{1-x^2}}</m></cell>
+        </row>
+        <row>
+          <cell><m>\arccos x</m></cell>
+          <cell><m>-\dfrac{1}{\sqrt{1-x^2}}</m></cell>
+        </row>
+        <row>
+          <cell><m>\arctan x</m></cell>
+          <cell><m>\dfrac{1}{1+x^2}</m></cell>
+        </row>
+        <row>
+          <cell><m>\sinh x</m></cell>
+          <cell><m>\cosh x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cosh x</m></cell>
+          <cell><m>\sinh x</m></cell>
+        </row>
+        <row>
+          <cell><m>\tanh x</m></cell>
+          <cell><m>\operatorname{sech}^2 x</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The table is only useful when paired with the rules:</p>
+    <md>
+      (af+bg)'\amp =af'+bg',\\
+      (fg)'\amp =f'g+fg',\\
+      \left(\frac{f}{g}\right)'\amp =\frac{gf'-fg'}{g^2},\\
+      (f(g(x)))'\amp =f'(g(x))g'(x).
+    </md>
+
+    <p>Most real derivative calculations use both a table formula and a rule.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-worked-mixed-derivative-examples">
+    <title>Worked mixed examples</title>
+
+    <example xml:id="ex-mixed-product-chain-ln">
+      <title>Differentiating a sum of products and composites</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>F(x)=e^{-x}\cos(2x)+\ln(1+x^2).</md>
+        <p>The first term is a product: <m>e^{-x}\cos(2x)</m>. Differentiate each factor:</p>
+        <md>\frac{d}{dx}e^{-x}=-e^{-x} \qquad\text{and}\qquad \frac{d}{dx}\cos(2x)=-2\sin(2x).</md>
+        <p>So</p>
+        <md>\frac{d}{dx}\left(e^{-x}\cos(2x)\right) = (-e^{-x})\cos(2x)+e^{-x}(-2\sin(2x)) = -e^{-x}\cos(2x)-2e^{-x}\sin(2x).</md>
+        <p>The logarithmic term uses the chain rule:</p>
+        <md>\frac{d}{dx}\ln(1+x^2)=\frac{2x}{1+x^2}.</md>
+        <p>Therefore</p>
+        <md>F'(x) = -e^{-x}\cos(2x)-2e^{-x}\sin(2x) + \frac{2x}{1+x^2}.</md>
+        <p>We can factor the first two terms if desired:</p>
+        <md>F'(x) = -e^{-x}\bigl(\cos(2x)+2\sin(2x)\bigr) + \frac{2x}{1+x^2}.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-mixed-log-diff-variable-power">
+      <title>Logarithmic differentiation of a variable-power expression</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=(x^2+1)^{\sin x}.</md>
+        <p>This function has a variable exponent. Since the base is always positive, <m>x^2+1\gt 0</m>, logarithmic differentiation is safe.</p>
+        <p>Take natural logarithms:</p>
+        <md>\ln y=\sin x\ln(x^2+1).</md>
+        <p>Differentiate both sides:</p>
+        <md>\frac{y'}{y} = \cos x\ln(x^2+1) + \sin x\cdot\frac{2x}{x^2+1}.</md>
+        <p>Multiply by <m>y</m>:</p>
+        <md>y' = y\left( \cos x\ln(x^2+1) + \frac{2x\sin x}{x^2+1} \right).</md>
+        <p>Substitute back <m>y=(x^2+1)^{\sin x}</m>:</p>
+        <md>y' = (x^2+1)^{\sin x} \left( \cos x\ln(x^2+1) + \frac{2x\sin x}{x^2+1} \right).</md>
+        <p>This example uses several ideas at once: logarithms, product rule, chain rule, and the fact that <m>x^2+1</m> is positive.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-mixed-implicit-diff">
+      <title>Implicit differentiation with trig and exponentials</title>
+      <statement>
+        <p>Find <m>dy/dx</m> if</p>
+        <md>x^2y+\sin y=e^x.</md>
+        <p>Here <m>y</m> is treated as a function of <m>x</m>. Differentiate both sides with respect to <m>x</m>.</p>
+        <p>For <m>x^2y</m>, use the product rule: <m>\frac{d}{dx}(x^2y)=2xy+x^2y'</m>.</p>
+        <p>For <m>\sin y</m>, use the chain rule: <m>\frac{d}{dx}\sin y=\cos y\,y'</m>.</p>
+        <p>For <m>e^x</m>, <m>\frac{d}{dx}e^x=e^x</m>.</p>
+        <p>Therefore</p>
+        <md>2xy+x^2y'+\cos y\,y'=e^x.</md>
+        <p>Collect the <m>y'</m>-terms:</p>
+        <md>(x^2+\cos y)y'=e^x-2xy.</md>
+        <p>So</p>
+        <md>\frac{dy}{dx} = \frac{e^x-2xy}{x^2+\cos y}.</md>
+        <p>The denominator warns us: if <m>x^2+\cos y=0</m>, then this equation does not determine a finite value of <m>dy/dx</m>. The algebra may be pointing to a vertical tangent or to a place where the curve is not a single differentiable branch <m>y(x)</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-mixed-derivative-calculations">
+    <title>Skills: mixed derivative calculations</title>
+
+    <p>Differentiate each function. State domain restrictions when they affect the derivative.</p>
+
+    <ol>
+      <li><p><m>f(x)=(4x^3-2x+7)^5</m></p></li>
+      <li><p><m>f(x)=x^2e^{-3x}</m></p></li>
+      <li><p><m>f(x)=\dfrac{\sin x}{1+\cos x}</m></p></li>
+      <li><p><m>f(x)=\ln|x^2-5x+6|</m></p></li>
+      <li><p><m>f(x)=\arctan(e^x)</m></p></li>
+      <li><p><m>f(x)=\sqrt{1+\sin^2 x}</m></p></li>
+      <li><p><m>f(x)=2^{x^2}</m></p></li>
+      <li><p><m>f(x)=\sin(\ln x)</m></p></li>
+      <li><p><m>f(x)=x^{\sqrt{3}}\cos x, \quad x\gt 0</m></p></li>
+      <li><p><m>f(x)=(\ln x)^3\sqrt{x}, \quad x\gt 0</m></p></li>
+      <li><p><m>f(x)=\dfrac{e^x}{1+x^2}</m></p></li>
+      <li><p><m>f(x)=\arcsin(2x)</m></p></li>
+      <li><p><m>f(x)=x^x, \quad x\gt 0</m></p></li>
+      <li><p><m>f(x)=(\cos x)^x</m> on an interval where <m>\cos x\gt 0</m></p></li>
+      <li><p><m>f(x)=\tanh(5x)</m></p></li>
+      <li><p><m>f(x)=\sinh(x^2)\cosh x</m></p></li>
+      <li><p><m>f(x)=e^{\sin x}\ln(1+x^2)</m></p></li>
+      <li><p><m>f(x)=\dfrac{\arctan x}{x}, \quad x\neq 0</m></p></li>
+      <li><p><m>f(x)=\ln(\sec x+\tan x)</m> on an interval where the logarithm is defined</p></li>
+      <li><p><m>f(x)=\sqrt[3]{1+x^4}</m></p></li>
+      <li><p><m>f(x)=\dfrac{\sin(x^2)}{e^x}</m></p></li>
+      <li><p><m>f(x)=\cos(\sqrt{x}), \quad x\gt 0</m></p></li>
+      <li><p><m>f(x)=\arctan\left(\dfrac{1}{x}\right), \quad x\neq 0</m></p></li>
+      <li><p><m>f(x)=\dfrac{x^2+1}{\sqrt{x^2-1}}</m></p></li>
+      <li><p><m>f(x)=\ln\left(\dfrac{x^2+1}{x-1}\right), \quad x\gt 1</m></p></li>
+      <li><p><m>f(x)=(1+\sin x)^4</m></p></li>
+      <li><p><m>f(x)=e^{x\cos x}</m></p></li>
+      <li><p><m>f(x)=\arccos(1-x^2)</m></p></li>
+      <li><p><m>f(x)=\dfrac{\sinh x}{1+\cosh x}</m></p></li>
+      <li><p><m>f(x)=\left(\dfrac{x+1}{x-1}\right)^x</m> on an interval where the base is positive</p></li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-implicit-differentiation-practice-chapter-5">
+    <title>Implicit differentiation practice</title>
+
+    <p>Find <m>dy/dx</m>. Then find the tangent slope at the given point when a point is provided.</p>
+
+    <ol>
+      <li><p><m>x^2+y^2=10</m></p></li>
+      <li><p><m>x^2+xy+y^2=7</m></p></li>
+      <li><p><m>y^3+xy=10, \quad (1,2)</m></p></li>
+      <li><p><m>x^2y+\sin y=e^x</m></p></li>
+      <li><p><m>e^{xy}+y^2=x+2</m></p></li>
+      <li><p><m>\ln(x+y)=xy</m></p></li>
+      <li><p><m>\sin(xy)=x-y</m></p></li>
+      <li><p><m>x^3+y^3=6xy</m></p></li>
+      <li><p>Find <m>y''</m> for the circle <m>x^2+y^2=25</m>.</p></li>
+      <li><p>For <m>x^2+y^2=25</m>, find all points on the circle where the tangent line is horizontal. Then find all points where the tangent line is vertical.</p></li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-concept-check">
+    <title>Concept check</title>
+
+    <p>Answer each question in complete sentences.</p>
+
+    <ol>
+      <li><p>Why does the product rule have two terms?</p></li>
+      <li><p>In the chain rule <m>(f(g(x)))'=f'(g(x))g'(x)</m>, why is <m>f'</m> evaluated at <m>g(x)</m> instead of at <m>x</m>?</p></li>
+      <li><p>Why must angles be measured in radians for <m>(\sin x)'=\cos x</m> to be true without an extra constant?</p></li>
+      <li><p>Why does implicit differentiation require the chain rule?</p></li>
+      <li><p>In the inverse derivative formula <m>(f^{-1})'(b)=\frac{1}{f'(a)}</m>, <m>b=f(a)</m>, why must the derivative of <m>f</m> be evaluated at <m>a</m>, not at <m>b</m>?</p></li>
+      <li><p>Give an example of a function that has an inverse, but whose inverse is not differentiable at one point.</p></li>
+      <li><p>Explain why logarithmic differentiation is useful for <m>y=x^x</m>.</p></li>
+      <li><p>The formulas <m>(\sinh x)'=\cosh x</m> and <m>(\cosh x)'=\sinh x</m> look similar to the sine and cosine formulas. Where does the sign difference appear?</p></li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-true-false">
+    <title>True or false</title>
+
+    <p>Decide whether each statement is true or false. If it is false, give a correction or a counterexample.</p>
+
+    <ol>
+      <li><p><m>(fg)'=f'g'</m> for all differentiable functions <m>f</m> and <m>g</m>.</p></li>
+      <li><p><m>(f+g)'=f'+g'</m> for all differentiable functions <m>f</m> and <m>g</m>.</p></li>
+      <li><p><m>\frac{d}{dx}\sin(x^2)=2x\cos(x^2)</m>.</p></li>
+      <li><p><m>\frac{d}{dx}(\sin x)^2=2x\cos(x^2)</m>.</p></li>
+      <li><p><m>\frac{d}{dx}\ln|x|=\frac{1}{x}</m> for <m>x\neq 0</m>.</p></li>
+      <li><p><m>\frac{d}{dx}a^x=xa^{x-1}</m> for every positive constant <m>a</m>.</p></li>
+      <li><p><m>\frac{d}{dx}x^a=ax^{a-1}</m> for a fixed real number <m>a</m>, at least for <m>x\gt 0</m>.</p></li>
+      <li><p>If <m>f'(a)=0</m>, then <m>f</m> cannot have an inverse.</p></li>
+      <li><p>If <m>f</m> has an inverse and <m>f'(a)=0</m>, then the formula <m>(f^{-1})'(f(a))=\frac{1}{f'(a)}</m> cannot be used.</p></li>
+      <li><p>The derivative of <m>\arctan x</m> exists for every real <m>x</m>.</p></li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-proof-practice">
+    <title>Proof practice</title>
+
+    <p>These problems ask you to justify the rules, not only use them.</p>
+
+    <ol>
+      <li>
+        <p><term>Product rule from the definition.</term> Suppose <m>f</m> and <m>g</m> are differentiable at <m>x</m>. Starting from</p>
+        <md>\frac{f(x+h)g(x+h)-f(x)g(x)}{h},</md>
+        <p>add and subtract <m>f(x+h)g(x)</m> in the numerator. Use this to prove</p>
+        <md>(fg)'(x)=f'(x)g(x)+f(x)g'(x).</md>
+      </li>
+      <li>
+        <p><term>Reciprocal rule from the product rule.</term> Let <m>q(x)=\frac{1}{g(x)}</m>, where <m>g(x)\neq 0</m>. Since</p>
+        <md>g(x)q(x)=1,</md>
+        <p>differentiate both sides and solve for <m>q'(x)</m>. Prove</p>
+        <md>\left(\frac{1}{g}\right)'=-\frac{g'}{g^2}.</md>
+      </li>
+      <li>
+        <p><term>Quotient rule from product and reciprocal rules.</term> Write</p>
+        <md>\frac{f}{g}=f\cdot\frac{1}{g}.</md>
+        <p>Use the product rule and reciprocal rule to prove</p>
+        <md>\left(\frac{f}{g}\right)'=\frac{gf'-fg'}{g^2}.</md>
+      </li>
+      <li>
+        <p><term>Chain rule using local linearity.</term> Suppose <m>u=g(x)</m>, <m>y=f(u)</m>. Use the approximations</p>
+        <md>g(x+h)=g(x)+g'(x)h+\text{small error}</md>
+        <p>and</p>
+        <md>f(u+k)=f(u)+f'(u)k+\text{small error}</md>
+        <p>to explain why</p>
+        <md>\frac{d}{dx}f(g(x))=f'(g(x))g'(x).</md>
+      </li>
+      <li>
+        <p><term>Inverse derivative formula.</term> Let <m>g=f^{-1}</m>. Starting from</p>
+        <md>f(g(x))=x,</md>
+        <p>differentiate both sides using the chain rule. Solve for <m>g'(x)</m> and obtain</p>
+        <md>(f^{-1})'(x)=\frac{1}{f'(f^{-1}(x))}.</md>
+        <p>What condition is needed to divide?</p>
+      </li>
+      <li>
+        <p><term>Derivative of <m>\ln x</m> from the inverse rule.</term> Use the fact that <m>\ln x</m> is the inverse of <m>e^x</m> to prove</p>
+        <md>\frac{d}{dx}\ln x=\frac{1}{x}.</md>
+      </li>
+      <li>
+        <p><term>General power rule.</term> For <m>x\gt 0</m>, let <m>y=x^r</m>, where <m>r</m> is a fixed real number. Take logarithms and differentiate implicitly to prove</p>
+        <md>\frac{d}{dx}x^r=rx^{r-1}.</md>
+      </li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-project-derivative-formulas-numerical-experiments">
+    <title>Project: derivative formulas from numerical experiments</title>
+
+    <p>A derivative is a limit. Numerical experiments can suggest what the limit is before we prove it.</p>
+
+    <p>For a small positive number <m>h</m>, define the symmetric difference quotient</p>
+    <md>D_h f(a)=\frac{f(a+h)-f(a-h)}{2h}.</md>
+
+    <p>This often gives a better numerical estimate of <m>f'(a)</m> than the one-sided quotient <m>\frac{f(a+h)-f(a)}{h}</m>.</p>
+
+    <p>The goal of this project is to rediscover several derivative formulas from data.</p>
+
+    <paragraphs xml:id="paragraphs-step-1-choose-step-sizes">
+      <title>Step 1: choose step sizes</title>
+      <p>Use <m>h=10^{-1},\ 10^{-2},\ 10^{-3},\ 10^{-4},\ 10^{-5},\ 10^{-6}</m>. For each function and each point <m>a</m>, compute <m>D_h f(a)</m>. Organize your results in a table.</p>
+      <table>
+        <title>Symmetric difference quotient estimates</title>
+        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+          <col halign="center"/>
+          <col halign="center"/>
+          <col halign="center"/>
+          <col halign="center"/>
+          <col halign="center"/>
+          <col halign="center"/>
+          <col halign="center"/>
+          <row header="yes">
+            <cell><m>h</m></cell>
+            <cell><m>10^{-1}</m></cell>
+            <cell><m>10^{-2}</m></cell>
+            <cell><m>10^{-3}</m></cell>
+            <cell><m>10^{-4}</m></cell>
+            <cell><m>10^{-5}</m></cell>
+            <cell><m>10^{-6}</m></cell>
+          </row>
+          <row>
+            <cell><m>D_h f(a)</m></cell>
+            <cell></cell>
+            <cell></cell>
+            <cell></cell>
+            <cell></cell>
+            <cell></cell>
+            <cell></cell>
+          </row>
+        </tabular>
+      </table>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-step-2-test-powers">
+      <title>Step 2: test powers</title>
+      <p>Use <m>f(x)=x^2</m>, <m>f(x)=x^3</m>, <m>f(x)=\sqrt{x}</m>. Test at <m>a=1</m>, <m>a=2</m>, <m>a=4</m>. Use the numerical estimates to guess the formulas for <m>(x^2)'</m>, <m>(x^3)'</m>, <m>(\sqrt{x})'</m>. Compare your guesses with the power rule.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-step-3-test-trig">
+      <title>Step 3: test trigonometric functions</title>
+      <p>Use radians. Compute numerical derivatives for <m>f(x)=\sin x</m> and <m>f(x)=\cos x</m> at <m>a=0,\ \frac{\pi}{6},\ \frac{\pi}{4},\ \frac{\pi}{3},\ \frac{\pi}{2}</m>. Compare the numerical derivative of <m>\sin x</m> with <m>\cos x</m>. Compare the numerical derivative of <m>\cos x</m> with <m>-\sin x</m>.</p>
+      <p>Then repeat the experiment using degrees by defining <m>S(x)=\sin(x^\circ)=\sin\left(\frac{\pi x}{180}\right)</m>. Estimate <m>S'(30)</m>. Explain why the extra factor <m>\frac{\pi}{180}</m> appears.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-step-4-test-exponentials">
+      <title>Step 4: test exponentials</title>
+      <p>For <m>f(x)=a^x</m>, the derivative should be proportional to <m>a^x</m>. Estimate <m>\frac{D_h f(0)}{f(0)}</m> for <m>a=2,\ a=3,\ a=10</m>. Since <m>f(0)=1</m>, this is just the estimated slope at <m>0</m>. Compare the results with <m>\ln 2</m>, <m>\ln 3</m>, <m>\ln 10</m>.</p>
+      <p>Now test <m>f(x)=e^x</m>. Estimate <m>D_h f(a)</m> at <m>a=-1,\ 0,\ 1,\ 2</m>. Compare with <m>e^a</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-step-5-test-logarithms">
+      <title>Step 5: test logarithms</title>
+      <p>Use <m>f(x)=\ln x</m>. Estimate <m>f'(a)</m> at <m>a=1,\ 2,\ 5,\ 10</m>. Compare with <m>\frac{1}{a}</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-step-6-watch-roundoff">
+      <title>Step 6: watch roundoff</title>
+      <p>Try step sizes smaller than <m>10^{-6}</m>, such as <m>10^{-8},\ 10^{-10},\ 10^{-12}</m>. Do the estimates always improve? Explain what you see.</p>
+    </paragraphs>
+
+    <p>Your report should answer three questions:</p>
+    <ol>
+      <li><p>Which derivative formulas did your data suggest?</p></li>
+      <li><p>Where did the numerical evidence become unreliable?</p></li>
+      <li><p>Why is a proof still needed after a convincing table of values?</p></li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-discovery-problems">
+    <title>Discovery problems</title>
+
+    <ol>
+      <li>
+        <p><term>A hidden product rule.</term> Let</p>
+        <md>A(x)=(x+1)(x+2)(x+3).</md>
+        <p>Differentiate <m>A(x)</m> in two ways: first by expanding, and then by applying the product rule twice. Show that the two answers agree.</p>
+      </li>
+      <li>
+        <p><term>A pattern for logarithmic derivatives.</term> Let</p>
+        <md>P(x)=(x-a_1)(x-a_2)\cdots(x-a_n).</md>
+        <p>Assume all factors are nonzero. Take logarithms and differentiate to show</p>
+        <md>\frac{P'(x)}{P(x)} = \frac{1}{x-a_1}+\frac{1}{x-a_2}+\cdots+\frac{1}{x-a_n}.</md>
+        <p>This formula is useful because it turns a product into a sum.</p>
+      </li>
+      <li>
+        <p><term>A tangent to an inverse without finding the inverse.</term> Let</p>
+        <md>f(x)=x^5+x.</md>
+        <p>Show that <m>f</m> is increasing. Find <m>(f^{-1})'(2)</m> without solving for <m>f^{-1}(x)</m>.</p>
+      </li>
+      <li>
+        <p><term>Two functions with the same value but different local behavior.</term> Find two differentiable functions <m>f</m> and <m>g</m> such that <m>f(0)=g(0)</m> but <m>f'(0)\neq g'(0)</m>. Explain in words what this means about their graphs near <m>0</m>.</p>
+      </li>
+      <li>
+        <p><term>Two functions with the same derivative at one point but different graphs.</term> Find two differentiable functions <m>f</m> and <m>g</m> such that <m>f'(0)=g'(0)</m> but the graphs do not look the same near <m>0</m>.</p>
+      </li>
+      <li>
+        <p><term>A derivative that simplifies unexpectedly.</term> Differentiate</p>
+        <md>f(x)=\frac{1-\cos x}{\sin x}</md>
+        <p>where it is defined. Then use trigonometric identities to simplify the derivative.</p>
+      </li>
+      <li>
+        <p><term>A logarithmic identity through derivatives.</term> Let</p>
+        <md>F(x)=\ln(\sec x+\tan x).</md>
+        <p>Differentiate <m>F</m>. On intervals where the functions are defined, show that</p>
+        <md>F'(x)=\sec x.</md>
+        <p>This identity will become useful when we integrate <m>\sec x</m>.</p>
+      </li>
+      <li>
+        <p><term>A hyperbolic simplification.</term> Differentiate</p>
+        <md>f(x)=\ln(\cosh x).</md>
+        <p>Express the answer using <m>\tanh x</m>.</p>
+      </li>
+      <li>
+        <p><term>A variable base and variable exponent.</term> For <m>x\gt 0</m>, differentiate</p>
+        <md>f(x)=x^{\ln x}.</md>
+        <p>Hint: take logarithms first.</p>
+      </li>
+      <li>
+        <p><term>A curve with no solved formula.</term> The equation</p>
+        <md>x^3+y^3=6xy</md>
+        <p>defines a curve called the folium of Descartes. Use implicit differentiation to find <m>dy/dx</m>. Then find the slope at <m>(3,3)</m>.</p>
+      </li>
+    </ol>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-5-hook-shape">
+    <title>Where the chapter points next</title>
+
+    <p>A derivative is more than a number to compute. It is information about shape.</p>
+
+    <p>For example, consider</p>
+    <md>f(x)=x^3-3x.</md>
+
+    <p>Its derivative is</p>
+    <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
+
+    <p>The derivative is positive when <m>x\lt -1</m> and when <m>x\gt 1</m>. It is negative when <m>-1\lt x\lt 1</m>. The graph rises, then falls, then rises again.</p>
+
+    <figure xml:id="fig-chapter-5-hook-derivative-shape">
+      <caption>The derivative gives information about the shape of the original graph.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.52\textwidth,
+              xmin=-2.5, xmax=2.5,
+              ymin=-5, ymax=5,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-2,-1,0,1,2},
+              ytick={-4,-2,0,2,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-2.2:2.2, samples=200] {x^3-3*x};
+          \addlegendentry{\(f(x)=x^3-3x\)}
+          \addplot[thick, dashed, domain=-2.2:2.2, samples=200] {3*x^2-3};
+          \addlegendentry{\(f'(x)=3x^2-3\)}
+          \addplot[only marks, mark=*] coordinates {(-1,2) (1,-2)};
+          \node[anchor=south east] at (axis cs:-1,2) {\((-1,2)\)};
+          \node[anchor=north west] at (axis cs:1,-2) {\((1,-2)\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>At <m>x=-1</m> and <m>x=1</m>, the derivative is <m>0</m>. The graph has horizontal tangents there. One is a high point nearby; the other is a low point nearby.</p>
+
+    <p>That observation opens the next part of the book.</p>
+
+    <p>Derivatives compute slopes. But slopes tell us when a function rises, when it falls, where it turns, and where it bends. The next chapter asks how much of a graph we can understand from its derivative.</p>
+  </subsection>
+
+</section>
