@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-increasing-decreasing-functions">
+  <title>Increasing and decreasing functions</title>
+
+  <p>A speedometer does not only tell how fast a car is moving. Its sign tells the direction of motion. Positive velocity means position is increasing. Negative velocity means position is decreasing.</p>
+
+  <p>The same idea works for any differentiable function.</p>
+
+  <subsection xml:id="subsec-reading-motion-from-sign-velocity">
+    <title>Reading motion from the sign of velocity</title>
+
+    <p>Suppose a particle moves along a line, and its position after <m>t</m> seconds is</p>
+    <md>s(t)=t^3-6t^2+9t, \qquad 0\le t\le 4.</md>
+
+    <p>Its velocity is the derivative:</p>
+    <md>v(t)=s'(t)=3t^2-12t+9.</md>
+
+    <p>Factor:</p>
+    <md>v(t)=3(t-1)(t-3).</md>
+
+    <p>This factorization tells us the sign of the velocity.</p>
+
+    <table>
+      <title>Intervals of motion for the position function</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><term>time interval</term></cell>
+          <cell><term>sign of <m>v(t)</m></term></cell>
+          <cell><term>motion</term></cell>
+        </row>
+        <row>
+          <cell><m>0\lt t\lt 1</m></cell>
+          <cell><m>+</m></cell>
+          <cell>position increases</cell>
+        </row>
+        <row>
+          <cell><m>1\lt t\lt 3</m></cell>
+          <cell><m>-</m></cell>
+          <cell>position decreases</cell>
+        </row>
+        <row>
+          <cell><m>3\lt t\lt 4</m></cell>
+          <cell><m>+</m></cell>
+          <cell>position increases</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>At <m>t=1</m> and <m>t=3</m>, the velocity is <m>0</m>. These are the moments when the particle changes direction.</p>
+
+    <figure xml:id="fig-position-sign-chart">
+      <caption>The sign of velocity tells whether the position is increasing or decreasing.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=4.2,
+              ymin=-0.5, ymax=4.8,
+              axis lines=left,
+              xlabel={\(t\)},
+              ylabel={\(s(t)\)},
+              xtick={0,1,2,3,4},
+              ytick={0,1,2,3,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=0:4, samples=200] {x^3-6*x^2+9*x};
+          \addplot[only marks, mark=*] coordinates {(1,4) (3,0)};
+          \node[anchor=south] at (axis cs:1,4) {\(t=1\)};
+          \node[anchor=north] at (axis cs:3,0) {\(t=3\)};
+          \node[anchor=west] at (axis cs:0.3,2.4) {increasing};
+          \node[anchor=west] at (axis cs:1.45,2.9) {decreasing};
+          \node[anchor=west] at (axis cs:3.15,1.4) {increasing};
+          \end{axis}
+          \end{tikzpicture}
+
+          \vspace{0.5em}
+
+          \begin{tikzpicture}[xscale=1.35, every node/.style={font=\small}]
+            \draw[-&gt;, thick] (-0.2,0) -- (4.4,0);
+            \foreach \x/\lab in {0/0,1/1,3/3,4/4} {
+              \draw[thick] (\x,0.08) -- (\x,-0.08);
+              \node[below] at (\x,-0.08) {\(\lab\)};
+            }
+            \node[above] at (0.5,0.15) {\(v\gt 0\)};
+            \node[above] at (2,0.15) {\(v\lt 0\)};
+            \node[above] at (3.5,0.15) {\(v\gt 0\)};
+            \node[below] at (2,-0.55) {sign chart for \(v(t)=s'(t)\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The graph confirms the algebra. The position rises until <m>t=1</m>, falls until <m>t=3</m>, and rises again.</p>
+
+    <p>The derivative has become a guide to the shape of the original function.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-increasing-decreasing-definitions">
+    <title>Increasing and decreasing functions</title>
+
+    <p>The motion example suggests the general language.</p>
+
+    <definition xml:id="def-increasing-decreasing">
+      <title>Increasing and decreasing functions</title>
+      <statement>
+        <p>Let <m>f</m> be a function on an interval <m>I</m>.</p>
+        <p>The function <m>f</m> is <term>increasing</term> on <m>I</m> if, whenever <m>x_1\lt x_2</m> in <m>I</m>, we have</p>
+        <md>f(x_1)\lt f(x_2).</md>
+        <p>The function <m>f</m> is <term>decreasing</term> on <m>I</m> if, whenever <m>x_1\lt x_2</m> in <m>I</m>, we have</p>
+        <md>f(x_1)\gt f(x_2).</md>
+      </statement>
+    </definition>
+
+    <p>Increasing means that moving to the right on the input line moves upward on the graph. Decreasing means that moving to the right moves downward on the graph.</p>
+
+    <p>A function can increase on one interval and decrease on another. The function <m>s(t)=t^3-6t^2+9t</m> is increasing on <m>[0,1]</m> and on <m>[3,4]</m>, but decreasing on <m>[1,3]</m>. The intervals matter.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-first-derivative-sign-rule">
+    <title>The first derivative sign rule</title>
+
+    <p>The examples point to the rule we want.</p>
+
+    <theorem xml:id="thm-first-derivative-sign-rule">
+      <title>First derivative sign rule</title>
+      <statement>
+        <p>Suppose <m>f</m> is continuous on an interval <m>I</m> and differentiable at the interior points of <m>I</m>.</p>
+        <p>If</p>
+        <md>f'(x)\gt 0</md>
+        <p>throughout the interior of <m>I</m>, then <m>f</m> is increasing on <m>I</m>.</p>
+        <p>If</p>
+        <md>f'(x)\lt 0</md>
+        <p>throughout the interior of <m>I</m>, then <m>f</m> is decreasing on <m>I</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>This rule is one of the most useful tools in differential calculus. Its proof will come from the Mean Value Theorem in <xref ref="sec-6-3-rolle-s-theorem-and-the-mean-value-theorem"/>. For now, the meaning is visible from local linear approximation:</p>
+    <md>f(x+h)\approx f(x)+f'(x)h.</md>
+
+    <p>When <m>h\gt 0</m>, moving to the right by a small amount, a positive <m>f'(x)</m> gives a positive change in <m>f</m>. A negative <m>f'(x)</m> gives a negative change in <m>f</m>.</p>
+
+    <p>The Mean Value Theorem will explain why this local information controls the whole interval.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-first-derivative-sign-charts">
+    <title>First derivative sign charts</title>
+
+    <p>A <term>sign chart</term> turns derivative information into graph information.</p>
+
+    <p>Consider</p>
+    <md>f(x)=x^3-3x.</md>
+
+    <p>Then</p>
+    <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
+
+    <p>The derivative is zero at <m>x=-1</m> and <m>x=1</m>. These two numbers split the real line into three intervals: <m>(-\infty,-1)</m>, <m>(-1,1)</m>, and <m>(1,\infty)</m>.</p>
+
+    <p>Now test the sign of <m>f'</m> on each interval.</p>
+
+    <table>
+      <title>Sign chart analysis for <m>f(x)=x^3-3x</m></title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><term>interval</term></cell>
+          <cell><term>sign of <m>f'(x)</m></term></cell>
+          <cell><term>behavior of <m>f</m></term></cell>
+        </row>
+        <row>
+          <cell><m>(-\infty,-1)</m></cell>
+          <cell><m>+</m></cell>
+          <cell>increasing</cell>
+        </row>
+        <row>
+          <cell><m>(-1,1)</m></cell>
+          <cell><m>-</m></cell>
+          <cell>decreasing</cell>
+        </row>
+        <row>
+          <cell><m>(1,\infty)</m></cell>
+          <cell><m>+</m></cell>
+          <cell>increasing</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>So the graph rises, then falls, then rises again.</p>
+
+    <figure xml:id="fig-first-derivative-sign-chart">
+      <caption>The derivative sign chart predicts the rise and fall of the original graph.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.48\textwidth,
+              xmin=-2.5, xmax=2.5,
+              ymin=-4.5, ymax=4.5,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-2,-1,0,1,2},
+              ytick={-4,-2,0,2,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-2.25:2.25, samples=200] {x^3-3*x};
+          \addlegendentry{\(f(x)=x^3-3x\)}
+          \addplot[thick, dashed, domain=-2.25:2.25, samples=200] {3*x^2-3};
+          \addlegendentry{\(f'(x)=3x^2-3\)}
+          \addplot[only marks, mark=*] coordinates {(-1,2) (1,-2)};
+          \node[anchor=south east] at (axis cs:-1,2) {\((-1,2)\)};
+          \node[anchor=north west] at (axis cs:1,-2) {\((1,-2)\)};
+          \end{axis}
+          \end{tikzpicture}
+
+          \vspace{0.5em}
+
+          \begin{tikzpicture}[xscale=1.25, every node/.style={font=\small}]
+            \draw[-&gt;, thick] (-3.0,0) -- (3.0,0);
+            \draw[thick] (-1,0.08) -- (-1,-0.08);
+            \draw[thick] (1,0.08) -- (1,-0.08);
+            \node[below] at (-1,-0.08) {\(-1\)};
+            \node[below] at (1,-0.08) {\(1\)};
+            \node[above] at (-2,0.15) {\(f'\gt 0\)};
+            \node[above] at (0,0.15) {\(f'\lt 0\)};
+            \node[above] at (2,0.15) {\(f'\gt 0\)};
+            \node[below] at (0,-0.55) {increasing \(\quad\) decreasing \(\quad\) increasing};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The method has a simple rhythm.</p>
+
+    <principle xml:id="principle-making-sign-chart">
+      <title>Making a first derivative sign chart</title>
+      <statement>
+        <ol>
+          <li><p>Compute <m>f'(x)</m>.</p></li>
+          <li><p>Find where <m>f'(x)=0</m> or where <m>f'(x)</m> does not exist.</p></li>
+          <li><p>Use those numbers to split the domain into intervals.</p></li>
+          <li><p>Test the sign of <m>f'(x)</m> on each interval.</p></li>
+          <li><p>Translate <m>f'\gt 0</m> into increasing, and <m>f'\lt 0</m> into decreasing.</p></li>
+        </ol>
+      </statement>
+    </principle>
+
+    <p>The derivative does not need to be drawn. The sign chart may contain all the information we need.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-critical-numbers">
+    <title>Critical numbers</title>
+
+    <p>The numbers where the derivative is zero or undefined deserve a name.</p>
+
+    <definition xml:id="def-critical-number">
+      <title>Critical number</title>
+      <statement>
+        <p>Let <m>c</m> be a number in the domain of <m>f</m>. We call <m>c</m> a <term>critical number</term> of <m>f</m> if</p>
+        <md>f'(c)=0</md>
+        <p>or if</p>
+        <md>f'(c)</md>
+        <p>does not exist.</p>
+      </statement>
+    </definition>
+
+    <p>The phrase <q>in the domain of <m>f</m></q> matters. A function can only have a critical number at an input where the function itself is defined.</p>
+
+    <p>For <m>f(x)=x^3-3x</m>, the critical numbers are <m>-1</m> and <m>1</m>.</p>
+
+    <p>For <m>g(x)=|x|</m>, the number <m>0</m> is a critical number because <m>g'(0)</m> does not exist. The graph has a corner there.</p>
+
+    <figure xml:id="fig-absolute-value-critical">
+      <caption>For <m>g(x)=|x|</m>, the derivative is undefined at <m>0</m>. So <m>0</m> is a critical number.</caption>
+      <image width="68%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.68\textwidth,
+              height=0.42\textwidth,
+              xmin=-2.2, xmax=2.2,
+              ymin=-0.2, ymax=2.4,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-2,-1,0,1,2},
+              ytick={0,1,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=-2.1:0, samples=2] {-x};
+          \addplot[thick, domain=0:2.1, samples=2] {x};
+          \addplot[only marks, mark=*] coordinates {(0,0)};
+          \node[anchor=north west] at (axis cs:0.05,0) {corner};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>A critical number is a candidate for an important point on the graph. It is not a promise.</p>
+
+    <p>For example, <m>h(x)=x^3</m> has derivative <m>h'(x)=3x^2</m>. So <m>h'(0)=0</m>. The number <m>0</m> is critical. But <m>h(x)=x^3</m> keeps increasing through <m>0</m>. It does not turn around there.</p>
+
+    <note xml:id="note-critical-numbers-candidates">
+      <title>Key take-away</title>
+      <p>Critical numbers are candidates, not conclusions.</p>
+    </note>
+
+    <p>The next section asks which critical numbers actually give high points or low points.</p>
+  </subsection>
+
+</section>
