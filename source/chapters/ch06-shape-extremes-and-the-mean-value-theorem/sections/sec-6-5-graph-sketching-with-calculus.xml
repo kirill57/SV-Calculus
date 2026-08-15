@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-graph-sketching-calculus">
+  <title>Graph sketching with calculus</title>
+
+  <p>The first derivative tells where a graph rises and falls. The second derivative tells where it bends upward and downward.</p>
+
+  <p>A graph sketch is not a guess. It is a summary of evidence.</p>
+  <md>f' \quad\text{gives direction,}</md>
+  <md>f'' \quad\text{gives bending,}</md>
+  <p>and limits tell what happens near breaks and far away.</p>
+
+  <p>The goal is not to draw a perfect picture. The goal is to draw a picture that tells the truth.</p>
+
+  <subsection xml:id="subsec-sign-charts-first-second">
+    <title>Sign charts for <m>f'</m> and <m>f''</m></title>
+
+    <p>Start with a polynomial:</p>
+    <md>f(x)=x^4-4x^2.</md>
+
+    <p>This graph has no asymptotes or holes, so the derivative information can be seen cleanly.</p>
+
+    <p>First compute</p>
+    <md>f'(x)=4x^3-8x=4x(x^2-2).</md>
+
+    <p>The critical numbers are</p>
+    <md>x=-\sqrt2,\qquad x=0,\qquad x=\sqrt2.</md>
+
+    <p>These numbers split the real line into four intervals. Testing the sign of <m>f'</m>, we get</p>
+
+    <table>
+      <title>First derivative sign chart for <m>f(x)=x^4-4x^2</m></title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>interval</term></cell>
+          <cell><m>(-\infty,-\sqrt2)</m></cell>
+          <cell><m>(-\sqrt2,0)</m></cell>
+          <cell><m>(0,\sqrt2)</m></cell>
+          <cell><m>(\sqrt2,\infty)</m></cell>
+        </row>
+        <row>
+          <cell><m>f'(x)</m></cell>
+          <cell><m>-</m></cell>
+          <cell><m>+</m></cell>
+          <cell><m>-</m></cell>
+          <cell><m>+</m></cell>
+        </row>
+        <row>
+          <cell><m>f</m></cell>
+          <cell>decreasing</cell>
+          <cell>increasing</cell>
+          <cell>decreasing</cell>
+          <cell>increasing</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>So the graph decreases, then increases, then decreases, then increases.</p>
+
+    <p>That already tells us the local extrema: <m>x=-\sqrt2</m> and <m>x=\sqrt2</m> give local minima, while <m>x=0</m> gives a local maximum.</p>
+
+    <p>Now compute the second derivative:</p>
+    <md>f''(x)=12x^2-8=4(3x^2-2).</md>
+
+    <p>The possible inflection points come from</p>
+    <md>f''(x)=0.</md>
+
+    <p>Thus</p>
+    <md>3x^2-2=0,</md>
+    <p>so</p>
+    <md>x=\pm\sqrt{\frac23}.</md>
+
+    <p>The sign chart for <m>f''</m> is</p>
+
+    <table>
+      <title>Second derivative sign chart for <m>f(x)=x^4-4x^2</m></title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>interval</term></cell>
+          <cell><m>\left(-\infty,-\sqrt{\frac23}\right)</m></cell>
+          <cell><m>\left(-\sqrt{\frac23},\sqrt{\frac23}\right)</m></cell>
+          <cell><m>\left(\sqrt{\frac23},\infty\right)</m></cell>
+        </row>
+        <row>
+          <cell><m>f''(x)</m></cell>
+          <cell><m>+</m></cell>
+          <cell><m>-</m></cell>
+          <cell><m>+</m></cell>
+        </row>
+        <row>
+          <cell><m>f</m></cell>
+          <cell>concave up</cell>
+          <cell>concave down</cell>
+          <cell>concave up</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>So the graph bends upward on the outside intervals and downward in the middle.</p>
+
+    <figure xml:id="fig-quartic-sign-chart-sketch">
+      <caption>The first derivative locates turning behavior. The second derivative locates bending behavior.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.50\textwidth,
+              xmin=-2.4, xmax=2.4,
+              ymin=-5, ymax=4,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-2,-1.414,0,1.414,2},
+              xticklabels={\(-2\),\(-\sqrt2\),\(0\),\(\sqrt2\),\(2\)},
+              ytick={-4,-2,0,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=-2.2:2.2, samples=250] {x^4-4*x^2};
+
+          \addplot[only marks, mark=*] coordinates {(-1.414,-4) (0,0) (1.414,-4)};
+          \addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(-0.816,-2.222) (0.816,-2.222)};
+
+          \node[anchor=north] at (axis cs:-1.414,-4) {local min};
+          \node[anchor=south] at (axis cs:0,0) {local max};
+          \node[anchor=north] at (axis cs:1.414,-4) {local min};
+
+          \node[anchor=south east] at (axis cs:-0.816,-2.222) {inflection};
+          \node[anchor=south west] at (axis cs:0.816,-2.222) {inflection};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The exact function values at the turning points are</p>
+    <md>f(-\sqrt2)=(-\sqrt2)^4-4(-\sqrt2)^2=4-8=-4,</md>
+    <md>f(0)=0,</md>
+    <p>and</p>
+    <md>f(\sqrt2)=(\sqrt2)^4-4(\sqrt2)^2=4-8=-4.</md>
+
+    <p>The exact inflection points are</p>
+    <md>\left(-\sqrt{\frac23},-\frac{20}{9}\right) \qquad\text{and}\qquad \left(\sqrt{\frac23},-\frac{20}{9}\right),</md>
+    <p>because</p>
+    <md>f\left(\pm\sqrt{\frac23}\right) = \left(\frac23\right)^2-4\left(\frac23\right) = \frac49-\frac83 = -\frac{20}{9}.</md>
+
+    <p>The picture is now almost forced. The graph must fall to a low point, rise to a high point, fall to another low point, and rise again. It must bend upward, then downward, then upward.</p>
+
+    <note xml:id="note-sketch-sign-charts">
+      <title>Key take-away</title>
+      <p>The sketch follows the sign charts.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-asymptotes-end-behavior">
+    <title>Asymptotes and end behavior</title>
+
+    <p>Polynomials do not have vertical asymptotes. Rational functions often do.</p>
+
+    <p>Derivative information describes shape where the function exists. Limits describe what happens near missing points and far away.</p>
+
+    <definition xml:id="def-vertical-asymptote-sketching">
+      <title>Vertical asymptote</title>
+      <statement>
+        <p>A line</p>
+        <md>x=a</md>
+        <p>is a <term>vertical asymptote</term> of the graph of <m>f</m> if at least one of the one-sided limits</p>
+        <md>\lim_{x\to a^-} f(x), \qquad \lim_{x\to a^+} f(x)</md>
+        <p>is <m>+\infty</m> or <m>-\infty</m>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-vertical-asymptote-sketching">
+      <title>A vertical asymptote</title>
+      <statement>
+        <p>For</p>
+        <md>f(x)=\frac1{x-2},</md>
+        <p>the denominator approaches <m>0</m> as <m>x\to 2</m>. From the right,</p>
+        <md>x-2\gt 0,</md>
+        <p>so</p>
+        <md>f(x)\to+\infty.</md>
+        <p>From the left,</p>
+        <md>x-2\lt 0,</md>
+        <p>so</p>
+        <md>f(x)\to-\infty.</md>
+        <p>Therefore <m>x=2</m> is a vertical asymptote.</p>
+      </statement>
+    </example>
+
+    <definition xml:id="def-horizontal-asymptote-sketching">
+      <title>Horizontal asymptote</title>
+      <statement>
+        <p>A line</p>
+        <md>y=L</md>
+        <p>is a <term>horizontal asymptote</term> as <m>x\to\infty</m> if</p>
+        <md>\lim_{x\to\infty} f(x)=L.</md>
+        <p>It is a horizontal asymptote as <m>x\to-\infty</m> if</p>
+        <md>\lim_{x\to-\infty} f(x)=L.</md>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-horizontal-asymptote-sketching">
+      <title>A horizontal asymptote</title>
+      <statement>
+        <p>For</p>
+        <md>g(x)=\frac{2x^2+1}{x^2+1},</md>
+        <p>divide numerator and denominator by <m>x^2</m>:</p>
+        <md>g(x)=\frac{2+\frac1{x^2}}{1+\frac1{x^2}}.</md>
+        <p>As <m>x\to\pm\infty</m>,</p>
+        <md>\frac1{x^2}\to 0.</md>
+        <p>So</p>
+        <md>\lim_{x\to\pm\infty}g(x)=\frac{2+0}{1+0}=2.</md>
+        <p>Therefore <m>y=2</m> is a horizontal asymptote.</p>
+      </statement>
+    </example>
+
+    <p>Some graphs approach a slanted line instead of a horizontal line.</p>
+
+    <definition xml:id="def-slant-asymptote-sketching">
+      <title>Slant asymptote</title>
+      <statement>
+        <p>A line</p>
+        <md>y=mx+b</md>
+        <p>is a <term>slant asymptote</term> as <m>x\to\infty</m> if</p>
+        <md>\lim_{x\to\infty}\bigl(f(x)-(mx+b)\bigr)=0.</md>
+        <p>The same definition applies as <m>x\to-\infty</m>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-slant-asymptote">
+      <title>A slant asymptote</title>
+      <statement>
+        <p>Let</p>
+        <md>h(x)=\frac{x^3}{x^2-1}.</md>
+        <p>Divide:</p>
+        <md>\frac{x^3}{x^2-1} = x+\frac{x}{x^2-1}.</md>
+        <p>Since</p>
+        <md>\frac{x}{x^2-1}\to 0</md>
+        <p>as <m>x\to\pm\infty</m>, the graph approaches <m>y=x</m>. So <m>y=x</m> is a slant asymptote.</p>
+      </statement>
+    </example>
+
+    <p>End behavior asks what happens as <m>x</m> becomes very large positive or very large negative. For this function, the end behavior is:</p>
+    <md>h(x)\sim x \quad\text{as}\quad x\to\pm\infty.</md>
+
+    <p>The symbol <m>\sim</m> here means that the two expressions have the same leading behavior. The difference between them approaches <m>0</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-complete-curve-sketching-workflow">
+    <title>A complete curve-sketching workflow</title>
+
+    <p>A calculus sketch should gather evidence in an organized way.</p>
+
+    <principle xml:id="principle-curve-sketching-workflow">
+      <title>Curve-sketching workflow</title>
+      <statement>
+        <ol>
+          <li><p>Find the domain.</p></li>
+          <li><p>Look for symmetry and intercepts.</p></li>
+          <li><p>Find asymptotes and end behavior with limits.</p></li>
+          <li><p>Compute <m>f'(x)</m> and make a sign chart.</p></li>
+          <li><p>Use <m>f'</m> to find increasing/decreasing intervals and local extrema.</p></li>
+          <li><p>Compute <m>f''(x)</m> and make a sign chart.</p></li>
+          <li><p>Use <m>f''</m> to find concavity and inflection points.</p></li>
+          <li><p>Plot reliable points and sketch a graph that obeys all the evidence.</p></li>
+        </ol>
+      </statement>
+    </principle>
+
+    <p>The workflow is not a rigid machine. Sometimes symmetry saves work. Sometimes a limit matters more than a derivative. Sometimes a derivative is too complicated to factor nicely. But the questions are steady.</p>
+
+    <example xml:id="ex-complete-sketch-rational">
+      <title>Complete curve sketch of a rational function</title>
+      <statement>
+        <p>Sketch</p>
+        <md>f(x)=\frac{x^3}{x^2-1}.</md>
+
+        <paragraphs xml:id="para-step-1-domain">
+          <title>1. Domain</title>
+          <p>The denominator is zero when <m>x^2-1=0</m>, so <m>x=\pm 1</m>. Thus the domain is</p>
+          <md>(-\infty,-1)\cup(-1,1)\cup(1,\infty).</md>
+          <p>The graph may break at <m>x=-1</m> and <m>x=1</m>.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-step-2-symmetry-intercepts">
+          <title>2. Symmetry and intercepts</title>
+          <p>Check symmetry:</p>
+          <md>f(-x)=\frac{(-x)^3}{(-x)^2-1} = -\frac{x^3}{x^2-1} = -f(x).</md>
+          <p>So <m>f</m> is odd. The graph has origin symmetry.</p>
+          <p>The numerator is zero when <m>x^3=0</m>, so <m>x=0</m>. Therefore the graph has intercept <m>(0,0)</m>.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-step-3-asymptotes-end-behavior">
+          <title>3. Asymptotes and end behavior</title>
+          <p>The possible vertical asymptotes are <m>x=-1</m> and <m>x=1</m>.</p>
+          <p>Near <m>x=1</m>, the numerator is positive and close to <m>1</m>. The denominator <m>x^2-1=(x-1)(x+1)</m> changes sign. Thus</p>
+          <md>\lim_{x\to 1^-}\frac{x^3}{x^2-1}=-\infty,</md>
+          <p>and</p>
+          <md>\lim_{x\to 1^+}\frac{x^3}{x^2-1}=+\infty.</md>
+          <p>Near <m>x=-1</m>, the numerator is negative and close to <m>-1</m>. The denominator again changes sign. Therefore</p>
+          <md>\lim_{x\to -1^-}\frac{x^3}{x^2-1}=-\infty,</md>
+          <p>and</p>
+          <md>\lim_{x\to -1^+}\frac{x^3}{x^2-1}=+\infty.</md>
+          <p>So <m>x=-1</m> and <m>x=1</m> are vertical asymptotes.</p>
+          <p>For end behavior, divide:</p>
+          <md>\frac{x^3}{x^2-1} = x+\frac{x}{x^2-1}.</md>
+          <p>Since</p>
+          <md>\frac{x}{x^2-1}\to 0</md>
+          <p>as <m>x\to\pm\infty</m>, the graph has slant asymptote <m>y=x</m>.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-step-4-first-derivative">
+          <title>4. First derivative</title>
+          <p>Differentiate:</p>
+          <md>f'(x) = \frac{(x^2-1)(3x^2)-x^3(2x)}{(x^2-1)^2}.</md>
+          <p>Simplify:</p>
+          <md>f'(x) = \frac{3x^4-3x^2-2x^4}{(x^2-1)^2} = \frac{x^4-3x^2}{(x^2-1)^2}.</md>
+          <p>So</p>
+          <md>f'(x)=\frac{x^2(x^2-3)}{(x^2-1)^2}.</md>
+          <p>The denominator is positive wherever the function is defined. The factor <m>x^2</m> is nonnegative and is zero only at <m>x=0</m>. So the sign of <m>f'</m>, away from <m>x=0</m>, comes from</p>
+          <md>x^2-3.</md>
+          <p>The critical numbers in the domain are</p>
+          <md>x=-\sqrt3,\qquad x=0,\qquad x=\sqrt3.</md>
+          <p>The domain breaks at <m>x=-1</m> and <m>x=1</m>.</p>
+          <p>The sign chart is</p>
+          <table>
+            <title>First derivative sign chart for <m>f(x)=\frac{x^3}{x^2-1}</m></title>
+            <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <row header="yes">
+                <cell><term>interval</term></cell>
+                <cell><m>(-\infty,-\sqrt3)</m></cell>
+                <cell><m>(-\sqrt3,-1)</m></cell>
+                <cell><m>(-1,0)</m></cell>
+                <cell><m>(0,1)</m></cell>
+                <cell><m>(1,\sqrt3)</m></cell>
+                <cell><m>(\sqrt3,\infty)</m></cell>
+              </row>
+              <row>
+                <cell><m>f'(x)</m></cell>
+                <cell><m>+</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>+</m></cell>
+              </row>
+              <row>
+                <cell><m>f</m></cell>
+                <cell>inc.</cell>
+                <cell>dec.</cell>
+                <cell>dec.</cell>
+                <cell>dec.</cell>
+                <cell>dec.</cell>
+                <cell>inc.</cell>
+              </row>
+            </tabular>
+          </table>
+          <p>Therefore <m>f</m> has a local maximum at <m>x=-\sqrt3</m> and a local minimum at <m>x=\sqrt3</m>. The values are</p>
+          <md>f(-\sqrt3) = \frac{(-\sqrt3)^3}{(-\sqrt3)^2-1} = \frac{-3\sqrt3}{2},</md>
+          <p>and</p>
+          <md>f(\sqrt3) = \frac{(\sqrt3)^3}{(\sqrt3)^2-1} = \frac{3\sqrt3}{2}.</md>
+          <p>At <m>x=0</m>, we have <m>f'(0)=0</m>, but the sign of <m>f'</m> is negative on both sides of <m>0</m> inside the domain. So there is no local extremum at <m>0</m>.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-step-5-second-derivative">
+          <title>5. Second derivative</title>
+          <p>Differentiate again. After simplification,</p>
+          <md>f''(x)=\frac{2x(x^2+3)}{(x^2-1)^3}.</md>
+          <p>Since <m>x^2+3\gt 0</m> for every <m>x</m>, the sign of <m>f''</m> comes from</p>
+          <md>\frac{x}{(x^2-1)^3}.</md>
+          <p>The concavity chart is</p>
+          <table>
+            <title>Second derivative sign chart for <m>f(x)=\frac{x^3}{x^2-1}</m></title>
+            <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <col halign="center"/>
+              <row header="yes">
+                <cell><term>interval</term></cell>
+                <cell><m>(-\infty,-1)</m></cell>
+                <cell><m>(-1,0)</m></cell>
+                <cell><m>(0,1)</m></cell>
+                <cell><m>(1,\infty)</m></cell>
+              </row>
+              <row>
+                <cell><m>f''(x)</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>+</m></cell>
+                <cell><m>-</m></cell>
+                <cell><m>+</m></cell>
+              </row>
+              <row>
+                <cell><m>f</m></cell>
+                <cell>concave down</cell>
+                <cell>concave up</cell>
+                <cell>concave down</cell>
+                <cell>concave up</cell>
+              </row>
+            </tabular>
+          </table>
+          <p>The concavity changes at <m>x=0</m>, and <m>f</m> is continuous there. Therefore <m>(0,0)</m> is an inflection point. It is also a horizontal inflection point, because <m>f'(0)=0</m>.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-step-6-sketch">
+          <title>6. Sketch</title>
+          <p>The graph must obey all the evidence:</p>
+          <p>vertical asymptotes at <m>x=-1</m> and <m>x=1</m>,</p>
+          <p>slant asymptote <m>y=x</m>,</p>
+          <p>origin symmetry,</p>
+          <p>local maximum at <m>\left(-\sqrt3,-\dfrac{3\sqrt3}{2}\right)</m>,</p>
+          <p>local minimum at <m>\left(\sqrt3,\dfrac{3\sqrt3}{2}\right)</m>,</p>
+          <p>horizontal inflection point at <m>(0,0)</m>.</p>
+        </paragraphs>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-rational-complete-sketch">
+      <caption>A calculus sketch combines asymptotes, first derivative signs, and second derivative signs.</caption>
+      <image width="86%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.86\textwidth,
+              height=0.56\textwidth,
+              xmin=-4, xmax=4,
+              ymin=-8, ymax=8,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-3,-1,0,1,3},
+              ytick={-6,-3,0,3,6},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              clip=true,
+          ]
+          % function branches
+          \addplot[thick, domain=-4:-1.04, samples=200] {x^3/(x^2-1)};
+          \addplot[thick, domain=-0.96:0.96, samples=200] {x^3/(x^2-1)};
+          \addplot[thick, domain=1.04:4, samples=200] {x^3/(x^2-1)};
+
+          % asymptotes
+          \addplot[dashed, domain=-4:4, samples=2] {x};
+          \draw[dashed] (axis cs:-1,-8) -- (axis cs:-1,8);
+          \draw[dashed] (axis cs:1,-8) -- (axis cs:1,8);
+
+          % important points
+          \addplot[only marks, mark=*] coordinates {(-1.732,-2.598) (0,0) (1.732,2.598)};
+          \node[anchor=south east] at (axis cs:-1.732,-2.598) {local max};
+          \node[anchor=north west] at (axis cs:1.732,2.598) {local min};
+          \node[anchor=south east] at (axis cs:0,0) {inflection};
+          \node[anchor=west] at (axis cs:2.4,2.1) {\(y=x\)};
+          \node[anchor=west] at (axis cs:1.08,6.5) {\(x=1\)};
+          \node[anchor=east] at (axis cs:-1.08,6.5) {\(x=-1\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The sketch is not only a picture of the formula. It is a picture of the evidence.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-technology-helps-misleads-graphing">
+    <title>When technology helps and when it misleads</title>
+
+    <p>A graphing calculator or computer can help check a sketch, but it should not replace the analysis.</p>
+
+    <p>Technology draws what it samples. It can miss a hole, hide an asymptote, or make a bad viewing window look convincing.</p>
+
+    <paragraphs xml:id="para-hidden-hole-warning">
+      <title>A hidden hole</title>
+      <p>Consider</p>
+      <md>p(x)=\frac{x^2-1}{x-1}.</md>
+      <p>For <m>x\neq 1</m>,</p>
+      <md>p(x)=x+1.</md>
+      <p>A graphing device may draw the line <m>y=x+1</m> without showing the missing point at <m>(1,2)</m>. But the original function is not defined at <m>x=1</m>. The correct graph is a line with a hole.</p>
+      <note xml:id="note-algebra-reveals-holes">
+        <p>Algebra and domain information can reveal what a plotted graph hides.</p>
+      </note>
+    </paragraphs>
+
+    <paragraphs xml:id="para-misleading-window-warning">
+      <title>A misleading window</title>
+      <p>The function</p>
+      <md>f(x)=\frac{x^3}{x^2-1}</md>
+      <p>has vertical asymptotes at <m>x=-1</m> and <m>x=1</m>. But if we only graph it on the window</p>
+      <md>-0.8\le x\le 0.8,</md>
+      <p>we see only the middle branch. The graph may look like a small decreasing curve with a flat point at the origin. That window hides the asymptotes and the outer branches.</p>
+    </paragraphs>
+
+    <p>A graphing device answers the question we ask it. Calculus helps us ask better questions:</p>
+    <p>Where is the domain broken?</p>
+    <p>What happens near the broken points?</p>
+    <p>What happens as <m>x\to\pm\infty</m>?</p>
+    <p>What do <m>f'</m> and <m>f''</m> say?</p>
+
+    <p>A good sketch uses both tools: computation for speed, and calculus for judgment.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-graph-sketching-hook-lhospital">
+    <title>Where this points</title>
+
+    <p>Graph sketching often leads back to limits. A vertical asymptote is a limit. A horizontal or slant asymptote is a limit. End behavior is a limit.</p>
+
+    <p>Some limits are easy. Others have a strange form. For example,</p>
+    <md>\lim_{x\to 1}\frac{\ln x}{x-1}</md>
+    <p>has numerator and denominator both approaching <m>0</m>. The quotient could approach a number, blow up, or fail to settle.</p>
+
+    <p>The next section gives a derivative-based tool for such limits. Once again, local linear approximation will explain the rule.</p>
+  </subsection>
+
+</section>
