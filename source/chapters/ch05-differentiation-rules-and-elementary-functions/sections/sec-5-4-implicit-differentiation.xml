@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-implicit-differentiation">
+  <title>Implicit differentiation</title>
+
+  <p>Many curves are not naturally written as</p>
+  <md>y=f(x).</md>
+
+  <p>A circle is easier to describe by</p>
+  <md>x^2+y^2=25</md>
+  <p>than by two separate formulas</p>
+  <md>y=\sqrt{25-x^2} \qquad\text{and}\qquad y=-\sqrt{25-x^2}.</md>
+
+  <p>The equation relates <m>x</m> and <m>y</m> without solving for <m>y</m>. Such an equation defines a curve <term>implicitly</term>.</p>
+
+  <p>The chain rule lets us find slopes on these curves directly.</p>
+
+  <subsection xml:id="subsec-curves-not-solved-for-y">
+    <title>Curves not solved for <m>y</m></title>
+
+    <p>The equation</p>
+    <md>x^2+y^2=25</md>
+    <p>does not describe one function <m>y=f(x)</m> on the whole circle. Most vertical lines through the circle meet it twice: once on the upper half and once on the lower half.</p>
+
+    <p>But near the point</p>
+    <md>(3,4),</md>
+    <p>the upper half of the circle can be treated as a function of <m>x</m>. As <m>x</m> changes a little, <m>y</m> changes in a definite way to keep the point on the circle.</p>
+
+    <p>We want the slope</p>
+    <md>\frac{dy}{dx}</md>
+    <p>at <m>(3,4)</m>.</p>
+
+    <p>Solving for <m>y</m> is possible here: <m>y=\sqrt{25-x^2}</m> on the upper half. But differentiating the original equation is cleaner and teaches a method that works even when solving for <m>y</m> is unpleasant.</p>
+
+    <p>Start with</p>
+    <md>x^2+y^2=25.</md>
+
+    <p>Think of <m>y</m> as a function of <m>x</m>, even though we have not written its formula. Differentiate both sides with respect to <m>x</m>.</p>
+
+    <p>The derivative of <m>x^2</m> is <m>2x</m>. The derivative of <m>y^2</m> is not simply <m>2y</m>. Since <m>y</m> depends on <m>x</m>, the chain rule gives</p>
+    <md>\frac{d}{dx}(y^2)=2y\frac{dy}{dx}.</md>
+
+    <p>The derivative of <m>25</m> is <m>0</m>. Therefore</p>
+    <md>2x+2y\frac{dy}{dx}=0.</md>
+
+    <p>Solve for <m>dy/dx</m>:</p>
+    <md>2y\frac{dy}{dx}=-2x,</md>
+    <p>so</p>
+    <md>\frac{dy}{dx}=-\frac{x}{y}.</md>
+
+    <p>At <m>(3,4)</m>,</p>
+    <md>\frac{dy}{dx} = -\frac{3}{4}.</md>
+    <p>So the tangent line has slope <m>-3/4</m>.</p>
+
+    <figure xml:id="fig-circle-implicit-tangent">
+      <caption>Implicit differentiation gives the tangent slope without solving the circle into upper and lower functions.</caption>
+      <image width="62%">
+        <latex-image>
+          \begin{tikzpicture}[scale=0.62, every node/.style={font=\small}]
+            % axes
+            \draw[-&gt;] (-6,0) -- (6,0) node[right] {\(x\)};
+            \draw[-&gt;] (0,-6) -- (0,6) node[above] {\(y\)};
+
+            % circle
+            \draw[thick] (0,0) circle (5);
+
+            % point (3,4)
+            \fill (3,4) circle (2.5pt);
+            \node[above right] at (2.9,3.9) {\((3,4)\)};
+
+            % radius
+            \draw[thick] (0,0) -- (3,4);
+            \node[left] at (1.5,2.25) {radius};
+
+            % tangent line slope -3/4, direction (4,-3)
+            \draw[very thick] (-1,7) -- (7,1);
+            \node[right] at (6.3,1.45) {tangent};
+
+            % slope note
+            \node at (0,-5.7) {\(x^2+y^2=25\)};
+            \node at (4.0,5.0) {slope \(=-3/4\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The tangent line at <m>(3,4)</m> is</p>
+    <md>y-4=-\frac{3}{4}(x-3).</md>
+    <p>Equivalently,</p>
+    <md>3x+4y=25.</md>
+
+    <p>This matches the geometry: the radius from <m>(0,0)</m> to <m>(3,4)</m> has slope <m>4/3</m>, and the tangent has the negative reciprocal slope <m>-3/4</m>. The radius and tangent are perpendicular.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-differentiating-both-sides-implicit">
+    <title>Differentiating both sides</title>
+
+    <p>The circle example used the main rule of implicit differentiation.</p>
+
+    <theorem xml:id="thm-implicit-differentiation-rule">
+      <title>Implicit differentiation</title>
+      <statement>
+        <p>When an equation relates <m>x</m> and <m>y</m>, and <m>y</m> is treated as a differentiable function of <m>x</m>, differentiate both sides with respect to <m>x</m>. Every time a derivative falls on <m>y</m>, use the chain rule.</p>
+        <p>For example,</p>
+        <md>\frac{d}{dx}(y^n) = ny^{n-1}\frac{dy}{dx}.</md>
+      </statement>
+    </theorem>
+
+    <p>The notation is often shortened by writing <m>y'=\frac{dy}{dx}</m>. Then</p>
+    <md>\frac{d}{dx}(y^2)=2yy',</md>
+    <p>and</p>
+    <md>\frac{d}{dx}(y^5)=5y^4y'.</md>
+
+    <example xml:id="ex-implicit-diff-1">
+      <title>Differentiating a cubic-linear relation</title>
+      <statement>
+        <p>Find <m>dy/dx</m> if</p>
+        <md>y^3+xy=10.</md>
+        <p>Differentiate both sides with respect to <m>x</m>.</p>
+        <p>The derivative of <m>y^3</m> is <m>3y^2y'</m>. The derivative of <m>xy</m> uses the product rule:</p>
+        <md>\frac{d}{dx}(xy)=x y'+y.</md>
+        <p>The derivative of <m>10</m> is <m>0</m>. Therefore</p>
+        <md>3y^2y'+xy'+y=0.</md>
+        <p>Collect the terms containing <m>y'</m>:</p>
+        <md>(3y^2+x)y'+y=0.</md>
+        <p>So</p>
+        <md>(3y^2+x)y'=-y,</md>
+        <p>and</p>
+        <md>\frac{dy}{dx} = -\frac{y}{3y^2+x}.</md>
+
+        <p>At the point <m>(1,2)</m>, the equation is satisfied because</p>
+        <md>2^3+1\cdot 2=8+2=10.</md>
+        <p>The slope there is</p>
+        <md>\frac{dy}{dx}\bigg|_{(1,2)} = -\frac{2}{3(2)^2+1} = -\frac{2}{13}.</md>
+        <p>So the tangent line at <m>(1,2)</m> is</p>
+        <md>y-2=-\frac{2}{13}(x-1).</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-implicit-diff-ellipse">
+      <title>Finding slopes on an implicit conic</title>
+      <statement>
+        <p>Find <m>dy/dx</m> for</p>
+        <md>x^2+xy+y^2=7.</md>
+        <p>Differentiate both sides:</p>
+        <md>\frac{d}{dx}(x^2) + \frac{d}{dx}(xy) + \frac{d}{dx}(y^2) = \frac{d}{dx}(7).</md>
+        <p>This gives</p>
+        <md>2x+(xy'+y)+2yy'=0.</md>
+        <p>Collect <m>y'</m>-terms:</p>
+        <md>xy'+2yy'+2x+y=0.</md>
+        <p>So</p>
+        <md>(x+2y)y'=-(2x+y).</md>
+        <p>Therefore</p>
+        <md>\frac{dy}{dx} = -\frac{2x+y}{x+2y}.</md>
+
+        <p>At <m>(1,2)</m>, the equation is satisfied:</p>
+        <md>1^2+1\cdot 2+2^2=1+2+4=7.</md>
+        <p>The slope is</p>
+        <md>\frac{dy}{dx}\bigg|_{(1,2)} = -\frac{2(1)+2}{1+2(2)} = -\frac{4}{5}.</md>
+        <p>The tangent line is</p>
+        <md>y-2=-\frac{4}{5}(x-1).</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-hidden-chain-rule-implicit">
+    <title>The chain rule is doing the hidden work</title>
+
+    <p>Implicit differentiation can feel like a new trick, but it is only the chain rule applied carefully.</p>
+
+    <p>Suppose</p>
+    <md>y=y(x).</md>
+    <p>Then <m>y^3</m> is really the composite function <m>(y(x))^3</m>. By the chain rule,</p>
+    <md>\frac{d}{dx}(y(x))^3 = 3(y(x))^2y'(x).</md>
+
+    <p>In shortened notation,</p>
+    <md>\frac{d}{dx}(y^3)=3y^2y'.</md>
+
+    <p>The same pattern gives</p>
+    <md>\frac{d}{dx}(5y^4)=20y^3y',</md>
+    <p>and</p>
+    <md>\frac{d}{dx}(x^2y^3) = 2xy^3+x^2(3y^2y').</md>
+    <p>The first term comes from differentiating <m>x^2</m>. The second term comes from differentiating <m>y^3</m>, which requires the chain rule.</p>
+
+    <example xml:id="ex-implicit-mixed-product">
+      <title>Product and chain rules combined implicitly</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>x^2y^3+y=4x.</md>
+        <p>The derivative of <m>x^2y^3</m> uses the product rule:</p>
+        <md>\frac{d}{dx}(x^2y^3) = 2xy^3+x^2(3y^2y').</md>
+        <p>The derivative of <m>y</m> is <m>y'</m>. The derivative of <m>4x</m> is <m>4</m>. Therefore</p>
+        <md>2xy^3+3x^2y^2y'+y'=4.</md>
+        <p>Collect <m>y'</m>-terms:</p>
+        <md>(3x^2y^2+1)y'=4-2xy^3.</md>
+        <p>So</p>
+        <md>\frac{dy}{dx} = \frac{4-2xy^3}{3x^2y^2+1}.</md>
+      </statement>
+    </example>
+
+    <p>Every occurrence of <m>y</m> is a reminder that <m>y</m> depends on <m>x</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-implicit-method-warnings">
+    <title>When the method warns us</title>
+
+    <p>Implicit differentiation assumes that near the point we care about, the curve can be treated as one differentiable function <m>y(x)</m>. The equation itself does not always guarantee that.</p>
+
+    <paragraphs xml:id="paragraphs-vertical-tangent-implicit">
+      <title>A vertical tangent</title>
+      <p>Consider the circle <m>x^2+y^2=25</m> at the point <m>(5,0)</m>. Differentiating gives</p>
+      <md>2x+2yy'=0.</md>
+      <p>At <m>(5,0)</m>, this becomes</p>
+      <md>10+0\cdot y'=0.</md>
+      <p>No finite value of <m>y'</m> can satisfy this equation. That does not mean the circle has no tangent. It means the tangent is vertical, so its slope <m>dy/dx</m> is not a finite number.</p>
+      <p>The point <m>(5,0)</m> is also where the upper and lower branches meet at the right edge. Near that point, the circle cannot be written as a differentiable function <m>y(x)</m> with a finite derivative.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="paragraphs-two-branches-implicit">
+      <title>A relation with two branches</title>
+      <p>The equation</p>
+      <md>y^2=x^2</md>
+      <p>describes two lines: <m>y=x</m> and <m>y=-x</m>. At <m>(0,0)</m>, both branches meet. If we choose the branch <m>y=x</m>, the slope is <m>1</m>. If we choose the branch <m>y=-x</m>, the slope is <m>-1</m>.</p>
+      <p>Implicit differentiation gives</p>
+      <md>2yy'=2x,</md>
+      <p>or</p>
+      <md>yy'=x.</md>
+      <p>At <m>(0,0)</m>, this becomes</p>
+      <md>0=0,</md>
+      <p>which does not determine <m>y'</m>. The reason is geometric: the equation has not selected one branch.</p>
+    </paragraphs>
+
+    <warning xml:id="warning-implicit-branches">
+      <title>Implicit differentiation warning</title>
+      <p>When the equation does not define one smooth branch <m>y(x)</m> near the point, the algebra may produce no slope, many possible slopes, or an equation that does not determine <m>dy/dx</m>.</p>
+    </warning>
+
+    <p>These warnings are useful. They do not break the method. They tell us what the geometry is doing.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-higher-derivatives-implicit">
+    <title>Higher derivatives implicitly</title>
+
+    <p>Implicit differentiation can be repeated. The main rule is the same: every time we differentiate an expression involving <m>y</m>, remember that <m>y</m> depends on <m>x</m>.</p>
+
+    <p>Return to the circle</p>
+    <md>x^2+y^2=25.</md>
+    <p>We found</p>
+    <md>y'=-\frac{x}{y}.</md>
+
+    <p>To find the second derivative, differentiate again:</p>
+    <md>y''=\frac{d}{dx}\left(-\frac{x}{y}\right).</md>
+
+    <p>Use the quotient rule on <m>-\frac{x}{y}</m>. First,</p>
+    <md>\frac{d}{dx}\left(\frac{x}{y}\right) = \frac{y\cdot 1-x y'}{y^2} = \frac{y-xy'}{y^2}.</md>
+    <p>Therefore</p>
+    <md>y'' = -\frac{y-xy'}{y^2}.</md>
+
+    <p>Now substitute <m>y'=-\frac{x}{y}</m>. Then</p>
+    <md>y-xy' = y-x\left(-\frac{x}{y}\right) = y+\frac{x^2}{y}.</md>
+    <p>So</p>
+    <md>y'' = -\frac{y+\frac{x^2}{y}}{y^2}.</md>
+
+    <p>Combine the numerator:</p>
+    <md>y+\frac{x^2}{y} = \frac{y^2+x^2}{y}.</md>
+    <p>Thus</p>
+    <md>y'' = -\frac{x^2+y^2}{y^3}.</md>
+
+    <p>On the circle, <m>x^2+y^2=25</m>, so</p>
+    <md>y''=-\frac{25}{y^3}.</md>
+
+    <p>At <m>(3,4)</m>,</p>
+    <md>y''=-\frac{25}{4^3}=-\frac{25}{64}.</md>
+    <p>The negative sign says that the upper half of the circle is concave down at <m>(3,4)</m>.</p>
+
+    <example xml:id="ex-second-derivative-implicit">
+      <title>Finding <m>y''</m> implicitly</title>
+      <statement>
+        <p>Find <m>y''</m> for</p>
+        <md>y^3+xy=10.</md>
+        <p>First derivative:</p>
+        <md>3y^2y'+xy'+y=0.</md>
+        <p>Differentiate again. For <m>3y^2y'</m>, use the product rule:</p>
+        <md>\frac{d}{dx}(3y^2y') = 3\left(2yy'\cdot y' + y^2y''\right) = 6y(y')^2+3y^2y''.</md>
+        <p>For <m>xy'</m>, use the product rule:</p>
+        <md>\frac{d}{dx}(xy')=xy''+y'.</md>
+        <p>For <m>y</m>, the derivative is <m>y'</m>. Therefore</p>
+        <md>6y(y')^2+3y^2y''+xy''+y'+y'=0.</md>
+        <p>Collect <m>y''</m>-terms:</p>
+        <md>(3y^2+x)y''+6y(y')^2+2y'=0.</md>
+        <p>So</p>
+        <md>y'' = -\frac{6y(y')^2+2y'}{3y^2+x}.</md>
+
+        <p>This formula still contains <m>y'</m>. That is acceptable, but if we want <m>y''</m> in terms of <m>x</m> and <m>y</m> alone, we substitute</p>
+        <md>y'=-\frac{y}{3y^2+x}.</md>
+
+        <p>At <m>(1,2)</m>, we already found <m>y'=-\frac{2}{13}</m>. Therefore</p>
+        <md>y'' = -\frac{6(2)\left(-\frac{2}{13}\right)^2+2\left(-\frac{2}{13}\right)}{3(2)^2+1}.</md>
+        <p>Compute the numerator:</p>
+        <md>6(2)\left(\frac{4}{169}\right)-\frac{4}{13} = \frac{48}{169}-\frac{52}{169} = -\frac{4}{169}.</md>
+        <p>So</p>
+        <md>y'' = -\frac{-4/169}{13} = \frac{4}{2197}.</md>
+        <p>Thus at <m>(1,2)</m>,</p>
+        <md>y''=\frac{4}{2197}.</md>
+        <p>The second derivative is positive but very small. Near that point, the curve bends upward slightly.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-implicit-differentiation-gives">
+    <title>What implicit differentiation gives us</title>
+
+    <p>Implicit differentiation turns an equation into slope information.</p>
+
+    <p>For <m>x^2+y^2=25</m>, it gives</p>
+    <md>y'=-\frac{x}{y}.</md>
+
+    <p>For <m>y^3+xy=10</m>, it gives</p>
+    <md>y'=-\frac{y}{3y^2+x}.</md>
+
+    <p>For <m>x^2+xy+y^2=7</m>, it gives</p>
+    <md>y'=-\frac{2x+y}{x+2y}.</md>
+
+    <p>In each case, the slope may depend on both coordinates. That is natural: a point on a curve has both an <m>x</m>-coordinate and a <m>y</m>-coordinate, and the tangent direction depends on where the point lies.</p>
+
+    <principle xml:id="principle-implicit-differentiation-main">
+      <statement>
+        <p>Implicit differentiation avoids solving for <m>y</m>. It uses the chain rule to differentiate the relation directly, then solves for <m>dy/dx</m>.</p>
+      </statement>
+    </principle>
+
+    <p>The chain rule and implicit differentiation now let us handle complicated algebraic layers and many curves. But some of the most important functions in calculus are not algebraic. The next step is periodic motion: sine, cosine, and the derivatives that make waves and rotation calculable.</p>
+  </subsection>
+
+</section>
