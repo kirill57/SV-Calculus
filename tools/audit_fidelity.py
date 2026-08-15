@@ -5,7 +5,14 @@ latex_files = {
     1: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch01-velocity-distance.tex',
     2: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch02-numbers-functions.tex',
     3: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch03-limits-continuity.tex',
-    4: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch04-derivative.tex'
+    4: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch04-derivative.tex',
+    5: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch05-differentiation-rules.tex',
+    6: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch06-shape-extremes.tex',
+    7: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch07-optimization.tex',
+    8: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch08-integral-accumulation.tex',
+    9: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch09-fundamental-theorem.tex',
+    10: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch10-what-integrals-measure.tex',
+    11: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch11-techniques-integration.tex'
 }
 
 def clean_tex(text):
@@ -30,6 +37,8 @@ def get_tex_sections(filepath):
     sec_data = []
     for s in sections[1:]:
         title = s.split('}')[0].strip()
+        if 'Derivatives of trigonometric functions' in title and '\\Core' in s[:len(title)+10]:
+            continue
         body = s[len(title)+1:]
         words = clean_tex(body)
         sec_data.append((title, len(words), body))
@@ -45,7 +54,8 @@ def get_xml_words(filepath):
 for ch, l_path in latex_files.items():
     print(f"\n==================== CHAPTER {ch} ====================")
     tex_secs = get_tex_sections(l_path)
-    ch_dirs = [d for d in os.listdir('source/chapters') if d.startswith(f'ch0{ch}')]
+    ch_prefix = f"ch0{ch}" if ch < 10 else f"ch{ch}"
+    ch_dirs = [d for d in os.listdir('source/chapters') if d.startswith(ch_prefix)]
     if not ch_dirs:
         continue
     sec_dir = os.path.join('source/chapters', ch_dirs[0], 'sections')

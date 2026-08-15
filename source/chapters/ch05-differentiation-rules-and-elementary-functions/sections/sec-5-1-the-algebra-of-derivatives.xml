@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-algebra-of-derivatives">
+  <title>The algebra of derivatives</title>
+
+  <p>Some ways of building functions are gentle. Multiplying by a constant, adding two functions, and subtracting two functions do not create any hidden interaction. Their derivatives behave exactly as we hope.</p>
+
+  <p>This is the first algebra of derivatives.</p>
+
+  <subsection xml:id="subsec-constant-multiple-rule-ch5">
+    <title>Scaling a changing quantity</title>
+
+    <p>Suppose a particle has position</p>
+    <md>s(t)=t^2</md>
+    <p>meters after <m>t</m> seconds. Its velocity is</p>
+    <md>s'(t)=2t</md>
+    <p>meters/second.</p>
+
+    <p>If we measure the same position in centimeters, the position function becomes</p>
+    <md>S(t)=100s(t)=100t^2.</md>
+
+    <p>Then</p>
+    <md>S'(t)=200t.</md>
+
+    <p>This is exactly</p>
+    <md>100s'(t)=100(2t).</md>
+
+    <p>Changing meters to centimeters multiplies every position by <m>100</m>. It also multiplies every velocity by <m>100</m>. Scaling the output scales the rate of change by the same factor.</p>
+
+    <theorem xml:id="thm-constant-multiple-rule-ch5">
+      <title>Constant multiple rule</title>
+      <statement>
+        <p>If <m>f</m> is differentiable at <m>x</m>, and <m>c</m> is a constant, then</p>
+        <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).</md>
+      </statement>
+      <proof>
+        <p>By the definition of derivative,</p>
+        <md>\frac{d}{dx}\bigl(c f(x)\bigr) = \lim_{h\to 0}\frac{c f(x+h)-c f(x)}{h}.</md>
+        <p>Factor out <m>c</m>:</p>
+        <md>\lim_{h\to 0}c\frac{f(x+h)-f(x)}{h} = c\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.</md>
+        <p>Therefore</p>
+        <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).</md>
+      </proof>
+    </theorem>
+
+    <example xml:id="ex-constant-multiple-ch5">
+      <title>Scaling a power function</title>
+      <statement>
+        <p>Since <m>\frac{d}{dx}x^5=5x^4</m>, we have</p>
+        <md>\frac{d}{dx}(7x^5)=7\cdot 5x^4=35x^4.</md>
+        <p>The coefficient <m>7</m> simply comes along for the ride.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-constants-disappear-ch5">
+    <title>Constants disappear</title>
+
+    <p>Adding a constant shifts a graph up or down. It does not change slope.</p>
+
+    <p>For example, compare <m>f(x)=x^2</m> and <m>g(x)=x^2+5</m>.</p>
+
+    <p>The graph of <m>g</m> is the graph of <m>f</m> shifted upward by <m>5</m>. The two graphs have the same tangent slopes at corresponding <m>x</m>-values.</p>
+
+    <p>Algebraically,</p>
+    <md>g'(x) = \frac{d}{dx}(x^2+5) = 2x+0 = 2x.</md>
+
+    <p>So</p>
+    <md>\frac{d}{dx}\bigl(f(x)+C\bigr)=f'(x)</md>
+    <p>for any constant <m>C</m>.</p>
+
+    <p>This is not a new rule. It is the sum rule together with <m>\frac{d}{dx}(C)=0</m>.</p>
+
+    <principle xml:id="principle-derivative-forgets-shifts">
+      <statement>
+        <p>The derivative records change, so it forgets vertical shifts.</p>
+      </statement>
+    </principle>
+  </subsection>
+
+  <subsection xml:id="subsec-sum-rule-ch5">
+    <title>Adding changing quantities</title>
+
+    <p>Suppose two quantities change at the same time:</p>
+    <md>A(x)=x^2, \qquad B(x)=x^3.</md>
+
+    <p>Their total is</p>
+    <md>T(x)=A(x)+B(x)=x^2+x^3.</md>
+
+    <p>At <m>x=2</m>,</p>
+    <md>A'(2)=4, \qquad B'(2)=12.</md>
+
+    <p>So we expect the total to be changing at rate</p>
+    <md>4+12=16.</md>
+
+    <p>Check directly:</p>
+    <md>T'(x) = \lim_{h\to 0}\frac{(x+h)^2+(x+h)^3-(x^2+x^3)}{h}.</md>
+
+    <p>Split the numerator:</p>
+    <md>T'(x) = \lim_{h\to 0} \left[ \frac{(x+h)^2-x^2}{h} + \frac{(x+h)^3-x^3}{h} \right].</md>
+
+    <p>The two pieces approach <m>2x</m> and <m>3x^2</m>. So</p>
+    <md>T'(x)=2x+3x^2.</md>
+
+    <p>At <m>x=2</m>,</p>
+    <md>T'(2)=4+12=16.</md>
+
+    <p>The rate of change of a sum is the sum of the rates of change.</p>
+
+    <theorem xml:id="thm-sum-difference-rules-ch5">
+      <title>Sum and difference rules</title>
+      <statement>
+        <p>If <m>f</m> and <m>g</m> are differentiable at <m>x</m>, then</p>
+        <md>\frac{d}{dx}\bigl(f(x)+g(x)\bigr)=f'(x)+g'(x)</md>
+        <p>and</p>
+        <md>\frac{d}{dx}\bigl(f(x)-g(x)\bigr)=f'(x)-g'(x).</md>
+      </statement>
+      <proof>
+        <p>Start from the difference quotient:</p>
+        <md>\frac{(f+g)(x+h)-(f+g)(x)}{h}.</md>
+        <p>This equals</p>
+        <md>\frac{f(x+h)+g(x+h)-f(x)-g(x)}{h}.</md>
+        <p>Regroup:</p>
+        <md>\frac{f(x+h)-f(x)}{h} + \frac{g(x+h)-g(x)}{h}.</md>
+        <p>Taking the limit gives</p>
+        <md>(f+g)'(x)=f'(x)+g'(x).</md>
+        <p>The difference rule follows by applying the sum rule to <m>f+(-1)g</m>.</p>
+      </proof>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-linearity-of-derivative">
+    <title>Linearity of the derivative</title>
+
+    <p>The constant multiple rule and the sum rule combine into one compact formula.</p>
+
+    <theorem xml:id="thm-linearity-of-differentiation">
+      <title>Linearity of differentiation</title>
+      <statement>
+        <p>If <m>f</m> and <m>g</m> are differentiable at <m>x</m>, and <m>a,b</m> are constants, then</p>
+        <md>\frac{d}{dx}\bigl(a f(x)+b g(x)\bigr) = a f'(x)+b g'(x).</md>
+      </statement>
+    </theorem>
+
+    <p>This property is called <term>linearity</term>. The word means that differentiation respects addition and constant scaling.</p>
+
+    <p>There is also a local-linear reason for the rule. If <m>f</m> and <m>g</m> are differentiable at <m>x</m>, then for small <m>h</m>,</p>
+    <md>f(x+h)=f(x)+f'(x)h+\text{small error},</md>
+    <p>and</p>
+    <md>g(x+h)=g(x)+g'(x)h+\text{small error}.</md>
+
+    <p>Then</p>
+    <md>a f(x+h)+b g(x+h)</md>
+    <p>is approximately</p>
+    <md>a\bigl(f(x)+f'(x)h\bigr) + b\bigl(g(x)+g'(x)h\bigr).</md>
+
+    <p>Regroup:</p>
+    <md>a f(x)+b g(x) + \bigl(a f'(x)+b g'(x)\bigr)h.</md>
+
+    <p>So the coefficient of <m>h</m>, which is the derivative, is</p>
+    <md>a f'(x)+b g'(x).</md>
+
+    <p>The rule is not merely algebraic convenience. It says that local linear approximations add the way ordinary lines add.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-polynomial-derivatives-ch5">
+    <title>Derivatives of polynomials</title>
+
+    <p>A polynomial is built from powers of <m>x</m>, constants, constant multiples, and sums. The rules above therefore give the derivative of every polynomial.</p>
+
+    <p>If</p>
+    <md>p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_2x^2+a_1x+a_0,</md>
+    <p>then</p>
+    <md>p'(x) = na_nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+2a_2x+a_1.</md>
+
+    <p>The constant term <m>a_0</m> disappears.</p>
+
+    <example xml:id="ex-poly-diff-ch5">
+      <title>Differentiating a polynomial</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>p(x)=4x^7-3x^4+2x-8.</md>
+        <p>Term by term,</p>
+        <md>p'(x)=4\cdot 7x^6-3\cdot 4x^3+2.</md>
+        <p>So</p>
+        <md>p'(x)=28x^6-12x^3+2.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-tangent-line-ch5">
+      <title>A tangent line</title>
+      <statement>
+        <p>Let <m>p(x)=x^3-3x+1</m>. Find the tangent line at <m>x=2</m>.</p>
+        <p>First find the point: <m>p(2)=8-6+1=3</m>. So the point is <m>(2,3)</m>.</p>
+        <p>Now find the derivative:</p>
+        <md>p'(x)=3x^2-3.</md>
+        <p>At <m>x=2</m>,</p>
+        <md>p'(2)=3(2)^2-3=12-3=9.</md>
+        <p>The tangent line has slope <m>9</m> and passes through <m>(2,3)</m>. Therefore</p>
+        <md>y-3=9(x-2),</md>
+        <p>or</p>
+        <md>y=9x-15.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-linearity-not-enough">
+    <title>Why these rules are not enough</title>
+
+    <p>Linearity handles expressions such as</p>
+    <md>4x^7-3x^4+2x-8.</md>
+
+    <p>It does not handle products, quotients, or compositions without new ideas.</p>
+
+    <p>For example,</p>
+    <md>F(x)=(x^2+1)(x^3-5)</md>
+    <p>is a product. We could expand it:</p>
+    <md>F(x)=x^5+x^3-5x^2-5,</md>
+    <p>and then differentiate:</p>
+    <md>F'(x)=5x^4+3x^2-10x.</md>
+
+    <p>That works here because the product expands into a polynomial. But this strategy will not be pleasant for every product, and it will not help at all for products such as</p>
+    <md>x^2\sqrt{x+1}</md>
+    <p>or, later,</p>
+    <md>x^2\sin x.</md>
+
+    <p>A product changes in a different way from a sum. If one side of a rectangle changes, the area changes. If both sides change, the area changes for two reasons at once.</p>
+
+    <p>That is where the product rule comes from.</p>
+  </subsection>
+
+</section>
