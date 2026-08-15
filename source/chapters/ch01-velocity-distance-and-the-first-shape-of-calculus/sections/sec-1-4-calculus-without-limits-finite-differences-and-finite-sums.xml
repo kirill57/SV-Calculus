@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-calculus-without-limits">
+  <title>Calculus without limits: finite differences and finite sums</title>
+
+  <p>Signed motion taught us to add changes with their signs. Now we strip the story down to its arithmetic core.</p>
+
+  <p>Suppose we record the signed position of a car at whole-number times:</p>
+
+  <table xml:id="tab-discrete-positions">
+    <title>Signed position at discrete times</title>
+    <tabular>
+      <row header="yes" bottom="medium">
+        <cell><m>j</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>3</m></cell>
+        <cell><m>4</m></cell>
+        <cell><m>5</m></cell>
+      </row>
+      <row>
+        <cell><m>s_j</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>6</m></cell>
+        <cell><m>7</m></cell>
+        <cell><m>4</m></cell>
+        <cell><m>9</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Here <m>s_j</m> means the signed position at time <m>j</m>. The car starts at <m>0</m>, moves to <m>2</m>, then to <m>6</m>, then to <m>7</m>, then back to <m>4</m>, then forward to <m>9</m>.</p>
+
+  <p>The changes between consecutive positions are</p>
+
+  <table xml:id="tab-discrete-differences">
+    <title>Differences between consecutive positions</title>
+    <tabular>
+      <row header="yes" bottom="medium">
+        <cell><m>j</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>3</m></cell>
+        <cell><m>4</m></cell>
+        <cell><m>5</m></cell>
+      </row>
+      <row>
+        <cell><m>\Delta s_j</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>4</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>-3</m></cell>
+        <cell><m>5</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The symbol <m>\Delta</m> means <q>change in.</q> Thus</p>
+
+  <md>\Delta s_j=s_j-s_{j-1}.</md>
+
+  <p>For example,</p>
+
+  <md>\Delta s_4=s_4-s_3=4-7=-3.</md>
+
+  <p>That negative value says the car moved backward during the fourth interval.</p>
+
+  <subsection xml:id="subsec-difference-tables">
+    <title>Difference tables</title>
+
+    <p>A table of values produces a table of differences:</p>
+
+    <table xml:id="tab-values-and-differences">
+      <title>Positions and differences</title>
+      <tabular>
+        <row header="yes" bottom="medium">
+          <cell><m>j</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>5</m></cell>
+        </row>
+        <row>
+          <cell><m>s_j</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>6</m></cell>
+          <cell><m>7</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>9</m></cell>
+        </row>
+        <row>
+          <cell><m>\Delta s_j</m></cell>
+          <cell></cell>
+          <cell><m>2</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>-3</m></cell>
+          <cell><m>5</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>If each time interval has length <m>1</m>, then the numerical values of the differences are also the average velocities on those intervals:</p>
+
+    <md>\text{average velocity on interval }j = \frac{s_j-s_{j-1}}{1} = \Delta s_j.</md>
+
+    <p>The units still matter. If <m>s</m> is measured in miles and time is measured in hours, then <m>\Delta s_j</m> is measured in miles, while</p>
+
+    <md>\frac{\Delta s_j}{1}</md>
+
+    <p>is measured in miles/hour. The numbers match only because the time step is <m>1</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-accumulated-differences-telescope">
+    <title>Accumulated differences telescope</title>
+
+    <p>Now add all the changes:</p>
+
+    <md>2+4+1-3+5=9.</md>
+
+    <p>This equals the final position minus the initial position:</p>
+
+    <md>s_5-s_0=9-0=9.</md>
+
+    <p>That is not an accident. Watch the cancellation:</p>
+
+    <md>
+      <mrow>\Delta s_1+\Delta s_2+\Delta s_3+\Delta s_4+\Delta s_5 \amp=(s_1-s_0)+(s_2-s_1)+(s_3-s_2)+(s_4-s_3)+(s_5-s_4)</mrow>
+      <mrow>\amp=s_5-s_0.</mrow>
+    </md>
+
+    <p>Every inside value appears once with a plus sign and once with a minus sign. Only the final value and the initial value remain.</p>
+
+    <p>This kind of cancellation is called <em>telescoping</em>. A long sum collapses, the way a telescope collapses into a shorter tube.</p>
+
+    <p>For any finite list</p>
+
+    <md>s_0,s_1,s_2,\ldots,s_n,</md>
+
+    <p>we have</p>
+
+    <md>\boxed{\Delta s_1+\Delta s_2+\cdots+\Delta s_n=s_n-s_0.}</md>
+
+    <p>Using summation notation, this is</p>
+
+    <md>\boxed{\sum_{j=1}^{n}\Delta s_j=s_n-s_0.}</md>
+
+    <p>The symbol <m>\sum</m> means <q>add.</q> So</p>
+
+    <md>\sum_{j=1}^{n}\Delta s_j</md>
+
+    <p>means</p>
+
+    <md>\Delta s_1+\Delta s_2+\cdots+\Delta s_n.</md>
+  </subsection>
+
+  <subsection xml:id="subsec-step-velocities-and-piecewise-linear-position">
+    <title>Step velocities and piecewise linear position</title>
+
+    <p>Now give the same arithmetic a graph.</p>
+
+    <p>Suppose the velocity is constant on each interval of length <m>1</m>:</p>
+
+    <md>v_1=2,\qquad v_2=4,\qquad v_3=1,\qquad v_4=-3,\qquad v_5=5.</md>
+
+    <p>Starting from <m>s_0=0</m>, the positions become</p>
+
+    <md>s_1=2,\qquad s_2=6,\qquad s_3=7,\qquad s_4=4,\qquad s_5=9.</md>
+
+    <p>The velocity graph is made of flat steps. The position graph is made of straight line segments.</p>
+
+    <figure xml:id="fig-finite-ftc-step-velocity">
+      <caption>Step velocity gives a piecewise linear position graph. The signed rectangle areas <m>2+4+1-3+5</m> equal the net change <m>9-0</m>.</caption>
+      <sidebyside widths="47% 47%">
+        <figure xml:id="fig-step-velocity-v">
+          <caption>Velocity graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=0, xmax=5.25,
+                  ymin=-4, ymax=6,
+                  axis lines=middle,
+                  xlabel={\(t\)},
+                  ylabel={\(v(t)\)},
+                  xtick={0,1,2,3,4,5},
+                  ytick={-3,0,1,2,4,5},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15,fill opacity=0.6, draw=none]  (axis cs:0,0) rectangle (axis cs:1,2);
+              \draw[fill=gray!15,draw=none] (axis cs:1,0) rectangle (axis cs:2,4);
+              \draw[fill=gray!15,fill opacity=0.6,draw=none] (axis cs:2,0) rectangle (axis cs:3,1);
+              \draw[fill=gray!25,fill opacity=0.6,draw=none] (axis cs:3,0) rectangle (axis cs:4,-3);
+              \draw[fill=gray!15,fill opacity=0.6,draw=none] (axis cs:4,0) rectangle (axis cs:5,5);
+
+              \addplot[thick] coordinates {(0,2) (1,2)};
+              \addplot[thick] coordinates {(1,4) (2,4)};
+              \addplot[thick] coordinates {(2,1) (3,1)};
+              \addplot[thick] coordinates {(3,-3) (4,-3)};
+              \addplot[thick] coordinates {(4,5) (5,5)};
+
+              \pgfplotsinvokeforeach{1,2,3,4}{
+                \draw[dashed] (axis cs:#1,-3.8) -- (axis cs:#1,5.6);
+              }
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-step-velocity-s">
+          <caption>Position graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=0, xmax=5.75,
+                  ymin=0, ymax=10,
+                  axis lines=left,
+                  xlabel={\(t\)},
+                  ylabel={\(s(t)\)},
+                  xtick={0,1,2,3,4,5},
+                  ytick={0,2,4,6,7,9},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick] coordinates {(0,0) (1,2) (2,6) (3,7) (4,4) (5,9)};
+              \addplot[only marks,mark=*] coordinates {(0,0) (1,2) (2,6) (3,7) (4,4) (5,9)};
+              \node[anchor=west] at (axis cs:0.4,0.7) {slope \(2\)};
+              \node[anchor=west] at (axis cs:1.45,4.0) {slope \(4\)};
+              \node[anchor=west] at (axis cs:1.6,7.2) {slope \(1\)};
+              \node[anchor=west] at (axis cs:2.6,5.4) {slope \(-3\)};
+              \node[anchor=west] at (axis cs:4.0,6.9) {slope \(5\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>On each interval, the slope of the position graph is the velocity on that interval.</p>
+
+    <p>The signed area under the velocity graph is</p>
+
+    <md>2\cdot 1+4\cdot 1+1\cdot 1+(-3)\cdot 1+5\cdot 1=9.</md>
+
+    <p>The change in position is</p>
+
+    <md>s(5)-s(0)=9-0=9.</md>
+
+    <p>So the picture says exactly what the arithmetic said.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-unequal-time-steps">
+    <title>Unequal time steps</title>
+
+    <p>The time intervals do not need to have length <m>1</m>. Suppose</p>
+
+    <md>t_0\lt t_1\lt t_2\lt \cdots\lt t_n</md>
+
+    <p>and the <m>j</m>-th time interval has width</p>
+
+    <md>\Delta t_j=t_j-t_{j-1}.</md>
+
+    <p>If the velocity is constant and equal to <m>v_j</m> on that interval, then</p>
+
+    <md>s_j-s_{j-1}=v_j\Delta t_j.</md>
+
+    <p>Adding all intervals gives</p>
+
+    <md>(s_1-s_0)+(s_2-s_1)+\cdots+(s_n-s_{n-1}) = v_1\Delta t_1+v_2\Delta t_2+\cdots+v_n\Delta t_n.</md>
+
+    <p>The left side telescopes to <m>s_n-s_0</m>. Therefore</p>
+
+    <md>\boxed{s_n-s_0=\sum_{j=1}^{n} v_j\Delta t_j.}</md>
+
+    <p>Each product</p>
+
+    <md>v_j\Delta t_j</md>
+
+    <p>is the signed area of one rectangle in the velocity graph.</p>
+
+    <remark xml:id="rmk-finite-ftc">
+      <title>Finite version of the Fundamental Theorem</title>
+      <p>For step velocity and piecewise linear position,</p>
+      <md>\boxed{\text{signed area under velocity}=\text{change in position}.}</md>
+      <p>Equivalently,</p>
+      <md>\boxed{\sum_{j=1}^{n} v_j\Delta t_j=s_n-s_0.}</md>
+    </remark>
+
+    <p>This is not yet the full Fundamental Theorem of Calculus. It is its finite ancestor. No limits are needed because every velocity graph here is made of finitely many flat pieces.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-a-warning-about-absolute-values">
+    <title>A warning about absolute values</title>
+
+    <p>The telescoping rule works for signed changes:</p>
+
+    <md>\sum_{j=1}^{n}\Delta s_j=s_n-s_0.</md>
+
+    <p>It does not work for total distance traveled.</p>
+
+    <p>For the table of positions and differences above, the displacement is</p>
+
+    <md>2+4+1-3+5=9.</md>
+
+    <p>The distance traveled is</p>
+
+    <md>|2|+|4|+|1|+|-3|+|5| = 2+4+1+3+5 = 15.</md>
+
+    <p>The negative step cancels in displacement, but it adds to distance traveled. This is why the sign of velocity matters.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-squares-and-odd-numbers">
+    <title>Squares and odd numbers</title>
+
+    <p>Finite differences reveal patterns that are easy to miss in the original values.</p>
+
+    <p>Consider the square numbers:</p>
+
+    <md>0,\ 1,\ 4,\ 9,\ 16,\ 25,\ldots</md>
+
+    <p>These are</p>
+
+    <md>s_j=j^2.</md>
+
+    <p>The differences are</p>
+
+    <md>\Delta s_j=s_j-s_{j-1}=j^2-(j-1)^2.</md>
+
+    <p>Compute:</p>
+
+    <md>j^2-(j-1)^2 = j^2-(j^2-2j+1) = 2j-1.</md>
+
+    <p>So the differences of the square numbers are the odd numbers:</p>
+
+    <md>1,\ 3,\ 5,\ 7,\ 9,\ldots</md>
+
+    <p>Now telescope:</p>
+
+    <md>\sum_{j=1}^{n}(2j-1) = \sum_{j=1}^{n}\bigl(j^2-(j-1)^2\bigr) = n^2-0^2.</md>
+
+    <p>Therefore</p>
+
+    <md>\boxed{1+3+5+\cdots+(2n-1)=n^2.}</md>
+
+    <p>This is a small but beautiful example of the same idea. Differences undo sums. Sums undo differences.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-what-finite-calculus-can-and-cannot-do">
+    <title>What finite calculus can and cannot do</title>
+
+    <p>Finite differences answer one question:</p>
+
+    <md>\text{Given positions }s_0,s_1,\ldots,s_n,\text{ find the step velocities.}</md>
+
+    <p>Finite sums answer the reverse question:</p>
+
+    <md>\text{Given step velocities }v_1,\ldots,v_n,\text{ recover the change in position.}</md>
+
+    <p>So even before limits, we see the two directions of calculus:</p>
+
+    <md>\text{position}\longrightarrow \text{change}</md>
+
+    <p>and</p>
+
+    <md>\text{change}\longrightarrow \text{position}.</md>
+
+    <p>But real motion is usually not made of perfect steps. A car does not hold one exact velocity for a while, jump instantly to another, and hold that forever. Its velocity changes while the clock is running.</p>
+
+    <p>For a changing velocity, rectangles are no longer exact. They become estimates. The natural response is to use shorter intervals, then shorter ones still.</p>
+
+    <p>That is where limits enter.</p>
+  </subsection>
+
+</section>
