@@ -1,0 +1,436 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-8-3-sigma-notation-and-finite-sums">
+  <title>Sigma notation and finite sums</title>
+
+  <p>The last section ended with sums that quickly became too long to write by hand. Even a simple rectangular estimate can look like</p>
+  <md>\frac{2}{n} \left[ 0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n} \right].</md>
+
+  <p>The pattern is clear, but the notation is heavy.</p>
+
+  <p>Calculus needs a compact way to say:</p>
+  <md>\text{add all the terms of this pattern.}</md>
+
+  <p>That compact language is <em>sigma notation</em>. It is not a new idea. It is just a short name for a finite sum.</p>
+
+  <subsection xml:id="subsec-summation-notation">
+    <title>Summation notation</title>
+
+    <p>Suppose we want to write</p>
+    <md>1^2+2^2+3^2+4^2+5^2.</md>
+
+    <p>Instead of writing every term, we write</p>
+    <md>\sum_{i=1}^{5} i^2.</md>
+
+    <p>The symbol <m>\sum</m> is the Greek capital letter sigma. It stands for <q>sum.</q></p>
+
+    <p>The notation</p>
+    <md>\sum_{i=1}^{5} i^2</md>
+    <p>means:</p>
+    <md>\text{let \(i\) take the values }1,2,3,4,5,\text{ and add the results.}</md>
+
+    <p>So</p>
+    <md>\sum_{i=1}^{5} i^2 = 1^2+2^2+3^2+4^2+5^2 = 1+4+9+16+25 = 55.</md>
+
+    <note xml:id="note-sigma-notation-def">
+      <title>Sigma notation</title>
+      <p>If <m>m\le n</m> are integers, then</p>
+      <md>\sum_{i=m}^{n} a_i = a_m+a_{m+1}+a_{m+2}+\cdots+a_n.</md>
+      <p>The letter <m>i</m> is called the <em>index of summation</em>. The number <m>m</m> is the lower limit, and <m>n</m> is the upper limit.</p>
+    </note>
+
+    <example xml:id="ex-sigma-linear">
+      <title>Expand and evaluate a linear sum</title>
+      <statement>
+        <p>Expand and evaluate</p>
+        <md>\sum_{k=1}^{4}(2k-1).</md>
+        <p>As <m>k</m> runs from <m>1</m> to <m>4</m>, the terms are</p>
+        <md>2(1)-1,\qquad 2(2)-1,\qquad 2(3)-1,\qquad 2(4)-1.</md>
+        <p>So</p>
+        <md>\sum_{k=1}^{4}(2k-1) = 1+3+5+7 = 16.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-sigma-powers-of-two">
+      <title>Expand a sum with powers of 2</title>
+      <statement>
+        <p>Expand</p>
+        <md>\sum_{j=0}^{3} 2^j.</md>
+        <p>The index begins at <m>0</m>, so</p>
+        <md>\sum_{j=0}^{3} 2^j = 2^0+2^1+2^2+2^3 = 1+2+4+8 = 15.</md>
+      </statement>
+    </example>
+
+    <paragraphs>
+      <title>The index letter is a placeholder</title>
+      <p>The sums</p>
+      <md>\sum_{i=1}^{5} i^2, \qquad \sum_{k=1}^{5} k^2, \qquad \sum_{r=1}^{5} r^2</md>
+      <p>all mean the same thing:</p>
+      <md>1^2+2^2+3^2+4^2+5^2.</md>
+      <p>The index letter is temporary. It disappears after the sum is evaluated. This is why it is sometimes called a <em>dummy index</em>.</p>
+      <p>This is similar to the variable in a function rule. The expressions</p>
+      <md>f(x)=x^2 \qquad\text{and}\qquad f(t)=t^2</md>
+      <p>describe the same function. The letter changes, but the rule does not.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>A warning about endpoints</title>
+      <p>The number of terms in</p>
+      <md>\sum_{i=m}^{n} a_i</md>
+      <p>is not <m>n-m</m>. It is</p>
+      <md>n-m+1.</md>
+      <p>For example,</p>
+      <md>\sum_{i=3}^{7} a_i = a_3+a_4+a_5+a_6+a_7</md>
+      <p>has <m>5</m> terms, and</p>
+      <md>7-3+1=5.</md>
+      <p>This small detail matters when we count rectangles.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-sigma-notation-rectangular-sums">
+    <title>Sigma notation for rectangular sums</title>
+
+    <p>Return to the left rectangle estimate for</p>
+    <md>f(x)=x^2</md>
+    <p>on <m>[0,2]</m> with four equal subintervals. The width is</p>
+    <md>\Delta x=\frac12.</md>
+
+    <p>The left endpoints are</p>
+    <md>0,\qquad \frac12,\qquad 1,\qquad \frac32.</md>
+
+    <p>We previously wrote the estimate as</p>
+    <md>\frac12\left[ 0^2+\left(\frac12\right)^2+1^2+\left(\frac32\right)^2 \right].</md>
+
+    <p>Using sigma notation, the same sum is</p>
+    <md>\sum_{i=0}^{3} \left(\frac{i}{2}\right)^2 \left(\frac12\right).</md>
+
+    <p>Here</p>
+    <md>\frac{i}{2}</md>
+    <p>runs through</p>
+    <md>0,\qquad \frac12,\qquad 1,\qquad \frac32</md>
+    <p>as <m>i</m> runs from <m>0</m> to <m>3</m>.</p>
+
+    <p>This may not look much shorter for four rectangles. But for <m>n</m> rectangles, the advantage is enormous.</p>
+
+    <p>Divide <m>[0,2]</m> into <m>n</m> equal subintervals. Then</p>
+    <md>\Delta x=\frac{2}{n}.</md>
+
+    <p>The right endpoints are</p>
+    <md>\frac{2}{n},\quad \frac{4}{n},\quad \frac{6}{n},\quad \ldots,\quad \frac{2n}{n}.</md>
+
+    <p>The right rectangle sum for <m>f(x)=x^2</m> is</p>
+    <md>\sum_{i=1}^{n} \left(\frac{2i}{n}\right)^2 \left(\frac{2}{n}\right).</md>
+
+    <p>This one line represents all <m>n</m> rectangles.</p>
+
+    <note xml:id="note-sigma-power-benefit">
+      <p>Sigma notation lets us write a finite rectangular sum without writing every rectangle.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-arithmetic-sums">
+    <title>Arithmetic sums</title>
+
+    <p>Some finite sums have simple formulas. The first one is the sum of the first <m>n</m> positive integers:</p>
+    <md>1+2+3+\cdots+n.</md>
+
+    <p>Write</p>
+    <md>S=1+2+3+\cdots+n.</md>
+
+    <p>Now write the same sum backward:</p>
+    <md>S=n+(n-1)+(n-2)+\cdots+1.</md>
+
+    <p>Add the two lines term by term:</p>
+    <md>
+      \begin{aligned}
+      2S \amp= (1+n)+(2+n-1)+(3+n-2)+\cdots+(n+1)\\
+      \amp= (n+1)+(n+1)+(n+1)+\cdots+(n+1).
+      \end{aligned}
+    </md>
+
+    <p>There are <m>n</m> copies of <m>n+1</m>, so</p>
+    <md>2S=n(n+1).</md>
+
+    <p>Therefore</p>
+    <md>\sum_{i=1}^{n} i = 1+2+3+\cdots+n = \frac{n(n+1)}{2}.</md>
+
+    <example xml:id="ex-sum-first-100">
+      <title>Sum of the first 100 positive integers</title>
+      <statement>
+        <p>Find</p>
+        <md>1+2+3+\cdots+100.</md>
+        <p>Using the formula,</p>
+        <md>\sum_{i=1}^{100} i = \frac{100(101)}{2} = 5050.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-linear-combination-sum">
+      <title>Sum of a linear expression</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\sum_{i=1}^{n}(3i+2).</md>
+        <p>Use the fact that sums distribute over addition:</p>
+        <md>\sum_{i=1}^{n}(3i+2) = \sum_{i=1}^{n}3i+\sum_{i=1}^{n}2.</md>
+        <p>Now pull out the constant <m>3</m>:</p>
+        <md>= 3\sum_{i=1}^{n}i+\sum_{i=1}^{n}2.</md>
+        <p>Since there are <m>n</m> copies of <m>2</m>,</p>
+        <md>\sum_{i=1}^{n}2=2n.</md>
+        <p>Therefore</p>
+        <md>\sum_{i=1}^{n}(3i+2) = 3\cdot \frac{n(n+1)}{2}+2n.</md>
+        <p>So</p>
+        <md>\sum_{i=1}^{n}(3i+2) = \frac{3n(n+1)}{2}+2n.</md>
+        <p>We can simplify further if we want:</p>
+        <md>\frac{3n(n+1)}{2}+2n = \frac{3n^2+3n+4n}{2} = \frac{3n^2+7n}{2}.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-basic-rules-for-finite-sums">
+    <title>Basic rules for finite sums</title>
+
+    <p>The example used rules that are worth naming.</p>
+
+    <note xml:id="note-rules-finite-sums">
+      <title>Rules for finite sums</title>
+      <p>For constants <m>c</m> and finite lists <m>a_i,b_i</m>,</p>
+      <md>\sum_{i=m}^{n} c = c(n-m+1),</md>
+      <md>\sum_{i=m}^{n} c a_i = c\sum_{i=m}^{n} a_i,</md>
+      <p>and</p>
+      <md>\sum_{i=m}^{n} (a_i+b_i) = \sum_{i=m}^{n} a_i+\sum_{i=m}^{n} b_i.</md>
+    </note>
+
+    <p>These rules are not mysterious. They come from ordinary addition.</p>
+
+    <p>For example,</p>
+    <md>\sum_{i=1}^{n}(a_i+b_i)</md>
+    <p>means</p>
+    <md>(a_1+b_1)+(a_2+b_2)+\cdots+(a_n+b_n).</md>
+
+    <p>Regroup the terms:</p>
+    <md>(a_1+a_2+\cdots+a_n)+(b_1+b_2+\cdots+b_n).</md>
+
+    <p>That is</p>
+    <md>\sum_{i=1}^{n} a_i+\sum_{i=1}^{n} b_i.</md>
+
+    <p>A finite sum behaves like a long addition problem because that is exactly what it is.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-geometric-sums">
+    <title>Geometric sums</title>
+
+    <p>Another important pattern is</p>
+    <md>1+r+r^2+r^3+\cdots+r^{n-1}.</md>
+
+    <p>This is called a <em>geometric sum</em>. Each term is obtained from the previous term by multiplying by <m>r</m>.</p>
+
+    <p>Let</p>
+    <md>G=1+r+r^2+\cdots+r^{n-1}.</md>
+
+    <p>Multiply by <m>r</m>:</p>
+    <md>rG=r+r^2+r^3+\cdots+r^n.</md>
+
+    <p>Subtract:</p>
+    <md>G-rG = (1+r+r^2+\cdots+r^{n-1}) - (r+r^2+\cdots+r^{n-1}+r^n).</md>
+
+    <p>Most terms cancel, leaving</p>
+    <md>G-rG=1-r^n.</md>
+
+    <p>So</p>
+    <md>(1-r)G=1-r^n.</md>
+
+    <p>If <m>r\neq 1</m>, then</p>
+    <md>1+r+r^2+\cdots+r^{n-1} = \frac{1-r^n}{1-r}.</md>
+
+    <p>In sigma notation,</p>
+    <md>\sum_{i=0}^{n-1} r^i = \frac{1-r^n}{1-r}, \qquad r\neq 1.</md>
+
+    <p>If <m>r=1</m>, then every term is <m>1</m>, so</p>
+    <md>\sum_{i=0}^{n-1}1^i=n.</md>
+
+    <example xml:id="ex-geometric-half">
+      <title>Geometric sum with ratio 1/2</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>1+\frac12+\frac14+\frac18+\cdots+\frac{1}{2^{n-1}}.</md>
+        <p>Here</p>
+        <md>r=\frac12.</md>
+        <p>So</p>
+        <md>\sum_{i=0}^{n-1}\left(\frac12\right)^i = \frac{1-\left(\frac12\right)^n}{1-\frac12}.</md>
+        <p>Since</p>
+        <md>1-\frac12=\frac12,</md>
+        <p>we get</p>
+        <md>\sum_{i=0}^{n-1}\left(\frac12\right)^i = 2\left(1-\frac{1}{2^n}\right).</md>
+        <p>As <m>n</m> grows, the term <m>\frac{1}{2^n}</m> becomes very small. So the sum approaches</p>
+        <md>2.</md>
+        <p>This is a preview of infinite series. A finite geometric sum has an exact formula. When the number of terms grows without bound, the finite formula tells us what the infinite process approaches.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-sums-of-powers">
+    <title>Sums of powers</title>
+
+    <p>Rectangular sums often contain powers of the index:</p>
+    <md>\sum_{i=1}^{n} i, \qquad \sum_{i=1}^{n} i^2, \qquad \sum_{i=1}^{n} i^3.</md>
+
+    <p>The first formula is already known:</p>
+    <md>\sum_{i=1}^{n} i=\frac{n(n+1)}{2}.</md>
+
+    <p>The next two are:</p>
+    <md>\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6},</md>
+    <p>and</p>
+    <md>\sum_{i=1}^{n} i^3 = \left(\frac{n(n+1)}{2}\right)^2.</md>
+
+    <p>Together:</p>
+
+    <table>
+      <title>Formulas for sums of powers</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><m>\textbf{sum}</m></cell>
+          <cell><m>\textbf{formula}</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \sum_{i=1}^{n} 1</m></cell>
+          <cell><m>n</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \sum_{i=1}^{n} i</m></cell>
+          <cell><m>\displaystyle \frac{n(n+1)}{2}</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \sum_{i=1}^{n} i^2</m></cell>
+          <cell><m>\displaystyle \frac{n(n+1)(2n+1)}{6}</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \sum_{i=1}^{n} i^3</m></cell>
+          <cell><m>\displaystyle \left(\frac{n(n+1)}{2}\right)^2</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>These formulas are useful because powers of <m>i</m> appear when we evaluate Riemann sums for functions such as <m>x</m>, <m>x^2</m>, and <m>x^3</m>.</p>
+
+    <paragraphs>
+      <title>Why the sum of squares formula is the right one</title>
+      <p>One way to find the formula for</p>
+      <md>\sum_{i=1}^{n} i^2</md>
+      <p>is to use a telescoping sum.</p>
+      <p>Start with the identity</p>
+      <md>(k+1)^3-k^3=3k^2+3k+1.</md>
+      <p>Now add this identity from <m>k=1</m> to <m>k=n</m>:</p>
+      <md>\sum_{k=1}^{n}\bigl((k+1)^3-k^3\bigr) = \sum_{k=1}^{n}(3k^2+3k+1).</md>
+      <p>The left side telescopes:</p>
+      <md>(2^3-1^3)+(3^3-2^3)+\cdots+((n+1)^3-n^3) = (n+1)^3-1.</md>
+      <p>The right side is</p>
+      <md>3\sum_{k=1}^{n}k^2 + 3\sum_{k=1}^{n}k + \sum_{k=1}^{n}1.</md>
+      <p>So</p>
+      <md>(n+1)^3-1 = 3\sum_{k=1}^{n}k^2 + 3\cdot \frac{n(n+1)}{2} + n.</md>
+      <p>Solving for <m>\sum k^2</m> gives</p>
+      <md>\sum_{k=1}^{n}k^2 = \frac{n(n+1)(2n+1)}{6}.</md>
+      <p>The formula comes from adding finite differences.</p>
+      <p>This is another hint of the larger story:</p>
+      <md>\text{differences telescope, and sums accumulate.}</md>
+    </paragraphs>
+
+    <example xml:id="ex-sum-of-polynomial-terms">
+      <title>Evaluate a sum of quadratic terms</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\sum_{i=1}^{n}(4i^2-3i+2).</md>
+        <p>Use the sum rules:</p>
+        <md>\sum_{i=1}^{n}(4i^2-3i+2) = 4\sum_{i=1}^{n}i^2 - 3\sum_{i=1}^{n}i + 2\sum_{i=1}^{n}1.</md>
+        <p>Substitute the formulas:</p>
+        <md>= 4\cdot \frac{n(n+1)(2n+1)}{6} - 3\cdot \frac{n(n+1)}{2} + 2n.</md>
+        <p>So</p>
+        <md>\sum_{i=1}^{n}(4i^2-3i+2) = \frac{2n(n+1)(2n+1)}{3} - \frac{3n(n+1)}{2} + 2n.</md>
+        <p>We could simplify the expression, but in calculus it is often more useful to see which standard sums produced it.</p>
+      </statement>
+    </example>
+
+    <paragraphs>
+      <title>Iterating for higher powers</title>
+      <p>This telescoping technique generalizes to any integer power <m>p \ge 1</m>. To find a closed-form formula for <m>\sum_{i=1}^{n} i^p</m>, we start with the binomial expansion of the difference of <m>(p+1)</m>-th powers:</p>
+      <md>(k+1)^{p+1} - k^{p+1} = (p+1)k^p + \binom{p+1}{2}k^{p-1} + \cdots + \binom{p+1}{p}k + 1.</md>
+      <p>Summing both sides from <m>k=1</m> to <m>n</m> telescopes the left side entirely:</p>
+      <md>(n+1)^{p+1}-1 = (p+1)\sum_{k=1}^{n}k^p + \binom{p+1}{2}\sum_{k=1}^{n}k^{p-1} + \cdots + \sum_{k=1}^{n}1.</md>
+      <p>Because the right side isolates <m>(p+1)\sum k^p</m> alongside a linear combination of sums of strictly lower degree, we can solve for <m>\sum k^p</m> as long as we have already computed the formulas for all lower powers.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-finite-sums-to-integrals">
+    <title>From finite sums to integrals</title>
+
+    <p>Sigma notation was introduced because rectangular sums need it.</p>
+
+    <p>Divide the interval <m>[a,b]</m> into <m>n</m> equal subintervals. Then the common width is</p>
+    <md>\Delta x=\frac{b-a}{n}.</md>
+
+    <p>If we use right endpoints, then the <m>i</m>th sample point is</p>
+    <md>x_i=a+i\Delta x.</md>
+
+    <p>The right rectangle sum is</p>
+    <md>\sum_{i=1}^{n} f(x_i)\Delta x = \sum_{i=1}^{n} f(a+i\Delta x)\Delta x.</md>
+
+    <p>This is the basic finite object that will become an integral.</p>
+
+    <example xml:id="ex-finite-sum-x">
+      <title><m>y=x</m> on <m>[0,2]</m></title>
+      <statement>
+        <p>Here</p>
+        <md>f(x)=x, \qquad a=0, \qquad b=2, \qquad \Delta x=\frac{2}{n}.</md>
+        <p>The right endpoints are</p>
+        <md>x_i=\frac{2i}{n}.</md>
+        <p>So the right rectangle sum is</p>
+        <md>R_n = \sum_{i=1}^{n} \left(\frac{2i}{n}\right) \left(\frac{2}{n}\right).</md>
+        <p>Pull out the constants:</p>
+        <md>R_n = \frac{4}{n^2}\sum_{i=1}^{n} i.</md>
+        <p>Use</p>
+        <md>\sum_{i=1}^{n} i=\frac{n(n+1)}{2}.</md>
+        <p>Then</p>
+        <md>R_n = \frac{4}{n^2}\cdot \frac{n(n+1)}{2} = 2\cdot \frac{n+1}{n}.</md>
+        <p>As <m>n\to\infty</m>,</p>
+        <md>2\cdot \frac{n+1}{n}\to 2.</md>
+        <p>So the right rectangle sums approach</p>
+        <md>2.</md>
+        <p>That matches the triangle area under <m>y=x</m> from <m>0</m> to <m>2</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-finite-sum-x-squared">
+      <title><m>y=x^2</m> on <m>[0,2]</m></title>
+      <statement>
+        <p>This is the curved region from the last section.</p>
+        <p>Again</p>
+        <md>\Delta x=\frac{2}{n}, \qquad x_i=\frac{2i}{n}.</md>
+        <p>The right rectangle sum is</p>
+        <md>R_n = \sum_{i=1}^{n} \left(\frac{2i}{n}\right)^2 \left(\frac{2}{n}\right).</md>
+        <p>Simplify:</p>
+        <md>R_n = \sum_{i=1}^{n} \frac{4i^2}{n^2}\cdot \frac{2}{n} = \frac{8}{n^3}\sum_{i=1}^{n}i^2.</md>
+        <p>Use the sum of squares formula:</p>
+        <md>\sum_{i=1}^{n}i^2 = \frac{n(n+1)(2n+1)}{6}.</md>
+        <p>Then</p>
+        <md>R_n = \frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}.</md>
+        <p>So</p>
+        <md>R_n = \frac{4}{3}\cdot \frac{(n+1)(2n+1)}{n^2}.</md>
+        <p>Expand the numerator:</p>
+        <md>(n+1)(2n+1)=2n^2+3n+1.</md>
+        <p>Therefore</p>
+        <md>R_n = \frac{4}{3} \left( 2+\frac{3}{n}+\frac{1}{n^2} \right).</md>
+        <p>As <m>n\to\infty</m>,</p>
+        <md>R_n\to \frac{4}{3}\cdot 2 = \frac{8}{3}.</md>
+        <p>The exact area under <m>y=x^2</m> from <m>0</m> to <m>2</m> should therefore be</p>
+        <md>\frac{8}{3}.</md>
+      </statement>
+    </example>
+
+    <p>The next section gives this limiting number a name and a notation.</p>
+
+    <note xml:id="note-integral-limit-riemann-sums">
+      <p>The definite integral is the limit of Riemann sums.</p>
+    </note>
+  </subsection>
+
+</section>
