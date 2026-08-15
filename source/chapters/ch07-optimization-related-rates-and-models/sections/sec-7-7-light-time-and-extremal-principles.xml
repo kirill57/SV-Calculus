@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-7-7-light-time-and-extremal-principles">
+  <title>Light, time, and extremal principles</title>
+
+  <p>Optimization problems usually begin with an ordinary choice: a width, a height, a price, a radius, a time. The derivative helps us find the best value of that choice.</p>
+
+  <p>But some of the most beautiful optimization problems ask for more than a number. They ask for a path.</p>
+
+  <p>Light gives the simplest surprise. A ray of light reflecting from a mirror behaves as if it has solved an optimization problem. A ray passing from air into water behaves as if it has solved a different one.</p>
+
+  <p>The calculus is the same calculus we have been using:</p>
+  <md>\text{write the quantity to be minimized, differentiate, set the derivative equal to } 0.</md>
+
+  <p>The meaning is deeper. A law of nature can sometimes be written as a best-choice principle.</p>
+
+  <subsection xml:id="subsec-reflection-shortest-path">
+    <title>Reflection from shortest path</title>
+
+    <p>Suppose a light ray travels from a point <m>A</m> to a mirror and then to a point <m>B</m>. Where should it strike the mirror?</p>
+
+    <p>Place the mirror on the <m>x</m>-axis. Let</p>
+    <md>A=(0,a), \qquad B=(L,b),</md>
+    <p>where</p>
+    <md>a\gt 0,\qquad b\gt 0,\qquad L\gt 0.</md>
+
+    <p>Let the reflection point be</p>
+    <md>P=(x,0), \qquad 0\le x\le L.</md>
+
+    <p>The total path length is</p>
+    <md>D(x)=\sqrt{x^2+a^2}+\sqrt{(L-x)^2+b^2}.</md>
+
+    <p>The first term is the distance from <m>A</m> to <m>P</m>. The second term is the distance from <m>P</m> to <m>B</m>.</p>
+
+    <p>Differentiate:</p>
+    <md>D'(x) = \frac{x}{\sqrt{x^2+a^2}} - \frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>At a shortest interior path, we must have</p>
+    <md>D'(x)=0.</md>
+
+    <p>Thus</p>
+    <md>\frac{x}{\sqrt{x^2+a^2}} = \frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>Now interpret the two fractions geometrically.</p>
+
+    <p>Let <m>\alpha</m> be the angle that the incoming ray makes with the normal to the mirror. Let <m>\beta</m> be the angle that the outgoing ray makes with the normal. Then</p>
+    <md>\sin\alpha=\frac{x}{\sqrt{x^2+a^2}},</md>
+    <p>and</p>
+    <md>\sin\beta=\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>So the critical-point equation becomes</p>
+    <md>\sin\alpha=\sin\beta.</md>
+
+    <p>Since both angles lie between <m>0</m> and <m>\pi/2</m>, this gives</p>
+    <md>\alpha=\beta.</md>
+
+    <p>The angle of incidence equals the angle of reflection.</p>
+
+    <figure xml:id="fig-reflection-reflected-point">
+      <caption>Reflecting <m>B</m> across the mirror turns the broken reflected path into a straight path from <m>A</m> to <m>B^*</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}[scale=0.78, every node/.style={font=\small}]
+            % mirror
+            \draw[very thick] (-0.6,0) -- (8.1,0);
+            \node[below] at (7.6,0) {mirror};
+
+            % coordinates
+            \coordinate (A) at (0,3);
+            \coordinate (P) at (4.2,0);
+            \coordinate (B) at (7,2);
+            \coordinate (Bstar) at (7,-2);
+
+            % paths
+            \draw[thick] (A) -- (P) -- (B);
+            \draw[dashed] (P) -- (Bstar);
+            \draw[dashed] (B) -- (Bstar);
+
+            % normal
+            \draw[dashed] (4.2,-2.4) -- (4.2,2.6);
+            \node[right] at (4.2,2.45) {normal};
+
+            % points
+            \fill (A) circle (2pt);
+            \fill (P) circle (2pt);
+            \fill (B) circle (2pt);
+            \fill (Bstar) circle (2pt);
+
+            \node[left] at (A) {\(A=(0,a)\)};
+            \node[below] at (P) {\(P=(x,0)\)};
+            \node[right] at (B) {\(B=(L,b)\)};
+            \node[right] at (Bstar) {\(B^*=(L,-b)\)};
+
+            % angle labels, approximate
+            \node at (3.78,0.75) {\(\alpha\)};
+            \node at (4.65,0.65) {\(\beta\)};
+
+            % reflected line label
+            \node[below] at (7.5,-2.1) {reflected point};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>There is also a geometric shortcut. Reflect <m>B</m> across the mirror to</p>
+    <md>B^*=(L,-b).</md>
+
+    <p>The broken path</p>
+    <md>A\to P\to B</md>
+    <p>has the same length as the straightened path</p>
+    <md>A\to P\to B^*.</md>
+
+    <p>The shortest path from <m>A</m> to <m>B^*</m> is a straight line. So the best <m>P</m> is where that straight line crosses the mirror.</p>
+
+    <p>The derivative and the geometry say the same thing.</p>
+
+    <note xml:id="note-law-of-reflection">
+      <title>Law of reflection</title>
+      <p>A reflected light ray makes equal angles with the normal:</p>
+      <md>\text{angle of incidence}=\text{angle of reflection}.</md>
+    </note>
+
+    <p>The second derivative confirms that the critical point is a minimum:</p>
+    <md>D''(x) = \frac{a^2}{(x^2+a^2)^{3/2}} + \frac{b^2}{((L-x)^2+b^2)^{3/2}} \gt 0.</md>
+
+    <p>So <m>D</m> is concave up on the interval. The stationary point is the shortest path.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-refraction-snells-law">
+    <title>Refraction and Snell's law</title>
+
+    <p>Reflection minimizes distance because the light stays in one medium. Refraction is different.</p>
+
+    <p>When light passes from one medium into another, its speed changes. The best path is not the shortest path. It is the path of least time.</p>
+
+    <p>Suppose the upper medium has speed <m>v_1</m>, and the lower medium has speed <m>v_2</m>. Let the boundary between the two media be the <m>x</m>-axis. Place</p>
+    <md>A=(0,a)</md>
+    <p>above the boundary and</p>
+    <md>B=(L,-b)</md>
+    <p>below the boundary, where <m>a,b,L\gt 0</m>. Let the crossing point be</p>
+    <md>P=(x,0).</md>
+
+    <p>The travel time is</p>
+    <md>T(x) = \frac{\sqrt{x^2+a^2}}{v_1} + \frac{\sqrt{(L-x)^2+b^2}}{v_2}.</md>
+
+    <p>Differentiate:</p>
+    <md>T'(x) = \frac{x}{v_1\sqrt{x^2+a^2}} - \frac{L-x}{v_2\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>At an interior minimum,</p>
+    <md>T'(x)=0.</md>
+
+    <p>Therefore</p>
+    <md>\frac{x}{v_1\sqrt{x^2+a^2}} = \frac{L-x}{v_2\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>Let <m>\theta_1</m> be the angle the upper ray makes with the normal, and let <m>\theta_2</m> be the angle the lower ray makes with the normal. Then</p>
+    <md>\sin\theta_1=\frac{x}{\sqrt{x^2+a^2}},</md>
+    <p>and</p>
+    <md>\sin\theta_2=\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+
+    <p>So the minimizing condition becomes</p>
+    <md>\frac{\sin\theta_1}{v_1} = \frac{\sin\theta_2}{v_2}.</md>
+
+    <p>This is Snell's law in speed form.</p>
+
+    <p>If <m>c</m> is the speed of light in vacuum and</p>
+    <md>n=\frac{c}{v}</md>
+    <p>is the index of refraction, then</p>
+    <md>v=\frac{c}{n}.</md>
+
+    <p>Substituting into the speed form gives</p>
+    <md>\frac{\sin\theta_1}{c/n_1} = \frac{\sin\theta_2}{c/n_2}.</md>
+
+    <p>Cancel <m>c</m>:</p>
+    <md>n_1\sin\theta_1=n_2\sin\theta_2.</md>
+
+    <p>So Snell's law is also written as</p>
+    <md>n_1\sin\theta_1=n_2\sin\theta_2.</md>
+
+    <figure xml:id="fig-refraction-least-time">
+      <caption>When speed changes at a boundary, the least-time path usually bends.</caption>
+      <image width="80%">
+        <latex-image>
+          \begin{tikzpicture}[scale=0.82, every node/.style={font=\small}]
+            % media shading
+            \fill[gray!10] (-0.7,0) rectangle (8.2,4.2);
+            \fill[gray!22] (-0.7,-4.0) rectangle (8.2,0);
+
+            % boundary
+            \draw[very thick] (-0.7,0) -- (8.2,0);
+            \node[above] at (7.2,0) {boundary};
+
+            % points
+            \coordinate (A) at (0,4);
+            \coordinate (P) at (3,0);
+            \coordinate (B) at (7,-3);
+            \coordinate (S) at (4,0);
+
+            \draw[thick] (A) -- (P) -- (B);
+            \draw[dashed] (A) -- (B);
+            \draw[dashed] (P) -- (3,1.6);
+            \draw[dashed] (P) -- (3,-1.6);
+
+            \fill (A) circle (2pt);
+            \fill (P) circle (2pt);
+            \fill (B) circle (2pt);
+            \fill (S) circle (1.5pt);
+
+            \node[left] at (A) {\(A\)};
+            \node[below left] at (P) {\(P\)};
+            \node[right] at (B) {\(B\)};
+            \node[below right] at (S) {straight-line crossing};
+
+            \node at (1.6,3.6) {speed \(v_1\)};
+            \node at (1.6,-3.3) {speed \(v_2\)};
+
+            \node at (2.6,0.9) {\(\theta_1\)};
+            \node at (3.45,-0.9) {\(\theta_2\)};
+
+            \node[above] at (4.5,0.7) {straight line};
+            \node[below] at (3.9,-1.5) {least-time path};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex-refraction-least-time">
+      <title>Minimizing time across a boundary</title>
+      <statement>
+        <p>Suppose</p>
+        <md>A=(0,4), \qquad B=(7,-3),</md>
+        <p>with</p>
+        <md>v_1=3, \qquad v_2=4.</md>
+        <p>The lower medium is faster.</p>
+        <p>The travel time through a point <m>P=(x,0)</m> is</p>
+        <md>T(x) = \frac{\sqrt{x^2+16}}{3} + \frac{\sqrt{(7-x)^2+9}}{4}.</md>
+        <p>Differentiate:</p>
+        <md>T'(x) = \frac{x}{3\sqrt{x^2+16}} - \frac{7-x}{4\sqrt{(7-x)^2+9}}.</md>
+        <p>At</p>
+        <md>x=3,</md>
+        <p>we get</p>
+        <md>T'(3) = \frac{3}{3\sqrt{25}} - \frac{4}{4\sqrt{25}} = \frac{3}{15}-\frac{4}{20} = \frac15-\frac15 = 0.</md>
+        <p>Also,</p>
+        <md>T''(x) = \frac{16}{3(x^2+16)^{3/2}} + \frac{9}{4((7-x)^2+9)^{3/2}} \gt 0.</md>
+        <p>So <m>x=3</m> gives the least time.</p>
+        <p>The straight line from <m>A</m> to <m>B</m> crosses the boundary at <m>x=4</m>. The least-time path crosses at <m>x=3</m>. It enters the faster medium earlier so that more of the horizontal travel happens where the speed is larger.</p>
+        <p>This is the important lesson:</p>
+        <md>\text{least distance and least time are not always the same problem.}</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-seed-calculus-variations">
+    <title>The seed of the calculus of variations</title>
+
+    <p>In reflection and refraction, the unknown was one number:</p>
+    <md>x=\text{the point where the ray hits a line}.</md>
+
+    <p>But the deeper problem asks for an entire path.</p>
+
+    <p>Imagine a landscape where the speed depends on position. Perhaps the ground is easy to cross in one region and slow in another. A traveler wants to move from <m>A</m> to <m>B</m> in the least time. Which path should the traveler choose?</p>
+
+    <p>A straight line may not be best. A path that detours through faster ground might take less time.</p>
+
+    <p>If we approximate a path by many small straight pieces, then the travel time is approximately</p>
+    <md>\sum \frac{\Delta s_i}{v_i},</md>
+    <p>where</p>
+    <md>\Delta s_i</md>
+    <p>is the length of the <m>i</m>th small piece, and <m>v_i</m> is the speed along that piece.</p>
+
+    <p>A path is no longer described by one variable. It is described by many choices:</p>
+    <md>x_1,\ x_2,\ x_3,\ \ldots,\ x_n,</md>
+    <p>or, in the limit, by a whole function.</p>
+
+    <p>The quantity being minimized is not an ordinary function of one number. It is a rule that takes a path as input and returns a number as output:</p>
+    <md>\text{path} \quad\longmapsto\quad \text{travel time}.</md>
+
+    <p>Such a rule is called a <em>functional</em>.</p>
+
+    <p>Using the integral notation that will be developed in the next chapters, the travel time along a path is written symbolically as</p>
+    <md>\mathcal T[\text{path}] = \int \frac{ds}{v}.</md>
+
+    <p>This formula says:</p>
+    <md>\text{add up } \frac{\text{small distance}}{\text{speed}} \text{ along the whole path}.</md>
+
+    <p>The notation is only a preview for now. The idea is already visible from the finite sum.</p>
+
+    <note xml:id="note-extremal-principle">
+      <title>Extremal principle</title>
+      <p>A physical path is often characterized by making some quantity stationary:</p>
+      <md>\text{small changes in the path produce no first-order change in the quantity.}</md>
+      <p>For light in simple settings, the quantity is travel time.</p>
+    </note>
+
+    <p>The word <em>stationary</em> is important. It means that the first derivative-like change is zero. The path may be the absolute shortest or fastest path, but the deeper condition is local: nearby path changes do not change the total time to first order.</p>
+
+    <p>That is the same idea we used for ordinary critical points. There, a number <m>x</m> was chosen so that</p>
+    <md>F'(x)=0.</md>
+
+    <p>Here, a path is chosen so that the first-order change of a whole accumulated quantity is zero.</p>
+
+    <p>This is the beginning of the <em>calculus of variations</em>. We will not develop that subject here. But it points to the next major need. To measure time, work, area, mass, and probability, we need a way to add infinitely many small contributions.</p>
+
+    <p>That is the integral.</p>
+  </subsection>
+
+</section>
