@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-11-3-trigonometric-substitution">
+  <title>Trigonometric substitution</title>
+
+  <p>Trigonometric integrals used identities after trigonometric functions were already present. Trigonometric substitution uses those identities earlier. It creates trigonometric functions on purpose.</p>
+
+  <p>The reason is square roots.</p>
+
+  <p>Integrals such as</p>
+  <md>\int \sqrt{9-x^2}\,dx, \qquad \int \frac{dx}{\sqrt{x^2+4}}, \qquad \int \sqrt{x^2-1}\,dx</md>
+  <p>do not look trigonometric. But the expressions under the square roots resemble the three Pythagorean identities:</p>
+  <md>1-\sin^2\theta=\cos^2\theta,</md>
+  <md>1+\tan^2\theta=\sec^2\theta,</md>
+  <md>\sec^2\theta-1=\tan^2\theta.</md>
+
+  <p>A trigonometric substitution chooses <m>x</m> so that the square root becomes a simpler trigonometric expression. The square root does not vanish by magic. It vanishes because a right triangle or a circle was hidden inside it.</p>
+
+  <subsection xml:id="subsec-square-roots-circles-triangles">
+    <title>Square roots from circles and triangles</title>
+
+    <p>Start with</p>
+    <md>\sqrt{9-x^2}.</md>
+
+    <p>This expression comes from the circle</p>
+    <md>x^2+y^2=9.</md>
+
+    <p>Solving for the upper half gives</p>
+    <md>y=\sqrt{9-x^2}.</md>
+
+    <p>A point on the circle of radius <m>3</m> can be described by</p>
+    <md>x=3\sin\theta.</md>
+
+    <p>Then</p>
+    <md>9-x^2 = 9-9\sin^2\theta = 9(1-\sin^2\theta) = 9\cos^2\theta.</md>
+
+    <p>So</p>
+    <md>\sqrt{9-x^2} = 3|\cos\theta|.</md>
+
+    <p>If we choose</p>
+    <md>-\frac{\pi}{2}\le \theta\le \frac{\pi}{2},</md>
+    <p>then <m>\cos\theta\ge 0</m>, and therefore</p>
+    <md>\sqrt{9-x^2}=3\cos\theta.</md>
+
+    <p>That is the whole idea. We choose the range of <m>\theta</m> so that the square root is nonnegative without needing an absolute value.</p>
+
+    <example xml:id="ex-trig-sub-seed-sqrt-9-minus-x2">
+      <title>Seed example</title>
+      <statement>
+        <p>Find</p>
+        <md>\int \sqrt{9-x^2}\,dx.</md>
+        <p>Use</p>
+        <md>x=3\sin\theta, \qquad -\frac{\pi}{2}\le \theta\le \frac{\pi}{2}.</md>
+        <p>Then</p>
+        <md>dx=3\cos\theta\,d\theta,</md>
+        <p>and</p>
+        <md>\sqrt{9-x^2}=3\cos\theta.</md>
+        <p>The integral becomes</p>
+        <md>\int \sqrt{9-x^2}\,dx = \int (3\cos\theta)(3\cos\theta)\,d\theta.</md>
+        <p>So</p>
+        <md>\int \sqrt{9-x^2}\,dx = 9\int \cos^2\theta\,d\theta.</md>
+        <p>Use the half-angle identity</p>
+        <md>\cos^2\theta=\frac{1+\cos 2\theta}{2}.</md>
+        <p>Then</p>
+        <md>9\int \cos^2\theta\,d\theta = \frac92\int(1+\cos 2\theta)\,d\theta.</md>
+        <p>Thus</p>
+        <md>9\int \cos^2\theta\,d\theta = \frac92\theta+\frac94\sin 2\theta+C.</md>
+        <p>Now return to <m>x</m>. Since</p>
+        <md>x=3\sin\theta,</md>
+        <p>we have</p>
+        <md>\theta=\arcsin\left(\frac{x}{3}\right).</md>
+        <p>Also,</p>
+        <md>\sin 2\theta=2\sin\theta\cos\theta.</md>
+        <p>From the substitution,</p>
+        <md>\sin\theta=\frac{x}{3}</md>
+        <p>and</p>
+        <md>\cos\theta=\frac{\sqrt{9-x^2}}{3}.</md>
+        <p>Therefore</p>
+        <md>\sin 2\theta = 2\cdot\frac{x}{3}\cdot\frac{\sqrt{9-x^2}}{3} = \frac{2x\sqrt{9-x^2}}{9}.</md>
+        <p>Substitute back:</p>
+        <md>\frac92\theta+\frac94\sin 2\theta = \frac92\arcsin\left(\frac{x}{3}\right) + \frac94\cdot\frac{2x\sqrt{9-x^2}}{9}.</md>
+        <p>So</p>
+        <md>\int \sqrt{9-x^2}\,dx = \frac{x}{2}\sqrt{9-x^2} + \frac92\arcsin\left(\frac{x}{3}\right) + C.</md>
+        <p>The answer is more complicated than the integrand. That is normal. Antiderivatives often remember the substitution that created them.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-three-trig-substitutions">
+    <title><m>a^2-x^2</m>, <m>a^2+x^2</m>, and <m>x^2-a^2</m></title>
+
+    <p>The three common square-root patterns match the three Pythagorean identities.</p>
+
+    <table xml:id="tab-three-trig-substitutions">
+      <title>The three trigonometric substitutions</title>
+      <tabular halign="left">
+        <row header="yes" bottom="medium">
+          <cell>Expression</cell>
+          <cell>Substitution</cell>
+          <cell>Identity</cell>
+          <cell>Resulting square root</cell>
+        </row>
+        <row bottom="minor">
+          <cell><m>\sqrt{a^2-x^2}</m></cell>
+          <cell><m>x=a\sin\theta</m></cell>
+          <cell><m>1-\sin^2\theta=\cos^2\theta</m></cell>
+          <cell><m>a\cos\theta</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell><m>\sqrt{a^2+x^2}</m></cell>
+          <cell><m>x=a\tan\theta</m></cell>
+          <cell><m>1+\tan^2\theta=\sec^2\theta</m></cell>
+          <cell><m>a\sec\theta</m></cell>
+        </row>
+        <row>
+          <cell><m>\sqrt{x^2-a^2}</m></cell>
+          <cell><m>x=a\sec\theta</m></cell>
+          <cell><m>\sec^2\theta-1=\tan^2\theta</m></cell>
+          <cell><m>a\tan\theta</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The table assumes the usual ranges of <m>\theta</m> are chosen so that the square roots are nonnegative. For example, with</p>
+    <md>x=a\sin\theta</md>
+    <p>we usually choose</p>
+    <md>-\frac{\pi}{2}\le \theta\le \frac{\pi}{2},</md>
+    <p>so that <m>\cos\theta\ge 0</m>.</p>
+
+    <p>The substitutions also change the small step <m>dx</m>:</p>
+    <md>x=a\sin\theta \quad\Longrightarrow\quad dx=a\cos\theta\,d\theta,</md>
+    <md>x=a\tan\theta \quad\Longrightarrow\quad dx=a\sec^2\theta\,d\theta,</md>
+    <md>x=a\sec\theta \quad\Longrightarrow\quad dx=a\sec\theta\tan\theta\,d\theta.</md>
+
+    <p>This is the same substitution rule as before. The integrand changes because the measuring step changes.</p>
+
+    <figure xml:id="fig-trig-substitution-triangles">
+      <caption>The three substitutions are right-triangle substitutions. The triangle helps us return to <m>x</m>.</caption>
+      <sidebyside widths="31% 31% 31%" margins="auto" valign="bottom">
+        <figure xml:id="fig-sub-sine-triangle">
+          <caption><m>\sin\theta = x/a</m></caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}[scale=0.78, every node/.style={font=\small}]
+                \draw[thick] (0,0) -- (3,0) -- (3,2) -- cycle;
+                \draw (2.72,0) -- (2.72,0.28) -- (3,0.28);
+                \node at (0.55,0.22) {\(\theta\)};
+                \node[below] at (1.5,0) {\(\sqrt{a^2-x^2}\)};
+                \node[right] at (3,1) {\(x\)};
+                \node[above left] at (1.5,1.0) {\(a\)};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig-sub-tangent-triangle">
+          <caption><m>\tan\theta = x/a</m></caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}[scale=0.78, every node/.style={font=\small}]
+                \draw[thick] (0,0) -- (3,0) -- (3,2) -- cycle;
+                \draw (2.72,0) -- (2.72,0.28) -- (3,0.28);
+                \node at (0.55,0.22) {\(\theta\)};
+                \node[below] at (1.5,0) {\(a\)};
+                \node[right] at (3,1) {\(x\)};
+                \node[above left] at (1.5,1.0) {\(\sqrt{a^2+x^2}\)};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <figure xml:id="fig-sub-secant-triangle">
+          <caption><m>\sec\theta = x/a</m></caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}[scale=0.78, every node/.style={font=\small}]
+                \draw[thick] (0,0) -- (3,0) -- (3,2) -- cycle;
+                \draw (2.72,0) -- (2.72,0.28) -- (3,0.28);
+                \node at (0.55,0.22) {\(\theta\)};
+                \node[below] at (1.5,0) {\(a\)};
+                \node[right] at (3,1) {\(\sqrt{x^2-a^2}\)};
+                \node[above left] at (1.5,1.0) {\(x\)};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <example xml:id="ex-trig-sub-tangent-pattern">
+      <title>The <m>a^2+x^2</m> pattern</title>
+      <statement>
+        <p>Find</p>
+        <md>\int \frac{dx}{\sqrt{x^2+4}}.</md>
+        <p>The expression under the square root has the form</p>
+        <md>x^2+a^2</md>
+        <p>with <m>a=2</m>. Use</p>
+        <md>x=2\tan\theta.</md>
+        <p>Then</p>
+        <md>dx=2\sec^2\theta\,d\theta,</md>
+        <p>and</p>
+        <md>\sqrt{x^2+4} = \sqrt{4\tan^2\theta+4} = 2\sqrt{1+\tan^2\theta} = 2\sec\theta,</md>
+        <p>where <m>\sec\theta\gt 0</m> on the chosen interval.</p>
+        <p>So</p>
+        <md>\int \frac{dx}{\sqrt{x^2+4}} = \int \frac{2\sec^2\theta}{2\sec\theta}\,d\theta = \int \sec\theta\,d\theta.</md>
+        <p>From <xref ref="sec-11-2-trigonometric-integrals"/>,</p>
+        <md>\int \sec\theta\,d\theta = \ln|\sec\theta+\tan\theta|+C.</md>
+        <p>Now return to <m>x</m>. Since</p>
+        <md>\tan\theta=\frac{x}{2},</md>
+        <p>the triangle gives</p>
+        <md>\sec\theta=\frac{\sqrt{x^2+4}}{2}.</md>
+        <p>Therefore</p>
+        <md>\ln|\sec\theta+\tan\theta| = \ln\left|\frac{\sqrt{x^2+4}}{2}+\frac{x}{2}\right|.</md>
+        <p>The factor <m>1/2</m> inside the logarithm changes the answer only by a constant, so it can be absorbed into <m>C</m>. Thus</p>
+        <md>\int \frac{dx}{\sqrt{x^2+4}} = \ln|x+\sqrt{x^2+4}|+C.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-trig-sub-secant-pattern">
+      <title>The <m>x^2-a^2</m> pattern</title>
+      <statement>
+        <p>Find</p>
+        <md>\int \frac{\sqrt{x^2-4}}{x}\,dx, \qquad x\gt 2.</md>
+        <p>The expression under the square root has the form</p>
+        <md>x^2-a^2</md>
+        <p>with <m>a=2</m>. Use</p>
+        <md>x=2\sec\theta, \qquad 0\le\theta\lt \frac{\pi}{2}.</md>
+        <p>Then</p>
+        <md>dx=2\sec\theta\tan\theta\,d\theta,</md>
+        <p>and</p>
+        <md>\sqrt{x^2-4} = \sqrt{4\sec^2\theta-4} = 2\sqrt{\sec^2\theta-1} = 2\tan\theta.</md>
+        <p>The integral becomes</p>
+        <md>\int \frac{2\tan\theta}{2\sec\theta} \cdot 2\sec\theta\tan\theta\,d\theta.</md>
+        <p>Cancel:</p>
+        <md>\int \frac{\sqrt{x^2-4}}{x}\,dx = 2\int \tan^2\theta\,d\theta.</md>
+        <p>Use</p>
+        <md>\tan^2\theta=\sec^2\theta-1.</md>
+        <p>Then</p>
+        <md>2\int \tan^2\theta\,d\theta = 2\int(\sec^2\theta-1)\,d\theta.</md>
+        <p>So</p>
+        <md>2\int(\sec^2\theta-1)\,d\theta = 2\tan\theta-2\theta+C.</md>
+        <p>Now return to <m>x</m>. Since</p>
+        <md>x=2\sec\theta,</md>
+        <p>we have</p>
+        <md>\sec\theta=\frac{x}{2}, \qquad \cos\theta=\frac{2}{x}.</md>
+        <p>Thus</p>
+        <md>\theta=\arccos\left(\frac{2}{x}\right).</md>
+        <p>The triangle also gives</p>
+        <md>\tan\theta=\frac{\sqrt{x^2-4}}{2}.</md>
+        <p>Therefore</p>
+        <md>2\tan\theta-2\theta = \sqrt{x^2-4} - 2\arccos\left(\frac{2}{x}\right).</md>
+        <p>Hence</p>
+        <md>\int \frac{\sqrt{x^2-4}}{x}\,dx = \sqrt{x^2-4} - 2\arccos\left(\frac{2}{x}\right) + C, \qquad x\gt 2.</md>
+        <p>The condition <m>x\gt 2</m> is not a small detail. The substitution <m>x=2\sec\theta</m> with <m>0\le\theta\lt \pi/2</m> covers <m>x\ge 2</m>. On another interval, such as <m>x\lt -2</m>, we would choose a different range or adjust the substitution. Antiderivatives are always local to an interval where the integrand is defined.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-returning-original-variable">
+    <title>Returning to the original variable</title>
+
+    <p>An indefinite integral should end in the original variable unless the new variable has been clearly defined.</p>
+
+    <p>There are two common ways to return.</p>
+
+    <note xml:id="note-returning-from-theta">
+      <title>Two ways to return from <m>\theta</m></title>
+      <table xml:id="tab-returning-from-theta">
+        <title>Methods for returning to the original variable</title>
+        <tabular halign="left">
+          <row header="yes" bottom="medium">
+            <cell>Method</cell>
+            <cell>What it does</cell>
+          </row>
+          <row bottom="minor">
+            <cell>Inverse trigonometric function</cell>
+            <cell>Uses equations such as <m>\theta=\arcsin(x/a)</m> or <m>\theta=\arctan(x/a)</m>.</cell>
+          </row>
+          <row>
+            <cell>Right triangle</cell>
+            <cell>Uses the substitution to draw a triangle and read <m>\sin\theta</m>, <m>\cos\theta</m>, <m>\tan\theta</m>, or <m>\sec\theta</m>.</cell>
+          </row>
+        </tabular>
+      </table>
+    </note>
+
+    <p>In many examples, both methods are needed. The angle <m>\theta</m> itself becomes an inverse trigonometric function. Other expressions, such as <m>\sin 2\theta</m> or <m>\tan\theta</m>, are easiest to recover from the triangle.</p>
+
+    <example xml:id="ex-trig-sub-definite-change-limits">
+      <title>Definite integrals: change the limits</title>
+      <statement>
+        <p>For definite integrals, there is often no need to return to <m>x</m>. We can change the limits instead.</p>
+        <p>Evaluate</p>
+        <md>\int_0^1 \frac{dx}{\sqrt{4-x^2}}.</md>
+        <p>Use</p>
+        <md>x=2\sin\theta.</md>
+        <p>Then</p>
+        <md>dx=2\cos\theta\,d\theta,</md>
+        <p>and</p>
+        <md>\sqrt{4-x^2}=2\cos\theta</md>
+        <p>on the chosen range.</p>
+        <p>Now change the limits.</p>
+        <p>When</p>
+        <md>x=0,</md>
+        <p>we have</p>
+        <md>0=2\sin\theta,</md>
+        <p>so</p>
+        <md>\theta=0.</md>
+        <p>When</p>
+        <md>x=1,</md>
+        <p>we have</p>
+        <md>1=2\sin\theta,</md>
+        <p>so</p>
+        <md>\sin\theta=\frac12, \qquad \theta=\frac{\pi}{6}.</md>
+        <p>Thus</p>
+        <md>\int_0^1 \frac{dx}{\sqrt{4-x^2}} = \int_0^{\pi/6} \frac{2\cos\theta}{2\cos\theta}\,d\theta.</md>
+        <p>So</p>
+        <md>\int_0^1 \frac{dx}{\sqrt{4-x^2}} = \int_0^{\pi/6}1\,d\theta = \frac{\pi}{6}.</md>
+        <p>No <m>x</m>-triangle is needed at the end because the whole calculation stayed in the new variable after the limits changed.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warning-trig-sub-limits-mixing">
+      <title>A common mistake</title>
+      <p>Do not mix variables in a definite integral. After substituting <m>x=2\sin\theta</m>, either change the limits to <m>\theta</m>-limits or return the antiderivative to <m>x</m> before evaluating.</p>
+      <p>The expression</p>
+      <md>\int_0^1 d\theta</md>
+      <p>after an <m>x</m>-substitution is meaningless unless <m>0</m> and <m>1</m> have been converted into the corresponding <m>\theta</m>-values.</p>
+    </warning>
+
+    <p>The differential keeps the direction of the substitution. If increasing the new variable moves <m>x</m> in the opposite direction, the sign of <m>dx</m> records that reversal. This is the same orientation idea we saw in definite integrals.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-hyperbolic-substitutions">
+    <title>Hyperbolic substitutions</title>
+
+    <p>This subsection is optional on a first reading.</p>
+
+    <p>Trigonometric substitutions rely on</p>
+    <md>1+\tan^2\theta=\sec^2\theta</md>
+    <p>and</p>
+    <md>\sec^2\theta-1=\tan^2\theta.</md>
+
+    <p>There is another pair of functions built for expressions of the form <m>x^2+a^2</m> and <m>x^2-a^2</m>. The hyperbolic sine and cosine are defined by</p>
+    <md>\sinh u=\frac{e^u-e^{-u}}{2}, \qquad \cosh u=\frac{e^u+e^{-u}}{2}.</md>
+
+    <p>They satisfy</p>
+    <md>\cosh^2 u-\sinh^2 u=1.</md>
+
+    <p>Their derivatives are</p>
+    <md>\frac{d}{du}\sinh u=\cosh u, \qquad \frac{d}{du}\cosh u=\sinh u.</md>
+
+    <p>Because</p>
+    <md>1+\sinh^2 u=\cosh^2 u,</md>
+    <p>the substitution</p>
+    <md>x=a\sinh u</md>
+    <p>turns</p>
+    <md>\sqrt{a^2+x^2}</md>
+    <p>into</p>
+    <md>a\cosh u.</md>
+
+    <p>Because</p>
+    <md>\cosh^2 u-1=\sinh^2 u,</md>
+    <p>the substitution</p>
+    <md>x=a\cosh u</md>
+    <p>turns</p>
+    <md>\sqrt{x^2-a^2}</md>
+    <p>into</p>
+    <md>a\sinh u</md>
+    <p>when <m>x\ge a</m>.</p>
+
+    <example xml:id="ex-hyperbolic-sub-sqrt-x2-plus-a2">
+      <title>Hyperbolic substitution</title>
+      <statement>
+        <p>For <m>a\gt 0</m>, find</p>
+        <md>\int \frac{dx}{\sqrt{x^2+a^2}}.</md>
+        <p>Use</p>
+        <md>x=a\sinh u.</md>
+        <p>Then</p>
+        <md>dx=a\cosh u\,du,</md>
+        <p>and</p>
+        <md>\sqrt{x^2+a^2} = \sqrt{a^2\sinh^2 u+a^2} = a\sqrt{1+\sinh^2 u} = a\cosh u.</md>
+        <p>So</p>
+        <md>\int \frac{dx}{\sqrt{x^2+a^2}} = \int \frac{a\cosh u}{a\cosh u}\,du = \int 1\,du = u+C.</md>
+        <p>Since</p>
+        <md>x=a\sinh u,</md>
+        <p>we have</p>
+        <md>u=\operatorname{arsinh}\left(\frac{x}{a}\right).</md>
+        <p>Thus</p>
+        <md>\int \frac{dx}{\sqrt{x^2+a^2}} = \operatorname{arsinh}\left(\frac{x}{a}\right)+C.</md>
+        <p>Using</p>
+        <md>\operatorname{arsinh} z=\ln\left(z+\sqrt{z^2+1}\right),</md>
+        <p>this can also be written as</p>
+        <md>\int \frac{dx}{\sqrt{x^2+a^2}} = \ln|x+\sqrt{x^2+a^2}|+C.</md>
+        <p>The hyperbolic substitution gives the logarithmic answer more directly. It is not a new kind of calculus. It is another choice of variable matched to the shape of the square root.</p>
+      </statement>
+    </example>
+
+    <p>Trigonometric substitution handles square roots by changing the geometry of the variable. The next family of integrals has no square roots at all. It is algebraic: one polynomial divided by another. There the right move is not to create a triangle, but to split one complicated fraction into simpler fractions.</p>
+  </subsection>
+
+</section>
