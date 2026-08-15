@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-10-3-cylindrical-shells">
+  <title>Cylindrical shells</title>
+
+  <p>Disks and washers came from slices perpendicular to the axis of rotation. A vertical slice rotated around the <m>x</m>-axis made a disk or a washer. A horizontal slice rotated around the <m>y</m>-axis did the same.</p>
+
+  <p>But a slice can also be parallel to the axis of rotation.</p>
+
+  <p>Then it does not sweep out a disk. It sweeps out a thin cylindrical shell.</p>
+
+  <p>The small piece changes shape again:</p>
+  <md>\text{shell volume} \approx (\text{circumference})(\text{height})(\text{thickness}).</md>
+
+  <p>This is the <term>shell method</term>.</p>
+
+  <subsection xml:id="subsec-thin-shell-unwrapped">
+    <title>A thin shell unwrapped</title>
+
+    <p>Imagine a very thin metal can with radius <m>r</m>, height <m>h</m>, and thickness <m>\Delta r</m>. If we cut the side wall and flatten it, it becomes almost a rectangle.</p>
+
+    <p>The rectangle has height</p>
+    <md>h</md>
+    <p>and width approximately equal to the circumference of the shell:</p>
+    <md>2\pi r.</md>
+
+    <p>So its area is approximately</p>
+    <md>2\pi r h.</md>
+
+    <p>Multiplying by the thickness <m>\Delta r</m>, the volume of the thin shell is approximately</p>
+    <md>\Delta V\approx 2\pi r h\,\Delta r.</md>
+
+    <p>The word <q>approximately</q> is doing honest work. The outer surface of the shell has a slightly larger circumference than the inner surface. But when the thickness is very small, the difference is very small.</p>
+
+    <p>For a shell with constant height <m>h</m>, inner radius <m>r</m>, and outer radius <m>r+\Delta r</m>, the exact volume is</p>
+    <md>\pi(r+\Delta r)^2h-\pi r^2h.</md>
+
+    <p>Expand:</p>
+    <md>\pi h\bigl((r+\Delta r)^2-r^2\bigr) = \pi h(2r\Delta r+(\Delta r)^2).</md>
+
+    <p>So</p>
+    <md>\Delta V = 2\pi r h\,\Delta r+\pi h(\Delta r)^2.</md>
+
+    <p>The first term is the shell approximation. The second term contains <m>(\Delta r)^2</m>, which becomes negligible compared with <m>\Delta r</m> as the shell gets thinner.</p>
+
+    <p>That is the same pattern we have seen before. The integral keeps the first-order small piece and lets the higher-order error disappear in the limit.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-shell-method-formula">
+    <title>The shell method formula</title>
+
+    <p>Suppose a region is rotated around the <m>y</m>-axis. A vertical strip at position <m>x</m> has thickness <m>dx</m>. If the strip has height <m>H(x)</m>, then after rotation it makes a thin cylindrical shell.</p>
+
+    <p>Its radius is</p>
+    <md>x,</md>
+    <p>its circumference is</p>
+    <md>2\pi x,</md>
+    <p>its height is</p>
+    <md>H(x),</md>
+    <p>and its thickness is</p>
+    <md>dx.</md>
+
+    <p>So the small volume is</p>
+    <md>dV=2\pi xH(x)\,dx.</md>
+
+    <p>Adding all shells gives the volume.</p>
+
+    <definition xml:id="def-shell-method-y-axis">
+      <title>Shell method about the <m>y</m>-axis</title>
+      <statement>
+        <p>If a region between <m>x=a</m> and <m>x=b</m> is rotated around the <m>y</m>-axis, and a vertical strip has height <m>H(x)</m>, then</p>
+        <md>V=2\pi\int_a^b xH(x)\,dx</md>
+        <p>provided <m>x\ge 0</m> on the interval.</p>
+      </statement>
+    </definition>
+
+    <p>In words:</p>
+    <md>\text{volume}=\int(\text{circumference})(\text{height})(\text{thickness}).</md>
+
+    <p>If the region is rotated around the vertical line</p>
+    <md>x=c,</md>
+    <p>then the radius is the distance from the strip to the axis:</p>
+    <md>|x-c|.</md>
+
+    <p>The shell formula becomes</p>
+    <md>V=2\pi\int_a^b |x-c|\,H(x)\,dx.</md>
+
+    <p>If <m>x-c</m> does not change sign on the interval, the absolute value is usually removed by writing the radius as a positive expression.</p>
+
+    <example xml:id="ex-shell-parabola">
+      <title>Rotating a region under a parabola</title>
+      <statement>
+        <p>Find the volume formed by rotating the region under</p>
+        <md>y=4-x^2</md>
+        <p>from <m>x=0</m> to <m>x=2</m> around the <m>y</m>-axis.</p>
+        <p>A vertical strip at position <m>x</m> has height</p>
+        <md>H(x)=4-x^2.</md>
+        <p>When rotated around the <m>y</m>-axis, it forms a shell with radius <m>x</m>. Therefore</p>
+        <md>V=2\pi\int_0^2 x(4-x^2)\,dx.</md>
+        <p>Compute:</p>
+        <md>V = 2\pi\int_0^2 (4x-x^3)\,dx.</md>
+        <p>Thus</p>
+        <md>V = 2\pi\left(2x^2-\frac{x^4}{4}\right)\Big|_0^2.</md>
+        <p>At <m>x=2</m>,</p>
+        <md>2x^2-\frac{x^4}{4} = 8-\frac{16}{4} = 8-4 = 4.</md>
+        <p>So</p>
+        <md>V=2\pi(4)=8\pi.</md>
+
+        <figure xml:id="fig-shell-parabola">
+          <caption>A vertical strip rotated around the <m>y</m>-axis makes a cylindrical shell.</caption>
+          <image width="78%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.78\textwidth,
+                  height=0.48\textwidth,
+                  xmin=-0.2, xmax=2.45,
+                  ymin=0, ymax=4.6,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2},
+                  ytick={0,1,2,3,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[domain=0:2, samples=120, fill=gray!15, draw=none] {4-x^2} \closedcycle;
+              \addplot[very thick, domain=0:2.15, samples=120] {4-x^2};
+
+              % typical shell-generating strip
+              \draw[thick] (axis cs:1.25,0) -- (axis cs:1.25,2.4375);
+              \draw[thick] (axis cs:1.30,0) -- (axis cs:1.30,2.31);
+              \draw[&lt;-&gt;] (axis cs:0,0.35) -- (axis cs:1.25,0.35);
+              \node[above] at (axis cs:0.63,0.35) {radius \(x\)};
+              \node[anchor=west] at (axis cs:1.36,1.35) {height \(4-x^2\)};
+              \node[anchor=west] at (axis cs:1.25,4.15) {\(y=4-x^2\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>The shell formula is not a new principle. It is the same slicing idea with a different cross-sectional piece.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-when-shells-beat-washers">
+    <title>When shells beat washers</title>
+
+    <p>The washer method uses slices perpendicular to the axis of rotation. The shell method uses slices parallel to the axis of rotation.</p>
+
+    <p>That one choice can turn a difficult setup into a simple one.</p>
+
+    <table>
+      <title>Comparison of slicing methods for solids of revolution</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell>axis of rotation</cell>
+          <cell>slice direction</cell>
+          <cell>method</cell>
+        </row>
+        <row>
+          <cell>vertical axis</cell>
+          <cell>horizontal slices</cell>
+          <cell>disks or washers</cell>
+        </row>
+        <row>
+          <cell>vertical axis</cell>
+          <cell>vertical slices</cell>
+          <cell>shells</cell>
+        </row>
+        <row>
+          <cell>horizontal axis</cell>
+          <cell>vertical slices</cell>
+          <cell>disks or washers</cell>
+        </row>
+        <row>
+          <cell>horizontal axis</cell>
+          <cell>horizontal slices</cell>
+          <cell>shells</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>A quick way to remember it is:</p>
+    <md>\text{slices perpendicular to the axis make disks or washers;}</md>
+    <md>\text{slices parallel to the axis make shells.}</md>
+
+    <example xml:id="ex-shells-avoid-splitting">
+      <title>Shells avoid splitting</title>
+      <statement>
+        <p>Rotate the region under</p>
+        <md>y=\frac1x</md>
+        <p>from <m>x=1</m> to <m>x=3</m> around the <m>y</m>-axis.</p>
+        <p>With shells, a vertical strip has radius <m>x</m> and height <m>\frac1x</m>. So</p>
+        <md>V=2\pi\int_1^3 x\cdot\frac1x\,dx.</md>
+        <p>The factors cancel:</p>
+        <md>V=2\pi\int_1^3 1\,dx = 2\pi(3-1) = 4\pi.</md>
+
+        <figure xml:id="fig-shell-1-over-x">
+          <caption>The shell height is <m>1/x</m>, so <m>x\cdot(1/x)=1</m>. The shell setup is especially simple.</caption>
+          <image width="78%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.78\textwidth,
+                  height=0.48\textwidth,
+                  xmin=0, xmax=3.4,
+                  ymin=0, ymax=1.25,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={1,2,3},
+                  ytick={0,0.333,0.5,1},
+                  yticklabels={\(0\),\(\frac13\),\(\frac12\),\(1\)},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[domain=1:3, samples=120, fill=gray!15, draw=none] {1/x} \closedcycle;
+              \addplot[very thick, domain=1:3.25, samples=120] {1/x};
+              \draw[thick] (axis cs:2,0) -- (axis cs:2,0.5);
+              \draw[&lt;-&gt;] (axis cs:0,0.12) -- (axis cs:2,0.12);
+              \node[above] at (axis cs:1,0.12) {radius \(x\)};
+              \node[anchor=west] at (axis cs:2.07,0.28) {height \(1/x\)};
+              \node[anchor=west] at (axis cs:1.25,0.95) {\(y=1/x\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>Washers are possible, but they are less direct. A horizontal slice must be described in terms of <m>y</m>.</p>
+        <p>The region has top value <m>y=1</m> and bottom value <m>y=0</m>. But the right boundary changes its description:</p>
+        <md>
+          \begin{cases}
+          0\le y\le \frac13: &amp; \text{the slice runs from }x=1\text{ to }x=3,\\[2mm]
+          \frac13\lt y\le 1: &amp; \text{the slice runs from }x=1\text{ to }x=\frac1y.
+          \end{cases}
+        </md>
+        <p>So the washer method requires two integrals:</p>
+        <md>V = \pi\int_0^{1/3}(3^2-1^2)\,dy + \pi\int_{1/3}^1\left(\left(\frac1y\right)^2-1^2\right)\,dy.</md>
+        <p>This gives the same answer, but the shell method sees the region in one piece.</p>
+        <note xml:id="note-good-method-simple-piece">
+          <p>A good method is the one that describes the small piece simply.</p>
+        </note>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-comparing-shells-washers-same-solid">
+    <title>Comparing two methods on the same solid</title>
+
+    <p>Different methods should agree when they describe the same solid. The setup may look different, but the volume is the same physical quantity.</p>
+
+    <example xml:id="ex-compare-shells-washers">
+      <title>Rotating the region between <m>y=x</m> and <m>y=x^2</m></title>
+      <statement>
+        <p>Rotate the region between</p>
+        <md>y=x</md>
+        <p>and</p>
+        <md>y=x^2</md>
+        <p>from <m>x=0</m> to <m>x=1</m> around the <m>y</m>-axis.</p>
+        <p>We compute the volume in two ways.</p>
+
+        <paragraphs>
+          <title>Shell method</title>
+          <p>A vertical strip has radius</p>
+          <md>x</md>
+          <p>and height</p>
+          <md>x-x^2.</md>
+          <p>So</p>
+          <md>V=2\pi\int_0^1 x(x-x^2)\,dx.</md>
+          <p>Thus</p>
+          <md>V=2\pi\int_0^1 (x^2-x^3)\,dx.</md>
+          <p>Compute:</p>
+          <md>V = 2\pi\left(\frac{x^3}{3}-\frac{x^4}{4}\right)\Big|_0^1 = 2\pi\left(\frac13-\frac14\right) = 2\pi\left(\frac1{12}\right).</md>
+          <p>Therefore</p>
+          <md>V=\frac{\pi}{6}.</md>
+        </paragraphs>
+
+        <paragraphs>
+          <title>Washer method</title>
+          <p>For washers about the <m>y</m>-axis, use horizontal slices. Solve the curves for <m>x</m> in terms of <m>y</m>:</p>
+          <md>y=x \quad\Longrightarrow\quad x=y,</md>
+          <p>and</p>
+          <md>y=x^2 \quad\Longrightarrow\quad x=\sqrt y.</md>
+          <p>For <m>0\le y\le 1</m>, the right boundary is <m>x=\sqrt y</m>, and the left boundary is <m>x=y</m>. Rotating around the <m>y</m>-axis gives washers with</p>
+          <md>R(y)=\sqrt y, \qquad r(y)=y.</md>
+          <p>Thus</p>
+          <md>V=\pi\int_0^1\left((\sqrt y)^2-y^2\right)\,dy.</md>
+          <p>So</p>
+          <md>V=\pi\int_0^1 (y-y^2)\,dy.</md>
+          <p>Compute:</p>
+          <md>V = \pi\left(\frac{y^2}{2}-\frac{y^3}{3}\right)\Big|_0^1 = \pi\left(\frac12-\frac13\right) = \frac{\pi}{6}.</md>
+        </paragraphs>
+
+        <p>The two setups agree.</p>
+
+        <note xml:id="note-method-not-meaning">
+          <title>The method is not the meaning</title>
+          <p>Shells and washers are two ways to add the same solid. One adds thin cylindrical walls. The other adds thin cross-sectional washers. If both describe the same solid correctly, they give the same volume.</p>
+        </note>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-shells-horizontal-axis">
+    <title>Shells around a horizontal axis</title>
+
+    <p>Shells are not only for rotation around the <m>y</m>-axis. If a horizontal strip rotates around a horizontal axis, it also makes a shell.</p>
+
+    <p>For example, suppose a region is described using <m>y</m>, and a horizontal strip has length <m>L(y)</m>. If the region is rotated around the <m>x</m>-axis, then the shell radius is <m>y</m>, the circumference is <m>2\pi y</m>, and the thickness is <m>dy</m>.</p>
+
+    <p>So</p>
+    <md>V=2\pi\int_c^d yL(y)\,dy</md>
+    <p>when <m>y\ge 0</m>.</p>
+
+    <p>More generally, rotating around the horizontal line <m>y=k</m> gives radius</p>
+    <md>|y-k|.</md>
+
+    <p>Then</p>
+    <md>V=2\pi\int_c^d |y-k|\,L(y)\,dy.</md>
+
+    <p>The same small piece is being used:</p>
+    <md>(\text{circumference})(\text{height or length})(\text{thickness}).</md>
+
+    <p>Only the variable changes.</p>
+
+    <example xml:id="ex-shells-horizontal">
+      <title>Horizontal shells</title>
+      <statement>
+        <p>Rotate the region between</p>
+        <md>x=y^2</md>
+        <p>and</p>
+        <md>x=2-y^2</md>
+        <p>for <m>-1\le y\le 1</m> around the <m>x</m>-axis.</p>
+        <p>A horizontal strip at height <m>y</m> has length</p>
+        <md>(2-y^2)-y^2=2-2y^2.</md>
+        <p>But rotating the whole region around the <m>x</m>-axis using horizontal shells requires care, because the strip above the <m>x</m>-axis and the strip below the <m>x</m>-axis make the same shell radius. If we integrate from <m>-1</m> to <m>1</m> using <m>2\pi y</m>, the positive and negative shell radii would cancel, which makes no physical sense.</p>
+        <p>Instead, use symmetry. The upper half (<m>0\le y\le 1</m>) rotates to produce the whole solid. Its shell radius is <m>y</m>. Therefore</p>
+        <md>V=2\pi\int_0^1 y(2-2y^2)\,dy.</md>
+        <p>Compute:</p>
+        <md>V=2\pi\int_0^1 (2y-2y^3)\,dy = 2\pi\left(y^2-\frac{y^4}{2}\right)\Big|_0^1.</md>
+        <p>So</p>
+        <md>V=2\pi\left(1-\frac12\right)=\pi.</md>
+      </statement>
+    </example>
+
+    <warning xml:id="warning-shell-radius-nonnegative">
+      <p>A radius is a distance, so it is nonnegative. If a strip crosses the axis of rotation, or if symmetric strips produce the same shell, split the region or use symmetry.</p>
+    </warning>
+
+    <p>Shells give one more way to choose the small piece. The next section changes the quantity being measured. Instead of adding volume, we add matter.</p>
+  </subsection>
+
+</section>
