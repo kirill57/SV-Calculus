@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-functions-as-assignments">
+  <title>Functions as assignments</title>
+
+  <p>The real line gave us a language for position, distance, intervals, and error. Calculus begins when one number on that line determines another.</p>
+
+  <p>A time determines a position. A radius determines an area. A temperature determines the volume of a gas. A step size <m>h</m> determines the error in an approximation.</p>
+
+  <p>That kind of dependence is called a function.</p>
+
+  <subsection xml:id="subsec-input-output-domain-range">
+    <title>Input, output, domain, and range</title>
+
+    <p>Imagine a trip along a straight road. At each time <m>t</m>, the car has a position <m>s(t)</m>. The input is time. The output is position:</p>
+
+    <md>t \quad \longmapsto \quad s(t).</md>
+
+    <p>For example, if the car moves at <m>50</m> miles/hour starting from position <m>0</m>, then</p>
+
+    <md>s(t)=50t.</md>
+
+    <p>This formula assigns one position to each time:</p>
+
+    <md>0\mapsto 0, \qquad 1\mapsto 50, \qquad 2\mapsto 100, \qquad 3\mapsto 150.</md>
+
+    <figure xml:id="fig-function-assignment">
+      <caption>A function assigns an output to each input in its domain.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+            \node at (-0.2,3.2) {\textbf{time}};
+            \node at (4.3,3.2) {\textbf{position}};
+
+            \foreach \y/\t/\s in {2.4/0/0,1.6/1/50,0.8/2/100,0/3/150} {
+              \node[left] at (0,\y) {\(t=\t\)};
+              \node[right] at (4,\y) {\(s=\s\)};
+              \draw[-&gt;, thick] (0.45,\y) -- (3.55,\y);
+            }
+
+            \node[draw, rounded corners, align=center, minimum width=1.6cm, minimum height=0.8cm] at (2,3.2) {\(s(t)=50t\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The word <q>assigns</q> is important. A function is not merely a formula. It is a rule that gives exactly one output for each allowed input.</p>
+
+    <definition xml:id="def-function-domain-range">
+      <title>Function, Domain, and Range</title>
+      <statement>
+        <p>A <term>function</term> <m>f</m> from a set <m>D</m> to the real numbers is a rule that assigns to each input <m>x\in D</m> exactly one real number <m>f(x)</m>.</p>
+        <p>The set <m>D</m> is called the <term>domain</term> of <m>f</m>.</p>
+        <p>The set of all outputs is called the <term>range</term> of <m>f</m>:</p>
+        <md>\{f(x):x\in D\}.</md>
+      </statement>
+    </definition>
+
+    <p>We often write <m>f:D\to \mathbb{R}</m>. This means that the inputs come from <m>D</m>, and the outputs are real numbers.</p>
+
+    <example xml:id="ex-square-function-domain-range">
+      <title>Domain and range of <m>f(x)=x^2</m></title>
+      <statement>
+        <p>Let <m>f:\mathbb{R}\to \mathbb{R}</m>, <m>f(x)=x^2</m>.</p>
+        <p>The domain is all real numbers. The range is <m>[0,\infty)</m>, because every square is nonnegative, and every nonnegative number is the square of some real number.</p>
+        <p>For instance, <m>9</m> is in the range because <m>f(3)=9</m>. But <m>-4</m> is not in the range because no real number has square <m>-4</m>.</p>
+      </statement>
+    </example>
+
+    <paragraphs xml:id="par-same-formula-different-domain">
+      <title>Same formula, different function</title>
+      <p>The formula alone does not always determine the function. Compare</p>
+      <md>f:\mathbb{R}\to \mathbb{R}, \qquad f(x)=x^2,</md>
+      <p>with</p>
+      <md>g:[-1,1]\to \mathbb{R}, \qquad g(x)=x^2.</md>
+      <p>The formulas are the same, but the domains are different. So the functions are different. The range of <m>f</m> is <m>[0,\infty)</m>, while the range of <m>g</m> is <m>[0,1]</m>.</p>
+      <p>A function is a rule together with its allowed inputs.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-functions-from-formulas-graphs-tables-words">
+    <title>Functions from formulas, graphs, tables, and words</title>
+
+    <p>A formula is the most familiar way to describe a function, but it is not the only way.</p>
+
+    <paragraphs xml:id="par-fn-formula">
+      <title>A function from a formula</title>
+      <p>The area <m>A</m> of a circle depends on its radius <m>r</m>:</p>
+      <md>A(r)=\pi r^2.</md>
+      <p>If the radius is measured in centimeters, then the area is measured in square centimeters. The natural domain is <m>[0,\infty)</m>, because a radius cannot be negative.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="par-fn-table">
+      <title>A function from a table</title>
+      <p>A thermometer may record the temperature of a cup of tea every minute:</p>
+      <table>
+        <title>Temperature of cooling tea</title>
+        <tabular top="major" bottom="major" left="major" right="major">
+          <row bottom="minor">
+            <cell><m>t\text{ (minutes)}</m></cell>
+            <cell><m>0</m></cell>
+            <cell><m>1</m></cell>
+            <cell><m>2</m></cell>
+            <cell><m>3</m></cell>
+            <cell><m>4</m></cell>
+          </row>
+          <row>
+            <cell><m>T(t)\text{ (\(^\circ\)C)}</m></cell>
+            <cell><m>90</m></cell>
+            <cell><m>82</m></cell>
+            <cell><m>75</m></cell>
+            <cell><m>69</m></cell>
+            <cell><m>64</m></cell>
+          </row>
+        </tabular>
+      </table>
+      <p>This table defines a function on the domain <m>\{0,1,2,3,4\}</m>. For example, <m>T(2)=75</m>.</p>
+      <p>The table does not tell us the exact temperature at <m>t=2.5</m>. It may suggest one, but it does not assign one unless we add more information.</p>
+      <p>This distinction will matter later. Data can suggest a model, but the model is a new function.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="par-fn-graph">
+      <title>A function from a graph</title>
+      <p>A graph can also describe a function. The input <m>x</m> is read along the horizontal axis. The output <m>f(x)</m> is read along the vertical axis.</p>
+      <p>A graph represents a function only when each input gives exactly one output. This is the reason for the vertical line test: a vertical line corresponds to one input <m>x</m>. If it hits a curve in two places, then that input has two possible outputs, so the curve is not the graph of a function of <m>x</m>.</p>
+
+      <figure xml:id="fig-vertical-line-test">
+        <caption>The full circle gives two <m>y</m>-values for many <m>x</m>-values. The upper semicircle gives exactly one.</caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+              % left: not a function
+              \begin{scope}
+                \draw[-&gt;] (-1.5,0) -- (1.7,0) node[right] {\(x\)};
+                \draw[-&gt;] (0,-1.5) -- (0,1.7) node[above] {\(y\)};
+                \draw[thick] (0,0) circle (1);
+                \draw[dashed] (0.45,-1.35) -- (0.45,1.35);
+                \fill (0.45,0.893) circle (1.8pt);
+                \fill (0.45,-0.893) circle (1.8pt);
+                \node at (0,-2.0) {not a function of \(x\)};
+              \end{scope}
+
+              % right: function
+              \begin{scope}[xshift=5cm]
+                \draw[-&gt;] (-1.5,0) -- (1.7,0) node[right] {\(x\)};
+                \draw[-&gt;] (0,-0.3) -- (0,1.7) node[above] {\(y\)};
+                \draw[thick, domain=-1:1, samples=60] plot (\x,{sqrt(1-\x*\x)});
+                \draw[dashed] (0.45,-0.2) -- (0.45,1.35);
+                \fill (0.45,0.893) circle (1.8pt);
+                \node at (0,-0.75) {\(y=\sqrt{1-x^2}\)};
+                \node at (0,-2.0) {a function on \([-1,1]\)};
+              \end{scope}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <p>The circle <m>x^2+y^2=1</m> is not the graph of <m>y</m> as a function of <m>x</m>, because most inputs <m>x</m> between <m>-1</m> and <m>1</m> give two outputs.</p>
+      <p>But the upper semicircle <m>y=\sqrt{1-x^2}</m> is a function on the domain <m>[-1,1]</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="par-fn-words">
+      <title>A function from words</title>
+      <p>Sometimes the rule is best described in words. For example:</p>
+      <md>C(m)=\text{the cost, in dollars, of a taxi ride of }m\text{ miles}.</md>
+      <p>A simple model might be</p>
+      <md>C(m)=4+2.50m.</md>
+      <p>Here <m>4</m> is the starting charge, and <m>2.50</m> is the cost per mile. The units help us read the formula:</p>
+      <md>2.50\frac{\text{dollars}}{\text{mile}}\cdot m\text{ miles} = 2.50m\text{ dollars}.</md>
+      <p>The natural domain is <m>[0,\infty)</m>, or perhaps a smaller interval if the taxi company serves only local trips.</p>
+    </paragraphs>
+
+    <remark xml:id="rmk-four-questions-function">
+      <title>A useful habit</title>
+      <p>When you meet a function, ask four questions:</p>
+      <ul>
+        <li><p>What are the inputs?</p></li>
+        <li><p>What are the outputs?</p></li>
+        <li><p>What units do they have?</p></li>
+        <li><p>What inputs are allowed?</p></li>
+      </ul>
+    </remark>
+  </subsection>
+
+  <subsection xml:id="subsec-natural-domain-formula">
+    <title>The natural domain of a formula</title>
+
+    <p>When a formula is given without an explicit domain, we usually take the domain to be all real numbers for which the formula makes sense. This is called the <term>natural domain</term>.</p>
+
+    <example xml:id="ex-natural-domain-rational">
+      <title>Natural domain of <m>f(x)=\frac{1}{x-2}</m></title>
+      <statement>
+        <p>For <m>f(x)=\frac{1}{x-2}</m>, the denominator cannot be <m>0</m>. Therefore <m>x\neq 2</m>.</p>
+        <p>The natural domain is <m>(-\infty,2)\cup(2,\infty)</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-natural-domain-sqrt-linear">
+      <title>Natural domain of <m>g(x)=\sqrt{x-1}</m></title>
+      <statement>
+        <p>For <m>g(x)=\sqrt{x-1}</m>, the quantity under the square root must be nonnegative: <m>x-1\ge 0</m>.</p>
+        <p>So <m>x\ge 1</m>, and the natural domain is <m>[1,\infty)</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-natural-domain-semicircle">
+      <title>Natural domain of <m>h(x)=\sqrt{4-x^2}</m></title>
+      <statement>
+        <p>For <m>h(x)=\sqrt{4-x^2}</m>, we need <m>4-x^2\ge 0</m>.</p>
+        <p>This means <m>x^2\le 4</m>, so <m>-2\le x\le 2</m>. The natural domain is <m>[-2,2]</m>.</p>
+        <p>In fact, the graph of <m>y=\sqrt{4-x^2}</m> is the upper half of the circle <m>x^2+y^2=4</m>. The domain is the horizontal interval covered by the semicircle. The range is <m>[0,2]</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-piecewise-functions">
+    <title>Piecewise-defined functions</title>
+
+    <p>Many real processes follow one rule for a while and then another rule later.</p>
+
+    <p>A car may move forward, stop at a light, then reverse into a parking space. A tax bill may use one rate for the first part of income and another rate for the next part. A postage cost may stay constant over a range of weights, then jump.</p>
+
+    <p>These functions are often described piece by piece.</p>
+
+    <example xml:id="ex-piecewise-position">
+      <title>Forward, then backward</title>
+      <statement>
+        <p>A car starts at position <m>0</m>, moves forward at <m>40</m> miles/hour for <m>2</m> hours, and then moves backward at <m>30</m> miles/hour for <m>1</m> hour.</p>
+        <p>For <m>0\le t\le 2</m>, the position is <m>s(t)=40t</m>.</p>
+        <p>At <m>t=2</m>, the car has reached <m>s(2)=80</m>.</p>
+        <p>After that, the car moves backward at <m>30</m> miles/hour. For <m>2\lt t\le 3</m>, its position is</p>
+        <md>s(t)=80-30(t-2).</md>
+        <p>Thus</p>
+        <md>
+          s(t)=
+          \begin{cases}
+          40t, \amp 0\le t\le 2,\\
+          80-30(t-2), \amp 2\lt t\le 3.
+          \end{cases}
+        </md>
+        <p>The domain is <m>[0,3]</m>. The range is <m>[0,80]</m>, because the car starts at <m>0</m>, reaches <m>80</m>, and then returns to <m>50</m>.</p>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-piecewise-position-function">
+      <caption>A piecewise function can describe motion whose rule changes.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.72\textwidth,
+                height=0.42\textwidth,
+                xmin=0, xmax=3.2,
+                ymin=0, ymax=90,
+                axis lines=left,
+                xlabel={\(t\) (hours)},
+                ylabel={\(s(t)\) (miles)},
+                xtick={0,1,2,3},
+                ytick={0,40,50,80},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=0:2, samples=2] {40*x};
+            \addplot[thick, domain=2:3, samples=2] {80-30*(x-2)};
+            \addplot[only marks,mark=*] coordinates {(0,0) (2,80) (3,50)};
+            \node[anchor=west] at (axis cs:0.6,35) {slope \(40\)};
+            \node[anchor=west] at (axis cs:2.25,68) {slope \(-30\)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>At <m>t=2</m>, the definition uses only the first formula. That is enough. A function must give one output for each input, not two.</p>
+
+    <p>Here the second formula would also give <m>80-30(2-2)=80</m>, so there would be no conflict if we included <m>t=2</m> in both pieces. But it is cleaner to assign the boundary point once.</p>
+
+    <warning xml:id="warn-piecewise-double-assignment">
+      <title>Overlapping definitions</title>
+      <p>The expression</p>
+      <md>
+        F(x)=
+        \begin{cases}
+        1, \amp x\le 0,\\
+        2, \amp x\ge 0
+        \end{cases}
+      </md>
+      <p>does not define a function, because at <m>x=0</m> it assigns two outputs: <m>F(0)=1</m> and <m>F(0)=2</m>.</p>
+      <p>To make it a function, one of the pieces must give up the endpoint. For example,</p>
+      <md>
+        F(x)=
+        \begin{cases}
+        1, \amp x\lt 0,\\
+        2, \amp x\ge 0
+        \end{cases}
+      </md>
+      <p>is a function.</p>
+      <p>This small detail matters. Calculus often studies what happens near a boundary point, so we must know exactly what value the function has there.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-difference-quotient-function">
+    <title>The difference quotient as a function of two inputs</title>
+
+    <p>Chapter 1 already used expressions such as</p>
+
+    <md>\frac{s(2+h)-s(2)}{h}.</md>
+
+    <p>This is an average velocity over a short interval. It is also a new function built from the old function <m>s</m>.</p>
+
+    <definition xml:id="def-difference-quotient">
+      <title>Difference quotient</title>
+      <statement>
+        <p>For a general function <m>f</m>, a base input <m>a</m>, and a nonzero step <m>h</m>, define</p>
+        <md>Q_f(a,h)=\frac{f(a+h)-f(a)}{h}.</md>
+        <p>This is called a <term>difference quotient</term>.</p>
+      </statement>
+    </definition>
+
+    <p>The input <m>a</m> tells us where we start. The input <m>h</m> tells us how far we step. The output is the average rate of change from <m>a</m> to <m>a+h</m>:</p>
+
+    <md>Q_f(a,h) = \frac{\text{change in output}}{\text{change in input}}.</md>
+
+    <p>The condition <m>h\neq 0</m> is necessary because division by <m>0</m> is not allowed. There is another domain condition too: both <m>a</m> and <m>a+h</m> must be in the domain of <m>f</m>.</p>
+
+    <example xml:id="ex-diff-quotient-square">
+      <title>Difference quotient for <m>f(x)=x^2</m></title>
+      <statement>
+        <p>Let <m>f(x)=x^2</m>. Then</p>
+        <md>Q_f(a,h) = \frac{(a+h)^2-a^2}{h}.</md>
+        <p>For <m>h\neq 0</m>,</p>
+        <md>Q_f(a,h) = \frac{a^2+2ah+h^2-a^2}{h} = \frac{2ah+h^2}{h} = 2a+h.</md>
+        <p>So for the square function,</p>
+        <md>\boxed{Q_f(a,h)=2a+h,\qquad h\neq 0.}</md>
+        <p>If <m>a=2</m>, then <m>Q_f(2,h)=4+h</m>. This is exactly the expression from Chapter 1. As <m>h</m> becomes small, the average rate <m>4+h</m> gets close to <m>4</m>.</p>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-difference-quotient-secant">
+      <caption>The difference quotient is the slope of the secant line through the points with inputs <m>a</m> and <m>a+h</m>.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.66\textwidth,
+                height=0.46\textwidth,
+                xmin=0, xmax=3,
+                ymin=0, ymax=7,
+                axis lines=left,
+                xlabel={\(x\)},
+                ylabel={\(y\)},
+                xtick={1,2.2},
+                xticklabels={\(a\),\(a+h\)},
+                ytick=\empty,
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=0:2.6, samples=80] {x^2};
+            \addplot[thick] coordinates {(1,1) (2.2,4.84)};
+            \addplot[only marks,mark=*] coordinates {(1,1) (2.2,4.84)};
+            \draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+            \draw[dashed] (axis cs:2.2,0) -- (axis cs:2.2,4.84);
+            \node[anchor=west] at (axis cs:1.35,3.4) {slope \(Q_f(a,h)\)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex-diff-quotient-domain-sqrt">
+      <title>Domain restrictions in the difference quotient</title>
+      <statement>
+        <p>Let <m>f(x)=\sqrt{x}</m>. The domain of <m>f</m> is <m>[0,\infty)</m>.</p>
+        <p>For</p>
+        <md>Q_f(a,h)=\frac{\sqrt{a+h}-\sqrt{a}}{h},</md>
+        <p>we need <m>a\ge 0</m>, <m>a+h\ge 0</m>, and <m>h\neq 0</m>.</p>
+        <p>So the difference quotient has a domain of its own. It is not enough to say <q><m>h\neq 0</m></q>. We must also keep both inputs of <m>f</m> legal.</p>
+      </statement>
+    </example>
+
+    <remark xml:id="rmk-diff-quotient-importance">
+      <title>Why this matters</title>
+      <p>The derivative will come from the difference quotient by letting <m>h</m> move toward <m>0</m>. Before taking that limit, we need to know where the quotient is defined.</p>
+    </remark>
+
+    <p>Functions let one quantity depend on another. Graphs let us see that dependence all at once. Before we can study limits on graphs, we need to learn how graphs move, stretch, reflect, and reveal information.</p>
+  </subsection>
+
+</section>
