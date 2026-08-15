@@ -1,0 +1,384 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-graphs-transformations">
+  <title>Graphs and transformations</title>
+
+  <p>A function is an assignment. A graph is a picture of all those assignments at once.</p>
+
+  <p>Each point on the graph of <m>y=f(x)</m> has the form <m>(x,f(x))</m>. The horizontal coordinate is the input. The vertical coordinate is the output.</p>
+
+  <p>A graph can show things a formula hides: where a function is positive, where it is zero, where it grows large, and where it has symmetry. It also helps us build new functions from old ones.</p>
+
+  <subsection xml:id="subsec-shifts-and-scalings">
+    <title>Shifts and scalings</title>
+
+    <p>Start with the simplest curved graph: <m>f(x)=x^2</m>. Its graph is a parabola. Now compare it with</p>
+
+    <md>g(x)=f(x)+3=x^2+3.</md>
+
+    <p>For every input <m>x</m>, the output of <m>g</m> is <m>3</m> more than the output of <m>f</m>. So every point of the graph moves up <m>3</m> units:</p>
+
+    <md>(x,f(x)) \quad\longmapsto\quad (x,f(x)+3).</md>
+
+    <p>Thus <m>y=x^2+3</m> is the graph of <m>y=x^2</m> shifted upward by <m>3</m>.</p>
+
+    <p>Now compare <m>f(x)=x^2</m> with</p>
+
+    <md>h(x)=f(x-2)=(x-2)^2.</md>
+
+    <p>This one is more subtle. The graph shifts to the right, not to the left.</p>
+
+    <p>Why? The old function <m>f</m> has its lowest point at input <m>0</m>, because <m>f(0)=0</m>. The new function <m>h</m> has its lowest point when the inside input is <m>0</m>: <m>x-2=0</m>, so <m>x=2</m>. The point <m>(0,0)</m> on the old graph becomes <m>(2,0)</m> on the new graph.</p>
+
+    <figure xml:id="fig-vertical-horizontal-shifts">
+      <caption>Adding outside the function shifts vertically. Changing the input inside the function shifts horizontally.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.72\textwidth,
+                height=0.46\textwidth,
+                xmin=-3.2, xmax=5.2,
+                ymin=-0.5, ymax=8,
+                axis lines=left,
+                xlabel={\(x\)},
+                ylabel={\(y\)},
+                xtick={-2,0,2,4},
+                ytick={0,3},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+                legend style={at={(0.5,-0.18)},anchor=north,legend columns=3}
+            ]
+            \addplot[thick, domain=-2.5:2.5, samples=80] {x^2};
+            \addlegendentry{\(f(x)=x^2\)}
+            \addplot[thick, dashed, domain=-2.5:2.5, samples=80] {x^2+3};
+            \addlegendentry{\(f(x)+3\)}
+            \addplot[thick, dotted, domain=-0.5:4.5, samples=80] {(x-2)^2};
+            \addlegendentry{\(f(x-2)\)}
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <principle xml:id="principle-shifts">
+      <title>Shifts</title>
+      <statement>
+        <p>For <m>c\gt 0</m>:</p>
+        <ul>
+          <li><p><m>y=f(x)+c</m> shifts the graph of <m>y=f(x)</m> upward by <m>c</m>.</p></li>
+          <li><p><m>y=f(x)-c</m> shifts it downward by <m>c</m>.</p></li>
+          <li><p><m>y=f(x-c)</m> shifts it right by <m>c</m>.</p></li>
+          <li><p><m>y=f(x+c)</m> shifts it left by <m>c</m>.</p></li>
+        </ul>
+      </statement>
+    </principle>
+
+    <p>Horizontal shifts often feel backward at first. The reason is that the expression inside the function asks: <em>What input should the old function receive?</em> If the new input must satisfy <m>x-c=a</m>, then <m>x=a+c</m>. So old input <m>a</m> appears <m>c</m> units to the right.</p>
+
+    <example xml:id="ex-shift-domain-sqrt">
+      <title>Domain shift for <m>\sqrt{x-4}</m></title>
+      <statement>
+        <p>Let <m>f(x)=\sqrt{x}</m>. Then <m>g(x)=\sqrt{x-4}</m> is the graph of <m>f</m> shifted right by <m>4</m>.</p>
+        <p>The domain also shifts. The old domain is <m>[0,\infty)</m>. The new function requires <m>x-4\ge 0</m>, so <m>x\ge 4</m>. Thus the domain of <m>g</m> is <m>[4,\infty)</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-reflections-and-stretching">
+    <title>Reflections and stretching</title>
+
+    <p>A vertical scaling changes the outputs. For example, if <m>f(x)=x^2</m>, then <m>g(x)=2f(x)=2x^2</m>. Every output doubles. A point <m>(a,f(a))</m> moves to <m>(a,2f(a))</m>. The graph is stretched vertically by a factor of <m>2</m>.</p>
+
+    <p>If <m>g(x)=\frac{1}{2}f(x)</m>, then every output is cut in half. The graph is compressed vertically by a factor of <m>2</m>.</p>
+
+    <p>Horizontal scaling changes the inputs. For example, <m>h(x)=f(2x)</m>. The output that used to occur at input <m>a</m> now occurs when <m>2x=a</m>, so <m>x=\frac{a}{2}</m>. The graph is compressed horizontally by a factor of <m>2</m>.</p>
+
+    <principle xml:id="principle-scaling-rules">
+      <title>Scaling rules</title>
+      <statement>
+        <p>For <m>A\gt 0</m>, the graph of <m>y=Af(x)</m> is a vertical scaling of the graph of <m>y=f(x)</m> by factor <m>A</m>.</p>
+        <p>For <m>B\gt 0</m>, the graph of <m>y=f(Bx)</m> is a horizontal scaling by factor <m>\frac{1}{B}</m>.</p>
+      </statement>
+    </principle>
+
+    <p>Again, changes inside the function work in the opposite direction from what the eye may expect. The input <m>Bx</m> reaches old values <m>B</m> times as fast, so the graph is squeezed horizontally when <m>B\gt 1</m>.</p>
+
+    <example xml:id="ex-scaling-sine">
+      <title>Horizontal compression of sine</title>
+      <statement>
+        <p>Let <m>f(x)=\sin x</m>. Then <m>g(x)=\sin(2x)</m> runs through one full sine wave twice as fast as <m>\sin x</m>. Its period is <m>\pi</m> instead of <m>2\pi</m>. The graph is compressed horizontally by a factor of <m>2</m>.</p>
+      </statement>
+    </example>
+
+    <p>Reflections are special scalings by <m>-1</m>:</p>
+    <ul>
+      <li><p>The graph of <m>y=-f(x)</m> is the reflection of <m>y=f(x)</m> across the <m>x</m>-axis: <m>(a,f(a))\mapsto (a,-f(a))</m>.</p></li>
+      <li><p>The graph of <m>y=f(-x)</m> is the reflection of <m>y=f(x)</m> across the <m>y</m>-axis: <m>(a,f(a))\mapsto (-a,f(a))</m>.</p></li>
+    </ul>
+
+    <table>
+      <title>Summary of function transformations</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>New function</term></cell>
+          <cell><term>Point movement</term></cell>
+          <cell><term>Graph effect</term></cell>
+        </row>
+        <row>
+          <cell><m>f(x)+k</m></cell>
+          <cell><m>(a,f(a))\mapsto(a,f(a)+k)</m></cell>
+          <cell>vertical shift</cell>
+        </row>
+        <row>
+          <cell><m>f(x-c)</m></cell>
+          <cell><m>(a,f(a))\mapsto(a+c,f(a))</m></cell>
+          <cell>horizontal shift</cell>
+        </row>
+        <row>
+          <cell><m>Af(x)</m></cell>
+          <cell><m>(a,f(a))\mapsto(a,Af(a))</m></cell>
+          <cell>vertical scaling</cell>
+        </row>
+        <row>
+          <cell><m>f(Bx),\ B\gt 0</m></cell>
+          <cell><m>(a,f(a))\mapsto(a/B,f(a))</m></cell>
+          <cell>horizontal scaling</cell>
+        </row>
+        <row>
+          <cell><m>-f(x)</m></cell>
+          <cell><m>(a,f(a))\mapsto(a,-f(a))</m></cell>
+          <cell>reflection across <m>x</m>-axis</cell>
+        </row>
+        <row>
+          <cell><m>f(-x)</m></cell>
+          <cell><m>(a,f(a))\mapsto(-a,f(a))</m></cell>
+          <cell>reflection across <m>y</m>-axis</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <example xml:id="ex-order-of-transformations">
+      <title>The order of transformations matters</title>
+      <statement>
+        <p>Let <m>f(x)=x^2</m>. Compare <m>g(x)=2f(x-3)</m> with <m>r(x)=2f(x)-3</m>.</p>
+        <p>The first function is <m>g(x)=2(x-3)^2</m>. It shifts the parabola right by <m>3</m>, then stretches vertically by <m>2</m>.</p>
+        <p>The second function is <m>r(x)=2x^2-3</m>. It stretches vertically by <m>2</m>, then shifts downward by <m>3</m>.</p>
+        <p>These are not the same function. For example, <m>g(0)=2(0-3)^2=18</m>, but <m>r(0)=2\cdot 0^2-3=-3</m>.</p>
+        <p>Small changes in the formula can mean different geometric changes.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-even-odd-symmetry">
+    <title>Even and odd symmetry</title>
+
+    <p>Some graphs have symmetry around the vertical axis. Others have symmetry around the origin.</p>
+
+    <p>The function <m>f(x)=x^2</m> satisfies <m>f(-x)=(-x)^2=x^2=f(x)</m>. So the outputs at <m>x</m> and <m>-x</m> are the same. The graph is symmetric across the <m>y</m>-axis.</p>
+
+    <p>The function <m>g(x)=x^3</m> satisfies <m>g(-x)=(-x)^3=-x^3=-g(x)</m>. So the output at <m>-x</m> is the negative of the output at <m>x</m>. The graph has origin symmetry: rotating it <m>180^\circ</m> around the origin gives the same graph.</p>
+
+    <sidebyside widths="47% 47%">
+      <figure xml:id="fig-even-symmetry-parabola">
+        <caption>Even symmetry: <m>y=x^2</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=-2.2, xmax=2.2,
+                  ymin=-0.5, ymax=4.5,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={0,1,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2:2, samples=80] {x^2};
+              \node[anchor=west] at (axis cs:0.4,3.5) {\(y=x^2\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-odd-symmetry-cubic">
+        <caption>Odd symmetry: <m>y=x^3</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=-2.2, xmax=2.2,
+                  ymin=-5, ymax=5,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={-4,0,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-1.65:1.65, samples=80] {x^3};
+              \node[anchor=west] at (axis cs:0.45,3.6) {\(y=x^3\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+
+    <definition xml:id="def-even-odd-functions">
+      <title>Even and Odd Functions</title>
+      <statement>
+        <p>Suppose the domain of <m>f</m> is symmetric about <m>0</m>: whenever <m>x</m> is in the domain, so is <m>-x</m>.</p>
+        <p>The function <m>f</m> is <term>even</term> if <m>f(-x)=f(x)</m> for every <m>x</m> in the domain.</p>
+        <p>The function <m>f</m> is <term>odd</term> if <m>f(-x)=-f(x)</m> for every <m>x</m> in the domain.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-even-odd-catalogue">
+      <title>Classifying symmetry</title>
+      <statement>
+        <p>The functions <m>x^2</m>, <m>x^4</m>, and <m>\cos x</m> are even.</p>
+        <p>The functions <m>x</m>, <m>x^3</m>, and <m>\sin x</m> are odd.</p>
+        <p>The function <m>f(x)=x^2+x</m> is neither even nor odd, because <m>f(-x)=x^2-x</m>, which is not equal to <m>f(x)=x^2+x</m>, and is not equal to <m>-f(x)=-x^2-x</m>.</p>
+      </statement>
+    </example>
+
+    <paragraphs xml:id="par-odd-at-zero">
+      <title>A small consequence</title>
+      <p>If <m>f</m> is odd and <m>0</m> is in its domain, then <m>f(0)=0</m>. Indeed,</p>
+      <md>f(-0)=-f(0).</md>
+      <p>But <m>-0=0</m>, so <m>f(0)=-f(0)</m>. Thus <m>2f(0)=0</m>, and therefore <m>f(0)=0</m>.</p>
+      <p>So an odd function whose graph includes <m>x=0</m> must pass through the origin.</p>
+      <p>Symmetry is not only pretty. It saves work. If an even function is known for <m>x\ge 0</m>, then it is known for <m>x\le 0</m>. If an odd function is known for <m>x\ge 0</m>, then the other half is determined by sign change.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-reading-intercepts-sign-intervals">
+    <title>Reading intercepts, sign, and intervals from a graph</title>
+
+    <p>A graph is a picture of outputs. But many questions about a function are really questions about intervals of inputs:</p>
+
+    <ul>
+      <li><p>Where is <m>f(x)=0</m>?</p></li>
+      <li><p>Where is <m>f(x)\gt 0</m>?</p></li>
+      <li><p>Where is <m>f(x)\lt 0</m>?</p></li>
+      <li><p>Which inputs are allowed?</p></li>
+      <li><p>Which outputs occur?</p></li>
+    </ul>
+
+    <p>The graph answers these questions visually.</p>
+
+    <principle xml:id="principle-reading-graphs">
+      <title>Reading a graph</title>
+      <statement>
+        <p>The <term>domain</term> is the set of <m>x</m>-values covered by the graph.</p>
+        <p>The <term>range</term> is the set of <m>y</m>-values reached by the graph.</p>
+        <p>The <term><m>x</m>-intercepts</term> are the points where the graph crosses or touches the <m>x</m>-axis. They occur when <m>f(x)=0</m>.</p>
+        <p>The <term><m>y</m>-intercept</term> occurs at <m>x=0</m>, if <m>0</m> is in the domain.</p>
+        <p>The function is positive where the graph lies above the <m>x</m>-axis, and negative where it lies below the <m>x</m>-axis.</p>
+      </statement>
+    </principle>
+
+    <example xml:id="ex-cubic-sign-intervals">
+      <title>Intercepts and sign of a cubic polynomial</title>
+      <statement>
+        <p>Consider</p>
+        <md>p(x)=\frac{1}{5}(x+2)(x-1)(x-3).</md>
+        <p>The zeros are visible from the factored form: <m>x=-2</m>, <m>x=1</m>, and <m>x=3</m>. These are the <m>x</m>-intercepts.</p>
+        <p>The <m>y</m>-intercept is <m>p(0)=\frac{1}{5}(2)(-1)(-3)=\frac{6}{5}</m>. So the graph crosses the <m>y</m>-axis at <m>\left(0,\frac{6}{5}\right)</m>.</p>
+
+        <figure xml:id="fig-cubic-sign-intervals">
+          <caption>Zeros divide the <m>x</m>-axis into intervals. On each interval, the graph is either above or below the axis until it crosses again.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.74\textwidth,
+                    height=0.46\textwidth,
+                    xmin=-3.5, xmax=4.2,
+                    ymin=-3.2, ymax=4,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(y\)},
+                    xtick={-2,0,1,3},
+                    ytick={0,1.2},
+                    yticklabels={\(0\),\(\frac65\)},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-3.25:4.05, samples=120] {0.2*(x+2)*(x-1)*(x-3)};
+                \addplot[only marks,mark=*] coordinates {(-2,0) (1,0) (3,0) (0,1.2)};
+                \node[anchor=south] at (axis cs:-2,0) {\(-2\)};
+                \node[anchor=north] at (axis cs:1,0) {\(1\)};
+                \node[anchor=south] at (axis cs:3,0) {\(3\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>The zeros divide the real line into four intervals: <m>(-\infty,-2)</m>, <m>(-2,1)</m>, <m>(1,3)</m>, and <m>(3,\infty)</m>. From the graph, or from the signs of the factors, we find:</p>
+
+        <table>
+          <title>Sign of <m>p(x)</m> on intervals</title>
+          <tabular top="major" bottom="major" left="major" right="major">
+            <row bottom="minor">
+              <cell><term>Interval</term></cell>
+              <cell><term>Sign of <m>p(x)</m></term></cell>
+            </row>
+            <row>
+              <cell><m>(-\infty,-2)</m></cell>
+              <cell><m>p(x)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>(-2,1)</m></cell>
+              <cell><m>p(x)\gt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>(1,3)</m></cell>
+              <cell><m>p(x)\lt 0</m></cell>
+            </row>
+            <row>
+              <cell><m>(3,\infty)</m></cell>
+              <cell><m>p(x)\gt 0</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>Notice the difference between a point and an interval: <m>p(-2)=0</m> is a statement about one input. But <m>p(x)\gt 0</m> on <m>(-2,1)</m> is a statement about infinitely many inputs.</p>
+      </statement>
+    </example>
+
+    <p>Calculus will often turn a question about a whole graph into questions about intervals. Where is the function increasing? Where is it decreasing? Where is it concave up? Where does it have a largest value?</p>
+
+    <p>For now, we only need the first graph-reading skills: intercepts, sign, domain, range, and transformations.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-graph-suggest-not-prove">
+    <title>A graph can suggest, but not prove</title>
+
+    <p>Graphs are honest when drawn carefully, but they are not proofs by themselves.</p>
+
+    <p>A graphing window can hide behavior. A curve may cross the axis just outside the window. A tiny wiggle may disappear if the scale is too large. A vertical asymptote may look like a steep line.</p>
+
+    <p>For example, the functions <m>f(x)=x^2</m> and <m>g(x)=x^2+0.001\sin(1000x)</m> can look almost identical in a wide viewing window. But the second function has many small oscillations.</p>
+
+    <p>The lesson is not to distrust graphs. The lesson is to use them correctly.</p>
+
+    <remark xml:id="rmk-graphs-guide-eye">
+      <title>Visual intuition and proof</title>
+      <p>Graphs guide the eye. Algebra and definitions check the claim.</p>
+    </remark>
+
+    <p>Transformations let us build many new functions from one familiar function. Next we will build functions in a more algebraic way: by adding, multiplying, dividing, and composing them. Composition is the most hidden of these operations, and later it will force one of the most important derivative rules in calculus.</p>
+  </subsection>
+
+</section>
