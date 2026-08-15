@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-10-9-chapter-review-and-applications">
+  <title>Chapter review and applications</title>
+
+  <p>This chapter has changed the shape of the small piece again and again.</p>
+
+  <p>At first the small piece was a strip of area:</p>
+  <md>dA=(\text{height})\,dx.</md>
+
+  <p>Then it became a slice of volume:</p>
+  <md>dV=(\text{cross-sectional area})\,dx.</md>
+
+  <p>Then it became a shell, a mass element, a moment, a work element, a pressure-force element, a probability element, and a tiny slanted piece of length.</p>
+
+  <p>The question stayed the same:</p>
+  <md>\text{What is one small piece, and what does it contribute?}</md>
+
+  <p>That is the main skill of applications of integration.</p>
+
+  <subsection xml:id="subsec-chapter10-small-piece-table">
+    <title>The chapter in one table</title>
+
+    <p>The formulas in this chapter are easier to remember when they are organized by the small piece they add.</p>
+
+    <table xml:id="tab-chapter10-small-pieces">
+      <title>Small piece and typical integral by quantity</title>
+      <tabular halign="left">
+        <col width="25%"/>
+        <col width="35%"/>
+        <col width="40%"/>
+        <row header="yes" bottom="medium">
+          <cell>quantity</cell>
+          <cell>small piece</cell>
+          <cell>typical integral</cell>
+        </row>
+        <row bottom="minor">
+          <cell>area between curves</cell>
+          <cell><m>dA=(\text{top}-\text{bottom})\,dx</m> or <m>dA=(\text{right}-\text{left})\,dy</m></cell>
+          <cell><m>A=\int_a^b (g(x)-f(x))\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>volume by slicing</cell>
+          <cell><m>dV=A(x)\,dx</m></cell>
+          <cell><m>V=\int_a^b A(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>disk or washer volume</cell>
+          <cell><m>dV=\pi\bigl(R(x)^2-r(x)^2\bigr)\,dx</m></cell>
+          <cell><m>V=\pi\int_a^b \bigl(R(x)^2-r(x)^2\bigr)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>shell volume</cell>
+          <cell><m>dV=2\pi(\text{radius})(\text{height})(\text{thickness})</m></cell>
+          <cell><m>V=2\pi\int_a^b xH(x)\,dx</m> for shells about the <m>y</m>-axis</cell>
+        </row>
+        <row bottom="minor">
+          <cell>mass of a rod</cell>
+          <cell><m>dm=\lambda(x)\,dx</m></cell>
+          <cell><m>m=\int_a^b \lambda(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>moment about the origin</cell>
+          <cell><m>dM_0=x\,dm</m></cell>
+          <cell><m>M_0=\int_a^b x\lambda(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>work by a force</cell>
+          <cell><m>dW=F(x)\,dx</m></cell>
+          <cell><m>W=\int_a^b F(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>work pumping fluid</cell>
+          <cell><m>dW=\gamma A(y)D(y)\,dy</m></cell>
+          <cell><m>W=\int \gamma A(y)D(y)\,dy</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>hydrostatic force</cell>
+          <cell><m>dF=(\text{pressure})(\text{strip area})</m></cell>
+          <cell><m>F=\gamma\int_a^b y\,w(y)\,dy</m>, when <m>y</m> is depth</cell>
+        </row>
+        <row bottom="minor">
+          <cell>probability</cell>
+          <cell><m>dP=p(x)\,dx</m></cell>
+          <cell><m>P(c\le X\le d)=\int_c^d p(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>expected value</cell>
+          <cell><m>dE=x\,dP=xp(x)\,dx</m></cell>
+          <cell><m>E[X]=\int_a^b xp(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>arc length</cell>
+          <cell><m>ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx</m></cell>
+          <cell><m>L=\int_a^b \sqrt{1+\bigl(f'(x)\bigr)^2}\,dx</m></cell>
+        </row>
+        <row>
+          <cell>surface area of revolution</cell>
+          <cell><m>dS=2\pi(\text{radius})\,ds</m></cell>
+          <cell><m>S=2\pi\int_a^b f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The table is not meant to be memorized as a pile of formulas. It is meant to show one pattern:</p>
+    <md>\text{integral}=\int(\text{contribution of one small piece}).</md>
+  </subsection>
+
+  <subsection xml:id="subsec-skills-choose-small-piece">
+    <title>Skills: choose the small piece</title>
+
+    <p>The hardest step is usually not the antiderivative. The hardest step is choosing what to add.</p>
+
+    <p>A useful setup routine is:</p>
+
+    <note xml:id="note-application-setup-routine">
+      <title>Application setup routine</title>
+      <p>
+        <ol>
+          <li><p>Decide what quantity is being measured: area, volume, mass, work, force, probability, length, or surface area.</p></li>
+          <li><p>Choose a slicing variable: usually <m>x</m>, <m>y</m>, or time <m>t</m>.</p></li>
+          <li><p>Draw or describe one typical small piece.</p></li>
+          <li><p>Write the contribution of that piece.</p></li>
+          <li><p>Find the limits of accumulation.</p></li>
+          <li><p>Check units and signs.</p></li>
+        </ol>
+      </p>
+    </note>
+
+    <p>The unit check is often the best error detector.</p>
+
+    <p>For example, if a work integral has units</p>
+    <md>\text{pounds}\cdot\text{feet},</md>
+    <p>then the integrand should contain a force times a distance. If a hydrostatic force integral has units</p>
+    <md>\text{pounds},</md>
+    <p>then the integrand should contain pressure times area.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter10-decision-guide">
+    <title>A decision guide</title>
+
+    <p>Different pictures call for different slices.</p>
+
+    <table xml:id="tab-chapter10-decision-guide">
+      <title>Decision guide: geometry to slice method</title>
+      <tabular halign="left">
+        <col width="45%"/>
+        <col width="55%"/>
+        <row header="yes" bottom="medium">
+          <cell>what you see</cell>
+          <cell>what to try</cell>
+        </row>
+        <row bottom="minor">
+          <cell>a region between two graphs <m>y=g(x)</m> and <m>y=f(x)</m></cell>
+          <cell>vertical strips: <m>dA=(g(x)-f(x))\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>a region easier to describe by <m>x=r(y)</m> and <m>x=\ell(y)</m></cell>
+          <cell>horizontal strips: <m>dA=(r(y)-\ell(y))\,dy</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>a solid with known cross sections</cell>
+          <cell>slicing: <m>dV=A(x)\,dx</m> or <m>dV=A(y)\,dy</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>a region rotated around an axis, slices perpendicular to the axis</cell>
+          <cell>disks or washers</cell>
+        </row>
+        <row bottom="minor">
+          <cell>a region rotated around an axis, slices parallel to the axis</cell>
+          <cell>cylindrical shells</cell>
+        </row>
+        <row bottom="minor">
+          <cell>water being pumped out of a tank</cell>
+          <cell>horizontal fluid layers: <m>dW=\gamma A(y)D(y)\,dy</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>water pushing on a vertical plate</cell>
+          <cell>horizontal strips, because pressure is nearly constant along each strip</cell>
+        </row>
+        <row bottom="minor">
+          <cell>a density spread along a line</cell>
+          <cell><m>dm=\lambda(x)\,dx</m></cell>
+        </row>
+        <row bottom="minor">
+          <cell>a probability density on an interval</cell>
+          <cell><m>dP=p(x)\,dx</m></cell>
+        </row>
+        <row>
+          <cell>length of a curve</cell>
+          <cell><m>ds=\sqrt{(dx)^2+(dy)^2}</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>A good setup begins with geometry, not with an integral sign.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-one-region-several-questions">
+    <title>One region, several different questions</title>
+
+    <p>Consider the region</p>
+    <md>R=\{(x,y):0\le x\le 2,\ 0\le y\le 4-x^2\}.</md>
+
+    <p>This is the region under the parabola</p>
+    <md>y=4-x^2</md>
+    <p>above the <m>x</m>-axis, from <m>x=0</m> to <m>x=2</m>.</p>
+
+    <figure xml:id="fig-one-region-several-questions">
+      <caption>The same region can produce different integrals depending on what quantity is being measured.</caption>
+      <image width="76%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.76\textwidth,
+              height=0.46\textwidth,
+              xmin=0, xmax=2.35,
+              ymin=0, ymax=4.6,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={0,1,2},
+              ytick={0,1,2,3,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[domain=0:2, samples=120, fill=gray!15, draw=none] {4-x^2} \closedcycle;
+          \addplot[very thick, domain=0:2.1, samples=120] {4-x^2};
+
+          % vertical strip
+          \draw[thick] (axis cs:1.2,0) -- (axis cs:1.2,2.56);
+          \draw[thick] (axis cs:1.27,0) -- (axis cs:1.27,2.39);
+          \node[anchor=west] at (axis cs:1.32,1.35) {height \(4-x^2\)};
+
+          \node[anchor=west] at (axis cs:0.45,3.55) {\(y=4-x^2\)};
+          \node at (axis cs:0.85,0.55) {\(R\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <paragraphs>
+      <title>Area</title>
+      <p>A vertical strip has height</p>
+      <md>4-x^2</md>
+      <p>and width <m>dx</m>. So</p>
+      <md>A=\int_0^2 (4-x^2)\,dx.</md>
+      <p>Compute:</p>
+      <md>A=\left(4x-\frac{x^3}{3}\right)\Big|_0^2 = 8-\frac83 = \frac{16}{3}.</md>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Volume around the <m>x</m>-axis</title>
+      <p>Rotating the region around the <m>x</m>-axis gives disk slices. The radius is</p>
+      <md>4-x^2.</md>
+      <p>So</p>
+      <md>V_x=\pi\int_0^2 (4-x^2)^2\,dx.</md>
+      <p>Compute:</p>
+      <md>V_x = \pi\int_0^2 (16-8x^2+x^4)\,dx.</md>
+      <p>Thus</p>
+      <md>V_x = \pi\left(16x-\frac{8x^3}{3}+\frac{x^5}{5}\right)\Big|_0^2.</md>
+      <p>So</p>
+      <md>V_x = \pi\left(32-\frac{64}{3}+\frac{32}{5}\right) = \frac{256\pi}{15}.</md>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Volume around the <m>y</m>-axis</title>
+      <p>Rotating the same region around the <m>y</m>-axis suggests shells. A vertical strip has radius <m>x</m>, height <m>4-x^2</m>, and thickness <m>dx</m>. Therefore</p>
+      <md>V_y=2\pi\int_0^2 x(4-x^2)\,dx.</md>
+      <p>Compute:</p>
+      <md>V_y = 2\pi\left(2x^2-\frac{x^4}{4}\right)\Big|_0^2 = 2\pi(8-4) = 8\pi.</md>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Mass with varying density</title>
+      <p>Suppose <m>R</m> is a thin plate whose areal density depends only on <m>x</m>:</p>
+      <md>\sigma(x)=1+x.</md>
+      <p>A vertical slice has area approximately</p>
+      <md>(4-x^2)\,dx.</md>
+      <p>So its mass is</p>
+      <md>dm=(1+x)(4-x^2)\,dx.</md>
+      <p>The total mass is</p>
+      <md>m=\int_0^2 (1+x)(4-x^2)\,dx.</md>
+      <p>Compute:</p>
+      <md>m=\int_0^2 (4+4x-x^2-x^3)\,dx.</md>
+      <p>Thus</p>
+      <md>m = \left(4x+2x^2-\frac{x^3}{3}-\frac{x^4}{4}\right)\Big|_0^2 = 8+8-\frac83-4 = \frac{28}{3}.</md>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Average height</title>
+      <p>The average value of the top curve on <m>[0,2]</m> is</p>
+      <md>(4-x^2)_{\text{avg}} = \frac1{2-0}\int_0^2(4-x^2)\,dx.</md>
+      <p>Since the area integral is <m>16/3</m>,</p>
+      <md>(4-x^2)_{\text{avg}} = \frac12\cdot\frac{16}{3} = \frac83.</md>
+    </paragraphs>
+
+    <p>The region did not change. The question changed. That changed the small piece.</p>
+    <md>\text{Same picture, different quantity, different integral.}</md>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter10-concept-checks">
+    <title>Concept checks</title>
+
+    <p>
+      <ol>
+        <li><p>Why is area between curves computed as</p>
+          <md>\int(\text{top}-\text{bottom})\,dx</md>
+          <p>rather than</p>
+          <md>\int(\text{bottom}-\text{top})\,dx?</md>
+        </li>
+        <li><p>In the washer method, why is the washer area</p>
+          <md>\pi R^2-\pi r^2</md>
+          <p>and not</p>
+          <md>\pi(R-r)^2?</md>
+        </li>
+        <li><p>When rotating a region around the <m>y</m>-axis, why do vertical slices make shells instead of washers?</p></li>
+        <li><p>Why does hydrostatic force on a vertical plate usually use horizontal strips?</p></li>
+        <li><p>What is the difference between density and total mass?</p></li>
+        <li><p>Why can a probability density be greater than <m>1</m> even though probabilities cannot be greater than <m>1</m>?</p></li>
+        <li><p>What does the expected value of a probability density have in common with the center of mass of a rod?</p></li>
+        <li><p>Why is arc length not usually</p>
+          <md>\int_a^b |f'(x)|\,dx?</md>
+        </li>
+        <li><p>What does the factor</p>
+          <md>\sqrt{1+\bigl(f'(x)\bigr)^2}</md>
+          <p>measure in the arc length formula?</p>
+        </li>
+        <li><p>In surface area of revolution, why does the formula contain a circumference factor?</p></li>
+      </ol>
+    </p>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter10-practice-setups">
+    <title>Practice: set up the integral</title>
+
+    <p>For each problem, write the small piece first. Then set up the integral. Evaluate only when the problem asks you to evaluate.</p>
+
+    <exercises xml:id="exercises-chapter10-practice-setups">
+      <exercise number="1">
+        <statement>
+          <p>Find the area between</p>
+          <md>y=\sqrt{x} \qquad\text{and}\qquad y=x^2</md>
+          <p>on <m>[0,1]</m>.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="2">
+        <statement>
+          <p>Find the area enclosed by</p>
+          <md>x=y^2 \qquad\text{and}\qquad x=4-y^2.</md>
+          <p>Use horizontal strips.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="3">
+        <statement>
+          <p>The region under</p>
+          <md>y=\sqrt{x}</md>
+          <p>from <m>x=0</m> to <m>x=4</m> is rotated around the <m>x</m>-axis. Set up the disk-method integral for the volume.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="4">
+        <statement>
+          <p>The same region is rotated around the <m>y</m>-axis. Set up the shell-method integral for the volume.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="5">
+        <statement>
+          <p>A solid has base bounded by</p>
+          <md>y=x \qquad\text{and}\qquad y=x^2</md>
+          <p>for <m>0\le x\le 1</m>. Cross sections perpendicular to the <m>x</m>-axis are squares. Set up the volume integral.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="6">
+        <statement>
+          <p>A rod lies on <m>[0,3]</m> and has linear density</p>
+          <md>\lambda(x)=5+2x.</md>
+          <p>Find its mass and set up the integral for its center of mass.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="7">
+        <statement>
+          <p>A spring has spring constant <m>300</m> N/m. Find the work required to stretch it from <m>0.10</m> m to <m>0.40</m> m beyond its natural length.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="8">
+        <statement>
+          <p>A rectangular tank is <m>5</m> ft long, <m>3</m> ft wide, and <m>4</m> ft deep. It is full of water. Set up the work integral needed to pump the water over the top edge.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="9">
+        <statement>
+          <p>A vertical triangular plate has vertex at the water surface and base <m>6</m> ft long at depth <m>4</m> ft. Set up the hydrostatic force integral on one side of the plate.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="10">
+        <statement>
+          <p>Let</p>
+          <md>p(x)=cx^2, \qquad 0\le x\le 2.</md>
+          <p>Find <m>c</m> so that <m>p</m> is a probability density. Then set up the expected value integral.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="11">
+        <statement>
+          <p>Set up and evaluate the arc length of</p>
+          <md>y=\frac23x^{3/2}</md>
+          <p>from <m>x=0</m> to <m>x=3</m>.</p>
+        </statement>
+      </exercise>
+
+      <exercise number="12">
+        <statement>
+          <p>Set up the surface area integral for rotating</p>
+          <md>y=x^2, \qquad 0\le x\le 1,</md>
+          <p>around the <m>y</m>-axis.</p>
+        </statement>
+      </exercise>
+    </exercises>
+  </subsection>
+
+  <subsection xml:id="subsec-project-compare-volume-methods">
+    <title>Project: compare volume methods</title>
+
+    <p>One solid can often be measured in more than one way. The answer must be the same, but the setup can look very different.</p>
+
+    <p>Let <m>R</m> be the region bounded by</p>
+    <md>y=x \qquad\text{and}\qquad y=x^2</md>
+    <p>for</p>
+    <md>0\le x\le 1.</md>
+
+    <paragraphs>
+      <title>Part A: rotate around the <m>y</m>-axis</title>
+      <p>
+        <ol>
+          <li><p>Sketch the region <m>R</m>.</p></li>
+          <li><p>Use vertical shells. A vertical strip has radius <m>x</m> and height <m>x-x^2</m>. Show that</p>
+            <md>V=2\pi\int_0^1 x(x-x^2)\,dx.</md>
+            <p>Evaluate the integral.</p>
+          </li>
+          <li><p>Use horizontal washers. Rewrite the boundaries as</p>
+            <md>x=y \qquad\text{and}\qquad x=\sqrt{y}.</md>
+            <p>For <m>0\le y\le 1</m>, identify the outer and inner radii. Show that</p>
+            <md>V=\pi\int_0^1 (y-y^2)\,dy.</md>
+            <p>Evaluate the integral.</p>
+          </li>
+          <li><p>Verify that both methods give</p>
+            <md>\frac{\pi}{6}.</md>
+          </li>
+        </ol>
+      </p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Part B: rotate around the <m>x</m>-axis</title>
+      <p>
+        <ol>
+          <li><p>Use vertical washers. Show that</p>
+            <md>V=\pi\int_0^1 (x^2-x^4)\,dx.</md>
+          </li>
+          <li><p>Use horizontal shells. A horizontal strip has radius <m>y</m> and length</p>
+            <md>\sqrt{y}-y.</md>
+            <p>Show that</p>
+            <md>V=2\pi\int_0^1 y(\sqrt{y}-y)\,dy.</md>
+          </li>
+          <li><p>Verify that both methods give</p>
+            <md>\frac{2\pi}{15}.</md>
+          </li>
+        </ol>
+      </p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Part C: compare the methods</title>
+      <p>Write a short explanation answering these questions.</p>
+      <p>
+        <ol>
+          <li><p>Which method was simpler for rotation around the <m>y</m>-axis?</p></li>
+          <li><p>Which method was simpler for rotation around the <m>x</m>-axis?</p></li>
+          <li><p>What made one method simpler than the other: fewer integrals, easier bounds, or a simpler integrand?</p></li>
+          <li><p>Why is it useful to know more than one method?</p></li>
+        </ol>
+      </p>
+    </paragraphs>
+
+    <note xml:id="note-what-volume-project-tests">
+      <title>What the project tests</title>
+      <p>The disk, washer, and shell methods are not separate tricks. They are different ways of choosing the small piece. A good method is the one that makes the small piece easy to describe.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-project-pump-real-tank-shape">
+    <title>Project: work needed to pump out a real tank shape</title>
+
+    <p>Exact formulas are useful, but real tanks are not always cones, cylinders, or rectangular boxes. Sometimes the most honest description is measured data.</p>
+
+    <p>A closed cistern is <m>8</m> feet tall. Water is pumped out through a small opening at the top, which is at height <m>8</m> feet above the bottom. The following table gives measured horizontal cross-sectional areas of the water region at different heights.</p>
+
+    <table xml:id="tab-cistern-cross-sections">
+      <title>Cross-sectional area of cistern vs height</title>
+      <tabular halign="center">
+        <row bottom="minor">
+          <cell><m>y</m> (ft above bottom)</cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>5</m></cell>
+          <cell><m>6</m></cell>
+          <cell><m>7</m></cell>
+          <cell><m>8</m></cell>
+        </row>
+        <row>
+          <cell><m>A(y)</m> (ft<m>^2</m>)</cell>
+          <cell><m>0</m></cell>
+          <cell><m>18</m></cell>
+          <cell><m>31</m></cell>
+          <cell><m>40</m></cell>
+          <cell><m>44</m></cell>
+          <cell><m>40</m></cell>
+          <cell><m>31</m></cell>
+          <cell><m>18</m></cell>
+          <cell><m>0</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Assume the cistern is full of water. Use</p>
+    <md>\gamma=62.4\text{ lb/ft}^3</md>
+    <p>for the weight density of water.</p>
+
+    <p>A thin layer at height <m>y</m> has volume approximately</p>
+    <md>A(y)\,dy.</md>
+
+    <p>Its weight is</p>
+    <md>62.4A(y)\,dy.</md>
+
+    <p>It must be lifted distance</p>
+    <md>8-y.</md>
+
+    <p>So the work is</p>
+    <md>W=62.4\int_0^8 A(y)(8-y)\,dy.</md>
+
+    <p>Because <m>A(y)</m> is known only from data, estimate the integral.</p>
+
+    <paragraphs>
+      <title>A trapezoid estimate</title>
+      <p>Let</p>
+      <md>B(y)=A(y)(8-y).</md>
+      <p>Then</p>
+      <md>W=62.4\int_0^8 B(y)\,dy.</md>
+      <p>The table for <m>B(y)</m> is:</p>
+
+      <table xml:id="tab-cistern-work-integrand">
+        <title>Work integrand <m>B(y)</m> vs height</title>
+        <tabular halign="center">
+          <row bottom="minor">
+            <cell><m>y</m></cell>
+            <cell><m>0</m></cell>
+            <cell><m>1</m></cell>
+            <cell><m>2</m></cell>
+            <cell><m>3</m></cell>
+            <cell><m>4</m></cell>
+            <cell><m>5</m></cell>
+            <cell><m>6</m></cell>
+            <cell><m>7</m></cell>
+            <cell><m>8</m></cell>
+          </row>
+          <row>
+            <cell><m>B(y)</m></cell>
+            <cell><m>0</m></cell>
+            <cell><m>126</m></cell>
+            <cell><m>186</m></cell>
+            <cell><m>200</m></cell>
+            <cell><m>176</m></cell>
+            <cell><m>120</m></cell>
+            <cell><m>62</m></cell>
+            <cell><m>18</m></cell>
+            <cell><m>0</m></cell>
+          </row>
+        </tabular>
+      </table>
+
+      <p>Using trapezoids with <m>\Delta y=1</m>,</p>
+      <md>\int_0^8 B(y)\,dy \approx \frac12B(0)+B(1)+B(2)+\cdots+B(7)+\frac12B(8).</md>
+      <p>So</p>
+      <md>\int_0^8 B(y)\,dy \approx 126+186+200+176+120+62+18 = 888.</md>
+      <p>Therefore</p>
+      <md>W\approx 62.4(888)=55{,}411.2</md>
+      <p>foot-pounds.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Questions for the project</title>
+      <p>
+        <ol>
+          <li><p>Why should we apply the trapezoid rule to</p>
+            <md>B(y)=A(y)(8-y)</md>
+            <p>rather than to <m>A(y)</m> alone?</p>
+          </li>
+          <li><p>Which layers contribute most to the work? Is it always the layer with the largest area?</p></li>
+          <li><p>If the water must be pumped to a spout <m>1</m> foot above the top of the cistern, how does the formula change?</p></li>
+          <li><p>Suppose measurements are expensive and you can add only two more height measurements. Where would you place them? Explain your choice.</p></li>
+          <li><p>Estimate the work again using any reasonable improved method, and compare your answer with <m>55{,}411.2</m> foot-pounds.</p></li>
+        </ol>
+      </p>
+    </paragraphs>
+
+    <note xml:id="note-what-pump-project-tests">
+      <title>What the project tests</title>
+      <p>The integral model comes from the small piece</p>
+      <md>dW=(\text{weight of layer})(\text{lifting distance}).</md>
+      <p>The data only change how we estimate the integral.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter10-hook-techniques-of-integration">
+    <title>Where this points</title>
+
+    <p>This chapter has shown why integrals matter.</p>
+
+    <p>They measure area, volume, mass, center of mass, work, hydrostatic force, average value, probability, arc length, and surface area.</p>
+
+    <p>But setting up an integral is not the same as evaluating it.</p>
+
+    <p>Even simple applications can produce integrals such as</p>
+    <md>\int x e^x\,dx, \qquad \int \sin^5 x\cos^2 x\,dx, \qquad \int \sqrt{9-x^2}\,dx, \qquad \int \frac{x^2+1}{x^3-x}\,dx.</md>
+
+    <p>Substitution will not handle all of these. Some require reversing the product rule. Some require trigonometric identities. Some require a clever triangle. Some require partial fractions. Some have no elementary antiderivative at all.</p>
+
+    <p>That is the next problem.</p>
+
+    <note xml:id="note-small-piece-to-techniques">
+      <p>The small piece tells us what to integrate. Now we need better ways to integrate it.</p>
+    </note>
+
+    <p>The next chapter develops techniques for finding antiderivatives when substitution alone is not enough.</p>
+  </subsection>
+
+</section>
