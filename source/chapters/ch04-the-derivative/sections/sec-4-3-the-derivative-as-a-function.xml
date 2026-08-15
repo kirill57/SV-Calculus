@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-derivative-as-function">
+  <title>The derivative as a function</title>
+
+  <p>The derivative at a specific point gives the slope of one tangent line. By letting the evaluation point vary across the domain, the derivative becomes an entirely new function <m>f'</m> mapping each <m>x</m> to the tangent slope at <m>(x, f(x))</m>.</p>
+
+  <subsection xml:id="subsec-one-slope-to-many">
+    <title>From one tangent slope to many</title>
+
+    <definition xml:id="def-derivative-function">
+      <title>Derivative function</title>
+      <statement>
+        <p>The <term>derivative function</term> of <m>f</m>, denoted <m>f'</m>, is</p>
+        <md>f'(x) = \lim_{h\to 0}\frac{f(x+h)-f(x)}{h},</md>
+        <p>defined on the domain of all <m>x</m> where this limit exists.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-derivative-x-squared-function">
+      <title>Derivative function of <m>f(x)=x^2</m></title>
+      <statement>
+        <p>For <m>f(x)=x^2</m>, we have:</p>
+        <md>f'(x) = \lim_{h\to 0}\frac{(x+h)^2-x^2}{h} = \lim_{h\to 0}\frac{2xh+h^2}{h} = \lim_{h\to 0}(2x+h) = 2x.</md>
+      </statement>
+    </example>
+
+    <sidebyside widths="48% 48%" margins="auto">
+      <figure xml:id="fig-parabola-height">
+        <caption>Original function <m>f(x)=x^2</m> (height)</caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=-2.4, xmax=2.4,
+                  ymin=-1, ymax=5.3,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(f(x)\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={0,1,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2.2:2.2, samples=120] {x^2};
+              \addplot[thin, domain=-1.85:-0.25, samples=2] {-2*x-1};
+              \addplot[thin, domain=-0.9:0.9, samples=2] {0};
+              \addplot[thin, domain=0.75:2.15, samples=2] {3*x-2.25};
+              \addplot[only marks, mark=*] coordinates {(-1,1) (0,0) (1.5,2.25)};
+              \node[anchor=east] at (axis cs:-1.05,1.15) {slope \(-2\)};
+              \node[anchor=north] at (axis cs:0.55,0) {slope \(0\)};
+              \node[anchor=west] at (axis cs:0.4,2.45) {slope \(3\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-parabola-derivative-slope">
+        <caption>Derivative function <m>f'(x)=2x</m> (tangent slope)</caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=-2.4, xmax=2.4,
+                  ymin=-5, ymax=5,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(f'(x)\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={-4,-2,0,2,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[very thick, domain=-2.2:2.2, samples=2] {2*x};
+              \node[anchor=west] at (axis cs:0.85,1.6) {\(f'(x)=2x\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+
+    <example xml:id="ex-derivative-cubic-function">
+      <title>Derivative of <m>x^3</m></title>
+      <statement>
+        <p>For <m>f(x)=x^3</m>:</p>
+        <md>\frac{d}{dx}x^3 = \lim_{h\to 0}\frac{3x^2h+3xh^2+h^3}{h} = \lim_{h\to 0}(3x^2+3xh+h^2) = 3x^2.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-notations">
+    <title>Notations for the derivative</title>
+
+    <table>
+      <title>Common derivative notations</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Notation</term></cell>
+          <cell><term>Meaning</term></cell>
+        </row>
+        <row>
+          <cell><m>f'(x)</m></cell>
+          <cell>Lagrange prime notation for the derivative function</cell>
+        </row>
+        <row>
+          <cell><m>\frac{dy}{dx}</m></cell>
+          <cell>Leibniz rate of change notation (<m>\Delta y/\Delta x</m> in the limit)</cell>
+        </row>
+        <row>
+          <cell><m>\frac{d}{dx}f(x)</m></cell>
+          <cell>Differential operator applied to <m>f(x)</m></cell>
+        </row>
+        <row>
+          <cell><m>D_x f(x)</m></cell>
+          <cell>Euler operator notation</cell>
+        </row>
+      </tabular>
+    </table>
+  </subsection>
+
+  <subsection xml:id="subsec-reading-derivative-from-function-graph">
+    <title>Reading <m>f'</m> from the graph of <m>f</m></title>
+
+    <table>
+      <title>Connecting geometry of <m>f</m> with values of <m>f'</m></title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Feature of <m>f</m></term></cell>
+          <cell><term>Meaning for <m>f'</m></term></cell>
+        </row>
+        <row>
+          <cell><m>f</m> is increasing (rising)</cell>
+          <cell><m>f'(x)\gt 0</m></cell>
+        </row>
+        <row>
+          <cell><m>f</m> is decreasing (falling)</cell>
+          <cell><m>f'(x)\lt 0</m></cell>
+        </row>
+        <row>
+          <cell><m>f</m> has a horizontal tangent</cell>
+          <cell><m>f'(x)=0</m></cell>
+        </row>
+        <row>
+          <cell><m>f</m> is steep</cell>
+          <cell><m>|f'(x)|</m> is large</cell>
+        </row>
+        <row>
+          <cell><m>f</m> has a sharp corner</cell>
+          <cell><m>f'(x)</m> does not exist</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <sidebyside widths="48% 48%" margins="auto">
+      <figure xml:id="fig-cubic-function-graph">
+        <caption>Graph of <m>f(x)=x^3-3x</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.75\textwidth,
+                  xmin=-2.25, xmax=2.25,
+                  ymin=-4, ymax=4,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(f(x)\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={-2,0,2},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2.1:2.1, samples=160] {x^3-3*x};
+              \addplot[only marks, mark=*] coordinates {(-1,2) (1,-2) (0,0)};
+              \addplot[thin, domain=-1.55:-0.45, samples=2] {2};
+              \addplot[thin, domain=0.45:1.55, samples=2] {-2};
+              \addplot[thin, domain=-0.55:0.55, samples=2] {-3*x};
+              \node[anchor=south] at (axis cs:-1,2.1) {slope \(0\)};
+              \node[anchor=north] at (axis cs:1,-2.1) {slope \(0\)};
+              \node[anchor=west] at (axis cs:-0.05,0.5) {slope \(-3\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-cubic-derivative-graph">
+        <caption>Graph of <m>f'(x)=3x^2-3</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.75\textwidth,
+                  xmin=-2.25, xmax=2.25,
+                  ymin=-4, ymax=10,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(f'(x)\)},
+                  xtick={-2,-1,0,1,2},
+                  ytick={-3,0,3,9},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[very thick, domain=-2.1:2.1, samples=160] {3*x^2-3};
+              \addplot[only marks, mark=*] coordinates {(-1,0) (1,0) (0,-3)};
+              \node[anchor=west] at (axis cs:-0.5,5) {\(f'(x)=3x^2-3\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+  </subsection>
+
+  <subsection xml:id="subsec-reading-function-from-derivative-graph">
+    <title>Reading <m>f</m> from the graph of <m>f'</m></title>
+
+    <p>Sign analysis of <m>f'</m> reconstructs the qualitative behavior of <m>f</m>: positive <m>f'</m> indicates growth, negative <m>f'</m> indicates decline, and roots of <m>f'</m> indicate candidate local extrema.</p>
+
+    <warning xml:id="warn-derivative-forgets-constants">
+      <title>The derivative forgets constants</title>
+      <p>Vertical shifts preserve slopes: <m>\frac{d}{dx}(f(x)+C) = f'(x)</m>. Knowing <m>f'</m> determines <m>f</m> only up to an additive constant <m>C</m>.</p>
+    </warning>
+  </subsection>
+
+</section>
