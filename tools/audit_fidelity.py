@@ -59,7 +59,9 @@ for ch, l_path in latex_files.items():
     if not ch_dirs:
         continue
     sec_dir = os.path.join('source/chapters', ch_dirs[0], 'sections')
-    xml_files = sorted([f for f in os.listdir(sec_dir) if f.endswith('.xml')])
+    def natural_sort_key(s):
+        return [int(text) if text.isdigit() else text.lower() for text in re.split(r'(\d+)', s)]
+    xml_files = sorted([f for f in os.listdir(sec_dir) if f.endswith('.xml')], key=natural_sort_key)
     for idx, (t_title, t_count, _) in enumerate(tex_secs):
         x_file = xml_files[idx] if idx < len(xml_files) else 'MISSING'
         x_count = get_xml_words(os.path.join(sec_dir, x_file)) if x_file != 'MISSING' else 0
