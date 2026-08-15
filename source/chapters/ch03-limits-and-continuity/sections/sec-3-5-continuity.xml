@@ -3,118 +3,190 @@
 <section xml:id="sec-continuity">
   <title>Continuity</title>
 
-  <p>The precise definition of a limit gave us a way to control nearby values: <m>x\text{ close to }a \implies f(x)\text{ close to }L</m>. But a limit does not care about the value at the point itself. A function may have a hole, a wrong value, or no value at all, and still have a limit nearby.</p>
+  <p>The precise definition of a limit gave us a way to control nearby values. It said:</p>
+  <md>x\text{ close to }a \quad \Longrightarrow \quad f(x)\text{ close to }L.</md>
 
-  <p>Continuity is the calm case: nearby behavior and the actual value agree.</p>
+  <p>But a limit still does not have to care about the value at the point. A function may have a hole, a wrong value, or no value at all, and still have a limit nearby.</p>
+
+  <p>Continuity is the calm case. It is the case where the nearby behavior and the actual value agree.</p>
 
   <subsection xml:id="subsec-continuity-at-point">
     <title>Continuity at a point</title>
 
-    <p>Recall <m>F(x)=2x+1</m> for <m>x\neq 1</m> and <m>F(1)=-1</m>. Here <m>\lim_{x\to 1}F(x)=3</m>, but <m>F(1)=-1</m>. The limit exists, but does not match the actual value. This function is not continuous at <m>x=1</m>.</p>
+    <p>Recall the function</p>
+    <md>
+      F(x)=
+      \begin{cases}
+      2x+1, \amp x\neq 1,\\
+      -1, \amp x=1.
+      \end{cases}
+    </md>
+
+    <p>Near <m>x=1</m>, but not at <m>x=1</m>, the function follows the line <m>y=2x+1</m>. So</p>
+    <md>\lim_{x\to 1}F(x)=3.</md>
+    <p>But</p>
+    <md>F(1)=-1.</md>
+
+    <p>The limit exists, but it does not equal the actual value. The graph has the nearby behavior of the line <m>y=2x+1</m>, except that the point at <m>x=1</m> has been placed somewhere else.</p>
+
+    <p>This function is not continuous at <m>x=1</m>.</p>
 
     <definition xml:id="def-continuity-at-point">
       <title>Continuity at a point</title>
       <statement>
         <p>A function <m>f</m> is <term>continuous at <m>a</m></term> if</p>
         <md>\lim_{x\to a}f(x)=f(a).</md>
-        <p>Equivalently, three conditions must hold:</p>
+        <p>Equivalently, three things must happen:</p>
         <ol>
-          <li><p><m>f(a)</m> is defined;</p></li>
-          <li><p><m>\lim_{x\to a}f(x)</m> exists;</p></li>
+          <li><p><m>f(a)</m> is defined,</p></li>
+          <li><p><m>\lim_{x\to a}f(x)</m> exists,</p></li>
           <li><p><m>\lim_{x\to a}f(x)=f(a)</m>.</p></li>
         </ol>
       </statement>
     </definition>
 
-    <example xml:id="ex-polynomial-continuity-point">
-      <title>Polynomials are continuous</title>
+    <p>The third condition is the heart of the definition. Nearby values must approach the actual value.</p>
+    <p>Continuity means: nearby inputs give nearby outputs, including at the point itself.</p>
+
+    <example xml:id="ex-polynomial-continuous-at-point">
+      <title>A polynomial is continuous at a point</title>
       <statement>
-        <p>For <m>f(x)=x^2</m> at <m>x=2</m>, <m>f(2)=4</m> and <m>\lim_{x\to 2}x^2=4</m>. Since <m>\lim_{x\to 2}f(x)=f(2)</m>, <m>x^2</m> is continuous at <m>2</m>. Because this holds for every real number <m>a</m>, <m>x^2</m> is continuous everywhere.</p>
+        <p>Let <m>f(x)=x^2</m>. At <m>x=2</m>, <m>f(2)=4</m>. Also,</p>
+        <md>\lim_{x\to 2}x^2=4.</md>
+        <p>Therefore <m>\lim_{x\to 2}f(x)=f(2)</m>, so <m>f</m> is continuous at <m>2</m>.</p>
+        <p>In fact, the same reasoning works at every point. If <m>a</m> is any real number, then</p>
+        <md>\lim_{x\to a}x^2=a^2=f(a).</md>
+        <p>So <m>x^2</m> is continuous everywhere.</p>
       </statement>
     </example>
 
-    <paragraphs xml:id="par-epsilon-delta-continuity">
-      <title>The <m>\varepsilon</m>-<m>\delta</m> version of continuity</title>
-      <p>A function <m>f</m> is continuous at <m>a</m> if, for every <m>\varepsilon\gt 0</m>, there is a <m>\delta\gt 0</m> such that whenever <m>|x-a|\lt \delta</m>, we have <m>|f(x)-f(a)|\lt \varepsilon</m>.</p>
-      <p>Notice that continuity uses the full interval <m>|x-a|\lt \delta</m> rather than the punctured interval <m>0\lt |x-a|\lt \delta</m>.</p>
-    </paragraphs>
+    <p><em>The <m>\varepsilon</m>-<m>\delta</m> version.</em> The limit definition gives a precise version of continuity.</p>
+    <p>A function <m>f</m> is continuous at <m>a</m> if, for every <m>\varepsilon\gt 0</m>, there is a <m>\delta\gt 0</m> such that whenever <m>x</m> is in the domain of <m>f</m> and</p>
+    <md>|x-a|\lt \delta,</md>
+    <p>we have</p>
+    <md>|f(x)-f(a)|\lt \varepsilon.</md>
+
+    <p>There is no need to exclude <m>x=a</m> here. If <m>x=a</m>, then <m>|f(x)-f(a)|=|f(a)-f(a)|=0</m>, which is already less than every positive <m>\varepsilon</m>.</p>
+    <p>So the limit definition uses a punctured interval <m>0\lt |x-a|\lt \delta</m>, while continuity uses the full interval <m>|x-a|\lt \delta</m>.</p>
   </subsection>
 
   <subsection xml:id="subsec-holes-continuous-extensions">
     <title>Holes and continuous extensions</title>
 
-    <p>Consider <m>g(x)=\frac{x^2-1}{x-1}</m> for <m>x\neq 1</m>. While <m>\lim_{x\to 1}g(x)=2</m>, <m>g(1)</m> is undefined, so <m>g</m> is not continuous at <m>1</m>.</p>
+    <p>Consider again</p>
+    <md>g(x)=\frac{x^2-1}{x-1}, \qquad x\neq 1.</md>
+    <p>For <m>x\neq 1</m>, <m>g(x)=x+1</m>. Thus</p>
+    <md>\lim_{x\to 1}g(x)=2.</md>
+    <p>But <m>g(1)</m> is not defined, because the original formula gives division by <m>0</m>. So <m>g</m> is not continuous at <m>1</m>.</p>
 
-    <p>We can repair the hole by defining a continuous extension:</p>
+    <p>The failure is small. The graph only has a missing point. We can repair it by defining a new function</p>
     <md>
-      \widetilde{g}(x)=\begin{cases}\dfrac{x^2-1}{x-1}, \amp x\neq 1, \\ 2, \amp x=1.\end{cases}
+      \widetilde{g}(x)=
+      \begin{cases}
+      \dfrac{x^2-1}{x-1}, \amp x\neq 1,\\[6pt]
+      2, \amp x=1.
+      \end{cases}
     </md>
-    <p>Then <m>\lim_{x\to 1}\widetilde{g}(x)=2=\widetilde{g}(1)</m>, so <m>\widetilde{g}</m> is continuous at <m>1</m>.</p>
+    <p>Now <m>\lim_{x\to 1}\widetilde{g}(x)=2</m> and <m>\widetilde{g}(1)=2</m>. Therefore <m>\widetilde{g}</m> is continuous at <m>1</m>.</p>
 
     <figure xml:id="fig-removable-continuity">
       <caption>The function <m>\frac{x^2-1}{x-1}</m> has the graph of <m>y=x+1</m>, except for a missing point at <m>x=1</m>.</caption>
-      <image>
+      <image width="68%">
         <latex-image>
           \begin{tikzpicture}
-            \begin{axis}[
-                width=0.68\textwidth,
-                height=0.45\textwidth,
-                xmin=-1.1, xmax=3,
-                ymin=-0.3, ymax=4.3,
-                axis lines=left,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={1},
-                ytick={2},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-1:3, samples=2] {x+1};
-            \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,2)};
-            \node[anchor=west] at (axis cs:0.95,1.8) {missing point};
-            \node[anchor=west] at (axis cs:1.55,3.45) {\(y=x+1\)};
-            \end{axis}
+          \begin{axis}[
+              width=0.68\textwidth,
+              height=0.45\textwidth,
+              xmin=-1.1, xmax=3,
+              ymin=-0.3, ymax=4.3,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={1},
+              ytick={2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=-1:3, samples=2] {x+1};
+          \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,2)};
+          \node[anchor=west] at (axis cs:0.95,1.8) {missing point};
+          \node[anchor=west] at (axis cs:1.55,3.45) {\(y=x+1\)};
+          \end{axis}
           \end{tikzpicture}
         </latex-image>
       </image>
     </figure>
 
+    <p>A discontinuity like this is called <term>removable</term>. The limit tells us exactly what value to insert.</p>
+
     <definition xml:id="def-removable-discontinuity">
       <title>Removable discontinuity</title>
       <statement>
-        <p>A function has a <term>removable discontinuity</term> at <m>a</m> if the two-sided limit <m>\lim_{x\to a}f(x)</m> exists, but <m>f</m> is not continuous at <m>a</m> because <m>f(a)</m> is undefined or <m>f(a)\neq \lim_{x\to a}f(x)</m>.</p>
+        <p>A function has a <term>removable discontinuity</term> at <m>a</m> if the limit <m>\lim_{x\to a}f(x)</m> exists, but the function is not continuous at <m>a</m> because <m>f(a)</m> is missing or has the wrong value.</p>
       </statement>
     </definition>
+
+    <p>The word <q>removable</q> does not mean the original function was continuous. It means we can make it continuous by changing the value at one point.</p>
   </subsection>
 
   <subsection xml:id="subsec-continuity-on-interval">
     <title>Continuity on an interval</title>
+
+    <p>A function is continuous on an interval if it is continuous at every point of that interval.</p>
+
+    <p>For an open interval <m>(a,b)</m>, this means continuity at each point <m>a\lt x\lt b</m>.</p>
+
+    <p>For a closed interval <m>[a,b]</m>, the endpoints need one-sided versions: <m>\lim_{x\to a^+}f(x)=f(a)</m> at the left endpoint, and <m>\lim_{x\to b^-}f(x)=f(b)</m> at the right endpoint.</p>
 
     <definition xml:id="def-continuity-closed-interval">
       <title>Continuity on a closed interval</title>
       <statement>
         <p>A function <m>f</m> is continuous on <m>[a,b]</m> if:</p>
         <ol>
-          <li><p><m>f</m> is continuous at every point of <m>(a,b)</m>;</p></li>
-          <li><p><m>\lim_{x\to a^+}f(x)=f(a)</m> (right-continuous at <m>a</m>);</p></li>
-          <li><p><m>\lim_{x\to b^-}f(x)=f(b)</m> (left-continuous at <m>b</m>).</p></li>
+          <li><p><m>f</m> is continuous at every point of <m>(a,b)</m>,</p></li>
+          <li><p><m>\lim_{x\to a^+}f(x)=f(a)</m>, and</p></li>
+          <li><p><m>\lim_{x\to b^-}f(x)=f(b)</m>.</p></li>
         </ol>
       </statement>
     </definition>
 
+    <p>The one-sided conditions are natural. At the left endpoint <m>a</m>, points of the interval approach <m>a</m> only from the right. At the right endpoint <m>b</m>, points of the interval approach <m>b</m> only from the left.</p>
+
     <example xml:id="ex-piecewise-continuous">
-      <title>A continuous piecewise function</title>
+      <title>A piecewise function that is continuous</title>
       <statement>
-        <p>Let <m>H(x)=\begin{cases}x^2, \amp x\lt 1, \\ 2x-1, \amp x\ge 1.\end{cases}</m></p>
-        <p>Away from <m>1</m>, both pieces are continuous polynomials. At <m>x=1</m>, <m>\lim_{x\to 1^-}H(x)=1^2=1</m>, <m>\lim_{x\to 1^+}H(x)=2(1)-1=1</m>, and <m>H(1)=1</m>. Thus <m>\lim_{x\to 1}H(x)=H(1)</m>, so <m>H</m> is continuous everywhere.</p>
+        <p>Define</p>
+        <md>
+          H(x)=
+          \begin{cases}
+          x^2, \amp x\lt 1,\\
+          2x-1, \amp x\ge 1.
+          \end{cases}
+        </md>
+        <p>Away from <m>x=1</m>, each piece is a polynomial, so each piece is continuous. The only point to check is <m>x=1</m>.</p>
+        <p>From the left, <m>\lim_{x\to 1^-}H(x)=\lim_{x\to 1^-}x^2=1</m>.</p>
+        <p>From the right, <m>\lim_{x\to 1^+}H(x)=\lim_{x\to 1^+}(2x-1)=1</m>.</p>
+        <p>Also, <m>H(1)=2(1)-1=1</m>.</p>
+        <p>Thus <m>\lim_{x\to 1}H(x)=H(1)</m>, so <m>H</m> is continuous at <m>1</m>. Therefore <m>H</m> is continuous everywhere.</p>
       </statement>
     </example>
 
     <example xml:id="ex-piecewise-jump">
       <title>A piecewise function with a jump</title>
       <statement>
-        <p>Let <m>J(x)=\begin{cases}x^2, \amp x\lt 1, \\ 2x, \amp x\ge 1.\end{cases}</m></p>
-        <p>At <m>x=1</m>, <m>\lim_{x\to 1^-}J(x)=1</m> while <m>\lim_{x\to 1^+}J(x)=2</m>. The one-sided limits disagree, so <m>\lim_{x\to 1}J(x)</m> does not exist, and <m>J</m> is not continuous at <m>1</m>.</p>
+        <p>Define</p>
+        <md>
+          J(x)=
+          \begin{cases}
+          x^2, \amp x\lt 1,\\
+          2x, \amp x\ge 1.
+          \end{cases}
+        </md>
+        <p>Again, the only point to check is <m>x=1</m>.</p>
+        <p>From the left, <m>\lim_{x\to 1^-}J(x)=1</m>.</p>
+        <p>From the right, <m>\lim_{x\to 1^+}J(x)=2</m>.</p>
+        <p>The one-sided limits disagree, so <m>\lim_{x\to 1}J(x)</m> does not exist. Therefore <m>J</m> is not continuous at <m>1</m>.</p>
+        <p>The formulas on the two sides are both harmless. The problem is that they do not meet.</p>
       </statement>
     </example>
   </subsection>
@@ -122,64 +194,89 @@
   <subsection xml:id="subsec-algebra-continuous-functions">
     <title>Algebra of continuous functions</title>
 
+    <p>Continuity behaves well under the usual algebraic operations. This is one reason continuous functions are easy to build.</p>
+
+    <p>Suppose <m>f</m> and <m>g</m> are continuous at <m>a</m>. Then <m>f(x)\to f(a)</m> and <m>g(x)\to g(a)</m> as <m>x\to a</m>. The limit laws give:</p>
+    <md>
+      <mrow>f(x)+g(x)\amp\to f(a)+g(a),</mrow>
+      <mrow>f(x)-g(x)\amp\to f(a)-g(a),</mrow>
+      <mrow>f(x)g(x)\amp\to f(a)g(a),</mrow>
+    </md>
+    <p>and, if <m>g(a)\neq 0</m>,</p>
+    <md>\frac{f(x)}{g(x)}\to \frac{f(a)}{g(a)}.</md>
+    <p>So the new function is continuous at <m>a</m>.</p>
+
     <theorem xml:id="thm-algebra-continuous-functions">
       <title>Algebra of continuous functions</title>
       <statement>
         <p>If <m>f</m> and <m>g</m> are continuous at <m>a</m>, then the following functions are continuous at <m>a</m>:</p>
-        <md>
-          f+g, \qquad f-g, \qquad c f \quad (c\text{ constant}), \qquad f g,
-        </md>
-        <p>and, provided <m>g(a)\neq 0</m>,</p>
-        <md>\frac{f}{g}.</md>
+        <md>f+g,\qquad f-g,\qquad cf,\qquad fg,</md>
+        <p>where <m>c</m> is any constant.</p>
+        <p>If <m>g(a)\neq 0</m>, then <m>\frac{f}{g}</m> is also continuous at <m>a</m>.</p>
       </statement>
     </theorem>
 
-    <example xml:id="ex-rational-function-continuous">
-      <title>Rational function continuity</title>
+    <p>The condition <m>g(a)\neq 0</m> matters. A quotient cannot be continuous at a point where its denominator is <m>0</m>, because the quotient is not even defined there.</p>
+
+    <example xml:id="ex-rational-function-continuity">
+      <title>A rational function</title>
       <statement>
-        <p>Consider <m>R(x)=\frac{x^2+3x+1}{x^2+1}</m>. Since <m>x^2+1\gt 0</m> for all <m>x\in\mathbb{R}</m>, the denominator is never zero. Because polynomials are continuous everywhere, <m>R(x)</m> is continuous everywhere, enabling direct substitution:</p>
+        <p>Let</p>
+        <md>R(x)=\frac{x^2+3x+1}{x^2+1}.</md>
+        <p>The numerator and denominator are polynomials, hence continuous everywhere. The denominator satisfies <m>x^2+1\gt 0</m> for every real <m>x</m>. Therefore <m>R</m> is continuous everywhere.</p>
+        <p>So, for example,</p>
         <md>\lim_{x\to 2}\frac{x^2+3x+1}{x^2+1} = \frac{2^2+3(2)+1}{2^2+1} = \frac{11}{5}.</md>
+        <p>Continuity is the reason direct substitution works here.</p>
       </statement>
     </example>
 
-    <principle xml:id="principle-basic-continuous-functions">
-      <title>Catalog of basic continuous functions</title>
-      <statement>
-        <p>The following functions are continuous at every point in their domains:</p>
-        <ul>
-          <li><p>Polynomials;</p></li>
-          <li><p>Rational functions (where denominator <m>\neq 0</m>);</p></li>
-          <li><p>Trigonometric functions (<m>\sin x</m>, <m>\cos x</m>, <m>\tan x</m> where defined);</p></li>
-          <li><p>Exponential functions (<m>e^x</m>, <m>a^x</m> for <m>a\gt 0</m>);</p></li>
-          <li><p>Logarithmic functions (<m>\ln x</m> for <m>x\gt 0</m>);</p></li>
-          <li><p>Root functions (<m>\sqrt[n]{x}</m> where defined).</p></li>
-        </ul>
-      </statement>
-    </principle>
+    <p><em>Basic continuous functions.</em> The following functions are continuous at every point in their domains:</p>
+    <ul>
+      <li><p>polynomials,</p></li>
+      <li><p>rational functions where the denominator is not zero,</p></li>
+      <li><p><m>\sin x</m>, <m>\cos x</m>, <m>\tan x</m> where defined,</p></li>
+      <li><p><m>e^x</m>, <m>a^x</m> for <m>a\gt 0</m>,</p></li>
+      <li><p><m>\ln x</m> for <m>x\gt 0</m>,</p></li>
+      <li><p>and root functions where they are defined.</p></li>
+    </ul>
+
+    <p>This fact does not make limits disappear. It gives us a shortcut when no hole, jump, or asymptote is present.</p>
   </subsection>
 
   <subsection xml:id="subsec-continuity-compositions">
     <title>Continuity of compositions</title>
 
-    <theorem xml:id="thm-continuity-composition">
+    <p>Algebra builds new functions by adding, multiplying, and dividing. Composition builds new functions by putting one function inside another.</p>
+
+    <p>Suppose <m>g(x)\to g(a)</m> as <m>x\to a</m>, and suppose <m>f</m> is continuous at <m>g(a)</m>. Then</p>
+    <md>f(g(x))\to f(g(a)).</md>
+    <p>That is exactly the continuity of <m>f\circ g</m> at <m>a</m>.</p>
+
+    <theorem xml:id="thm-continuity-compositions">
       <title>Continuity of compositions</title>
       <statement>
-        <p>If <m>g</m> is continuous at <m>a</m> and <m>f</m> is continuous at <m>g(a)</m>, then the composite function <m>f\circ g</m> is continuous at <m>a</m>:</p>
-        <md>\lim_{x\to a}f(g(x)) = f(g(a)).</md>
+        <p>If <m>g</m> is continuous at <m>a</m>, and <m>f</m> is continuous at <m>g(a)</m>, then <m>f\circ g</m> is continuous at <m>a</m>. In symbols,</p>
+        <md>\lim_{x\to a}f(g(x))=f(g(a)).</md>
       </statement>
     </theorem>
 
-    <example xml:id="ex-composition-root-polynomial">
-      <title>Composition with a root function</title>
+    <p>The order of the statement matters. First <m>g(x)</m> must approach <m>g(a)</m>. Then <m>f</m> must preserve that approach near the input <m>g(a)</m>.</p>
+
+    <example xml:id="ex-composition-sqrt-quadratic">
+      <title>Composition with square root</title>
       <statement>
-        <p>The function <m>q(x)=\sqrt{1+x^2}</m> is continuous everywhere because <m>1+x^2\ge 1</m> is continuous and <m>\sqrt{u}</m> is continuous for <m>u\ge 0</m>. Therefore <m>\lim_{x\to 3}\sqrt{1+x^2}=\sqrt{1+3^2}=\sqrt{10}</m>.</p>
+        <p>The function <m>q(x)=\sqrt{1+x^2}</m> is continuous for every real <m>x</m>. The inside function <m>g(x)=1+x^2</m> is continuous everywhere. Its values are always at least <m>1</m>, so the square root is defined. Since the square root function is continuous on <m>[0,\infty)</m>, the composition is continuous everywhere.</p>
+        <p>Therefore</p>
+        <md>\lim_{x\to 3}\sqrt{1+x^2} = \sqrt{1+3^2} = \sqrt{10}.</md>
       </statement>
     </example>
 
-    <example xml:id="ex-composition-sine-polynomial">
-      <title>Composition with a trigonometric function</title>
+    <example xml:id="ex-composition-sin-x2">
+      <title>Composition with sine</title>
       <statement>
-        <p>The function <m>r(x)=\sin(x^2)</m> is continuous everywhere because <m>x^2</m> and <m>\sin u</m> are continuous everywhere. Thus <m>\lim_{x\to a}\sin(x^2)=\sin(a^2)</m>.</p>
+        <p>The function <m>r(x)=\sin(x^2)</m> is continuous everywhere because <m>x^2</m> is continuous everywhere and sine is continuous everywhere. Thus</p>
+        <md>\lim_{x\to a}\sin(x^2)=\sin(a^2).</md>
+        <p>This kind of substitution is legal because continuity protects it.</p>
       </statement>
     </example>
   </subsection>
@@ -187,27 +284,32 @@
   <subsection xml:id="subsec-three-common-discontinuities">
     <title>Three common discontinuities</title>
 
+    <p>Continuity can fail in several ways. The three most common early failures are removable discontinuities, jump discontinuities, and infinite discontinuities.</p>
+
     <table>
       <title>Three common types of discontinuity</title>
-      <tabular top="major" bottom="major" left="major" right="major">
-        <row bottom="minor">
-          <cell><term>Type</term></cell>
-          <cell><term>What happens</term></cell>
-          <cell><term>Example</term></cell>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="left"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>type</term></cell>
+          <cell><term>what happens</term></cell>
+          <cell><term>example</term></cell>
         </row>
         <row>
-          <cell>Removable</cell>
-          <cell>Limit exists, but value is missing or wrong</cell>
+          <cell>removable</cell>
+          <cell>limit exists, but value is missing or wrong</cell>
           <cell><m>\frac{x^2-1}{x-1}</m> at <m>x=1</m></cell>
         </row>
         <row>
-          <cell>Jump</cell>
-          <cell>Left and right limits disagree</cell>
+          <cell>jump</cell>
+          <cell>left and right limits disagree</cell>
           <cell><m>\frac{|x|}{x}</m> at <m>x=0</m></cell>
         </row>
         <row>
-          <cell>Infinite</cell>
-          <cell>Values grow without bound</cell>
+          <cell>infinite</cell>
+          <cell>values grow without bound</cell>
           <cell><m>\frac{1}{(x-2)^2}</m> at <m>x=2</m></cell>
         </row>
       </tabular>
@@ -215,24 +317,25 @@
 
     <sidebyside widths="31% 31% 31%" margins="auto">
       <figure xml:id="fig-discontinuity-removable">
-        <caption>Removable (hole)</caption>
+        <caption>Removable</caption>
         <image>
           <latex-image>
             \begin{tikzpicture}
-              \begin{axis}[
-                  width=\textwidth,
-                  height=0.88\textwidth,
-                  xmin=-0.5, xmax=2.5,
-                  ymin=0, ymax=4,
-                  axis lines=middle,
-                  xtick={1},
-                  ytick={2},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \addplot[thick, domain=-0.2:2.3, samples=2] {x+1};
-              \addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(1,2)};
-              \end{axis}
+            \begin{axis}[
+                width=\textwidth,
+                height=0.88\textwidth,
+                xmin=-0.5, xmax=2.5,
+                ymin=0, ymax=4,
+                axis lines=middle,
+                xtick={1},
+                ytick={2},
+                title={removable},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=-0.2:2.3, samples=2] {x+1};
+            \addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(1,2)};
+            \end{axis}
             \end{tikzpicture}
           </latex-image>
         </image>
@@ -243,62 +346,73 @@
         <image>
           <latex-image>
             \begin{tikzpicture}
-              \begin{axis}[
-                  width=\textwidth,
-                  height=0.88\textwidth,
-                  xmin=-2, xmax=2,
-                  ymin=-1.6, ymax=1.6,
-                  axis lines=middle,
-                  xtick={0},
-                  ytick={-1,1},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \addplot[thick, domain=-2:-0.05, samples=2] {-1};
-              \addplot[thick, domain=0.05:2, samples=2] {1};
-              \addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(0,-1) (0,1)};
-              \end{axis}
+            \begin{axis}[
+                width=\textwidth,
+                height=0.88\textwidth,
+                xmin=-2, xmax=2,
+                ymin=-1.6, ymax=1.6,
+                axis lines=middle,
+                xtick={0},
+                ytick={-1,1},
+                title={jump},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=-2:-0.05, samples=2] {-1};
+            \addplot[thick, domain=0.05:2, samples=2] {1};
+            \addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(0,-1) (0,1)};
+            \end{axis}
             \end{tikzpicture}
           </latex-image>
         </image>
       </figure>
 
       <figure xml:id="fig-discontinuity-infinite">
-        <caption>Infinite (asymptote)</caption>
+        <caption>Infinite</caption>
         <image>
           <latex-image>
             \begin{tikzpicture}
-              \begin{axis}[
-                  width=\textwidth,
-                  height=0.88\textwidth,
-                  xmin=0.2, xmax=3.8,
-                  ymin=0, ymax=8,
-                  axis lines=middle,
-                  xtick={2},
-                  ytick={4},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \addplot[thick, domain=0.55:1.65, samples=120] {1/(x-2)^2};
-              \addplot[thick, domain=2.35:3.45, samples=120] {1/(x-2)^2};
-              \draw[dashed, thick] (axis cs:2,0) -- (axis cs:2,8);
-              \end{axis}
+            \begin{axis}[
+                width=\textwidth,
+                height=0.88\textwidth,
+                xmin=0.2, xmax=3.8,
+                ymin=0, ymax=8,
+                axis lines=middle,
+                xtick={2},
+                ytick={4},
+                title={infinite},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=0.55:1.65, samples=120] {1/(x-2)^2};
+            \addplot[thick, domain=2.35:3.45, samples=120] {1/(x-2)^2};
+            \draw[dashed, thick] (axis cs:2,0) -- (axis cs:2,8);
+            \end{axis}
             \end{tikzpicture}
           </latex-image>
         </image>
       </figure>
     </sidebyside>
+
+    <p>The names are not just vocabulary. They tell us what kind of repair, if any, is possible.</p>
+    <p>A removable discontinuity can be fixed by changing one value.</p>
+    <p>A jump cannot be fixed by changing one value, because the two sides approach different targets.</p>
+    <p>An infinite discontinuity cannot be fixed by changing one value, because nearby values do not stay near any finite number.</p>
   </subsection>
 
   <subsection xml:id="subsec-continuity-checklist">
     <title>A continuity checklist</title>
 
+    <p>When checking continuity at <m>a</m>, ask:</p>
+
     <table>
-      <title>Continuity verification checklist</title>
-      <tabular top="major" bottom="major" left="major" right="major">
-        <row bottom="minor">
-          <cell><term>Question</term></cell>
-          <cell><term>Meaning</term></cell>
+      <title>Continuity checklist</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center" width="38%"/>
+        <col halign="left" width="58%"/>
+        <row header="yes">
+          <cell><term>question</term></cell>
+          <cell><term>meaning</term></cell>
         </row>
         <row>
           <cell>Is <m>f(a)</m> defined?</cell>
@@ -306,16 +420,20 @@
         </row>
         <row>
           <cell>Does <m>\lim_{x\to a}f(x)</m> exist?</cell>
-          <cell>If one-sided limits disagree or values explode, it is not continuous at <m>a</m>.</cell>
+          <cell>If the two sides disagree or the values do not settle, the function is not continuous at <m>a</m>.</cell>
         </row>
         <row>
           <cell>Does the limit equal <m>f(a)</m>?</cell>
-          <cell>If not, nearby behavior and the actual value disagree.</cell>
+          <cell>If not, the nearby behavior and the actual value disagree.</cell>
         </row>
       </tabular>
     </table>
 
-    <p>Continuity is a local property near a point, but it has powerful global consequences: a continuous function on a closed interval cannot skip intermediate values and must reach an absolute maximum and minimum. These theorems are the focus of the next section.</p>
+    <p>For familiar formulas, continuity often lets us substitute directly. For piecewise functions, endpoints between pieces must be checked. For quotients, denominators must be watched. For roots and logarithms, the domain must be respected.</p>
+
+    <p>Continuity is still a local idea: it describes what happens near one point. But it has surprising global consequences. A continuous graph cannot jump over a height, and on a closed finite interval it cannot avoid having a highest and lowest point.</p>
+
+    <p>Those two facts are the next payoff.</p>
   </subsection>
 
 </section>
