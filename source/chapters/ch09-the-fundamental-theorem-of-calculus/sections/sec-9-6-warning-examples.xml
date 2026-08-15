@@ -1,9 +1,399 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SOURCE: Chapter-9-draft.txt, Chapter-9-draft.tex, chapter-9.tex; intended section 9.7 “Warning examples”
-     EDITORIAL TAGS: Counterexample
-     STATUS: NOT_STARTED -->
-<section xml:id="sec-9-7-warning-examples" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-9-6-warning-examples">
   <title>Warning examples</title>
 
-  <p>Placeholder. Content not yet converted.</p>
+  <p>This section gathers the most common traps:</p>
+  <ul>
+    <li><p>a discontinuity in <m>f</m>,</p></li>
+    <li><p>old limits after substitution,</p></li>
+    <li><p>treating an integral like multiplication, and</p></li>
+    <li><p>confusing signed area with ordinary area.</p></li>
+  </ul>
+
+  <p>A theorem is useful only when we know where it applies.</p>
+
+  <subsection xml:id="subsec-warning-discontinuity-accumulation">
+    <title>A discontinuity and the derivative of an accumulation function</title>
+
+    <p>Part I of the Fundamental Theorem said:</p>
+    <md>A(x)=\int_a^x f(t)\,dt \quad\Longrightarrow\quad A'(x)=f(x),</md>
+    <p>provided <m>f</m> is continuous.</p>
+
+    <p>Continuity matters.</p>
+
+    <paragraphs>
+      <title>A jump can create a corner</title>
+      <p>Let</p>
+      <md>
+        f(t)=
+        \begin{cases}
+        0, \amp t\lt 0,\\
+        1, \amp t\ge 0.
+        \end{cases}
+      </md>
+      <p>Define</p>
+      <md>A(x)=\int_0^x f(t)\,dt.</md>
+      <p>If <m>x\lt 0</m>, then <m>f(t)=0</m> on the interval from <m>x</m> to <m>0</m>, except at one endpoint. That one point does not affect the integral. So</p>
+      <md>A(x)=0 \qquad (x\lt 0).</md>
+      <p>If <m>x\gt 0</m>, then</p>
+      <md>A(x)=\int_0^x 1\,dt=x.</md>
+      <p>Also,</p>
+      <md>A(0)=0.</md>
+      <p>Thus</p>
+      <md>
+        A(x)=
+        \begin{cases}
+        0, \amp x\le 0,\\
+        x, \amp x\gt 0.
+        \end{cases}
+      </md>
+      <p>The graph of <m>A</m> has a corner at <m>0</m>. Its left-hand slope is <m>0</m>, and its right-hand slope is <m>1</m>. Therefore</p>
+      <md>A'(0)</md>
+      <p>does not exist.</p>
+
+      <figure xml:id="fig-warning-jump-accumulation">
+        <caption>A jump discontinuity in <m>f</m> can produce a corner in the accumulation function <m>A</m>.</caption>
+        <sidebyside widths="47% 47%">
+          <figure xml:id="fig-warning-jump-f">
+            <caption>jump in <m>f</m></caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                \begin{axis}[
+                    width=\textwidth,
+                    height=0.70\textwidth,
+                    xmin=-2, xmax=2,
+                    ymin=-0.25, ymax=1.35,
+                    axis lines=middle,
+                    xlabel={\(t\)},
+                    ylabel={\(f(t)\)},
+                    xtick={-1,0,1},
+                    ytick={0,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                    title={jump in \(f\)}
+                ]
+                \addplot[very thick, domain=-2:-0.03, samples=2] {0};
+                \addplot[very thick, domain=0.03:2, samples=2] {1};
+                \addplot[only marks, mark=o, mark size=2.6pt, thick] coordinates {(0,0)};
+                \addplot[only marks, mark=*, mark size=2.2pt] coordinates {(0,1)};
+                \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+          <figure xml:id="fig-warning-corner-A">
+            <caption>corner in <m>A</m></caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                \begin{axis}[
+                    width=\textwidth,
+                    height=0.70\textwidth,
+                    xmin=-2, xmax=2,
+                    ymin=-0.25, ymax=2.1,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(A(x)\)},
+                    xtick={-1,0,1,2},
+                    ytick={0,1,2},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                    title={corner in \(A\)}
+                ]
+                \addplot[very thick, domain=-2:0, samples=2] {0};
+                \addplot[very thick, domain=0:2, samples=2] {x};
+                \addplot[only marks, mark=*] coordinates {(0,0)};
+                \node[anchor=west] at (axis cs:0.0,1.35) {\(A(x)=x\)};
+                \node[anchor=east] at (axis cs:-0.1,0.25) {\(A(x)=0\)};
+                \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+        </sidebyside>
+      </figure>
+
+      <p>So the conclusion</p>
+      <md>A'(0)=f(0)</md>
+      <p>fails because <m>A'(0)</m> does not exist.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>A one-point discontinuity can make <m>A'(c)\neq f(c)</m></title>
+      <p>There is an even sharper warning.</p>
+      <p>Define</p>
+      <md>
+        f(t)=
+        \begin{cases}
+        1, \amp t=0,\\
+        0, \amp t\neq 0.
+        \end{cases}
+      </md>
+      <p>Let</p>
+      <md>A(x)=\int_0^x f(t)\,dt.</md>
+      <p>Changing a function at a single point does not affect its integral. Therefore</p>
+      <md>A(x)=0</md>
+      <p>for every <m>x</m>. Hence</p>
+      <md>A'(x)=0</md>
+      <p>for every <m>x</m>, including <m>x=0</m>.</p>
+      <p>But</p>
+      <md>f(0)=1.</md>
+      <p>Thus</p>
+      <md>A'(0)=0\neq 1=f(0).</md>
+      <p>The accumulation function is differentiable at <m>0</m>, but its derivative is not equal to the value of <m>f</m> at the discontinuity.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Moral</title>
+      <p>The formula</p>
+      <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x)</md>
+      <p>is guaranteed at points where <m>f</m> is continuous. At a discontinuity, the conclusion can fail in more than one way.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-warning-new-limits-substitution">
+    <title>Forgetting the new limits in substitution</title>
+
+    <p>A definite integral has endpoints. When we change variables, the endpoints must change too.</p>
+
+    <paragraphs>
+      <title>The mistake</title>
+      <p>Evaluate</p>
+      <md>\int_1^2 2x\cos(x^2)\,dx.</md>
+      <p>Let</p>
+      <md>u=x^2.</md>
+      <p>Then</p>
+      <md>du=2x\,dx.</md>
+      <p>The integrand becomes</p>
+      <md>\cos u\,du.</md>
+      <p>A common wrong step is to write</p>
+      <md>\int_1^2 2x\cos(x^2)\,dx = \int_1^2 \cos u\,du.</md>
+      <p>This keeps the old limits <m>1</m> and <m>2</m>. But those were <m>x</m>-values, not <m>u</m>-values.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>The correction</title>
+      <p>If</p>
+      <md>u=x^2,</md>
+      <p>then when</p>
+      <md>x=1,</md>
+      <p>we have</p>
+      <md>u=1.</md>
+      <p>When</p>
+      <md>x=2,</md>
+      <p>we have</p>
+      <md>u=4.</md>
+      <p>Therefore</p>
+      <md>\int_1^2 2x\cos(x^2)\,dx = \int_1^4 \cos u\,du.</md>
+      <p>Now evaluate:</p>
+      <md>\int_1^4 \cos u\,du = \sin u\Big|_1^4 = \sin 4-\sin 1.</md>
+      <p>The wrong limits would give</p>
+      <md>\sin 2-\sin 1,</md>
+      <p>which is not the same.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Moral</title>
+      <p>In a definite integral, every variable has its own limits. If <m>u=g(x)</m>, convert the old <m>x</m>-limits into new <m>u</m>-limits.</p>
+    </paragraphs>
+
+    <example xml:id="ex-reversed-limit-substitution">
+      <title>A reversed-limit example</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_0^1 2x e^{1-x^2}\,dx.</md>
+        <p>Let</p>
+        <md>u=1-x^2.</md>
+        <p>Then</p>
+        <md>du=-2x\,dx,</md>
+        <p>so</p>
+        <md>2x\,dx=-du.</md>
+        <p>The limits change:</p>
+        <md>x=0 \quad\Longrightarrow\quad u=1,</md>
+        <p>and</p>
+        <md>x=1 \quad\Longrightarrow\quad u=0.</md>
+        <p>Therefore</p>
+        <md>\int_0^1 2x e^{1-x^2}\,dx = \int_1^0 e^u(-du).</md>
+        <p>This equals</p>
+        <md>\int_0^1 e^u\,du = e^u\Big|_0^1 = e-1.</md>
+        <p>The negative sign and the reversed limits are two ways of recording the same orientation change. They must be handled together, not ignored.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-warning-integral-like-multiplication">
+    <title>Treating <m>\int f(x)\,dx</m> like multiplication</title>
+
+    <p>The notation</p>
+    <md>\int f(x)\,dx</md>
+    <p>is meaningful, but it is not ordinary multiplication.</p>
+
+    <p>The symbol <m>\int</m> is not a number. The symbol <m>dx</m> is not a factor that can be moved around freely. Together they describe an operation: find a family of antiderivatives.</p>
+
+    <paragraphs>
+      <title>Only constants can be pulled out</title>
+      <p>It is true that</p>
+      <md>\int c f(x)\,dx=c\int f(x)\,dx</md>
+      <p>when <m>c</m> is a constant.</p>
+      <p>But it is not true that</p>
+      <md>\int x f(x)\,dx=x\int f(x)\,dx</md>
+      <p>in general.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>A simple false step</title>
+      <p>Suppose someone tries</p>
+      <md>\int x\,dx = x\int 1\,dx = x(x+C) = x^2+Cx.</md>
+      <p>This is wrong because <m>x</m> is not a constant. It changes with the variable of integration.</p>
+      <p>The correct result is</p>
+      <md>\int x\,dx=\frac{x^2}{2}+C.</md>
+      <p>We can check by differentiating:</p>
+      <md>\frac{d}{dx}\left(\frac{x^2}{2}+C\right)=x.</md>
+      <p>But</p>
+      <md>\frac{d}{dx}(x^2+Cx)=2x+C,</md>
+      <p>which is not <m>x</m> unless by accident at special points.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Moral</title>
+      <p>An indefinite integral is an instruction to find antiderivatives. It is linear with respect to constants and sums, but it is not ordinary multiplication.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Another common false pattern</title>
+      <p>It is also not true that</p>
+      <md>\int f(x)g(x)\,dx = \left(\int f(x)\,dx\right)\left(\int g(x)\,dx\right).</md>
+      <p>For example, take</p>
+      <md>f(x)=g(x)=1.</md>
+      <p>Then the left side is</p>
+      <md>\int 1\cdot 1\,dx = \int 1\,dx = x+C.</md>
+      <p>But the right side would be</p>
+      <md>\left(\int 1\,dx\right)\left(\int 1\,dx\right) = (x+C_1)(x+C_2),</md>
+      <p>which is a quadratic expression, not a family of antiderivatives of <m>1</m>.</p>
+      <p>Linearity is safe:</p>
+      <md>\int (f+g)\,dx=\int f\,dx+\int g\,dx.</md>
+      <p>Products require different methods. They are not handled by multiplying antiderivatives.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-warning-area-net-signed-area">
+    <title>Confusing area with net signed area</title>
+
+    <p>A definite integral measures signed accumulation. It is not always ordinary geometric area.</p>
+
+    <p>Consider</p>
+    <md>\int_{-1}^{1} x\,dx.</md>
+
+    <p>An antiderivative of <m>x</m> is</p>
+    <md>\frac{x^2}{2}.</md>
+
+    <p>So</p>
+    <md>\int_{-1}^{1} x\,dx = \frac{x^2}{2}\Big|_{-1}^{1} = \frac12-\frac12 = 0.</md>
+
+    <p>The answer is <m>0</m>. But the graph does enclose visible area with the <m>x</m>-axis.</p>
+
+    <p>The triangle above the axis from <m>0</m> to <m>1</m> has area</p>
+    <md>\frac12.</md>
+
+    <p>The triangle below the axis from <m>-1</m> to <m>0</m> also has ordinary area</p>
+    <md>\frac12.</md>
+
+    <p>The integral counts the lower triangle as negative, so the two signed areas cancel.</p>
+
+    <figure xml:id="fig-signed-area-cancellation-line">
+      <caption>The integral of <m>x</m> from <m>-1</m> to <m>1</m> is zero because positive and negative signed areas cancel.</caption>
+      <image width="70%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.70\textwidth,
+              height=0.45\textwidth,
+              xmin=-1.35, xmax=1.35,
+              ymin=-1.2, ymax=1.2,
+              axis lines=middle,
+              axis on top,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-1,0,1},
+              ytick={-1,0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[domain=-1:0, samples=2, fill=gray!30, draw=none] {x} \closedcycle;
+          \addplot[domain=0:1, samples=2, fill=gray!15, draw=none] {x} \closedcycle;
+          \addplot[very thick, domain=-1.2:1.2, samples=2] {x};
+          \node[anchor=east, fill=gray!30, inner sep=2pt] at (axis cs:-0.2,-0.45) {negative signed area};
+          \node[anchor=west, fill=gray!15, inner sep=2pt] at (axis cs:0.12,0.45) {positive signed area};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>If we want ordinary geometric area, we integrate the absolute value:</p>
+    <md>\int_{-1}^{1} |x|\,dx.</md>
+
+    <p>This gives</p>
+    <md>\int_{-1}^{0} (-x)\,dx+\int_0^1 x\,dx.</md>
+
+    <p>Compute:</p>
+    <md>\int_{-1}^{0} (-x)\,dx = -\frac{x^2}{2}\Big|_{-1}^{0} = 0-\left(-\frac12\right) = \frac12,</md>
+    <p>and</p>
+    <md>\int_0^1 x\,dx = \frac12.</md>
+
+    <p>So</p>
+    <md>\int_{-1}^{1}|x|\,dx=1.</md>
+
+    <note xml:id="note-net-signed-area-vs-ordinary">
+      <p>net signed area <m>=\displaystyle\int_a^b f(x)\,dx</m>,</p>
+      <p>while</p>
+      <p>ordinary area between the graph and the axis <m>=\displaystyle\int_a^b |f(x)|\,dx</m>.</p>
+    </note>
+
+    <p>The same distinction appears in motion:</p>
+    <md>\text{displacement}=\int_a^b v(t)\,dt,</md>
+    <p>but</p>
+    <md>\text{total distance traveled}=\int_a^b |v(t)|\,dt.</md>
+  </subsection>
+
+  <subsection xml:id="subsec-what-warnings-protect-ftc">
+    <title>What these warnings protect</title>
+
+    <p>The warnings all point to the same lesson.</p>
+
+    <table>
+      <title>Key calculus formulas and what hypotheses to check</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{formula}</m></cell>
+          <cell><m>\textbf{what to check}</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \frac{d}{dx}\int_a^x f(t)\,dt=f(x)</m></cell>
+          <cell><m>f</m> is continuous at <m>x</m></cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \int_a^b f(g(u))g'(u)\,du</m></cell>
+          <cell>limits match the current variable</cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \int f(x)\,dx=F(x)+C</m></cell>
+          <cell>differentiate to check</cell>
+        </row>
+        <row>
+          <cell><m>\displaystyle \int_a^b f(x)\,dx</m></cell>
+          <cell>signed accumulation, not always ordinary area</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The Fundamental Theorem has connected derivatives and integrals. Substitution has given us the first serious method for computing integrals. Differential notation has shown why orientation and change of variables belong inside the symbols.</p>
+
+    <p>Now integrals are ready to measure more than area under one graph. They can measure area between curves, volume, mass, work, pressure, and average value. The same accumulation idea will keep reappearing, but the small pieces will change shape.</p>
+  </subsection>
+
 </section>
