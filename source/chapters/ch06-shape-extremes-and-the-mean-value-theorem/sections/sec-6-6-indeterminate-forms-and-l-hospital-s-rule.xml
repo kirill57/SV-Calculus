@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-6-6-indeterminate-forms-and-l-hospital-s-rule">
+  <title>Indeterminate forms and l'Hospital's Rule</title>
+
+  <p>The last section used limits to find asymptotes and end behavior. Some of those limits can be read from algebra. Others resist direct substitution.</p>
+
+  <p>Consider</p>
+  <md>\lim_{x\to 1}\frac{\ln x}{x-1}.</md>
+
+  <p>Direct substitution gives</p>
+  <md>\frac{\ln 1}{1-1}=\frac00.</md>
+
+  <p>That expression is not a number. It is a warning: both numerator and denominator are approaching <m>0</m>, and we need more information.</p>
+
+  <p>The derivative gives that information.</p>
+
+  <subsection xml:id="subsec-forms-zero-zero-infty-infty">
+    <title>The forms <m>0/0</m> and <m>\infty/\infty</m></title>
+
+    <p>A quotient has the indeterminate form <m>0/0</m> if</p>
+    <md>f(x)\to 0 \qquad\text{and}\qquad g(x)\to 0.</md>
+
+    <p>Then</p>
+    <md>\frac{f(x)}{g(x)}</md>
+    <p>may approach many different things.</p>
+
+    <p>For example, as <m>x\to 0</m>,</p>
+    <md>\frac{x}{x}\to 1,</md>
+    <md>\frac{x^2}{x}\to 0,</md>
+    <md>\frac{x}{x^2}\to +\infty \quad \text{from the right},</md>
+    <p>and</p>
+    <md>\frac{5x}{x}\to 5.</md>
+
+    <p>All four quotients have the formal shape <m>0/0</m>, but their limits behave differently.</p>
+
+    <note xml:id="note-zero-over-zero-signal">
+      <title>Key take-away</title>
+      <p><m>0/0</m> is not an answer. It is a signal that more work is needed.</p>
+    </note>
+
+    <p>A quotient has the indeterminate form <m>\infty/\infty</m> if</p>
+    <md>|f(x)|\to\infty \qquad\text{and}\qquad |g(x)|\to\infty.</md>
+
+    <p>Again, the form alone does not decide the limit.</p>
+
+    <p>As <m>x\to\infty</m>,</p>
+    <md>\frac{x}{x}\to 1,</md>
+    <md>\frac{x}{x^2}\to 0,</md>
+    <p>and</p>
+    <md>\frac{x^2}{x}\to\infty.</md>
+
+    <p>The numerator and denominator both grow without bound in all three examples, but the ratios are different.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-derivatives-reveal-limiting-ratio">
+    <title>Why derivatives can reveal a limiting ratio</title>
+
+    <p>Return to</p>
+    <md>\lim_{x\to 1}\frac{\ln x}{x-1}.</md>
+
+    <p>Both numerator and denominator vanish at <m>x=1</m>:</p>
+    <md>\ln 1=0, \qquad 1-1=0.</md>
+
+    <p>But near <m>x=1</m>, local linear approximation says</p>
+    <md>\ln x \approx \ln 1+\left.\frac{d}{dx}\ln x\right|_{x=1}(x-1).</md>
+
+    <p>Since</p>
+    <md>\ln 1=0</md>
+    <p>and</p>
+    <md>\left.\frac{d}{dx}\ln x\right|_{x=1}=1,</md>
+    <p>we get</p>
+    <md>\ln x\approx x-1.</md>
+
+    <p>So the quotient should satisfy</p>
+    <md>\frac{\ln x}{x-1}\approx \frac{x-1}{x-1}=1.</md>
+
+    <p>Thus</p>
+    <md>\lim_{x\to 1}\frac{\ln x}{x-1}=1.</md>
+
+    <p>This is the idea behind l'Hospital's Rule.</p>
+
+    <p>When both functions vanish at the same point, their leading linear parts may decide the limiting ratio:</p>
+    <md>f(x)\approx f'(a)(x-a),</md>
+    <md>g(x)\approx g'(a)(x-a).</md>
+
+    <p>Then</p>
+    <md>\frac{f(x)}{g(x)} \approx \frac{f'(a)(x-a)}{g'(a)(x-a)} = \frac{f'(a)}{g'(a)}.</md>
+
+    <p>This reasoning is not a proof in every case, because sometimes the first derivatives also vanish or the point is approached from infinity. But it gives the right reason for the rule.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-lhospital-statement">
+    <title>l'Hospital's Rule</title>
+
+    <theorem xml:id="thm-lhospitals-rule">
+      <title>l'Hospital's Rule</title>
+      <statement>
+        <p>Suppose <m>f</m> and <m>g</m> are differentiable near <m>a</m>, except possibly at <m>a</m>, and suppose</p>
+        <md>g'(x)\neq 0</md>
+        <p>near <m>a</m>. If</p>
+        <md>\lim_{x\to a}f(x)=0 \qquad\text{and}\qquad \lim_{x\to a}g(x)=0,</md>
+        <p>or if</p>
+        <md>|f(x)|\to\infty \qquad\text{and}\qquad |g(x)|\to\infty,</md>
+        <p>then, provided the limit on the right exists,</p>
+        <md>\lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)}.</md>
+        <p>The same rule applies to one-sided limits and to limits as <m>x\to\infty</m> or <m>x\to-\infty</m>, when the corresponding hypotheses hold.</p>
+      </statement>
+    </theorem>
+
+    <p>The rule says that, for the indeterminate forms <m>0/0</m> and <m>\infty/\infty</m>, we may replace the ratio of functions by the ratio of derivatives.</p>
+
+    <p>It does <em>not</em> say that every quotient has the same limit as the quotient of its derivatives.</p>
+
+    <example xml:id="ex-lhospital-exp-linear">
+      <title>Applying l'Hospital's Rule to <m>(e^x-1)/x</m></title>
+      <statement>
+        <p>Find</p>
+        <md>\lim_{x\to 0}\frac{e^x-1}{x}.</md>
+        <p>Direct substitution gives <m>\frac{0}{0}</m>.</p>
+        <p>Differentiate numerator and denominator:</p>
+        <md>\frac{d}{dx}(e^x-1)=e^x, \qquad \frac{d}{dx}(x)=1.</md>
+        <p>Therefore</p>
+        <md>\lim_{x\to 0}\frac{e^x-1}{x} = \lim_{x\to 0}\frac{e^x}{1} = 1.</md>
+        <p>This agrees with the local linear approximation <m>e^x\approx 1+x</m> near <m>x=0</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-lhospital-repeated-cos">
+      <title>Repeated application of l'Hospital's Rule</title>
+      <statement>
+        <p>Find</p>
+        <md>\lim_{x\to 0}\frac{1-\cos x}{x^2}.</md>
+        <p>Direct substitution gives <m>0/0</m>. Apply l'Hospital's Rule:</p>
+        <md>\lim_{x\to 0}\frac{1-\cos x}{x^2} = \lim_{x\to 0}\frac{\sin x}{2x}.</md>
+        <p>This is still <m>0/0</m>. Apply the rule again:</p>
+        <md>\lim_{x\to 0}\frac{\sin x}{2x} = \lim_{x\to 0}\frac{\cos x}{2} = \frac12.</md>
+        <p>So</p>
+        <md>\lim_{x\to 0}\frac{1-\cos x}{x^2}=\frac12.</md>
+        <p>The first application did not finish the problem. It made a new quotient. Since the new quotient was still indeterminate, a second application was allowed.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-lhospital-poly-exp">
+      <title>Comparing polynomial and exponential growth</title>
+      <statement>
+        <p>Find</p>
+        <md>\lim_{x\to\infty}\frac{x^2}{e^x}.</md>
+        <p>Both numerator and denominator go to infinity, so this is the form <m>\infty/\infty</m>. Apply l'Hospital's Rule:</p>
+        <md>\lim_{x\to\infty}\frac{x^2}{e^x} = \lim_{x\to\infty}\frac{2x}{e^x}.</md>
+        <p>This is still <m>\infty/\infty</m>. Apply the rule again:</p>
+        <md>\lim_{x\to\infty}\frac{2x}{e^x} = \lim_{x\to\infty}\frac{2}{e^x} = 0.</md>
+        <p>Thus</p>
+        <md>\lim_{x\to\infty}\frac{x^2}{e^x}=0.</md>
+        <p>The exponential eventually outruns the polynomial.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-lhospital-proof-idea">
+    <title>Idea of the proof</title>
+
+    <p>The proof of l'Hospital's Rule comes from the Mean Value Theorem. The cleanest form uses a slightly stronger version called Cauchy's Mean Value Theorem.</p>
+
+    <theorem xml:id="thm-cauchys-mean-value-theorem">
+      <title>Cauchy's Mean Value Theorem</title>
+      <statement>
+        <p>Suppose <m>f</m> and <m>g</m> are continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>. Then there is some <m>c\in(a,b)</m> such that</p>
+        <md>\bigl(f(b)-f(a)\bigr)g'(c) = \bigl(g(b)-g(a)\bigr)f'(c).</md>
+        <p>If <m>g'(c)\neq 0</m> and <m>g(b)\neq g(a)</m>, this can be written as</p>
+        <md>\frac{f(b)-f(a)}{g(b)-g(a)} = \frac{f'(c)}{g'(c)}.</md>
+      </statement>
+      <proof>
+        <paragraphs xml:id="para-why-cauchy-true">
+          <title>Why Cauchy's theorem is true</title>
+          <p>Consider the function</p>
+          <md>H(x)=\bigl(f(b)-f(a)\bigr)\bigl(g(x)-g(a)\bigr) - \bigl(g(b)-g(a)\bigr)\bigl(f(x)-f(a)\bigr).</md>
+          <p>At <m>x=a</m>,</p>
+          <md>H(a)=0.</md>
+          <p>At <m>x=b</m>, the two products are equal, so</p>
+          <md>H(b)=0.</md>
+          <p>By Rolle's Theorem, there is some <m>c\in(a,b)</m> such that</p>
+          <md>H'(c)=0.</md>
+          <p>Differentiating <m>H</m> gives exactly</p>
+          <md>\bigl(f(b)-f(a)\bigr)g'(c) = \bigl(g(b)-g(a)\bigr)f'(c).</md>
+          <p>That is Cauchy's theorem.</p>
+        </paragraphs>
+
+        <paragraphs xml:id="para-how-it-proves-zero-zero">
+          <title>How it proves the <m>0/0</m> case</title>
+          <p>Suppose</p>
+          <md>f(a)=0, \qquad g(a)=0,</md>
+          <p>and <m>x</m> is close to <m>a</m>. Apply Cauchy's Mean Value Theorem on the interval from <m>a</m> to <m>x</m>. There is a point <m>c</m> between <m>a</m> and <m>x</m> such that</p>
+          <md>\frac{f(x)-f(a)}{g(x)-g(a)} = \frac{f'(c)}{g'(c)}.</md>
+          <p>Since</p>
+          <md>f(a)=g(a)=0,</md>
+          <p>this becomes</p>
+          <md>\frac{f(x)}{g(x)} = \frac{f'(c)}{g'(c)}.</md>
+          <p>As <m>x\to a</m>, the point <m>c</m> is squeezed toward <m>a</m>. Therefore, if</p>
+          <md>\frac{f'(c)}{g'(c)}\to L,</md>
+          <p>then</p>
+          <md>\frac{f(x)}{g(x)}\to L.</md>
+          <p>So</p>
+          <md>\lim_{x\to a}\frac{f(x)}{g(x)} = \lim_{x\to a}\frac{f'(x)}{g'(x)}.</md>
+          <p>This proves the main idea for the <m>0/0</m> case. The <m>\infty/\infty</m> case and endpoint versions require more care, but the same Mean Value Theorem idea is behind them.</p>
+        </paragraphs>
+      </proof>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-other-indeterminate-forms">
+    <title>Other indeterminate forms</title>
+
+    <p>The forms <m>0/0</m> and <m>\infty/\infty</m> are the ones l'Hospital's Rule handles directly. Other indeterminate forms can often be rewritten into one of those two forms.</p>
+
+    <p>Common forms include</p>
+    <md>0\cdot\infty, \qquad \infty-\infty, \qquad 0^0, \qquad 1^\infty, \qquad \infty^0.</md>
+
+    <p>Each one needs algebra before l'Hospital's Rule can be used.</p>
+
+    <paragraphs xml:id="para-form-zero-infty">
+      <title>A <m>0\cdot\infty</m> form</title>
+      <p>Find</p>
+      <md>\lim_{x\to 0^+}x\ln x.</md>
+      <p>As <m>x\to 0^+</m>, <m>x\to 0</m> and <m>ln x\to-\infty</m>. So this has the form <m>0\cdot(-\infty)</m>. Rewrite it as a quotient:</p>
+      <md>x\ln x=\frac{\ln x}{1/x}.</md>
+      <p>Now the numerator and denominator both grow in magnitude:</p>
+      <md>\ln x\to-\infty, \qquad \frac1x\to+\infty.</md>
+      <p>Apply l'Hospital's Rule:</p>
+      <md>\lim_{x\to 0^+}\frac{\ln x}{1/x} = \lim_{x\to 0^+}\frac{1/x}{-1/x^2} = \lim_{x\to 0^+}(-x) = 0.</md>
+      <p>Therefore</p>
+      <md>\lim_{x\to 0^+}x\ln x=0.</md>
+      <p>The product approaches <m>0</m>, even though one factor approaches <m>-\infty</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-form-infty-minus-infty">
+      <title>An <m>\infty-\infty</m> form</title>
+      <p>Find</p>
+      <md>\lim_{x\to 0}\left(\frac1x-\frac1{e^x-1}\right).</md>
+      <p>Each term blows up as <m>x\to 0</m>, so this is an <m>\infty-\infty</m> form. Put the terms over a common denominator:</p>
+      <md>\frac1x-\frac1{e^x-1} = \frac{e^x-1-x}{x(e^x-1)}.</md>
+      <p>Now direct substitution gives <m>0/0</m>. Apply l'Hospital's Rule:</p>
+      <md>\lim_{x\to 0}\frac{e^x-1-x}{x(e^x-1)} = \lim_{x\to 0}\frac{e^x-1}{(e^x-1)+xe^x}.</md>
+      <p>This is still <m>0/0</m>. Apply the rule again:</p>
+      <md>\lim_{x\to 0}\frac{e^x}{e^x+e^x+xe^x} = \lim_{x\to 0}\frac{e^x}{(2+x)e^x} = \frac12.</md>
+      <p>Thus</p>
+      <md>\lim_{x\to 0}\left(\frac1x-\frac1{e^x-1}\right)=\frac12.</md>
+      <p>The subtraction hides a cancellation. Algebra exposes it.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-form-power-zero-zero">
+      <title>A power form <m>0^0</m></title>
+      <p>Find</p>
+      <md>\lim_{x\to 0^+}x^x.</md>
+      <p>The base approaches <m>0</m>, and the exponent approaches <m>0</m>, so this has the form <m>0^0</m>. Power forms are usually handled by taking logarithms.</p>
+      <p>Let</p>
+      <md>y=x^x.</md>
+      <p>Then</p>
+      <md>\ln y=x\ln x.</md>
+      <p>We just found that</p>
+      <md>\lim_{x\to 0^+}x\ln x=0.</md>
+      <p>Therefore</p>
+      <md>\lim_{x\to 0^+}\ln y=0.</md>
+      <p>Since the exponential function is continuous,</p>
+      <md>\lim_{x\to 0^+}y=e^0=1.</md>
+      <p>So</p>
+      <md>\lim_{x\to 0^+}x^x=1.</md>
+      <p>The expression <m>0^0</m> by itself did not decide the answer. The limiting process did.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-form-power-one-infty">
+      <title>A power form <m>1^\infty</m></title>
+      <p>Find</p>
+      <md>\lim_{x\to\infty}\left(1+\frac1x\right)^x.</md>
+      <p>Let</p>
+      <md>y=\left(1+\frac1x\right)^x.</md>
+      <p>Then</p>
+      <md>\ln y=x\ln\left(1+\frac1x\right).</md>
+      <p>Set</p>
+      <md>u=\frac1x.</md>
+      <p>As <m>x\to\infty</m>, we have <m>u\to 0^+</m>. Also,</p>
+      <md>x=\frac1u.</md>
+      <p>Thus</p>
+      <md>\ln y = \frac{\ln(1+u)}{u}.</md>
+      <p>This is <m>0/0</m>. Apply l'Hospital's Rule with respect to <m>u</m>:</p>
+      <md>\lim_{u\to 0^+}\frac{\ln(1+u)}{u} = \lim_{u\to 0^+}\frac{1/(1+u)}{1} = 1.</md>
+      <p>So</p>
+      <md>\lim_{x\to\infty}\ln y=1.</md>
+      <p>Therefore</p>
+      <md>\lim_{x\to\infty}y=e.</md>
+      <p>Thus</p>
+      <md>\lim_{x\to\infty}\left(1+\frac1x\right)^x=e.</md>
+      <p>This familiar limit now appears as a logarithmic indeterminate form.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-comparing-growth-rates">
+    <title>Comparing growth rates</title>
+
+    <p>l'Hospital's Rule gives a clean way to compare common growth rates.</p>
+
+    <paragraphs xml:id="para-growth-log-vs-powers">
+      <title>Logarithms grow slower than powers</title>
+      <p>Let <m>p\gt 0</m>. Then</p>
+      <md>\lim_{x\to\infty}\frac{\ln x}{x^p}</md>
+      <p>has form <m>\infty/\infty</m>. Apply l'Hospital's Rule:</p>
+      <md>\lim_{x\to\infty}\frac{\ln x}{x^p} = \lim_{x\to\infty}\frac{1/x}{p x^{p-1}} = \lim_{x\to\infty}\frac1{p x^p} = 0.</md>
+      <p>So</p>
+      <note xml:id="note-log-slower-power">
+        <p><m>\ln x</m> grows slower than <m>x^p</m> for every <m>p\gt 0</m>.</p>
+      </note>
+    </paragraphs>
+
+    <paragraphs xml:id="para-growth-powers-vs-exp">
+      <title>Powers grow slower than exponentials</title>
+      <p>Let <m>n</m> be a positive integer. Consider</p>
+      <md>\lim_{x\to\infty}\frac{x^n}{e^x}.</md>
+      <p>Apply l'Hospital's Rule <m>n</m> times:</p>
+      <md>\frac{x^n}{e^x} \longrightarrow \frac{n x^{n-1}}{e^x} \longrightarrow \frac{n(n-1)x^{n-2}}{e^x} \longrightarrow \cdots \longrightarrow \frac{n!}{e^x}.</md>
+      <p>Since</p>
+      <md>\frac{n!}{e^x}\to 0,</md>
+      <p>we get</p>
+      <md>\lim_{x\to\infty}\frac{x^n}{e^x}=0.</md>
+      <p>So exponentials eventually grow faster than powers.</p>
+    </paragraphs>
+
+    <p>A rough hierarchy is</p>
+    <md>\ln x \quad\ll\quad x^p \quad\ll\quad e^x</md>
+    <p>as <m>x\to\infty</m>, for <m>p\gt 0</m>. The symbol <m>\ll</m> means <q>grows much more slowly than</q> in this limiting sense.</p>
+
+    <p>This hierarchy will return when we study infinite series and Taylor approximation. Growth rate decides convergence, error size, and which terms dominate.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-lhospital-cannot-be-used">
+    <title>When l'Hospital's Rule cannot be used</title>
+
+    <p>l'Hospital's Rule is easy to misuse. The first check is always the form.</p>
+
+    <paragraphs xml:id="para-not-indeterminate-form">
+      <title>Not an indeterminate form</title>
+      <p>Consider</p>
+      <md>\lim_{x\to 0}\frac{x^2+1}{x+1}.</md>
+      <p>Direct substitution gives</p>
+      <md>\frac{1}{1}=1.</md>
+      <p>This is not <m>0/0</m> or <m>\infty/\infty</m>. The limit is <m>1</m>.</p>
+      <p>If we incorrectly differentiate numerator and denominator, we get</p>
+      <md>\lim_{x\to 0}\frac{2x}{1}=0,</md>
+      <p>which is the wrong answer.</p>
+      <note xml:id="note-check-indeterminate-form">
+        <title>Key take-away</title>
+        <p>Do not use l'Hospital's Rule unless the quotient has form <m>0/0</m> or <m>\infty/\infty</m>.</p>
+      </note>
+    </paragraphs>
+
+    <paragraphs xml:id="para-derivative-quotient-no-limit">
+      <title>Derivative quotient has no limit</title>
+      <p>Sometimes l'Hospital's Rule gives no conclusion, even though the original limit exists.</p>
+      <p>Consider</p>
+      <md>\lim_{x\to\infty}\frac{x+\sin x}{x}.</md>
+      <p>The original quotient is</p>
+      <md>\frac{x+\sin x}{x} = 1+\frac{\sin x}{x}.</md>
+      <p>Since</p>
+      <md>\left|\frac{\sin x}{x}\right|\le \frac1x,</md>
+      <p>we have</p>
+      <md>\frac{\sin x}{x}\to 0.</md>
+      <p>Thus</p>
+      <md>\lim_{x\to\infty}\frac{x+\sin x}{x}=1.</md>
+      <p>But the quotient of derivatives is</p>
+      <md>\frac{1+\cos x}{1}=1+\cos x,</md>
+      <p>which has no limit as <m>x\to\infty</m>.</p>
+      <p>There is no contradiction. l'Hospital's Rule says that if the derivative quotient has a limit, then the original quotient has that same limit. It does not say that the derivative quotient must have a limit whenever the original quotient does.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-lhospital-hook-warning-review">
+    <title>Where this points</title>
+
+    <p>l'Hospital's Rule turns some hard limits into derivative limits. It works because, near a point, differentiable functions are controlled by their local linear parts.</p>
+
+    <p>But every theorem in this chapter has boundaries. Fermat's theorem needs an interior point and differentiability. The Mean Value Theorem needs continuity and differentiability. The second derivative test can be silent. l'Hospital's Rule needs an indeterminate form and a derivative quotient that settles.</p>
+
+    <p>The next warning examples collect those boundaries, because knowing when a theorem cannot be used is part of knowing the theorem.</p>
+  </subsection>
+
+</section>
