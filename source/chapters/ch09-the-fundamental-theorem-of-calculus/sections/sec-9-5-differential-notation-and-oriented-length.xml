@@ -1,9 +1,378 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SOURCE: Chapter-9-draft.txt, Chapter-9-draft.tex, chapter-9.tex; intended section 9.6 “Differential notation and oriented length”
-     EDITORIAL TAGS: Bridge
-     STATUS: NOT_STARTED -->
-<section xml:id="sec-9-6-differential-notation-and-oriented-length" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-9-5-differential-notation-and-oriented-length">
   <title>Differential notation and oriented length</title>
 
-  <p>Placeholder. Content not yet converted.</p>
+  <p>Substitution gave us a powerful rule:</p>
+  <md>\int f(g(u))g'(u)\,du.</md>
+
+  <p>At first this may look like a trick with symbols. But the symbols are trying to say something geometric.</p>
+
+  <p>When</p>
+  <md>x=g(u),</md>
+  <p>a small step in <m>u</m> produces a small step in <m>x</m>:</p>
+  <md>dx=g'(u)\,du.</md>
+
+  <p>So the expression</p>
+  <md>f(x)\,dx</md>
+  <p>is not just a function <m>f(x)</m> with decoration attached. It is the small accumulated amount:</p>
+  <md>\text{height}\times\text{oriented width}.</md>
+
+  <p>This section slows down the notation so that later formulas feel less mysterious.</p>
+
+  <subsection xml:id="subsec-dx-oriented-step">
+    <title><m>dx</m> as an oriented step</title>
+
+    <p>The definite integral</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>accumulates from <m>a</m> to <m>b</m>. The direction matters.</p>
+
+    <p>If <m>a\lt b</m>, we move left to right. A small step <m>dx</m> is positive.</p>
+
+    <p>If <m>b\lt a</m>, we move right to left. A small step <m>dx</m> is negative.</p>
+
+    <p>That is why</p>
+    <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+
+    <p>The symbol <m>dx</m> carries the direction of traversal.</p>
+
+    <figure xml:id="fig-oriented-interval">
+      <caption>The same interval with opposite orientations gives integrals with opposite signs.</caption>
+      <image width="85%">
+        <latex-image>
+          \begin{tikzpicture}[xscale=1.15, every node/.style={font=\small}]
+            % first line
+            \draw[&lt;-&gt;, thick] (-0.5,1.4) -- (5.5,1.4);
+            \foreach \x/\lab in {1/a,4/b} {
+              \draw[thick] (\x,1.48) -- (\x,1.32);
+              \node[below] at (\x,1.3) {\(\lab\)};
+            }
+            \draw[very thick, -&gt;] (1,1.75) -- (4,1.75);
+            \node[above] at (2.5,1.75) {positive orientation};
+            \node[right] at (5.6,1.4) {\(\displaystyle\int_a^b f(x)\,dx\)};
+
+            % second line
+            \draw[&lt;-&gt;, thick] (-0.5,0) -- (5.5,0);
+            \foreach \x/\lab in {1/a,4/b} {
+              \draw[thick] (\x,0.08) -- (\x,-0.08);
+              \node[below] at (\x,-0.1) {\(\lab\)};
+            }
+            \draw[very thick, -&gt;] (4,0.35) -- (1,0.35);
+            \node[above] at (2.5,0.35) {negative orientation};
+            \node[right] at (5.6,0) {\(\displaystyle\int_b^a f(x)\,dx\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The simplest example is the integral of <m>1</m>.</p>
+
+    <p>If we move from <m>2</m> to <m>5</m>, then</p>
+    <md>\int_2^5 1\,dx=5-2=3.</md>
+
+    <p>If we move from <m>5</m> to <m>2</m>, then</p>
+    <md>\int_5^2 1\,dx=2-5=-3.</md>
+
+    <p>So</p>
+    <md>\int_a^b 1\,dx=b-a.</md>
+
+    <p>This is <term>oriented length</term>. Ordinary length is always positive:</p>
+    <md>\text{ordinary length of }[a,b]=|b-a|.</md>
+
+    <p>But the integral remembers direction:</p>
+    <note xml:id="note-oriented-length">
+      <p>oriented length from <m>a</m> to <m>b</m> is <m>b-a</m>.</p>
+    </note>
+
+    <example xml:id="ex-oriented-step-eval">
+      <title>Evaluating an integral with reversed limits</title>
+      <statement>
+        <p>Compute</p>
+        <md>\int_4^1 3\,dx.</md>
+        <p>Since the integrand is constant,</p>
+        <md>\int_4^1 3\,dx=3(1-4)=-9.</md>
+        <p>The ordinary area of the rectangle would be</p>
+        <md>3\cdot 3=9.</md>
+        <p>The integral is negative because the traversal is from right to left.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-integrand-being-accumulated">
+    <title><m>f(x)\,dx</m> as the thing being accumulated</title>
+
+    <p>A Riemann sum has terms of the form</p>
+    <md>f(x_i^*)\Delta x_i.</md>
+
+    <p>Each term is</p>
+    <md>\text{sampled height}\times\text{small oriented width}.</md>
+
+    <p>The integral is the limit of such sums:</p>
+    <md>\int_a^b f(x)\,dx.</md>
+
+    <p>So the expression</p>
+    <md>f(x)\,dx</md>
+    <p>should be read as one unit:</p>
+    <md>f(x)\,dx=\text{a small signed amount to be accumulated.}</md>
+
+    <p>The function <m>f(x)</m> supplies the density, rate, or height. The <m>dx</m> supplies the oriented step along the <m>x</m>-axis.</p>
+
+    <p>This is why units work naturally.</p>
+
+    <table>
+      <title>Integrands, units, and accumulated quantities</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{integrand}</m></cell>
+          <cell><m>\textbf{units}</m></cell>
+          <cell><m>\textbf{accumulated quantity}</m></cell>
+        </row>
+        <row>
+          <cell><m>v(t)\,dt</m></cell>
+          <cell><m>\dfrac{\text{miles}}{\text{hour}}\cdot\text{hour}</m></cell>
+          <cell>miles</cell>
+        </row>
+        <row>
+          <cell><m>\rho(x)\,dx</m></cell>
+          <cell><m>\dfrac{\text{grams}}{\text{cm}}\cdot\text{cm}</m></cell>
+          <cell>grams</cell>
+        </row>
+        <row>
+          <cell><m>P(t)\,dt</m></cell>
+          <cell><m>\text{kW}\cdot\text{hour}</m></cell>
+          <cell>kWh</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The <m>dx</m> is part of the meaning of the integral.</p>
+
+    <example xml:id="ex-mass-of-rod">
+      <title>Mass of a rod</title>
+      <statement>
+        <p>Suppose a thin rod lies along the <m>x</m>-axis from <m>x=1</m> to <m>x=4</m>. Its linear density is</p>
+        <md>\rho(x)=2+x</md>
+        <p>grams per centimeter. The small mass near <m>x</m> is approximately</p>
+        <md>\rho(x)\,dx=(2+x)\,dx.</md>
+        <p>Therefore the total mass is</p>
+        <md>\int_1^4 (2+x)\,dx.</md>
+        <p>An antiderivative is</p>
+        <md>2x+\frac{x^2}{2}.</md>
+        <p>Thus</p>
+        <md>\int_1^4 (2+x)\,dx = \left(2x+\frac{x^2}{2}\right)\Big|_1^4.</md>
+        <p>Compute:</p>
+        <md>\left(8+\frac{16}{2}\right)-\left(2+\frac12\right) = 16-\frac52 = \frac{27}{2}.</md>
+        <p>So the mass is</p>
+        <md>\frac{27}{2}\text{ grams}.</md>
+        <p>If we wrote</p>
+        <md>\int_4^1 (2+x)\,dx,</md>
+        <p>the answer would be</p>
+        <md>-\frac{27}{2}.</md>
+        <p>That negative value is not a negative physical mass. It is the oriented accumulation from <m>4</m> back to <m>1</m>. For physical mass, we choose the natural left-to-right orientation or take ordinary length.</p>
+      </statement>
+    </example>
+
+    <paragraphs>
+      <title>Moral</title>
+      <p>The definite integral records both size and direction. Applications decide whether that signed quantity is the desired physical quantity.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-pulling-integrand-through-change">
+    <title>Pulling an integrand through <m>x=g(u)</m></title>
+
+    <p>Substitution is the same idea written in a new coordinate.</p>
+
+    <p>Suppose</p>
+    <md>x=g(u).</md>
+
+    <p>Then a small change in <m>u</m> produces a small change in <m>x</m>:</p>
+    <md>dx=g'(u)\,du.</md>
+
+    <p>So the integrand changes by substitution:</p>
+    <md>f(x)\,dx = f(g(u))g'(u)\,du.</md>
+
+    <p>This is not blind symbol pushing. It says:</p>
+    <md>\text{old height}\times\text{old step} = \text{new height}\times\text{new step}.</md>
+
+    <p>The factor <m>g'(u)</m> converts a step in <m>u</m> into the corresponding oriented step in <m>x</m>.</p>
+
+    <example xml:id="ex-stretching-measuring-stick">
+      <title>Stretching the measuring stick</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_0^4 \sqrt{x}\,dx</md>
+        <p>using the substitution</p>
+        <md>x=u^2.</md>
+        <p>As <m>x</m> goes from <m>0</m> to <m>4</m>, <m>u</m> goes from <m>0</m> to <m>2</m>. Also,</p>
+        <md>dx=2u\,du.</md>
+        <p>Since</p>
+        <md>\sqrt{x}=\sqrt{u^2}=u</md>
+        <p>for <m>0\le u\le 2</m>, we get</p>
+        <md>\int_0^4 \sqrt{x}\,dx = \int_0^2 u(2u)\,du.</md>
+        <p>So</p>
+        <md>\int_0^4 \sqrt{x}\,dx = \int_0^2 2u^2\,du = 2\cdot\frac{u^3}{3}\Big|_0^2 = \frac{16}{3}.</md>
+        <p>The substitution did not change the accumulated quantity. It changed how we described the small steps.</p>
+
+        <figure xml:id="fig-substitution-stretching-scale">
+          <caption>The substitution <m>x=u^2</m> stretches the measuring scale. Equal <m>u</m>-steps do not give equal <m>x</m>-steps.</caption>
+          <image width="85%">
+            <latex-image>
+              \begin{tikzpicture}[xscale=1.1, every node/.style={font=\small}]
+                % u-line
+                \draw[&lt;-&gt;, thick] (-0.3,1.2) -- (4.7,1.2);
+                \foreach \x/\lab in {0/0,2/1,4/2} {
+                  \draw[thick] (\x,1.28) -- (\x,1.12);
+                  \node[below] at (\x,1.1) {\(\lab\)};
+                }
+                \node[left] at (-0.3,1.2) {\(u\)-line};
+
+                % x-line
+                \draw[&lt;-&gt;, thick] (-0.3,0) -- (4.7,0);
+                \foreach \x/\lab in {0/0,1/1,4/4} {
+                  \draw[thick] (\x,0.08) -- (\x,-0.08);
+                  \node[below] at (\x,-0.1) {\(\lab\)};
+                }
+                \node[left] at (-0.3,0) {\(x\)-line};
+
+                % mapping arrows
+                \draw[-&gt;, thick] (0,0.95) -- (0,0.25);
+                \draw[-&gt;, thick] (2,0.95) -- (1,0.25);
+                \draw[-&gt;, thick] (4,0.95) -- (4,0.25);
+
+                \node[right] at (4.7,0.65) {\(x=u^2\)};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <example xml:id="ex-reversed-orientation-subst">
+      <title>Reversed orientation</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_0^1 x^2\,dx</md>
+        <p>using</p>
+        <md>x=1-u.</md>
+        <p>Then</p>
+        <md>dx=-du.</md>
+        <p>The limits change too. When</p>
+        <md>x=0,</md>
+        <p>we have</p>
+        <md>u=1.</md>
+        <p>When</p>
+        <md>x=1,</md>
+        <p>we have</p>
+        <md>u=0.</md>
+        <p>Therefore</p>
+        <md>\int_0^1 x^2\,dx = \int_1^0 (1-u)^2(-du).</md>
+        <p>The negative sign in <m>dx=-du</m> records the fact that as <m>u</m> increases, <m>x</m> decreases. We can either keep the negative sign or reverse the limits:</p>
+        <md>\int_1^0 (1-u)^2(-du) = \int_0^1 (1-u)^2\,du.</md>
+        <p>Thus</p>
+        <md>\int_0^1 x^2\,dx = \int_0^1 (1-u)^2\,du.</md>
+        <p>Compute:</p>
+        <md>\int_0^1 (1-u)^2\,du = \int_0^1 (1-2u+u^2)\,du = \left(u-u^2+\frac{u^3}{3}\right)\Big|_0^1 = \frac13.</md>
+        <p>This agrees with</p>
+        <md>\int_0^1 x^2\,dx=\frac13.</md>
+      </statement>
+    </example>
+
+    <note xml:id="note-substitution-rule-geometrically">
+      <title>Substitution rule, read geometrically</title>
+      <p>When <m>x=g(u)</m>,</p>
+      <md>\int_a^b f(x)\,dx = \int_{\alpha}^{\beta} f(g(u))g'(u)\,du,</md>
+      <p>where</p>
+      <md>g(\alpha)=a, \qquad g(\beta)=b.</md>
+      <p>The derivative <m>g'(u)</m> converts <m>du</m>-steps into oriented <m>dx</m>-steps.</p>
+    </note>
+
+    <p>The limits are part of the substitution. They are not decoration.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-one-dimensional-seed-forms">
+    <title>The one-dimensional seed of differential forms</title>
+
+    <p>The notation</p>
+    <md>f(x)\,dx</md>
+    <p>has one more future use. It prepares the language of differential forms.</p>
+
+    <p>In one dimension, the basic object that gets accumulated is</p>
+    <md>f(x)\,dx.</md>
+    <p>This is a <term>one-dimensional integrand</term>. Later, in multivariable calculus, similar objects will look like</p>
+    <md>P(x,y)\,dx+Q(x,y)\,dy.</md>
+    <p>They will be accumulated along curves. For now, the one-dimensional case already contains the main idea:</p>
+    <md>\text{an integrand is something designed to be integrated along an oriented object.}</md>
+
+    <p>The most important one-dimensional integrands are exact differentials.</p>
+
+    <p>If <m>F</m> is differentiable, then</p>
+    <md>dF=F'(x)\,dx.</md>
+
+    <p>The Fundamental Theorem, Part II says</p>
+    <md>\int_a^b F'(x)\,dx=F(b)-F(a).</md>
+
+    <p>In differential notation, this becomes</p>
+    <md>\int_a^b dF=F(b)-F(a).</md>
+
+    <p>This says:</p>
+    <md>\text{accumulating the small changes of }F = \text{final value}-\text{initial value}.</md>
+
+    <p>The boundary of an oriented interval is its endpoint minus its starting point. Symbolically,</p>
+    <md>\partial[a,b]=\{b\}-\{a\}.</md>
+
+    <p>So the formula</p>
+    <md>\int_a^b dF=F(b)-F(a)</md>
+    <p>can be read as</p>
+    <md>\text{integral of a derivative over an interval} = \text{value on the boundary}.</md>
+
+    <p>That sentence will return in multivariable calculus in larger forms. For now, it is simply the Fundamental Theorem written in its most compact one-dimensional language.</p>
+
+    <example xml:id="ex-differential-forms-seed">
+      <title>Integrating an exact differential</title>
+      <statement>
+        <p>Let</p>
+        <md>F(x)=x^3-2x.</md>
+        <p>Then</p>
+        <md>dF=(3x^2-2)\,dx.</md>
+        <p>Therefore</p>
+        <md>\int_1^4 (3x^2-2)\,dx = \int_1^4 dF = F(4)-F(1).</md>
+        <p>Compute:</p>
+        <md>F(4)=64-8=56,</md>
+        <p>and</p>
+        <md>F(1)=1-2=-1.</md>
+        <p>So</p>
+        <md>\int_1^4 (3x^2-2)\,dx=56-(-1)=57.</md>
+        <p>The integral accumulated the changes of <m>F</m> from <m>1</m> to <m>4</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-differential-notation-can-do">
+    <title>What the notation is allowed to do</title>
+
+    <p>Differential notation is powerful when it records a real relationship between small changes:</p>
+    <md>dx=g'(u)\,du, \qquad dF=F'(x)\,dx.</md>
+
+    <p>It is dangerous when it is treated as ordinary multiplication without meaning.</p>
+
+    <p>The safe rule is:</p>
+    <note xml:id="note-safe-rule-differential-notation">
+      <p>Use differential notation to record linear change and oriented accumulation.</p>
+    </note>
+
+    <p>For substitution, the notation works because it is the chain rule:</p>
+    <md>x=g(u) \quad\Longrightarrow\quad dx=g'(u)\,du.</md>
+
+    <p>For the Fundamental Theorem, the notation works because it is net change:</p>
+    <md>dF=F'(x)\,dx \quad\Longrightarrow\quad \int_a^b dF=F(b)-F(a).</md>
+
+    <p>The symbols are compact because the ideas behind them are real.</p>
+
+    <p>The next section collects places where these ideas are easy to misuse. The warnings do not weaken the formulas. They make the formulas safer.</p>
+  </subsection>
+
 </section>
