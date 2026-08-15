@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-average-rate-of-change">
+  <title>Average rate of change</title>
+
+  <p>A limit of average rates cannot be understood until the average rate itself is clear. We begin with the ordinary slope between two points.</p>
+
+  <p>If <m>f</m> is a function and the input changes from <m>a</m> to <m>b</m>, then the output changes from <m>f(a)</m> to <m>f(b)</m>. The average rate of change compares these two changes:</p>
+  <md>\frac{\text{change in output}}{\text{change in input}} = \frac{f(b)-f(a)}{b-a}.</md>
+  <p>Geometrically, this is the slope of the line passing through <m>(a,f(a))</m> and <m>(b,f(b))</m>, called a <term>secant line</term>.</p>
+
+  <subsection xml:id="subsec-secant-slope">
+    <title>Secant slope</title>
+
+    <definition xml:id="def-average-rate-of-change">
+      <title>Average rate of change</title>
+      <statement>
+        <p>For a function <m>f</m>, the <term>average rate of change</term> from <m>x=a</m> to <m>x=b</m> (with <m>a\neq b</m>) is</p>
+        <md>\frac{\Delta y}{\Delta x} = \frac{f(b)-f(a)}{b-a}.</md>
+        <p>Geometrically, this is the slope of the secant line through <m>(a,f(a))</m> and <m>(b,f(b))</m>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-secant-slope-parabola">
+      <title>Secant slope on a parabola</title>
+      <statement>
+        <p>Let <m>f(x)=x^2</m>. Between <m>x=1</m> and <m>x=3</m>, the average rate of change is</p>
+        <md>\frac{f(3)-f(1)}{3-1} = \frac{9-1}{2} = 4.</md>
+        <p>Over this interval, the graph rises an average of <m>4</m> units of output per <m>1</m> unit of input.</p>
+
+        <figure xml:id="fig-secant-slope-parabola">
+          <caption>The average rate of change is the slope of the secant line through two graph points.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.76\textwidth,
+                    height=0.48\textwidth,
+                    xmin=0, xmax=3.7,
+                    ymin=0, ymax=11,
+                    axis lines=left,
+                    xlabel={\(x\)},
+                    ylabel={\(y\)},
+                    xtick={1,3},
+                    ytick={1,9},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=0:3.4, samples=100] {x^2};
+                \addplot[very thick, domain=0.45:3.35, samples=2] {4*x-3};
+                \addplot[only marks, mark=*] coordinates {(1,1) (3,9)};
+                \draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+                \draw[dashed] (axis cs:3,0) -- (axis cs:3,9);
+                \draw[dashed] (axis cs:1,1) -- (axis cs:3,1);
+                \draw[dashed] (axis cs:3,1) -- (axis cs:3,9);
+                \node[anchor=east] at (axis cs:1,1.2) {\((1,1)\)};
+                \node[anchor=west] at (axis cs:3,9) {\((3,9)\)};
+                \node[anchor=south] at (axis cs:2,1.05) {\(\Delta x=2\)};
+                \node[anchor=west] at (axis cs:3.05,5) {\(\Delta y=8\)};
+                \node[anchor=west] at (axis cs:1.55,7.0) {secant slope \(=\dfrac{8}{2}=4\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-average-velocity">
+    <title>Average velocity</title>
+
+    <definition xml:id="def-average-velocity">
+      <title>Average velocity</title>
+      <statement>
+        <p>If <m>s(t)</m> represents position at time <m>t</m>, the <term>average velocity</term> from <m>t=a</m> to <m>t=b</m> is</p>
+        <md>v_{\text{avg}} = \frac{s(b)-s(a)}{b-a}.</md>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-average-velocity-intervals">
+      <title>Average velocities over shrinking intervals</title>
+      <statement>
+        <p>Let <m>s(t)=t^2</m> meters after <m>t</m> seconds. Compute average velocity starting at <m>t=2</m>:</p>
+        <ul>
+          <li><p>From <m>t=2</m> to <m>t=5</m>: <m>\frac{s(5)-s(2)}{5-2} = \frac{25-4}{3} = 7\text{ m/s}</m>.</p></li>
+          <li><p>From <m>t=2</m> to <m>t=3</m>: <m>\frac{s(3)-s(2)}{3-2} = \frac{9-4}{1} = 5\text{ m/s}</m>.</p></li>
+          <li><p>From <m>t=2</m> to <m>t=2.1</m>: <m>\frac{s(2.1)-s(2)}{2.1-2} = \frac{4.41-4}{0.1} = 4.1\text{ m/s}</m>.</p></li>
+        </ul>
+        <p>As the time interval shrinks, the average velocity nears the instantaneous velocity at <m>t=2</m>.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-displacement-vs-distance">
+      <title>Displacement versus distance</title>
+      <p>Average velocity measures net signed displacement <m>s(b)-s(a)</m> divided by elapsed time, not total distance traveled. A runner starting at <m>0</m>, running to <m>100\text{ m}</m>, and returning to <m>0</m> in <m>20\text{ s}</m> has average velocity <m>\frac{0-0}{20} = 0\text{ m/s}</m>.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-average-rate-from-data">
+    <title>Average rate from data</title>
+
+    <p>A formula is not required; average rates can be computed directly from experimental measurements.</p>
+
+    <example xml:id="ex-coffee-cooling-average-rate">
+      <title>Cooling coffee data</title>
+      <statement>
+        <table>
+          <title>Temperature of cooling coffee over time</title>
+          <tabular top="major" bottom="major" left="major" right="major">
+            <row bottom="minor">
+              <cell><m>t\text{ (minutes)}</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>5</m></cell>
+              <cell><m>10</m></cell>
+              <cell><m>15</m></cell>
+              <cell><m>20</m></cell>
+              <cell><m>25</m></cell>
+            </row>
+            <row>
+              <cell><m>T(t)\text{ (}^\circ\text{C)}</m></cell>
+              <cell><m>90</m></cell>
+              <cell><m>73</m></cell>
+              <cell><m>60</m></cell>
+              <cell><m>51</m></cell>
+              <cell><m>44</m></cell>
+              <cell><m>39</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>From <m>t=0</m> to <m>t=5</m>: <m>\frac{T(5)-T(0)}{5-0} = \frac{73-90}{5} = -3.4^\circ\text{C/min}</m>.</p>
+        <p>From <m>t=15</m> to <m>t=25</m>: <m>\frac{T(25)-T(15)}{25-15} = \frac{39-51}{10} = -1.2^\circ\text{C/min}</m>.</p>
+
+        <figure xml:id="fig-coffee-average-rates">
+          <caption>Average rates from data are secant slopes between measured points.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.78\textwidth,
+                    height=0.48\textwidth,
+                    xmin=0, xmax=27,
+                    ymin=30, ymax=95,
+                    axis lines=left,
+                    xlabel={\(t\) (minutes)},
+                    ylabel={\(T(t)\) (degrees C)},
+                    xtick={0,5,10,15,20,25},
+                    ytick={40,60,80,90},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[only marks, mark=*] coordinates {
+                    (0,90) (5,73) (10,60) (15,51) (20,44) (25,39)
+                };
+                \addplot[very thick, domain=0:5, samples=2] {90 - 3.4*x};
+                \addplot[very thick, domain=15:25, samples=2] {51 - 1.2*(x-15)};
+                \node[anchor=west] at (axis cs:5.4,77) {average rate \(-3.4\)};
+                \node[anchor=west] at (axis cs:16.5,47) {average rate \(-1.2\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-units-of-rate">
+    <title>Units of a rate</title>
+
+    <p>The units of an average rate always follow the quotient: <m>\frac{\text{output units}}{\text{input units}}</m>.</p>
+
+    <table>
+      <title>Standard rate applications and their units</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Function</term></cell>
+          <cell><term>Average Rate</term></cell>
+          <cell><term>Units</term></cell>
+        </row>
+        <row>
+          <cell><m>s(t) = </m> position</cell>
+          <cell><m>\frac{s(b)-s(a)}{b-a}</m></cell>
+          <cell>meters/second</cell>
+        </row>
+        <row>
+          <cell><m>T(t) = </m> temperature</cell>
+          <cell><m>\frac{T(b)-T(a)}{b-a}</m></cell>
+          <cell><m>^\circ\text{C}/\text{minute}</m></cell>
+        </row>
+        <row>
+          <cell><m>C(q) = </m> cost</cell>
+          <cell><m>\frac{C(b)-C(a)}{b-a}</m></cell>
+          <cell>dollars/item</cell>
+        </row>
+        <row>
+          <cell><m>P(t) = </m> population</cell>
+          <cell><m>\frac{P(b)-P(a)}{b-a}</m></cell>
+          <cell>people/year</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Average rates describe gross changes across a non-zero interval. To measure what happens at an exact instant, we must shrink the interval to zero—the subject of the next section.</p>
+  </subsection>
+
+</section>
