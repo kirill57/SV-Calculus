@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-local-absolute-extrema">
+  <title>Local and absolute extrema</title>
+
+  <p>The sign chart for <m>x^3-3x</m> showed a graph that rises, then falls, then rises. At the point where rising changes to falling, the graph has a high point nearby. At the point where falling changes to rising, the graph has a low point nearby.</p>
+
+  <p>Those points are called extrema.</p>
+
+  <subsection xml:id="subsec-local-max-local-min">
+    <title>Local maximum and local minimum</title>
+
+    <p>A high point nearby is not necessarily the highest point everywhere. A mountain can have many peaks. A small peak is still a peak if the graph is lower on both sides nearby.</p>
+
+    <definition xml:id="def-local-extrema">
+      <title>Local extrema</title>
+      <statement>
+        <p>A function <m>f</m> has a <term>local maximum</term> at <m>c</m> if</p>
+        <md>f(c)\ge f(x)</md>
+        <p>for all <m>x</m> sufficiently close to <m>c</m>.</p>
+        <p>A function <m>f</m> has a <term>local minimum</term> at <m>c</m> if</p>
+        <md>f(c)\le f(x)</md>
+        <p>for all <m>x</m> sufficiently close to <m>c</m>.</p>
+      </statement>
+    </definition>
+
+    <p>The phrase <q>sufficiently close</q> means that we only compare <m>f(c)</m> with nearby values of the function. Local extrema are neighborhood ideas.</p>
+
+    <p>Now compare this with the global idea.</p>
+
+    <definition xml:id="def-absolute-extrema">
+      <title>Absolute extrema</title>
+      <statement>
+        <p>A function <m>f</m> has an <term>absolute maximum</term> at <m>c</m> on a set <m>D</m> if</p>
+        <md>f(c)\ge f(x)</md>
+        <p>for every <m>x\in D</m>.</p>
+        <p>A function <m>f</m> has an <term>absolute minimum</term> at <m>c</m> on a set <m>D</m> if</p>
+        <md>f(c)\le f(x)</md>
+        <p>for every <m>x\in D</m>.</p>
+      </statement>
+    </definition>
+
+    <p>Absolute extrema compare against the whole domain under discussion. Local extrema compare only nearby.</p>
+
+    <example xml:id="ex-local-vs-absolute-cubic">
+      <title>Comparing local and absolute extrema</title>
+      <statement>
+        <p>Let</p>
+        <md>f(x)=x^3-6x^2+9x+2, \qquad \frac12\le x\le 5.</md>
+        <p>Then</p>
+        <md>f'(x)=3x^2-12x+9=3(x-1)(x-3).</md>
+        <p>The derivative changes from positive to negative at <m>x=1</m>, so <m>x=1</m> is a local maximum. The derivative changes from negative to positive at <m>x=3</m>, so <m>x=3</m> is a local minimum.</p>
+        <p>But the absolute maximum on the interval occurs at the endpoint <m>x=5</m>. A local maximum does not have to be the absolute maximum.</p>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-local-vs-absolute-extrema">
+      <caption>A local maximum may not be the absolute maximum. Endpoints must be checked.</caption>
+      <image width="82%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.50\textwidth,
+              xmin=0.3, xmax=5.2,
+              ymin=0, ymax=24,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(f(x)\)},
+              xtick={0.5,1,3,5},
+              xticklabels={\(\frac12\),\(1\),\(3\),\(5\)},
+              ytick={0,5,10,15,20},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=0.5:5, samples=200] {x^3-6*x^2+9*x+2};
+          \addplot[only marks, mark=*] coordinates {(0.5,5.125) (1,6) (3,2) (5,22)};
+          \node[anchor=south] at (axis cs:1,6) {local max};
+          \node[anchor=north] at (axis cs:3,2) {local min};
+          \node[anchor=west] at (axis cs:5,22) {absolute max};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-fermats-theorem-extrema">
+    <title>Fermat's theorem</title>
+
+    <p>At a smooth local maximum, the tangent line is horizontal. The graph rises into the point and falls away from it. The left-side slopes and right-side slopes force the tangent slope to be <m>0</m>.</p>
+
+    <p>At a smooth local minimum, the same thing happens upside down.</p>
+
+    <theorem xml:id="thm-fermat-extrema">
+      <title>Fermat's theorem</title>
+      <statement>
+        <p>Suppose <m>f</m> has a local maximum or local minimum at an interior point <m>c</m>. If <m>f</m> is differentiable at <m>c</m>, then</p>
+        <md>f'(c)=0.</md>
+      </statement>
+      <proof>
+        <p>We prove the local maximum case. The local minimum case is similar.</p>
+        <p>Assume <m>f</m> has a local maximum at <m>c</m>. Then for all <m>x</m> close enough to <m>c</m>,</p>
+        <md>f(x)\le f(c).</md>
+        <p>For <m>h\gt 0</m> small enough,</p>
+        <md>f(c+h)-f(c)\le 0.</md>
+        <p>Dividing by the positive number <m>h</m>, we get</p>
+        <md>\frac{f(c+h)-f(c)}{h}\le 0.</md>
+        <p>So the right-hand difference quotients are less than or equal to <m>0</m>.</p>
+        <p>For <m>h\lt 0</m> small enough, the numerator still satisfies</p>
+        <md>f(c+h)-f(c)\le 0,</md>
+        <p>but now the denominator <m>h</m> is negative. Dividing by a negative number reverses the inequality:</p>
+        <md>\frac{f(c+h)-f(c)}{h}\ge 0.</md>
+        <p>So the left-hand difference quotients are greater than or equal to <m>0</m>.</p>
+        <p>If <m>f'(c)</m> exists, then the left-hand and right-hand limits of these quotients must agree. The only number that can be both <m>\le 0</m> and <m>\ge 0</m> is <m>0</m>. Therefore</p>
+        <md>f'(c)=0.</md>
+      </proof>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-fermat-hypotheses-matter">
+    <title>Why Fermat's hypotheses matter</title>
+
+    <p>Fermat's theorem is short, but every condition is doing work.</p>
+
+    <paragraphs xml:id="para-endpoint-warning">
+      <title>Endpoint warning</title>
+      <p>Let</p>
+      <md>f(x)=x</md>
+      <p>on the interval <m>[0,1]</m>. The function has an absolute minimum at <m>x=0</m> and an absolute maximum at <m>x=1</m>. But</p>
+      <md>f'(x)=1</md>
+      <p>everywhere.</p>
+      <p>There is no contradiction. Fermat's theorem applies to interior points, not endpoints. At an endpoint, the graph can be highest or lowest simply because the interval stops.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-corner-warning">
+      <title>Corner warning</title>
+      <p>Let</p>
+      <md>f(x)=|x|.</md>
+      <p>This function has a local minimum at <m>x=0</m>. But <m>f'(0)</m> does not exist. Again, Fermat's theorem is not contradicted. The theorem says that if the local extremum occurs at a differentiable interior point, then the derivative is <m>0</m>.</p>
+      <p>Corners can have extrema without horizontal tangents.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-critical-number-warning">
+      <title>Critical number warning</title>
+      <p>The converse of Fermat's theorem is false.</p>
+      <p>Fermat's theorem says:</p>
+      <md>\text{differentiable local extremum} \quad\Longrightarrow\quad f'(c)=0.</md>
+      <p>It does not say:</p>
+      <md>f'(c)=0 \quad\Longrightarrow\quad \text{local extremum}.</md>
+      <p>For example,</p>
+      <md>f(x)=x^3</md>
+      <p>has <m>f'(x)=3x^2</m>, so <m>f'(0)=0</m>. But <m>x^3</m> is increasing through <m>0</m>. It has neither a local maximum nor a local minimum there.</p>
+      <note xml:id="note-fermat-converse">
+        <p>Every differentiable interior extremum is critical, but not every critical number is an extremum.</p>
+      </note>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-first-derivative-test">
+    <title>The first derivative test</title>
+
+    <p>A critical number becomes more meaningful when we look at the sign of <m>f'</m> on both sides.</p>
+
+    <theorem xml:id="thm-first-derivative-test">
+      <title>First derivative test</title>
+      <statement>
+        <p>Suppose <m>c</m> is a critical number of <m>f</m>, and <m>f</m> is continuous at <m>c</m>.</p>
+        <table>
+          <title>Classifications of critical points by the first derivative test</title>
+          <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="left"/>
+            <row header="yes">
+              <cell><term>sign of <m>f'</m> before <m>c</m></term></cell>
+              <cell><term>sign of <m>f'</m> after <m>c</m></term></cell>
+              <cell><term>conclusion</term></cell>
+            </row>
+            <row>
+              <cell><m>+</m></cell>
+              <cell><m>-</m></cell>
+              <cell>local maximum at <m>c</m></cell>
+            </row>
+            <row>
+              <cell><m>-</m></cell>
+              <cell><m>+</m></cell>
+              <cell>local minimum at <m>c</m></cell>
+            </row>
+            <row>
+              <cell><m>+</m></cell>
+              <cell><m>+</m></cell>
+              <cell>no local extremum forced</cell>
+            </row>
+            <row>
+              <cell><m>-</m></cell>
+              <cell><m>-</m></cell>
+              <cell>no local extremum forced</cell>
+            </row>
+          </tabular>
+        </table>
+      </statement>
+    </theorem>
+
+    <p>The reason is simple. If the function increases before <m>c</m> and decreases after <m>c</m>, then <m>c</m> is a high point nearby. If it decreases before <m>c</m> and increases after <m>c</m>, then <m>c</m> is a low point nearby.</p>
+
+    <p>This test depends on the first derivative sign rule, whose full proof comes from the Mean Value Theorem. The picture is already clear; the next theorem will make it secure.</p>
+
+    <example xml:id="ex-first-derivative-test-cubic">
+      <title>Applying the first derivative test</title>
+      <statement>
+        <p>For</p>
+        <md>f(x)=x^3-3x,</md>
+        <p>we found</p>
+        <md>f'(x)=3(x-1)(x+1).</md>
+        <p>The sign chart is</p>
+        <table>
+          <title>Sign chart for <m>f'(x)=3(x-1)(x+1)</m></title>
+          <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <col halign="center"/>
+            <row header="yes">
+              <cell><m>x</m></cell>
+              <cell><m>(-\infty,-1)</m></cell>
+              <cell><m>(-1,1)</m></cell>
+              <cell><m>(1,\infty)</m></cell>
+            </row>
+            <row>
+              <cell><m>f'(x)</m></cell>
+              <cell><m>+</m></cell>
+              <cell><m>-</m></cell>
+              <cell><m>+</m></cell>
+            </row>
+          </tabular>
+        </table>
+        <p>So <m>f</m> has a local maximum at <m>x=-1</m> and a local minimum at <m>x=1</m>. The values are</p>
+        <md>f(-1)=2, \qquad f(1)=-2.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-closed-interval-method">
+    <title>Absolute extrema and the closed interval method</title>
+
+    <p>Local extrema are nearby comparisons. Absolute extrema are whole-domain comparisons. To find them, we need a guarantee that they exist.</p>
+
+    <p>The guarantee comes from continuity on a closed, bounded interval.</p>
+
+    <theorem xml:id="thm-extreme-value-theorem-shape">
+      <title>Extreme Value Theorem</title>
+      <statement>
+        <p>If <m>f</m> is continuous on a closed interval <m>[a,b]</m>, then <m>f</m> has an absolute maximum and an absolute minimum on <m>[a,b]</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>This theorem is a deep fact about the real line. It rests on the idea that the real line has no gaps. For now, its meaning is more important than its proof:</p>
+    <blockquote>
+      <p>a continuous graph on a closed finite interval cannot escape its highest and lowest values.</p>
+    </blockquote>
+
+    <p>The hypotheses matter.</p>
+
+    <paragraphs xml:id="para-open-interval-warning">
+      <title>Open interval warning</title>
+      <p>The function <m>f(x)=x</m> on <m>(0,1)</m> has no absolute maximum and no absolute minimum. Its values get close to <m>1</m>, but never equal <m>1</m>. They get close to <m>0</m>, but never equal <m>0</m>.</p>
+      <p>The interval is not closed.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-unbounded-interval-warning">
+      <title>Unbounded interval warning</title>
+      <p>The function <m>f(x)=x</m> on <m>[0,\infty)</m> has an absolute minimum at <m>0</m>, but no absolute maximum.</p>
+      <p>The interval is not bounded.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-continuity-warning">
+      <title>Continuity warning</title>
+      <p>Define</p>
+      <md>
+        f(x)=
+        \begin{cases}
+        x, \amp 0\le x\lt 1,\\
+        0, \amp x=1.
+        \end{cases}
+      </md>
+      <p>on <m>[0,1]</m>. This function has no absolute maximum. The values approach <m>1</m>, but the function never reaches <m>1</m>. At the endpoint, it jumps down to <m>0</m>.</p>
+      <p>The interval is closed and bounded, but the function is not continuous.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-closed-interval-method-procedure">
+    <title>The closed interval method</title>
+
+    <p>Fermat's theorem tells us where an interior extremum can occur. The Extreme Value Theorem tells us that absolute extrema exist on a closed interval. Together they give a practical method.</p>
+
+    <principle xml:id="principle-closed-interval-method">
+      <title>Closed interval method</title>
+      <statement>
+        <p>To find the absolute maximum and minimum of a continuous function <m>f</m> on <m>[a,b]</m>:</p>
+        <ol>
+          <li><p>Find all critical numbers of <m>f</m> in <m>(a,b)</m>.</p></li>
+          <li><p>Evaluate <m>f</m> at those critical numbers.</p></li>
+          <li><p>Evaluate <m>f(a)</m> and <m>f(b)</m>.</p></li>
+          <li><p>Compare the values. The largest is the absolute maximum value. The smallest is the absolute minimum value.</p></li>
+        </ol>
+      </statement>
+    </principle>
+
+    <p>Endpoints are included because Fermat's theorem does not apply there. An endpoint can be the best or worst value simply because the graph stops.</p>
+
+    <example xml:id="ex-closed-interval-cubic">
+      <title>Finding absolute extrema on a closed interval</title>
+      <statement>
+        <p>Find the absolute maximum and minimum of</p>
+        <md>f(x)=x^3-6x^2+9x+2</md>
+        <p>on <m>\left[\frac12,5\right]</m>.</p>
+        <p>First compute the derivative:</p>
+        <md>f'(x)=3x^2-12x+9.</md>
+        <p>Factor:</p>
+        <md>f'(x)=3(x-1)(x-3).</md>
+        <p>So the critical numbers inside the interval are <m>x=1</m> and <m>x=3</m>.</p>
+        <p>Now evaluate <m>f</m> at the critical numbers and endpoints.</p>
+        <table>
+          <title>Evaluation at candidates and endpoints</title>
+          <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+            <col halign="center"/>
+            <col halign="center"/>
+            <row header="yes">
+              <cell><m>x</m></cell>
+              <cell><m>f(x)</m></cell>
+            </row>
+            <row>
+              <cell><m>\frac12</m></cell>
+              <cell><m>\frac{41}{8}</m></cell>
+            </row>
+            <row>
+              <cell><m>1</m></cell>
+              <cell><m>6</m></cell>
+            </row>
+            <row>
+              <cell><m>3</m></cell>
+              <cell><m>2</m></cell>
+            </row>
+            <row>
+              <cell><m>5</m></cell>
+              <cell><m>22</m></cell>
+            </row>
+          </tabular>
+        </table>
+        <p>The smallest value is <m>2</m>, which occurs at <m>x=3</m>. The largest value is <m>22</m>, which occurs at <m>x=5</m>.</p>
+        <p>Therefore <m>f</m> has absolute minimum value <m>2</m> at <m>x=3</m>, and absolute maximum value <m>22</m> at <m>x=5</m>.</p>
+        <p>Notice what happened. The local maximum at <m>x=1</m> is not the absolute maximum. The endpoint <m>x=5</m> wins.</p>
+      </statement>
+    </example>
+
+    <note xml:id="note-closed-interval-endpoints">
+      <title>Key take-away</title>
+      <p>On a closed interval, always check endpoints.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-extrema-hook-mvt">
+    <title>Where this points</title>
+
+    <p>We have used the derivative to read the shape of a function:</p>
+    <md>f'\gt 0 \quad\Rightarrow\quad \text{increasing},</md>
+    <md>f'\lt 0 \quad\Rightarrow\quad \text{decreasing},</md>
+    <p>and</p>
+    <md>\text{smooth local extremum} \quad\Rightarrow\quad f'=0.</md>
+
+    <p>Fermat's theorem was proved directly from the derivative definition. But the first derivative sign rule still needs its real proof.</p>
+
+    <p>The missing idea is surprisingly simple. If a car's average velocity over a trip is <m>50</m> miles per hour, then at some instant its speed should have been <m>50</m> miles per hour. If a smooth graph starts and ends at the same height, then somewhere in between it should have a horizontal tangent.</p>
+
+    <p>That idea is Rolle's Theorem, and just beyond it is the Mean Value Theorem.</p>
+  </subsection>
+
+</section>
