@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-8-7-existence-of-integrals">
+  <title>Existence of integrals</title>
+
+  <p>The last section used the integral as if it were already available. We split it, compared it, averaged it, and used symmetry to simplify it.</p>
+
+  <p>But one question is still waiting:</p>
+  <md>\text{When does a function actually have a Riemann integral?}</md>
+
+  <p>For the functions that appear in most applications, the answer is reassuring. Continuous functions are integrable. Monotone functions are integrable. Functions with finitely many jumps are integrable.</p>
+
+  <p>But boundedness alone is not enough. A function can be bounded and still be too wild for its Riemann sums to settle down.</p>
+
+  <p>The test is this:</p>
+  <md>\text{Can upper and lower estimates be forced together?}</md>
+
+  <subsection xml:id="subsec-upper-lower-test-integrability">
+    <title>The upper-lower test</title>
+
+    <p>Let <m>f</m> be bounded on <m>[a,b]</m>. Choose a partition</p>
+    <md>P:\qquad a=x_0\lt x_1\lt \cdots\lt x_n=b.</md>
+
+    <p>On the <m>j</m>-th subinterval</p>
+    <md>[x_{j-1},x_j],</md>
+    <p>let</p>
+    <md>m_j=\inf\{f(x):x_{j-1}\le x\le x_j\}</md>
+    <p>and</p>
+    <md>M_j=\sup\{f(x):x_{j-1}\le x\le x_j\}.</md>
+
+    <p>For friendly functions, these are just the minimum and maximum values of <m>f</m> on that subinterval.</p>
+
+    <p>The lower sum is</p>
+    <md>L(P,f)=\sum_{j=1}^{n}m_j\Delta x_j, \qquad \Delta x_j=x_j-x_{j-1}.</md>
+
+    <p>The upper sum is</p>
+    <md>U(P,f)=\sum_{j=1}^{n}M_j\Delta x_j.</md>
+
+    <p>Every Riemann sum using sample points inside these subintervals is trapped between them:</p>
+    <md>L(P,f)\le \sum_{j=1}^{n}f(x_j^*)\Delta x_j \le U(P,f).</md>
+
+    <p>The gap is</p>
+    <md>U(P,f)-L(P,f) = \sum_{j=1}^{n}(M_j-m_j)\Delta x_j.</md>
+
+    <p>This gap measures the total uncertainty left by the partition. If the graph does not vary much inside each subinterval, then <m>M_j-m_j</m> is small. If the graph jumps or oscillates badly inside every subinterval, then the gap may refuse to shrink.</p>
+
+    <theorem xml:id="thm-upper-lower-integrability-test">
+      <title>Upper-lower integrability test</title>
+      <statement>
+        <p>A bounded function <m>f</m> on <m>[a,b]</m> is Riemann integrable if and only if, for every <m>\varepsilon\gt 0</m>, there is a partition <m>P</m> such that</p>
+        <md>U(P,f)-L(P,f)\lt \varepsilon.</md>
+        <p>In words: the upper and lower estimates can be made as close as we wish.</p>
+      </statement>
+    </theorem>
+
+    <p>This criterion is the cleanest way to understand which functions are integrable. It says that the integral exists when the remaining uncertainty can be squeezed down to zero.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-continuous-functions-integrable">
+    <title>Continuous functions are integrable</title>
+
+    <p>A continuous graph on a closed interval cannot jump. If we look at a short enough piece of the graph, the output values stay close together.</p>
+
+    <p>That is exactly what the upper-lower test needs.</p>
+
+    <paragraphs>
+      <title>A first example</title>
+      <p>Consider</p>
+      <md>f(x)=x^2</md>
+      <p>on <m>[0,1]</m>. Divide the interval into <m>n</m> equal pieces:</p>
+      <md>0,\frac1n,\frac2n,\ldots,\frac{n-1}{n},1.</md>
+      <p>Since <m>x^2</m> is increasing on <m>[0,1]</m>, the lower height on</p>
+      <md>\left[\frac{j-1}{n},\frac{j}{n}\right]</md>
+      <p>is</p>
+      <md>\left(\frac{j-1}{n}\right)^2,</md>
+      <p>and the upper height is</p>
+      <md>\left(\frac{j}{n}\right)^2.</md>
+      <p>The width is <m>1/n</m>. Therefore</p>
+      <md>U_n-L_n = \sum_{j=1}^{n} \left[ \left(\frac{j}{n}\right)^2 - \left(\frac{j-1}{n}\right)^2 \right]\frac1n.</md>
+      <p>Factor out <m>1/n</m>:</p>
+      <md>U_n-L_n = \frac1n \sum_{j=1}^{n} \left[ \left(\frac{j}{n}\right)^2 - \left(\frac{j-1}{n}\right)^2 \right].</md>
+      <p>The sum telescopes:</p>
+      <md>\sum_{j=1}^{n} \left[ \left(\frac{j}{n}\right)^2 - \left(\frac{j-1}{n}\right)^2 \right] = 1^2-0^2 = 1.</md>
+      <p>So</p>
+      <md>U_n-L_n=\frac1n.</md>
+      <p>As <m>n\to\infty</m>,</p>
+      <md>\frac1n\to 0.</md>
+      <p>Thus the upper and lower sums squeeze together, and <m>x^2</m> is integrable on <m>[0,1]</m>.</p>
+    </paragraphs>
+
+    <p>The same idea works for every continuous function, although the arithmetic may not telescope so neatly.</p>
+
+    <theorem xml:id="thm-continuous-integrable-rigorous">
+      <title>Integrability of Continuous Functions</title>
+      <statement>
+        <p>If <m>f</m> is continuous on a closed interval <m>[a,b]</m>, then <m>f</m> is Riemann integrable on <m>[a,b]</m>.</p>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Proof idea</title>
+      <p>A continuous function on a closed interval has a special kind of steadiness:</p>
+      <md>\text{if }x\text{ and }y\text{ are close enough, then }f(x)\text{ and }f(y)\text{ are close,}</md>
+      <p>and the same meaning of <q>close enough</q> works everywhere on the interval.</p>
+      <p>More precisely, for every <m>\eta\gt 0</m>, there is a <m>\delta\gt 0</m> such that</p>
+      <md>|x-y|\lt \delta \qquad\Longrightarrow\qquad |f(x)-f(y)|\lt \eta</md>
+      <p>for all <m>x,y\in[a,b]</m>.</p>
+      <p>Now choose a partition whose subinterval widths are all less than <m>\delta</m>. Then on each subinterval,</p>
+      <md>M_j-m_j\lt \eta.</md>
+      <p>Therefore</p>
+      <md>U(P,f)-L(P,f) = \sum_{j=1}^{n}(M_j-m_j)\Delta x_j \lt \sum_{j=1}^{n}\eta\,\Delta x_j.</md>
+      <p>But</p>
+      <md>\sum_{j=1}^{n}\Delta x_j=b-a.</md>
+      <p>So</p>
+      <md>U(P,f)-L(P,f)\lt \eta(b-a).</md>
+      <p>Given any desired error <m>\varepsilon\gt 0</m>, choose</p>
+      <md>\eta=\frac{\varepsilon}{b-a}.</md>
+      <p>Then</p>
+      <md>U(P,f)-L(P,f)\lt \varepsilon.</md>
+      <p>By the upper-lower test, <m>f</m> is integrable.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Why the closed interval matters</title>
+      <p>The function</p>
+      <md>f(x)=\frac1x</md>
+      <p>is continuous on <m>(0,1]</m>, but it is not bounded near <m>0</m>. It is not an ordinary Riemann integrable function on <m>[0,1]</m>.</p>
+      <p>This does not mean we can never discuss</p>
+      <md>\int_0^1 \frac1x\,dx.</md>
+      <p>It means that such a question is not an ordinary definite integral. It belongs to the later topic of <em>improper integrals</em>, where unbounded behavior must be handled with a new limiting process.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-monotone-functions-integrable">
+    <title>Monotone functions are integrable</title>
+
+    <p>Continuity is enough for integrability, but it is not necessary.</p>
+
+    <p>A function may jump and still be integrable. The simplest reason is monotonicity: a monotone function can move only one way. It may jump, but it cannot oscillate up and down forever inside every small interval.</p>
+
+    <p>Suppose <m>f</m> is increasing on <m>[a,b]</m>. Divide <m>[a,b]</m> into <m>n</m> equal pieces, each of width</p>
+    <md>\Delta x=\frac{b-a}{n}.</md>
+
+    <p>On the <m>j</m>-th interval,</p>
+    <md>[x_{j-1},x_j],</md>
+    <p>the lower height is <m>f(x_{j-1})</m>, and the upper height is <m>f(x_j)</m>. Therefore</p>
+    <md>U_n-L_n = \sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr)\Delta x.</md>
+
+    <p>Since <m>\Delta x</m> is the same for every interval,</p>
+    <md>U_n-L_n = \Delta x \sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr).</md>
+
+    <p>The sum telescopes:</p>
+    <md>\sum_{j=1}^{n}\bigl(f(x_j)-f(x_{j-1})\bigr) = f(b)-f(a).</md>
+
+    <p>Thus</p>
+    <md>U_n-L_n = \frac{b-a}{n}\bigl(f(b)-f(a)\bigr).</md>
+
+    <p>As <m>n\to\infty</m>, this goes to <m>0</m>. So the upper and lower sums squeeze together.</p>
+
+    <theorem xml:id="thm-monotone-functions-integrable">
+      <title>Integrability of Monotone Functions</title>
+      <statement>
+        <p>If <m>f</m> is monotone on <m>[a,b]</m>, then <m>f</m> is Riemann integrable on <m>[a,b]</m>.</p>
+      </statement>
+    </theorem>
+
+    <p>For a decreasing function, the same proof works with <m>f(a)-f(b)</m> in place of <m>f(b)-f(a)</m>.</p>
+
+    <figure xml:id="fig-monotone-upper-lower-sums">
+      <caption>For an increasing function, left endpoint rectangles give lower sums and right endpoint rectangles give upper sums. As the widths shrink, the two sums squeeze together.</caption>
+      <sidebyside widths="48% 48%">
+        <figure xml:id="fig-monotone-lower-sum">
+          <caption>Lower sum</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=4.25,
+                  ymin=0, ymax=3.35,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2,3,4},
+                  ytick={0,1,2,3},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:1,1.0);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:2,1.32);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:2,0) rectangle (axis cs:3,1.88);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:3,0) rectangle (axis cs:4,2.68);
+              \addplot[very thick, domain=0:4, samples=150] {1+0.20*x+0.12*x^2};
+              \node[anchor=west] at (axis cs:0.25,2.75) {lower sum};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-monotone-upper-sum">
+          <caption>Upper sum</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=4.25,
+                  ymin=0, ymax=3.35,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2,3,4},
+                  ytick={0,1,2,3},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:1,1.32);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:2,1.88);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:2,0) rectangle (axis cs:3,2.68);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:3,0) rectangle (axis cs:4,3.72);
+              \addplot[very thick, domain=0:4, samples=150] {1+0.20*x+0.12*x^2};
+              \node[anchor=west] at (axis cs:0.25,2.75) {upper sum};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>This theorem explains why jumps are not automatically dangerous. A step function can be monotone, and a monotone step function is integrable.</p>
+
+    <example xml:id="ex-step-function-increasing">
+      <title>Monotone step function is integrable</title>
+      <statement>
+        <p>Let</p>
+        <md>
+          H(x)=
+          \begin{cases}
+          0, \amp 0\le x\lt \frac12,\\
+          1, \amp \frac12\le x\le 1.
+          \end{cases}
+        </md>
+        <p>This function jumps at <m>x=\frac12</m>, but it is increasing. Therefore it is integrable. The area under the graph is a rectangle of width <m>1/2</m> and height <m>1</m>, so</p>
+        <md>\int_0^1 H(x)\,dx=\frac12.</md>
+        <p>The value at the single point <m>x=\frac12</m> does not affect the integral. A single point has no width.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-finitely-many-jumps-integrable">
+    <title>Functions with finitely many jump discontinuities</title>
+
+    <p>A function may have several jumps and still be integrable. The reason is the same: finitely many points can be covered by intervals whose total width is as small as we wish.</p>
+
+    <theorem xml:id="thm-finitely-many-discontinuities-integrable">
+      <title>Functions with Finitely Many Discontinuities</title>
+      <statement>
+        <p>If <m>f</m> is bounded on <m>[a,b]</m> and is continuous except at finitely many points, then <m>f</m> is Riemann integrable on <m>[a,b]</m>.</p>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Proof idea</title>
+      <p>Suppose the discontinuities occur at finitely many points. Put tiny intervals around those points. Since there are only finitely many of them, we can make the total width of all the tiny intervals very small.</p>
+      <p>On those tiny intervals, the function may behave badly, but it is bounded. So the upper-lower contribution is at worst</p>
+      <md>\text{bounded height}\times\text{tiny total width},</md>
+      <p>which can be made small.</p>
+      <p>On the rest of the interval, the function is continuous on closed pieces. So the upper-lower contribution there can also be made small.</p>
+      <p>Putting the two parts together, the total upper-lower gap can be made smaller than any chosen <m>\varepsilon</m>. Hence the function is integrable.</p>
+    </paragraphs>
+
+    <example xml:id="ex-piecewise-linear-jump-integral">
+      <title>Integrable function with a jump discontinuity</title>
+      <statement>
+        <p>Consider</p>
+        <md>
+          f(x)=
+          \begin{cases}
+          x, \amp 0\le x\lt 1,\\
+          x+2, \amp 1\le x\le 2.
+          \end{cases}
+        </md>
+        <p>The graph has one jump at <m>x=1</m>.</p>
+
+        <figure xml:id="fig-finite-jump-integrable">
+          <caption>A finite jump does not prevent integrability. The jump occurs at one point, and one point has no width.</caption>
+          <image width="78%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.78\textwidth,
+                  height=0.48\textwidth,
+                  xmin=0, xmax=2.25,
+                  ymin=0, ymax=4.4,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,1,2},
+                  ytick={0,1,3,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, draw=none]
+                  (axis cs:0,0) -- (axis cs:1,1) -- (axis cs:1,0) -- cycle;
+              \draw[fill=gray!25, draw=none]
+                  (axis cs:1,0) -- (axis cs:1,3) -- (axis cs:2,4) -- (axis cs:2,0) -- cycle;
+              \addplot[very thick, domain=0:1, samples=2] {x};
+              \addplot[very thick, domain=1:2, samples=2] {x+2};
+              \addplot[only marks, mark=o] coordinates {(1,1)};
+              \addplot[only marks, mark=*] coordinates {(1,3)};
+              \draw[dashed] (axis cs:1,0) -- (axis cs:1,3.2);
+              \node[anchor=west] at (axis cs:0.25,0.65) {\(y=x\)};
+              \node[anchor=west] at (axis cs:1.25,3.85) {\(y=x+2\)};
+              \node[anchor=west] at (axis cs:1.04,1.9) {jump};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>The integral exists. We can compute it by ordinary geometry.</p>
+        <p>On <m>[0,1]</m>, the area under <m>y=x</m> is a triangle:</p>
+        <md>\frac12.</md>
+        <p>On <m>[1,2]</m>, the area under <m>y=x+2</m> is a trapezoid of width <m>1</m>, with heights <m>3</m> and <m>4</m>. Its area is</p>
+        <md>\frac12(3+4)(1)=\frac72.</md>
+        <p>Therefore</p>
+        <md>\int_0^2 f(x)\,dx = \frac12+\frac72 = 4.</md>
+        <p>If we changed the value of <m>f(1)</m>, the integral would still be <m>4</m>. The height at one point cannot change accumulated area.</p>
+      </statement>
+    </example>
+
+    <note xml:id="note-changing-finitely-many-values">
+      <title>Changing finitely many values does not change a Riemann integral</title>
+      <p>If two bounded functions differ only at finitely many points, then either both are integrable with the same integral, or neither is integrable.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-bounded-not-riemann-integrable">
+    <title>A bounded function that is not Riemann integrable</title>
+
+    <p>Now for the warning.</p>
+
+    <p>Define</p>
+    <md>
+      D(x)=
+      \begin{cases}
+      1, \amp x\text{ is rational},\\
+      0, \amp x\text{ is irrational}
+      \end{cases}
+    </md>
+    <p>on <m>[0,1]</m>.</p>
+
+    <p>This function is bounded:</p>
+    <md>0\le D(x)\le 1.</md>
+
+    <p>But it is not Riemann integrable.</p>
+
+    <p>The reason is that every interval, no matter how short, contains rational numbers and irrational numbers. Therefore, on every subinterval,</p>
+    <md>m_j=0</md>
+    <p>and</p>
+    <md>M_j=1.</md>
+
+    <p>So for every partition <m>P</m>,</p>
+    <md>L(P,D)=0</md>
+    <p>and</p>
+    <md>U(P,D)=1.</md>
+
+    <p>The upper-lower gap is always</p>
+    <md>U(P,D)-L(P,D)=1.</md>
+
+    <p>It never shrinks.</p>
+
+    <figure xml:id="fig-dirichlet-function-not-integrable">
+      <caption>This picture can only hint at the function <m>D</m>. In every interval, the graph has points at height <m>1</m> and points at height <m>0</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.42\textwidth,
+              xmin=0, xmax=1,
+              ymin=-0.25, ymax=1.25,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(D(x)\)},
+              xtick={0,0.25,0.5,0.75,1},
+              ytick={0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[only marks, mark=*, mark size=1.4pt] coordinates {
+              (0.03,1) (0.07,1) (0.11,1) (0.16,1) (0.22,1) (0.29,1)
+              (0.34,1) (0.41,1) (0.48,1) (0.53,1) (0.61,1) (0.67,1)
+              (0.72,1) (0.81,1) (0.88,1) (0.94,1)
+          };
+          \addplot[only marks, mark=*, mark size=1.4pt] coordinates {
+              (0.02,0) (0.09,0) (0.14,0) (0.19,0) (0.27,0) (0.31,0)
+              (0.38,0) (0.45,0) (0.57,0) (0.63,0) (0.70,0) (0.76,0)
+              (0.84,0) (0.91,0) (0.97,0)
+          };
+          \node[anchor=west] at (axis cs:0.12,1.08) {rational inputs give height \(1\)};
+          \node[anchor=west] at (axis cs:0.12,0.13) {irrational inputs give height \(0\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>This example is extreme. It is discontinuous at every point. It shows why the definition of the integral cannot simply say <q>bounded functions have area.</q></p>
+
+    <p>They do not.</p>
+
+    <note xml:id="note-safe-classes-integrable">
+      <title>Safe classes of integrable functions</title>
+      <p>The following functions are Riemann integrable on closed intervals:</p>
+
+      <table>
+        <title>Safe classes of integrable functions</title>
+        <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+          <col halign="left"/>
+          <col halign="left"/>
+          <row header="yes">
+            <cell><m>\textbf{kind of function}</m></cell>
+            <cell><m>\textbf{reason}</m></cell>
+          </row>
+          <row>
+            <cell>continuous functions</cell>
+            <cell>small intervals have small oscillation</cell>
+          </row>
+          <row>
+            <cell>monotone functions</cell>
+            <cell>upper-lower gaps telescope</cell>
+          </row>
+          <row>
+            <cell>bounded functions with finitely many discontinuities</cell>
+            <cell>discontinuity points can be covered by tiny intervals</cell>
+          </row>
+        </tabular>
+      </table>
+
+      <paragraphs>
+        <title>The general rule</title>
+        <p>The ultimate test for Riemann integrability was proven by Henri Lebesgue. A bounded function is integrable if and only if its set of discontinuity points has <em>measure zero</em><mdash/>meaning all the bad points can be covered by a collection of intervals whose total cumulative length is arbitrarily small.</p>
+      </paragraphs>
+    </note>
+
+    <p>The integral is now on solid ground. We know what it means, how to estimate it, what signs do, what algebraic rules it obeys, and which common functions actually have one.</p>
+
+    <p>The chapter ends by practicing the setup. The next chapter will reveal the surprise: if the upper endpoint moves, an integral becomes a function, and its derivative is the function we started with.</p>
+  </subsection>
+
+</section>
