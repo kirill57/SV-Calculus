@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-chapter-one-discovery">
+  <title>Discovery problems and projects</title>
+
+  <p>The dashboard story has given us four ways to talk about the same motion:</p>
+
+  <md>\text{velocity},\qquad \text{position},\qquad \text{slope},\qquad \text{signed area}.</md>
+
+  <p>Before we build the formal language of limits, it is worth testing those ideas. The problems in this section are not only practice. They are small investigations. Each one asks you to read a graph, build a trip, or discover a pattern that will return later in a more precise form.</p>
+
+  <subsection xml:id="subsec-read-trip-speed-graph">
+    <title>Read a trip from a speed graph</title>
+
+    <p>The graph below records the velocity of a car over <m>6</m> hours. Velocity is measured in miles per hour. Positive velocity means the car moves in the chosen positive direction; negative velocity means it moves backward.</p>
+
+    <figure xml:id="fig-read-trip-speed-graph">
+      <caption>Each rectangle gives one signed change in position. Rectangles above the axis count positive; rectangles below the axis count negative.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.82\textwidth,
+              height=0.42\textwidth,
+              xmin=0, xmax=6.4,
+              ymin=-30, ymax=75,
+              axis lines=middle,
+              xlabel={\(t\) (hours)},
+              ylabel={\(v(t)\)},
+              ylabel style={at={(ticklabel* cs:1.05)},anchor=south},
+              xtick={0,1,2.5,3.5,5,6},
+              xticklabels={\(0\),\(1\),\(2.5\),\(3.5\),\(5\),\(6\)},
+              ytick={-20,0,30,40,50},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \draw[fill=gray!15,draw=none] (axis cs:0,0) rectangle (axis cs:1,30);
+          \draw[fill=gray!15,draw=none] (axis cs:1,0) rectangle (axis cs:2.5,50);
+          \draw[fill=gray!25,draw=none] (axis cs:3.5,0) rectangle (axis cs:5,-20);
+          \draw[fill=gray!15,draw=none] (axis cs:5,0) rectangle (axis cs:6,40);
+
+          \addplot[thick] coordinates {(0,30) (1,30)};
+          \addplot[thick] coordinates {(1,50) (2.5,50)};
+          \addplot[thick] coordinates {(2.5,0) (3.5,0)};
+          \addplot[thick] coordinates {(3.5,-20) (5,-20)};
+          \addplot[thick] coordinates {(5,40) (6,40)};
+
+          \node[anchor=south] at (axis cs:0.5,30) {\(+30\)};
+          \node[anchor=south] at (axis cs:1.75,50) {\(+50\)};
+          \node[anchor=north] at (axis cs:4.25,-20) {\(-30\)};
+          \node[anchor=south] at (axis cs:5.5,40) {\(+40\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <project xml:id="proj-reading-speed-graph">
+      <title>Reconstructing a trip</title>
+      <statement>
+        <p>Starting from <m>s(0)=0</m>, answer the following questions:</p>
+        <ol>
+          <li><p>Compute the signed change in position on each time interval.</p></li>
+          <li><p>Fill in the position table for <m>t=0, 1, 2.5, 3.5, 5, 6</m>.</p></li>
+          <li><p>Sketch the graph of <m>s(t)</m>. It should be made of straight line segments.</p></li>
+          <li><p>Find the displacement from <m>t=0</m> to <m>t=6</m>.</p></li>
+          <li><p>Find the total distance traveled from <m>t=0</m> to <m>t=6</m>.</p></li>
+          <li><p>Find the average velocity and the average speed over the whole trip.</p></li>
+        </ol>
+      </statement>
+      <solution>
+        <p>The signed rectangle areas are</p>
+        <md>30\cdot 1,\qquad 50\cdot 1.5,\qquad 0\cdot 1,\qquad (-20)\cdot 1.5,\qquad 40\cdot 1.</md>
+        <p>Thus</p>
+        <md>30+75+0-30+40=115.</md>
+        <p>So the displacement is <m>115\text{ miles}</m>.</p>
+        <p>The position table is:</p>
+        <table xml:id="tab-reconstructed-positions">
+          <title>Reconstructed positions</title>
+          <tabular>
+            <row header="yes" bottom="medium">
+              <cell><m>t</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>1</m></cell>
+              <cell><m>2.5</m></cell>
+              <cell><m>3.5</m></cell>
+              <cell><m>5</m></cell>
+              <cell><m>6</m></cell>
+            </row>
+            <row>
+              <cell><m>s(t)</m></cell>
+              <cell><m>0</m></cell>
+              <cell><m>30</m></cell>
+              <cell><m>105</m></cell>
+              <cell><m>105</m></cell>
+              <cell><m>75</m></cell>
+              <cell><m>115</m></cell>
+            </row>
+          </tabular>
+        </table>
+        <p>The total distance traveled is different. For total distance, the backward part adds positively:</p>
+        <md>30+75+0+30+40=155.</md>
+        <p>Therefore</p>
+        <md>\text{average velocity} = \frac{115}{6}\text{ miles/hour},</md>
+        <p>while</p>
+        <md>\text{average speed} = \frac{155}{6}\text{ miles/hour}.</md>
+      </solution>
+    </project>
+
+    <p>The same trip has two averages because displacement and distance traveled answer different questions.</p>
+
+    <remark xml:id="rmk-displacement-vs-distance-questions">
+      <title>Two questions about motion</title>
+      <p>Displacement asks: <em>Where did you end compared with where you started?</em></p>
+      <p>Distance traveled asks: <em>How much road did you cover?</em></p>
+    </remark>
+  </subsection>
+
+  <subsection xml:id="subsec-same-displacement-project">
+    <title>Design two different trips with the same displacement</title>
+
+    <p>A displacement is only a net result. It does not determine the whole trip.</p>
+
+    <p>Here are two different velocity histories on the interval <m>0\leq t\leq 4</m>:</p>
+
+    <md>v_A(t)=20</md>
+
+    <p>and</p>
+
+    <md>
+      v_B(t)=
+      \begin{cases}
+      60, \amp 0\leq t\lt 2,\\
+      -20, \amp 2\lt t\leq 4.
+      \end{cases}
+    </md>
+
+    <p>Both trips begin at <m>s(0)=0</m>.</p>
+
+    <figure xml:id="fig-same-displacement-two-trips">
+      <caption>Two different velocity histories can have the same displacement. Signed area preserves the net change, not the full story.</caption>
+      <sidebyside widths="47% 47%">
+        <figure xml:id="fig-trip-a">
+          <caption>Trip A</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.65\textwidth,
+                  xmin=0, xmax=4.3,
+                  ymin=-35, ymax=80,
+                  axis lines=middle,
+                  xlabel={\(t\)},
+                  ylabel={\(v_A(t)\)},
+                  xtick={0,2,4},
+                  ytick={0,20,60},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15,draw=none,fill opacity=0.5] (axis cs:0,0) rectangle (axis cs:4,20);
+              \addplot[thick,domain=0:4,samples=2] {20};
+              \node at (axis cs:2,10) {\(80\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-trip-b">
+          <caption>Trip B</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.65\textwidth,
+                  xmin=0, xmax=4.3,
+                  ymin=-35, ymax=80,
+                  axis lines=middle,
+                  xlabel={\(t\)},
+                  ylabel={\(v_B(t)\)},
+                  xtick={0,2,4},
+                  ytick={-20,0,60},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15,draw=none,fill opacity=0.5] (axis cs:0,0) rectangle (axis cs:2,60);
+              \draw[fill=gray!25,draw=none,fill opacity=0.5] (axis cs:2,0) rectangle (axis cs:4,-20);
+              \addplot[thick] coordinates {(0,60) (2,60)};
+              \addplot[thick] coordinates {(2,-20) (4,-20)};
+              \draw[dashed] (axis cs:2,-28) -- (axis cs:2,68);
+              \node[anchor=south] at (axis cs:1.0,20) {\(+120\)};
+              \node[anchor=north] at (axis cs:3,-3) {\(-40\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>Trip A has displacement</p>
+
+    <md>20\cdot 4=80.</md>
+
+    <p>Trip B has displacement</p>
+
+    <md>60\cdot 2+(-20)\cdot 2=120-40=80.</md>
+
+    <p>So the final signed position is the same: <m>s_A(4)=s_B(4)=80</m>.</p>
+
+    <p>But the total distance traveled is not the same. Trip A travels <m>80</m> miles. Trip B travels <m>120+40=160</m> miles.</p>
+
+    <project xml:id="proj-design-two-trips">
+      <title>Designing trips with matching displacement</title>
+      <statement>
+        <p>Design two new trips on <m>0\leq t\leq 5</m> that both have displacement <m>100</m> miles, but different total distances traveled.</p>
+        <p>One trip may use constant velocity. The other should include at least one interval of negative velocity.</p>
+        <p>Then answer:</p>
+        <ol>
+          <li><p>What is the velocity function for each trip?</p></li>
+          <li><p>What is the displacement of each trip?</p></li>
+          <li><p>What is the total distance traveled by each trip?</p></li>
+          <li><p>Which graph gives a better story of what the driver actually did: the velocity graph or the final displacement alone?</p></li>
+        </ol>
+      </statement>
+    </project>
+
+    <p>The last question matters. Calculus often compresses a whole history into one number. That number is useful, but it is not the whole story.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-finite-differences-squares-cubes">
+    <title>Finite differences of squares and cubes</title>
+
+    <p>Finite differences already showed us the algebraic ancestor of calculus:</p>
+
+    <md>\text{differences measure change}, \qquad \text{sums rebuild accumulated change}.</md>
+
+    <p>The square numbers gave the first famous pattern: <m>0, 1, 4, 9, 16, 25,\ldots</m></p>
+
+    <p>Their differences are <m>1, 3, 5, 7, 9,\ldots</m> because</p>
+
+    <md>j^2-(j-1)^2=2j-1.</md>
+
+    <p>Therefore</p>
+
+    <md>\sum_{j=1}^{n}(2j-1) = \sum_{j=1}^{n}\bigl(j^2-(j-1)^2\bigr) = n^2.</md>
+
+    <p>This is why the first <m>n</m> odd numbers add to a square:</p>
+
+    <md>\boxed{1+3+5+\cdots+(2n-1)=n^2.}</md>
+
+    <p>Now try cubes.</p>
+
+    <table xml:id="tab-differences-squares-cubes">
+      <title>Differences of squares and cubes</title>
+      <tabular>
+        <row header="yes" bottom="medium">
+          <cell><m>j</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>2</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>5</m></cell>
+        </row>
+        <row>
+          <cell><m>j^2</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>4</m></cell>
+          <cell><m>9</m></cell>
+          <cell><m>16</m></cell>
+          <cell><m>25</m></cell>
+        </row>
+        <row>
+          <cell><m>\Delta(j^2)</m></cell>
+          <cell></cell>
+          <cell><m>1</m></cell>
+          <cell><m>3</m></cell>
+          <cell><m>5</m></cell>
+          <cell><m>7</m></cell>
+          <cell><m>9</m></cell>
+        </row>
+        <row>
+          <cell><m>j^3</m></cell>
+          <cell><m>0</m></cell>
+          <cell><m>1</m></cell>
+          <cell><m>8</m></cell>
+          <cell><m>27</m></cell>
+          <cell><m>64</m></cell>
+          <cell><m>125</m></cell>
+        </row>
+        <row>
+          <cell><m>\Delta(j^3)</m></cell>
+          <cell></cell>
+          <cell><m>1</m></cell>
+          <cell><m>7</m></cell>
+          <cell><m>19</m></cell>
+          <cell><m>37</m></cell>
+          <cell><m>61</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The differences of cubes are not as simple as the differences of squares, but they still have a pattern:</p>
+
+    <md>\Delta(j^3)=j^3-(j-1)^3.</md>
+
+    <p>Expand:</p>
+
+    <md>(j-1)^3=j^3-3j^2+3j-1.</md>
+
+    <p>So</p>
+
+    <md>\Delta(j^3) = j^3-(j^3-3j^2+3j-1) = 3j^2-3j+1.</md>
+
+    <p>Thus</p>
+
+    <md>\boxed{\Delta(j^3)=3j^2-3j+1.}</md>
+
+    <p>Now telescope:</p>
+
+    <md>\sum_{j=1}^{n}\bigl(3j^2-3j+1\bigr) = \sum_{j=1}^{n}\bigl(j^3-(j-1)^3\bigr) = n^3.</md>
+
+    <p>So</p>
+
+    <md>\boxed{\sum_{j=1}^{n}\bigl(3j^2-3j+1\bigr)=n^3.}</md>
+
+    <p>This identity can be used to discover a formula for the sum of squares. Let</p>
+
+    <md>S_2(n)=1^2+2^2+\cdots+n^2.</md>
+
+    <p>Also recall the formula</p>
+
+    <md>1+2+\cdots+n=\frac{n(n+1)}{2}.</md>
+
+    <p>From the cube difference identity,</p>
+
+    <md>n^3 = 3\sum_{j=1}^{n}j^2 - 3\sum_{j=1}^{n}j + \sum_{j=1}^{n}1.</md>
+
+    <p>That is,</p>
+
+    <md>n^3 = 3S_2(n) - 3\cdot \frac{n(n+1)}{2} + n.</md>
+
+    <p>Solving for <m>S_2(n)</m>,</p>
+
+    <md>3S_2(n) = n^3+\frac{3n(n+1)}{2}-n.</md>
+
+    <p>Put everything over <m>2</m>:</p>
+
+    <md>3S_2(n) = \frac{2n^3+3n^2+n}{2} = \frac{n(2n^2+3n+1)}{2}.</md>
+
+    <p>Since <m>2n^2+3n+1=(n+1)(2n+1)</m>, we get</p>
+
+    <md>\boxed{1^2+2^2+\cdots+n^2 = \frac{n(n+1)(2n+1)}{6}.}</md>
+
+    <p>This formula did not appear from nowhere. It came from one idea: <em>differences telescope</em>.</p>
+
+    <project xml:id="proj-fourth-powers">
+      <title>Fourth powers extension</title>
+      <statement>
+        <p>Make a difference table for fourth powers: <m>0^4, 1^4, 2^4, 3^4, 4^4,\ldots</m></p>
+        <p>Then compute <m>j^4-(j-1)^4</m>. What kind of polynomial appears? What sum formula could it help you discover?</p>
+      </statement>
+    </project>
+  </subsection>
+
+  <subsection xml:id="subsec-changing-slope-needs-nearness">
+    <title>A changing slope needs nearness</title>
+
+    <p>The finite examples in this chapter had flat velocity pieces and straight position pieces. Their slopes were easy to read.</p>
+
+    <p>Curved graphs force a sharper question.</p>
+
+    <p>For <m>s(t)=t^2</m>, the average velocity from <m>t=2</m> to <m>t=2+h</m> is</p>
+
+    <md>\frac{s(2+h)-s(2)}{h} = \frac{(2+h)^2-4}{h}.</md>
+
+    <p>For <m>h\neq 0</m>,</p>
+
+    <md>\frac{(2+h)^2-4}{h} = \frac{4+4h+h^2-4}{h} = 4+h.</md>
+
+    <p>So the nearby average velocities are <m>4+h</m>.</p>
+
+    <p>They do not equal <m>4</m> unless <m>h=0</m>, but <m>h=0</m> is not allowed in the fraction. Still, the closer <m>h</m> is to <m>0</m>, the closer <m>4+h</m> is to <m>4</m>.</p>
+
+    <p>The distance between the average velocity and <m>4</m> is</p>
+
+    <md>|(4+h)-4|=|h|.</md>
+
+    <p>So if we want the average velocity to be within <m>0.01</m> of <m>4</m>, it is enough to require <m>|h|\lt 0.01</m>.</p>
+
+    <p>If we want it within <m>0.0001</m>, it is enough to require <m>|h|\lt 0.0001</m>.</p>
+
+    <p>This is the first glimpse of the precise language of limits. A limit is not a guess from a table. It is a promise:</p>
+
+    <md>\boxed{\text{make the input close enough, and the output becomes as close as required.}}</md>
+
+    <p>For this example, the promise is easy because the error is exactly <m>|h|</m>. In more difficult examples, the whole task is to control the error.</p>
+
+    <p>To do that carefully, we need a language for distance on the number line, intervals around a point, functions, graphs, and eventually limits. The next chapter builds that language. It may look like a review at first, but it is not a detour. It is the measuring tape calculus needs.</p>
+  </subsection>
+
+</section>
