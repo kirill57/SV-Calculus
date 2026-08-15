@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-inverse-functions-inverse-trig">
+  <title>Inverse functions and inverse trigonometric functions</title>
+
+  <p>The last section found the derivative of <m>\ln x</m> by reversing the exponential function:</p>
+  <md>y=\ln x \qquad\Longleftrightarrow\qquad x=e^y.</md>
+
+  <p>That was not a special trick. It was the first example of a general idea.</p>
+
+  <p>If a function can be reversed, then its derivative tells us the derivative of the reverse function. The two slopes are reciprocals, but at corresponding points.</p>
+
+  <subsection xml:id="subsec-derivative-inverse-function">
+    <title>The derivative of an inverse function</title>
+
+    <p>Start with a simple increasing function:</p>
+    <md>f(x)=x^3+x.</md>
+
+    <p>Since</p>
+    <md>f'(x)=3x^2+1\gt 0</md>
+    <p>for every <m>x</m>, the function is always increasing. So it passes the horizontal line test and has an inverse function.</p>
+
+    <p>Let <m>g=f^{-1}</m>. That means</p>
+    <md>g(f(x))=x \qquad\text{and}\qquad f(g(y))=y.</md>
+
+    <p>For example,</p>
+    <md>f(1)=1^3+1=2,</md>
+    <p>so</p>
+    <md>g(2)=1.</md>
+
+    <p>Now ask for the slope of the inverse function at <m>y=2</m>. Since the original function has derivative</p>
+    <md>f'(1)=3(1)^2+1=4,</md>
+    <p>near <m>x=1</m>, a small change in <m>x</m> produces about four times as much change in <m>y</m>:</p>
+    <md>\Delta y \approx 4\Delta x.</md>
+
+    <p>If we reverse the function, then a small change in <m>y</m> produces about one fourth as much change in <m>x</m>:</p>
+    <md>\Delta x \approx \frac{1}{4}\Delta y.</md>
+
+    <p>Therefore</p>
+    <md>g'(2)=\frac{1}{4}.</md>
+
+    <p>The original slope at <m>(1,2)</m> is <m>4</m>. The inverse slope at the reflected point <m>(2,1)</m> is <m>1/4</m>.</p>
+
+    <figure xml:id="fig-inverse-slopes-reciprocal">
+      <caption>Inverse functions are reflections across <m>y=x</m>. Corresponding tangent slopes are reciprocals.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.55\textwidth,
+              xmin=-2.6, xmax=3.4,
+              ymin=-2.6, ymax=3.4,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-2,-1,0,1,2,3},
+              ytick={-2,-1,0,1,2,3},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-1.35:1.35, samples=200] {x^3+x};
+          \addlegendentry{\(y=f(x)=x^3+x\)}
+
+          % inverse as reflected parametric curve
+          \addplot[thick, dashed, domain=-1.35:1.35, samples=200] ({x^3+x},{x});
+          \addlegendentry{\(y=f^{-1}(x)\)}
+
+          \addplot[thin, domain=-2.4:3.2, samples=2] {x};
+          \addlegendentry{\(y=x\)}
+
+          % tangent to f at (1,2): y-2=4(x-1)
+          \addplot[very thick, domain=0.55:1.35, samples=2] {4*x-2};
+
+          % tangent to inverse at (2,1): y-1=(1/4)(x-2)
+          \addplot[very thick, dotted, domain=1.3:2.8, samples=2] {0.25*x+0.5};
+
+          \addplot[only marks, mark=*] coordinates {(1,2) (2,1)};
+          \node[anchor=west] at (axis cs:1.05,2.05) {\((1,2)\)};
+          \node[anchor=south] at (axis cs:2.05,1.05) {\((2,1)\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>This example contains the whole rule.</p>
+
+    <p>If</p>
+    <md>b=f(a),</md>
+    <p>then</p>
+    <md>f^{-1}(b)=a.</md>
+
+    <p>The slope of <m>f</m> at <m>a</m> compares changes in output to changes in input:</p>
+    <md>f'(a)\approx \frac{\Delta y}{\Delta x}.</md>
+
+    <p>The slope of the inverse function at <m>b</m> compares the same small changes in the opposite direction:</p>
+    <md>(f^{-1})'(b)\approx \frac{\Delta x}{\Delta y}.</md>
+
+    <p>So the slopes should multiply to <m>1</m>:</p>
+    <md>(f^{-1})'(b)=\frac{1}{f'(a)}.</md>
+
+    <p>Since <m>a=f^{-1}(b)</m>, we can also write</p>
+    <md>(f^{-1})'(b)=\frac{1}{f'(f^{-1}(b))}.</md>
+
+    <theorem xml:id="thm-derivative-of-inverse-function">
+      <title>Derivative of an inverse function</title>
+      <statement>
+        <p>Suppose <m>f</m> is differentiable and strictly monotone on an interval, so that <m>f</m> has an inverse function <m>f^{-1}</m>. Let <m>b=f(a)</m>. If <m>f'(a)\neq 0</m>, then <m>f^{-1}</m> is differentiable at <m>b</m>, and</p>
+        <md>(f^{-1})'(b)=\frac{1}{f'(a)}.</md>
+        <p>Equivalently,</p>
+        <md>(f^{-1})'(x)=\frac{1}{f'(f^{-1}(x))}.</md>
+      </statement>
+      <proof>
+        <p>Let <m>g=f^{-1}</m> and let <m>b=f(a)</m>. Then <m>g(b)=a</m>.</p>
+        <p>For <m>y\neq b</m>, consider the difference quotient of <m>g</m>:</p>
+        <md>\frac{g(y)-g(b)}{y-b}.</md>
+        <p>Since <m>g(b)=a</m> and <m>y=f(g(y))</m>, <m>b=f(a)</m>, we can rewrite this as</p>
+        <md>\frac{g(y)-a}{f(g(y))-f(a)}.</md>
+        <p>This is the reciprocal of</p>
+        <md>\frac{f(g(y))-f(a)}{g(y)-a}.</md>
+        <p>As <m>y\to b</m>, the continuity of the inverse gives <m>g(y)\to g(b)=a</m>. Therefore</p>
+        <md>\frac{f(g(y))-f(a)}{g(y)-a}\to f'(a).</md>
+        <p>Since <m>f'(a)\neq 0</m>, we may take reciprocals in the limit:</p>
+        <md>\frac{g(y)-g(b)}{y-b}\to \frac{1}{f'(a)}.</md>
+        <p>Thus <m>g'(b)=\frac{1}{f'(a)}</m>. So</p>
+        <md>(f^{-1})'(b)=\frac{1}{f'(a)}.</md>
+      </proof>
+    </theorem>
+
+    <p>The formula is easy to remember:</p>
+    <md>\text{inverse slope}=\frac{1}{\text{original slope at the matching point}}.</md>
+
+    <p>The matching point matters. If <m>b=f(a)</m>, then the derivative of <m>f^{-1}</m> at <m>b</m> uses the derivative of <m>f</m> at <m>a</m>, not at <m>b</m>.</p>
+
+    <example xml:id="ex-inverse-cubic-poly">
+      <title>Computing an inverse derivative</title>
+      <statement>
+        <p>Let <m>f(x)=x^3+x</m>. Find <m>(f^{-1})'(2)</m>.</p>
+        <p>First find the input <m>a</m> for which <m>f(a)=2</m>. Since <m>f(1)=1^3+1=2</m>, we have <m>a=1</m>.</p>
+        <p>Now compute <m>f'(x)=3x^2+1</m>. Thus <m>f'(1)=4</m>. Therefore</p>
+        <md>(f^{-1})'(2)=\frac{1}{4}.</md>
+        <p>We did not need a formula for <m>f^{-1}(x)</m>. We only needed to know which input produced the output <m>2</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-inverse-log-again">
+      <title>The logarithm revisited as an inverse derivative</title>
+      <statement>
+        <p>Let <m>f(x)=e^x</m>. Its inverse is <m>f^{-1}(x)=\ln x</m>. If <m>x=e^a</m>, then <m>a=\ln x</m>. The inverse derivative formula gives</p>
+        <md>(\ln x)'=\frac{1}{f'(a)}.</md>
+        <p>But <m>f'(a)=e^a=x</m>. Therefore</p>
+        <md>\frac{d}{dx}\ln x=\frac{1}{x}.</md>
+        <p>So the logarithm formula from the last section is one case of the inverse function rule.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-why-nonzero-derivative-inverse">
+    <title>Why the nonzero derivative matters</title>
+
+    <p>The inverse function rule requires <m>f'(a)\neq 0</m>.</p>
+
+    <p>This condition is not decorative. If the original graph has a horizontal tangent, then the inverse graph has a vertical tangent. A vertical tangent does not have a finite derivative as a function of <m>x</m>.</p>
+
+    <example xml:id="ex-cube-root-vertical-tangent">
+      <title>A horizontal tangent reflecting to a vertical tangent</title>
+      <statement>
+        <p>Let <m>f(x)=x^3</m>. This function is strictly increasing, so it has an inverse:</p>
+        <md>f^{-1}(x)=\sqrt[3]{x}.</md>
+        <p>At <m>a=0</m>, we have</p>
+        <md>f'(0)=3(0)^2=0.</md>
+        <p>The inverse function rule would ask us to divide by <m>0</m>, so it cannot apply.</p>
+        <p>Check directly whether <m>g(x)=\sqrt[3]{x}</m> has a derivative at <m>0</m>. The difference quotient is</p>
+        <md>\frac{g(h)-g(0)}{h} = \frac{\sqrt[3]{h}}{h} = \frac{1}{h^{2/3}}.</md>
+        <p>As <m>h\to 0</m>, this does not approach a finite number. The inverse function is not differentiable at <m>0</m>.</p>
+        <p>The original graph <m>y=x^3</m> is flat at the origin. After reflection across <m>y=x</m>, that flat tangent becomes vertical.</p>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-x-cubed-inverse-vertical">
+      <caption>The horizontal tangent to <m>y=x^3</m> reflects into a vertical tangent to <m>y=\sqrt[3]{x}</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.52\textwidth,
+              xmin=-2.2, xmax=2.2,
+              ymin=-2.2, ymax=2.2,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-2,-1,0,1,2},
+              ytick={-2,-1,0,1,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-1.3:1.3, samples=200] {x^3};
+          \addlegendentry{\(y=x^3\)}
+          \addplot[thick, dashed, domain=-1.3:1.3, samples=200] ({x^3},{x});
+          \addlegendentry{\(y=\sqrt[3]{x}\)}
+          \addplot[thin, domain=-2:2, samples=2] {x};
+          \addlegendentry{\(y=x\)}
+          \addplot[very thick, domain=-1.2:1.2, samples=2] {0};
+          \draw[very thick, dotted] (axis cs:0,-1.3) -- (axis cs:0,1.3);
+          \addplot[only marks, mark=*] coordinates {(0,0)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <warning xml:id="warning-inverse-deriv-nonzero">
+      <title>Warning: Nonzero derivative requirement</title>
+      <p>A function can have an inverse even when <m>f'(a)=0</m>. But the inverse may fail to have a finite derivative at the corresponding point.</p>
+    </warning>
+
+    <p>The condition <m>f'(a)\neq 0</m> means that, near <m>a</m>, the original function actually changes to first order. It does not flatten out completely. Then the inverse has a finite local slope.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-inverse-trig-functions">
+    <title>Inverse trigonometric functions</title>
+
+    <p>The trigonometric functions repeat. That makes them different from <m>e^x</m> or <m>x^3+x</m>.</p>
+
+    <p>The sine function is not one-to-one on the whole real line. Many different angles have the same sine value. For example,</p>
+    <md>\sin\left(\frac{\pi}{6}\right)=\frac{1}{2} \qquad\text{and}\qquad \sin\left(\frac{5\pi}{6}\right)=\frac{1}{2}.</md>
+
+    <p>So sine cannot have an inverse on all of <m>\mathbb R</m>.</p>
+
+    <p>To reverse sine, we first choose one interval where sine is one-to-one. The standard choice is</p>
+    <md>-\frac{\pi}{2}\le x\le \frac{\pi}{2}.</md>
+
+    <p>On this interval, sine increases from <m>-1</m> to <m>1</m>. Therefore it has an inverse function:</p>
+    <md>\arcsin x.</md>
+
+    <p>This means: <m>\arcsin x</m> is the angle between <m>-\frac{\pi}{2}</m> and <m>\frac{\pi}{2}</m> whose sine is <m>x</m>.</p>
+
+    <p>In symbols,</p>
+    <md>y=\arcsin x \qquad\Longleftrightarrow\qquad \sin y=x, \quad -\frac{\pi}{2}\le y\le\frac{\pi}{2}.</md>
+
+    <figure xml:id="fig-arcsin-reflection">
+      <caption>The graph of <m>y=\arcsin x</m> is the reflection of the restricted sine graph across <m>y=x</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.56\textwidth,
+              xmin=-1.8, xmax=1.8,
+              ymin=-1.8, ymax=1.8,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-1.5708,-1,0,1,1.5708},
+              xticklabels={\(-\pi/2\),\(-1\),\(0\),\(1\),\(\pi/2\)},
+              ytick={-1.5708,-1,0,1,1.5708},
+              yticklabels={\(-\pi/2\),\(-1\),\(0\),\(1\),\(\pi/2\)},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-1.5708:1.5708, samples=200] {sin(deg(x))};
+          \addlegendentry{\(y=\sin x\), restricted}
+
+          \addplot[thick, dashed, domain=-1:1, samples=200] {asin(x)*pi/180};
+          \addlegendentry{\(y=\arcsin x\)}
+
+          \addplot[thin, domain=-1.7:1.7, samples=2] {x};
+          \addlegendentry{\(y=x\)}
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The other inverse trigonometric functions are defined in the same spirit.</p>
+
+    <p><m>\arccos x</m> is the angle between <m>0</m> and <m>\pi</m> whose cosine is <m>x</m>:</p>
+    <md>y=\arccos x \qquad\Longleftrightarrow\qquad \cos y=x, \quad 0\le y\le\pi.</md>
+
+    <p>And <m>\arctan x</m> is the angle between <m>-\pi/2</m> and <m>\pi/2</m> whose tangent is <m>x</m>:</p>
+    <md>y=\arctan x \qquad\Longleftrightarrow\qquad \tan y=x, \quad -\frac{\pi}{2}\lt y\lt\frac{\pi}{2}.</md>
+
+    <warning xml:id="warning-inverse-trig-notation">
+      <title>Notation warning</title>
+      <p>Some books write <m>\sin^{-1} x</m> for <m>\arcsin x</m>. This does not mean <m>\frac{1}{\sin x}</m>. To avoid confusion, we will use <m>\arcsin x</m>, <m>\arccos x</m>, and <m>\arctan x</m>.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-arcsin">
+    <title>The derivative of <m>\arcsin x</m></title>
+
+    <p>Let <m>y=\arcsin x</m>. Then</p>
+    <md>\sin y=x,</md>
+    <p>where <m>-\frac{\pi}{2}\le y\le \frac{\pi}{2}</m>.</p>
+
+    <p>Differentiate both sides with respect to <m>x</m>. Since <m>y</m> depends on <m>x</m>, the left side uses implicit differentiation:</p>
+    <md>\cos y\frac{dy}{dx}=1.</md>
+
+    <p>Therefore</p>
+    <md>\frac{dy}{dx}=\frac{1}{\cos y}.</md>
+
+    <p>Now rewrite <m>\cos y</m> in terms of <m>x</m>. Since <m>\sin y=x</m>, we have</p>
+    <md>\cos^2 y=1-\sin^2 y=1-x^2.</md>
+
+    <p>On the interval <m>-\frac{\pi}{2}\le y\le \frac{\pi}{2}</m>, cosine is nonnegative. Therefore</p>
+    <md>\cos y=\sqrt{1-x^2}.</md>
+
+    <p>Thus</p>
+
+    <theorem xml:id="thm-derivative-arcsin">
+      <title>Derivative of <m>\arcsin x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}\arcsin x=\frac{1}{\sqrt{1-x^2}}, \qquad -1\lt x\lt 1.</md></p>
+      </statement>
+    </theorem>
+
+    <p>The derivative is not finite at <m>x=1</m> or <m>x=-1</m>. Geometrically, the graph of <m>\arcsin x</m> has vertical tangents at the endpoints.</p>
+
+    <example xml:id="ex-chain-arcsin">
+      <title>Chain rule with arcsine</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>F(x)=\arcsin(x^2).</md>
+        <p>Let <m>u=x^2</m>. Then <m>F(x)=\arcsin u</m>. Using the chain rule,</p>
+        <md>F'(x)=\frac{1}{\sqrt{1-u^2}}u'.</md>
+        <p>Since <m>u'=2x</m>, we get</p>
+        <md>F'(x)=\frac{2x}{\sqrt{1-x^4}}.</md>
+        <p>This derivative is valid where <m>-1\lt x^2\lt 1</m>, so <m>-1\lt x\lt 1</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivatives-arccos-arctan">
+    <title>The derivatives of <m>\arccos x</m> and <m>\arctan x</m></title>
+
+    <p>For arccosine, let <m>y=\arccos x</m>. Then</p>
+    <md>\cos y=x, \qquad 0\le y\le \pi.</md>
+
+    <p>Differentiate:</p>
+    <md>-\sin y\frac{dy}{dx}=1.</md>
+
+    <p>So</p>
+    <md>\frac{dy}{dx}=-\frac{1}{\sin y}.</md>
+
+    <p>Since <m>\cos y=x</m>, we have <m>\sin^2 y=1-x^2</m>. On <m>0\le y\le\pi</m>, sine is nonnegative, so <m>\sin y=\sqrt{1-x^2}</m>. Therefore</p>
+
+    <theorem xml:id="thm-derivative-arccos">
+      <title>Derivative of <m>\arccos x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}\arccos x=-\frac{1}{\sqrt{1-x^2}}, \qquad -1\lt x\lt 1.</md></p>
+      </statement>
+    </theorem>
+
+    <p>The minus sign makes sense: <m>\arccos x</m> decreases as <m>x</m> increases.</p>
+
+    <p>For arctangent, let <m>y=\arctan x</m>. Then</p>
+    <md>\tan y=x, \qquad -\frac{\pi}{2}\lt y\lt\frac{\pi}{2}.</md>
+
+    <p>Differentiate:</p>
+    <md>\sec^2 y\frac{dy}{dx}=1.</md>
+
+    <p>So</p>
+    <md>\frac{dy}{dx}=\frac{1}{\sec^2 y}.</md>
+
+    <p>Using the identity <m>\sec^2 y=1+\tan^2 y</m>, and <m>\tan y=x</m>, we get <m>\sec^2 y=1+x^2</m>. Therefore</p>
+
+    <theorem xml:id="thm-derivative-arctan">
+      <title>Derivative of <m>\arctan x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}\arctan x=\frac{1}{1+x^2}.</md></p>
+      </statement>
+    </theorem>
+
+    <p>This derivative is defined for every real <m>x</m>.</p>
+
+    <example xml:id="ex-chain-arctan">
+      <title>Chain rule with arctangent</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>G(x)=\arctan(3x^2).</md>
+        <p>Let <m>u=3x^2</m>. Then <m>G(x)=\arctan u</m>. By the chain rule,</p>
+        <md>G'(x)=\frac{u'}{1+u^2}.</md>
+        <p>Since <m>u'=6x</m>, we get</p>
+        <md>G'(x)=\frac{6x}{1+9x^4}.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-tangent-line-arctan">
+      <title>Tangent line to <m>y=\arctan x</m></title>
+      <statement>
+        <p>Find the tangent line to <m>y=\arctan x</m> at <m>x=1</m>.</p>
+        <p>First, <m>\arctan 1=\frac{\pi}{4}</m>. The slope is</p>
+        <md>y'(1)=\frac{1}{1+1^2}=\frac{1}{2}.</md>
+        <p>Therefore the tangent line is</p>
+        <md>y-\frac{\pi}{4}=\frac{1}{2}(x-1).</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-inverse-trig-derivative-table">
+    <title>A table of inverse trigonometric derivatives</title>
+
+    <p>The three most important inverse trigonometric derivatives are</p>
+
+    <table>
+      <title>Primary inverse trigonometric derivatives</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>function</term></cell>
+          <cell><term>derivative</term></cell>
+        </row>
+        <row>
+          <cell><m>\arcsin x</m></cell>
+          <cell><m>\dfrac{1}{\sqrt{1-x^2}}</m></cell>
+        </row>
+        <row>
+          <cell><m>\arccos x</m></cell>
+          <cell><m>-\dfrac{1}{\sqrt{1-x^2}}</m></cell>
+        </row>
+        <row>
+          <cell><m>\arctan x</m></cell>
+          <cell><m>\dfrac{1}{1+x^2}</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The remaining inverse trigonometric derivatives follow from the same method. With the usual choices of inverse branches,</p>
+
+    <table>
+      <title>Remaining inverse trigonometric derivatives</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>function</term></cell>
+          <cell><term>derivative</term></cell>
+        </row>
+        <row>
+          <cell><m>\operatorname{arccot} x</m></cell>
+          <cell><m>-\dfrac{1}{1+x^2}</m></cell>
+        </row>
+        <row>
+          <cell><m>\operatorname{arcsec} x</m></cell>
+          <cell><m>\dfrac{1}{|x|\sqrt{x^2-1}}</m></cell>
+        </row>
+        <row>
+          <cell><m>\operatorname{arccsc} x</m></cell>
+          <cell><m>-\dfrac{1}{|x|\sqrt{x^2-1}}</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The absolute value in the arcsecant and arccosecant formulas comes from the branch choices and the sign of the trigonometric functions on those branches.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-inverse-trig-integration-preview">
+    <title>Inverse trigonometric derivatives as an integration preview</title>
+
+    <p>For now, these formulas help us differentiate. Later, when we reverse derivatives, they will become integration patterns.</p>
+
+    <p>The formula</p>
+    <md>\frac{d}{dx}\arcsin x=\frac{1}{\sqrt{1-x^2}}</md>
+    <p>will be read backward as</p>
+    <md>\int \frac{dx}{\sqrt{1-x^2}}=\arcsin x+C.</md>
+
+    <p>The formula</p>
+    <md>\frac{d}{dx}\arctan x=\frac{1}{1+x^2}</md>
+    <p>will be read backward as</p>
+    <md>\int \frac{dx}{1+x^2}=\arctan x+C.</md>
+
+    <p>So the shapes</p>
+    <md>\frac{1}{\sqrt{1-x^2}} \qquad\text{and}\qquad \frac{1}{1+x^2}</md>
+    <p>are worth remembering. They are not random fractions. They are the derivative fingerprints of inverse trigonometric functions.</p>
+
+    <example xml:id="ex-product-x-arctan">
+      <title>Product rule with arctangent</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>H(x)=x\arctan x.</md>
+        <p>Use the product rule:</p>
+        <md>H'(x)=1\cdot\arctan x+x\cdot\frac{1}{1+x^2}.</md>
+        <p>Thus</p>
+        <md>H'(x)=\arctan x+\frac{x}{1+x^2}.</md>
+      </statement>
+    </example>
+
+    <p>Later, this same computation will help us integrate <m>\arctan x</m>. Many integration techniques are differentiation rules read backward, with more strategy required.</p>
+
+    <p>Inverse functions reverse input and output. The next section returns to powers, where the exponent need not be an integer. That extension also depends on reversing functions, because real powers are most naturally handled with logarithms.</p>
+  </subsection>
+
+</section>
