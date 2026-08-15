@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-sequences-as-limits-indexed">
+  <title>Sequences as limits indexed by whole numbers</title>
+
+  <p>Limits so far have used a real input approaching a point (<m>x\to a</m> or <m>x\to\infty</m>). But many approximations arrive step by step. Bisection produces successive intervals; decimal approximations add digits one by one.</p>
+
+  <p>The input is a counting number <m>n=1, 2, 3, \ldots</m>. A limit of such an ordered list is a <term>limit of a sequence</term>.</p>
+
+  <subsection xml:id="subsec-sequence-notation">
+    <title>Sequence notation</title>
+
+    <definition xml:id="def-sequence">
+      <title>Sequence</title>
+      <statement>
+        <p>A <term>sequence</term> is a function whose domain is the set of positive integers. We denote its outputs by subscripts: <m>a_1, a_2, a_3, \ldots, a_n, \ldots</m>, where <m>a_n</m> is called the <term><m>n</m>th term</term>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-explicit-sequences">
+      <title>Explicit formulas for sequences</title>
+      <statement>
+        <p>The formula <m>a_n=\frac{1}{n}</m> produces <m>1, \frac{1}{2}, \frac{1}{3}, \frac{1}{4}, \ldots</m>.</p>
+        <p>The formula <m>b_n=(-1)^n</m> produces <m>-1, 1, -1, 1, \ldots</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-recursive-sequence">
+      <title>Recursive sequence</title>
+      <statement>
+        <p>Let <m>x_1=1</m> and <m>x_{n+1}=\frac{x_n+2}{2}</m>. The sequence begins:</p>
+        <md>x_1=1, \quad x_2=\frac{3}{2}, \quad x_3=\frac{7}{4}, \quad x_4=\frac{15}{8}, \quad \ldots</md>
+        <p>Each term moves halfway from the current value to <m>2</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-sequence-convergence-divergence">
+    <title>Convergence and divergence</title>
+
+    <definition xml:id="def-sequence-limit">
+      <title>Precise definition of sequence convergence</title>
+      <statement>
+        <p>We write <m>\lim_{n\to\infty}a_n=L</m> if for every <m>\varepsilon\gt 0</m>, there exists a positive integer <m>N</m> such that whenever <m>n\ge N</m>, we have</p>
+        <md>|a_n-L|\lt \varepsilon.</md>
+        <p>If such a finite real number <m>L</m> exists, the sequence is called <term>convergent</term>. Otherwise, it is <term>divergent</term>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-epsilon-n-proof-one-over-n">
+      <title>Proof that <m>\lim_{n\to\infty}\frac{1}{n}=0</m></title>
+      <statement>
+        <p>Let <m>\varepsilon\gt 0</m> be given. Choose an integer <m>N\gt \frac{1}{\varepsilon}</m>. For all <m>n\ge N</m>, we have <m>n\gt \frac{1}{\varepsilon}</m>, so <m>\frac{1}{n}\lt \varepsilon</m>. Thus <m>|\frac{1}{n}-0|\lt \varepsilon</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-rational-sequence-limit">
+      <title>Limit of a rational sequence</title>
+      <statement>
+        <p>Find <m>\lim_{n\to\infty}\frac{2n+1}{n+3}</m>.</p>
+        <p>Divide numerator and denominator by <m>n</m>:</p>
+        <md>\lim_{n\to\infty}\frac{2n+1}{n+3} = \lim_{n\to\infty}\frac{2+\frac{1}{n}}{1+\frac{3}{n}} = \frac{2+0}{1+0} = 2.</md>
+      </statement>
+    </example>
+
+    <sidebyside widths="47% 47%" margins="auto">
+      <figure xml:id="fig-sequence-convergent">
+        <caption>Convergent sequence: <m>a_n = 1/n \to 0</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0.5, xmax=8.5,
+                  ymin=-0.05, ymax=1.1,
+                  axis lines=left,
+                  xlabel={\(n\)},
+                  ylabel={\(a_n\)},
+                  xtick={1,2,3,4,5,6,7,8},
+                  ytick={0,0.5,1},
+                  title={\(\displaystyle a_n=\frac1n\)},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[only marks, mark=*] coordinates {
+              (1,1) (2,0.5) (3,0.3333) (4,0.25) (5,0.2) (6,0.1667) (7,0.1429) (8,0.125)
+              };
+              \addplot[dashed, domain=0.5:8.5, samples=2] {0};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-sequence-divergent">
+        <caption>Divergent sequence: <m>b_n = (-1)^n</m> oscillates</caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0.5, xmax=8.5,
+                  ymin=-1.3, ymax=1.3,
+                  axis lines=left,
+                  xlabel={\(n\)},
+                  ylabel={\(b_n\)},
+                  xtick={1,2,3,4,5,6,7,8},
+                  ytick={-1,0,1},
+                  title={\(\displaystyle b_n=(-1)^n\)},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[only marks, mark=*] coordinates {
+              (1,-1) (2,1) (3,-1) (4,1) (5,-1) (6,1) (7,-1) (8,1)
+              };
+              \addplot[dashed, domain=0.5:8.5, samples=2] {1};
+              \addplot[dashed, domain=0.5:8.5, samples=2] {-1};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+  </subsection>
+
+  <subsection xml:id="subsec-monotone-bounded-sequences">
+    <title>Monotone bounded sequences</title>
+
+    <definition xml:id="def-monotone-bounded-sequence">
+      <title>Monotone and bounded sequences</title>
+      <statement>
+        <p>A sequence <m>(a_n)</m> is <term>increasing</term> if <m>a_{n+1}\ge a_n</m> for all <m>n</m>, and <term>decreasing</term> if <m>a_{n+1}\le a_n</m> for all <m>n</m>. A sequence is <term>monotone</term> if it is either increasing or decreasing.</p>
+        <p>A sequence is <term>bounded above</term> if <m>a_n\le B</m> for all <m>n</m>, <term>bounded below</term> if <m>a_n\ge A</m> for all <m>n</m>, and <term>bounded</term> if both hold.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-monotone-bounded-eval">
+      <title>An increasing, bounded sequence</title>
+      <statement>
+        <p>Let <m>a_n=1-\frac{1}{n}</m>. Since <m>a_{n+1}-a_n = \frac{1}{n(n+1)}\gt 0</m>, it is strictly increasing. Since <m>a_n\lt 1</m> for all <m>n</m>, it is bounded above by <m>1</m>. It converges to <m>1</m>.</p>
+
+        <figure xml:id="fig-monotone-bounded-sequence">
+          <caption>The sequence <m>a_n=1-1/n</m> increases toward <m>1</m> without passing it.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.72\textwidth,
+                    height=0.43\textwidth,
+                    xmin=0.5, xmax=10.5,
+                    ymin=-0.1, ymax=1.1,
+                    axis lines=left,
+                    xlabel={\(n\)},
+                    ylabel={\(a_n\)},
+                    xtick={1,2,3,4,5,6,7,8,9,10},
+                    ytick={0,0.5,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[only marks, mark=*] coordinates {
+                (1,0) (2,0.5) (3,0.6667) (4,0.75) (5,0.8)
+                (6,0.8333) (7,0.8571) (8,0.875) (9,0.8889) (10,0.9)
+                };
+                \addplot[dashed, domain=0.5:10.5, samples=2] {1};
+                \node[anchor=west] at (axis cs:7.1,1.03) {upper bound and limit \(1\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <theorem xml:id="thm-monotone-convergence">
+      <title>Monotone Bounded Sequence Theorem</title>
+      <statement>
+        <p>Every increasing sequence that is bounded above converges.</p>
+        <p>Every decreasing sequence that is bounded below converges.</p>
+      </statement>
+      <proof>
+        <p>Let <m>(a_n)</m> be increasing and bounded above. The set of values <m>S=\{a_n : n\in\mathbb{N}\}</m> is bounded above, so by the completeness of the real numbers, it has a least upper bound <m>L=\sup S</m>.</p>
+        <p>Given <m>\varepsilon\gt 0</m>, <m>L-\varepsilon</m> is not an upper bound, so there is some <m>N</m> with <m>a_N\gt L-\varepsilon</m>. Because <m>(a_n)</m> is increasing, for all <m>n\ge N</m> we have <m>L-\varepsilon\lt a_N \le a_n \le L</m>, meaning <m>|a_n-L|\lt \varepsilon</m>. Hence <m>\lim_{n\to\infty}a_n = L</m>.</p>
+      </proof>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-bisection-as-sequence">
+    <title>Bisection as a sequence</title>
+
+    <p>The bisection method produces two sequences: the left endpoints <m>(L_n)</m> (increasing, bounded above) and the right endpoints <m>(R_n)</m> (decreasing, bounded below).</p>
+
+    <p>Since the interval length <m>R_n-L_n = \frac{R_1-L_1}{2^{n-1}} \to 0</m>, both sequences converge to the same trapped root <m>c</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-sequences-prepare-series">
+    <title>Sequences as preparation for infinite series</title>
+
+    <p>An infinite series <m>\sum_{n=1}^\infty a_n</m> is defined as the limit of its sequence of partial sums <m>s_N = \sum_{n=1}^N a_n</m>.</p>
+
+    <example xml:id="ex-geometric-series-partial-sums">
+      <title>Summing powers of <m>1/2</m></title>
+      <statement>
+        <p>For <m>\frac{1}{2}+\frac{1}{4}+\frac{1}{8}+\cdots</m>, the partial sums are <m>s_N = 1-\frac{1}{2^N}</m>. As <m>N\to\infty</m>, <m>\frac{1}{2^N}\to 0</m>, so <m>\sum_{n=1}^\infty \frac{1}{2^n}=1</m>.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-series-terms-vs-sums">
+      <title>Terms tending to zero does not guarantee convergence</title>
+      <p><m>a_n\to 0</m> is necessary for <m>\sum a_n</m> to converge, but not sufficient. For example, <m>\frac{1}{n}\to 0</m>, yet <m>\sum_{n=1}^\infty \frac{1}{n}</m> (the harmonic series) diverges.</p>
+    </warning>
+
+    <p>Sequences bridge static limits to dynamical processes. If secant slopes <m>\frac{f(a+1/n)-f(a)}{1/n}</m> settle toward one number as <m>n\to\infty</m>, they reveal the instantaneous rate of change: the <term>derivative</term>.</p>
+  </subsection>
+
+</section>
