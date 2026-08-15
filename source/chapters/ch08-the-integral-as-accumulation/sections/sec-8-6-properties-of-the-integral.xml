@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-8-6-properties-of-the-integral">
+  <title>Properties of the integral</title>
+
+  <p>The integral was born from sums. Its basic properties are inherited from sums.</p>
+
+  <p>A Riemann sum has the form</p>
+  <md>\sum_{j=1}^{n} f(x_j^*)\Delta x_j.</md>
+
+  <p>Finite sums are linear. They can be split into pieces. They preserve inequalities. They respect symmetry. When the Riemann sums approach a limit, those same habits survive in the integral.</p>
+
+  <p>This section is not a list of tricks. It is the arithmetic of accumulation.</p>
+
+  <subsection xml:id="subsec-integral-linearity">
+    <title>Linearity</title>
+
+    <p>Suppose two functions <m>f</m> and <m>g</m> are integrable on <m>[a,b]</m>. If we accumulate their sum, we get the sum of their accumulations:</p>
+    <md>\int_a^b \bigl(f(x)+g(x)\bigr)\,dx = \int_a^b f(x)\,dx+\int_a^b g(x)\,dx.</md>
+
+    <p>If we multiply a function by a constant <m>c</m>, the accumulated amount is multiplied by the same constant:</p>
+    <md>\int_a^b c f(x)\,dx = c\int_a^b f(x)\,dx.</md>
+
+    <p>Together these give the linearity rule.</p>
+
+    <theorem xml:id="thm-integral-linearity">
+      <title>Linearity of the integral</title>
+      <statement>
+        <p>If <m>f</m> and <m>g</m> are integrable on <m>[a,b]</m>, and <m>A</m> and <m>B</m> are constants, then</p>
+        <md>\int_a^b \bigl(Af(x)+Bg(x)\bigr)\,dx = A\int_a^b f(x)\,dx + B\int_a^b g(x)\,dx.</md>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Why it is true</title>
+      <p>For one partition and one set of sample points,</p>
+      <md>\sum_{j=1}^{n} \bigl(Af(x_j^*)+Bg(x_j^*)\bigr)\Delta x_j</md>
+      <p>equals</p>
+      <md>A\sum_{j=1}^{n} f(x_j^*)\Delta x_j + B\sum_{j=1}^{n} g(x_j^*)\Delta x_j.</md>
+      <p>This is just the distributive law for finite sums. As the widths of the subintervals go to zero, the left side approaches</p>
+      <md>\int_a^b (Af+Bg)\,dx,</md>
+      <p>and the two sums on the right approach</p>
+      <md>A\int_a^b f\,dx + B\int_a^b g\,dx.</md>
+      <p>So the integral obeys the same linearity.</p>
+    </paragraphs>
+
+    <example xml:id="ex-linear-combination-geometry">
+      <title>Integral of a linear combination using geometry</title>
+      <statement>
+        <p>Find</p>
+        <md>\int_0^4 (3+2x)\,dx</md>
+        <p>using geometry.</p>
+        <p>By linearity,</p>
+        <md>\int_0^4 (3+2x)\,dx = \int_0^4 3\,dx+2\int_0^4 x\,dx.</md>
+        <p>The first integral is a rectangle:</p>
+        <md>\int_0^4 3\,dx=12.</md>
+        <p>The second is the area of a triangle with base <m>4</m> and height <m>4</m>:</p>
+        <md>\int_0^4 x\,dx=\frac12(4)(4)=8.</md>
+        <p>Therefore</p>
+        <md>\int_0^4 (3+2x)\,dx = 12+2(8) = 28.</md>
+      </statement>
+    </example>
+
+    <p>Linearity lets us break a complicated accumulation into simpler accumulations.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-integral-additivity-intervals">
+    <title>Additivity over intervals</title>
+
+    <p>Accumulation over a long interval can be split into accumulation over shorter intervals.</p>
+
+    <p>If <m>a\lt c\lt b</m>, then</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>accumulates from <m>a</m> to <m>b</m>. We may first accumulate from <m>a</m> to <m>c</m>, then from <m>c</m> to <m>b</m>:</p>
+    <md>\int_a^b f(x)\,dx = \int_a^c f(x)\,dx + \int_c^b f(x)\,dx.</md>
+
+    <figure xml:id="fig-additivity-over-intervals">
+      <caption>Accumulation over <m>[a,b]</m> is the sum of accumulation over <m>[a,c]</m> and <m>[c,b]</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=5.2,
+              ymin=0, ymax=5.2,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={0,2,5},
+              xticklabels={\(a\),\(c\),\(b\)},
+              ytick={0,1,2,3,4,5},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[domain=0:2, samples=100, fill=gray!15, draw=none] {1+0.25*x+0.10*x^2} \closedcycle;
+          \addplot[domain=2:5, samples=100, fill=gray!25, draw=none] {1+0.25*x+0.10*x^2} \closedcycle;
+          \addplot[very thick, domain=0:5, samples=150] {1+0.25*x+0.10*x^2};
+          \draw[dashed] (axis cs:2,0) -- (axis cs:2,1.9);
+          \node[anchor=west] at (axis cs:0.45,0.55) {\(\int_a^c f\)};
+          \node[anchor=west] at (axis cs:3.0,0.85) {\(\int_c^b f\)};
+          \node[anchor=west] at (axis cs:2.7,3.2) {\(y=f(x)\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex-velocity-interval-additivity">
+      <title>Displacement additivity over intervals</title>
+      <statement>
+        <p>Suppose a particle has velocity <m>v(t)</m>. Then</p>
+        <md>\int_0^5 v(t)\,dt = \int_0^2 v(t)\,dt+\int_2^5 v(t)\,dt.</md>
+        <p>The displacement over <m>5</m> seconds is the displacement over the first <m>2</m> seconds plus the displacement over the next <m>3</m> seconds. This remains true even if one of the pieces is negative.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-orientation-of-interval-integral">
+    <title>Orientation of the interval</title>
+
+    <p>So far, we have usually assumed <m>a\lt b</m>. But the notation</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>also remembers direction.</p>
+
+    <p>Moving from <m>a</m> to <m>b</m> is the opposite of moving from <m>b</m> to <m>a</m>. To make the algebra of accumulation respect that direction, we define</p>
+    <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+
+    <p>Also,</p>
+    <md>\int_a^a f(x)\,dx=0.</md>
+
+    <p>There is no width, so there is no accumulation.</p>
+
+    <p>With these conventions, the interval-addition rule becomes especially clean:</p>
+    <md>\int_a^b f(x)\,dx+\int_b^c f(x)\,dx=\int_a^c f(x)\,dx.</md>
+
+    <p>This formula works no matter where <m>a</m>, <m>b</m>, and <m>c</m> lie on the number line, as long as the integrals exist.</p>
+
+    <paragraphs>
+      <title>Warning</title>
+      <p>Order matters when the interval is reversed. Even though</p>
+      <md>1\gt 0,</md>
+      <p>we have</p>
+      <md>\int_1^0 1\,dx=-1.</md>
+      <p>The function is positive, but the direction of travel is negative. The symbol <m>dx</m> carries that orientation.</p>
+      <p>For order properties, unless we say otherwise, we assume</p>
+      <md>a\lt b.</md>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-integral-order-properties">
+    <title>Order properties</title>
+
+    <p>If one function is always below another, its integral is no larger.</p>
+
+    <theorem xml:id="thm-integral-order-property">
+      <title>Order property</title>
+      <statement>
+        <p>Assume <m>a\lt b</m>. If <m>f</m> and <m>g</m> are integrable on <m>[a,b]</m>, and</p>
+        <md>f(x)\le g(x)</md>
+        <p>for every <m>x\in[a,b]</m>, then</p>
+        <md>\int_a^b f(x)\,dx \le \int_a^b g(x)\,dx.</md>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Why it is true</title>
+      <p>For every sample point,</p>
+      <md>f(x_j^*)\le g(x_j^*).</md>
+      <p>Since <m>\Delta x_j\gt 0</m>,</p>
+      <md>f(x_j^*)\Delta x_j\le g(x_j^*)\Delta x_j.</md>
+      <p>Adding gives</p>
+      <md>\sum_{j=1}^{n} f(x_j^*)\Delta x_j \le \sum_{j=1}^{n} g(x_j^*)\Delta x_j.</md>
+      <p>Taking limits preserves the inequality.</p>
+    </paragraphs>
+
+    <p>Several useful facts follow immediately.</p>
+
+    <p>If</p>
+    <md>f(x)\ge 0</md>
+    <p>on <m>[a,b]</m>, then</p>
+    <md>\int_a^b f(x)\,dx\ge 0.</md>
+
+    <p>If</p>
+    <md>m\le f(x)\le M</md>
+    <p>on <m>[a,b]</m>, then</p>
+    <md>m(b-a) \le \int_a^b f(x)\,dx \le M(b-a).</md>
+
+    <p>This says that the accumulation of <m>f</m> is trapped between two rectangles: one with height <m>m</m>, and one with height <m>M</m>.</p>
+
+    <example xml:id="ex-power-bounds">
+      <title>Bounds on total energy</title>
+      <statement>
+        <p>Suppose a machine uses power <m>P(t)</m> between <m>2</m> and <m>5</m> kilowatts during a <m>6</m>-hour work period. The total energy used is</p>
+        <md>\int_0^6 P(t)\,dt.</md>
+        <p>Because</p>
+        <md>2\le P(t)\le 5,</md>
+        <p>we know</p>
+        <md>2(6)\le \int_0^6 P(t)\,dt\le 5(6).</md>
+        <p>So the energy used is between</p>
+        <md>12</md>
+        <p>and</p>
+        <md>30</md>
+        <p>kilowatt-hours.</p>
+        <p>We do not need the exact power curve to get a useful bound.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-net-change-total-change-inequality">
+    <title>Net change is no larger than total change</title>
+
+    <p>The order property also explains the relation between signed accumulation and total accumulation.</p>
+
+    <p>For every <m>x</m>,</p>
+    <md>-|f(x)|\le f(x)\le |f(x)|.</md>
+
+    <p>Integrating over <m>[a,b]</m>, with <m>a\lt b</m>, gives</p>
+    <md>-\int_a^b |f(x)|\,dx \le \int_a^b f(x)\,dx \le \int_a^b |f(x)|\,dx.</md>
+
+    <p>This is the same as</p>
+    <md>\left|\int_a^b f(x)\,dx\right| \le \int_a^b |f(x)|\,dx.</md>
+
+    <p>In words:</p>
+    <note xml:id="note-net-accumulation-bound">
+      <p>the size of the net accumulation is at most the total accumulation.</p>
+    </note>
+
+    <p>This matches common sense. A person who walks forward and backward may end close to the starting point, but the total walking distance cannot be smaller than the net displacement.</p>
+
+    <p>Equality happens only when there is no cancellation, or when all cancellation is absent in one direction. For instance, if <m>f(x)\ge 0</m> on the whole interval, then</p>
+    <md>\left|\int_a^b f(x)\,dx\right| = \int_a^b |f(x)|\,dx.</md>
+
+    <p>If <m>f</m> changes sign, the inequality is usually strict.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-average-value-function">
+    <title>Average value of a function</title>
+
+    <p>A definite integral accumulates total signed amount. Sometimes we want to spread that amount evenly over the interval.</p>
+
+    <p>Suppose <m>f(x)</m> represents temperature over time. The integral</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>has units</p>
+    <md>\text{temperature}\cdot\text{time}.</md>
+
+    <p>To get an average temperature, divide by the time length <m>b-a</m>.</p>
+
+    <definition xml:id="def-average-value">
+      <title>Average value</title>
+      <statement>
+        <p>If <m>f</m> is integrable on <m>[a,b]</m>, with <m>a\lt b</m>, then the average value of <m>f</m> on <m>[a,b]</m> is</p>
+        <md>f_{\text{avg}} = \frac{1}{b-a}\int_a^b f(x)\,dx.</md>
+      </statement>
+    </definition>
+
+    <p>This number is the constant height that gives the same signed area:</p>
+    <md>f_{\text{avg}}(b-a)=\int_a^b f(x)\,dx.</md>
+
+    <example xml:id="ex-average-value-trapezoid">
+      <title>Average value of a linear function</title>
+      <statement>
+        <p>Find the average value of</p>
+        <md>f(x)=1+x</md>
+        <p>on <m>[0,4]</m>.</p>
+        <p>The region under the graph is a trapezoid. Its parallel sides have lengths</p>
+        <md>f(0)=1</md>
+        <p>and</p>
+        <md>f(4)=5,</md>
+        <p>and its width is <m>4</m>. Therefore</p>
+        <md>\int_0^4 (1+x)\,dx = \frac12(1+5)(4) = 12.</md>
+        <p>The average value is</p>
+        <md>f_{\text{avg}} = \frac{1}{4}\cdot 12 = 3.</md>
+        <p>So the slanted graph <m>y=1+x</m> has the same accumulated area over <m>[0,4]</m> as the constant function <m>y=3</m>.</p>
+      </statement>
+    </example>
+
+    <figure xml:id="fig-average-value-equal-area">
+      <caption>The average value is the constant height that gives the same accumulated area.</caption>
+      <sidebyside widths="48% 48%">
+        <figure xml:id="fig-actual-graph-area">
+          <caption>Actual graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=4.4,
+                  ymin=0, ymax=5.6,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,4},
+                  ytick={1,3,5},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, draw=gray!60]
+                (axis cs:0,0) -- (axis cs:0,1) -- (axis cs:4,5) -- (axis cs:4,0) -- cycle;
+              \addplot[very thick, domain=0:4, samples=2] {1+x};
+              \node[anchor=west] at (axis cs:1.1,4.2) {\(y=1+x\)};
+              \node at (axis cs:2,1.25) {area \(=12\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-average-height-area">
+          <caption>Average height</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=4.4,
+                  ymin=0, ymax=5.6,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={0,4},
+                  ytick={1,3,5},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, draw=gray!60]
+                (axis cs:0,0) rectangle (axis cs:4,3);
+              \addplot[very thick, domain=0:4, samples=2] {3};
+              \node[anchor=west] at (axis cs:1.1,3.25) {\(y=3\)};
+              \node at (axis cs:2,1.25) {area \(=12\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-average-value-attained">
+    <title>The average value is really attained when <m>f</m> is continuous</title>
+
+    <p>For a continuous function, the average value is not only a number. It is a height the function actually reaches.</p>
+
+    <theorem xml:id="thm-mvt-integrals">
+      <title>Mean Value Theorem for Integrals</title>
+      <statement>
+        <p>If <m>f</m> is continuous on <m>[a,b]</m>, with <m>a\lt b</m>, then there is some point <m>c\in[a,b]</m> such that</p>
+        <md>f(c)=\frac{1}{b-a}\int_a^b f(x)\,dx.</md>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Why it is true</title>
+      <p>Because <m>f</m> is continuous on a closed interval, it has a minimum value <m>m</m> and a maximum value <m>M</m>. Thus</p>
+      <md>m\le f(x)\le M</md>
+      <p>for every <m>x\in[a,b]</m>. The order property gives</p>
+      <md>m(b-a) \le \int_a^b f(x)\,dx \le M(b-a).</md>
+      <p>Divide by <m>b-a\gt 0</m>:</p>
+      <md>m \le \frac{1}{b-a}\int_a^b f(x)\,dx \le M.</md>
+      <p>So the average value lies between the minimum and maximum values of <m>f</m>. Since <m>f</m> is continuous, the Intermediate Value Theorem says that <m>f</m> takes every value between <m>m</m> and <m>M</m>. Therefore it takes the average value.</p>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Why continuity matters</title>
+      <p>Consider the step function</p>
+      <md>
+        f(x)=
+        \begin{cases}
+        0, \amp 0\le x\le \frac12,\\
+        1, \amp \frac12\lt x\le 1.
+        \end{cases}
+      </md>
+      <p>The area under the graph is</p>
+      <md>\int_0^1 f(x)\,dx=\frac12.</md>
+      <p>So the average value is</p>
+      <md>f_{\text{avg}}=\frac12.</md>
+      <p>But the function only takes the values <m>0</m> and <m>1</m>. There is no point <m>c</m> where</p>
+      <md>f(c)=\frac12.</md>
+      <p>The function is integrable, but it is not continuous. The average value exists, but the function never actually equals its average.</p>
+      <p>This is why the theorem requires continuity.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-integral-symmetry">
+    <title>Symmetry</title>
+
+    <p>Symmetry can make integrals much easier.</p>
+
+    <p>Recall two kinds of symmetry:</p>
+    <md>f(-x)=f(x)</md>
+    <p>means <m>f</m> is even. Its graph is symmetric across the <m>y</m>-axis.</p>
+    <md>f(-x)=-f(x)</md>
+    <p>means <m>f</m> is odd. Its graph is symmetric through the origin.</p>
+
+    <p>On a symmetric interval <m>[-a,a]</m>, these symmetries become integral shortcuts.</p>
+
+    <theorem xml:id="thm-symmetry-rules-integral">
+      <title>Symmetry rules</title>
+      <statement>
+        <p>If <m>f</m> is integrable on <m>[-a,a]</m>, then:</p>
+        <md>\text{if }f\text{ is even,}\qquad \int_{-a}^{a} f(x)\,dx = 2\int_0^a f(x)\,dx.</md>
+        <md>\text{if }f\text{ is odd,}\qquad \int_{-a}^{a} f(x)\,dx = 0.</md>
+      </statement>
+    </theorem>
+
+    <p>For an even function, the left half and right half contribute equal signed areas.</p>
+
+    <p>For an odd function, the left half and right half contribute opposite signed areas. They cancel.</p>
+
+    <figure xml:id="fig-odd-function-cancellation">
+      <caption>For an odd function on a symmetric interval, the two signed areas cancel.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=-1.35, xmax=1.35,
+              ymin=-1.35, ymax=1.35,
+              axis lines=middle,
+              axis on top,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-1,0,1},
+              ytick={-1,0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[domain=-1:0, samples=100, fill=gray!25, draw=none] {x^3} \closedcycle;
+          \addplot[domain=0:1, samples=100, fill=gray!15, draw=none, fill opacity=0.5] {x^3} \closedcycle;
+          \addplot[very thick, domain=-1.15:1.15, samples=150] {x^3};
+          \node[anchor=south east] at (axis cs:-0.25,-0.55) {negative};
+          \node[anchor=south west] at (axis cs:0.35,0.25) {positive};
+          \node[anchor=west] at (axis cs:0.55,0.9) {\(y=x^3\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <example xml:id="ex-odd-integral-cubic">
+      <title>Integral of an odd function</title>
+      <statement>
+        <p>Since</p>
+        <md>f(x)=x^3</md>
+        <p>is odd,</p>
+        <md>\int_{-2}^{2} x^3\,dx=0.</md>
+        <p>No antiderivative is needed. The cancellation comes from symmetry.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-even-integral-quadratic">
+      <title>Integral of an even function</title>
+      <statement>
+        <p>The function</p>
+        <md>g(x)=x^2+3</md>
+        <p>is even. Therefore</p>
+        <md>\int_{-2}^{2} (x^2+3)\,dx = 2\int_0^2 (x^2+3)\,dx.</md>
+        <p>This does not yet give the final numerical value, but it cuts the work in half. Later, the Fundamental Theorem will make the remaining integral easy to evaluate.</p>
+      </statement>
+    </example>
+
+    <paragraphs>
+      <title>Even plus odd</title>
+      <p>Many functions split into an even part and an odd part. For example,</p>
+      <md>x^2+x</md>
+      <p>is the sum of the even function <m>x^2</m> and the odd function <m>x</m>. On <m>[-1,1]</m>,</p>
+      <md>\int_{-1}^{1} (x^2+x)\,dx = \int_{-1}^{1} x^2\,dx+\int_{-1}^{1} x\,dx.</md>
+      <p>The odd part cancels:</p>
+      <md>\int_{-1}^{1} x\,dx=0.</md>
+      <p>So</p>
+      <md>\int_{-1}^{1} (x^2+x)\,dx = \int_{-1}^{1} x^2\,dx.</md>
+      <p>Symmetry lets us see cancellation before doing any calculation.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-where-integral-properties-come-from">
+    <title>Where the properties come from</title>
+
+    <p>The properties of the integral are not mysterious. They are the properties of finite sums surviving a limiting process.</p>
+
+    <table>
+      <title>Comparison of finite sum properties and integral properties</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{finite sums}</m></cell>
+          <cell><m>\textbf{integrals}</m></cell>
+        </row>
+        <row>
+          <cell><m>\sum (Af_j+Bg_j)\Delta x_j = A\sum f_j\Delta x_j+B\sum g_j\Delta x_j</m></cell>
+          <cell><m>\int_a^b (Af+Bg)\,dx = A\int_a^b f\,dx+B\int_a^b g\,dx</m></cell>
+        </row>
+        <row>
+          <cell>a long sum can be split into shorter sums</cell>
+          <cell><m>\int_a^b f\,dx = \int_a^c f\,dx+\int_c^b f\,dx</m></cell>
+        </row>
+        <row>
+          <cell><m>f_j\le g_j \text{ for all }j \implies \sum f_j\Delta x_j\le \sum g_j\Delta x_j</m></cell>
+          <cell><m>f\le g \implies \int_a^b f\,dx\le \int_a^b g\,dx</m></cell>
+        </row>
+        <row>
+          <cell>matched positive and negative terms can cancel</cell>
+          <cell>odd functions cancel on symmetric intervals</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>These rules make the integral usable before we know many exact antiderivatives. They allow us to split, estimate, compare, and simplify accumulated quantities.</p>
+
+    <p>One question remains before we can rely on the integral fully:</p>
+    <md>\text{Which functions actually have integrals?}</md>
+
+    <p>Continuous functions do. So do many functions with jumps. But not every bounded function is integrable. The next section explains where the line is.</p>
+  </subsection>
+
+</section>
