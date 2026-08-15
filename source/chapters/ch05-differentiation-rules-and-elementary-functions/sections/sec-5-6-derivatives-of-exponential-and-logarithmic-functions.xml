@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-derivatives-exponential-logarithmic">
+  <title>Derivatives of exponential and logarithmic functions</title>
+
+  <p>Sine and cosine return to themselves after differentiation, with a shift and a sign. Exponential functions are even more direct. The right exponential function returns exactly to itself.</p>
+
+  <p>That one fact explains why exponentials appear whenever the rate of change depends on the current amount.</p>
+
+  <subsection xml:id="subsec-exponential-growth-rate-law">
+    <title>Exponential growth as a rate law</title>
+
+    <p>Imagine a small colony of bacteria. If there are more bacteria, there are more bacteria able to divide. So the growth rate should depend on the current population.</p>
+
+    <p>A simple model says</p>
+    <md>P'(t)=kP(t),</md>
+    <p>where <m>P(t)</m> is the population at time <m>t</m>, and <m>k</m> is a constant.</p>
+
+    <p>If <m>k\gt 0</m>, the population grows. If <m>k\lt 0</m>, the quantity decays. The same equation appears in radioactive decay, continuous interest, and many first approximations to growth.</p>
+
+    <p>The equation</p>
+    <md>P'(t)=kP(t)</md>
+    <p>asks for a function whose derivative is a constant multiple of itself.</p>
+
+    <p>We already know one kind of candidate:</p>
+    <md>P(t)=a^t.</md>
+
+    <p>To see what its derivative looks like, use the definition:</p>
+    <md>\frac{d}{dt}a^t = \lim_{h\to 0}\frac{a^{t+h}-a^t}{h}.</md>
+
+    <p>Using the exponent rule <m>a^{t+h}=a^t a^h</m>, we get</p>
+    <md>\frac{a^{t+h}-a^t}{h} = \frac{a^t a^h-a^t}{h} = a^t\frac{a^h-1}{h}.</md>
+
+    <p>Since <m>a^t</m> does not depend on <m>h</m>,</p>
+    <md>\frac{d}{dt}a^t = a^t\lim_{h\to 0}\frac{a^h-1}{h}.</md>
+
+    <p>The limit</p>
+    <md>\lim_{h\to 0}\frac{a^h-1}{h}</md>
+    <p>is the slope of the graph <m>y=a^x</m> at <m>x=0</m>. Call that number <m>\lambda(a)</m>:</p>
+    <md>\lambda(a)=\lim_{h\to 0}\frac{a^h-1}{h}.</md>
+
+    <p>Then</p>
+    <md>\frac{d}{dx}a^x=\lambda(a)a^x.</md>
+
+    <p>Every exponential function has a derivative proportional to itself. The proportionality constant depends on the base.</p>
+
+    <p>The natural question is:</p>
+    <md>\text{Is there a base for which the proportionality constant is }1?</md>
+
+    <p>Yes. That base is <m>e</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-special-base-e">
+    <title>The special base <m>e</m></title>
+
+    <p>The number <m>e</m> is the base for which</p>
+    <md>\lim_{h\to 0}\frac{e^h-1}{h}=1.</md>
+
+    <p>Equivalently, the graph of <m>y=e^x</m> has slope <m>1</m> at <m>x=0</m>.</p>
+
+    <p>Since <m>e^0=1</m>, the tangent line to <m>y=e^x</m> at <m>x=0</m> is</p>
+    <md>y=1+x.</md>
+
+    <figure xml:id="fig-exponential-tangent-at-zero">
+      <caption>The base <m>e</m> is chosen so that <m>e^x</m> has slope <m>1</m> at <m>x=0</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=-2.2, xmax=2.2,
+              ymin=-0.4, ymax=5.0,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-2,-1,0,1,2},
+              ytick={0,1,2,3,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-2.2:2.2, samples=200] {exp(x)};
+          \addlegendentry{\(y=e^x\)}
+          \addplot[thick, dashed, domain=-1.3:1.8, samples=2] {1+x};
+          \addlegendentry{\(y=1+x\)}
+          \addplot[only marks, mark=*] coordinates {(0,1)};
+          \node[anchor=west] at (axis cs:0.08,1.05) {\((0,1)\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>This choice may look small, but it controls the whole function. From the formula above,</p>
+    <md>\frac{d}{dx}e^x = e^x\lim_{h\to 0}\frac{e^h-1}{h}.</md>
+
+    <p>The limit is <m>1</m>, so</p>
+
+    <theorem xml:id="thm-derivative-e-to-x">
+      <title>Derivative of <m>e^x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}e^x=e^x.</md></p>
+      </statement>
+    </theorem>
+
+    <p>The function <m>e^x</m> is its own derivative.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-e-to-u">
+    <title>The derivative of <m>e^{u(x)}</m></title>
+
+    <p>The chain rule immediately extends this formula.</p>
+
+    <p>If</p>
+    <md>y=e^{u(x)},</md>
+    <p>then the outside derivative is</p>
+    <md>\frac{d}{du}e^u=e^u,</md>
+    <p>and the inside derivative is</p>
+    <md>u'(x).</md>
+
+    <p>Thus</p>
+    <md>\frac{d}{dx}e^{u(x)}=e^{u(x)}u'(x).</md>
+
+    <example xml:id="ex-chain-e-gaussian">
+      <title>Differentiating a Gaussian function</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=e^{-x^2}.</md>
+        <p>Let <m>u=-x^2</m>. Then <m>u'=-2x</m>. Therefore</p>
+        <md>y'=-2xe^{-x^2}.</md>
+        <p>This derivative is positive when <m>x\lt 0</m>, zero when <m>x=0</m>, and negative when <m>x\gt 0</m>. So <m>e^{-x^2}</m> rises to a peak at <m>x=0</m> and falls afterward.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-product-e">
+      <title>Product rule with an exponential</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=x^2e^{3x}.</md>
+        <p>Use the product rule:</p>
+        <md>y' = 2xe^{3x}+x^2\frac{d}{dx}e^{3x}.</md>
+        <p>By the chain rule, <m>\frac{d}{dx}e^{3x}=3e^{3x}</m>. So</p>
+        <md>y'=2xe^{3x}+3x^2e^{3x}.</md>
+        <p>Factor:</p>
+        <md>y'=xe^{3x}(2+3x).</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-a-to-x">
+    <title>The derivative of <m>a^x</m></title>
+
+    <p>Every positive base <m>a</m> can be written using <m>e</m>. Since <m>\ln a</m> is the exponent that produces <m>a</m>,</p>
+    <md>a=e^{\ln a}.</md>
+
+    <p>Therefore</p>
+    <md>a^x=\left(e^{\ln a}\right)^x=e^{x\ln a}.</md>
+
+    <p>Differentiate:</p>
+    <md>\frac{d}{dx}a^x = \frac{d}{dx}e^{x\ln a}.</md>
+
+    <p>Here <m>\ln a</m> is a constant, so the chain rule gives</p>
+    <md>\frac{d}{dx}a^x = e^{x\ln a}\cdot\ln a.</md>
+
+    <p>Since <m>e^{x\ln a}=a^x</m>, we get</p>
+
+    <theorem xml:id="thm-derivative-general-exponential">
+      <title>Derivative of <m>a^x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}a^x=(\ln a)a^x, \qquad a\gt 0.</md></p>
+      </statement>
+    </theorem>
+
+    <p>If <m>a\gt 1</m>, then <m>\ln a\gt 0</m>, so <m>a^x</m> is increasing.</p>
+    <p>If <m>0\lt a\lt 1</m>, then <m>\ln a\lt 0</m>, so <m>a^x</m> is decreasing.</p>
+    <p>The formula includes both growth and decay.</p>
+
+    <example xml:id="ex-base-10-exp">
+      <title>Differentiating <m>10^x</m></title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=10^x.</md>
+        <p>Using the formula,</p>
+        <md>y'=(\ln 10)10^x.</md>
+        <p>The graph of <m>10^x</m> is steeper than <m>e^x</m> at corresponding heights because <m>\ln 10\gt 1</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-chain-base-2">
+      <title>Chain rule with base <m>2</m></title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=2^{x^2+1}.</md>
+        <p>Let <m>u=x^2+1</m>. Then <m>y=2^u</m>. The derivative of <m>2^u</m> with respect to <m>u</m> is <m>(\ln 2)2^u</m>. So the chain rule gives</p>
+        <md>y' = (\ln 2)2^{x^2+1}\cdot 2x.</md>
+        <p>Thus</p>
+        <md>y'=2x(\ln 2)2^{x^2+1}.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-ln-x">
+    <title>The derivative of <m>\ln x</m></title>
+
+    <p>The natural logarithm is the inverse of the natural exponential function.</p>
+
+    <p>That means</p>
+    <md>y=\ln x \qquad\Longleftrightarrow\qquad x=e^y.</md>
+
+    <p>We can find the derivative of <m>\ln x</m> using implicit differentiation.</p>
+
+    <p>Start with</p>
+    <md>x=e^y.</md>
+
+    <p>Differentiate both sides with respect to <m>x</m>:</p>
+    <md>1=e^y\frac{dy}{dx}.</md>
+
+    <p>Since <m>e^y=x</m>, we get</p>
+    <md>1=x\frac{dy}{dx}.</md>
+
+    <p>Therefore</p>
+    <md>\frac{dy}{dx}=\frac{1}{x}.</md>
+
+    <p>Thus</p>
+
+    <theorem xml:id="thm-derivative-natural-log">
+      <title>Derivative of <m>\ln x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}\ln x=\frac{1}{x}, \qquad x\gt 0.</md></p>
+      </statement>
+    </theorem>
+
+    <p>The condition <m>x\gt 0</m> is part of the formula. In real-valued calculus, <m>\ln x</m> is defined only for positive <m>x</m>.</p>
+
+    <example xml:id="ex-chain-ln-poly">
+      <title>Chain rule with natural logarithm</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\ln(3x^2+1).</md>
+        <p>Let <m>u=3x^2+1</m>. Then <m>y=\ln u</m>. By the chain rule,</p>
+        <md>y'=\frac{1}{u} u'.</md>
+        <p>Since <m>u'=6x</m>, we get</p>
+        <md>y'=\frac{6x}{3x^2+1}.</md>
+      </statement>
+    </example>
+
+    <p>More generally,</p>
+    <md>\frac{d}{dx}\ln(u(x))=\frac{u'(x)}{u(x)}</md>
+    <p>where <m>u(x)\gt 0</m>.</p>
+
+    <example xml:id="ex-ln-sine">
+      <title>Differentiating <m>\ln(\sin x)</m></title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\ln(\sin x).</md>
+        <p>The function is defined where <m>\sin x\gt 0</m>. On such intervals,</p>
+        <md>y'=\frac{\cos x}{\sin x}.</md>
+        <p>So</p>
+        <md>\frac{d}{dx}\ln(\sin x)=\cot x</md>
+        <p>where <m>\sin x\gt 0</m>.</p>
+      </statement>
+    </example>
+
+    <paragraphs xml:id="paragraphs-ln-abs-extension">
+      <title>A useful extension</title>
+      <p>On intervals where <m>u(x)\neq 0</m>, the function <m>\ln|u(x)|</m> is defined, and</p>
+      <md>\frac{d}{dx}\ln|u(x)|=\frac{u'(x)}{u(x)}.</md>
+      <p>For example,</p>
+      <md>\frac{d}{dx}\ln|x^2-1| = \frac{2x}{x^2-1}, \qquad x\neq\pm 1.</md>
+      <p>The absolute value lets us use logarithms on intervals where <m>u(x)</m> is negative, but it still cannot cross through <m>u(x)=0</m>. The logarithm has no finite value there.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-log-base-a">
+    <title>Logarithms with other bases</title>
+
+    <p>For <m>a\gt 0</m> and <m>a\neq 1</m>, the logarithm base <m>a</m> satisfies</p>
+    <md>\log_a x=\frac{\ln x}{\ln a}.</md>
+
+    <p>Since <m>\ln a</m> is a constant,</p>
+    <md>\frac{d}{dx}\log_a x = \frac{1}{\ln a}\frac{d}{dx}\ln x.</md>
+
+    <p>Therefore</p>
+    <theorem xml:id="thm-derivative-log-base-a">
+      <title>Derivative of <m>\log_a x</m></title>
+      <statement>
+        <p><md>\frac{d}{dx}\log_a x=\frac{1}{x\ln a}, \qquad x\gt 0,\ a\gt 0,\ a\neq 1.</md></p>
+      </statement>
+    </theorem>
+
+    <p>Natural logarithms dominate calculus because their derivative is simplest: <m>(\ln x)'=\frac{1}{x}</m>. Other logarithms carry the extra constant <m>\frac{1}{\ln a}</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-logarithmic-differentiation">
+    <title>Logarithmic differentiation</title>
+
+    <p>Some functions are awkward for ordinary differentiation rules. They involve many factors, powers, or variables in both the base and the exponent.</p>
+
+    <p>For example,</p>
+    <md>y=x^x</md>
+    <p>has <m>x</m> in the base and in the exponent. It is not a power function like <m>x^5</m>, and it is not an exponential function like <m>5^x</m>.</p>
+
+    <p>Take logarithms:</p>
+    <md>\ln y=\ln(x^x).</md>
+
+    <p>Using logarithm rules,</p>
+    <md>\ln y=x\ln x.</md>
+
+    <p>Now differentiate both sides with respect to <m>x</m>. Since <m>y</m> depends on <m>x</m>, the left side requires the chain rule:</p>
+    <md>\frac{d}{dx}\ln y=\frac{1}{y}\frac{dy}{dx}.</md>
+
+    <p>The right side uses the product rule:</p>
+    <md>\frac{d}{dx}(x\ln x)=\ln x+x\cdot\frac{1}{x}=\ln x+1.</md>
+
+    <p>So</p>
+    <md>\frac{1}{y}\frac{dy}{dx}=\ln x+1.</md>
+
+    <p>Multiply by <m>y</m>:</p>
+    <md>\frac{dy}{dx}=y(\ln x+1).</md>
+
+    <p>Since <m>y=x^x</m>, we get</p>
+    <md>\frac{d}{dx}x^x=x^x(\ln x+1), \qquad x\gt 0.</md>
+
+    <p>This method is called <term>logarithmic differentiation</term>.</p>
+
+    <principle xml:id="principle-logarithmic-differentiation">
+      <title>Logarithmic differentiation</title>
+      <statement>
+        <p>When a positive function <m>y=f(x)</m> is a product, quotient, power, or variable-base expression, it can help to take natural logarithms first:</p>
+        <md>\ln y=\ln(f(x)).</md>
+        <p>Then differentiate implicitly and solve for <m>y'</m>.</p>
+      </statement>
+    </principle>
+
+    <example xml:id="ex-log-diff-rational-power">
+      <title>Logarithmic differentiation of a multi-factor expression</title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=\frac{(x^2+1)^5\sqrt{x-1}}{(3x+2)^4}, \qquad x\gt 1.</md>
+        <p>Taking natural logarithms gives</p>
+        <md>\ln y = \ln\left(\frac{(x^2+1)^5\sqrt{x-1}}{(3x+2)^4}\right).</md>
+        <p>Use logarithm rules:</p>
+        <md>\ln y = 5\ln(x^2+1)+\frac{1}{2}\ln(x-1)-4\ln(3x+2).</md>
+        <p>Differentiate both sides:</p>
+        <md>\frac{y'}{y} = 5\cdot\frac{2x}{x^2+1} + \frac{1}{2}\cdot\frac{1}{x-1} - 4\cdot\frac{3}{3x+2}.</md>
+        <p>So</p>
+        <md>\frac{y'}{y} = \frac{10x}{x^2+1} + \frac{1}{2(x-1)} - \frac{12}{3x+2}.</md>
+        <p>Multiply by <m>y</m>:</p>
+        <md>y' = y\left( \frac{10x}{x^2+1} + \frac{1}{2(x-1)} - \frac{12}{3x+2} \right).</md>
+        <p>Substitute the original expression for <m>y</m>:</p>
+        <md>y' = \frac{(x^2+1)^5\sqrt{x-1}}{(3x+2)^4} \left( \frac{10x}{x^2+1} + \frac{1}{2(x-1)} - \frac{12}{3x+2} \right).</md>
+        <p>Without logarithmic differentiation, this derivative would require several rounds of product, quotient, and chain rules. The logarithm turns products into sums and powers into coefficients.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-log-diff-sin-to-x">
+      <title>Differentiating <m>(\sin x)^x</m></title>
+      <statement>
+        <p>Differentiate</p>
+        <md>y=(\sin x)^x,</md>
+        <p>on an interval where <m>\sin x\gt 0</m>.</p>
+        <p>Take logarithms:</p>
+        <md>\ln y=x\ln(\sin x).</md>
+        <p>Differentiate:</p>
+        <md>\frac{y'}{y} = \ln(\sin x)+x\frac{\cos x}{\sin x}.</md>
+        <p>Thus</p>
+        <md>\frac{y'}{y} = \ln(\sin x)+x\cot x.</md>
+        <p>Multiply by <m>y</m>:</p>
+        <md>y' = (\sin x)^x\left(\ln(\sin x)+x\cot x\right).</md>
+        <p>The condition <m>\sin x\gt 0</m> matters. The expression <m>(\sin x)^x</m> is not a real-valued elementary function for all real <m>x</m>, and <m>\ln(\sin x)</m> only makes sense where <m>\sin x</m> is positive.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-table-so-far">
+    <title>The derivative table so far</title>
+
+    <p>We now have the main elementary derivative formulas:</p>
+
+    <table>
+      <title>Elementary derivative formulas</title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>function</term></cell>
+          <cell><term>derivative</term></cell>
+        </row>
+        <row>
+          <cell><m>x^n</m></cell>
+          <cell><m>nx^{n-1}</m></cell>
+        </row>
+        <row>
+          <cell><m>\sin x</m></cell>
+          <cell><m>\cos x</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos x</m></cell>
+          <cell><m>-\sin x</m></cell>
+        </row>
+        <row>
+          <cell><m>\tan x</m></cell>
+          <cell><m>\sec^2 x</m></cell>
+        </row>
+        <row>
+          <cell><m>e^x</m></cell>
+          <cell><m>e^x</m></cell>
+        </row>
+        <row>
+          <cell><m>a^x</m></cell>
+          <cell><m>(\ln a)a^x</m></cell>
+        </row>
+        <row>
+          <cell><m>\ln x</m></cell>
+          <cell><m>\dfrac{1}{x}</m></cell>
+        </row>
+        <row>
+          <cell><m>\log_a x</m></cell>
+          <cell><m>\dfrac{1}{x\ln a}</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>Together with the sum, product, quotient, and chain rules, these formulas let us differentiate a wide range of functions.</p>
+
+    <p>But one idea has appeared twice without being named fully. We found <m>\ln x</m> by reversing <m>e^x</m>. Earlier, trigonometry gave us sine and cosine; reversing those functions will give <m>\arcsin x</m>, <m>\arccos x</m>, and <m>\arctan x</m>. The next question is general: when a function has an inverse, how is the derivative of the inverse related to the original derivative?</p>
+  </subsection>
+
+</section>
