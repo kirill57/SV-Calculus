@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-differentiability-continuity">
+  <title>Differentiability and continuity</title>
+
+  <p>Differentiability requires that a curve locally resembles a straight line. Because lines cannot jump, any differentiable function must necessarily be continuous: differentiability is strictly stronger than continuity.</p>
+
+  <subsection xml:id="subsec-differentiability-implies-continuity">
+    <title>Differentiability implies continuity</title>
+
+    <theorem xml:id="thm-differentiable-implies-continuous">
+      <title>Differentiability implies continuity</title>
+      <statement>
+        <p>If <m>f</m> is differentiable at <m>a</m>, then <m>f</m> is continuous at <m>a</m>.</p>
+      </statement>
+      <proof>
+        <p>Since <m>f'(a)</m> exists as a finite real number, for <m>h\neq 0</m> we write:</p>
+        <md>f(a+h)-f(a) = h \cdot \frac{f(a+h)-f(a)}{h}.</md>
+        <p>Taking the limit as <m>h\to 0</m>:</p>
+        <md>\lim_{h\to 0}\bigl(f(a+h)-f(a)\bigr) = \lim_{h\to 0} h \cdot \lim_{h\to 0}\frac{f(a+h)-f(a)}{h} = 0 \cdot f'(a) = 0.</md>
+        <p>Hence <m>\lim_{h\to 0}f(a+h) = f(a)</m>, proving that <m>f</m> is continuous at <m>a</m>.</p>
+      </proof>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-continuity-not-differentiability">
+    <title>Why the converse is false</title>
+
+    <p>Continuity ensures that a curve does not break; differentiability demands a single limiting tangent slope. A curve can be connected without possessing a unique tangent slope.</p>
+
+    <figure xml:id="fig-abs-val-corner">
+      <caption>The absolute value function <m>y=|x|</m> is continuous everywhere but fails to be differentiable at <m>x=0</m>.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.68\textwidth,
+                height=0.44\textwidth,
+                xmin=-2.2, xmax=2.2,
+                ymin=-0.2, ymax=2.3,
+                axis lines=middle,
+                xlabel={\(x\)},
+                ylabel={\(y\)},
+                xtick={-1,0,1},
+                ytick={1,2},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=-2:0, samples=2] {-x};
+            \addplot[thick, domain=0:2, samples=2] {x};
+            \addplot[very thick, dashed, domain=-1.55:0.05, samples=2] {-x};
+            \addplot[very thick, dotted, domain=-0.05:1.55, samples=2] {x};
+            \addplot[only marks, mark=*] coordinates {(0,0)};
+            \node[anchor=east] at (axis cs:-0.35,1.45) {left slope \(-1\)};
+            \node[anchor=west] at (axis cs:0.35,1.45) {right slope \(1\)};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-ways-differentiability-can-fail">
+    <title>Corners, cusps, vertical tangents, and jumps</title>
+
+    <table>
+      <title>Mechanisms of differentiability failure</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Feature</term></cell>
+          <cell><term>Slope behavior</term></cell>
+          <cell><term>Canonical example</term></cell>
+        </row>
+        <row>
+          <cell>Corner</cell>
+          <cell>Left and right slopes are finite but unequal</cell>
+          <cell><m>|x|</m> at <m>x=0</m></cell>
+        </row>
+        <row>
+          <cell>Cusp</cell>
+          <cell>Slopes diverge to <m>\pm\infty</m> in opposite directions</cell>
+          <cell><m>|x|^{2/3}</m> at <m>x=0</m></cell>
+        </row>
+        <row>
+          <cell>Vertical tangent</cell>
+          <cell>Slopes diverge to <m>+\infty</m> (or <m>-\infty</m>)</cell>
+          <cell><m>\sqrt[3]{x}</m> at <m>x=0</m></cell>
+        </row>
+        <row>
+          <cell>Jump</cell>
+          <cell>Discontinuous (derivative impossible)</cell>
+          <cell>Heaviside step function</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <sidebyside widths="48% 48%" margins="auto">
+      <figure xml:id="fig-corner-fail">
+        <caption>Corner: <m>y=|x|</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=-2, xmax=2,
+                  ymin=-0.2, ymax=2.2,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-1,0,1},
+                  ytick={1},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2:2, samples=80] {abs(x)};
+              \node[anchor=west] at (axis cs:0.25,1.55) {corner};
+              \node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-cusp-fail">
+        <caption>Cusp: <m>y=|x|^{2/3}</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=-2, xmax=2,
+                  ymin=-0.2, ymax=2.2,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-1,0,1},
+                  ytick={1},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2:2, samples=120] {abs(x)^(2/3)};
+              \node[anchor=west] at (axis cs:0.25,1.55) {cusp};
+              \node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|^{2/3}\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+
+    <sidebyside widths="48% 48%" margins="auto">
+      <figure xml:id="fig-vert-tangent-fail">
+        <caption>Vertical tangent: <m>y=\sqrt[3]{x}</m></caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=-2, xmax=2,
+                  ymin=-1.5, ymax=1.5,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-1,0,1},
+                  ytick={-1,1},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2:0, samples=80] {-(-x)^(1/3)};
+              \addplot[thick, domain=0:2, samples=80] {x^(1/3)};
+              \draw[very thick, dashed] (axis cs:0,-1.3) -- (axis cs:0,1.3);
+              \node[anchor=west] at (axis cs:0.25,0.9) {vertical tangent};
+              \node[anchor=west] at (axis cs:0.25,0.62) {\(y=\sqrt[3]{x}\)};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <figure xml:id="fig-jump-fail">
+        <caption>Jump discontinuity</caption>
+        <image>
+          <latex-image>
+            \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=-2, xmax=2,
+                  ymin=-0.4, ymax=1.4,
+                  axis lines=middle,
+                  xlabel={\(x\)},
+                  ylabel={\(y\)},
+                  xtick={-1,0,1},
+                  ytick={0,1},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=-2:0, samples=2] {0};
+              \addplot[thick, domain=0:2, samples=2] {1};
+              \addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
+              \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,1)};
+              \node[anchor=west] at (axis cs:0.25,0.75) {jump};
+              \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </sidebyside>
+  </subsection>
+
+  <subsection xml:id="subsec-absolute-value-warning-example">
+    <title>The absolute value as the first warning example</title>
+
+    <p>For <m>f(x)=|x|</m>, no single linear approximation <m>|h| \approx mh</m> can satisfy <m>\lim_{h\to 0}\frac{|h|-mh}{h} = 0</m>, because the left slope is <m>-1</m> and the right slope is <m>+1</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-derivative-endpoints-note">
+    <title>A note about endpoints</title>
+
+    <p>The standard derivative definition requires a two-sided limit. At boundary endpoints of intervals (e.g. <m>x=0</m> for <m>\sqrt{x}</m> on <m>[0,\infty)</m>), only one-sided derivative limits can be formed.</p>
+  </subsection>
+
+</section>
