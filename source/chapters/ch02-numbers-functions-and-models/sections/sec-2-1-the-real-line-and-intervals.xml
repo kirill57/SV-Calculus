@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-real-line-intervals">
+  <title>The real line and intervals</title>
+
+  <p>Numbers do two jobs for us. They locate points, and they measure distances between points. The same number <m>3</m> can mean a position on a line, a length, a time, a temperature, or an error bound. Calculus depends on moving between these meanings without confusion.</p>
+
+  <subsection xml:id="subsec-points-as-numbers">
+    <title>Points as numbers</title>
+
+    <p>We picture the real numbers on a horizontal line. Positive numbers lie to the right of <m>0</m>. Negative numbers lie to the left.</p>
+
+    <figure xml:id="fig-real-line-basic">
+      <caption>The real line turns numbers into points and distances.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+            \draw[&lt;-&gt;, thick] (-4.2,0) -- (4.2,0);
+            \foreach \x in {-3,-2,-1,0,1,2,3} {
+              \draw[thick] (\x,0.09) -- (\x,-0.09);
+              \node[below] at (\x,-0.09) {\(\x\)};
+            }
+            \fill (1.414,0) circle (2pt);
+            \node[above] at (1.414,0.12) {\(\sqrt2\)};
+            \fill (-2.5,0) circle (2pt);
+            \node[above] at (-2.5,0.12) {\(-2.5\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>When we write</p>
+
+    <md>a\lt b,</md>
+
+    <p>we mean that <m>a</m> lies to the left of <m>b</m> on the real line. Equivalently, <m>b-a</m> is positive.</p>
+
+    <p>When we write</p>
+
+    <md>a\le b,</md>
+
+    <p>we mean that <m>a\lt b</m> or <m>a=b</m>.</p>
+
+    <example xml:id="ex-interval-trapping">
+      <title>Trapping a number</title>
+      <statement>
+        <p>The inequality</p>
+        <md>1.99\lt 2\lt 2.01</md>
+        <p>says that <m>2</m> lies between <m>1.99</m> and <m>2.01</m>. It also says that <m>2</m> is within <m>0.01</m> of both endpoints.</p>
+        <p>This is already the kind of statement calculus will use. A limiting process often traps a number inside smaller and smaller intervals.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-intervals">
+    <title>Open, closed, and half-open intervals</title>
+
+    <p>An <em>interval</em> is an unbroken piece of the real line. If two numbers are in the interval, then every number between them is also in the interval.</p>
+
+    <p>For <m>a\lt b</m>, we use the following notation:</p>
+
+    <md>
+      <mrow>(a,b)\amp=\{x\in\mathbb{R}: a\lt x\lt b\},</mrow>
+      <mrow>[a,b]\amp=\{x\in\mathbb{R}: a\le x\le b\},</mrow>
+      <mrow>(a,b]\amp=\{x\in\mathbb{R}: a\lt x\le b\},</mrow>
+      <mrow>[a,b)\amp=\{x\in\mathbb{R}: a\le x\lt b\}.</mrow>
+    </md>
+
+    <p>The parentheses mean that an endpoint is not included. The square bracket means that an endpoint is included.</p>
+
+    <figure xml:id="fig-interval-types">
+      <caption>Open circles mean endpoints are excluded. Filled circles mean endpoints are included.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[xscale=1.2, every node/.style={font=\small}]
+            % open interval
+            \draw[&lt;-&gt;] (-0.4,2.4) -- (4.4,2.4);
+            \draw[very thick] (1,2.4) -- (3,2.4);
+            \draw[fill=white, thick] (1,2.4) circle (2.5pt);
+            \draw[fill=white, thick] (3,2.4) circle (2.5pt);
+            \node[below] at (1,2.33) {\(a\)};
+            \node[below] at (3,2.33) {\(b\)};
+            \node[right] at (4.5,2.4) {\((a,b)\)};
+
+            % closed interval
+            \draw[&lt;-&gt;] (-0.4,1.2) -- (4.4,1.2);
+            \draw[very thick] (1,1.2) -- (3,1.2);
+            \draw[fill=black, thick] (1,1.2) circle (2.5pt);
+            \draw[fill=black, thick] (3,1.2) circle (2.5pt);
+            \node[below] at (1,1.13) {\(a\)};
+            \node[below] at (3,1.13) {\(b\)};
+            \node[right] at (4.5,1.2) {\([a,b]\)};
+
+            % half-open interval
+            \draw[&lt;-&gt;] (-0.4,0) -- (4.4,0);
+            \draw[very thick] (1,0) -- (3,0);
+            \draw[fill=black, thick] (1,0) circle (2.5pt);
+            \draw[fill=white, thick] (3,0) circle (2.5pt);
+            \node[below] at (1,-0.07) {\(a\)};
+            \node[below] at (3,-0.07) {\(b\)};
+            \node[right] at (4.5,0) {\([a,b)\)};
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>There are also infinite intervals:</p>
+
+    <md>
+      <mrow>(a,\infty)\amp=\{x\in\mathbb{R}:x\gt a\},</mrow>
+      <mrow>(-\infty,b]\amp=\{x\in\mathbb{R}:x\le b\}.</mrow>
+    </md>
+
+    <p>The symbols <m>\infty</m> and <m>-\infty</m> are not real numbers. They are directions. So we never write a square bracket next to <m>\infty</m>.</p>
+
+    <example xml:id="ex-time-intervals">
+      <title>Intervals of time</title>
+      <statement>
+        <p>The set of all times from <m>0</m> to <m>3</m> hours, including both endpoints, is <m>[0,3]</m>.</p>
+        <p>The set of all positive times is <m>(0,\infty)</m>.</p>
+        <p>The set of all nonnegative times is <m>[0,\infty)</m>.</p>
+      </statement>
+    </example>
+
+    <paragraphs xml:id="par-punctured-interval">
+      <title>A punctured interval</title>
+      <p>Limits often look near a point without using the point itself. The set</p>
+      <md>(a-\varepsilon,a+\varepsilon)\setminus\{a\}</md>
+      <p>is called a <em>punctured interval</em> around <m>a</m>. It contains numbers close to <m>a</m>, but not <m>a</m> itself.</p>
+      <p>This is exactly what happened in the average velocity</p>
+      <md>\frac{s(2+h)-s(2)}{h}.</md>
+      <p>We wanted <m>h</m> close to <m>0</m>, but <m>h=0</m> was not allowed because the denominator would be <m>0</m>.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-absolute-value-distance">
+    <title>Absolute value as distance</title>
+
+    <p>The absolute value of a number measures its distance from <m>0</m>:</p>
+
+    <md>
+      |x|=
+      \begin{cases}
+      x, \amp x\ge 0,\\
+      -x, \amp x\lt 0.
+      \end{cases}
+    </md>
+
+    <p>Thus <m>|3|=3</m>, <m>|-3|=3</m>, and <m>|0|=0</m>. Distance is never negative.</p>
+
+    <p>The distance between two numbers <m>x</m> and <m>a</m> is</p>
+
+    <md>|x-a|.</md>
+
+    <p>It does not matter which number is written first, because <m>|x-a|=|a-x|</m>.</p>
+
+    <figure xml:id="fig-absolute-value-neighborhood">
+      <caption>The inequality <m>|x-a|\lt \varepsilon</m> means that <m>x</m> lies within distance <m>\varepsilon</m> of <m>a</m>.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}[scale=1.05, every node/.style={font=\small}]
+            \draw[&lt;-&gt;, thick] (-0.7,0) -- (7.2,0);
+
+            \coordinate (L) at (1.5,0);
+            \coordinate (A) at (3.5,0);
+            \coordinate (R) at (5.5,0);
+
+            \draw[fill=black] (A) circle (2.4pt);
+            \draw[fill=white, thick] (L) circle (2.4pt);
+            \draw[fill=white, thick] (R) circle (2.4pt);
+
+            \node[below] at (L) {\(a-\varepsilon\)};
+            \node[below] at (A) {\(a\)};
+            \node[below] at (R) {\(a+\varepsilon\)};
+
+            \draw[decorate, decoration={brace, amplitude=5pt}] (L) -- (A);
+            \node[above] at (2.5,0.25) {\(\varepsilon\)};
+
+            \draw[decorate, decoration={brace, amplitude=5pt}] (A) -- (R);
+            \node[above] at (4.5,0.25) {\(\varepsilon\)};
+
+            \draw[very thick] (L) -- (R);
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The most useful translation is this one:</p>
+
+    <md>\boxed{|x-a|\lt \varepsilon \quad \Longleftrightarrow \quad a-\varepsilon\lt x\lt a+\varepsilon,} \qquad \varepsilon\gt 0.</md>
+
+    <p>In words: <m>x</m> is within <m>\varepsilon</m> of <m>a</m> exactly when <m>x</m> lies between <m>a-\varepsilon</m> and <m>a+\varepsilon</m>.</p>
+
+    <proof>
+      <p>The inequality <m>|x-a|\lt \varepsilon</m> means that the distance from <m>x</m> to <m>a</m> is less than <m>\varepsilon</m>. On the line, this says that <m>x</m> cannot be <m>\varepsilon</m> or more units to the left of <m>a</m>, and cannot be <m>\varepsilon</m> or more units to the right of <m>a</m>. Therefore</p>
+      <md>a-\varepsilon\lt x\lt a+\varepsilon.</md>
+      <p>Algebraically, the same statement is</p>
+      <md>-\varepsilon\lt x-a\lt \varepsilon.</md>
+      <p>Adding <m>a</m> to all three parts gives</p>
+      <md>a-\varepsilon\lt x\lt a+\varepsilon.</md>
+      <p>The steps reverse, so the two statements are equivalent.</p>
+    </proof>
+
+    <example xml:id="ex-solve-absolute-value">
+      <title>Solving an absolute value inequality</title>
+      <statement>
+        <p>Solve</p>
+        <md>|x-5|\lt \frac{1}{2}.</md>
+        <p>This means that <m>x</m> is within <m>\frac{1}{2}</m> of <m>5</m>. Therefore</p>
+        <md>5-\frac{1}{2}\lt x\lt 5+\frac{1}{2},</md>
+        <p>so</p>
+        <md>\frac{9}{2}\lt x\lt \frac{11}{2}.</md>
+        <p>In interval notation, <m>x\in\left(\frac{9}{2},\frac{11}{2}\right)</m>.</p>
+        <p>If the inequality were <m>|x-5|\le \frac{1}{2}</m>, the answer would be the closed interval <m>\left[\frac{9}{2},\frac{11}{2}\right]</m>.</p>
+      </statement>
+    </example>
+
+    <paragraphs xml:id="par-why-epsilon-positive">
+      <title>Why <m>\varepsilon\gt 0</m> appears</title>
+      <p>The number <m>\varepsilon</m> is usually an allowed error. Allowed errors must be positive.</p>
+      <p>If <m>\varepsilon=0</m>, then <m>|x-a|\lt 0</m> has no solution, because a distance cannot be negative.</p>
+      <p>If <m>\varepsilon\lt 0</m>, the inequality <m>|x-a|\lt \varepsilon</m> also has no solution.</p>
+      <p>So whenever we write <m>|x-a|\lt \varepsilon</m> to describe closeness, we mean <m>\varepsilon\gt 0</m>.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-inequalities-control-error">
+    <title>Inequalities as a way to control error</title>
+
+    <p>The word <em>error</em> does not mean a mistake. It means the difference between a quantity and the value we want.</p>
+
+    <p>If an approximation <m>A</m> is meant to approximate a true value <m>T</m>, then the absolute error is</p>
+
+    <md>|A-T|.</md>
+
+    <p>For example, using <m>3.14</m> to approximate <m>\pi</m> gives absolute error <m>|\pi-3.14|</m>. When we say</p>
+
+    <md>|\pi-3.14|\lt 0.002,</md>
+
+    <p>we are saying that <m>3.14</m> is within <m>0.002</m> of <m>\pi</m>.</p>
+
+    <p>Calculus uses inequalities to force errors to become small.</p>
+
+    <example xml:id="ex-controlling-velocity-error">
+      <title>Controlling the average velocity error</title>
+      <statement>
+        <p>For <m>s(t)=t^2</m>, the average velocity from <m>t=2</m> to <m>t=2+h</m> is</p>
+        <md>\frac{s(2+h)-s(2)}{h}=4+h, \qquad h\neq 0.</md>
+        <p>The error from <m>4</m> is</p>
+        <md>|(4+h)-4|=|h|.</md>
+        <p>If we want this error to be less than <m>0.01</m>, it is enough to require</p>
+        <md>0\lt |h|\lt 0.01.</md>
+        <p>The condition <m>h\neq 0</m> is written as <m>0\lt |h|</m>. The condition that <m>h</m> is close to <m>0</m> is written as <m>|h|\lt 0.01</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-controlling-cubic-velocity-error">
+      <title>A slightly less obvious error</title>
+      <statement>
+        <p>For <m>s(t)=t^3</m>, the average velocity from <m>t=2</m> to <m>t=2+h</m> is</p>
+        <md>\frac{s(2+h)-s(2)}{h} = \frac{(2+h)^3-8}{h}.</md>
+        <p>For <m>h\neq 0</m>,</p>
+        <md>\frac{(2+h)^3-8}{h} = \frac{8+12h+6h^2+h^3-8}{h} = 12+6h+h^2.</md>
+        <p>The number we expect as <m>h</m> gets close to <m>0</m> is <m>12</m>. The error is</p>
+        <md>|(12+6h+h^2)-12| = |6h+h^2|.</md>
+        <p>This is not exactly <m>|h|</m>, but we can control it by <m>|h|</m>. If <m>|h|\lt 1</m>, then</p>
+        <md>|6h+h^2| \le 6|h|+|h|^2 \lt 6|h|+|h| = 7|h|.</md>
+        <p>So to make the error less than <m>0.01</m>, it is enough to require <m>7|h|\lt 0.01</m>, or</p>
+        <md>|h|\lt \frac{0.01}{7}.</md>
+        <p>This is the basic shape of a limit proof. We do not merely say that the numbers seem to approach <m>12</m>. We show how to make the error smaller than any chosen tolerance.</p>
+      </statement>
+    </example>
+
+    <remark xml:id="rmk-language-of-control">
+      <title>The language of control</title>
+      <p>An inequality such as</p>
+      <md>|A-T|\lt \varepsilon</md>
+      <p>means that the approximation <m>A</m> is within the allowed error <m>\varepsilon</m> of the target value <m>T</m>.</p>
+    </remark>
+
+    <p>The real line now gives us a way to talk about closeness. But there is a deeper question hiding under the picture. Is the line really unbroken? Are there numbers for all the points that geometry asks for?</p>
+
+    <p>The answer is yes for the real numbers. It is no for the rational numbers. That difference is one reason calculus is built on <m>\mathbb{R}</m>, not just on fractions.</p>
+  </subsection>
+
+</section>
