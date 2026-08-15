@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-warning-examples-limits-continuity">
+  <title>Warning examples</title>
+
+  <p>Continuity gave us two promises: the Intermediate Value Theorem ensures a continuous graph cannot skip a height, and the Extreme Value Theorem ensures a continuous function on a closed bounded interval reaches an absolute maximum and minimum.</p>
+
+  <p>Those promises are strong because their hypotheses are strong. If we remove a hypothesis, the conclusion may fail. This section gathers the warnings in one place to prevent illegal applications of theorems.</p>
+
+  <subsection xml:id="subsec-no-limit-at-jump-warning">
+    <title>A function with no limit at a jump</title>
+
+    <p>A two-sided limit needs one single target; a jump provides two distinct targets.</p>
+
+    <example xml:id="ex-warning-jump-no-limit">
+      <title>No two-sided limit at a jump</title>
+      <statement>
+        <p>Define <m>J(x)=\begin{cases}0, \amp x\lt 0, \\ 1, \amp x\ge 0.\end{cases}</m></p>
+        <p>As <m>x\to 0^-</m>, <m>J(x)\to 0</m>, while as <m>x\to 0^+</m>, <m>J(x)\to 1</m>. Because the one-sided limits disagree, <m>\lim_{x\to 0}J(x)</m> does not exist.</p>
+
+        <figure xml:id="fig-jump-warning-no-limit">
+          <caption>A jump creates two different one-sided limits, so the two-sided limit fails.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.68\textwidth,
+                    height=0.42\textwidth,
+                    xmin=-1.4, xmax=1.4,
+                    ymin=-0.3, ymax=1.35,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(J(x)\)},
+                    xtick={-1,0,1},
+                    ytick={0,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-1.35:-0.04, samples=2] {0};
+                \addplot[thick, domain=0:1.35, samples=2] {1};
+                \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,0)};
+                \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,1)};
+                \node[anchor=south east] at (axis cs:-0.08,0.05) {left target \(0\)};
+                \node[anchor=south west] at (axis cs:0.08,1.05) {right target \(1\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-infinite-not-finite-warning">
+    <title>A limit that is infinite, not finite</title>
+
+    <p>A limit fails in a different way when values do not settle near any finite number.</p>
+
+    <example xml:id="ex-warning-infinite-divergence">
+      <title>Infinite divergence is not a finite limit</title>
+      <statement>
+        <p>Consider <m>f(x)=\frac{1}{x^2}</m> for <m>x\neq 0</m>. As <m>x\to 0</m>, <m>x^2\to 0^+</m>, so the values explode beyond every fixed bound.</p>
+
+        <table>
+          <title>Values of <m>\frac{1}{x^2}</m> near <m>x=0</m></title>
+          <tabular top="major" bottom="major" left="major" right="major">
+            <row bottom="minor">
+              <cell><m>x</m></cell>
+              <cell><m>-0.1</m></cell>
+              <cell><m>-0.01</m></cell>
+              <cell><m>-0.001</m></cell>
+              <cell><m>0.001</m></cell>
+              <cell><m>0.01</m></cell>
+              <cell><m>0.1</m></cell>
+            </row>
+            <row>
+              <cell><m>\frac{1}{x^2}</m></cell>
+              <cell><m>100</m></cell>
+              <cell><m>10{,}000</m></cell>
+              <cell><m>1{,}000{,}000</m></cell>
+              <cell><m>1{,}000{,}000</m></cell>
+              <cell><m>10{,}000</m></cell>
+              <cell><m>100</m></cell>
+            </row>
+          </tabular>
+        </table>
+
+        <p>We write <m>\lim_{x\to 0}\frac{1}{x^2}=\infty</m>, but this means unbounded growth, not that a finite limit <m>L\in\mathbb{R}</m> exists.</p>
+
+        <figure xml:id="fig-infinite-limit-warning">
+          <caption>The values of <m>1/x^2</m> grow without bound near <m>0</m>. This is infinite behavior, not a finite limit.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.70\textwidth,
+                    height=0.46\textwidth,
+                    xmin=-1.1, xmax=1.1,
+                    ymin=0, ymax=30,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(y\)},
+                    xtick={-1,0,1},
+                    ytick={10,20,30},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-1:-0.19, samples=120] {1/(x^2)};
+                \addplot[thick, domain=0.19:1, samples=120] {1/(x^2)};
+                \draw[dashed, thick] (axis cs:0,0) -- (axis cs:0,30);
+                \node[anchor=west] at (axis cs:0.0,7) {\(x=0\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-ivt-fails-without-continuity-warning">
+    <title>The Intermediate Value Theorem fails without continuity</title>
+
+    <example xml:id="ex-warning-ivt-fails-jump">
+      <title>Discontinuous step function skips values</title>
+      <statement>
+        <p>Define <m>S(x)=\begin{cases}0, \amp x\lt 0, \\ 2, \amp x\ge 0.\end{cases}</m> On <m>[-1,1]</m>, <m>S(-1)=0</m> and <m>S(1)=2</m>. The intermediate value <m>N=1</m> is never attained because <m>S</m> is discontinuous at <m>0</m>.</p>
+
+        <figure xml:id="fig-ivt-warning-fails">
+          <caption>Without continuity, a function can jump over an intermediate value.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.68\textwidth,
+                    height=0.42\textwidth,
+                    xmin=-1.4, xmax=1.4,
+                    ymin=-0.4, ymax=2.4,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(S(x)\)},
+                    xtick={-1,0,1},
+                    ytick={0,1,2},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-1.35:-0.04, samples=2] {0};
+                \addplot[thick, domain=0:1.35, samples=2] {2};
+                \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,0)};
+                \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,2)};
+                \draw[dashed] (axis cs:-1.35,1) -- (axis cs:1.35,1);
+                \node[anchor=west] at (axis cs:0.12,1.08) {skipped value \(1\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-evt-fails-open-interval-warning">
+    <title>The Extreme Value Theorem fails on an open interval</title>
+
+    <example xml:id="ex-warning-evt-open-interval">
+      <title>Missing endpoints prevent reaching extrema</title>
+      <statement>
+        <p>Consider <m>f(x)=x</m> on the open interval <m>(0,1)</m>. The function is continuous at every point in <m>(0,1)</m>, but values approach <m>0</m> and <m>1</m> without ever reaching them. Hence <m>f</m> has neither an absolute maximum nor an absolute minimum on <m>(0,1)</m>.</p>
+
+        <figure xml:id="fig-evt-warning-open-interval">
+          <caption>On <m>(0,1)</m>, the function <m>f(x)=x</m> approaches its lowest and highest possible values but never reaches them.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.68\textwidth,
+                    height=0.42\textwidth,
+                    xmin=-0.15, xmax=1.15,
+                    ymin=-0.15, ymax=1.15,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(f(x)\)},
+                    xtick={0,1},
+                    ytick={0,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=0.02:0.98, samples=2] {x};
+                \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,0) (1,1)};
+                \node[anchor=south east] at (axis cs:0.95,0.95) {not reached};
+                \node[anchor=north west] at (axis cs:0.05,0.05) {not reached};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-evt-fails-unbounded-interval-warning">
+    <title>The Extreme Value Theorem fails on an unbounded interval</title>
+
+    <example xml:id="ex-warning-evt-unbounded-interval">
+      <title>Unbounded interval allows escape to infinity</title>
+      <statement>
+        <p>Consider <m>f(x)=x</m> on <m>[0,\infty)</m>. It achieves a minimum <m>f(0)=0</m>, but no maximum exists because <m>f(x+1)\gt f(x)</m> for all <m>x</m>.</p>
+        <p>Similarly, the cooling model <m>T(t)=70+\frac{90}{t+1}</m> on <m>[0,\infty)</m> attains its maximum <m>T(0)=160</m> but never reaches its infimum <m>70</m> at any finite time <m>t</m>.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-map-of-warnings">
+    <title>A map of the warnings</title>
+
+    <table>
+      <title>Summary of conditions, hypotheses, and failure modes</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Desired Claim</term></cell>
+          <cell><term>Missing Hypothesis</term></cell>
+          <cell><term>What Breaks</term></cell>
+        </row>
+        <row>
+          <cell><m>\lim_{x\to a}f(x)</m> exists</cell>
+          <cell>Left and right sides agree</cell>
+          <cell>Jump gives two conflicting targets</cell>
+        </row>
+        <row>
+          <cell>Finite limit exists</cell>
+          <cell>Values stay bounded near <m>a</m></cell>
+          <cell>Vertical asymptote (infinite divergence)</cell>
+        </row>
+        <row>
+          <cell>IVT conclusion</cell>
+          <cell>Continuity</cell>
+          <cell>Intermediate values can be skipped</cell>
+        </row>
+        <row>
+          <cell>EVT conclusion</cell>
+          <cell>Closed interval</cell>
+          <cell>Endpoints missing; extrema not reached</cell>
+        </row>
+        <row>
+          <cell>EVT conclusion</cell>
+          <cell>Bounded interval</cell>
+          <cell>Extrema can escape to infinity</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>A theorem is a logical contract: when all hypotheses are met, the conclusion is guaranteed; when any hypothesis is violated, guarantees vanish. The next section explores limiting processes where the index is a whole number <m>n</m>: sequences.</p>
+  </subsection>
+
+</section>
