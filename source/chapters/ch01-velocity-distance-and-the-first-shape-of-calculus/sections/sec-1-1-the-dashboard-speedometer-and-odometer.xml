@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-dashboard">
+  <title>The dashboard: speedometer and odometer</title>
+
+  <p>Look at two instruments on a car dashboard.</p>
+
+  <p>The <term>odometer</term> records distance. It tells how many miles the car has accumulated.</p>
+
+  <p>The <term>speedometer</term> records speed. It tells how fast the odometer reading is changing.</p>
+
+  <p>For the moment, imagine that the car moves only forward along a straight road. Then speed and velocity agree. Later, when the car can reverse direction, we will need signed velocity.</p>
+
+  <figure xml:id="fig-dashboard">
+    <caption>The odometer records accumulated distance. The speedometer records how fast that distance is changing.</caption>
+    <image width="70%">
+      <latex-image>
+        \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+          % Speedometer
+          \draw[thick] (0,0) circle (1.35);
+          \foreach \ang/\lab in {210/0,180/20,150/40,120/60,90/80,60/100,30/120} {
+             \draw[thick] ({1.15*cos(\ang)},{1.15*sin(\ang)})
+               -- ({1.32*cos(\ang)},{1.32*sin(\ang)});
+             \node at ({0.86*cos(\ang)},{0.86*sin(\ang)}) {\lab};
+          }
+          \draw[very thick,-&gt;] (0,0) -- ({1.02*cos(120)},{1.02*sin(120)});
+          \node at (0,-1.75) {speedometer: \(v(t)=60\) miles/hour};
+
+          % Odometer
+          \draw[rounded corners,thick] (3.0,-0.45) rectangle (6.0,0.45);
+          \node[font=\ttfamily\large] at (4.5,0) {018246.3};
+          \node at (4.5,-1.05) {odometer: \(d(t)\) miles};
+        \end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Let <m>t</m> denote time, measured in hours after the start of a trip. Let</p>
+
+  <md>d(t)</md>
+
+  <p>denote the number of miles traveled after <m>t</m> hours. Let</p>
+
+  <md>v(t)</md>
+
+  <p>denote the velocity at time <m>t</m>, measured in miles per hour.</p>
+
+  <p>The notation <m>d(t)</m> means: the distance depends on the time. When the input is a time <m>t</m>, the output is a distance <m>d(t)</m>. We will soon give this kind of rule a name: a <term>function</term>. For now, the notation lets us keep track of the trip.</p>
+
+  <subsection xml:id="subsec-distance-as-accumulated-motion">
+    <title>Distance as accumulated motion</title>
+
+    <p>Suppose the odometer reads <m>18{,}246.3</m> miles at <m>9{:}00</m> and <m>18{,}346.3</m> miles at <m>11{:}00</m>. During those two hours, the car has accumulated</p>
+
+    <md>18{,}346.3-18{,}246.3=100</md>
+
+    <p>miles.</p>
+
+    <p>The odometer does not say how the car traveled those <m>100</m> miles. The driver might have gone steadily. Or slowly at first and quickly later. The odometer remembers the total effect, not the moment-by-moment history.</p>
+
+    <p>If we reset the trip odometer at the start, then <m>d(0)=0</m>. After <m>2</m> hours in this example,</p>
+
+    <md>d(2)=100.</md>
+
+    <p>The distance function <m>d(t)</m> is a memory of the trip.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-velocity-as-changing-distance">
+    <title>Velocity as changing distance</title>
+
+    <p>Velocity measures how fast distance changes.</p>
+
+    <p>If the car travels <m>100</m> miles in <m>2</m> hours, then its <em>average velocity</em> over that time is</p>
+
+    <md>
+      \frac{\text{change in distance}}{\text{change in time}}
+      =
+      \frac{100\text{ miles}}{2\text{ hours}}
+      =
+      50\text{ miles/hour}.
+    </md>
+
+    <p>Using <m>d(t)</m>, this is</p>
+
+    <md>\frac{d(2)-d(0)}{2-0}.</md>
+
+    <p>This number is an average over an interval. It does not say that the car was moving at exactly <m>50</m> miles per hour at every instant. It only says that the total change, spread evenly over two hours, would be <m>50</m> miles per hour.</p>
+
+    <p>A speedometer asks a sharper question:</p>
+
+    <md>\text{How fast is the distance changing right now?}</md>
+
+    <p>That word <q>right now</q> is where calculus enters.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-units-already-tell-the-story">
+    <title>Units already tell the story</title>
+
+    <p>The units point to the mathematics.</p>
+
+    <md>d(t) \quad \text{has units of miles},</md>
+
+    <p>while</p>
+
+    <md>v(t) \quad \text{has units of miles/hour}.</md>
+
+    <p>So velocity must be built from distance divided by time. That is why ratios like</p>
+
+    <md>\frac{d(b)-d(a)}{b-a}</md>
+
+    <p>will appear again and again.</p>
+
+    <p>The numerator measures change in distance. The denominator measures change in time. Their quotient measures change per unit time.</p>
+
+    <table xml:id="tab-dashboard-units">
+      <title>Variables and units.</title>
+      <tabular>
+        <row header="yes" bottom="medium">
+          <cell>symbol</cell>
+          <cell>meaning</cell>
+          <cell>units</cell>
+        </row>
+        <row>
+          <cell><m>t</m></cell>
+          <cell>time after the start</cell>
+          <cell>hours</cell>
+        </row>
+        <row>
+          <cell><m>d(t)</m></cell>
+          <cell>distance traveled after <m>t</m> hours</cell>
+          <cell>miles</cell>
+        </row>
+        <row>
+          <cell><m>v(t)</m></cell>
+          <cell>velocity at time <m>t</m></cell>
+          <cell>miles/hour</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>A good formula respects units. For example,</p>
+
+    <md>\text{miles/hour}\cdot \text{hours}=\text{miles}.</md>
+
+    <p>So multiplying velocity by time should produce a distance. This is exactly what happens when velocity is constant.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-the-first-question-distance-to-velocity">
+    <title>The first question: distance to velocity</title>
+
+    <p>Suppose we know the whole odometer record <m>d(t)</m>. Can we recover the velocity <m>v(t)</m>?</p>
+
+    <p>For a long interval, we can compute only an average velocity. For example,</p>
+
+    <md>\frac{d(2)-d(0)}{2}</md>
+
+    <p>is the average velocity from time <m>0</m> to time <m>2</m>.</p>
+
+    <p>To know the velocity near <m>t=2</m>, we should look closer:</p>
+
+    <md>\frac{d(2.1)-d(2)}{2.1-2}, \qquad \frac{d(2.01)-d(2)}{2.01-2}, \qquad \frac{d(2.001)-d(2)}{2.001-2}.</md>
+
+    <p>These fractions measure average velocity over shorter and shorter intervals beginning at <m>t=2</m>. If the numbers settle toward one value, that value should be the velocity at the instant <m>t=2</m>.</p>
+
+    <p>This is the first great problem of calculus:</p>
+
+    <md>\boxed{\text{From distance, find velocity.}}</md>
+
+    <p>Geometrically, this will become the problem of finding the slope of a tangent line.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-the-second-question-velocity-to-distance">
+    <title>The second question: velocity to distance</title>
+
+    <p>Now reverse the question.</p>
+
+    <p>Suppose we know the whole speedometer record <m>v(t)</m>. Can we recover the distance <m>d(t)</m>?</p>
+
+    <p>If the velocity is <m>60</m> miles/hour for <m>2</m> hours, then the car travels</p>
+
+    <md>60\cdot 2=120</md>
+
+    <p>miles.</p>
+
+    <p>If the velocity changes, we can break the trip into smaller pieces. Suppose a car travels</p>
+
+    <md>40\text{ miles/hour for } \frac{1}{2}\text{ hour}</md>
+
+    <p>and then</p>
+
+    <md>60\text{ miles/hour for } \frac{1}{2}\text{ hour}.</md>
+
+    <p>The distance traveled is</p>
+
+    <md>40\cdot \frac{1}{2} + 60\cdot \frac{1}{2} = 20+30 = 50</md>
+
+    <p>miles.</p>
+
+    <p>Each product</p>
+
+    <md>\text{velocity}\cdot \text{time}</md>
+
+    <p>gives distance for a small piece of the trip. Adding those pieces gives total distance.</p>
+
+    <p>This is the second great problem of calculus:</p>
+
+    <md>\boxed{\text{From velocity, find distance.}}</md>
+
+    <p>Geometrically, this will become the problem of finding area under a graph.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-the-two-questions-together">
+    <title>The two questions together</title>
+
+    <p>The two questions are opposite in spirit.</p>
+
+    <md>
+      \begin{array}{ccl}
+      \text{distance} \amp \longrightarrow \amp \text{velocity} \\
+      d(t) \amp \longrightarrow \amp v(t)
+      \end{array}
+    </md>
+
+    <p>means: measure the instantaneous rate of change.</p>
+
+    <md>
+      \begin{array}{ccl}
+      \text{velocity} \amp \longrightarrow \amp \text{distance} \\
+      v(t) \amp \longrightarrow \amp d(t)
+      \end{array}
+    </md>
+
+    <p>means: accumulate many small changes.</p>
+
+    <p>The first process will be called <term>differentiation</term>. The second will be called <term>integration</term>. The deepest early theorem in calculus will say that these two processes undo each other.</p>
+
+    <p>For now, we test the story in the simplest case: constant velocity.</p>
+  </subsection>
+
+</section>
