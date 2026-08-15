@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-7-5-exponential-growth-and-decay">
+  <title>Exponential growth and decay</title>
+
+  <p>Newton's method used a tangent line to solve an equation. Linear approximation helped us decide how far to move.</p>
+
+  <p>But many models do not first give an equation like</p>
+  <md>f(x)=0.</md>
+
+  <p>They give a law about change.</p>
+
+  <p>A population grows because each individual helps create more individuals. A radioactive substance decays because each atom has a chance to decay. A bank account grows because interest is earned on the current balance. In each case, the rate of change is tied to the amount already present.</p>
+
+  <p>That leads to the simplest and most important differential equation:</p>
+  <md>y'=ky.</md>
+
+  <subsection xml:id="subsec-differential-equation-y-prime-ky">
+    <title>The differential equation <m>y'=ky</m></title>
+
+    <p>A <em>differential equation</em> is an equation involving an unknown function and one or more of its derivatives.</p>
+
+    <p>For example,</p>
+    <md>y'=ky</md>
+    <p>does not ask for a number <m>y</m>. It asks for a function <m>y(t)</m> whose derivative is always <m>k</m> times the function itself.</p>
+
+    <p>The constant <m>k</m> controls the model.</p>
+
+    <table>
+      <title>Meaning of the sign of <m>k</m></title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><term>sign of <m>k</m></term></cell>
+          <cell><term>meaning</term></cell>
+        </row>
+        <row><cell><m>k\gt 0</m></cell><cell>growth</cell></row>
+        <row><cell><m>k=0</m></cell><cell>no change</cell></row>
+        <row><cell><m>k\lt 0</m></cell><cell>decay</cell></row>
+      </tabular>
+    </table>
+
+    <p>The units of <m>k</m> are important. If <m>y</m> is measured in grams and <m>t</m> in years, then</p>
+    <md>y'</md>
+    <p>has units</p>
+    <md>\text{grams/year}.</md>
+    <p>So in</p>
+    <md>y'=ky,</md>
+    <p>the constant <m>k</m> must have units</p>
+    <md>\frac{1}{\text{year}}.</md>
+    <p>It is a relative rate of change.</p>
+
+    <paragraphs xml:id="para-example-first-growth-model">
+      <title>Example: a first growth model</title>
+      <p>Suppose a small bacterial culture satisfies</p>
+      <md>P'(t)=0.4P(t),</md>
+      <p>where <m>t</m> is measured in hours. If</p>
+      <md>P(0)=500,</md>
+      <p>find <m>P(t)</m>.</p>
+      <p>The equation says that the population grows at a rate equal to <m>40\%</m> of its current size per hour. We need a function whose derivative is <m>0.4</m> times the function.</p>
+      <p>Since</p>
+      <md>\frac{d}{dt}e^{0.4t}=0.4e^{0.4t},</md>
+      <p>a natural solution is</p>
+      <md>P(t)=Ce^{0.4t}.</md>
+      <p>Use the initial condition:</p>
+      <md>P(0)=Ce^0=C.</md>
+      <p>Since <m>P(0)=500</m>,</p>
+      <md>C=500.</md>
+      <p>Therefore</p>
+      <md>P(t)=500e^{0.4t}.</md>
+      <p>The population grows exponentially.</p>
+
+      <figure xml:id="fig-exponential-growth-decay">
+        <caption>The equation <m>y'=ky</m> gives exponential growth when <m>k\gt 0</m> and exponential decay when <m>k\lt 0</m>.</caption>
+        <image width="78%">
+          <latex-image>
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.78\textwidth,
+                height=0.48\textwidth,
+                xmin=0, xmax=6,
+                ymin=0, ymax=4.5,
+                axis lines=left,
+                xlabel={\(t\)},
+                ylabel={\(y\)},
+                xtick={0,1,2,3,4,5,6},
+                ytick={0,1,2,3,4},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+                legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+            ]
+            \addplot[thick, domain=0:6, samples=150] {exp(0.45*x)};
+            \addlegendentry{\(e^{0.45t}\), growth}
+            \addplot[thick, dashed, domain=0:6, samples=150] {exp(-0.45*x)};
+            \addlegendentry{\(e^{-0.45t}\), decay}
+            \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+
+      <p>The example gives the general pattern.</p>
+    </paragraphs>
+
+    <theorem xml:id="thm-exponential-growth-decay-equation">
+      <title>Exponential growth and decay equation</title>
+      <statement>
+        <p>If</p>
+        <md>y'=ky</md>
+        <p>and</p>
+        <md>y(0)=y_0,</md>
+        <p>then</p>
+        <md>y(t)=y_0e^{kt}.</md>
+      </statement>
+      <proof>
+        <p>Suppose <m>y</m> satisfies <m>y'=ky</m>. Multiply <m>y(t)</m> by <m>e^{-kt}</m>. Let</p>
+        <md>u(t)=e^{-kt}y(t).</md>
+        <p>Then, by the product rule,</p>
+        <md>u'(t) = (-k)e^{-kt}y(t)+e^{-kt}y'(t).</md>
+        <p>Factor:</p>
+        <md>u'(t)=e^{-kt}\bigl(y'(t)-ky(t)\bigr).</md>
+        <p>Since <m>y'=ky</m>, we get</p>
+        <md>u'(t)=0.</md>
+        <p>So <m>u(t)</m> is constant. Therefore</p>
+        <md>e^{-kt}y(t)=C,</md>
+        <p>and hence</p>
+        <md>y(t)=Ce^{kt}.</md>
+        <p>Using <m>y(0)=y_0</m>,</p>
+        <md>y_0=Ce^0=C.</md>
+        <p>So</p>
+        <md>y(t)=y_0e^{kt}.</md>
+        <p>This proves the formula.</p>
+      </proof>
+    </theorem>
+
+    <note xml:id="note-meaning-y-prime-ky">
+      <title>Meaning of the equation</title>
+      <p><m>y'=ky</m> is equivalent to</p>
+      <md>\frac{y'}{y}=k</md>
+      <p>when <m>y\neq 0</m>. The relative rate of change is constant. That is the defining feature of exponential growth and decay.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-half-life-doubling-time">
+    <title>Half-life and doubling time</title>
+
+    <p>The constant <m>k</m> is not always the most natural way to describe exponential change.</p>
+
+    <p>For growth, we often describe a quantity by its <em>doubling time</em>: the time it takes to multiply by <m>2</m>.</p>
+
+    <p>For decay, we often describe a quantity by its <em>half-life</em>: the time it takes to multiply by <m>1/2</m>.</p>
+
+    <p>Suppose</p>
+    <md>y(t)=y_0e^{kt}.</md>
+
+    <p>If <m>k\gt 0</m>, the doubling time <m>D</m> satisfies</p>
+    <md>y(D)=2y_0.</md>
+    <p>So</p>
+    <md>y_0e^{kD}=2y_0.</md>
+    <p>Assuming <m>y_0\neq 0</m>,</p>
+    <md>e^{kD}=2.</md>
+    <p>Take natural logarithms:</p>
+    <md>kD=\ln 2.</md>
+    <p>Therefore</p>
+    <md>D=\frac{\ln 2}{k}.</md>
+
+    <p>For decay, <m>k\lt 0</m>. The half-life <m>H</m> satisfies</p>
+    <md>y(H)=\frac12y_0.</md>
+    <p>So</p>
+    <md>y_0e^{kH}=\frac12y_0.</md>
+    <p>Thus</p>
+    <md>e^{kH}=\frac12.</md>
+    <p>Taking logarithms,</p>
+    <md>kH=\ln\left(\frac12\right)=-\ln 2.</md>
+    <p>Therefore</p>
+    <md>H=-\frac{\ln 2}{k}</md>
+    <p>when <m>k\lt 0</m>.</p>
+
+    <paragraphs xml:id="para-example-decay-half-life">
+      <title>Example: decay from a half-life</title>
+      <p>A substance has half-life <m>6</m> hours. If the initial amount is <m>A_0</m>, find the amount after <m>24</m> hours.</p>
+      <p>Since <m>24</m> hours is</p>
+      <md>\frac{24}{6}=4</md>
+      <p>half-lives, the amount is multiplied by <m>1/2</m> four times:</p>
+      <md>A(24)=A_0\left(\frac12\right)^4.</md>
+      <p>Thus</p>
+      <md>A(24)=\frac{A_0}{16}.</md>
+      <p>Using the exponential formula, half-life <m>H=6</m> gives</p>
+      <md>k=-\frac{\ln 2}{6}.</md>
+      <p>So</p>
+      <md>A(t)=A_0e^{-(\ln 2)t/6}.</md>
+      <p>This can also be written as</p>
+      <md>A(t)=A_0\left(\frac12\right)^{t/6}.</md>
+      <p>That form makes the half-life visible.</p>
+    </paragraphs>
+
+    <definition xml:id="def-half-life-form">
+      <title>Half-life form</title>
+      <statement>
+        <p>If a quantity has half-life <m>H</m>, then</p>
+        <md>A(t)=A_0\left(\frac12\right)^{t/H}.</md>
+      </statement>
+    </definition>
+
+    <definition xml:id="def-doubling-time-form">
+      <title>Doubling-time form</title>
+      <statement>
+        <p>If a quantity has doubling time <m>D</m>, then</p>
+        <md>A(t)=A_0\,2^{t/D}.</md>
+      </statement>
+    </definition>
+
+    <p>These are the same exponential model written in a way that matches the information given.</p>
+
+    <paragraphs xml:id="para-example-estimating-doubling-time">
+      <title>Example: estimating a doubling time</title>
+      <p>A population grows according to</p>
+      <md>P'(t)=0.03P(t),</md>
+      <p>where <m>t</m> is measured in years. Its doubling time is</p>
+      <md>D=\frac{\ln 2}{0.03}.</md>
+      <p>Since</p>
+      <md>\ln 2\approx 0.693,</md>
+      <p>we get</p>
+      <md>D\approx\frac{0.693}{0.03}\approx 23.1.</md>
+      <p>The population doubles in about <m>23.1</m> years.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-continuously-compounded-interest">
+    <title>Continuously compounded interest</title>
+
+    <p>Money in an account can also be modeled by</p>
+    <md>A'=rA.</md>
+    <p>Here</p>
+    <md>A(t)</md>
+    <p>is the account balance after <m>t</m> years, and <m>r</m> is the annual interest rate written as a decimal.</p>
+
+    <p>If</p>
+    <md>r=0.05,</md>
+    <p>then the account grows at <m>5\%</m> per year. The continuously compounded model is</p>
+    <md>A'=0.05A.</md>
+    <p>So</p>
+    <md>A(t)=A_0e^{0.05t}.</md>
+    <p>More generally, if the initial deposit is <m>P</m>, then</p>
+    <md>A(t)=Pe^{rt}.</md>
+
+    <example xml:id="ex-continuously-compounded-interest">
+      <title>Continuous compounding over 10 years</title>
+      <statement>
+        <p>Suppose <m>1000</m> dollars is invested at <m>5\%</m> annual interest, compounded continuously. Find the value after <m>10</m> years.</p>
+        <p>The model is</p>
+        <md>A(t)=1000e^{0.05t}.</md>
+        <p>Thus</p>
+        <md>A(10)=1000e^{0.5}.</md>
+        <p>Since</p>
+        <md>e^{0.5}\approx 1.64872,</md>
+        <p>we get</p>
+        <md>A(10)\approx 1648.72</md>
+        <p>dollars.</p>
+      </statement>
+    </example>
+
+    <note xml:id="note-interest-as-rate-law">
+      <title>Interest as a rate law</title>
+      <p>Continuous compounding means that interest is earned on the current balance at every instant:</p>
+      <md>A'=rA.</md>
+      <p>That rate law forces the exponential formula</p>
+      <md>A(t)=Pe^{rt}.</md>
+    </note>
+
+    <p>There is a useful connection with ordinary compounding. If interest is compounded <m>n</m> times per year, then</p>
+    <md>A_n(t)=P\left(1+\frac{r}{n}\right)^{nt}.</md>
+    <p>As <m>n</m> gets larger, this approaches</p>
+    <md>Pe^{rt}.</md>
+    <p>So continuous compounding is the limiting case of more and more frequent compounding.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-newtons-law-cooling">
+    <title>Newton's law of cooling</title>
+
+    <p>Not every exponential model has the form</p>
+    <md>T'=kT.</md>
+
+    <p>A hot cup of coffee in a room does not cool toward <m>0^\circ</m>. It cools toward the room temperature.</p>
+
+    <p>The natural changing quantity is not the temperature <m>T</m> itself, but the temperature difference between the coffee and the room.</p>
+
+    <p>Let</p>
+    <md>T(t)=\text{temperature of the object at time }t,</md>
+    <p>and let</p>
+    <md>T_s=\text{surrounding temperature}.</md>
+
+    <p>Newton's law of cooling says:</p>
+    <md>T'=-k(T-T_s), \qquad k\gt 0.</md>
+
+    <p>The difference</p>
+    <md>T-T_s</md>
+    <p>decays exponentially.</p>
+
+    <p>Let</p>
+    <md>D(t)=T(t)-T_s.</md>
+    <p>Since <m>T_s</m> is constant,</p>
+    <md>D'(t)=T'(t).</md>
+    <p>The cooling law becomes</p>
+    <md>D'=-kD.</md>
+    <p>Therefore</p>
+    <md>D(t)=D(0)e^{-kt}.</md>
+    <p>Since</p>
+    <md>D(0)=T(0)-T_s,</md>
+    <p>we get</p>
+    <md>T(t)=T_s+\bigl(T(0)-T_s\bigr)e^{-kt}.</md>
+
+    <example xml:id="ex-newton-cooling-coffee">
+      <title>Cooling coffee</title>
+      <statement>
+        <p>A cup of coffee is <m>90^\circ\text{C}</m> when placed in a room whose temperature is</p>
+        <md>20^\circ\text{C}.</md>
+        <p>After <m>10</m> minutes, the coffee is</p>
+        <md>60^\circ\text{C}.</md>
+        <p>Assuming Newton's law of cooling, estimate the temperature after <m>30</m> minutes.</p>
+        <p>The model is</p>
+        <md>T(t)=20+(90-20)e^{-kt}.</md>
+        <p>So</p>
+        <md>T(t)=20+70e^{-kt}.</md>
+        <p>Use <m>T(10)=60</m>:</p>
+        <md>60=20+70e^{-10k}.</md>
+        <p>Then</p>
+        <md>40=70e^{-10k},</md>
+        <p>so</p>
+        <md>e^{-10k}=\frac{4}{7}.</md>
+        <p>Thus</p>
+        <md>k=\frac{1}{10}\ln\left(\frac74\right).</md>
+        <p>Now find <m>T(30)</m>. Since</p>
+        <md>e^{-10k}=\frac47,</md>
+        <p>we have</p>
+        <md>e^{-30k}=\left(e^{-10k}\right)^3=\left(\frac47\right)^3.</md>
+        <p>Therefore</p>
+        <md>T(30)=20+70\left(\frac47\right)^3.</md>
+        <p>Compute:</p>
+        <md>\left(\frac47\right)^3=\frac{64}{343}.</md>
+        <p>So</p>
+        <md>T(30)=20+70\cdot\frac{64}{343} = 20+\frac{4480}{343}.</md>
+        <p>Thus</p>
+        <md>T(30)\approx 33.1^\circ\text{C}.</md>
+
+        <figure xml:id="fig-newton-cooling-coffee">
+          <caption>Newton's law of cooling says the temperature difference <m>T-T_s</m> decays exponentially.</caption>
+          <image width="78%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.78\textwidth,
+                  height=0.48\textwidth,
+                  xmin=0, xmax=60,
+                  ymin=15, ymax=95,
+                  axis lines=left,
+                  xlabel={\(t\) (minutes)},
+                  ylabel={\(T(t)\) (\(^\circ\text{C}\))},
+                  xtick={0,10,30,60},
+                  ytick={20,33.1,60,90},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick, domain=0:60, samples=200] {20+70*exp(-0.05596*x)};
+              \addplot[dashed, domain=0:60, samples=2] {20};
+              \addplot[only marks, mark=*] coordinates {(0,90) (10,60) (30,33.06)};
+              \node[anchor=west] at (axis cs:32,33.5) {\(T(30)\approx33.1\)};
+              \node[anchor=west] at (axis cs:34,21.5) {room temperature};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-exponential-models-assume">
+    <title>What exponential models assume</title>
+
+    <p>Exponential models are powerful because they are simple. Their simplicity is also their danger.</p>
+
+    <p>The equation</p>
+    <md>y'=ky</md>
+    <p>says that the relative rate of change is constant:</p>
+    <md>\frac{y'}{y}=k.</md>
+    <p>If that ratio is not constant, the model is not exponential.</p>
+
+    <paragraphs xml:id="para-warning-increasing-vs-exponential">
+      <title>Warning example</title>
+      <p>Let</p>
+      <md>y(t)=100+t^2.</md>
+      <p>Then</p>
+      <md>y'(t)=2t.</md>
+      <p>The quantity is increasing for <m>t\gt 0</m>, but it is not growing exponentially. Its relative rate of change is</p>
+      <md>\frac{y'(t)}{y(t)} = \frac{2t}{100+t^2}.</md>
+      <p>This depends on <m>t</m>. It is not constant.</p>
+      <p>So increasing does not mean exponential. Even fast increasing does not mean exponential. Exponential growth means constant relative growth.</p>
+
+      <note xml:id="note-recognize-exponential-model">
+        <title>How to recognize the exponential model</title>
+        <p>A quantity is modeled by</p>
+        <md>y'=ky</md>
+        <p>when its rate of change is proportional to its current amount.</p>
+        <p>Equivalently, when <m>y\neq 0</m>,</p>
+        <md>\frac{y'}{y}=k</md>
+        <p>is constant.</p>
+      </note>
+    </paragraphs>
+
+    <p>Exponential growth is often a good first approximation. But it cannot continue forever in a world with limited space, food, money, or people. The next model keeps the early exponential behavior but builds in a ceiling.</p>
+  </subsection>
+
+</section>
