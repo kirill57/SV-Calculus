@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-8-5-signed-area-and-net-change">
+  <title>Signed area and net change</title>
+
+  <p>The definite integral was built from Riemann sums:</p>
+  <md>\sum_{j=1}^{n} f(x_j^*)\Delta x_j.</md>
+
+  <p>Each term has two parts. The width <m>\Delta x_j</m> is positive when we move from left to right. The height <m>f(x_j^*)</m> can be positive, zero, or negative.</p>
+
+  <p>That one fact changes the meaning of area.</p>
+
+  <p>If the graph lies above the <m>x</m>-axis, the rectangles contribute positively. If the graph lies below the <m>x</m>-axis, the rectangles contribute negatively. So the definite integral is not ordinary area first. It is <em>signed accumulation</em>.</p>
+
+  <note xml:id="note-signed-area-formula">
+    <p><m>\int_a^b f(x)\,dx = \text{area above the axis} - \text{area below the axis}.</m></p>
+  </note>
+
+  <p>Ordinary area is never negative. A definite integral can be negative, because it is designed to remember direction.</p>
+
+  <subsection xml:id="subsec-area-above-axis">
+    <title>Area above the axis</title>
+
+    <p>When</p>
+    <md>f(x)\ge 0</md>
+    <p>on <m>[a,b]</m>, all the small rectangles in a Riemann sum have nonnegative height. In that case,</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>is the ordinary area under the graph.</p>
+
+    <p>For example, suppose <m>f(x)=2</m> on <m>[0,5]</m>. Then the graph is a horizontal line, and the area is a rectangle:</p>
+    <md>\int_0^5 2\,dx=2\cdot 5=10.</md>
+
+    <p>The integral is positive because the graph is above the axis.</p>
+
+    <p>More generally, if <m>f(x)\ge 0</m>, then the integral accumulates positive amount. In a motion problem, this might mean forward displacement. In a density problem, it might mean mass. In a power problem, it might mean energy used.</p>
+
+    <p>The same rectangle picture from the beginning of the book is still present:</p>
+    <md>\text{height}\cdot\text{width} = \text{rate}\cdot\text{input step}.</md>
+
+    <p>The integral adds infinitely many such pieces.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-area-below-axis">
+    <title>Area below the axis</title>
+
+    <p>When</p>
+    <md>f(x)\le 0</md>
+    <p>on <m>[a,b]</m>, all the small rectangles have negative height. The ordinary geometric area between the graph and the axis is positive, but the integral is negative.</p>
+
+    <p>For example,</p>
+    <md>f(x)=-3</md>
+    <p>on <m>[0,4]</m> gives</p>
+    <md>\int_0^4 -3\,dx=-3\cdot 4=-12.</md>
+
+    <p>The ordinary area of the rectangle is <m>12</m>. The signed area is <m>-12</m>.</p>
+
+    <p>This is not a defect. It is the point.</p>
+
+    <p>If <m>v(t)=-3</m> meters/second for <m>4</m> seconds, then the object moves <m>12</m> meters in the negative direction. Its displacement is</p>
+    <md>-12\text{ meters}.</md>
+
+    <p>So the signed integral matches the signed physical change.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-graph-with-both-signs">
+    <title>A graph with both signs</title>
+
+    <p>Let</p>
+    <md>f(x)=x-1</md>
+    <p>on the interval <m>[0,3]</m>.</p>
+
+    <p>The graph crosses the <m>x</m>-axis at <m>x=1</m>. It lies below the axis on <m>[0,1]</m>, and above the axis on <m>[1,3]</m>.</p>
+
+    <figure xml:id="fig-signed-area-linear">
+      <caption>The integral counts area below the axis negatively and area above the axis positively.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=3.2,
+              ymin=-1.3, ymax=2.3,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={0,1,3},
+              ytick={-1,0,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \draw[fill=gray!25, draw=none]
+            (axis cs:0,0) -- (axis cs:1,0) -- (axis cs:0,-1) -- cycle;
+          \draw[fill=gray!15, draw=none]
+            (axis cs:1,0) -- (axis cs:3,0) -- (axis cs:3,2) -- cycle;
+          \addplot[very thick, domain=0:3, samples=2] {x-1};
+          \node[anchor=north] at (axis cs:0.45,-0.12) {\(-\frac12\)};
+          \node[anchor=south] at (axis cs:2.2,0.45) {\(+2\)};
+          \node[anchor=west] at (axis cs:2.05,1.65) {\(y=x-1\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The triangle below the axis has base <m>1</m> and height <m>1</m>, so its ordinary area is</p>
+    <md>\frac12.</md>
+
+    <p>Because it lies below the axis, it contributes</p>
+    <md>-\frac12</md>
+    <p>to the integral.</p>
+
+    <p>The triangle above the axis has base <m>2</m> and height <m>2</m>, so its ordinary area is</p>
+    <md>\frac12(2)(2)=2.</md>
+
+    <p>Therefore</p>
+    <md>\int_0^3 (x-1)\,dx = -\frac12+2 = \frac32.</md>
+
+    <p>The integral is positive, even though part of the graph is below the axis, because the positive part is larger than the negative part.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-cancellation-meaning">
+    <title>Cancellation and meaning</title>
+
+    <p>Signed area can cancel.</p>
+
+    <p>For example, consider</p>
+    <md>f(x)=x</md>
+    <p>on <m>[-1,1]</m>. The graph lies below the axis on <m>[-1,0]</m> and above the axis on <m>[0,1]</m>. The two triangles have the same ordinary area:</p>
+    <md>\frac12.</md>
+
+    <p>The signed integral is</p>
+    <md>\int_{-1}^{1} x\,dx = -\frac12+\frac12 = 0.</md>
+
+    <p>But the graph is not zero. The function does not vanish. The integral is zero because the negative and positive contributions balance exactly.</p>
+
+    <note xml:id="note-integral-zero-reasons">
+      <title>An integral can be zero for two different reasons</title>
+      <p>It may be zero because there is no accumulation.</p>
+      <p>It may also be zero because positive and negative accumulation cancel.</p>
+    </note>
+
+    <p>This distinction is crucial in motion.</p>
+
+    <p>If a car travels <m>40</m> miles east and then <m>40</m> miles west, its displacement is <m>0</m>. But it did not stay still. It traveled <m>80</m> miles.</p>
+
+    <p>The signed integral measures net change. It does not measure total activity.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-velocity-displacement-distance-integrals">
+    <title>Velocity: displacement versus distance traveled</title>
+
+    <p>Suppose the velocity of a particle is</p>
+    <md>
+      v(t)=
+      \begin{cases}
+      2, \amp 0\le t\lt 1,\\
+      -1, \amp 1\le t\lt 3,\\
+      3, \amp 3\le t\le 4.
+      \end{cases}
+    </md>
+
+    <p>The signed displacement is</p>
+    <md>\int_0^4 v(t)\,dt.</md>
+
+    <p>Since the velocity is constant on each piece, we can compute this with rectangles:</p>
+    <md>\int_0^4 v(t)\,dt = 2(1)+(-1)(2)+3(1) = 2-2+3 = 3.</md>
+
+    <p>So the particle ends <m>3</m> units ahead of where it started.</p>
+
+    <figure xml:id="fig-piecewise-velocity-signed-area">
+      <caption>The signed rectangle areas are <m>2</m>, <m>-2</m>, and <m>3</m>. Their sum is the displacement.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=4.35,
+              ymin=-1.6, ymax=3.5,
+              axis lines=middle,
+              xlabel={\(t\)},
+              ylabel={\(v(t)\)},
+              xtick={0,1,3,4},
+              ytick={-1,0,2,3},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \draw[fill=gray!15, draw=gray!60, fill opacity=0.5] (axis cs:0,0) rectangle (axis cs:1,2);
+          \draw[fill=gray!15, draw=gray!60, fill opacity=0.5] (axis cs:1,0) rectangle (axis cs:3,-1);
+          \draw[fill=gray!15, draw=gray!60, fill opacity=0.5] (axis cs:3,0) rectangle (axis cs:4,3);
+
+          \addplot[very thick] coordinates {(0,2) (1,2)};
+          \addplot[very thick] coordinates {(1,-1) (3,-1)};
+          \addplot[very thick] coordinates {(3,3) (4,3)};
+          \draw[dashed] (axis cs:1,-1.45) -- (axis cs:1,3.3);
+          \draw[dashed] (axis cs:3,-1.45) -- (axis cs:3,3.3);
+          \node[anchor=south] at (axis cs:0.5,2) {\(+2\)};
+          \node[anchor=north] at (axis cs:2,-1) {\(-2\)};
+          \node[anchor=south] at (axis cs:3.5,3) {\(+3\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The total distance traveled is different. It counts backward motion positively:</p>
+    <md>2(1)+1(2)+3(1) = 2+2+3 = 7.</md>
+
+    <p>The formula for total distance is</p>
+    <md>\text{distance traveled} = \int_a^b |v(t)|\,dt.</md>
+
+    <p>The absolute value removes the sign of the velocity before accumulation.</p>
+    <md>\text{displacement} = \int_a^b v(t)\,dt.</md>
+
+    <p>The signed integral answers:</p>
+    <md>\text{Where did the object end compared with where it started?}</md>
+
+    <p>The integral of the absolute value answers:</p>
+    <md>\text{How much ground did the object cover?}</md>
+  </subsection>
+
+  <subsection xml:id="subsec-total-accumulation-absolute-value">
+    <title>Total accumulation from absolute value</title>
+
+    <p>The same distinction appears outside motion.</p>
+
+    <p>Suppose <m>f(x)</m> represents a signed rate of change. Positive values increase a quantity. Negative values decrease it.</p>
+
+    <p>Then</p>
+    <md>\int_a^b f(x)\,dx</md>
+    <p>measures the <em>net change</em>. Positive and negative contributions may cancel.</p>
+
+    <p>But</p>
+    <md>\int_a^b |f(x)|\,dx</md>
+    <p>measures the <em>total size of the accumulated change</em>, ignoring direction.</p>
+
+    <p>For the earlier example <m>f(x)=x-1</m> on <m>[0,3]</m>, we found</p>
+    <md>\int_0^3 (x-1)\,dx=\frac32.</md>
+
+    <p>The total accumulated size is</p>
+    <md>\int_0^3 |x-1|\,dx.</md>
+
+    <p>This adds both triangles positively:</p>
+    <md>\int_0^3 |x-1|\,dx = \frac12+2 = \frac52.</md>
+
+    <p>So</p>
+    <md>\text{net signed accumulation}=\frac32,</md>
+    <p>while</p>
+    <md>\text{total accumulation}=\frac52.</md>
+
+    <p>The total is larger because cancellation has been removed.</p>
+
+    <note xml:id="note-net-vs-total">
+      <title>Net versus total</title>
+      <md>\int_a^b f(x)\,dx = \text{positive accumulation} - \text{negative accumulation}.</md>
+      <md>\int_a^b |f(x)|\,dx = \text{positive accumulation} + \text{negative accumulation}.</md>
+    </note>
+
+    <p>The definite integral is therefore more flexible than ordinary area. It can measure area, displacement, accumulated signed change, or cancellation. To use it well, we must always ask what the sign means.</p>
+
+    <p>The next section collects the algebraic rules that make integrals useful. These rules will look familiar because they come from the same place as the integral itself: finite sums.</p>
+  </subsection>
+
+</section>
