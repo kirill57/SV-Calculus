@@ -1,9 +1,447 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SOURCE: Chapter-9-draft.txt, Chapter-9-draft.tex, chapter-9.tex; intended section 9.4 “Indefinite integrals”
-     EDITORIAL TAGS: Core
-     STATUS: NOT_STARTED -->
-<section xml:id="sec-9-4-indefinite-integrals" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-9-4-indefinite-integrals">
   <title>Indefinite integrals</title>
 
-  <p>Placeholder. Content not yet converted.</p>
+  <p>Part II says that definite integrals can be evaluated by antiderivatives:</p>
+  <md>\int_a^b f(x)\,dx=F(b)-F(a), \qquad F'=f.</md>
+
+  <p>So integration now has two faces.</p>
+
+  <p>One face is accumulation:</p>
+  <md>\int_a^b f(x)\,dx.</md>
+  <p>This is a number.</p>
+
+  <p>The other face is antiderivatives:</p>
+  <md>\text{find all functions }F\text{ such that }F'=f.</md>
+
+  <p>That second task needs notation.</p>
+
+  <subsection xml:id="subsec-antiderivative-families">
+    <title>Antiderivative families</title>
+
+    <p>The derivative of</p>
+    <md>\frac{x^3}{3}</md>
+    <p>is</p>
+    <md>x^2.</md>
+
+    <p>But the derivative of</p>
+    <md>\frac{x^3}{3}+7</md>
+    <p>is also</p>
+    <md>x^2.</md>
+
+    <p>The derivative of</p>
+    <md>\frac{x^3}{3}-100</md>
+    <p>is still</p>
+    <md>x^2.</md>
+
+    <p>A derivative forgets vertical shifts. So an antiderivative is never alone. It comes in a family.</p>
+    <md>\frac{x^3}{3}+C,</md>
+    <p>where <m>C</m> is any constant, is the whole family of antiderivatives of <m>x^2</m> on the real line.</p>
+
+    <figure xml:id="fig-antiderivative-family-shifts">
+      <caption>Antiderivatives of the same function differ by vertical shifts. Their slopes at the same <m>x</m>-value are equal.</caption>
+      <image width="76%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.76\textwidth,
+              height=0.48\textwidth,
+              xmin=-2.2, xmax=2.2,
+              ymin=-4, ymax=4,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={-2,-1,0,1,2},
+              ytick={-3,-2,-1,0,1,2,3},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=-2.1:2.1, samples=200] {x^3/3};
+          \addplot[thick, dashed, domain=-2.1:2.1, samples=200] {x^3/3+1.5};
+          \addplot[thick, dotted, domain=-2.1:2.1, samples=200] {x^3/3-1.5};
+          \node[anchor=center] at (axis cs:1.1,1.0) {\(\frac{x^3}{3}\)};
+          \node[anchor=center] at (axis cs:1.0,2.65) {\(\frac{x^3}{3}+1.5\)};
+          \node[anchor=center] at (axis cs:1.0,-1.75) {\(\frac{x^3}{3}-1.5\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <definition xml:id="def-indefinite-integral">
+      <title>Indefinite integral</title>
+      <statement>
+        <p>The notation</p>
+        <md>\int f(x)\,dx</md>
+        <p>means the family of all antiderivatives of <m>f</m>. If <m>F'(x)=f(x)</m>, then</p>
+        <md>\int f(x)\,dx=F(x)+C.</md>
+        <p>The constant <m>C</m> is called the <term>constant of integration</term>.</p>
+      </statement>
+    </definition>
+
+    <p>For example,</p>
+    <md>\int x^2\,dx=\frac{x^3}{3}+C.</md>
+
+    <p>The symbol <m>dx</m> still matters. It says that <m>x</m> is the variable of integration. It also prepares the substitution rules we will need next.</p>
+
+    <paragraphs>
+      <title>Definite versus indefinite</title>
+      <p>A definite integral has limits:</p>
+      <md>\int_a^b f(x)\,dx.</md>
+      <p>It is a number.</p>
+      <p>An indefinite integral has no limits:</p>
+      <md>\int f(x)\,dx.</md>
+      <p>It is a family of functions.</p>
+      <note xml:id="note-definite-vs-indefinite">
+        <p>Definite integral: number. Indefinite integral: family of antiderivatives.</p>
+      </note>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-constant-of-integration">
+    <title>The constant of integration</title>
+
+    <p>Why do we write <m>+C</m>?</p>
+
+    <p>Because all functions with the same derivative differ by a constant, as long as we are working on one interval.</p>
+
+    <theorem xml:id="thm-same-derivative-constant">
+      <title>Same derivative, same up to a constant</title>
+      <statement>
+        <p>If <m>F</m> and <m>G</m> are differentiable on an interval <m>I</m>, and</p>
+        <md>F'(x)=G'(x)</md>
+        <p>for every <m>x\in I</m>, then</p>
+        <md>F(x)=G(x)+C</md>
+        <p>for some constant <m>C</m>.</p>
+      </statement>
+    </theorem>
+
+    <paragraphs>
+      <title>Proof</title>
+      <p>Let</p>
+      <md>H(x)=F(x)-G(x).</md>
+      <p>Then</p>
+      <md>H'(x)=F'(x)-G'(x)=0.</md>
+      <p>By the Mean Value Theorem, if <m>x_1</m> and <m>x_2</m> are any two points in the interval, then for some <m>c</m> between them,</p>
+      <md>\frac{H(x_2)-H(x_1)}{x_2-x_1}=H'(c)=0.</md>
+      <p>So</p>
+      <md>H(x_2)-H(x_1)=0,</md>
+      <p>which means</p>
+      <md>H(x_2)=H(x_1).</md>
+      <p>Thus <m>H</m> is constant on the interval. Therefore</p>
+      <md>F(x)-G(x)=C,</md>
+      <p>or</p>
+      <md>F(x)=G(x)+C.</md>
+    </paragraphs>
+
+    <paragraphs>
+      <title>Why <q>on an interval</q> matters</title>
+      <p>The interval condition is not decoration.</p>
+      <p>Define</p>
+      <md>
+        H(x)=
+        \begin{cases}
+        0, \amp x\lt 0,\\
+        1, \amp x\gt 0.
+        \end{cases}
+      </md>
+      <p>The domain is</p>
+      <md>(-\infty,0)\cup(0,\infty).</md>
+      <p>On this domain, the derivative is</p>
+      <md>H'(x)=0</md>
+      <p>at every point where <m>H</m> is defined. But <m>H</m> is not one constant on its whole domain. It is <m>0</m> on the left interval and <m>1</m> on the right interval.</p>
+      <p>The conclusion <q>derivative zero means constant</q> works on intervals, because intervals are connected pieces of the line.</p>
+      <p>This is why formulas such as</p>
+      <md>\int \frac1x\,dx=\ln|x|+C</md>
+      <p>must be understood on intervals that do not cross <m>0</m>. On <m>(0,\infty)</m>,</p>
+      <md>\ln|x|=\ln x.</md>
+      <p>On <m>(-\infty,0)</m>,</p>
+      <md>\ln|x|=\ln(-x).</md>
+      <p>The two sides are separate intervals.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-initial-value-problems-antiderivatives">
+    <title>Initial value problems</title>
+
+    <p>An indefinite integral gives a family. A starting value chooses one member of the family.</p>
+
+    <example xml:id="ex-ivp-position-from-velocity">
+      <title>Position from velocity and one position value</title>
+      <statement>
+        <p>A particle has velocity</p>
+        <md>v(t)=6t-4</md>
+        <p>meters per second. Its position at <m>t=1</m> is</p>
+        <md>s(1)=10.</md>
+        <p>Find <m>s(t)</m>.</p>
+        <p>Since</p>
+        <md>s'(t)=v(t)=6t-4,</md>
+        <p>we first find the general antiderivative:</p>
+        <md>s(t)=\int (6t-4)\,dt.</md>
+        <p>Compute:</p>
+        <md>s(t)=3t^2-4t+C.</md>
+        <p>Now use the initial value:</p>
+        <md>s(1)=3(1)^2-4(1)+C=10.</md>
+        <p>So</p>
+        <md>3-4+C=10,</md>
+        <p>hence</p>
+        <md>C=11.</md>
+        <p>Therefore</p>
+        <md>s(t)=3t^2-4t+11.</md>
+        <p>The velocity gives the shape of the position function. The initial position fixes its vertical placement.</p>
+      </statement>
+    </example>
+
+    <definition xml:id="def-initial-value-problem">
+      <title>Initial value problem</title>
+      <statement>
+        <p>A problem of the form</p>
+        <md>F'(x)=f(x), \qquad F(a)=F_0</md>
+        <p>asks for the particular antiderivative of <m>f</m> that passes through the point <m>(a,F_0)</m>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-solve-simple-ivp">
+      <title>Solving a basic initial value problem</title>
+      <statement>
+        <p>Solve</p>
+        <md>y'=3x^2-2x, \qquad y(0)=5.</md>
+        <p>First integrate:</p>
+        <md>y=\int (3x^2-2x)\,dx.</md>
+        <p>So</p>
+        <md>y=x^3-x^2+C.</md>
+        <p>Use <m>y(0)=5</m>:</p>
+        <md>5=0^3-0^2+C,</md>
+        <p>so</p>
+        <md>C=5.</md>
+        <p>Thus</p>
+        <md>y=x^3-x^2+5.</md>
+        <p>This is the simplest kind of differential equation. Later, differential equations will be harder because the derivative will depend on the unknown function itself. But the first case is already clear: integrating a derivative gives a family, and an initial value selects one function.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-basic-antiderivative-formulas">
+    <title>Basic antiderivative formulas</title>
+
+    <p>Every antiderivative formula can be checked by differentiating the right-hand side.</p>
+
+    <p>The first formulas reverse the derivative rules we already know.</p>
+
+    <table>
+      <title>Basic algebraic, exponential, and logarithmic antiderivatives</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{integrand}</m></cell>
+          <cell><m>\textbf{indefinite integral}</m></cell>
+        </row>
+        <row>
+          <cell><m>0</m></cell>
+          <cell><m>\displaystyle C</m></cell>
+        </row>
+        <row>
+          <cell><m>k</m></cell>
+          <cell><m>\displaystyle kx+C</m></cell>
+        </row>
+        <row>
+          <cell><m>x^n,\ n\neq -1</m></cell>
+          <cell><m>\displaystyle \frac{x^{n+1}}{n+1}+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\dfrac1x</m></cell>
+          <cell><m>\displaystyle \ln|x|+C</m></cell>
+        </row>
+        <row>
+          <cell><m>e^x</m></cell>
+          <cell><m>\displaystyle e^x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>a^x,\ a\gt 0,\ a\neq 1</m></cell>
+          <cell><m>\displaystyle \frac{a^x}{\ln a}+C</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The power rule for antiderivatives deserves special attention:</p>
+    <md>\int x^n\,dx=\frac{x^{n+1}}{n+1}+C, \qquad n\neq -1.</md>
+
+    <p>The case <m>n=-1</m> is excluded because it would require division by <m>0</m>. That case is</p>
+    <md>\int \frac1x\,dx=\ln|x|+C.</md>
+
+    <p>The trigonometric formulas reverse the trigonometric derivative formulas.</p>
+
+    <table>
+      <title>Trigonometric antiderivatives</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{integrand}</m></cell>
+          <cell><m>\textbf{indefinite integral}</m></cell>
+        </row>
+        <row>
+          <cell><m>\cos x</m></cell>
+          <cell><m>\displaystyle \sin x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\sin x</m></cell>
+          <cell><m>\displaystyle -\cos x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec^2 x</m></cell>
+          <cell><m>\displaystyle \tan x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc^2 x</m></cell>
+          <cell><m>\displaystyle -\cot x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\sec x\tan x</m></cell>
+          <cell><m>\displaystyle \sec x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\csc x\cot x</m></cell>
+          <cell><m>\displaystyle -\csc x+C</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>And the inverse-trigonometric derivative formulas give</p>
+
+    <table>
+      <title>Inverse trigonometric antiderivatives</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{integrand}</m></cell>
+          <cell><m>\textbf{indefinite integral}</m></cell>
+        </row>
+        <row>
+          <cell><m>\dfrac1{1+x^2}</m></cell>
+          <cell><m>\displaystyle \arctan x+C</m></cell>
+        </row>
+        <row>
+          <cell><m>\dfrac1{\sqrt{1-x^2}}</m></cell>
+          <cell><m>\displaystyle \arcsin x+C</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>These formulas are not separate magic. They are derivative facts read backward.</p>
+
+    <example xml:id="ex-antideriv-poly-trig">
+      <title>Polynomial and trigonometric terms</title>
+      <statement>
+        <p>Find</p>
+        <md>\int (4x^3-6x+2\cos x)\,dx.</md>
+        <p>Use linearity:</p>
+        <md>\int (4x^3-6x+2\cos x)\,dx = 4\int x^3\,dx - 6\int x\,dx + 2\int \cos x\,dx.</md>
+        <p>Thus</p>
+        <md>=4\left(\frac{x^4}{4}\right) - 6\left(\frac{x^2}{2}\right) + 2\sin x + C.</md>
+        <p>So</p>
+        <md>\int (4x^3-6x+2\cos x)\,dx = x^4-3x^2+2\sin x+C.</md>
+        <p>Check by differentiating:</p>
+        <md>\frac{d}{dx}(x^4-3x^2+2\sin x+C) = 4x^3-6x+2\cos x.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-antideriv-reciprocal-exp">
+      <title>Using the logarithm case</title>
+      <statement>
+        <p>Find</p>
+        <md>\int \left(\frac3x+2e^x\right)\,dx.</md>
+        <p>Use the formulas:</p>
+        <md>\int \frac3x\,dx=3\ln|x|,</md>
+        <p>and</p>
+        <md>\int 2e^x\,dx=2e^x.</md>
+        <p>Therefore</p>
+        <md>\int \left(\frac3x+2e^x\right)\,dx = 3\ln|x|+2e^x+C.</md>
+        <p>This formula is valid on any interval that does not contain <m>0</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-definite-via-indefinite-trig">
+      <title>A definite integral using an indefinite integral</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_0^{\pi/2} (2\sin x+\cos x)\,dx.</md>
+        <p>First find an antiderivative:</p>
+        <md>\int (2\sin x+\cos x)\,dx = -2\cos x+\sin x+C.</md>
+        <p>For the definite integral, the constant cancels, so we use</p>
+        <md>F(x)=-2\cos x+\sin x.</md>
+        <p>Then</p>
+        <md>\int_0^{\pi/2} (2\sin x+\cos x)\,dx = F(x)\Big|_0^{\pi/2}.</md>
+        <p>Compute:</p>
+        <md>F\left(\frac{\pi}{2}\right) = -2\cos\frac{\pi}{2}+\sin\frac{\pi}{2} = 0+1=1,</md>
+        <p>and</p>
+        <md>F(0)=-2\cos 0+\sin 0=-2.</md>
+        <p>Therefore</p>
+        <md>\int_0^{\pi/2} (2\sin x+\cos x)\,dx = 1-(-2)=3.</md>
+        <p>So</p>
+        <md>\int_0^{\pi/2} (2\sin x+\cos x)\,dx=3.</md>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-linearity-indefinite-integrals">
+    <title>Linearity of indefinite integrals</title>
+
+    <p>Since derivatives are linear, antiderivatives are linear too.</p>
+
+    <p>If <m>a</m> and <m>b</m> are constants, then</p>
+    <md>\int \bigl(a f(x)+b g(x)\bigr)\,dx = a\int f(x)\,dx+b\int g(x)\,dx.</md>
+
+    <p>This formula is useful, but it should be read carefully. Each indefinite integral already contains an arbitrary constant. In practice, we combine all constants into one <m>C</m>.</p>
+
+    <p>For example,</p>
+    <md>\int (3x^2+5)\,dx = 3\int x^2\,dx+\int 5\,dx.</md>
+
+    <p>One could write</p>
+    <md>3\left(\frac{x^3}{3}+C_1\right)+(5x+C_2).</md>
+
+    <p>This equals</p>
+    <md>x^3+5x+(3C_1+C_2).</md>
+
+    <p>Since</p>
+    <md>3C_1+C_2</md>
+    <p>is just another arbitrary constant, we write</p>
+    <md>\int (3x^2+5)\,dx=x^3+5x+C.</md>
+
+    <p>Use one <m>C</m> at the end.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-when-guessing-antiderivatives-not-enough">
+    <title>When guessing is not enough</title>
+
+    <p>The formulas above give a starting library. They do not solve every integral.</p>
+
+    <p>For example,</p>
+    <md>\int 2x\cos(x^2)\,dx</md>
+    <p>does not appear directly in the table. But it has a hidden structure. The inside function</p>
+    <md>x^2</md>
+    <p>has derivative</p>
+    <md>2x,</md>
+    <p>and that factor is present. Since</p>
+    <md>\frac{d}{dx}\sin(x^2)=2x\cos(x^2),</md>
+    <p>we get</p>
+    <md>\int 2x\cos(x^2)\,dx=\sin(x^2)+C.</md>
+
+    <p>This example is a reverse chain rule.</p>
+
+    <p>But if the integral were</p>
+    <md>\int \cos(x^2)\,dx,</md>
+    <p>the helpful factor <m>2x</m> would be missing. That integral has no elementary antiderivative. Part I still guarantees that</p>
+    <md>\int_0^x \cos(t^2)\,dt</md>
+    <p>is a real function with derivative <m>\cos(x^2)</m>. It simply cannot be written using the basic elementary formulas we know.</p>
+
+    <p>So antiderivatives have two sides:</p>
+    <md>\text{existence} \qquad\text{and}\qquad \text{finding a usable formula}.</md>
+
+    <p>Part I gives existence for continuous functions. Part II turns usable formulas into definite integrals. The next question is how to find more usable formulas by reversing the chain rule.</p>
+  </subsection>
+
 </section>
