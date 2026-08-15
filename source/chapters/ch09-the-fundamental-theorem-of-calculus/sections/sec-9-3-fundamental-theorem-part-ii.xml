@@ -1,9 +1,454 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SOURCE: Chapter-9-draft.txt, Chapter-9-draft.tex, chapter-9.tex; intended section 9.3 “Fundamental Theorem, Part II”
-     EDITORIAL TAGS: Core
-     STATUS: NOT_STARTED -->
-<section xml:id="sec-9-3-fundamental-theorem-part-ii" xmlns:xi="http://www.w3.org/2001/XInclude">
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-9-3-fundamental-theorem-part-ii">
   <title>Fundamental Theorem, Part II</title>
 
-  <p>Placeholder. Content not yet converted.</p>
+  <p>Part I told us something surprising:</p>
+  <md>A(x)=\int_a^x f(t)\,dt \quad\Longrightarrow\quad A'(x)=f(x),</md>
+  <p>provided <m>f</m> is continuous.</p>
+
+  <p>So accumulation creates an antiderivative. Now we reverse the question.</p>
+
+  <p>Suppose we already know an antiderivative of <m>f</m>. Can we use it to compute the definite integral</p>
+  <md>\int_a^b f(x)\,dx</md>
+  <p>without returning to Riemann sums?</p>
+
+  <p>The answer is yes. This is the computational half of the Fundamental Theorem.</p>
+
+  <subsection xml:id="subsec-antiderivatives-evaluate-definite-integrals">
+    <title>Antiderivatives evaluate definite integrals</title>
+
+    <p>Start with a function whose area we can also see geometrically:</p>
+    <md>f(x)=2x+3.</md>
+
+    <p>We want to compute</p>
+    <md>\int_1^4 (2x+3)\,dx.</md>
+
+    <p>The graph is a line. The region under it from <m>1</m> to <m>4</m> is a trapezoid. The heights at the endpoints are</p>
+    <md>f(1)=5, \qquad f(4)=11.</md>
+
+    <p>The width is</p>
+    <md>4-1=3.</md>
+
+    <p>So the area is</p>
+    <md>\frac12(5+11)(3)=24.</md>
+
+    <figure xml:id="fig-ftc2-line-area">
+      <caption>The integral of <m>2x+3</m> from <m>1</m> to <m>4</m> is the area of a trapezoid.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=5,
+              ymin=0, ymax=13,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={1,4},
+              ytick={0,5,11},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[domain=1:4, samples=2, fill=gray!18, draw=none] {2*x+3} \closedcycle;
+          \addplot[very thick, domain=0:4.6, samples=2] {2*x+3};
+          \draw[dashed] (axis cs:1,0) -- (axis cs:1,5);
+          \draw[dashed] (axis cs:4,0) -- (axis cs:4,11);
+          \node[anchor=center] at (axis cs:2.0,8.6) {\(y=2x+3\)};
+          \node at (axis cs:2.5,3.0) {\(\displaystyle\int_1^4(2x+3)\,dx\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>Now compute the same number with an antiderivative.</p>
+
+    <p>A function whose derivative is</p>
+    <md>2x+3</md>
+    <p>is</p>
+    <md>F(x)=x^2+3x,</md>
+    <p>because</p>
+    <md>F'(x)=2x+3.</md>
+
+    <p>Evaluate <m>F</m> at the endpoints:</p>
+    <md>F(4)=4^2+3(4)=28,</md>
+    <p>and</p>
+    <md>F(1)=1^2+3(1)=4.</md>
+
+    <p>Subtract:</p>
+    <md>F(4)-F(1)=28-4=24.</md>
+
+    <p>This matches the trapezoid area:</p>
+    <md>\int_1^4(2x+3)\,dx=F(4)-F(1).</md>
+
+    <p>The antiderivative has turned an accumulation problem into an endpoint calculation.</p>
+
+    <note xml:id="note-the-pattern-ftc2">
+      <title>The pattern</title>
+      <p>If <m>F'(x)=f(x)</m>, then</p>
+      <md>\int_a^b f(x)\,dx</md>
+      <p>should equal the total change in <m>F</m> from <m>a</m> to <m>b</m>:</p>
+      <md>F(b)-F(a).</md>
+    </note>
+
+    <p>This is the second part of the Fundamental Theorem of Calculus.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-statement-ftc2">
+    <title>The statement of Part II</title>
+
+    <theorem xml:id="thm-ftc-part-2">
+      <title>Fundamental Theorem of Calculus, Part II</title>
+      <statement>
+        <p>Let <m>f</m> be continuous on <m>[a,b]</m>. Suppose <m>F</m> is an antiderivative of <m>f</m> on an interval containing <m>[a,b]</m>; that is,</p>
+        <md>F'(x)=f(x)</md>
+        <p>for every <m>x</m> in that interval. Then</p>
+        <md>\int_a^b f(x)\,dx=F(b)-F(a).</md>
+      </statement>
+    </theorem>
+
+    <p>We often write the endpoint subtraction as</p>
+    <md>F(x)\Big|_a^b=F(b)-F(a).</md>
+
+    <p>So Part II can be written compactly as</p>
+    <md>\int_a^b f(x)\,dx=F(x)\Big|_a^b.</md>
+
+    <p>The notation <m>F(x)\big|_a^b</m> means:</p>
+    <md>\text{evaluate at the top endpoint, evaluate at the bottom endpoint, subtract.}</md>
+
+    <example xml:id="ex-ftc2-quadratic">
+      <title>Evaluating an integral of a quadratic</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_0^3 x^2\,dx.</md>
+        <p>An antiderivative of <m>x^2</m> is</p>
+        <md>F(x)=\frac{x^3}{3}.</md>
+        <p>Therefore</p>
+        <md>\int_0^3 x^2\,dx = \frac{x^3}{3}\Big|_0^3 = \frac{3^3}{3}-\frac{0^3}{3} = 9.</md>
+        <p>So</p>
+        <md>\int_0^3 x^2\,dx=9.</md>
+      </statement>
+    </example>
+
+    <example xml:id="ex-ftc2-cubic-polynomial">
+      <title>Evaluating an integral of a cubic polynomial</title>
+      <statement>
+        <p>Evaluate</p>
+        <md>\int_1^2 (x^3-4x+1)\,dx.</md>
+        <p>An antiderivative is</p>
+        <md>F(x)=\frac{x^4}{4}-2x^2+x.</md>
+        <p>Thus</p>
+        <md>\int_1^2 (x^3-4x+1)\,dx = \left(\frac{x^4}{4}-2x^2+x\right)\Big|_1^2.</md>
+        <p>Compute the endpoint values:</p>
+        <md>F(2)=\frac{16}{4}-2(4)+2=4-8+2=-2,</md>
+        <p>and</p>
+        <md>F(1)=\frac14-2+1=-\frac34.</md>
+        <p>Therefore</p>
+        <md>\int_1^2 (x^3-4x+1)\,dx = -2-\left(-\frac34\right) = -\frac54.</md>
+        <p>So</p>
+        <md>\int_1^2 (x^3-4x+1)\,dx=-\frac54.</md>
+        <p>The answer is negative because the signed area below the axis exceeds the signed area above the axis on this interval.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-proof-ftc2">
+    <title>Proof of Part II</title>
+
+    <p>The proof is short because Part I already did the hard work.</p>
+
+    <paragraphs>
+      <title>Proof</title>
+      <p>Define the accumulation function</p>
+      <md>A(x)=\int_a^x f(t)\,dt.</md>
+      <p>By Part I,</p>
+      <md>A'(x)=f(x).</md>
+      <p>We are also given that</p>
+      <md>F'(x)=f(x).</md>
+      <p>Therefore</p>
+      <md>A'(x)=F'(x).</md>
+      <p>So</p>
+      <md>(A-F)'(x)=0.</md>
+      <p>A function whose derivative is <m>0</m> throughout an interval is constant on that interval. Hence</p>
+      <md>A(x)-F(x)=C</md>
+      <p>for some constant <m>C</m>.</p>
+      <p>Now use <m>x=a</m>. Since</p>
+      <md>A(a)=\int_a^a f(t)\,dt=0,</md>
+      <p>we get</p>
+      <md>0-F(a)=C.</md>
+      <p>Thus</p>
+      <md>C=-F(a).</md>
+      <p>Therefore</p>
+      <md>A(x)-F(x)=-F(a),</md>
+      <p>or</p>
+      <md>A(x)=F(x)-F(a).</md>
+      <p>Finally put <m>x=b</m>:</p>
+      <md>\int_a^b f(t)\,dt = A(b) = F(b)-F(a).</md>
+      <p>The letter inside the integral is a placeholder, so we may write</p>
+      <md>\int_a^b f(x)\,dx=F(b)-F(a).</md>
+      <p>This proves Part II.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-ftc2-interval-hypothesis">
+    <title>Why the interval hypothesis matters</title>
+
+    <p>Part II requires one antiderivative on an interval containing the whole interval of integration. We cannot use an antiderivative formula across a break where the function is not defined.</p>
+
+    <p>For example, consider</p>
+    <md>f(x)=\frac1{x^2}.</md>
+
+    <p>A formal antiderivative is</p>
+    <md>F(x)=-\frac1x,</md>
+    <p>because</p>
+    <md>F'(x)=\frac1{x^2}.</md>
+
+    <p>But this formula is valid only on intervals that do not cross <m>0</m>, such as <m>(0,\infty)</m> or <m>(-\infty,0)</m>. It is not an antiderivative on <m>[-1,1]</m>, because <m>f</m> is not even defined at <m>0</m>.</p>
+
+    <p>If we blindly wrote</p>
+    <md>\int_{-1}^1 \frac1{x^2}\,dx = -\frac1x\Big|_{-1}^{1},</md>
+    <p>we would get</p>
+    <md>-1-1=-2.</md>
+
+    <p>That is impossible for a positive function. The real problem is that the integral is not a proper definite integral on <m>[-1,1]</m>. The function blows up at <m>0</m>, and Part II does not apply.</p>
+
+    <paragraphs>
+      <title>Moral</title>
+      <p>Endpoint subtraction is allowed only when the antiderivative is valid on one interval covering the whole trip from <m>a</m> to <m>b</m>.</p>
+    </paragraphs>
+
+    <p>This warning will return when we study improper integrals. For now, the safe rule is:</p>
+    <note xml:id="note-check-continuity-before-ftc2">
+      <p>Check that the integrand is continuous on the interval before using Part II.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-net-change-theorem">
+    <title>The net change theorem</title>
+
+    <p>Part II is often most meaningful when the integrand is a derivative.</p>
+
+    <p>If</p>
+    <md>F'(x)=f(x),</md>
+    <p>then</p>
+    <md>\int_a^b f(x)\,dx = F(b)-F(a).</md>
+
+    <p>Replacing <m>f</m> by <m>F'</m>, we get</p>
+    <md>\int_a^b F'(x)\,dx=F(b)-F(a).</md>
+
+    <p>This is called the <term>net change theorem</term>.</p>
+
+    <theorem xml:id="thm-net-change">
+      <title>Net change theorem</title>
+      <statement>
+        <p>The integral of a rate of change gives the net change in the original quantity:</p>
+        <md>\int_a^b \text{rate of change}\,dx = \text{final amount}-\text{initial amount}.</md>
+      </statement>
+    </theorem>
+
+    <p>The word <em>net</em> matters. Positive and negative changes can cancel.</p>
+
+    <example xml:id="ex-net-change-temperature">
+      <title>Temperature change</title>
+      <statement>
+        <p>Suppose the temperature of a metal plate changes at the rate</p>
+        <md>T'(t)=6-2t</md>
+        <p>degrees Celsius per minute, for</p>
+        <md>0\le t\le 5.</md>
+        <p>Find the net temperature change from <m>t=0</m> to <m>t=5</m>.</p>
+        <p>By the net change theorem,</p>
+        <md>T(5)-T(0)=\int_0^5 (6-2t)\,dt.</md>
+        <p>An antiderivative of <m>6-2t</m> is</p>
+        <md>6t-t^2.</md>
+        <p>So</p>
+        <md>\int_0^5 (6-2t)\,dt = (6t-t^2)\Big|_0^5 = (30-25)-0 = 5.</md>
+        <p>The net temperature change is</p>
+        <md>5^\circ\text{C}.</md>
+        <p>The rate <m>T'(t)</m> becomes negative after <m>t=3</m>. So the temperature first rises, then falls. The integral counts both effects with signs.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-position-from-velocity-ftc2">
+    <title>Position from velocity</title>
+
+    <p>The dashboard story now becomes a theorem.</p>
+
+    <p>If <m>s(t)</m> is position and <m>v(t)=s'(t)</m> is velocity, then</p>
+    <md>\int_a^b v(t)\,dt=s(b)-s(a).</md>
+
+    <p>The integral of velocity is displacement.</p>
+
+    <example xml:id="ex-displacement-distance-different">
+      <title>Displacement and distance are different</title>
+      <statement>
+        <p>A particle has velocity</p>
+        <md>v(t)=3t^2-12t+9 = 3(t-1)(t-3), \qquad 0\le t\le 4.</md>
+        <p>Find its displacement from <m>0</m> to <m>4</m>. Then find the total distance traveled.</p>
+        <p>An antiderivative of <m>v(t)</m> is</p>
+        <md>s(t)=t^3-6t^2+9t.</md>
+        <p>So the displacement is</p>
+        <md>\int_0^4 v(t)\,dt = s(4)-s(0).</md>
+        <p>Compute:</p>
+        <md>s(4)=64-96+36=4, \qquad s(0)=0.</md>
+        <p>Thus</p>
+        <md>\int_0^4 v(t)\,dt=4.</md>
+        <p>The displacement is <m>4</m> units.</p>
+        <p>But total distance traveled counts all motion as positive. The velocity factors as</p>
+        <md>v(t)=3(t-1)(t-3),</md>
+        <p>so <m>v(t)</m> changes sign at</p>
+        <md>t=1 \qquad\text{and}\qquad t=3.</md>
+        <p>It is positive on <m>[0,1]</m>, negative on <m>[1,3]</m>, and positive on <m>[3,4]</m>.</p>
+        <p>The position values are</p>
+        <md>s(0)=0, \qquad s(1)=1-6+9=4,</md>
+        <md>s(3)=27-54+27=0, \qquad s(4)=4.</md>
+        <p>Therefore the total distance traveled is</p>
+        <md>|s(1)-s(0)|+|s(3)-s(1)|+|s(4)-s(3)|.</md>
+        <p>So</p>
+        <md>\text{total distance} = |4-0|+|0-4|+|4-0| = 4+4+4 = 12.</md>
+        <p>The displacement is <m>4</m>. The distance traveled is <m>12</m>.</p>
+
+        <figure xml:id="fig-velocity-net-change-sign">
+          <caption>Signed velocity gives displacement. Total distance requires adding the absolute changes.</caption>
+          <image width="82%">
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=0.82\textwidth,
+                  height=0.50\textwidth,
+                  xmin=0, xmax=4.5,
+                  ymin=-4.5, ymax=10.5,
+                  axis lines=middle,
+                  xlabel={\(t\)},
+                  ylabel={\(v(t)\)},
+                  xtick={0,1,2,3,4},
+                  ytick={-3,0,3,6,9},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[domain=0:1, samples=80, fill=gray!18, draw=none] {3*(x-1)*(x-3)} \closedcycle;
+              \addplot[domain=1:3, samples=100, fill=gray!30, draw=none] {3*(x-1)*(x-3)} \closedcycle;
+              \addplot[domain=3:4, samples=80, fill=gray!18, draw=none] {3*(x-1)*(x-3)} \closedcycle;
+              \addplot[very thick, domain=0:4, samples=200] {3*(x-1)*(x-3)};
+
+              \node[anchor=west, fill=gray!18, inner sep=2pt] at (axis cs:0.25,6.5) {positive displacement};
+              \node[anchor=west, fill=gray!30, inner sep=2pt] at (axis cs:1.35,-1.6) {negative displacement};
+              \node[anchor=west, fill=gray!18, inner sep=2pt] at (axis cs:3.0,2.4) {positive displacement};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>In integral notation,</p>
+        <md>\text{displacement}=\int_0^4 v(t)\,dt,</md>
+        <p>while</p>
+        <md>\text{total distance}=\int_0^4 |v(t)|\,dt.</md>
+        <p>The first integral allows cancellation. The second does not.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-accumulated-rate-science-economics">
+    <title>Accumulated rate in science and economics</title>
+
+    <p>Whenever a quantity is given by a rate, integration recovers accumulated change.</p>
+
+    <table>
+      <title>Rates and their accumulated quantities</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><m>\textbf{rate}</m></cell>
+          <cell><m>\textbf{integral}</m></cell>
+          <cell><m>\textbf{accumulated quantity}</m></cell>
+        </row>
+        <row>
+          <cell><m>v(t)</m> velocity</cell>
+          <cell><m>\displaystyle\int_a^b v(t)\,dt</m></cell>
+          <cell>displacement</cell>
+        </row>
+        <row>
+          <cell><m>P(t)</m> power</cell>
+          <cell><m>\displaystyle\int_a^b P(t)\,dt</m></cell>
+          <cell>energy used</cell>
+        </row>
+        <row>
+          <cell><m>r(t)</m> population growth rate</cell>
+          <cell><m>\displaystyle\int_a^b r(t)\,dt</m></cell>
+          <cell>population change</cell>
+        </row>
+        <row>
+          <cell><m>C'(q)</m> marginal cost</cell>
+          <cell><m>\displaystyle\int_a^b C'(q)\,dq</m></cell>
+          <cell>cost increase</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The units confirm the meaning.</p>
+    <md>\text{kW}\cdot\text{hours}=\text{kWh},</md>
+    <p>so the integral of power over time is energy.</p>
+    <md>\frac{\text{dollars}}{\text{item}}\cdot\text{items}=\text{dollars},</md>
+    <p>so the integral of marginal cost over quantity is a change in cost.</p>
+
+    <example xml:id="ex-energy-from-power-ftc2">
+      <title>Energy from power</title>
+      <statement>
+        <p>A machine uses power</p>
+        <md>P(t)=0.5+0.1t</md>
+        <p>kilowatts <m>t</m> hours after it is turned on. How much energy does it use during the first <m>4</m> hours?</p>
+        <p>Energy is accumulated power:</p>
+        <md>E=\int_0^4 P(t)\,dt.</md>
+        <p>So</p>
+        <md>E=\int_0^4 (0.5+0.1t)\,dt.</md>
+        <p>An antiderivative is</p>
+        <md>0.5t+0.05t^2.</md>
+        <p>Therefore</p>
+        <md>E = (0.5t+0.05t^2)\Big|_0^4 = 2+0.8 = 2.8.</md>
+        <p>The machine uses</p>
+        <md>2.8\text{ kWh}</md>
+        <p>of energy.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-marginal-cost-increase">
+      <title>Marginal cost</title>
+      <statement>
+        <p>Suppose the marginal cost of producing the <m>q</m>th item is modeled by</p>
+        <md>C'(q)=5+0.02q</md>
+        <p>dollars per item. Find the increase in cost when production rises from <m>100</m> items to <m>160</m> items.</p>
+        <p>The cost increase is</p>
+        <md>C(160)-C(100)=\int_{100}^{160} C'(q)\,dq.</md>
+        <p>Thus</p>
+        <md>C(160)-C(100) = \int_{100}^{160} (5+0.02q)\,dq.</md>
+        <p>An antiderivative is</p>
+        <md>5q+0.01q^2.</md>
+        <p>So</p>
+        <md>C(160)-C(100) = (5q+0.01q^2)\Big|_{100}^{160}.</md>
+        <p>Compute:</p>
+        <md>5(160)+0.01(160)^2=800+256=1056,</md>
+        <p>and</p>
+        <md>5(100)+0.01(100)^2=500+100=600.</md>
+        <p>Therefore</p>
+        <md>C(160)-C(100)=1056-600=456.</md>
+        <p>The cost increases by</p>
+        <md>\$456.</md>
+      </statement>
+    </example>
+
+    <note xml:id="note-reading-part2-in-words">
+      <title>Reading Part II in words</title>
+      <p>If <m>F</m> accumulates <m>f</m>, then <m>f</m> is the rate of change of <m>F</m>. The integral of <m>f</m> from <m>a</m> to <m>b</m> gives the change in <m>F</m> from <m>a</m> to <m>b</m>.</p>
+    </note>
+
+    <p>Part II gives a practical method for definite integrals, but it depends on a new skill: finding antiderivatives.</p>
+
+    <p>That skill becomes its own language.</p>
+  </subsection>
+
 </section>
