@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-10-4-mass-density-and-center-of-mass">
+  <title>Mass, density, and center of mass</title>
+
+  <p>Area and volume assume the material is uniform. But real objects are often heavier in one place than another.</p>
+
+  <p>A metal rod may be denser near one end. A wire may be made from two different materials. A thin plate may have paint or coating that varies from point to point.</p>
+
+  <p>Then length alone does not determine mass. We need density.</p>
+
+  <p>The small piece becomes</p>
+  <md>\text{small mass}=(\text{density})(\text{small length}).</md>
+
+  <p>In symbols,</p>
+  <md>dm=\lambda(x)\,dx.</md>
+
+  <subsection xml:id="subsec-linear-density-mass-rod">
+    <title>Linear density and mass of a rod</title>
+
+    <p>Suppose a thin rod lies along the <m>x</m>-axis from <m>x=a</m> to <m>x=b</m>. Its density may vary from point to point.</p>
+
+    <p>The <term>linear density</term></p>
+    <md>\lambda(x)</md>
+    <p>measures mass per unit length at position <m>x</m>.</p>
+
+    <p>For example, if <m>\lambda(x)</m> is measured in grams per centimeter and <m>dx</m> is measured in centimeters, then</p>
+    <md>\lambda(x)\,dx</md>
+    <p>has units</p>
+    <md>\frac{\text{grams}}{\text{centimeter}}\cdot\text{centimeter}=\text{grams}.</md>
+
+    <p>So the small mass is</p>
+    <md>dm=\lambda(x)\,dx.</md>
+
+    <p>Adding the small masses gives the total mass.</p>
+
+    <definition xml:id="def-mass-from-linear-density">
+      <title>Mass from linear density</title>
+      <statement>
+        <p>If a rod lies from <m>x=a</m> to <m>x=b</m>, and its linear density is <m>\lambda(x)</m>, then its mass is</p>
+        <md>m=\int_a^b \lambda(x)\,dx.</md>
+      </statement>
+    </definition>
+
+    <p>This is the same accumulation idea again:</p>
+    <md>\text{total mass}=\int(\text{mass per length})(\text{small length}).</md>
+
+    <example xml:id="ex-mass-rod-denser-right">
+      <title>A rod denser toward the right</title>
+      <statement>
+        <p>A rod lies from <m>x=0</m> to <m>x=4</m> centimeters. Its linear density is</p>
+        <md>\lambda(x)=2+x</md>
+        <p>grams per centimeter. Find its mass.</p>
+        <p>The mass is</p>
+        <md>m=\int_0^4 (2+x)\,dx.</md>
+        <p>Compute:</p>
+        <md>m = \left(2x+\frac{x^2}{2}\right)\Big|_0^4 = 8+8 = 16\text{ grams}.</md>
+        <p>The density is not constant. Near <m>x=0</m>, the density is <m>2</m> grams per centimeter. Near <m>x=4</m>, the density is <m>6</m> grams per centimeter. The integral adds all the varying small pieces of mass.</p>
+
+        <figure xml:id="fig-rod-density-center-mass">
+          <caption>For <m>\lambda(x)=2+x</m> on <m>[0,4]</m>, more mass lies to the right, so the center of mass is right of the midpoint.</caption>
+          <image width="85%">
+            <latex-image>
+              \begin{tikzpicture}[scale=1.0, every node/.style={font=\small}, &gt;=stealth]
+                % rod base
+                \draw[thick] (0,0) rectangle (8,0.55);
+
+                % simple density shading by strips
+                \foreach \i in {0,...,15} {
+                  \pgfmathsetmacro{\shade}{8+2*\i}
+                  \fill[gray!\shade] ({0.5*\i},0) rectangle ({0.5*(\i+1)},0.55);
+                }
+                \draw[thick] (0,0) rectangle (8,0.55);
+
+                % axis
+                \draw[-&gt;, thick] (-0.3,-0.55) -- (8.6,-0.55) node[right] {\(x\)};
+                \foreach \x/\lab in {0/0,4/2,8/4} {
+                  \draw[thick] (\x,-0.45) -- (\x,-0.65);
+                  \node[below] at (\x,-0.65) {\(\lab\)};
+                }
+
+                % center of mass marker
+                \draw[very thick, -&gt;] (4.67,1.35) -- (4.67,0.65);
+                \node[above] at (4.67,1.35) {\(\bar x=\frac73\)};
+
+                \node at (4,0.28) {density increases};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-moments">
+    <title>Moments</title>
+
+    <p>Mass tells how much matter there is. It does not say where the matter is located.</p>
+
+    <p>To measure location, we use <term>moments</term>.</p>
+
+    <p>Begin with point masses on a line. Suppose masses</p>
+    <md>m_1,m_2,\ldots,m_n</md>
+    <p>are located at positions</p>
+    <md>x_1,x_2,\ldots,x_n.</md>
+
+    <p>The total mass is</p>
+    <md>m=m_1+m_2+\cdots+m_n.</md>
+
+    <p>The moment about the origin is</p>
+    <md>M_0=m_1x_1+m_2x_2+\cdots+m_nx_n.</md>
+
+    <p>A mass farther from the origin contributes more to the moment. A mass on the negative side contributes a negative moment.</p>
+
+    <definition xml:id="def-moment-point-masses">
+      <title>Moment of point masses on a line</title>
+      <statement>
+        <md>M_0=\sum_{i=1}^n m_i x_i.</md>
+      </statement>
+    </definition>
+
+    <p>The units are</p>
+    <md>(\text{mass})(\text{length}).</md>
+
+    <p>For a continuous rod, the small mass near <m>x</m> is</p>
+    <md>dm=\lambda(x)\,dx.</md>
+
+    <p>Its small moment about the origin is</p>
+    <md>dM_0=x\,dm=x\lambda(x)\,dx.</md>
+
+    <p>Adding gives</p>
+    <md>M_0=\int_a^b x\lambda(x)\,dx.</md>
+
+    <p>The moment is the mass-weighted accumulation of position.</p>
+
+    <example xml:id="ex-moment-point-masses">
+      <title>Point masses</title>
+      <statement>
+        <p>A mass of <m>2</m> kilograms is placed at <m>x=1</m>, and a mass of <m>6</m> kilograms is placed at <m>x=5</m>. The total mass is</p>
+        <md>m=2+6=8.</md>
+        <p>The moment about the origin is</p>
+        <md>M_0=2(1)+6(5)=2+30=32.</md>
+        <p>The heavier mass is farther to the right, so the moment is large and positive.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-center-of-mass-line">
+    <title>Center of mass on a line</title>
+
+    <p>The center of mass is the balancing point.</p>
+
+    <p>For point masses, the balancing point <m>\bar x</m> should have the same total moment as the whole system. If all mass <m>m</m> were concentrated at <m>\bar x</m>, its moment would be</p>
+    <md>m\bar x.</md>
+
+    <p>So we require</p>
+    <md>m\bar x=M_0.</md>
+
+    <p>Therefore</p>
+    <md>\bar x=\frac{M_0}{m}.</md>
+
+    <p>For point masses,</p>
+    <md>\bar x = \frac{\sum_{i=1}^n m_i x_i}{\sum_{i=1}^n m_i}.</md>
+
+    <p>For a continuous rod,</p>
+    <md>m=\int_a^b \lambda(x)\,dx</md>
+    <p>and</p>
+    <md>M_0=\int_a^b x\lambda(x)\,dx.</md>
+
+    <p>So</p>
+    <definition xml:id="def-center-of-mass-rod">
+      <title>Center of mass of a rod</title>
+      <statement>
+        <md>\bar x = \frac{\int_a^b x\lambda(x)\,dx}{\int_a^b \lambda(x)\,dx}.</md>
+      </statement>
+    </definition>
+
+    <p>This formula is a weighted average of position. The weights are the small masses.</p>
+
+    <example xml:id="ex-center-of-mass-nonuniform-rod">
+      <title>Center of mass of a nonuniform rod</title>
+      <statement>
+        <p>Return to the rod on <m>[0,4]</m> with density</p>
+        <md>\lambda(x)=2+x.</md>
+        <p>We already found its mass:</p>
+        <md>m=16.</md>
+        <p>Its moment about the origin is</p>
+        <md>M_0=\int_0^4 x(2+x)\,dx.</md>
+        <p>Compute:</p>
+        <md>M_0=\int_0^4 (2x+x^2)\,dx = \left(x^2+\frac{x^3}{3}\right)\Big|_0^4.</md>
+        <p>Thus</p>
+        <md>M_0=16+\frac{64}{3}=\frac{112}{3}.</md>
+        <p>Therefore</p>
+        <md>\bar x=\frac{M_0}{m} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac73.</md>
+        <p>So the center of mass is at</p>
+        <md>x=\frac73\approx 2.33.</md>
+        <p>The midpoint of the rod is <m>2</m>. The center of mass is farther to the right because the rod is denser there.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-center-of-mass-symmetry">
+      <title>Symmetry can find the center</title>
+      <statement>
+        <p>Let a rod lie from <m>x=-1</m> to <m>x=1</m>, with density</p>
+        <md>\lambda(x)=1+x^2.</md>
+        <p>This density is symmetric:</p>
+        <md>\lambda(-x)=\lambda(x).</md>
+        <p>So the left half and right half balance. The center of mass should be</p>
+        <md>\bar x=0.</md>
+        <p>The moment confirms this:</p>
+        <md>M_0=\int_{-1}^1 x(1+x^2)\,dx.</md>
+        <p>The integrand</p>
+        <md>x(1+x^2)=x+x^3</md>
+        <p>is odd. The integral of an odd function over a symmetric interval is <m>0</m>. Hence</p>
+        <md>M_0=0.</md>
+        <p>Since the total mass is positive,</p>
+        <md>\bar x=\frac{0}{m}=0.</md>
+        <p>Symmetry is not a trick. It is a way of seeing cancellation before calculating.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warning-positive-mass-center-of-mass">
+      <p>The center of mass formula requires positive total mass. Ordinary densities are nonnegative, so this is usually automatic. If signed <q>masses</q> are allowed and the total mass is <m>0</m>, then</p>
+      <md>\bar x=\frac{M_0}{m}</md>
+      <p>has no meaning. A balancing point for physical mass comes from positive mass.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-uniform-density-check">
+    <title>Uniform density as a check</title>
+
+    <p>If density is constant, the center of mass should be the geometric midpoint.</p>
+
+    <p>Suppose</p>
+    <md>\lambda(x)=\lambda_0</md>
+    <p>on <m>[a,b]</m>, where <m>\lambda_0\gt 0</m>. Then</p>
+    <md>m=\int_a^b \lambda_0\,dx=\lambda_0(b-a).</md>
+
+    <p>The moment is</p>
+    <md>M_0=\int_a^b x\lambda_0\,dx = \lambda_0\left(\frac{x^2}{2}\right)\Big|_a^b = \lambda_0\frac{b^2-a^2}{2}.</md>
+
+    <p>So</p>
+    <md>\bar x = \frac{\lambda_0\frac{b^2-a^2}{2}}{\lambda_0(b-a)}.</md>
+
+    <p>Cancel <m>\lambda_0</m>, and factor</p>
+    <md>b^2-a^2=(b-a)(b+a).</md>
+
+    <p>Then</p>
+    <md>\bar x = \frac{(b-a)(b+a)}{2(b-a)} = \frac{a+b}{2}.</md>
+
+    <p>The formula passes the basic test. A uniform rod balances at its midpoint.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-lamina-preview-slices">
+    <title>A lamina preview by slices</title>
+
+    <p>A <term>lamina</term> is a thin flat plate. Its mass depends on area density, not linear density.</p>
+
+    <p>If the areal density is</p>
+    <md>\sigma</md>
+    <p>with units mass per unit area, then</p>
+    <md>dm=\sigma\,dA.</md>
+
+    <p>A full treatment belongs to multivariable calculus. But many lamina problems can already be handled by slicing.</p>
+
+    <p>Suppose a plate lies between</p>
+    <md>y=b(x)</md>
+    <p>and</p>
+    <md>y=t(x)</md>
+    <p>for</p>
+    <md>a\le x\le b,</md>
+    <p>and suppose its areal density <m>\sigma(x)</m> is constant along each vertical slice. A vertical slice has height</p>
+    <md>t(x)-b(x)</md>
+    <p>and thickness</p>
+    <md>dx.</md>
+
+    <p>So its area is approximately</p>
+    <md>dA=(t(x)-b(x))\,dx.</md>
+
+    <p>Its mass is</p>
+    <md>dm=\sigma(x)(t(x)-b(x))\,dx.</md>
+
+    <p>Therefore the total mass is</p>
+    <md>m=\int_a^b \sigma(x)(t(x)-b(x))\,dx.</md>
+
+    <p>The moment about the <m>y</m>-axis uses the horizontal position <m>x</m>:</p>
+    <md>M_y=\int_a^b x\,\sigma(x)(t(x)-b(x))\,dx.</md>
+
+    <p>So</p>
+    <md>\bar x=\frac{M_y}{m}.</md>
+
+    <p>If the density is uniform along each vertical slice, then the vertical center of that slice is halfway between its bottom and top:</p>
+    <md>\frac{b(x)+t(x)}{2}.</md>
+
+    <p>The moment about the <m>x</m>-axis is</p>
+    <md>M_x=\int_a^b \frac{b(x)+t(x)}{2}\,\sigma(x)(t(x)-b(x))\,dx.</md>
+
+    <p>Then</p>
+    <md>\bar y=\frac{M_x}{m}.</md>
+
+    <p>These formulas are still one-variable integrals because each slice has been reduced to one small mass placed at the slice's own center.</p>
+
+    <example xml:id="ex-center-of-mass-triangular-lamina">
+      <title>Center of mass of a triangular lamina</title>
+      <statement>
+        <p>Find the center of mass of the triangular plate bounded by</p>
+        <md>y=0,\qquad y=x,\qquad x=2,</md>
+        <p>assuming constant areal density <m>\sigma</m>.</p>
+        <p>A vertical slice at <m>x</m> runs from <m>y=0</m> to <m>y=x</m>. Its height is</p>
+        <md>x.</md>
+        <p>So</p>
+        <md>dm=\sigma x\,dx, \qquad 0\le x\le 2.</md>
+        <p>The mass is</p>
+        <md>m=\int_0^2 \sigma x\,dx = \sigma\left(\frac{x^2}{2}\right)\Big|_0^2 = 2\sigma.</md>
+        <p>The moment about the <m>y</m>-axis is</p>
+        <md>M_y=\int_0^2 x(\sigma x)\,dx = \sigma\int_0^2 x^2\,dx.</md>
+        <p>Thus</p>
+        <md>M_y = \sigma\left(\frac{x^3}{3}\right)\Big|_0^2 = \frac{8\sigma}{3}.</md>
+        <p>So</p>
+        <md>\bar x=\frac{M_y}{m} = \frac{\frac{8\sigma}{3}}{2\sigma} = \frac43.</md>
+        <p>For the vertical coordinate, each slice has midpoint height</p>
+        <md>\frac{x}{2}.</md>
+        <p>So the small moment about the <m>x</m>-axis is</p>
+        <md>dM_x=\frac{x}{2}\,dm = \frac{x}{2}\sigma x\,dx.</md>
+        <p>Therefore</p>
+        <md>M_x=\int_0^2 \frac{\sigma x^2}{2}\,dx = \frac{\sigma}{2}\left(\frac{x^3}{3}\right)\Big|_0^2 = \frac{4\sigma}{3}.</md>
+        <p>Thus</p>
+        <md>\bar y=\frac{M_x}{m} = \frac{\frac{4\sigma}{3}}{2\sigma} = \frac23.</md>
+        <p>The center of mass is</p>
+        <md>\left(\frac43,\frac23\right).</md>
+
+        <figure xml:id="fig-triangular-lamina-center-mass">
+          <caption>A triangular lamina can be handled by vertical slices. Each slice contributes mass and moment.</caption>
+          <image width="75%">
+            <latex-image>
+              \begin{tikzpicture}[scale=2.15, every node/.style={font=\small}, &gt;=stealth]
+                % axes
+                \draw[-&gt;, thick] (-0.2,0) -- (2.6,0) node[right] {\(x\)};
+                \draw[-&gt;, thick] (0,-0.2) -- (0,2.45) node[above] {\(y\)};
+
+                % triangle
+                \fill[gray!15] (0,0) -- (2,0) -- (2,2) -- cycle;
+                
+                % vertical slice fill
+                \fill[gray!45] (1.25,0) -- (1.32,0) -- (1.32,1.32) -- (1.25,1.25) -- cycle;
+                
+                \draw[very thick] (0,0) -- (2,2);
+                \draw[very thick] (2,0) -- (2,2);
+                \draw[very thick] (0,0) -- (2,0);
+
+                % vertical slice borders
+                \draw[thick] (1.25,0) -- (1.25,1.25);
+                \draw[thick] (1.32,0) -- (1.32,1.32);
+
+                % slice height dimension
+                \draw[&lt;-&gt;, thick] (1.4,1.32) -- (1.4,0) node[midway, right=3pt] {slice height \(x\)};
+
+                % center of mass
+                \fill (1.333,0.667) circle (1.3pt);
+                \node[anchor=east] at (1.30,0.67) {\(\left(\frac43,\frac23\right)\)};
+
+                % labels
+                \node[below] at (2,0) {\(2\)};
+                \node[left] at (0,2) {\(2\)};
+                \node[anchor=west] at (0.7,1.55) {\(y=x\)};
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+
+        <p>The density <m>\sigma</m> canceled from the center of mass because it was constant. If the density varied, it would not usually cancel.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-center-of-mass-measures">
+    <title>What center of mass is measuring</title>
+
+    <p>The center of mass is not the geometric center unless mass is spread uniformly.</p>
+
+    <p>It is the average location of mass.</p>
+
+    <p>For a rod,</p>
+    <md>\bar x = \frac{\int_a^b x\lambda(x)\,dx}{\int_a^b \lambda(x)\,dx}.</md>
+
+    <p>The denominator adds the mass. The numerator adds position weighted by mass.</p>
+
+    <p>For a lamina,</p>
+    <md>\bar x = \frac{M_y}{m}, \qquad \bar y = \frac{M_x}{m}.</md>
+
+    <p>The notation looks backwards at first: <m>M_y</m> gives <m>\bar x</m>, and <m>M_x</m> gives <m>\bar y</m>. The reason is that <m>M_y</m> is the moment about the <m>y</m>-axis, so it uses horizontal distance from that axis. That horizontal distance is <m>x</m>. Similarly, <m>M_x</m> uses vertical distance <m>y</m>.</p>
+
+    <note xml:id="note-mass-moment-small-pieces">
+      <title>Mass and moment small pieces</title>
+      <p>For a rod:</p>
+      <md>dm=\lambda(x)\,dx, \qquad dM_0=x\,dm.</md>
+      <p>For a sliced lamina:</p>
+      <md>dm=\sigma(x)(\text{slice height})\,dx, \qquad dM_y=x\,dm.</md>
+      <p>The pattern is always the same:</p>
+      <md>\text{moment}=(\text{distance from axis})(\text{mass}).</md>
+    </note>
+
+    <p>Mass asks:</p>
+    <md>\text{How much matter is there?}</md>
+
+    <p>Moment asks:</p>
+    <md>\text{Where is that matter, with respect to an axis?}</md>
+
+    <p>Center of mass combines the two:</p>
+    <md>\text{Where could all the mass be placed to have the same moment?}</md>
+
+    <p>The next application changes the physical meaning again. Instead of adding small masses, we will add small amounts of work:</p>
+    <md>dW=F(x)\,dx.</md>
+
+    <p>The small piece is force times displacement. The integral will measure energy transferred through motion.</p>
+  </subsection>
+
+</section>
