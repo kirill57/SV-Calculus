@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-signed-motion">
+  <title>Forward, backward, and signed motion</title>
+
+  <p>Constant velocity gave us the first picture of calculus: slope on one graph and area on another. But we quietly assumed that the car only moved forward. The moment a car can reverse, the dashboard story needs one more idea.</p>
+
+  <p>Velocity has a sign.</p>
+
+  <p>Choose one direction on a straight road and call it positive. For example, east may be positive and west negative. A car moving east at <m>40</m> miles/hour has velocity</p>
+
+  <md>v=40.</md>
+
+  <p>A car moving west at the same speed has velocity</p>
+
+  <md>v=-40.</md>
+
+  <p>The speed is the size of the velocity:</p>
+
+  <md>\text{speed}=|v|.</md>
+
+  <p>So speed is never negative, but velocity can be negative. This sign is how calculus remembers direction.</p>
+
+  <subsection xml:id="subsec-positive-and-negative-velocity">
+    <title>Positive and negative velocity</title>
+
+    <p>When motion can go backward, it is better to stop using <m>d(t)</m> for everything. The word <q>distance</q> usually means a nonnegative amount traveled. Instead, let</p>
+
+    <md>s(t)</md>
+
+    <p>denote the signed position of the car along the road at time <m>t</m>. We measure <m>s(t)</m> in miles from the starting point, with positive values in the chosen positive direction.</p>
+
+    <p>If <m>s(0)=0</m>, then:</p>
+
+    <md>s(t)&gt;0</md>
+
+    <p>means the car is on the positive side of the starting point, while</p>
+
+    <md>s(t)&lt;0</md>
+
+    <p>means the car is on the negative side.</p>
+
+    <p>The change</p>
+
+    <md>s(b)-s(a)</md>
+
+    <p>is called the <em>displacement</em> from time <m>a</m> to time <m>b</m>. Displacement is signed. It can be positive, negative, or zero.</p>
+
+    <example xml:id="ex-displacement">
+      <title>Calculating displacement</title>
+      <statement>
+        <p>Suppose a car moves as follows:</p>
+        <md>40\text{ miles/hour for }2\text{ hours},</md>
+        <p>then</p>
+        <md>-30\text{ miles/hour for }1\text{ hour}.</md>
+        <p>The first part moves the car</p>
+        <md>40\cdot 2=80</md>
+        <p>miles in the positive direction. The second part moves the car</p>
+        <md>-30\cdot 1=-30</md>
+        <p>miles in the negative direction.</p>
+        <p>So the displacement over the whole trip is</p>
+        <md>80+(-30)=50</md>
+        <p>miles.</p>
+        <p>The car ends <m>50</m> miles ahead of where it started.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-displacement-versus-distance-traveled">
+    <title>Displacement versus distance traveled</title>
+
+    <p>The odometer would tell a different story. The car actually drove <m>80</m> miles forward and then <m>30</m> miles backward. The total distance traveled is</p>
+
+    <md>80+30=110</md>
+
+    <p>miles.</p>
+
+    <p>So in this trip,</p>
+
+    <md>\text{displacement}=50\text{ miles},</md>
+
+    <p>but</p>
+
+    <md>\text{distance traveled}=110\text{ miles}.</md>
+
+    <p>These are not the same.</p>
+
+    <remark xml:id="rmk-displacement-direction">
+      <title>Displacement and direction</title>
+      <p><term>Displacement remembers direction.</term></p>
+      <p>Forward motion counts positive. Backward motion counts negative.</p>
+      <md>\text{displacement}=s(b)-s(a).</md>
+      <p><term>Distance traveled ignores direction.</term></p>
+      <p>Forward and backward motion both add positive length.</p>
+      <md>\text{distance traveled}=\text{sum of the lengths of all pieces of motion}.</md>
+    </remark>
+
+    <p>A person who walks <m>10</m> steps forward and <m>10</m> steps backward has displacement <m>0</m>, but did not stand still. The distance traveled is <m>20</m> steps.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-area-below-the-time-axis">
+    <title>Area below the time axis</title>
+
+    <p>Now look at the velocity graph. Positive velocity lies above the time axis. Negative velocity lies below it.</p>
+
+    <p>For the trip above,</p>
+
+    <md>
+      v(t)=
+      \begin{cases}
+      40, \amp 0\leq t\lt 2,\\
+      -30, \amp 2\lt t\leq 3.
+      \end{cases}
+    </md>
+
+    <p>The signed position is</p>
+
+    <md>
+      s(t)=
+      \begin{cases}
+      40t, \amp 0\leq t\leq 2,\\
+      80-30(t-2), \amp 2\leq t\leq 3.
+      \end{cases}
+    </md>
+
+    <p>At <m>t=2</m>, the simple model changes velocity instantly. We may leave <m>v(2)</m> undefined. That one instant has no width, so it does not affect any accumulated displacement in this step model. But it does leave a corner in the graph of <m>s(t)</m>. Later, that corner will matter when we ask for instantaneous velocity.</p>
+
+    <figure xml:id="fig-signed-area-motion">
+      <caption>Area above the time axis counts positive. Area below the time axis counts negative. The signed area under the velocity graph is <m>80-30=50</m>, matching the change in signed position.</caption>
+      <sidebyside widths="47% 47%">
+        <figure xml:id="fig-signed-area-motion-v">
+          <caption>Velocity graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=0, xmax=3.25,
+                  ymin=-45, ymax=60,
+                  axis lines=middle,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(v(t)\)},
+                  xtick={0,1,2,3},
+                  ytick={-30,0,40},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15, fill opacity=0.6, draw=none] (axis cs:0,0) rectangle (axis cs:2,40);
+              \draw[fill=gray!25, fill opacity=0.6, draw=none] (axis cs:2,0) rectangle (axis cs:3,-30);
+              \addplot[thick] coordinates {(0,40) (2,40)};
+              \addplot[thick] coordinates {(2,-30) (3,-30)};
+              \draw[dashed] (axis cs:2,-35) -- (axis cs:2,45);
+              \node[anchor=south] at (axis cs:1,40) {\(+80\)};
+              \node[anchor=north] at (axis cs:2.5,-30) {\(-30\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-signed-area-motion-s">
+          <caption>Signed position graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.72\textwidth,
+                  xmin=0, xmax=3.25,
+                  ymin=0, ymax=90,
+                  axis lines=left,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(s(t)\) (miles)},
+                  xtick={0,1,2,3},
+                  ytick={0,40,50,80},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick] coordinates {(0,0) (2,80) (3,50)};
+              \addplot[only marks,mark=*] coordinates {(0,0) (2,80) (3,50)};
+              \node[anchor=west] at (axis cs:0.85,30) {slope \(40\)};
+              \node[anchor=west] at (axis cs:2.15,76) {slope \(-30\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>The area above the time axis is a rectangle of height <m>40</m> and width <m>2</m>:</p>
+
+    <md>40\cdot 2=80.</md>
+
+    <p>The area below the time axis is a rectangle of height <m>30</m> and width <m>1</m>, but it counts negatively:</p>
+
+    <md>-30\cdot 1=-30.</md>
+
+    <p>Therefore the signed area under the velocity graph is</p>
+
+    <md>80-30=50.</md>
+
+    <p>This equals</p>
+
+    <md>s(3)-s(0)=50-0=50.</md>
+
+    <p>So the rule from constant velocity survives, but with a sign:</p>
+
+    <md>\boxed{\text{change in signed position}=\text{signed area under the velocity graph}.}</md>
+  </subsection>
+
+  <subsection xml:id="subsec-a-first-piecewise-defined-motion">
+    <title>A first piecewise-defined motion</title>
+
+    <p>A formula such as</p>
+
+    <md>
+      v(t)=
+      \begin{cases}
+      40, \amp 0\leq t\lt 2,\\
+      -30, \amp 2\lt t\leq 3
+      \end{cases}
+    </md>
+
+    <p>is called <em>piecewise-defined</em>. It gives different instructions on different pieces of the domain.</p>
+
+    <p>Piecewise-defined functions are not artificial. They describe many real situations:</p>
+
+    <table xml:id="tab-piecewise-examples">
+      <title>Piecewise behavior</title>
+      <tabular>
+        <row bottom="medium">
+          <cell>motion</cell>
+          <cell>piecewise behavior</cell>
+        </row>
+        <row>
+          <cell>a car stops at a red light</cell>
+          <cell>positive velocity, then zero velocity</cell>
+        </row>
+        <row>
+          <cell>an elevator goes up, stops, then goes down</cell>
+          <cell>positive, zero, negative velocity</cell>
+        </row>
+        <row>
+          <cell>a thermostat turns heat on and off</cell>
+          <cell>different rules at different temperatures</cell>
+        </row>
+        <row>
+          <cell>a tax bracket changes</cell>
+          <cell>different rates on different income intervals</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>In a piecewise-constant velocity model, each time interval is easy. The velocity is constant on that interval, so displacement is</p>
+
+    <md>\text{velocity}\cdot \text{time}.</md>
+
+    <p>Then we add the pieces.</p>
+
+    <example xml:id="ex-piecewise-velocity">
+      <title>Piecewise velocity displacement</title>
+      <statement>
+        <p>Suppose a car has velocity</p>
+        <md>
+          v(t)=
+          \begin{cases}
+          50, \amp 0\leq t\lt 1,\\
+          0, \amp 1\leq t\lt 2,\\
+          -20, \amp 2\leq t\leq 4.
+          \end{cases}
+        </md>
+        <p>The displacement from <m>0</m> to <m>4</m> is</p>
+        <md>
+          50\cdot 1+0\cdot 1+(-20)\cdot 2
+          =
+          50+0-40
+          =
+          10.
+        </md>
+        <p>The car ends <m>10</m> miles ahead of where it started.</p>
+        <p>The distance traveled is</p>
+        <md>
+          |50|\cdot 1+|0|\cdot 1+|-20|\cdot 2
+          =
+          50+0+40
+          =
+          90.
+        </md>
+        <p>The signed calculation tells where the car ends. The absolute-value calculation tells how much road the car has covered.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-the-sign-prepares-us-for">
+    <title>What the sign prepares us for</title>
+
+    <p>Signed area is not ordinary geometric area. Ordinary geometric area is never negative. Signed area is different because it is designed to represent accumulated change.</p>
+
+    <p>If <m>v(t)&gt;0</m>, the signed position increases.</p>
+
+    <p>If <m>v(t)&lt;0</m>, the signed position decreases.</p>
+
+    <p>If <m>v(t)=0</m>, the signed position does not change.</p>
+
+    <p>That is why the graph of <m>s(t)</m> rises, falls, or stays flat according to the sign of <m>v(t)</m>.</p>
+
+    <p>For piecewise-constant velocity, we can compute everything with rectangles. But the next idea is even simpler and deeper: if we know a list of signed positions at equally spaced times, then the changes between them contain all the information needed to recover the final position from the first one.</p>
+
+    <p>That is calculus before limits.</p>
+  </subsection>
+
+</section>
