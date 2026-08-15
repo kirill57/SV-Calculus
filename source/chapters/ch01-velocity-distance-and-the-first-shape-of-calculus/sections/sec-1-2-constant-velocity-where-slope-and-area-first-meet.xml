@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-constant-velocity">
+  <title>Constant velocity: where slope and area first meet</title>
+
+  <p>The dashboard gave us two questions. Constant velocity is the first case where both questions can be answered without any limiting process.</p>
+
+  <p>Suppose a car moves forward at <m>60</m> miles per hour, starting from distance <m>0</m>. After <m>1</m> hour it has gone <m>60</m> miles. After <m>2</m> hours it has gone <m>120</m> miles. After <m>t</m> hours it has gone</p>
+
+  <md>d(t)=60t</md>
+
+  <p>miles.</p>
+
+  <table xml:id="tab-constant-velocity">
+    <title>Distance at constant velocity.</title>
+    <tabular>
+      <row header="yes" bottom="medium">
+        <cell><m>t</m> (hours)</cell>
+        <cell><m>0</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>3</m></cell>
+      </row>
+      <row>
+        <cell><m>d(t)</m> (miles)</cell>
+        <cell><m>0</m></cell>
+        <cell><m>60</m></cell>
+        <cell><m>120</m></cell>
+        <cell><m>180</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The distance grows in the simplest possible way: by equal amounts in equal times.</p>
+
+  <subsection xml:id="subsec-the-graph-of-distance-when-velocity-is-constant">
+    <title>The graph of distance when velocity is constant</title>
+
+    <p>The graph of</p>
+
+    <md>d(t)=60t</md>
+
+    <p>is a straight line. The graph of</p>
+
+    <md>v(t)=60</md>
+
+    <p>is a horizontal line.</p>
+
+    <figure xml:id="fig-constant-velocity-graphs">
+      <caption>Constant velocity gives a horizontal velocity graph and a straight distance graph. The same number <m>60</m> appears as a height, a slope, and a rate.</caption>
+      <sidebyside widths="47% 47%">
+        <figure xml:id="fig-constant-velocity-v">
+          <caption>Velocity graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0, xmax=3.3,
+                  ymin=0, ymax=80,
+                  axis lines=left,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(v(t)\) (miles/hour)},
+                  xtick={0,1,2,3},
+                  ytick={0,60},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15,draw=none] (axis cs:0,0) rectangle (axis cs:3,60);
+              \addplot[thick,domain=0:3,samples=2] {60};
+              \node at (axis cs:1.5,30) {\(\text{area}=60\cdot 3\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-constant-velocity-d">
+          <caption>Distance graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0, xmax=3.3,
+                  ymin=0, ymax=200,
+                  axis lines=left,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(d(t)\) (miles)},
+                  xtick={0,1,2,3},
+                  ytick={0,60,120,180},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick,domain=0:3,samples=2] {60*x};
+              \addplot[only marks,mark=*] coordinates {(0,0) (1,60) (2,120) (3,180)};
+              \node[anchor=west] at (axis cs:1.85,104) {\(d(t)=60t\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>The two graphs show the same trip in different languages.</p>
+
+    <p>On the velocity graph, <m>60</m> is a height.</p>
+
+    <p>On the distance graph, <m>60</m> is a slope.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-slope-of-the-distance-graph">
+    <title>Slope of the distance graph</title>
+
+    <p>Take two times <m>a</m> and <m>b</m>, with <m>a&lt;b</m>. The average velocity from <m>t=a</m> to <m>t=b</m> is</p>
+
+    <md>\frac{d(b)-d(a)}{b-a}.</md>
+
+    <p>For <m>d(t)=60t</m>,</p>
+
+    <md>
+      \frac{d(b)-d(a)}{b-a}
+      =
+      \frac{60b-60a}{b-a}
+      =
+      \frac{60(b-a)}{b-a}
+      =
+      60.
+    </md>
+
+    <p>The answer does not depend on which two times we choose. Every secant line has the same slope because the graph is already a straight line.</p>
+
+    <remark xml:id="rmk-constant-velocity-slope">
+      <title>Constant velocity appears as constant slope</title>
+      <p>If <m>d(t)=60t</m>, then the slope of the distance graph is always <m>60</m>, matching the velocity.</p>
+    </remark>
+
+    <p>More generally, if</p>
+
+    <md>d(t)=d_0+v_0t,</md>
+
+    <p>then</p>
+
+    <md>\frac{d(b)-d(a)}{b-a} = v_0.</md>
+
+    <p>The starting value <m>d_0</m> moves the line up or down, but it does not change the slope.</p>
+
+    <example xml:id="ex-constant-velocity-slope">
+      <title>Slope with starting value</title>
+      <statement>
+        <p>Suppose</p>
+        <md>d(t)=20+55t.</md>
+        <p>Then <m>d(0)=20</m>. The car has already accumulated <m>20</m> miles when we start watching. But the velocity is still <m>55</m> miles/hour because</p>
+        <md>
+          \frac{d(b)-d(a)}{b-a}
+          =
+          \frac{(20+55b)-(20+55a)}{b-a}
+          =
+          55.
+        </md>
+        <p>The constant <m>20</m> cancels. Slope measures change, not starting value.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-area-under-the-velocity-graph">
+    <title>Area under the velocity graph</title>
+
+    <p>Now start from the velocity graph instead. If</p>
+
+    <md>v(t)=60</md>
+
+    <p>from <m>t=0</m> to <m>t=3</m>, then the region under the velocity graph is a rectangle.</p>
+
+    <p>Its height is <m>60</m> miles/hour. Its width is <m>3</m> hours. Its area is</p>
+
+    <md>60\cdot 3=180.</md>
+
+    <p>The units are</p>
+
+    <md>
+      \frac{\text{miles}}{\text{hour}}\cdot \text{hour} = \text{miles}.
+    </md>
+
+    <p>So the area under the velocity graph gives distance traveled:</p>
+
+    <md>d(3)-d(0)=180.</md>
+
+    <p>At a general time <m>t</m>,</p>
+
+    <md>\text{area under } v(t)=60 \text{ from }0\text{ to }t = 60t.</md>
+
+    <p>This is exactly the distance function</p>
+
+    <md>d(t)=60t.</md>
+
+    <remark xml:id="rmk-constant-velocity-area">
+      <title>Constant velocity appears as rectangular area</title>
+      <p>If <m>v(t)=60</m>, then the accumulated distance from <m>0</m> to <m>t</m> is the area of a rectangle:</p>
+      <md>60t.</md>
+    </remark>
+  </subsection>
+
+  <subsection xml:id="subsec-the-constant-velocity-rule">
+    <title>The constant-velocity rule</title>
+
+    <p>The same idea works on any time interval.</p>
+
+    <p>Suppose the velocity is constant:</p>
+
+    <md>v(t)=v_0</md>
+
+    <p>for <m>a\leq t\leq b</m>. Then the distance traveled from time <m>a</m> to time <m>b</m> is</p>
+
+    <md>v_0(b-a).</md>
+
+    <p>Equivalently,</p>
+
+    <md>\boxed{d(b)-d(a)=v_0(b-a).}</md>
+
+    <p>This formula has two readings.</p>
+
+    <p>First, it is a slope statement:</p>
+
+    <md>v_0=\frac{d(b)-d(a)}{b-a}.</md>
+
+    <p>Second, it is an area statement:</p>
+
+    <md>d(b)-d(a)=\text{area of a rectangle of height }v_0\text{ and width }b-a.</md>
+
+    <p>The same rectangle that computes distance also explains why the distance graph has slope <m>v_0</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-why-slope-and-area-are-inverse-clues">
+    <title>Why slope and area are inverse clues</title>
+
+    <p>For constant velocity, nothing mysterious is hidden.</p>
+
+    <p>Starting with distance,</p>
+
+    <md>d(t)=d_0+v_0t,</md>
+
+    <p>we find velocity by taking the slope:</p>
+
+    <md>\frac{\text{change in distance}}{\text{change in time}}=v_0.</md>
+
+    <p>Starting with velocity,</p>
+
+    <md>v(t)=v_0,</md>
+
+    <p>we find change in distance by taking rectangular area:</p>
+
+    <md>\text{height}\cdot \text{width}=v_0(b-a).</md>
+
+    <p>So the two dashboard questions become two geometric questions:</p>
+
+    <md>\boxed{\text{velocity}=\text{slope of the distance graph}}</md>
+
+    <p>and</p>
+
+    <md>\boxed{\text{change in distance}=\text{area under the velocity graph}.}</md>
+
+    <p>This is the first shape of calculus.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-why-the-word-constant-matters">
+    <title>Why the word <q>constant</q> matters</title>
+
+    <p>The formula</p>
+
+    <md>d(b)-d(a)=v_0(b-a)</md>
+
+    <p>requires constant velocity. Without that assumption, it can give the wrong story.</p>
+
+    <p>Suppose a car travels</p>
+
+    <md>30\text{ miles/hour for the first } \frac{1}{2}\text{ hour}</md>
+
+    <p>and then</p>
+
+    <md>70\text{ miles/hour for the next } \frac{1}{2}\text{ hour}.</md>
+
+    <p>The total distance is</p>
+
+    <md>30\cdot \frac{1}{2} +70\cdot \frac{1}{2} = 15+35 = 50</md>
+
+    <p>miles.</p>
+
+    <p>The average velocity over the full hour is <m>50</m> miles/hour, but the car was never moving at <m>50</m> miles/hour during either half of the trip.</p>
+
+    <p>The velocity graph is no longer one horizontal line. It has two steps. The distance graph is no longer one straight line. It has two line segments, one with slope <m>30</m> and one with slope <m>70</m>.</p>
+
+    <figure xml:id="fig-piecewise-constant-preview">
+      <caption>When velocity changes by steps, distance is built from several straight pieces. Each piece has its own slope.</caption>
+      <sidebyside widths="47% 47%">
+        <figure xml:id="fig-piecewise-constant-v">
+          <caption>Velocity graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0, xmax=1.1,
+                  ymin=0, ymax=80,
+                  axis lines=left,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(v(t)\)},
+                  xtick={0,0.5,1},
+                  xticklabels={\(0\),\(\frac{1}{2}\),\(1\)},
+                  ytick={0,30,70},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \draw[fill=gray!15,draw=none] (axis cs:0,0) rectangle (axis cs:0.5,30);
+              \draw[fill=gray!25,draw=none] (axis cs:0.5,0) rectangle (axis cs:1,70);
+              \addplot[thick] coordinates {(0,30) (0.5,30)};
+              \addplot[thick] coordinates {(0.5,70) (1,70)};
+              \draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,75);
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-piecewise-constant-d">
+          <caption>Distance graph</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\textwidth,
+                  height=0.70\textwidth,
+                  xmin=0, xmax=1.1,
+                  ymin=0, ymax=55,
+                  axis lines=left,
+                  xlabel={\(t\) (hours)},
+                  ylabel={\(d(t)\)},
+                  xtick={0,0.5,1},
+                  xticklabels={\(0\),\(\frac{1}{2}\),\(1\)},
+                  ytick={0,15,50},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+              ]
+              \addplot[thick] coordinates {(0,0) (0.5,15) (1,50)};
+              \addplot[only marks,mark=*] coordinates {(0,0) (0.5,15) (1,50)};
+              \node[anchor=west] at (axis cs:0.1,14) {slope \(30\)};
+              \node[anchor=west] at (axis cs:0.52,41) {slope \(70\)};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>This example is still simple because the velocity is constant on each half-hour piece. We can add two rectangle areas.</p>
+
+    <p>But real motion rarely changes only once. A driver speeds up, slows down, stops, and starts again. The velocity graph may have many pieces, or no flat pieces at all.</p>
+
+    <p>The next step is to allow motion forward and backward. Then area below the time axis must count with a sign. That sign is not a technicality; it is how calculus remembers direction.</p>
+  </subsection>
+
+</section>
