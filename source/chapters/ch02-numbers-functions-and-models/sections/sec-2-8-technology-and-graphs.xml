@@ -11,26 +11,29 @@
 
   <p>The right attitude is not distrust. It is partnership.</p>
 
-  <principle xml:id="principle-tech-partnership">
-    <title>Technology and mathematics in partnership</title>
-    <statement>
-      <p><em>Use technology to see. Use mathematics to check.</em></p>
-    </statement>
-  </principle>
+  <remark xml:id="rmk-technology-rule">
+    <title>Using technology wisely</title>
+    <p>Use technology to see. Use mathematics to check.</p>
+  </remark>
 
   <subsection xml:id="subsec-windows-can-lie">
     <title>Windows can lie</title>
 
-    <p>A graphing window is a rectangle: <m>x_{\min}\le x\le x_{\max}</m>, <m>y_{\min}\le y\le y_{\max}</m>. Anything outside that rectangle is invisible. The same function can look simple in one window and complicated in another.</p>
+    <p>A graphing window is a rectangle:</p>
+    <md>x_{\min}\le x\le x_{\max}, \qquad y_{\min}\le y\le y_{\max}.</md>
 
-    <example xml:id="ex-cubic-window-effects">
-      <title>Window size and shape of a cubic</title>
+    <p>Anything outside that rectangle is invisible. The same function can look simple in one window and complicated in another.</p>
+
+    <example xml:id="ex-window-cubic-view">
+      <title>Different views of <m>p(x)=x^3-6x</m></title>
       <statement>
-        <p>Consider <m>p(x)=x^3-6x</m>. Near the origin, in the small window <m>[-1,1]</m>, the graph looks like a steep decreasing curve. But in the wider window <m>[-3,3]</m>, we see more of its shape: it rises, falls, and rises again.</p>
+        <p>Consider</p>
+        <md>p(x)=x^3-6x.</md>
+        <p>Near the origin, in the small window <m>-1\le x\le 1</m>, the graph looks like a steep decreasing curve. But in the wider window <m>-3\le x\le 3</m>, we see more of its shape: it rises, falls, and rises again.</p>
 
-        <sidebyside widths="48% 48%">
+        <sidebyside widths="47% 47%" margins="auto">
           <figure xml:id="fig-window-small-cubic">
-            <caption>Small window <m>[-1,1]</m></caption>
+            <caption>Small window (<m>-1\le x\le 1</m>)</caption>
             <image>
               <latex-image>
                 \begin{tikzpicture}
@@ -55,8 +58,8 @@
             </image>
           </figure>
 
-          <figure xml:id="fig-window-wider-cubic">
-            <caption>Wider window <m>[-3,3]</m></caption>
+          <figure xml:id="fig-window-wide-cubic">
+            <caption>Wider window (<m>-3\le x\le 3</m>)</caption>
             <image>
               <latex-image>
                 \begin{tikzpicture}
@@ -81,14 +84,20 @@
             </image>
           </figure>
         </sidebyside>
+
+        <p>The function did not change. The window changed.</p>
       </statement>
     </example>
 
     <example xml:id="ex-hidden-hole-technology">
       <title>A hidden hole</title>
       <statement>
-        <p>The function <m>h(x)=\frac{x^2-1}{x-1}</m> is not defined at <m>x=1</m>. For <m>x\neq 1</m>, it simplifies: <m>h(x)=\frac{(x-1)(x+1)}{x-1}=x+1</m>.</p>
-        <p>A graphing utility may draw the line <m>y=x+1</m> without showing the missing point. But the original function has a hole at <m>(1,2)</m>. The screen may not show the difference between <m>h(x)=\frac{x^2-1}{x-1}</m> and <m>\ell(x)=x+1</m>. Algebra does.</p>
+        <p>The function</p>
+        <md>h(x)=\frac{x^2-1}{x-1}</md>
+        <p>is not defined at <m>x=1</m>. For <m>x\neq 1</m>, it simplifies:</p>
+        <md>h(x)=\frac{(x-1)(x+1)}{x-1}=x+1.</md>
+        <p>A graphing utility may draw the line <m>y=x+1</m> without showing the missing point. But the original function has a hole at <m>(1,2)</m>.</p>
+        <p>The screen may not show the difference between <m>h(x)=\frac{x^2-1}{x-1}</m> and <m>\ell(x)=x+1</m>. Algebra does.</p>
       </statement>
     </example>
 
@@ -102,17 +111,24 @@
   <subsection xml:id="subsec-sampling-can-miss-behavior">
     <title>Sampling can miss behavior</title>
 
-    <p>A computer cannot check infinitely many points. It samples finitely many input values, plots the corresponding output values, and connects or displays them. Usually this works well. Sometimes it fails spectacularly.</p>
+    <p>A computer cannot check infinitely many points. It samples finitely many input values, plots the corresponding output values, and connects or displays them.</p>
 
-    <example xml:id="ex-aliasing-sine-sampling">
+    <p>Usually this works well. Sometimes it fails spectacularly.</p>
+
+    <example xml:id="ex-zero-looking-oscillation">
       <title>The zero-looking oscillation</title>
       <statement>
-        <p>Consider <m>f(x)=\sin(100\pi x)</m> for <m>0\le x\le 1</m>. This function oscillates <m>50</m> full times on the interval <m>[0,1]</m>.</p>
-        <p>But if a graphing program happens to sample at <m>x=0, 0.01, 0.02, \dots, 1.00</m>, then every sampled value is <m>\sin(100\pi x)=0</m>. The sampled graph may look like the horizontal line <m>y=0</m>, even though the true function swings from <m>-1</m> to <m>1</m> repeatedly.</p>
+        <p>Consider</p>
+        <md>f(x)=\sin(100\pi x), \qquad 0\le x\le 1.</md>
+        <p>This function oscillates <m>50</m> full times on the interval <m>[0,1]</m>.</p>
+        <p>But if a graphing program happens to sample at <m>x=0, 0.01, 0.02, \ldots, 1.00</m>, then every sampled value is</p>
+        <md>\sin(100\pi x)=0.</md>
+        <p>For example, <m>\sin(100\pi\cdot 0.37)=\sin(37\pi)=0</m>.</p>
+        <p>The sampled graph may look like the horizontal line <m>y=0</m>, even though the true function swings from <m>-1</m> to <m>1</m> again and again between the sampled points.</p>
 
-        <sidebyside widths="48% 48%">
-          <figure xml:id="fig-sampling-poor-sine">
-            <caption>Poor sampling (101 points)</caption>
+        <sidebyside widths="47% 47%" margins="auto">
+          <figure xml:id="fig-poor-sampling-oscillation">
+            <caption>Poor sampling (101 points) suggests <m>f(x)=0</m></caption>
             <image>
               <latex-image>
                 \begin{tikzpicture}
@@ -138,8 +154,8 @@
             </image>
           </figure>
 
-          <figure xml:id="fig-sampling-fine-sine">
-            <caption>Finer sampling (1200 points)</caption>
+          <figure xml:id="fig-finer-sampling-oscillation">
+            <caption>Finer sampling (1200 points) reveals true oscillation</caption>
             <image>
               <latex-image>
                 \begin{tikzpicture}
@@ -164,6 +180,8 @@
             </image>
           </figure>
         </sidebyside>
+
+        <p>Oscillations appear in sound, light, vibration, and signal processing. Sampling matters.</p>
       </statement>
     </example>
 
@@ -176,68 +194,94 @@
   <subsection xml:id="subsec-numerical-evidence-versus-proof">
     <title>Numerical evidence versus proof</title>
 
-    <p>Numerical evidence is useful. It helps us guess patterns, find examples, and notice mistakes. But a long list of checked cases is not a proof.</p>
+    <p>Numerical evidence is useful. It helps us guess patterns. It helps us find examples. It helps us notice mistakes.</p>
 
-    <example xml:id="ex-graph-vs-algebra-positivity">
+    <p>But a long list of checked cases is not a proof.</p>
+
+    <example xml:id="ex-graph-suggests-positivity">
       <title>A graph suggests positivity</title>
       <statement>
-        <p>The graph of <m>q(x)=x^2-2x+2</m> appears to lie above the <m>x</m>-axis, suggesting <m>q(x)\gt 0</m> for all real <m>x</m>.</p>
-        <p>A graph supports the claim, but algebra proves it: <m>x^2-2x+2=(x-1)^2+1\ge 1\gt 0</m> for every real <m>x</m>. The proof tells us more: the function is at least <m>1</m>.</p>
+        <p>The graph of</p>
+        <md>q(x)=x^2-2x+2</md>
+        <p>appears to lie above the <m>x</m>-axis. That suggests <m>q(x)\gt 0</m> for all real <m>x</m>.</p>
+        <p>A graph supports the claim, but algebra proves it:</p>
+        <md>x^2-2x+2 = (x-1)^2+1.</md>
+        <p>Since <m>(x-1)^2\ge 0</m>, we have <m>(x-1)^2+1\ge 1</m>. Therefore <m>q(x)\ge 1\gt 0</m> for every real <m>x</m>.</p>
+        <p>The proof tells us more than the graph. It tells us that the function is not merely positive; it is at least <m>1</m>.</p>
       </statement>
     </example>
 
-    <example xml:id="ex-sign-change-root-evidence">
+    <example xml:id="ex-sign-change-root">
       <title>A sign change suggests a root</title>
       <statement>
-        <p>Consider <m>r(x)=x^3-x-1</m>. We have <m>r(1)=-1</m> and <m>r(2)=5</m>. The outputs change sign between <m>x=1</m> and <m>x=2</m>. A graph suggests that the curve crosses the <m>x</m>-axis somewhere between them.</p>
-        <p>Later, the Intermediate Value Theorem will make this exact: a continuous function that changes sign on an interval must have a zero inside that interval.</p>
-        <p>Numerical evidence gives a clue; a theorem explains when the clue is reliable.</p>
+        <p>Consider</p>
+        <md>r(x)=x^3-x-1.</md>
+        <p>We can compute <m>r(1)=1-1-1=-1</m> and <m>r(2)=8-2-1=5</m>.</p>
+        <p>The outputs change from negative to positive between <m>x=1</m> and <m>x=2</m>. A graph suggests that the curve crosses the <m>x</m>-axis somewhere between them.</p>
+        <p>Later, after we define continuity, the Intermediate Value Theorem will make this exact. It will say that a continuous function that changes sign on an interval must have a zero inside that interval.</p>
+        <p>For now, the important lesson is this: numerical evidence gives a clue; a theorem explains when the clue is reliable.</p>
       </statement>
     </example>
 
-    <example xml:id="ex-false-identity-points">
+    <example xml:id="ex-checked-cases-not-proof">
       <title>Many correct cases do not prove an identity</title>
       <statement>
-        <p>The functions <m>f(x)=x^2</m> and <m>g(x)=x^2+(x-1)(x-2)(x-3)(x-4)(x-5)</m> agree at <m>x=1,2,3,4,5</m>. At each of those points, <m>g(x)=x^2</m>.</p>
-        <p>But at <m>x=0</m>, <m>f(0)=0</m> while <m>g(0)=-120</m>. Checking five points was not enough. Checking a thousand points is still not a proof of equality for all real numbers.</p>
+        <p>Suppose a calculator suggests that two formulas give the same output for many inputs. That does not prove the formulas are identical.</p>
+        <p>For example, the functions</p>
+        <md>f(x)=x^2 \quad \text{and} \quad g(x)=x^2+(x-1)(x-2)(x-3)(x-4)(x-5)</md>
+        <p>agree at <m>x=1,2,3,4,5</m>. At each of those inputs, the product term is <m>0</m>, so <m>g(x)=x^2</m>.</p>
+        <p>But the functions are not the same. At <m>x=0</m>, <m>f(0)=0</m>, while</p>
+        <md>g(0)=0+(-1)(-2)(-3)(-4)(-5)=-120.</md>
+        <p>Checking five points was not enough. Checking a thousand points is still not a proof of equality for all real numbers.</p>
       </statement>
     </example>
 
-    <remark xml:id="rmk-proof-vs-computation">
-      <title>Proof versus computation</title>
-      <p>A computation can show that a statement is true at the inputs tested. A proof shows why the statement must be true for every allowed input.</p>
-    </remark>
+    <warning xml:id="warn-proof-vs-computation">
+      <title>Proof warning</title>
+      <p>A computation can show that a statement is true at the inputs tested.</p>
+      <p>A proof shows why the statement must be true for every allowed input.</p>
+    </warning>
   </subsection>
 
   <subsection xml:id="subsec-first-warning-roundoff">
     <title>A first warning about roundoff</title>
 
-    <p>There is another way technology can mislead: numbers are rounded. A computer stores only finitely many digits. When two nearly equal numbers are subtracted, important digits can disappear.</p>
+    <p>There is another way technology can mislead: numbers are rounded.</p>
 
-    <example xml:id="ex-catastrophic-cancellation">
+    <p>A calculator screen may show <m>10</m> digits. A computer may store more. But still, it stores only finitely many digits. Most real numbers cannot be stored exactly.</p>
+
+    <p>Usually this causes no visible trouble. But when two nearly equal numbers are subtracted, important digits can disappear.</p>
+
+    <example xml:id="ex-subtracting-nearly-equal">
       <title>Subtracting nearly equal numbers</title>
       <statement>
         <p>Consider</p>
         <md>Q(h)=\frac{\sqrt{1+h}-1}{h}.</md>
-        <p>This expression will appear naturally when we study the derivative of <m>\sqrt{x}</m>. For small <m>h</m>, the numerator subtracts two numbers very close to each other.</p>
-        <p>If <m>h=10^{-12}</m>, <m>\sqrt{1+h}</m> is extremely close to <m>1</m>. A rounded calculation may lose the small difference.</p>
-        <p>Multiplying by the conjugate gives a safer expression:</p>
-        <md>Q(h)=\frac{\sqrt{1+h}-1}{h}\cdot\frac{\sqrt{1+h}+1}{\sqrt{1+h}+1} = \frac{h}{h(\sqrt{1+h}+1)} = \frac{1}{\sqrt{1+h}+1}, \qquad h\neq 0.</md>
-        <p>Now there is no subtraction of nearly equal numbers. As <m>h\to 0</m>, this safer expression is close to <m>\frac{1}{1+1}=\frac{1}{2}</m>.</p>
+        <p>This expression will appear naturally when we study the derivative of <m>\sqrt{x}</m>. For small <m>h</m>, the numerator <m>\sqrt{1+h}-1</m> subtracts two numbers very close to each other.</p>
+        <p>If <m>h=10^{-12}</m>, then <m>\sqrt{1+h}</m> is extremely close to <m>1</m>. A rounded calculation may lose the small difference.</p>
+        <p>But algebra gives a safer expression. Multiply numerator and denominator by the conjugate:</p>
+        <md>Q(h) = \frac{\sqrt{1+h}-1}{h} \cdot \frac{\sqrt{1+h}+1}{\sqrt{1+h}+1} = \frac{(1+h)-1}{h(\sqrt{1+h}+1)} = \frac{h}{h(\sqrt{1+h}+1)}.</md>
+        <p>For <m>h\neq 0</m>,</p>
+        <md>Q(h)=\frac{1}{\sqrt{1+h}+1}.</md>
+        <p>Now there is no subtraction of nearly equal numbers. As <m>h</m> becomes small, this safer expression is close to <m>\frac{1}{1+1}=\frac{1}{2}</m>.</p>
       </statement>
     </example>
 
-    <warning xml:id="warn-roundoff-storage">
+    <warning xml:id="warn-roundoff-behavior">
       <title>Roundoff warning</title>
-      <p>Two algebraically equal formulas can behave differently when approximately computed on a calculator. The problem is not the mathematics; it is the finite storage of approximations.</p>
+      <p>Two algebraically equal formulas can behave differently when approximately computed on a calculator.</p>
+      <p>The problem is not the mathematics. The problem is the finite storage of decimal or binary approximations.</p>
     </warning>
 
-    <paragraphs xml:id="par-roundoff-in-calculus">
-      <title>Why this matters for calculus</title>
-      <p>Calculus is built from small changes: <m>\frac{f(a+h)-f(a)}{h}</m>. When <m>h</m> is very small, the numerator often subtracts nearly equal numbers. That makes roundoff error part of the story.</p>
-      <p>Sometimes algebra can make a formula more numerically stable. Sometimes a graph needs a better range. Sometimes a numerical pattern needs a precise definition.</p>
-      <p>The next chapter provides the missing language. It will make the phrase <q>as <m>x</m> gets close to <m>a</m></q> into mathematics. That language is the limit.</p>
-    </paragraphs>
+    <p>Calculus is built from small changes:</p>
+    <md>\frac{f(a+h)-f(a)}{h}.</md>
+    <p>When <m>h</m> is very small, the numerator often subtracts nearly equal numbers. That makes roundoff error part of the story.</p>
+
+    <p>This does not mean we should avoid numerical computation. It means we should understand what the computation is doing.</p>
+
+    <p>Sometimes, algebra can make a formula more (numerically) stable. Sometimes a graph needs a better range for variables. Sometimes, a numerical pattern needs a precise definition.</p>
+
+    <p>The next chapter provides the missing language. It will make the phrase <em>as <m>x</m> gets close to <m>a</m></em> into mathematics. That language is the limit.</p>
   </subsection>
 
 </section>
