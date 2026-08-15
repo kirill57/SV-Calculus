@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-warning-examples-chapter-6">
+  <title>Warning examples</title>
+
+  <p>The last few sections gave us strong tools:</p>
+  <p>Fermat's theorem, Rolle's theorem, the Mean Value Theorem,</p>
+  <p>the first derivative test, the second derivative test, and l'Hospital's Rule.</p>
+
+  <p>Each one has a boundary. A theorem is useful only when its hypotheses are true. This section collects the warning examples in one place, so the rules are easier to use and harder to misuse.</p>
+
+  <subsection xml:id="subsec-fermat-endpoint-warning">
+    <title>Fermat's theorem fails at an endpoint</title>
+
+    <p>Fermat's theorem said:</p>
+    <md>\text{differentiable local extremum at an interior point} \quad\Longrightarrow\quad f'(c)=0.</md>
+
+    <p>The phrase <em>interior point</em> matters.</p>
+
+    <p>Let</p>
+    <md>f(x)=x</md>
+    <p>on the interval <m>[0,1]</m>. The function has an absolute minimum at <m>x=0</m> and an absolute maximum at <m>x=1</m>. But the derivative is</p>
+    <md>f'(x)=1.</md>
+    <p>There is no horizontal tangent.</p>
+
+    <figure xml:id="fig-fermat-endpoint-warning">
+      <caption>An endpoint can be highest or lowest simply because the interval stops.</caption>
+      <image width="62%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.62\textwidth,
+              height=0.40\textwidth,
+              xmin=-0.1, xmax=1.1,
+              ymin=-0.1, ymax=1.1,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(f(x)\)},
+              xtick={0,1},
+              ytick={0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=0:1, samples=2] {x};
+          \addplot[only marks, mark=*] coordinates {(0,0) (1,1)};
+          \node[anchor=north east] at (axis cs:0,0) {absolute min};
+          \node[anchor=south west] at (axis cs:1,1) {absolute max};
+          \node[anchor=west] at (axis cs:0.35,0.55) {slope \(1\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>There is no contradiction. Fermat's theorem applies to interior points. At an endpoint, the graph only has to be compared with points on one side. It can be best or worst without flattening out.</p>
+
+    <note xml:id="note-endpoint-extrema-fermat">
+      <title>Key take-away</title>
+      <p>Endpoint extrema do not have to satisfy <m>f'(c)=0</m>.</p>
+    </note>
+
+    <p>That is why the closed interval method always checks endpoints separately.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-mvt-continuity-warning">
+    <title>The Mean Value Theorem fails without continuity</title>
+
+    <p>The Mean Value Theorem said that if <m>f</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>, then some <m>c\in(a,b)</m> satisfies</p>
+    <md>f'(c)=\frac{f(b)-f(a)}{b-a}.</md>
+
+    <p>Continuity on the whole closed interval matters.</p>
+
+    <p>Define</p>
+    <md>
+      f(x)=
+      \begin{cases}
+      x, \amp 0\le x\lt 1,\\
+      0, \amp x=1.
+      \end{cases}
+    </md>
+    <p>on <m>[0,1]</m>.</p>
+
+    <p>Then</p>
+    <md>f(0)=0, \qquad f(1)=0.</md>
+
+    <p>So the secant slope from <m>0</m> to <m>1</m> is</p>
+    <md>\frac{f(1)-f(0)}{1-0}=0.</md>
+
+    <p>But on the open interval <m>(0,1)</m>,</p>
+    <md>f(x)=x,</md>
+    <p>so</p>
+    <md>f'(x)=1</md>
+    <p>for every <m>x\in(0,1)</m>. There is no point <m>c\in(0,1)</m> with</p>
+    <md>f'(c)=0.</md>
+
+    <figure xml:id="fig-mvt-continuity-warning">
+      <caption>Without continuity, the endpoint secant slope may not appear as any tangent slope.</caption>
+      <image width="62%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.62\textwidth,
+              height=0.40\textwidth,
+              xmin=-0.1, xmax=1.15,
+              ymin=-0.1, ymax=1.15,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(f(x)\)},
+              xtick={0,1},
+              ytick={0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=0:0.99, samples=2] {x};
+          \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,1)};
+          \addplot[only marks, mark=*] coordinates {(0,0) (1,0)};
+          \addplot[dashed, domain=0:1, samples=2] {0};
+          \node[anchor=west] at (axis cs:0.45,0.58) {slope \(1\)};
+          \node[anchor=west] at (axis cs:0.35,0.08) {secant slope \(0\)};
+          \node[anchor=west] at (axis cs:1.02,0.5) {jump};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The graph climbs toward <m>1</m>, then jumps down at the endpoint. The jump hides the climb from the endpoint calculation.</p>
+
+    <note xml:id="note-mvt-needs-continuity">
+      <title>Key take-away</title>
+      <p>The Mean Value Theorem needs continuity on <m>[a,b]</m>.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-mvt-differentiability-warning">
+    <title>The Mean Value Theorem fails without differentiability</title>
+
+    <p>The Mean Value Theorem also needs differentiability on the open interval.</p>
+
+    <p>Let</p>
+    <md>f(x)=|x|</md>
+    <p>on <m>[-1,1]</m>.</p>
+
+    <p>The function is continuous on <m>[-1,1]</m>. Its endpoint values are</p>
+    <md>f(-1)=1, \qquad f(1)=1.</md>
+
+    <p>So the secant slope is</p>
+    <md>\frac{f(1)-f(-1)}{1-(-1)} = \frac{1-1}{2} = 0.</md>
+
+    <p>If the Mean Value Theorem applied, there would be some <m>c\in(-1,1)</m> with</p>
+    <md>f'(c)=0.</md>
+
+    <p>But</p>
+    <md>f'(x)=-1 \quad\text{for }x\lt 0,</md>
+    <p>and</p>
+    <md>f'(x)=1 \quad\text{for }x\gt 0.</md>
+
+    <p>At <m>x=0</m>, the derivative does not exist. The graph turns at a corner.</p>
+
+    <figure xml:id="fig-mvt-differentiability-warning">
+      <caption>A corner can create a turn without any horizontal tangent.</caption>
+      <image width="62%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.62\textwidth,
+              height=0.40\textwidth,
+              xmin=-1.25, xmax=1.25,
+              ymin=-0.1, ymax=1.25,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-1,0,1},
+              ytick={0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=-1.15:0, samples=2] {-x};
+          \addplot[thick, domain=0:1.15, samples=2] {x};
+          \addplot[dashed, domain=-1:1, samples=2] {1};
+          \addplot[only marks, mark=*] coordinates {(-1,1) (0,0) (1,1)};
+          \node[anchor=south] at (axis cs:0,0.05) {corner};
+          \node[anchor=south] at (axis cs:0,1.03) {secant slope \(0\)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The graph does return to the same height, but it turns too sharply. Rolle's Theorem and the Mean Value Theorem do not promise a horizontal tangent unless the function is differentiable throughout the open interval.</p>
+
+    <note xml:id="note-mvt-needs-differentiability">
+      <title>Key take-away</title>
+      <p>The Mean Value Theorem needs differentiability on <m>(a,b)</m>.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-second-derivative-inconclusive-warning">
+    <title>The second derivative test can be inconclusive</title>
+
+    <p>The second derivative test said:</p>
+    <md>f'(c)=0,\quad f''(c)\gt 0 \quad\Longrightarrow\quad \text{local minimum at }c,</md>
+    <p>and</p>
+    <md>f'(c)=0,\quad f''(c)\lt 0 \quad\Longrightarrow\quad \text{local maximum at }c.</md>
+
+    <p>But when</p>
+    <md>f''(c)=0,</md>
+    <p>the test says nothing.</p>
+
+    <p>Three different outcomes are possible.</p>
+
+    <paragraphs xml:id="para-warning-second-test-min">
+      <title>A local minimum</title>
+      <p>Let</p>
+      <md>f(x)=x^4.</md>
+      <p>Then</p>
+      <md>f'(x)=4x^3, \qquad f''(x)=12x^2.</md>
+      <p>At <m>x=0</m>,</p>
+      <md>f'(0)=0, \qquad f''(0)=0.</md>
+      <p>The second derivative test gives no conclusion. But <m>x^4\ge 0</m> for every <m>x</m>, so <m>f</m> has a local minimum at <m>0</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-warning-second-test-max">
+      <title>A local maximum</title>
+      <p>Let</p>
+      <md>g(x)=-x^4.</md>
+      <p>Then</p>
+      <md>g'(x)=-4x^3, \qquad g''(x)=-12x^2.</md>
+      <p>At <m>x=0</m>,</p>
+      <md>g'(0)=0, \qquad g''(0)=0.</md>
+      <p>The test again gives no conclusion. But <m>-x^4\le 0</m> for every <m>x</m>, so <m>g</m> has a local maximum at <m>0</m>.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-warning-second-test-no-extremum">
+      <title>No local extremum</title>
+      <p>Let</p>
+      <md>h(x)=x^3.</md>
+      <p>Then</p>
+      <md>h'(x)=3x^2, \qquad h''(x)=6x.</md>
+      <p>At <m>x=0</m>,</p>
+      <md>h'(0)=0, \qquad h''(0)=0.</md>
+      <p>But <m>x^3</m> is increasing through <m>0</m>. There is no local maximum or local minimum.</p>
+    </paragraphs>
+
+    <figure xml:id="fig-second-derivative-test-silent">
+      <caption>When <m>f'(0)=0</m> and <m>f''(0)=0</m>, the second derivative test is silent.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.46\textwidth,
+              xmin=-1.6, xmax=1.6,
+              ymin=-1.6, ymax=1.6,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={},
+              xtick={-1,0,1},
+              ytick={-1,0,1},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+          ]
+          \addplot[thick, domain=-1.45:1.45, samples=200] {x^4};
+          \addlegendentry{\(x^4\): minimum}
+          \addplot[thick, dashed, domain=-1.45:1.45, samples=200] {-x^4};
+          \addlegendentry{\(-x^4\): maximum}
+          \addplot[thick, dotted, domain=-1.15:1.15, samples=200] {x^3};
+          \addlegendentry{\(x^3\): no extremum}
+          \addplot[only marks, mark=*] coordinates {(0,0)};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The moral is short:</p>
+
+    <note xml:id="note-second-derivative-try-another">
+      <title>Key take-away</title>
+      <p><m>f''(c)=0</m> means <q>try another test.</q></p>
+    </note>
+
+    <p>Most often, we return to the first derivative test or to the definition of local maximum and local minimum.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-lhospital-every-quotient-warning">
+    <title>l'Hospital's Rule cannot be used on every quotient</title>
+
+    <p>l'Hospital's Rule is a rule for the indeterminate forms <m>\frac00</m> and <m>\frac{\infty}{\infty}</m>.</p>
+
+    <p>The first question is always: What form does direct substitution produce?</p>
+
+    <paragraphs xml:id="para-not-indeterminate-quotient">
+      <title>A quotient that is not indeterminate</title>
+      <p>Consider</p>
+      <md>\lim_{x\to 0}\frac{x^2+1}{x+1}.</md>
+      <p>Direct substitution gives</p>
+      <md>\frac{0^2+1}{0+1}=1.</md>
+      <p>So the limit is <m>1</m>. This is not a <m>0/0</m> form and not an <m>\infty/\infty</m> form.</p>
+      <p>If we incorrectly differentiate numerator and denominator, we get</p>
+      <md>\lim_{x\to 0}\frac{2x}{1}=0,</md>
+      <p>which is wrong.</p>
+      <note xml:id="note-not-indeterminate-warning">
+        <title>Key take-away</title>
+        <p>Do not use l'Hospital's Rule when direct substitution already gives an ordinary number.</p>
+      </note>
+    </paragraphs>
+
+    <paragraphs xml:id="para-derivative-quotient-oscillates">
+      <title>A derivative quotient with no limit</title>
+      <p>Sometimes the original quotient has a limit, but the quotient of derivatives does not.</p>
+      <p>Consider</p>
+      <md>\lim_{x\to\infty}\frac{x+\sin x}{x}.</md>
+      <p>The quotient is</p>
+      <md>\frac{x+\sin x}{x} = 1+\frac{\sin x}{x}.</md>
+      <p>Since</p>
+      <md>\left|\frac{\sin x}{x}\right|\le \frac1x</md>
+      <p>for <m>x\gt 0</m>, we get</p>
+      <md>\frac{\sin x}{x}\to 0.</md>
+      <p>Therefore</p>
+      <md>\lim_{x\to\infty}\frac{x+\sin x}{x}=1.</md>
+      <p>But the quotient of derivatives is</p>
+      <md>\frac{1+\cos x}{1}=1+\cos x,</md>
+      <p>which has no limit as <m>x\to\infty</m>.</p>
+      <p>There is no contradiction. l'Hospital's Rule says that if the original quotient has the right indeterminate form and the derivative quotient has a limit, then the original limit has that same value. It does not say that the derivative quotient must always have a limit.</p>
+      <note xml:id="note-derivative-quotient-no-settle">
+        <title>Key take-away</title>
+        <p>If the derivative quotient does not settle, l'Hospital's Rule gives no conclusion.</p>
+      </note>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-6-theorem-checklist">
+    <title>A theorem-use checklist</title>
+
+    <p>The warnings can be compressed into a practical checklist.</p>
+
+    <table>
+      <title>Checklist of conditions before applying calculus theorems</title>
+      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="left"/>
+        <col halign="left"/>
+        <row header="yes">
+          <cell><term>tool</term></cell>
+          <cell><term>check before using it</term></cell>
+        </row>
+        <row>
+          <cell>Fermat's theorem</cell>
+          <cell>Is the extremum at an interior point? Is the function differentiable there?</cell>
+        </row>
+        <row>
+          <cell>Mean Value Theorem</cell>
+          <cell>Is the function continuous on <m>[a,b]</m>? Is it differentiable on <m>(a,b)</m>?</cell>
+        </row>
+        <row>
+          <cell>first derivative test</cell>
+          <cell>Does <m>f'</m> actually change sign around the critical number?</cell>
+        </row>
+        <row>
+          <cell>second derivative test</cell>
+          <cell>Is <m>f'(c)=0</m>? Is <m>f''(c)</m> positive or negative, not zero?</cell>
+        </row>
+        <row>
+          <cell>l'Hospital's Rule</cell>
+          <cell>Is the quotient really <m>0/0</m> or <m>\infty/\infty</m>? Does the derivative quotient have a limit?</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>A theorem is not only a conclusion. It is a package:</p>
+    <md>\text{hypotheses} \quad\Longrightarrow\quad \text{conclusion}.</md>
+
+    <p>If the hypotheses are missing, the conclusion may still be true by luck. But the theorem is no longer the reason.</p>
+
+    <p>These warnings prepare the chapter review. We now gather the ideas into one working map: how to read shape from derivatives, how to prove global facts from the Mean Value Theorem, and how to tell when a tempting shortcut is legal.</p>
+  </subsection>
+
+</section>
