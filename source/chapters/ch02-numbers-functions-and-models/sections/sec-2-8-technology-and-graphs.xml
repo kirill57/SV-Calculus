@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-technology-and-graphs">
+  <title>Technology and graphs</title>
+
+  <p>A graphing calculator or computer can draw in a second what would take minutes by hand. That speed is useful. It is also dangerous.</p>
+
+  <p>A screen does not show a function. It shows a sampled picture of a function in a chosen window.</p>
+
+  <p>The picture may be excellent. It may also miss a hole, hide a turn, smooth out an oscillation, or round away a small but important difference.</p>
+
+  <p>The right attitude is not distrust. It is partnership.</p>
+
+  <principle xml:id="principle-tech-partnership">
+    <title>Technology and mathematics in partnership</title>
+    <statement>
+      <p><em>Use technology to see. Use mathematics to check.</em></p>
+    </statement>
+  </principle>
+
+  <subsection xml:id="subsec-windows-can-lie">
+    <title>Windows can lie</title>
+
+    <p>A graphing window is a rectangle: <m>x_{\min}\le x\le x_{\max}</m>, <m>y_{\min}\le y\le y_{\max}</m>. Anything outside that rectangle is invisible. The same function can look simple in one window and complicated in another.</p>
+
+    <example xml:id="ex-cubic-window-effects">
+      <title>Window size and shape of a cubic</title>
+      <statement>
+        <p>Consider <m>p(x)=x^3-6x</m>. Near the origin, in the small window <m>[-1,1]</m>, the graph looks like a steep decreasing curve. But in the wider window <m>[-3,3]</m>, we see more of its shape: it rises, falls, and rises again.</p>
+
+        <sidebyside widths="48% 48%">
+          <figure xml:id="fig-window-small-cubic">
+            <caption>Small window <m>[-1,1]</m></caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[
+                      width=\textwidth,
+                      height=0.76\textwidth,
+                      xmin=-1, xmax=1,
+                      ymin=-6, ymax=6,
+                      axis lines=middle,
+                      xlabel={\(x\)},
+                      ylabel={\(y\)},
+                      xtick={-1,0,1},
+                      ytick={-6,0,6},
+                      grid=both,
+                      grid style={line width=.1pt, draw=gray!25},
+                      title={small window}
+                  ]
+                  \addplot[thick, domain=-1:1, samples=100] {x^3-6*x};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+
+          <figure xml:id="fig-window-wider-cubic">
+            <caption>Wider window <m>[-3,3]</m></caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[
+                      width=\textwidth,
+                      height=0.76\textwidth,
+                      xmin=-3, xmax=3,
+                      ymin=-10, ymax=10,
+                      axis lines=middle,
+                      xlabel={\(x\)},
+                      ylabel={\(y\)},
+                      xtick={-3,-2,-1,0,1,2,3},
+                      ytick={-10,-5,0,5,10},
+                      grid=both,
+                      grid style={line width=.1pt, draw=gray!25},
+                      title={wider window}
+                  ]
+                  \addplot[thick, domain=-3:3, samples=160] {x^3-6*x};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+        </sidebyside>
+      </statement>
+    </example>
+
+    <example xml:id="ex-hidden-hole-technology">
+      <title>A hidden hole</title>
+      <statement>
+        <p>The function <m>h(x)=\frac{x^2-1}{x-1}</m> is not defined at <m>x=1</m>. For <m>x\neq 1</m>, it simplifies: <m>h(x)=\frac{(x-1)(x+1)}{x-1}=x+1</m>.</p>
+        <p>A graphing utility may draw the line <m>y=x+1</m> without showing the missing point. But the original function has a hole at <m>(1,2)</m>. The screen may not show the difference between <m>h(x)=\frac{x^2-1}{x-1}</m> and <m>\ell(x)=x+1</m>. Algebra does.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-window-limitations">
+      <title>Window warning</title>
+      <p>A graph can suggest: <em>There may be a zero, a turn, a hole, or an asymptote.</em></p>
+      <p>It cannot by itself prove: <em>There is exactly one, or none, or always.</em></p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-sampling-can-miss-behavior">
+    <title>Sampling can miss behavior</title>
+
+    <p>A computer cannot check infinitely many points. It samples finitely many input values, plots the corresponding output values, and connects or displays them. Usually this works well. Sometimes it fails spectacularly.</p>
+
+    <example xml:id="ex-aliasing-sine-sampling">
+      <title>The zero-looking oscillation</title>
+      <statement>
+        <p>Consider <m>f(x)=\sin(100\pi x)</m> for <m>0\le x\le 1</m>. This function oscillates <m>50</m> full times on the interval <m>[0,1]</m>.</p>
+        <p>But if a graphing program happens to sample at <m>x=0, 0.01, 0.02, \dots, 1.00</m>, then every sampled value is <m>\sin(100\pi x)=0</m>. The sampled graph may look like the horizontal line <m>y=0</m>, even though the true function swings from <m>-1</m> to <m>1</m> repeatedly.</p>
+
+        <sidebyside widths="48% 48%">
+          <figure xml:id="fig-sampling-poor-sine">
+            <caption>Poor sampling (101 points)</caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[
+                      width=\textwidth,
+                      height=0.74\textwidth,
+                      xmin=0, xmax=1,
+                      ymin=-1.2, ymax=1.2,
+                      axis lines=middle,
+                      xlabel={\(x\)},
+                      ylabel={\(y\)},
+                      xtick={0,0.5,1},
+                      ytick={-1,0,1},
+                      grid=both,
+                      grid style={line width=.1pt, draw=gray!25},
+                      title={poor sampling}
+                  ]
+                  \addplot[thick, domain=0:1, samples=101] {sin(deg(100*pi*x))};
+                  \addplot[only marks, mark=*, mark size=0.45pt, domain=0:1, samples=101] {sin(deg(100*pi*x))};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+
+          <figure xml:id="fig-sampling-fine-sine">
+            <caption>Finer sampling (1200 points)</caption>
+            <image>
+              <latex-image>
+                \begin{tikzpicture}
+                  \begin{axis}[
+                      width=\textwidth,
+                      height=0.74\textwidth,
+                      xmin=0, xmax=1,
+                      ymin=-1.2, ymax=1.2,
+                      axis lines=middle,
+                      xlabel={\(x\)},
+                      ylabel={\(y\)},
+                      xtick={0,0.5,1},
+                      ytick={-1,0,1},
+                      grid=both,
+                      grid style={line width=.1pt, draw=gray!25},
+                      title={finer sampling}
+                  ]
+                  \addplot[thick, domain=0:1, samples=1200] {sin(deg(100*pi*x))};
+                  \end{axis}
+                \end{tikzpicture}
+              </latex-image>
+            </image>
+          </figure>
+        </sidebyside>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-sampling-scale">
+      <title>Sampling warning</title>
+      <p>A graph drawn from samples is trustworthy only at the scale the sampling can see.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-numerical-evidence-versus-proof">
+    <title>Numerical evidence versus proof</title>
+
+    <p>Numerical evidence is useful. It helps us guess patterns, find examples, and notice mistakes. But a long list of checked cases is not a proof.</p>
+
+    <example xml:id="ex-graph-vs-algebra-positivity">
+      <title>A graph suggests positivity</title>
+      <statement>
+        <p>The graph of <m>q(x)=x^2-2x+2</m> appears to lie above the <m>x</m>-axis, suggesting <m>q(x)\gt 0</m> for all real <m>x</m>.</p>
+        <p>A graph supports the claim, but algebra proves it: <m>x^2-2x+2=(x-1)^2+1\ge 1\gt 0</m> for every real <m>x</m>. The proof tells us more: the function is at least <m>1</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-sign-change-root-evidence">
+      <title>A sign change suggests a root</title>
+      <statement>
+        <p>Consider <m>r(x)=x^3-x-1</m>. We have <m>r(1)=-1</m> and <m>r(2)=5</m>. The outputs change sign between <m>x=1</m> and <m>x=2</m>. A graph suggests that the curve crosses the <m>x</m>-axis somewhere between them.</p>
+        <p>Later, the Intermediate Value Theorem will make this exact: a continuous function that changes sign on an interval must have a zero inside that interval.</p>
+        <p>Numerical evidence gives a clue; a theorem explains when the clue is reliable.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-false-identity-points">
+      <title>Many correct cases do not prove an identity</title>
+      <statement>
+        <p>The functions <m>f(x)=x^2</m> and <m>g(x)=x^2+(x-1)(x-2)(x-3)(x-4)(x-5)</m> agree at <m>x=1,2,3,4,5</m>. At each of those points, <m>g(x)=x^2</m>.</p>
+        <p>But at <m>x=0</m>, <m>f(0)=0</m> while <m>g(0)=-120</m>. Checking five points was not enough. Checking a thousand points is still not a proof of equality for all real numbers.</p>
+      </statement>
+    </example>
+
+    <remark xml:id="rmk-proof-vs-computation">
+      <title>Proof versus computation</title>
+      <p>A computation can show that a statement is true at the inputs tested. A proof shows why the statement must be true for every allowed input.</p>
+    </remark>
+  </subsection>
+
+  <subsection xml:id="subsec-first-warning-roundoff">
+    <title>A first warning about roundoff</title>
+
+    <p>There is another way technology can mislead: numbers are rounded. A computer stores only finitely many digits. When two nearly equal numbers are subtracted, important digits can disappear.</p>
+
+    <example xml:id="ex-catastrophic-cancellation">
+      <title>Subtracting nearly equal numbers</title>
+      <statement>
+        <p>Consider</p>
+        <md>Q(h)=\frac{\sqrt{1+h}-1}{h}.</md>
+        <p>This expression will appear naturally when we study the derivative of <m>\sqrt{x}</m>. For small <m>h</m>, the numerator subtracts two numbers very close to each other.</p>
+        <p>If <m>h=10^{-12}</m>, <m>\sqrt{1+h}</m> is extremely close to <m>1</m>. A rounded calculation may lose the small difference.</p>
+        <p>Multiplying by the conjugate gives a safer expression:</p>
+        <md>Q(h)=\frac{\sqrt{1+h}-1}{h}\cdot\frac{\sqrt{1+h}+1}{\sqrt{1+h}+1} = \frac{h}{h(\sqrt{1+h}+1)} = \frac{1}{\sqrt{1+h}+1}, \qquad h\neq 0.</md>
+        <p>Now there is no subtraction of nearly equal numbers. As <m>h\to 0</m>, this safer expression is close to <m>\frac{1}{1+1}=\frac{1}{2}</m>.</p>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-roundoff-storage">
+      <title>Roundoff warning</title>
+      <p>Two algebraically equal formulas can behave differently when approximately computed on a calculator. The problem is not the mathematics; it is the finite storage of approximations.</p>
+    </warning>
+
+    <paragraphs xml:id="par-roundoff-in-calculus">
+      <title>Why this matters for calculus</title>
+      <p>Calculus is built from small changes: <m>\frac{f(a+h)-f(a)}{h}</m>. When <m>h</m> is very small, the numerator often subtracts nearly equal numbers. That makes roundoff error part of the story.</p>
+      <p>Sometimes algebra can make a formula more numerically stable. Sometimes a graph needs a better range. Sometimes a numerical pattern needs a precise definition.</p>
+      <p>The next chapter provides the missing language. It will make the phrase <q>as <m>x</m> gets close to <m>a</m></q> into mathematics. That language is the limit.</p>
+    </paragraphs>
+  </subsection>
+
+</section>
