@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-7-4-newton-s-method">
+  <title>Newton's method</title>
+
+  <p>Linear approximation estimates a function by a line.</p>
+  <p>Newton's method uses that line to solve an equation.</p>
+
+  <p>Suppose we want to solve</p>
+  <md>f(x)=0.</md>
+
+  <p>The solution is a point where the graph of <m>f</m> crosses the <m>x</m>-axis. If we already have a nearby guess <m>x_0</m>, the tangent line at <m>x_0</m> is often easier to use than the curve itself. The tangent line crosses the <m>x</m>-axis at a new guess.</p>
+
+  <p>Then we do it again.</p>
+
+  <subsection xml:id="subsec-tangent-lines-root-finders">
+    <title>Tangent lines as root finders</title>
+
+    <p>We begin with a familiar problem:</p>
+    <md>\sqrt2.</md>
+
+    <p>Instead of asking directly for <m>\sqrt2</m>, solve</p>
+    <md>x^2=2.</md>
+    <p>Equivalently, find a zero of</p>
+    <md>f(x)=x^2-2.</md>
+
+    <p>A reasonable first guess is</p>
+    <md>x_0=1.5.</md>
+
+    <p>At this point,</p>
+    <md>f(1.5)=1.5^2-2=2.25-2=0.25,</md>
+    <p>and</p>
+    <md>f'(x)=2x,</md>
+    <p>so</p>
+    <md>f'(1.5)=3.</md>
+
+    <p>The tangent line at <m>x_0=1.5</m> is</p>
+    <md>y=f(x_0)+f'(x_0)(x-x_0).</md>
+    <p>Thus</p>
+    <md>y=0.25+3(x-1.5).</md>
+
+    <p>Newton's idea is to follow this tangent line down to the <m>x</m>-axis. Set <m>y=0</m>:</p>
+    <md>0=0.25+3(x-1.5).</md>
+    <p>Then</p>
+    <md>3(x-1.5)=-0.25,</md>
+    <p>so</p>
+    <md>x-1.5=-\frac{0.25}{3}=-\frac{1}{12}.</md>
+    <p>Therefore</p>
+    <md>x=1.5-\frac{1}{12} = \frac32-\frac{1}{12} = \frac{17}{12} \approx 1.4166667.</md>
+    <p>This is already closer to <m>\sqrt2</m> than <m>1.5</m>.</p>
+
+    <figure xml:id="fig-newton-sqrt2-first-step">
+      <caption>Newton's method replaces the curve by its tangent line and uses the tangent's <m>x</m>-intercept as the next guess.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0.8, xmax=2.05,
+              ymin=-0.7, ymax=2.3,
+              axis lines=middle,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={1,1.4142,1.5,2},
+              xticklabels={\(1\),\(x_1\),\(x_0\),\(2\)},
+              ytick={-0.5,0,1,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          \addplot[thick, domain=0.8:2.05, samples=150] {x^2-2};
+          \addplot[very thick, domain=0.95:1.78, samples=2] {0.25+3*(x-1.5)};
+          \addplot[only marks, mark=*] coordinates {(1.5,0.25)};
+          \addplot[only marks, mark=o, thick] coordinates {(1.4166667,0)};
+          \draw[dashed] (axis cs:1.5,0) -- (axis cs:1.5,0.25);
+          \node[anchor=west] at (axis cs:1.53,0.35) {\((x_0,f(x_0))\)};
+
+          \node[anchor=north] at (axis cs:1.8,0.8) {tangent line};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>Now repeat the same process using</p>
+    <md>x_1=\frac{17}{12}.</md>
+    <p>Newton's next approximation is</p>
+    <md>x_2 = \frac{577}{408} \approx 1.414215686.</md>
+    <p>Already the first five decimal places are correct.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-newton-iteration-formula">
+    <title>The iteration formula</title>
+
+    <p>The same tangent-line calculation works for any differentiable function.</p>
+
+    <p>Suppose <m>x_n</m> is the current guess for a zero of <m>f</m>. The tangent line at <m>x_n</m> is</p>
+    <md>y=f(x_n)+f'(x_n)(x-x_n).</md>
+    <p>Set <m>y=0</m> to find where this tangent line crosses the <m>x</m>-axis:</p>
+    <md>0=f(x_n)+f'(x_n)(x-x_n).</md>
+    <p>Solve for <m>x</m>:</p>
+    <md>f'(x_n)(x-x_n)=-f(x_n),</md>
+    <p>so</p>
+    <md>x-x_n=-\frac{f(x_n)}{f'(x_n)}.</md>
+    <p>Therefore</p>
+    <md>x=x_n-\frac{f(x_n)}{f'(x_n)}.</md>
+    <p>This is the next guess.</p>
+
+    <definition xml:id="def-newtons-method">
+      <title>Newton's method</title>
+      <statement>
+        <p>To solve</p>
+        <md>f(x)=0,</md>
+        <p>start with an initial guess <m>x_0</m>. Then define</p>
+        <md>x_{n+1} = x_n-\frac{f(x_n)}{f'(x_n)}</md>
+        <p>as long as <m>f'(x_n)\neq 0</m>.</p>
+      </statement>
+    </definition>
+
+    <p>Newton's method is a repeated linear approximation. At each step, we throw away the curve for a moment and use its tangent line.</p>
+
+    <example xml:id="ex-newton-square-roots">
+      <title>Square roots via Newton's method</title>
+      <statement>
+        <p>For</p>
+        <md>f(x)=x^2-2,</md>
+        <p>Newton's method gives</p>
+        <md>x_{n+1} = x_n-\frac{x_n^2-2}{2x_n}.</md>
+        <p>Simplify:</p>
+        <md>x_{n+1} = \frac{2x_n^2-(x_n^2-2)}{2x_n} = \frac{x_n^2+2}{2x_n}.</md>
+        <p>So</p>
+        <md>x_{n+1} = \frac12\left(x_n+\frac{2}{x_n}\right).</md>
+        <p>Starting with <m>x_0=1.5</m>, we get</p>
+        <table>
+          <title>Newton iterations for <m>\sqrt{2}</m></title>
+          <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+            <col halign="center"/>
+            <col halign="center"/>
+            <row header="yes">
+              <cell><m>n</m></cell>
+              <cell><m>x_n</m></cell>
+            </row>
+            <row><cell>0</cell><cell>1.500000000</cell></row>
+            <row><cell>1</cell><cell>1.416666667</cell></row>
+            <row><cell>2</cell><cell>1.414215686</cell></row>
+            <row><cell>3</cell><cell>1.414213562</cell></row>
+            <row><cell>4</cell><cell>1.414213562</cell></row>
+          </tabular>
+        </table>
+        <p>The numbers settle quickly.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-newton-cos-x-eq-x">
+      <title>Solving <m>\cos x=x</m></title>
+      <statement>
+        <p>The equation</p>
+        <md>\cos x=x</md>
+        <p>cannot be solved by ordinary algebra. Write it as</p>
+        <md>f(x)=\cos x-x=0.</md>
+        <p>Then</p>
+        <md>f'(x)=-\sin x-1.</md>
+        <p>Newton's method gives</p>
+        <md>x_{n+1} = x_n-\frac{\cos x_n-x_n}{-\sin x_n-1}.</md>
+        <p>Equivalently,</p>
+        <md>x_{n+1} = x_n+\frac{\cos x_n-x_n}{\sin x_n+1}.</md>
+        <p>Starting with <m>x_0=1</m>, and using radians, we get</p>
+        <table>
+          <title>Newton iterations for <m>\cos x = x</m></title>
+          <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+            <col halign="center"/>
+            <col halign="center"/>
+            <row header="yes">
+              <cell><m>n</m></cell>
+              <cell><m>x_n</m></cell>
+            </row>
+            <row><cell>0</cell><cell>1.000000000</cell></row>
+            <row><cell>1</cell><cell>0.750363868</cell></row>
+            <row><cell>2</cell><cell>0.739112891</cell></row>
+            <row><cell>3</cell><cell>0.739085133</cell></row>
+            <row><cell>4</cell><cell>0.739085133</cell></row>
+          </tabular>
+        </table>
+        <p>So the solution is approximately</p>
+        <md>x\approx 0.739085133.</md>
+        <p>The method works well here because the starting guess is reasonable and the tangent lines point toward the root.</p>
+      </statement>
+    </example>
+  </subsection>
+
+  <subsection xml:id="subsec-newton-convergence-good-start">
+    <title>Convergence when the starting point is good</title>
+
+    <p>Newton's method can be fast. But it is not magic. It is a local method, just like linear approximation.</p>
+
+    <p>The method works best when:</p>
+    <ol>
+      <li><p>the starting guess is close to the root,</p></li>
+      <li><p>the function is smooth near the root,</p></li>
+      <li><p>the derivative at the root is not zero.</p></li>
+    </ol>
+
+    <p>The third condition means the graph crosses the axis with a real slope, not with a flat touch.</p>
+
+    <theorem xml:id="thm-newton-convergence-principle">
+      <title>Newton convergence principle</title>
+      <statement>
+        <p>Suppose <m>f</m> has a zero <m>r</m>, so</p>
+        <md>f(r)=0.</md>
+        <p>If <m>f</m> has two continuous derivatives near <m>r</m>, and</p>
+        <md>f'(r)\neq 0,</md>
+        <p>then Newton's method converges to <m>r</m> whenever the starting guess is close enough to <m>r</m>.</p>
+      </statement>
+      <proof>
+        <paragraphs xml:id="para-proof-idea-newton-convergence">
+          <title>Idea of the proof</title>
+          <p>Let <m>x_n</m> be close to the root <m>r</m>. Taylor's formula around <m>x_n</m> gives</p>
+          <md>f(r) = f(x_n)+f'(x_n)(r-x_n) + \frac12 f''(c_n)(r-x_n)^2</md>
+          <p>for some point <m>c_n</m> between <m>x_n</m> and <m>r</m>.</p>
+          <p>Since <m>f(r)=0</m>, we have</p>
+          <md>0 = f(x_n)+f'(x_n)(r-x_n) + \frac12 f''(c_n)(r-x_n)^2.</md>
+          <p>Solve this for the Newton correction. Because</p>
+          <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)},</md>
+          <p>one obtains</p>
+          <md>x_{n+1}-r = \frac{f''(c_n)}{2f'(x_n)}(r-x_n)^2.</md>
+          <p>So the next error is roughly a constant times the square of the previous error:</p>
+          <md>|x_{n+1}-r|\approx C|x_n-r|^2.</md>
+          <p>This is why Newton's method can suddenly become very accurate. If an error is about <m>10^{-3}</m>, its square is <m>10^{-6}</m>. If an error is about <m>10^{-6}</m>, its square is <m>10^{-12}</m>.</p>
+          <p>This behavior is called <em>quadratic convergence</em>.</p>
+        </paragraphs>
+      </proof>
+    </theorem>
+
+    <note xml:id="note-reason-newton-fast">
+      <title>The reason Newton can be fast</title>
+      <p>Near a simple root, Newton's method does not merely reduce the error. It roughly squares the error.</p>
+    </note>
+  </subsection>
+
+  <subsection xml:id="subsec-newton-failure-modes">
+    <title>Failure modes: cycles and bad tangents</title>
+
+    <p>Newton's method depends on tangent lines. A bad tangent can send the method to the wrong place, make it cycle, or stop it entirely.</p>
+
+    <p>The hypotheses are not decoration.</p>
+
+    <paragraphs xml:id="para-failure-mode-horizontal-tangent">
+      <title>Failure mode 1: a horizontal tangent</title>
+      <p>Newton's formula</p>
+      <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}</md>
+      <p>requires</p>
+      <md>f'(x_n)\neq 0.</md>
+      <p>If</p>
+      <md>f'(x_n)=0,</md>
+      <p>then the tangent line is horizontal. It does not cross the <m>x</m>-axis in the way the method needs.</p>
+      <p>For example, let</p>
+      <md>f(x)=x^3-x.</md>
+      <p>This function has roots</p>
+      <md>-1,\quad 0,\quad 1.</md>
+      <p>But</p>
+      <md>f'(x)=3x^2-1.</md>
+      <p>At</p>
+      <md>x_0=\frac{1}{\sqrt3},</md>
+      <p>we have</p>
+      <md>f'(x_0)=0.</md>
+      <p>The Newton formula cannot even produce <m>x_1</m>. The function has roots, but this starting point gives a horizontal tangent.</p>
+    </paragraphs>
+
+    <paragraphs xml:id="para-failure-mode-cycle">
+      <title>Failure mode 2: a cycle</title>
+      <p>Let</p>
+      <md>f(x)=x^3-2x+2.</md>
+      <p>Then</p>
+      <md>f'(x)=3x^2-2.</md>
+      <p>Start Newton's method at</p>
+      <md>x_0=0.</md>
+      <p>We get</p>
+      <md>x_1 = 0-\frac{f(0)}{f'(0)} = 0-\frac{2}{-2} = 1.</md>
+      <p>Now compute the next step:</p>
+      <md>x_2 = 1-\frac{f(1)}{f'(1)} = 1-\frac{1}{1} = 0.</md>
+      <p>So the method repeats:</p>
+      <md>0,\ 1,\ 0,\ 1,\ 0,\ 1,\ldots</md>
+      <p>It never reaches a root.</p>
+      <p>But the function does have a real root. Since</p>
+      <md>f(-2)=-8+4+2=-2</md>
+      <p>and</p>
+      <md>f(-1)=-1+2+2=3,</md>
+      <p>the Intermediate Value Theorem tells us that there is a root between <m>-2</m> and <m>-1</m>.</p>
+      <p>Newton's method failed because the tangent lines from <m>0</m> and <m>1</m> point back to each other.</p>
+
+      <figure xml:id="fig-newton-cycle">
+        <caption>For <m>f(x)=x^3-2x+2</m>, Newton's method starting at <m>0</m> cycles between <m>0</m> and <m>1</m>.</caption>
+        <image width="80%">
+          <latex-image>
+            \begin{tikzpicture}
+            \begin{axis}[
+                width=0.82\textwidth,
+                height=0.50\textwidth,
+                xmin=-2.4, xmax=1.6,
+                ymin=-3.0, ymax=5.2,
+                axis lines=middle,
+                xlabel={\(x\)},
+                ylabel={\(y\)},
+                xtick={-2,-1,0,1},
+                ytick={-2,0,2,4},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=-2.25:1.45, samples=250] {x^3-2*x+2};
+            % Tangent at x=0: y=2-2x
+            \addplot[very thick, dashed, domain=-0.4:1.25, samples=2] {2-2*x};
+            % Tangent at x=1: y=x
+            \addplot[very thick, dotted, domain=-0.25:1.3, samples=2] {x};
+            \addplot[only marks, mark=*] coordinates {(0,2) (1,1)};
+            \addplot[only marks, mark=o, thick] coordinates {(1,0) (0,0)};
+            \node[anchor=west] at (axis cs:0.05,2.15) {\(x_0=0\)};
+            \node[anchor=west] at (axis cs:1.03,1.0) {\(x_1=1\)};
+            \node[anchor=south] at (axis cs:0.65,2.7) {tangents send \(0\leftrightarrow1\)};
+            \end{axis}
+            \end{tikzpicture}
+          </latex-image>
+        </image>
+      </figure>
+    </paragraphs>
+
+    <paragraphs xml:id="para-failure-mode-multiple-root">
+      <title>Failure mode 3: a multiple root</title>
+      <p>If a root <m>r</m> satisfies</p>
+      <md>f'(r)=0,</md>
+      <p>then Newton's method may still converge, but often more slowly.</p>
+      <p>For example,</p>
+      <md>f(x)=(x-1)^2</md>
+      <p>has a double root at</p>
+      <md>x=1.</md>
+      <p>Newton's method gives</p>
+      <md>x_{n+1} = x_n-\frac{(x_n-1)^2}{2(x_n-1)} = x_n-\frac{x_n-1}{2} = \frac{x_n+1}{2},</md>
+      <p>as long as <m>x_n\neq 1</m>.</p>
+      <p>This moves halfway toward <m>1</m> each time. It converges, but the error is cut in half rather than squared. The fast convergence is lost.</p>
+    </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-using-newton-safely">
+    <title>How to use Newton's method safely</title>
+
+    <p>Newton's method is most reliable when it is used with a picture or with a bracket.</p>
+
+    <p>A practical workflow is:</p>
+    <ol>
+      <li><p>Graph <m>f</m>, or use signs to locate an interval where a root should lie.</p></li>
+      <li><p>Choose a starting point near the root.</p></li>
+      <li><p>Compute <m>x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}</m>.</p></li>
+      <li><p>Stop only when both <m>x_n</m> has stabilized and <m>f(x_n)</m> is small.</p></li>
+      <li><p>If the method behaves strangely, try a different starting point or use bisection.</p></li>
+    </ol>
+
+    <p>The bisection method is slower, but if <m>f</m> is continuous and changes sign on an interval, bisection is dependable. Newton's method is faster when it behaves well.</p>
+
+    <note xml:id="note-newton-method-one-sentence">
+      <title>Newton's method in one sentence</title>
+      <p>Replace the curve by its tangent line, solve the linear problem, and repeat.</p>
+    </note>
+
+    <p>Linear approximation has now done two jobs. It estimated how errors move through a formula, and it solved equations by tangent-line correction.</p>
+
+    <p>The next models take one more step. Sometimes the rule we know is not a formula for <m>y</m>, but a formula for <m>y'</m>. Growth, decay, cooling, and population change are often written first as laws about derivatives.</p>
+  </subsection>
+
+</section>
