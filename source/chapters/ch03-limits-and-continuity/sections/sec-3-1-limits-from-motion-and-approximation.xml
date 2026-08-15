@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-limits-motion-approximation">
+  <title>Limits from motion and approximation</title>
+
+  <p>A speedometer gives an instantaneous reading. But if all we have is a position formula, we first see only average velocities over intervals. The limit is the act of shrinking the interval until the average rate settles toward one number.</p>
+
+  <subsection xml:id="subsec-average-velocity-shrinks">
+    <title>Average velocity as the interval shrinks</title>
+
+    <p>Let <m>s(t)=t^2</m> be the position of an object moving along a line, measured in meters after <m>t</m> seconds. We want the velocity at the instant <m>t=2</m>.</p>
+
+    <p>Over the interval from <m>2</m> to <m>2+h</m>, the average velocity is</p>
+
+    <md>A(h)=\frac{s(2+h)-s(2)}{h}, \qquad h\neq 0.</md>
+
+    <p>Compute:</p>
+
+    <md>A(h)=\frac{(2+h)^2-2^2}{h} = \frac{4+4h+h^2-4}{h} = \frac{4h+h^2}{h}.</md>
+
+    <p>Since <m>h\neq 0</m>, we may divide by <m>h</m>: <m>A(h)=4+h</m>.</p>
+
+    <p>So the average velocity depends on the width <m>h</m> of the interval:</p>
+
+    <table>
+      <title>Average velocity as interval width shrinks</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><m>h</m></cell>
+          <cell><m>-0.1</m></cell>
+          <cell><m>-0.01</m></cell>
+          <cell><m>-0.001</m></cell>
+          <cell><m>0.001</m></cell>
+          <cell><m>0.01</m></cell>
+          <cell><m>0.1</m></cell>
+        </row>
+        <row>
+          <cell><m>A(h)=4+h</m></cell>
+          <cell><m>3.9</m></cell>
+          <cell><m>3.99</m></cell>
+          <cell><m>3.999</m></cell>
+          <cell><m>4.001</m></cell>
+          <cell><m>4.01</m></cell>
+          <cell><m>4.1</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The closer <m>h</m> is to <m>0</m>, the closer <m>A(h)</m> is to <m>4</m>. This suggests that the instantaneous velocity at <m>t=2</m> should be <m>4\text{ meters/second}</m>.</p>
+
+    <principle xml:id="principle-instantaneous-velocity-limit">
+      <title>Instantaneous rate as a limit</title>
+      <statement>
+        <p>Instantaneous velocity is the limit of average velocities over shrinking intervals:</p>
+        <md>\text{instantaneous velocity} = \lim_{h\to 0}\frac{s(t+h)-s(t)}{h}.</md>
+      </statement>
+    </principle>
+
+    <figure xml:id="fig-secants-approach-tangent">
+      <caption>The slopes of the secant lines approach the slope of the tangent line at <m>t=2</m>.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.78\textwidth,
+                height=0.48\textwidth,
+                xmin=0.5, xmax=3.35,
+                ymin=0, ymax=11,
+                axis lines=left,
+                xlabel={\(t\)},
+                ylabel={\(s(t)\)},
+                xtick={1,2,3},
+                ytick={0,4,9},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=0.6:3.25, samples=100] {x^2};
+            \addplot[thick, domain=1.25:3.25, samples=2] {5*x-6};
+            \addplot[thick, dashed, domain=1.25:3.1, samples=2] {4.5*x-5};
+            \addplot[thick, dotted, domain=1.25:3.0, samples=2] {4.2*x-4.4};
+            \addplot[very thick, domain=1.25:2.9, samples=2] {4*x-4};
+            \addplot[only marks, mark=*] coordinates {(2,4)};
+            \node[anchor=west] at (axis cs:2.08,4.05) {\((2,4)\)};
+            \node[anchor=west] at (axis cs:2.55,8.0) {secant lines};
+            \node[anchor=west] at (axis cs:1.05,1.1) {limiting tangent};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>The same calculation can be read geometrically. The average velocity over an interval is the slope of a secant line. As the second point moves toward <m>t=2</m>, the secant line approaches a tangent line.</p>
+
+    <p>This is why limits are needed before derivatives can be defined. A tangent slope is not usually found from two separated points. It is found by letting one point approach another.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-decimal-approximations-limit">
+    <title>Decimal approximations to a number</title>
+
+    <p>Limits do not belong only to motion. They also appear whenever approximations close in on a target.</p>
+
+    <p>Chapter 2 used nested intervals to trap <m>\sqrt{2}</m>:</p>
+
+    <md>
+      <mrow>1.4\amp\lt\sqrt{2}\lt 1.5,</mrow>
+      <mrow>1.41\amp\lt\sqrt{2}\lt 1.42,</mrow>
+      <mrow>1.414\amp\lt\sqrt{2}\lt 1.415.</mrow>
+    </md>
+
+    <p>The left endpoints <m>1.4, 1.41, 1.414, 1.4142, \dots</m> approach <m>\sqrt{2}</m> from below. The right endpoints approach it from above. Neither finite list equals the whole number <m>\sqrt{2}</m>, but the approximations can be made as close as desired.</p>
+
+    <p>A simpler example is <m>1.9, 1.99, 1.999, 1.9999, \dots</m>. These numbers approach <m>2</m>. The error after <m>n</m> decimal places is a power of <m>10</m>: <m>2-1.9=0.1</m>, <m>2-1.99=0.01</m>, <m>2-1.999=0.001</m>. The errors approach <m>0</m>, so the approximations approach <m>2</m>.</p>
+
+    <principle xml:id="principle-limit-target-process">
+      <title>A limit is a target value for a process</title>
+      <statement>
+        <p>A number can be approached by decimal approximations. A velocity can be approached by average velocities. A tangent slope can be approached by secant slopes.</p>
+      </statement>
+    </principle>
+
+    <p>The same idea appears in different clothing. The mathematics is the same: errors are forced to become small.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-informal-limit-meaning">
+    <title>The informal meaning of a limit</title>
+
+    <p>Let <m>f</m> be a function. When we write</p>
+
+    <md>\lim_{x\to a} f(x)=L,</md>
+
+    <p>we mean: <em>as <m>x</m> gets close to <m>a</m>, the values <m>f(x)</m> get close to <m>L</m>.</em></p>
+
+    <p>The notation is read: <em>the limit of <m>f(x)</m> as <m>x</m> approaches <m>a</m> is <m>L</m>.</em></p>
+
+    <p>There is one detail that must be said early: <m>x\to a</m> does not mean <m>x=a</m>. It means <m>x</m> is close to <m>a</m>. In many limits, the value at <m>x=a</m> is not used at all.</p>
+
+    <definition xml:id="def-informal-limit">
+      <title>Informal definition of a limit</title>
+      <statement>
+        <p>We write <m>\lim_{x\to a} f(x)=L</m> if the values <m>f(x)</m> can be made as close to <m>L</m> as desired by taking <m>x</m> sufficiently close to <m>a</m>, with <m>x\neq a</m>.</p>
+      </statement>
+    </definition>
+
+    <example xml:id="ex-direct-eval-limit">
+      <title>A limit from a formula</title>
+      <statement>
+        <p>Find <m>\lim_{x\to 3}(2x+5)</m>.</p>
+        <p>If <m>x</m> is close to <m>3</m>, then <m>2x+5</m> is close to <m>2(3)+5=11</m>. So</p>
+        <md>\lim_{x\to 3}(2x+5)=11.</md>
+        <p>Here nothing strange happens at <m>x=3</m>. We can find the limit by direct substitution.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-limit-ignores-isolated-value">
+      <title>The value at the point may not matter</title>
+      <statement>
+        <p>Define</p>
+        <md>
+          F(x)=\begin{cases}2x+1, \amp x\neq 1, \\ -1, \amp x=1.\end{cases}
+        </md>
+        <p>Near <m>x=1</m>, but not at <m>x=1</m>, the function behaves like <m>2x+1</m>. As <m>x\to 1</m>, <m>2x+1\to 3</m>. Therefore</p>
+        <md>\lim_{x\to 1}F(x)=3,</md>
+        <p>even though <m>F(1)=-1</m>.</p>
+
+        <figure xml:id="fig-limit-hole-different-value">
+          <caption>The limit watches nearby values. It does not have to equal the value of the function at the point.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.65\textwidth,
+                    height=0.45\textwidth,
+                    xmin=-0.3, xmax=2.2,
+                    ymin=-2, ymax=6,
+                    axis lines=left,
+                    xlabel={\(x\)},
+                    ylabel={\(y\)},
+                    xtick={1},
+                    ytick={-1,3},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-0.2:2.1, samples=2] {2*x+1};
+                \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,3)};
+                \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(1,-1)};
+                \node[anchor=west] at (axis cs:1.0,2.8) {hole at the limiting value};
+                \node[anchor=west] at (axis cs:1.08,-0.8) {actual value \(F(1)\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <warning xml:id="warn-limit-vs-value">
+      <title>Limit versus value at a point</title>
+      <p>A limit near <m>a</m> is not the same thing as the value at <m>a</m>.</p>
+      <p>When the two do agree, we will have a special property called continuity.</p>
+    </warning>
+  </subsection>
+
+  <subsection xml:id="subsec-limits-graphs-tables">
+    <title>Limits from graphs and tables</title>
+
+    <p>A graph can suggest a limit. A table can suggest a limit. But both must be read with care.</p>
+
+    <example xml:id="ex-table-suggests-limit">
+      <title>A table that suggests a limit</title>
+      <statement>
+        <p>Let <m>g(x)=\frac{x^2-1}{x-1}</m> for <m>x\neq 1</m>. The formula is not defined at <m>x=1</m>, but we can still examine values near <m>1</m>:</p>
+        <table>
+          <title>Values of <m>g(x)</m> approaching <m>x=1</m></title>
+          <tabular top="major" bottom="major" left="major" right="major">
+            <row bottom="minor">
+              <cell><m>x</m></cell>
+              <cell><m>0.9</m></cell>
+              <cell><m>0.99</m></cell>
+              <cell><m>0.999</m></cell>
+              <cell><m>1.001</m></cell>
+              <cell><m>1.01</m></cell>
+              <cell><m>1.1</m></cell>
+            </row>
+            <row>
+              <cell><m>g(x)</m></cell>
+              <cell><m>1.9</m></cell>
+              <cell><m>1.99</m></cell>
+              <cell><m>1.999</m></cell>
+              <cell><m>2.001</m></cell>
+              <cell><m>2.01</m></cell>
+              <cell><m>2.1</m></cell>
+            </row>
+          </tabular>
+        </table>
+        <p>The values approach <m>2</m>. So the table suggests <m>\lim_{x\to 1}\frac{x^2-1}{x-1}=2</m>.</p>
+      </statement>
+    </example>
+
+    <example xml:id="ex-signum-jump-no-limit">
+      <title>A graph that suggests no limit</title>
+      <statement>
+        <p>Define <m>J(x)=\frac{|x|}{x}</m> for <m>x\neq 0</m>. If <m>x\gt 0</m>, <m>J(x)=1</m>. If <m>x\lt 0</m>, <m>J(x)=-1</m>.</p>
+        <p>The values near <m>0</m> do not approach one common number. From the right they stay at <m>1</m>; from the left they stay at <m>-1</m>. Therefore</p>
+        <md>\lim_{x\to 0}\frac{|x|}{x}\quad\text{does not exist.}</md>
+
+        <figure xml:id="fig-jump-no-limit">
+          <caption>A two-sided limit exists only when nearby values approach one common target.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.65\textwidth,
+                    height=0.42\textwidth,
+                    xmin=-2, xmax=2,
+                    ymin=-1.6, ymax=1.6,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(J(x)\)},
+                    xtick={-1,0,1},
+                    ytick={-1,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=-2:-0.05, samples=2] {-1};
+                \addplot[thick, domain=0.05:2, samples=2] {1};
+                \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,-1) (0,1)};
+                \node[anchor=west] at (axis cs:0.15,1.12) {right side approaches \(1\)};
+                \node[anchor=east] at (axis cs:-0.15,-1.12) {left side approaches \(-1\)};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <principle xml:id="principle-limit-one-target">
+      <title>A limit must have one target</title>
+      <statement>
+        <p>A two-sided limit exists only when nearby values from both sides approach one single, common target value.</p>
+      </statement>
+    </principle>
+  </subsection>
+
+  <subsection xml:id="subsec-what-limit-can-ignore">
+    <title>What a limit can ignore</title>
+
+    <p>The limit <m>\lim_{x\to a}f(x)</m> ignores the value <m>f(a)</m>. It watches what happens near <m>a</m>.</p>
+
+    <table>
+      <title>Three possible relationships between <m>f(a)</m> and <m>\lim_{x\to a}f(x)</m></title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Situation</term></cell>
+          <cell><term>Example</term></cell>
+          <cell><term>What happens</term></cell>
+        </row>
+        <row>
+          <cell><m>f(a)</m> exists and equals the limit</cell>
+          <cell><m>f(x)=x^2,\ a=2</m></cell>
+          <cell><m>\lim_{x\to 2}f(x)=f(2)=4</m></cell>
+        </row>
+        <row>
+          <cell><m>f(a)</m> exists but differs from the limit</cell>
+          <cell><m>F(x)=\begin{cases}2x+1,\amp x\neq 1\\-1,\amp x=1\end{cases}</m></cell>
+          <cell><m>\lim_{x\to 1}F(x)=3,\ F(1)=-1</m></cell>
+        </row>
+        <row>
+          <cell><m>f(a)</m> does not exist, but the limit exists</cell>
+          <cell><m>g(x)=\frac{x^2-1}{x-1},\ a=1</m></cell>
+          <cell><m>\lim_{x\to 1}g(x)=2</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The first situation is the calm one. The second and third are warning signs. They show why limits must come before continuity.</p>
+
+    <p>The next task is practical. Graphs and tables help us guess limits, but calculus needs reliable ways to calculate them. Algebra gives the first tools.</p>
+  </subsection>
+
+</section>
