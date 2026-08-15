@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-two-theorems-continuous-functions">
+  <title>Two theorems about continuous functions</title>
+
+  <p>Continuity began as a local condition: <m>x\text{ close to }a \implies f(x)\text{ close to }f(a)</m>. But local calm forces global behavior.</p>
+
+  <p>If a continuous graph starts below a line and ends above it, it must cross that line somewhere. If a continuous graph lives on a closed finite interval, it must reach an absolute maximum and minimum.</p>
+
+  <p>These facts sound intuitive from pictures, but their hypotheses are where the mathematical power lives.</p>
+
+  <subsection xml:id="subsec-intermediate-values">
+    <title>Intermediate values</title>
+
+    <p>If the outside temperature is <m>50^\circ</m>F at sunrise and <m>74^\circ</m>F at noon, and changes continuously, it must pass through <m>60^\circ</m>F at some intermediate time. A continuous function cannot jump over intermediate values.</p>
+
+    <example xml:id="ex-ivt-cubic-root">
+      <title>Finding a root without an algebraic formula</title>
+      <statement>
+        <p>Let <m>p(x)=x^3-x-1</m>. Then <m>p(1)=-1\lt 0</m> and <m>p(2)=5\gt 0</m>.</p>
+        <p>Because <m>p(x)</m> is a polynomial, it is continuous on <m>[1,2]</m>. Therefore its graph must cross the <m>x</m>-axis at some point <m>c\in (1,2)</m>, giving <m>c^3-c-1=0</m>.</p>
+
+        <figure xml:id="fig-ivt-root-cubic">
+          <caption>A continuous graph that goes from negative to positive must cross the <m>x</m>-axis.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.72\textwidth,
+                    height=0.46\textwidth,
+                    xmin=0.75, xmax=2.1,
+                    ymin=-2, ymax=6,
+                    axis lines=middle,
+                    xlabel={\(x\)},
+                    ylabel={\(p(x)\)},
+                    xtick={1,2},
+                    ytick={-1,0,5},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=0.8:2.05, samples=120] {x^3-x-1};
+                \addplot[only marks, mark=*] coordinates {(1,-1) (2,5)};
+                \draw[dashed] (axis cs:1,-1) -- (axis cs:1,0);
+                \draw[dashed] (axis cs:2,5) -- (axis cs:2,0);
+                \node[anchor=south east] at (axis cs:1.35,0.15) {a root lies here};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <theorem xml:id="thm-intermediate-value">
+      <title>Intermediate Value Theorem</title>
+      <statement>
+        <p>Suppose <m>f</m> is continuous on the closed interval <m>[a,b]</m>. If <m>N</m> is any number strictly between <m>f(a)</m> and <m>f(b)</m>, then there exists at least one number <m>c\in (a,b)</m> such that</p>
+        <md>f(c)=N.</md>
+      </statement>
+    </theorem>
+
+    <corollary xml:id="cor-ivt-root-form">
+      <title>Root existence</title>
+      <statement>
+        <p>If <m>f</m> is continuous on <m>[a,b]</m> and <m>f(a)</m> and <m>f(b)</m> have opposite signs (<m>f(a)f(b)\lt 0</m>), then there is at least one <m>c\in (a,b)</m> with <m>f(c)=0</m>.</p>
+      </statement>
+    </corollary>
+  </subsection>
+
+  <subsection xml:id="subsec-bisection-proof-idea">
+    <title>Bisection as a constructive proof idea</title>
+
+    <p>The Intermediate Value Theorem says a solution exists; bisection shows how to compute it numerically.</p>
+
+    <p>For <m>p(x)=x^3-x-1</m> on <m>[1,2]</m>:</p>
+    <ol>
+      <li><p>Midpoint <m>m=1.5</m>: <m>p(1.5)=0.875\gt 0</m>, so sign change is on <m>[1, 1.5]</m>.</p></li>
+      <li><p>Midpoint <m>m=1.25</m>: <m>p(1.25)\approx -0.297\lt 0</m>, so sign change is on <m>[1.25, 1.5]</m>.</p></li>
+    </ol>
+
+    <table>
+      <title>Bisection steps trapping a root of <m>x^3-x-1=0</m></title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Step</term></cell>
+          <cell><term>Interval</term></cell>
+          <cell><term>Midpoint</term></cell>
+          <cell><term>Sign at midpoint</term></cell>
+        </row>
+        <row>
+          <cell><m>0</m></cell>
+          <cell><m>[1, 2]</m></cell>
+          <cell><m>1.5</m></cell>
+          <cell><m>+</m></cell>
+        </row>
+        <row>
+          <cell><m>1</m></cell>
+          <cell><m>[1, 1.5]</m></cell>
+          <cell><m>1.25</m></cell>
+          <cell><m>-</m></cell>
+        </row>
+        <row>
+          <cell><m>2</m></cell>
+          <cell><m>[1.25, 1.5]</m></cell>
+          <cell><m>1.375</m></cell>
+          <cell><m>+</m></cell>
+        </row>
+        <row>
+          <cell><m>3</m></cell>
+          <cell><m>[1.25, 1.375]</m></cell>
+          <cell><m>1.3125</m></cell>
+          <cell><m>-</m></cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The sequence of nested intervals <m>[1,2]\supset [1,1.5]\supset [1.25,1.5]\supset \cdots</m> traps a unique real number <m>c</m> by the Nested Interval Principle. By continuity, <m>p(c)=0</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-ivt-continuity-required">
+    <title>Why continuity is required</title>
+
+    <p>Define <m>S(x)=\begin{cases}0, \amp x\lt 0, \\ 2, \amp x\ge 0.\end{cases}</m> On <m>[-1,1]</m>, <m>S(-1)=0</m> and <m>S(1)=2</m>. The value <m>N=1</m> lies between <m>0</m> and <m>2</m>, but <m>S(x)</m> never equals <m>1</m> because it jumps.</p>
+
+    <figure xml:id="fig-ivt-fails-jump">
+      <caption>Without continuity, a graph can jump over an intermediate value.</caption>
+      <image>
+        <latex-image>
+          \begin{tikzpicture}
+            \begin{axis}[
+                width=0.68\textwidth,
+                height=0.43\textwidth,
+                xmin=-1.4, xmax=1.4,
+                ymin=-0.4, ymax=2.4,
+                axis lines=middle,
+                xlabel={\(x\)},
+                ylabel={\(S(x)\)},
+                xtick={-1,0,1},
+                ytick={0,1,2},
+                grid=both,
+                grid style={line width=.1pt, draw=gray!25},
+            ]
+            \addplot[thick, domain=-1.35:-0.04, samples=2] {0};
+            \addplot[thick, domain=0:1.35, samples=2] {2};
+            \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,0)};
+            \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,2)};
+            \draw[dashed] (axis cs:-1.35,1) -- (axis cs:1.35,1);
+            \node[anchor=west] at (axis cs:0.15,1.05) {value \(1\) is skipped};
+            \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-highest-lowest-values">
+    <title>Highest and lowest values</title>
+
+    <p>A continuous function on a closed bounded interval must achieve an absolute maximum and an absolute minimum.</p>
+
+    <example xml:id="ex-evt-parabola">
+      <title>Maximum and minimum on a closed interval</title>
+      <statement>
+        <p>Let <m>f(x)=x(2-x)</m> on <m>[0,2]</m>. This continuous function attains its absolute maximum <m>1</m> at <m>x=1</m> and its absolute minimum <m>0</m> at <m>x=0</m> and <m>x=2</m>.</p>
+
+        <figure xml:id="fig-evt-parabola">
+          <caption>A continuous function on a closed finite interval reaches its highest and lowest values.</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+                \begin{axis}[
+                    width=0.70\textwidth,
+                    height=0.45\textwidth,
+                    xmin=-0.2, xmax=2.2,
+                    ymin=-0.2, ymax=1.25,
+                    axis lines=left,
+                    xlabel={\(x\)},
+                    ylabel={\(f(x)\)},
+                    xtick={0,1,2},
+                    ytick={0,1},
+                    grid=both,
+                    grid style={line width=.1pt, draw=gray!25},
+                ]
+                \addplot[thick, domain=0:2, samples=120] {x*(2-x)};
+                \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,0) (1,1) (2,0)};
+                \node[anchor=south] at (axis cs:1,1.02) {absolute maximum};
+                \node[anchor=north east] at (axis cs:0,0) {minimum};
+                \node[anchor=north west] at (axis cs:2,0) {minimum};
+                \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </statement>
+    </example>
+
+    <theorem xml:id="thm-extreme-value">
+      <title>Extreme Value Theorem</title>
+      <statement>
+        <p>If <m>f</m> is continuous on a closed bounded interval <m>[a,b]</m>, then <m>f</m> attains an absolute maximum and an absolute minimum on <m>[a,b]</m>.</p>
+        <p>That is, there exist numbers <m>c, d\in [a,b]</m> such that</p>
+        <md>f(c)\le f(x)\le f(d) \qquad\text{for all } x\in [a,b].</md>
+      </statement>
+    </theorem>
+  </subsection>
+
+  <subsection xml:id="subsec-closed-bounded-matter">
+    <title>Why closed and bounded intervals matter</title>
+
+    <p>Both hypotheses in the Extreme Value Theorem are essential:</p>
+
+    <table>
+      <title>Counterexamples when EVT hypotheses fail</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Missing hypothesis</term></cell>
+          <cell><term>Example</term></cell>
+          <cell><term>What fails</term></cell>
+        </row>
+        <row>
+          <cell>Closed interval</cell>
+          <cell><m>f(x)=x</m> on <m>(0,1)</m></cell>
+          <cell>Values approach <m>0</m> and <m>1</m> but never reach them; no max or min.</cell>
+        </row>
+        <row>
+          <cell>Bounded interval</cell>
+          <cell><m>f(x)=x</m> on <m>(-\infty, \infty)</m></cell>
+          <cell>Grows without bound in both directions; no max or min.</cell>
+        </row>
+        <row>
+          <cell>Continuity</cell>
+          <cell><m>K(x)=\begin{cases}x, \amp 0\le x\lt 1 \\ 0, \amp x=1\end{cases}</m></cell>
+          <cell>On <m>[0,1]</m>, values get close to <m>1</m> but no max exists.</cell>
+        </row>
+      </tabular>
+    </table>
+  </subsection>
+
+  <subsection xml:id="subsec-why-ivt-evt-matter">
+    <title>Why these two theorems matter</title>
+
+    <table>
+      <title>Comparison of IVT and EVT</title>
+      <tabular top="major" bottom="major" left="major" right="major">
+        <row bottom="minor">
+          <cell><term>Theorem</term></cell>
+          <cell><term>Promise</term></cell>
+          <cell><term>Typical use</term></cell>
+        </row>
+        <row>
+          <cell>Intermediate Value Theorem</cell>
+          <cell>Hits all intermediate values</cell>
+          <cell>Prove equations have solutions</cell>
+        </row>
+        <row>
+          <cell>Extreme Value Theorem</cell>
+          <cell>Attains absolute maximum and minimum on <m>[a,b]</m></cell>
+          <cell>Justify optimization problems</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <example xml:id="ex-ivt-cos-x-eq-x">
+      <title>Proving <m>\cos x = x</m> has a solution</title>
+      <statement>
+        <p>Let <m>f(x)=\cos x - x</m> on <m>[0,1]</m>. Since <m>f(0)=\cos 0 - 0 = 1\gt 0</m> and <m>f(1)=\cos 1 - 1\lt 0</m> (since <m>\cos 1\lt 1</m>), the Intermediate Value Theorem guarantees a root <m>c\in (0,1)</m> with <m>\cos c = c</m>.</p>
+      </statement>
+    </example>
+
+    <principle xml:id="principle-existence-before-formula">
+      <title>Existence before formula</title>
+      <statement>
+        <p>Some theorems guarantee that a desired quantity exists and is reachable before we develop formulas or algorithms to find it.</p>
+      </statement>
+    </principle>
+
+    <p>Continuity guarantees no skipped intermediate values and reachable extrema on closed bounded intervals. The next section examines warning examples where subtle traps arise.</p>
+  </subsection>
+
+</section>
