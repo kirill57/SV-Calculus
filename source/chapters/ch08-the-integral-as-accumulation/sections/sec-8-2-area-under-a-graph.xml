@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-8-2-area-under-a-graph">
+  <title>Area under a graph</title>
+
+  <p>When velocity is nonnegative, distance traveled is the area under the velocity graph. That observation is too useful to keep only for motion.</p>
+
+  <p>Given a nonnegative function <m>f</m> on an interval <m>[a,b]</m>, we want to measure the area between the graph and the <m>x</m>-axis.</p>
+
+  <p>For a rectangle, area is easy:</p>
+  <md>\text{area}=\text{height}\cdot\text{width}.</md>
+
+  <p>For a curved graph, the height changes. The central idea is to replace the curved region by many thin rectangles.</p>
+  <md>\text{curved area} \approx \text{sum of many rectangular areas}.</md>
+
+  <p>As the rectangles become thinner, the approximation should improve.</p>
+
+  <subsection xml:id="subsec-rectangular-estimates">
+    <title>Rectangular estimates</title>
+
+    <p>Consider the area under</p>
+    <md>f(x)=x^2</md>
+    <p>from <m>x=0</m> to <m>x=2</m>.</p>
+
+    <p>The region is not a triangle or a rectangle. We do not yet have an exact formula for its area. But we can estimate it.</p>
+
+    <p>Divide <m>[0,2]</m> into four equal intervals:</p>
+    <md>[0,0.5],\qquad [0.5,1],\qquad [1,1.5],\qquad [1.5,2].</md>
+
+    <p>Each interval has width</p>
+    <md>\Delta x=0.5.</md>
+
+    <p>On each interval, choose one height from the function and build a rectangle.</p>
+
+    <p>If we use the left endpoint of each interval, the heights are</p>
+    <md>f(0),\qquad f(0.5),\qquad f(1),\qquad f(1.5).</md>
+
+    <p>Thus the rectangular estimate is</p>
+    <md>0.5f(0)+0.5f(0.5)+0.5f(1)+0.5f(1.5).</md>
+
+    <p>Since <m>f(x)=x^2</m>,</p>
+    <md>0.5\left(0^2+0.5^2+1^2+1.5^2\right) = 0.5(0+0.25+1+2.25).</md>
+
+    <p>Therefore</p>
+    <md>\text{left rectangle estimate}=1.75.</md>
+
+    <figure xml:id="fig-left-rectangles-x-squared">
+      <caption>Left endpoint rectangles estimate the area under <m>y=x^2</m> on <m>[0,2]</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=2.2,
+              ymin=0, ymax=4.4,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={0,0.5,1,1.5,2},
+              ytick={0,1,2,3,4},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          % left rectangles for x^2 on [0,2], n=4
+          \draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0);
+          \draw[fill=gray!15, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
+          \draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,1);
+          \draw[fill=gray!15, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
+
+          \addplot[very thick, domain=0:2, samples=100] {x^2};
+          \node[anchor=west] at (axis cs:1.15,3.45) {\(f(x)=x^2\)};
+          \node[anchor=west] at (axis cs:0.15,0.65) {left rectangles};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>Because <m>x^2</m> is increasing on <m>[0,2]</m>, every left endpoint rectangle lies below the curve on its interval. So this estimate is too small.</p>
+
+    <p>If we use right endpoints, the rectangles lie above the curve. That estimate will be too large.</p>
+
+    <p>This gives a useful strategy:</p>
+    <md>\text{trap the unknown area between a lower estimate and an upper estimate.}</md>
+  </subsection>
+
+  <subsection xml:id="subsec-left-right-midpoint-sums">
+    <title>Left, right, and midpoint sums</title>
+
+    <p>The choice of rectangle height matters. Three common choices are left endpoints, right endpoints, and midpoints.</p>
+
+    <p>For <m>f(x)=x^2</m> on <m>[0,2]</m>, with four equal subintervals and <m>\Delta x=0.5</m>, the left estimate is</p>
+    <md>L_4 = 0.5\left(f(0)+f(0.5)+f(1)+f(1.5)\right).</md>
+
+    <p>We computed</p>
+    <md>L_4=1.75.</md>
+
+    <p>The right estimate is</p>
+    <md>R_4 = 0.5\left(f(0.5)+f(1)+f(1.5)+f(2)\right).</md>
+
+    <p>So</p>
+    <md>R_4 = 0.5\left(0.5^2+1^2+1.5^2+2^2\right) = 0.5(0.25+1+2.25+4).</md>
+
+    <p>Thus</p>
+    <md>R_4=3.75.</md>
+
+    <p>The midpoint estimate uses the midpoint of each subinterval:</p>
+    <md>0.25,\qquad 0.75,\qquad 1.25,\qquad 1.75.</md>
+
+    <p>So</p>
+    <md>M_4 = 0.5\left(f(0.25)+f(0.75)+f(1.25)+f(1.75)\right).</md>
+
+    <p>For <m>f(x)=x^2</m>,</p>
+    <md>M_4 = 0.5\left(0.25^2+0.75^2+1.25^2+1.75^2\right).</md>
+
+    <p>Compute:</p>
+    <md>M_4 = 0.5(0.0625+0.5625+1.5625+3.0625) = 0.5(5.25) = 2.625.</md>
+
+    <p>So the three estimates are</p>
+    <md>L_4=1.75,\qquad M_4=2.625,\qquad R_4=3.75.</md>
+
+    <p>For an increasing function, the left estimate is below the true area and the right estimate is above it. The midpoint estimate often does better, but it is not guaranteed to be an upper or lower estimate.</p>
+
+    <note xml:id="note-rectangular-sums">
+      <title>Rectangular sums</title>
+      <p>A rectangular estimate has the form</p>
+      <md>\text{area estimate} = (\text{height}_1)(\text{width}_1) + (\text{height}_2)(\text{width}_2) + \cdots.</md>
+      <p>The height is a sampled value of the function. The width is the length of the corresponding subinterval.</p>
+    </note>
+
+    <p>The word <q>sum</q> is important. The integral will be a limit of these sums.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-upper-lower-sums">
+    <title>Upper and lower sums</title>
+
+    <p>Left and right rectangles are easy to compute, but they are not always upper or lower estimates. If a function decreases, the left rectangles lie above the curve and the right rectangles lie below it. If a function rises and falls, both can be mixed.</p>
+
+    <p>A more reliable idea is to use the largest and smallest function values on each small interval.</p>
+
+    <p>On a subinterval, define:</p>
+    <md>\text{lower height}=\text{smallest value of }f\text{ on that subinterval},</md>
+    <md>\text{upper height}=\text{largest value of }f\text{ on that subinterval}.</md>
+
+    <p>Then:</p>
+    <md>\text{lower rectangle area} = (\text{lower height})(\text{width}),</md>
+    <p>and</p>
+    <md>\text{upper rectangle area} = (\text{upper height})(\text{width}).</md>
+
+    <p>Adding all the lower rectangle areas gives a lower sum. Adding all the upper rectangle areas gives an upper sum.</p>
+
+    <p>For a continuous function, the Extreme Value Theorem guarantees that each small closed interval really has a largest and smallest value. This is one reason the theorems about continuity matter.</p>
+
+    <figure xml:id="fig-lower-upper-x-squared">
+      <caption>For an increasing function, left rectangles give a lower sum and right rectangles give an upper sum.</caption>
+      <sidebyside widths="48% 48%">
+        <figure xml:id="fig-lower-sum-x-squared">
+          <caption>Lower sum</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=2.15,
+                  ymin=0, ymax=4.3,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={},
+                  xtick={0,1,2},
+                  ytick={0,2,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+                  title={lower sum}
+              ]
+              \draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,1);
+              \draw[fill=gray!15, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
+              \addplot[very thick, domain=0:2, samples=100] {x^2};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+        <figure xml:id="fig-upper-sum-x-squared">
+          <caption>Upper sum</caption>
+          <image>
+            <latex-image>
+              \begin{tikzpicture}
+              \begin{axis}[
+                  width=\linewidth,
+                  height=0.72\linewidth,
+                  xmin=0, xmax=2.15,
+                  ymin=0, ymax=4.3,
+                  axis lines=left,
+                  xlabel={\(x\)},
+                  ylabel={},
+                  xtick={0,1,2},
+                  ytick={0,2,4},
+                  grid=both,
+                  grid style={line width=.1pt, draw=gray!25},
+                  title={upper sum}
+              ]
+              \draw[fill=gray!25, draw=gray!60] (axis cs:0,0) rectangle (axis cs:0.5,0.25);
+              \draw[fill=gray!25, draw=gray!60] (axis cs:0.5,0) rectangle (axis cs:1,1);
+              \draw[fill=gray!25, draw=gray!60] (axis cs:1,0) rectangle (axis cs:1.5,2.25);
+              \draw[fill=gray!25, draw=gray!60] (axis cs:1.5,0) rectangle (axis cs:2,4);
+              \addplot[very thick, domain=0:2, samples=100] {x^2};
+              \end{axis}
+              \end{tikzpicture}
+            </latex-image>
+          </image>
+        </figure>
+      </sidebyside>
+    </figure>
+
+    <p>For <m>f(x)=x^2</m> on <m>[0,2]</m>, the function is increasing. So the lower sum with four equal rectangles is the left estimate:</p>
+    <md>1.75.</md>
+
+    <p>The upper sum with four equal rectangles is the right estimate:</p>
+    <md>3.75.</md>
+
+    <p>Thus the true area <m>A</m>, whatever it is, must satisfy</p>
+    <md>1.75\le A\le 3.75.</md>
+
+    <p>This is not very sharp. But if we use more rectangles, the trap tightens.</p>
+
+    <table>
+      <title>Lower and upper sums for <m>x^2</m> on <m>[0,2]</m></title>
+      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <col halign="center"/>
+        <row header="yes">
+          <cell><m>\text{number of rectangles}</m></cell>
+          <cell><m>\text{lower sum}</m></cell>
+          <cell><m>\text{upper sum}</m></cell>
+          <cell><m>\text{gap}</m></cell>
+        </row>
+        <row>
+          <cell>4</cell>
+          <cell>1.75</cell>
+          <cell>3.75</cell>
+          <cell>2</cell>
+        </row>
+        <row>
+          <cell>8</cell>
+          <cell>2.1875</cell>
+          <cell>3.1875</cell>
+          <cell>1</cell>
+        </row>
+        <row>
+          <cell>16</cell>
+          <cell>2.421875</cell>
+          <cell>2.921875</cell>
+          <cell>0.5</cell>
+        </row>
+      </tabular>
+    </table>
+
+    <p>The lower sums rise. The upper sums fall. The area is squeezed between them.</p>
+
+    <p>For <m>f(x)=x^2</m> on <m>[0,2]</m>, if we use <m>n</m> equal intervals, the width is</p>
+    <md>\Delta x=\frac{2}{n}.</md>
+
+    <p>Because the function is increasing, the upper sum exceeds the lower sum by</p>
+    <md>\Delta x\bigl(f(2)-f(0)\bigr).</md>
+
+    <p>Here that is</p>
+    <md>\frac{2}{n}(4-0)=\frac{8}{n}.</md>
+
+    <p>As <m>n</m> grows, the gap</p>
+    <md>\frac{8}{n}</md>
+    <p>approaches <m>0</m>. Therefore the lower and upper estimates are being forced toward one common number. That common number is the area.</p>
+
+    <note xml:id="note-squeezing-idea-area">
+      <title>The squeezing idea for area</title>
+      <p>If upper sums and lower sums can be made as close as we want, then there is only one reasonable number for the area between them.</p>
+    </note>
+
+    <p>This is the geometric ancestor of the definite integral.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-area-as-limiting-process">
+    <title>Area as a limiting process</title>
+
+    <p>A curved area is not found by one rectangle. It is found by a limiting process.</p>
+    <md>\text{area} = \lim_{\text{rectangle widths}\to 0} \text{rectangular sums}.</md>
+
+    <p>This sentence is not yet a formal definition. The formal definition will come after we develop better notation. But the idea is already clear:</p>
+    <md>\text{thin rectangles make the curved region measurable.}</md>
+
+    <p>It is helpful to test this idea on a region whose area we already know.</p>
+
+    <p>Consider</p>
+    <md>f(x)=x</md>
+    <p>on the interval <m>[0,2]</m>. The region under the graph is a right triangle with base <m>2</m> and height <m>2</m>. Its area is</p>
+    <md>\frac12(2)(2)=2.</md>
+
+    <p>Now see how rectangles find the same number.</p>
+
+    <p>Divide <m>[0,2]</m> into <m>n</m> equal intervals. Then</p>
+    <md>\Delta x=\frac{2}{n}.</md>
+
+    <p>The left endpoints are</p>
+    <md>0,\quad \frac{2}{n},\quad \frac{4}{n},\quad \ldots,\quad \frac{2(n-1)}{n}.</md>
+
+    <p>The left rectangle estimate is</p>
+    <md>L_n = \frac{2}{n} \left[ 0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n} \right].</md>
+
+    <p>Factor out <m>\frac{2}{n}</m> from the bracket:</p>
+    <md>L_n = \frac{2}{n}\cdot \frac{2}{n} \left[ 0+1+2+\cdots+(n-1) \right].</md>
+
+    <p>Using</p>
+    <md>0+1+2+\cdots+(n-1)=\frac{n(n-1)}{2},</md>
+    <p>we get</p>
+    <md>L_n = \frac{4}{n^2}\cdot \frac{n(n-1)}{2} = 2\cdot\frac{n-1}{n}.</md>
+
+    <p>As <m>n\to\infty</m>,</p>
+    <md>2\cdot\frac{n-1}{n}\to 2.</md>
+
+    <p>The right endpoint estimate is</p>
+    <md>R_n = \frac{2}{n} \left[ \frac{2}{n}+\frac{4}{n}+\cdots+\frac{2n}{n} \right].</md>
+
+    <p>So</p>
+    <md>R_n = \frac{2}{n}\cdot \frac{2}{n} \left[ 1+2+\cdots+n \right].</md>
+
+    <p>Using</p>
+    <md>1+2+\cdots+n=\frac{n(n+1)}{2},</md>
+    <p>we get</p>
+    <md>R_n = \frac{4}{n^2}\cdot \frac{n(n+1)}{2} = 2\cdot\frac{n+1}{n}.</md>
+
+    <p>As <m>n\to\infty</m>,</p>
+    <md>2\cdot\frac{n+1}{n}\to 2.</md>
+
+    <p>Thus</p>
+    <md>L_n\to 2 \qquad\text{and}\qquad R_n\to 2.</md>
+
+    <p>The rectangle sums recover the triangle area.</p>
+
+    <figure xml:id="fig-rectangles-triangle-area">
+      <caption>For <m>y=x</m> on <m>[0,2]</m>, rectangular sums approach the known triangle area <m>2</m>.</caption>
+      <image width="78%">
+        <latex-image>
+          \begin{tikzpicture}
+          \begin{axis}[
+              width=0.78\textwidth,
+              height=0.48\textwidth,
+              xmin=0, xmax=2.2,
+              ymin=0, ymax=2.3,
+              axis lines=left,
+              xlabel={\(x\)},
+              ylabel={\(y\)},
+              xtick={0,1,2},
+              ytick={0,1,2},
+              grid=both,
+              grid style={line width=.1pt, draw=gray!25},
+          ]
+          % 8 left rectangles for f=x on [0,2]
+          \draw[fill=gray!15, draw=gray!55] (axis cs:0,0) rectangle (axis cs:0.25,0);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:0.25,0) rectangle (axis cs:0.5,0.25);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:0.5,0) rectangle (axis cs:0.75,0.5);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:0.75,0) rectangle (axis cs:1.0,0.75);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:1.0,0) rectangle (axis cs:1.25,1.0);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:1.25,0) rectangle (axis cs:1.5,1.25);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:1.5,0) rectangle (axis cs:1.75,1.5);
+          \draw[fill=gray!15, draw=gray!55] (axis cs:1.75,0) rectangle (axis cs:2.0,1.75);
+          \addplot[very thick, domain=0:2, samples=2] {x};
+          \node[anchor=west] at (axis cs:1.05,1.75) {\(y=x\)};
+          \node[anchor=west] at (axis cs:0.1,2.1) {rectangles approach the triangle area};
+          \end{axis}
+          \end{tikzpicture}
+        </latex-image>
+      </image>
+    </figure>
+
+    <p>For <m>y=x</m>, geometry already knew the answer. Rectangles confirmed it.</p>
+
+    <p>For <m>y=x^2</m>, geometry does not give such an immediate answer. Rectangles become the method itself. Later, the Fundamental Theorem of Calculus will give a fast way to compute the same area exactly.</p>
+
+    <p>For now, the main point is this:</p>
+    <md>\text{Area under a graph is an accumulation of thin rectangular pieces.}</md>
+
+    <p>There is one caution. Not every wild function behaves well enough for this process. If a function jumps too violently at every scale, upper and lower sums may refuse to come together. Continuous functions do behave well, and we will return to that fact later.</p>
+
+    <p>The next obstacle is notation. Rectangular sums quickly become long:</p>
+    <md>\frac{2}{n} \left[ 0+\frac{2}{n}+\frac{4}{n}+\cdots+\frac{2(n-1)}{n} \right].</md>
+
+    <p>To define the integral cleanly, we need a compact language for finite sums. That is where sigma notation enters.</p>
+  </subsection>
+
+</section>
