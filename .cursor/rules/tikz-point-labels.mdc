@@ -1,0 +1,19 @@
+---
+description: TikZ point-label placement on calculus figures
+globs: source/chapters/**/*.xml
+alwaysApply: false
+---
+
+# Point labels on graphs
+
+When a plotted graph is **increasing** near a marked point, place the label with `anchor=west` at the **exact point coordinates**. Do not offset the node away from the point.
+
+```latex
+% ✅ increasing graph: west of the exact point (Figure 6.7.1)
+\node[anchor=west] at (axis cs:0,0) {absolute min};
+
+% ❌ do not invent an offset for an increasing graph
+\node[anchor=west] at (axis cs:0.15,0.28) {absolute min};
+```
+
+Use `fill=white` only when the text would otherwise sit on a line. Major overlaps only; do not fine-tune endlessly.

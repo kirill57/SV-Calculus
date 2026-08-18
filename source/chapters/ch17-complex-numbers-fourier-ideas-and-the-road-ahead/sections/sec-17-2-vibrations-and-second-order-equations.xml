@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-2-vibrations-and-second-order-equations">
+  <title>Vibrations and second-order equations</title>
+
+  <p>Chapter <xref ref="ch13-differential-equations-laws-written-as-derivatives"/> already introduced second-order equations
+through vibrating systems.  A spring gave us</p>
+
+  <md>y''+\omega^2y=0.</md>
+
+  <p>At that time, sine and cosine solved the equation because their second derivatives return
+negative copies of themselves.</p>
+
+  <p>Complex numbers explain the deeper reason:</p>
+
+  <md>\text{oscillation is the shadow of rotation.}</md>
+
+  <p>A point rotating in the complex plane has a horizontal shadow <m>\cos(\omega t)</m> and a
+vertical shadow <m>\sin(\omega t)</m>.  Those shadows move back and forth.  The spring
+motion is one such shadow.</p>
+
+  <subsection xml:id="subsec-spring-equation-ch17">
+    <title>The spring equation</title>
+
+  <p>Picture a mass attached to a spring on a frictionless horizontal track.</p>
+
+  <p>Let</p>
+
+  <md>y(t)=\text{displacement from equilibrium at time }t.</md>
+
+  <p>The equilibrium position is</p>
+
+  <md>y=0.</md>
+
+  <p>Positive <m>y</m> means the mass is displaced to the right.  Negative <m>y</m> means the mass
+is displaced to the left.</p>
+
+  <p>Hooke’s law says that the spring force is proportional to displacement and points back
+toward equilibrium:</p>
+
+  <md>F_{\text{spring}}=-ky,
+\qquad k&gt;0.</md>
+
+  <p>Newton’s second law says</p>
+
+  <md>F=ma.</md>
+
+  <p>Here acceleration is the second derivative:</p>
+
+  <md>a=y''.</md>
+
+  <p>Thus</p>
+
+  <md>my''=-ky.</md>
+
+  <p>Rearrange:</p>
+
+  <md>my''+ky=0.</md>
+
+  <p>Divide by <m>m</m>:</p>
+
+  <md>y''+\frac{k}{m}y=0.</md>
+
+  <p>It is customary to write</p>
+
+  <md>\omega^2=\frac{k}{m},
+\qquad \omega&gt;0.</md>
+
+  <p>Then the equation becomes</p>
+
+  <md>
+y''+\omega^2y=0.
+</md>
+
+  <p>This is the <em>simple harmonic oscillator</em>.</p>
+
+  <figure xml:id="fig-spring-mass-equation">
+    <caption>A spring pulls back toward equilibrium.  Newton’s law turns this restoring force into a second-order equation.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=0.9, every node/.style={font=\small}]
+  % wall
+  \draw[thick] (0,-1.1) -- (0,1.1);
+  \foreach \y in {-1.0,-0.7,...,1.0} {
+    \draw (0,\y) -- (-0.25,\y-0.2);
+  }
+
+  % track
+  \draw[thick] (0,-1.15) -- (8,-1.15);
+
+  % spring zigzag
+  \draw[thick]
+    (0,0) -- (0.7,0)
+    -- (0.95,0.35)
+    -- (1.45,-0.35)
+    -- (1.95,0.35)
+    -- (2.45,-0.35)
+    -- (2.95,0.35)
+    -- (3.45,-0.35)
+    -- (3.95,0.35)
+    -- (4.45,-0.35)
+    -- (4.95,0)
+    -- (5.4,0);
+
+  % mass
+  \draw[thick, fill=gray!15] (5.4,-0.65) rectangle (6.7,0.65);
+  \node at (6.05,0) {mass \(m\)};
+
+  % equilibrium dashed
+  \draw[dashed] (4.6,-1.0) -- (4.6,1.0);
+  \node[below] at (4.6,-1.2) {equilibrium};
+
+  % displacement
+  \draw[&lt;-&gt;, thick] (4.6,1.0) -- (6.05,1.0);
+  \node[above] at (5.32,1.0) {\(y(t)&gt;0\)};
+
+  % force arrow
+  \draw[very thick,-&gt;] (5.35,-0.85) -- (4.25,-0.85);
+  \node[below] at (4.8,-0.85) {\(F=-ky\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The equation says</p>
+
+  <md>y''=-\omega^2y.</md>
+
+  <p>So the acceleration always points opposite the displacement.  When the mass is to the
+right, acceleration points left.  When the mass is to the left, acceleration points right.</p>
+
+  <p>That is what makes the motion reverse.</p>
+
+  <p>A second-order equation needs two initial conditions.  To know how the mass will move,
+we need both its initial position and its initial velocity:</p>
+
+  <md>y(0)=y_0,
+\qquad
+y'(0)=v_0.</md>
+
+  <p>Position alone is not enough.  If the mass is at <m>y=1</m>, it could be moving right, moving
+left, or momentarily stopped.  Those motions have different futures.</p>
+
+  <exercise xml:id="checkpoint-17-2-why-second-order">
+        <title>Why is a spring a second-order equation?</title>
+        <statement>
+          <p>
+            Newton’s law plus Hooke’s law produce <m>y''+\omega^2 y=0</m>. In your own words, why does a restoring force become a statement about the second derivative, and why is position alone not enough to determine the future motion?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Force determines acceleration, which is <m>y''</m>. The same position can be moving right, moving left, or stopped, so the initial velocity is a second piece of data.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-sine-cosine-natural-motions">
+    <title>Sine and cosine as natural motions</title>
+
+  <p>The complex function</p>
+
+  <md>z(t)=e^{i\omega t}</md>
+
+  <p>satisfies</p>
+
+  <md>z''+\omega^2z=0.</md>
+
+  <p>Indeed,</p>
+
+  <md>z'(t)=i\omega e^{i\omega t},</md>
+
+  <p>and</p>
+
+  <md>z''(t)=(i\omega)^2e^{i\omega t}
+=
+-\omega^2e^{i\omega t}.</md>
+
+  <p>Therefore</p>
+
+  <md>z''+\omega^2z=0.</md>
+
+  <p>Now use Euler’s formula:</p>
+
+  <md>e^{i\omega t}=\cos(\omega t)+i\sin(\omega t).</md>
+
+  <p>If</p>
+
+  <md>z(t)=u(t)+iv(t),</md>
+
+  <p>then</p>
+
+  <md>z''+\omega^2z
+=
+\bigl(u''+\omega^2u\bigr)
++
+i\bigl(v''+\omega^2v\bigr).</md>
+
+  <p>For this complex expression to be <m>0</m>, both real and imaginary parts must be <m>0</m>.
+So</p>
+
+  <md>u''+\omega^2u=0,
+\qquad
+v''+\omega^2v=0.</md>
+
+  <p>That means</p>
+
+  <md>\cos(\omega t)
+\qquad\text{and}\qquad
+\sin(\omega t)</md>
+
+  <p>are real solutions of</p>
+
+  <md>y''+\omega^2y=0.</md>
+
+  <p>Since the equation is linear, every linear combination is also a solution:</p>
+
+  <md>
+y(t)=A\cos(\omega t)+B\sin(\omega t).
+</md>
+
+  <p>This is the general real solution.</p>
+
+  <note xml:id="note-sec-17-2-vibrations-and-second-order-equations-114">
+    <title>Simple harmonic motion</title>
+      <p>The equation</p>
+        <md>
+y''+\omega^2y=0,
+\qquad \omega&gt;0,
+</md>
+      <p>has real solutions</p>
+        <md>
+y(t)=A\cos(\omega t)+B\sin(\omega t).
+</md>
+      <p>The constants <m>A</m> and <m>B</m> are determined by the initial position and initial velocity.</p>
+  </note>
+
+  <p>Now impose</p>
+
+  <md>y(0)=y_0,
+\qquad
+y'(0)=v_0.</md>
+
+  <p>From</p>
+
+  <md>y(t)=A\cos(\omega t)+B\sin(\omega t),</md>
+
+  <p>we get</p>
+
+  <md>y(0)=A.</md>
+
+  <p>So</p>
+
+  <md>A=y_0.</md>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)
+=
+-\omega A\sin(\omega t)+\omega B\cos(\omega t).</md>
+
+  <p>Then</p>
+
+  <md>y'(0)=\omega B.</md>
+
+  <p>So</p>
+
+  <md>B=\frac{v_0}{\omega}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+y(t)=y_0\cos(\omega t)+\frac{v_0}{\omega}\sin(\omega t).
+</md>
+
+  <example xml:id="ex-sec-17-2-vibrations-and-second-order-equations-1">
+    <title>Example</title>
+    <statement>
+  <p>Solve</p>
+
+  <md>y''+9y=0,
+\qquad
+y(0)=4,
+\qquad
+y'(0)=-6.</md>
+
+  <p>Here</p>
+
+  <md>\omega^2=9,
+\qquad
+\omega=3.</md>
+
+  <p>So</p>
+
+  <md>y(t)=A\cos(3t)+B\sin(3t).</md>
+
+  <p>The initial position gives</p>
+
+  <md>A=4.</md>
+
+  <p>The initial velocity gives</p>
+
+  <md>3B=-6,</md>
+
+  <p>so</p>
+
+  <md>B=-2.</md>
+
+  <p>Thus</p>
+
+  <md>
+y(t)=4\cos(3t)-2\sin(3t).
+</md>
+
+  <p>The period is</p>
+
+  <md>
+T=\frac{2\pi}{\omega}.
+</md>
+
+  <p>Here</p>
+
+  <md>T=\frac{2\pi}{3}.</md>
+
+  <p>The solution repeats every <m>2\pi/3</m> units of time.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Amplitude and phase</title>
+
+  <p>Every expression of the form</p>
+
+  <md>A\cos(\omega t)+B\sin(\omega t)</md>
+
+  <p>can also be written as a shifted cosine:</p>
+
+  <md>
+A\cos(\omega t)+B\sin(\omega t)=R\cos(\omega t-\phi),
+</md>
+
+  <p>where</p>
+
+  <md>R=\sqrt{A^2+B^2}.</md>
+
+  <p>To see this, expand the right side:</p>
+
+  <md>R\cos(\omega t-\phi)
+=
+R\cos(\omega t)\cos\phi+R\sin(\omega t)\sin\phi.</md>
+
+  <p>So we need</p>
+
+  <md>A=R\cos\phi,
+\qquad
+B=R\sin\phi.</md>
+
+  <p>This is possible when</p>
+
+  <md>R=\sqrt{A^2+B^2}.</md>
+
+  <p>The number <m>R</m> is the <em>amplitude</em>.  It is the largest distance from equilibrium.
+The angle <m>\phi</m> is the <em>phase shift</em>.  It tells where in the cycle the motion
+starts.</p>
+
+  <p>For the example</p>
+
+  <md>y(t)=4\cos(3t)-2\sin(3t),</md>
+
+  <p>the amplitude is</p>
+
+  <md>R=\sqrt{4^2+(-2)^2}=\sqrt{20}=2\sqrt5.</md>
+
+  <p>The solution oscillates between</p>
+
+  <md>-2\sqrt5
+\qquad\text{and}\qquad
+2\sqrt5.</md>
+
+  <figure xml:id="fig-spring-solution-amplitude-phase">
+    <caption>The solution of <m>y”+9y=0</m> is periodic.  Its amplitude is determined by the initial position and velocity.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.46\textwidth,
+    xmin=0, xmax=6.4,
+    ymin=-5.1, ymax=5.1,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,2.094,4.188,6.283},
+    xticklabels={\(0\),\(\frac{2\pi}{3}\),\(\frac{4\pi}{3}\),\(2\pi\)},
+    ytick={-4.472,0,4.472},
+    yticklabels={\(-2\sqrt5\),\(0\),\(2\sqrt5\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:6.3, samples=400] {4*cos(deg(3*x))-2*sin(deg(3*x))};
+\addplot[thick, dashed, domain=0:6.3, samples=2] {sqrt(20)};
+\addplot[thick, dashed, domain=0:6.3, samples=2] {-sqrt(20)};
+\node[anchor=west] at (axis cs:0.4,3.8) {\(y=4\cos(3t)-2\sin(3t)\)};
+\node[anchor=west] at (axis cs:4.35,4.55) {amplitude \(2\sqrt5\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The complex form stores this same information in one coefficient:</p>
+
+  <md>A\cos(\omega t)+B\sin(\omega t)
+=
+\operatorname{Re}\bigl((A-Bi)e^{i\omega t}\bigr).</md>
+
+  <p>The modulus</p>
+
+  <md>|A-Bi|=\sqrt{A^2+B^2}</md>
+
+  <p>is the amplitude.  The argument gives the phase.</p>
+
+  <p>This is the compact power of complex notation: amplitude and phase become length and
+angle.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-2-shadows-of-rotation">
+        <title>Why are sine and cosine shadows of a rotation?</title>
+        <statement>
+          <p>
+            The complex motion <m>e^{i\omega t}</m> satisfies the spring equation, and its real and imaginary parts are <m>\cos(\omega t)</m> and <m>\sin(\omega t)</m>. In your own words, why does oscillation appear as the shadow of rotation, and why is the general real solution a linear combination of those two shadows?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A rotating point in the plane projects onto two back-and-forth motions. Linearity lets you mix those two real solutions, which is enough to match any initial position and velocity.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-energy-conservation-spring">
+    <title>Energy conservation</title>
+
+  <p>The spring equation also contains a conservation law.</p>
+
+  <p>Return to the physical form</p>
+
+  <md>my''+ky=0.</md>
+
+  <p>The kinetic energy is</p>
+
+  <md>\frac12m(y')^2,</md>
+
+  <p>and the spring potential energy is</p>
+
+  <md>\frac12ky^2.</md>
+
+  <p>Define the total energy</p>
+
+  <md>
+E(t)=\frac12m\bigl(y'(t)\bigr)^2+\frac12k\bigl(y(t)\bigr)^2.
+</md>
+
+  <p>Differentiate:</p>
+
+  <md>E'(t)
+=
+m y'(t)y''(t)+k y(t)y'(t).</md>
+
+  <p>Factor <m>y'(t)</m>:</p>
+
+  <md>E'(t)
+=
+y'(t)\bigl(my''(t)+ky(t)\bigr).</md>
+
+  <p>But the spring equation says</p>
+
+  <md>my''+ky=0.</md>
+
+  <p>Therefore</p>
+
+  <md>
+E'(t)=0.
+</md>
+
+  <p>So</p>
+
+  <md>
+E(t)\text{ is constant.}
+</md>
+
+  <p>This is the calculus meaning of conservation:</p>
+
+  <md>
+\text{a conserved quantity is a quantity whose derivative is zero.}
+</md>
+
+  <p>The Mean Value Theorem then tells us that the quantity is constant on the interval.</p>
+
+  <paragraphs>
+    <title>Interpretation</title>
+
+  <p>At a turning point, the mass is momentarily stopped:</p>
+
+  <md>y'=0.</md>
+
+  <p>So all the energy is spring potential energy:</p>
+
+  <md>E=\frac12ky^2.</md>
+
+  <p>At equilibrium,</p>
+
+  <md>y=0,</md>
+
+  <p>so all the energy is kinetic energy:</p>
+
+  <md>E=\frac12m(y')^2.</md>
+
+  <p>The energy does not disappear.  It changes form.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Energy ellipse</title>
+
+  <p>For the solution</p>
+
+  <md>y(t)=R\cos(\omega t),
+\qquad
+\omega^2=\frac{k}{m},</md>
+
+  <p>the velocity is</p>
+
+  <md>y'(t)=-R\omega\sin(\omega t).</md>
+
+  <p>Then</p>
+
+  <md>\frac{y^2}{R^2}+\frac{(y')^2}{\omega^2R^2}
+=
+\cos^2(\omega t)+\sin^2(\omega t)
+=
+1.</md>
+
+  <p>So in the phase plane, whose coordinates are</p>
+
+  <md>(y,y'),</md>
+
+  <p>the motion follows an ellipse:</p>
+
+  <md>
+\frac{y^2}{R^2}+\frac{(y')^2}{\omega^2R^2}=1.
+</md>
+
+  <figure xml:id="fig-phase-plane-energy-ellipse">
+    <caption>For an undamped oscillator, the phase point <m>(y,y')</m> moves around a closed energy curve.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.62\textwidth,
+    height=0.52\textwidth,
+    xmin=-3.4, xmax=3.4,
+    ymin=-6.6, ymax=6.6,
+    axis lines=middle,
+    xlabel={\(y\)},
+    ylabel={\(y'\)},
+    xtick={-3,0,3},
+    ytick={-6,0,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:360, samples=300] ({3*cos(x)},{6*sin(x)});
+\draw[-&gt;, thick] (axis cs:3,0) arc [start angle=0, end angle=35, x radius=3, y radius=6];
+\node[anchor=west] at (axis cs:1.15,5.3) {constant energy curve};
+\node[anchor=west] at (axis cs:0.6,-4.7) {\(\omega=2,\ R=3\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This picture gives another way to see why the motion repeats.  The phase point moves
+around a closed curve instead of spiraling inward or escaping outward.</p>
+
+  <p>The conserved energy is what keeps it there.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-2-energy-is-constant">
+        <title>What does it mean that energy is conserved?</title>
+        <statement>
+          <p>
+            For the undamped spring, the quantity <m>E=\frac12 m(y')^2+\frac12 k y^2</m> has derivative zero. In your own words, why is a conserved quantity a quantity whose derivative vanishes, and how does that explain the exchange between kinetic energy and spring potential?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If <m>E'=0</m>, then <m>E</m> cannot change. At a turning point the mass is stopped and all the energy is potential; at equilibrium the spring is unstretched and all the energy is kinetic.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-damping-forcing-preview">
+    <title>Damping and forcing preview</title>
+
+  <p>Real oscillations rarely continue forever.  A guitar string fades.  A swing slows down.
+A car’s suspension settles after a bump.</p>
+
+  <p>A damping force resists velocity.  A simple model is</p>
+
+  <md>F_{\text{damping}}=-cy',
+\qquad c&gt;0.</md>
+
+  <p>The spring force is still</p>
+
+  <md>F_{\text{spring}}=-ky.</md>
+
+  <p>Newton’s law gives</p>
+
+  <md>my''=-cy'-ky.</md>
+
+  <p>So the damped spring equation is</p>
+
+  <md>
+my''+cy'+ky=0.
+</md>
+
+  <p>Use the same energy as before:</p>
+
+  <md>E(t)=\frac12m(y')^2+\frac12ky^2.</md>
+
+  <p>Then</p>
+
+  <md>E'(t)=y'(my''+ky).</md>
+
+  <p>From the damped equation,</p>
+
+  <md>my''+ky=-cy'.</md>
+
+  <p>Therefore</p>
+
+  <md>
+E'(t)=-c(y')^2\le0.
+</md>
+
+  <p>The energy decreases.  The damping term drains energy from the system.</p>
+
+  <note xml:id="note-sec-17-2-vibrations-and-second-order-equations-115">
+    <title>Damping</title>
+      <p>In the model</p>
+        <md>my''+cy'+ky=0,</md>
+      <p>the term <m>cy'</m> removes energy.  If <m>c&gt;0</m>, then</p>
+        <md>E'(t)=-c(y')^2\le0.</md>
+  </note>
+
+  <p>Complex numbers also help describe the shape of damped motion.</p>
+
+  <p>Try a solution of the form</p>
+
+  <md>y=e^{\lambda t}.</md>
+
+  <p>Substituting into</p>
+
+  <md>my''+cy'+ky=0</md>
+
+  <p>gives</p>
+
+  <md>m\lambda^2e^{\lambda t}+c\lambda e^{\lambda t}+ke^{\lambda t}=0.</md>
+
+  <p>Since <m>e^{\lambda t}\neq0</m>, we need</p>
+
+  <md>
+m\lambda^2+c\lambda+k=0.
+</md>
+
+  <p>This is called the <em>characteristic equation</em>.</p>
+
+  <p>When damping is light,</p>
+
+  <md>c^2&lt;4mk,</md>
+
+  <p>the roots are complex:</p>
+
+  <md>\lambda
+=
+-\frac{c}{2m}\pm i\mu,</md>
+
+  <p>where</p>
+
+  <md>\mu=\sqrt{\frac{k}{m}-\left(\frac{c}{2m}\right)^2}.</md>
+
+  <p>The solutions have the form</p>
+
+  <md>
+y(t)=e^{-ct/(2m)}
+\bigl(A\cos(\mu t)+B\sin(\mu t)\bigr).
+</md>
+
+  <p>The sine and cosine still oscillate.  The exponential factor</p>
+
+  <md>e^{-ct/(2m)}</md>
+
+  <p>shrinks the amplitude.</p>
+
+  <figure xml:id="fig-chapter17-damped-oscillation">
+    <caption>A lightly damped oscillator still oscillates, but its amplitude shrinks exponentially.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.46\textwidth,
+    xmin=0, xmax=18,
+    ymin=-1.25, ymax=1.25,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,5,10,15},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:18, samples=500] {exp(-0.18*x)*cos(deg(2*x))};
+\addlegendentry{\(e^{-0.18t}\cos(2t)\)}
+\addplot[thick, dashed, domain=0:18, samples=200] {exp(-0.18*x)};
+\addlegendentry{envelope}
+\addplot[thick, dashed, domain=0:18, samples=200] {-exp(-0.18*x)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Now add an outside force.  A child pushes a swing.  A motor shakes a machine.  Wind
+pushes a bridge.  A simple periodically forced model is</p>
+
+  <md>
+my''+cy'+ky=F_0\cos(\gamma t).
+</md>
+
+  <p>The number <m>\gamma</m> is the driving angular frequency.</p>
+
+  <p>Complex notation lets us replace the cosine forcing by the real part of</p>
+
+  <md>F_0e^{i\gamma t}.</md>
+
+  <p>Look for a complex steady-state response</p>
+
+  <md>z(t)=Ce^{i\gamma t}.</md>
+
+  <p>Then</p>
+
+  <md>z'=i\gamma Ce^{i\gamma t},</md>
+
+  <p>and</p>
+
+  <md>z''=-\gamma^2Ce^{i\gamma t}.</md>
+
+  <p>Substitute into</p>
+
+  <md>mz''+cz'+kz=F_0e^{i\gamma t}.</md>
+
+  <p>We get</p>
+
+  <md>\bigl(-m\gamma^2+i c\gamma+k\bigr)Ce^{i\gamma t}
+=
+F_0e^{i\gamma t}.</md>
+
+  <p>Cancel <m>e^{i\gamma t}</m>:</p>
+
+  <md>\bigl(k-m\gamma^2+i c\gamma\bigr)C=F_0.</md>
+
+  <p>Thus</p>
+
+  <md>
+C=\frac{F_0}{k-m\gamma^2+i c\gamma}.
+</md>
+
+  <p>The real part of</p>
+
+  <md>Ce^{i\gamma t}</md>
+
+  <p>gives the physical steady-state motion.</p>
+
+  <p>The amplitude of the steady-state response is the modulus of <m>C</m>:</p>
+
+  <md>
+|C|
+=
+\frac{F_0}
+{\sqrt{(k-m\gamma^2)^2+(c\gamma)^2}}.
+</md>
+
+  <p>This formula explains resonance with damping.  The response is large when</p>
+
+  <md>k-m\gamma^2</md>
+
+  <p>is small, meaning the driving frequency is near the natural frequency.  But if <m>c&gt;0</m>,
+the denominator never becomes <m>0</m>, because of the term</p>
+
+  <md>(c\gamma)^2.</md>
+
+  <p>Damping prevents infinite growth in this simple steady-state model.</p>
+
+  <figure xml:id="fig-damped-forced-response">
+    <caption>With damping, resonance produces a large response near the natural frequency, but the amplitude remains finite.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.46\textwidth,
+    xmin=0, xmax=2.4,
+    ymin=0, ymax=4.5,
+    axis lines=left,
+    xlabel={driving frequency \(\gamma\)},
+    ylabel={steady-state amplitude},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:2.4, samples=400] {1/sqrt((1-x^2)^2+(0.25*x)^2)};
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,4.5);
+\node[anchor=south] at (axis cs:1,4.5) {near natural frequency};
+\node[anchor=west] at (axis cs:1.18,3.0) {large but finite response};
+\node[anchor=west] at (axis cs:0.18,0.8) {\(m=k=F_0=1,\ c=0.25\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The formula is more advanced than the rest of this book, but the idea is not advanced:</p>
+
+  <md>
+\text{periodic input} \quad\Longrightarrow\quad \text{periodic response}.
+</md>
+
+  <p>Complex numbers make the calculation shorter because they carry amplitude and phase
+together.</p>
+
+  <p>A single vibrating spring is one wave.  Many sounds, signals, and periodic motions are
+built from many waves at once.  The next question is the beginning of Fourier’s idea:</p>
+
+  <md>\text{Can complicated periodic motion be built from sines and cosines?}</md>
+
+  <exercise xml:id="checkpoint-17-2-damping-drains-energy">
+        <title>Why does damping drain energy?</title>
+        <statement>
+          <p>
+            A damping force opposing velocity produces <m>E'=-c(y')^2\le 0</m>. In your own words, why does that term make oscillation fade, and what role do complex characteristic roots play in describing the faded motion?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Negative derivative of energy means the energy is decreasing whenever the mass is moving. Light damping gives complex roots whose real part produces exponential decay multiplying the oscillation.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

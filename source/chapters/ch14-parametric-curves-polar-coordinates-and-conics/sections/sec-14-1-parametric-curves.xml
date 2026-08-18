@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-1-parametric-curves">
+  <title>Parametric curves</title>
+
+  <p>A graph <m>y=f(x)</m> is one way to describe a curve.  A parametric description is another.
+It is often closer to the way the curve is actually produced.</p>
+
+  <p>A particle has a horizontal position and a vertical position.  A wheel point has an
+<m>x</m>-coordinate and a <m>y</m>-coordinate.  A planet has two coordinates in a plane.  In
+each case, time does not have to appear on the final picture, but it may be the easiest
+way to draw the picture.</p>
+
+  <md>
+\text{A parametric curve is a curve traced by a moving point.}
+</md>
+
+  <subsection xml:id="subsec-curve-as-moving-point">
+    <title>A curve as a moving point</title>
+
+  <p>Imagine a point moving around the unit circle.  At time <m>t</m>, put</p>
+
+  <md>x(t)=\cos t,
+\qquad
+y(t)=\sin t.</md>
+
+  <p>Then the point has position</p>
+
+  <md>P(t)=(x(t),y(t))=(\cos t,\sin t).</md>
+
+  <p>When <m>t=0</m>,</p>
+
+  <md>P(0)=(1,0).</md>
+
+  <p>When <m>t=\pi/2</m>,</p>
+
+  <md>P(\pi/2)=(0,1).</md>
+
+  <p>When <m>t=\pi</m>,</p>
+
+  <md>P(\pi)=(-1,0).</md>
+
+  <p>When <m>t=3\pi/2</m>,</p>
+
+  <md>P(3\pi/2)=(0,-1).</md>
+
+  <p>As <m>t</m> increases from <m>0</m> to <m>2\pi</m>, the point travels once around the circle in the
+counterclockwise direction.</p>
+
+  <figure xml:id="fig-parametric-unit-circle">
+    <caption>The parameter <m>t</m> tells how the point moves around the circle.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.2, every node/.style={font=\small}]
+  % axes
+  \draw[-&gt;] (-1.35,0) -- (1.45,0) node[right] {\(x\)};
+  \draw[-&gt;] (0,-1.35) -- (0,1.45) node[above] {\(y\)};
+
+  % circle
+  \draw[very thick] (0,0) circle (1);
+
+  % arrows along circle
+  \draw[-&gt;, thick] (0.88,0.14) arc (9:55:0.89);
+  \draw[-&gt;, thick] (-0.14,0.88) arc (99:145:0.89);
+  \draw[-&gt;, thick] (-0.88,-0.14) arc (189:235:0.89);
+  \draw[-&gt;, thick] (0.14,-0.88) arc (279:325:0.89);
+
+  % points
+  \fill (1,0) circle (1.6pt);
+  \fill (0,1) circle (1.6pt);
+  \fill (-1,0) circle (1.6pt);
+  \fill (0,-1) circle (1.6pt);
+
+  \node[below right] at (1,0) {\(t=0\)};
+  \node[above right] at (0,1) {\(t=\pi/2\)};
+  \node[below left] at (-1,0) {\(t=\pi\)};
+  \node[below right] at (0,-1) {\(t=3\pi/2\)};
+
+  \node at (0,-1.67) {\(x=\cos t,\quad y=\sin t,\quad 0\le t\le 2\pi\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The curve itself is the circle.  The parametrization tells more: it tells where the point is
+at each time, the direction of travel, and how fast the point moves.</p>
+
+  <p>This extra information is often useful.  A road map shows the road.  A schedule tells
+how the traveler moves along it.  A parametric curve contains both.</p>
+
+  <note xml:id="note-sec-14-1-parametric-curves-57">
+    <title>Parametrization of a plane curve</title>
+      <p>A <em>parametrization</em> of a plane curve is a pair of functions</p>
+        <md>x=x(t),
+\qquad
+y=y(t),</md>
+      <p>defined for <m>t</m> in an interval <m>I</m>.  The moving point</p>
+        <md>P(t)=(x(t),y(t))</md>
+      <p>traces the curve as <m>t</m> runs through <m>I</m>.</p>
+      <p>The variable <m>t</m> is called a <em>parameter</em>.  It is often time, but it does not have
+to be.</p>
+  </note>
+
+  <p>The interval for <m>t</m> is part of the description.  For example,</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,
+\qquad
+0\le t\le 2\pi</md>
+
+  <p>traces the full unit circle once.</p>
+
+  <p>But</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,
+\qquad
+0\le t\le \pi</md>
+
+  <p>traces only the upper semicircle.</p>
+
+  <p>The formulas alone do not tell the whole story.  The parameter interval matters.</p>
+
+  <exercise xml:id="checkpoint-14-1-moving-point">
+        <title>What extra information does a parametrization carry?</title>
+        <statement>
+          <p>
+            The unit circle can be drawn as the set <m>x^2+y^2=1</m>, or traced by <m>(\cos t,\sin t)</m>. In your own words, what does the moving-point description add that the Cartesian equation does not, and why is that extra information often useful?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A road map shows the road. A schedule tells where the traveler is, in what order, and how fast. A parametrization contains both.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-eliminating-parameter">
+    <title>Eliminating the parameter when possible</title>
+
+  <p>Sometimes a parametric curve can be translated into an ordinary Cartesian equation by
+removing the parameter.</p>
+
+  <p>For the circle example,</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t.</md>
+
+  <p>Since</p>
+
+  <md>\cos^2 t+\sin^2 t=1,</md>
+
+  <p>we get</p>
+
+  <md>x^2+y^2=1.</md>
+
+  <p>That is the Cartesian equation of the unit circle.</p>
+
+  <p>This equation tells the geometric shape.  It does not tell the direction of motion or the
+speed.  Those belong to the parametrization.</p>
+
+  <example xml:id="ex-sec-14-1-parametric-curves-1">
+    <title>a line</title>
+    <statement>
+  <p>Let</p>
+
+  <md>x=1+3t,
+\qquad
+y=-2+t,
+\qquad
+0\le t\le 2.</md>
+
+  <p>The point starts at</p>
+
+  <md>(x(0),y(0))=(1,-2)</md>
+
+  <p>and ends at</p>
+
+  <md>(x(2),y(2))=(7,0).</md>
+
+  <p>To eliminate <m>t</m>, solve the first equation:</p>
+
+  <md>t=\frac{x-1}{3}.</md>
+
+  <p>Substitute into <m>y=-2+t</m>:</p>
+
+  <md>y=-2+\frac{x-1}{3}.</md>
+
+  <p>So</p>
+
+  <md>y=\frac13x-\frac73.</md>
+
+  <p>The parametrization traces the line segment on this line from <m>(1,-2)</m> to <m>(7,0)</m>.</p>
+
+  <figure xml:id="fig-parametric-line-segment">
+    <caption>The equations <m>x=1+3t,\;y=-2+t</m> trace a line segment with a direction.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.44\textwidth,
+    xmin=0, xmax=8,
+    ymin=-3, ymax=1,
+    axis lines=middle,
+    xlabel={\(x\)},
+    xlabel style={at={(axis cs:8,0)}, anchor=north, yshift=-5pt},
+    ylabel={\(y\)},
+    xtick={1,4,7},
+    ytick={-2,-1,0},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=1:7, samples=2] {(x-1)/3 - 2};
+\addplot[only marks, mark=*] coordinates {(1,-2) (7,0)};
+\draw[-&gt;, thick] (axis cs:3.15,-1.28) -- (axis cs:4.15,-0.95);
+\node[anchor=north east] at (axis cs:1,-2) {\((1,-2)\)};
+\node[anchor=south west] at (axis cs:7,0) {\((7,0)\)};
+\node[anchor=west] at (axis cs:4.5,-1.2) {increasing \(t\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The Cartesian equation gives the infinite line.  The parameter interval gives the segment.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-1-parametric-curves-2">
+    <title>a sideways parabola</title>
+    <statement>
+  <p>Let</p>
+
+  <md>x=t^2-1,
+\qquad
+y=t,
+\qquad
+-2\le t\le 2.</md>
+
+  <p>Since <m>y=t</m>, we can substitute directly:</p>
+
+  <md>x=y^2-1.</md>
+
+  <p>This is a parabola opening to the right.  It is not the graph of a single function
+<m>y=f(x)</m>, because most <m>x</m>-values to the right of <m>-1</m> have two <m>y</m>-values.</p>
+
+  <p>The parametric form has no trouble with this.  It gives exactly one point for each
+value of <m>t</m>:</p>
+
+  <md>P(t)=(t^2-1,t).</md>
+
+  <p>As <m>t</m> increases from <m>-2</m> to <m>2</m>, the point moves down the lower branch to the
+vertex <m>(-1,0)</m>, then up the upper branch.</p>
+
+  <figure xml:id="fig-sideways-parabola-parametric">
+    <caption>The sideways parabola is easy to trace parametrically: <m>x=t^2-1,\;y=t</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.54\textwidth,
+    xmin=-1.4, xmax=3.6,
+    ymin=-2.4, ymax=2.4,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1,2,3},
+    ytick={-2,-1,0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2:2, samples=150] ({x^2-1},{x});
+\addplot[only marks, mark=*] coordinates {(3,-2) (-1,0) (3,2)};
+\draw[-&gt;, thick] (axis cs:0.7,-1.3) -- (axis cs:-0.15,-0.85);
+\draw[-&gt;, thick] (axis cs:-0.15,0.85) -- (axis cs:0.7,1.3);
+\node[anchor=north east] at (axis cs:3,-2) {\(t=-2\)};
+\node[anchor=east] at (axis cs:-1,0) {\(t=0\)};
+\node[anchor=south east] at (axis cs:3,2) {\(t=2\)};
+\node[anchor=west] at (axis cs:1.0,0.55) {\(x=y^2-1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example shows why parametrization is useful.  The curve is simple, but it is not
+a graph <m>y=f(x)</m>.  A moving point can trace it naturally.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-elimination-forgets">
+    <title>What elimination forgets</title>
+
+  <p>Eliminating the parameter can be helpful, but it forgets information.</p>
+
+  <p>Consider the three parametrizations</p>
+
+  <md>x=\cos t,\qquad y=\sin t,\qquad 0\le t\le 2\pi,</md>
+
+  <md>x=\cos(2t),\qquad y=\sin(2t),\qquad 0\le t\le 2\pi,</md>
+
+  <p>and</p>
+
+  <md>x=\cos(-t),\qquad y=\sin(-t),\qquad 0\le t\le 2\pi.</md>
+
+  <p>All three satisfy</p>
+
+  <md>x^2+y^2=1.</md>
+
+  <p>So elimination gives the same Cartesian equation.</p>
+
+  <p>But the motions are different.</p>
+
+  <table xml:id="tab-sec-14-1-parametric-curves-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>parametrization</strong></cell>
+        <cell><strong>what it traces</strong></cell>
+        <cell><strong>orientation</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>(\cos t,\sin t)</m></cell>
+        <cell>unit circle once</cell>
+        <cell>counterclockwise</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>(\cos 2t,\sin 2t)</m></cell>
+        <cell>unit circle twice</cell>
+        <cell>counterclockwise</cell>
+      </row>
+      <row>
+        <cell>
+<m>(\cos(-t),\sin(-t))</m></cell>
+        <cell>unit circle once</cell>
+        <cell>clockwise</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The same equation</p>
+
+  <md>x^2+y^2=1</md>
+
+  <p>does not remember how the circle was traced.</p>
+
+
+  <exercise xml:id="checkpoint-14-1-elimination-forgets">
+        <title>What does eliminating the parameter forget?</title>
+        <statement>
+          <p>
+            Three different parametrizations can satisfy the same equation <m>x^2+y^2=1</m> while tracing the circle once, twice, or clockwise. In your own words, what information is lost in the Cartesian equation, and why can ignoring the parameter interval accidentally enlarge the curve?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Elimination remembers the set of points, not orientation, speed, starting point, ending point, or repeated tracing. The domain of <m>t</m> is part of the description.
+          </p>
+        </hint>
+      </exercise>
+
+  <warning xml:id="warn-sec-14-1-parametric-curves-58">
+    <title>Warning</title>
+      <p>A Cartesian equation describes the set of points on the curve.  A parametrization also
+describes the motion along the curve.</p>
+      <p>When you eliminate the parameter, you may lose:</p>
+        <md>\text{orientation},\qquad
+\text{speed},\qquad
+\text{starting point},\qquad
+\text{ending point},\qquad
+\text{repeated tracing}.</md>
+  </warning>
+
+  <p>There is another warning.  Eliminating the parameter can accidentally enlarge the
+curve if the parameter interval is ignored.</p>
+
+  <example xml:id="ex-sec-14-1-parametric-curves-3">
+    <title>keep the domain</title>
+    <statement>
+  <p>Let</p>
+
+  <md>x=t^2,
+\qquad
+y=t^4,
+\qquad
+-1\le t\le 1.</md>
+
+  <p>Since</p>
+
+  <md>y=(t^2)^2,</md>
+
+  <p>we get</p>
+
+  <md>y=x^2.</md>
+
+  <p>But <m>x=t^2</m>, so</p>
+
+  <md>0\le x\le 1.</md>
+
+  <p>The curve is not the whole parabola <m>y=x^2</m>.  It is only the part from</p>
+
+  <md>(0,0)</md>
+
+  <p>to</p>
+
+  <md>(1,1),</md>
+
+  <p>and it is traced twice: once as <m>t</m> runs from <m>-1</m> to <m>0</m>, and once as <m>t</m> runs
+from <m>0</m> to <m>1</m>.</p>
+
+  <p>The parameter interval is not decoration.  It is part of the curve’s behavior.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-different-parametrizations-same-curve">
+    <title>Different parametrizations of the same curve</title>
+
+  <p>A single geometric curve can have many parametrizations.  This is not a nuisance.  It is
+a choice of schedule.</p>
+
+  <p>The line segment from <m>A=(1,2)</m> to <m>B=(5,4)</m> can be described by</p>
+
+  <md>x=1+4t,
+\qquad
+y=2+2t,
+\qquad
+0\le t\le 1.</md>
+
+  <p>At <m>t=0</m>, the point is <m>A</m>.  At <m>t=1</m>, the point is <m>B</m>.</p>
+
+  <p>The same segment can also be described by</p>
+
+  <md>x=1+4s^2,
+\qquad
+y=2+2s^2,
+\qquad
+0\le s\le 1.</md>
+
+  <p>This still starts at <m>A</m> and ends at <m>B</m>, and it traces the same geometric segment.
+But it does not move along the segment at the same rate.</p>
+
+  <p>For the first parametrization,</p>
+
+  <md>\frac{dx}{dt}=4,
+\qquad
+\frac{dy}{dt}=2.</md>
+
+  <p>The components of motion are constant.</p>
+
+  <p>For the second parametrization,</p>
+
+  <md>\frac{dx}{ds}=8s,
+\qquad
+\frac{dy}{ds}=4s.</md>
+
+  <p>At <m>s=0</m>, both derivatives are <m>0</m>.  The point starts from rest, then speeds up.</p>
+
+  <p>The road is the same.  The trip is different.</p>
+
+  <paragraphs>
+    <title>A reverse parametrization</title>
+
+  <p>The segment from <m>A=(1,2)</m> to <m>B=(5,4)</m> can also be traced backward:</p>
+
+  <md>x=5-4t,
+\qquad
+y=4-2t,
+\qquad
+0\le t\le 1.</md>
+
+  <p>Now the starting point is <m>B</m>, and the ending point is <m>A</m>.</p>
+
+  <note xml:id="note-sec-14-1-parametric-curves-59">
+    <title>Parametrization as schedule</title>
+      <p>A geometric curve tells where the point can be.</p>
+      <p>A parametrization tells where the point is, in what order, and at what rate.</p>
+  </note>
+
+  <p>This distinction will matter when we compute slopes, lengths, and areas.  The geometry
+may be unchanged, but the parameter controls the calculations.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-1-schedule-not-road">
+        <title>Why can the same geometric curve have many parametrizations?</title>
+        <statement>
+          <p>
+            A line segment from <m>A</m> to <m>B</m> can be traced at constant speed, from rest, or backward. In your own words, why is that not a nuisance, and what distinction does the phrase <q>parametrization as schedule</q> capture?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The geometric curve tells where the point can be. The parametrization tells where it is, in what order, and at what rate.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-orientation-speed-along-curve">
+    <title>Orientation and speed along a curve</title>
+
+  <p>When <m>t</m> is time, the derivatives</p>
+
+  <md>\frac{dx}{dt}
+\qquad\text{and}\qquad
+\frac{dy}{dt}</md>
+
+  <p>measure horizontal and vertical velocity.</p>
+
+  <p>The speed along the curve is the length of the velocity components:</p>
+
+  <md>
+\text{speed}
+=
+\sqrt{\left(\frac{dx}{dt}\right)^2+\left(\frac{dy}{dt}\right)^2}.
+</md>
+
+  <p>This is the Pythagorean theorem applied to a very small motion.</p>
+
+  <p>If during a short time <m>\Delta t</m>,</p>
+
+  <md>\Delta x\approx x'(t)\Delta t,
+\qquad
+\Delta y\approx y'(t)\Delta t,</md>
+
+  <p>then the small distance traveled is approximately</p>
+
+  <md>\sqrt{(\Delta x)^2+(\Delta y)^2}
+\approx
+\sqrt{\bigl(x'(t)\Delta t\bigr)^2+\bigl(y'(t)\Delta t\bigr)^2}.</md>
+
+  <p>So</p>
+
+  <md>\Delta s
+\approx
+\sqrt{(x'(t))^2+(y'(t))^2}\,\Delta t.</md>
+
+  <p>That is why the square root formula is the speed.</p>
+
+
+  <exercise xml:id="checkpoint-14-1-zero-speed-pause">
+        <title>Why does zero speed not always mean the curve ends?</title>
+        <statement>
+          <p>
+            Speed along a parametric curve is <m>\sqrt{(x')^2+(y')^2}</m>. In your own words, why can that speed be zero at an interior time, and why is such a pause a feature of the schedule rather than necessarily a feature of the geometric curve?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A traveler can stop on an otherwise ordinary road. The curve may continue; the chosen parametrization may simply rest for an instant.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-1-parametric-curves-5">
+    <title>speed on the unit circle</title>
+    <statement>
+  <p>For</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,</md>
+
+  <p>we have</p>
+
+  <md>\frac{dx}{dt}=-\sin t,
+\qquad
+\frac{dy}{dt}=\cos t.</md>
+
+  <p>So the speed is</p>
+
+  <md>\sqrt{(-\sin t)^2+(\cos t)^2}
+=
+\sqrt{\sin^2 t+\cos^2 t}
+=
+1.</md>
+
+  <p>The point moves around the unit circle with constant speed <m>1</m>.</p>
+
+  <p>For</p>
+
+  <md>x=\cos(2t),
+\qquad
+y=\sin(2t),</md>
+
+  <p>we have</p>
+
+  <md>\frac{dx}{dt}=-2\sin(2t),
+\qquad
+\frac{dy}{dt}=2\cos(2t).</md>
+
+  <p>The speed is</p>
+
+  <md>\sqrt{4\sin^2(2t)+4\cos^2(2t)}
+=
+2.</md>
+
+  <p>The second point moves twice as fast.  On <m>0\le t\le2\pi</m>, it also traces the circle
+twice.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-1-parametric-curves-6">
+    <title>a point that pauses</title>
+    <statement>
+  <p>Let</p>
+
+  <md>x=t^3,
+\qquad
+y=0.</md>
+
+  <p>The curve is the <m>x</m>-axis.  The point moves along it, passing through the origin at
+<m>t=0</m>.  Its speed is</p>
+
+  <md>\sqrt{(3t^2)^2+0^2}=3t^2.</md>
+
+  <p>At <m>t=0</m>, the speed is <m>0</m>.  The point momentarily stops, then continues moving to
+the right.</p>
+
+  <p>A zero speed does not always mean the curve ends.  It may only mean the chosen
+schedule has a pause.</p>
+
+  <p>The next section asks how to do calculus on such curves.  A tangent slope is no longer
+found from <m>y=f(x)</m>.  Instead, both <m>x</m> and <m>y</m> are changing, and the slope must be
+built from their rates.</p>
+    </statement>
+  </example>
+  </subsection>
+
+
+
+</section>

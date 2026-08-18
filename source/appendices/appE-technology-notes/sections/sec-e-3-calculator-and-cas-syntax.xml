@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-e-3-calculator-and-cas-syntax">
+  <title>Calculator and CAS syntax</title>
+
+  <p>A calculator or computer algebra system must parse what you type.  It does not read
+mathematical intention.  Parentheses, multiplication signs, and mode settings matter.</p>
+
+  <md>
+\text{Most technology errors in calculus are syntax errors or interpretation errors.}
+</md>
+
+  <subsection xml:id="appsubsec-common-syntax-translations">
+    <title>Common syntax translations</title>
+
+  <p>Different tools use different syntax.  The following table gives common patterns.</p>
+
+  <table xml:id="tab-sec-e-3-calculator-and-cas-syntax-0">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>mathematics</strong></cell>
+        <cell><strong>common calculator/CAS style</strong></cell>
+        <cell><strong>Python style</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>x^2</m></cell>
+        <cell>\texttt{x\string^2} or \texttt{x**2}</cell>
+        <cell>\texttt{x**2}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2x</m></cell>
+        <cell>\texttt{2*x}</cell>
+        <cell>\texttt{2*x}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sqrt{x}</m></cell>
+        <cell>\texttt{sqrt(x)}</cell>
+        <cell>\texttt{sqrt(x)} or \texttt{math.sqrt(x)}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin x</m></cell>
+        <cell>\texttt{sin(x)}</cell>
+        <cell>\texttt{sin(x)} or \texttt{math.sin(x)}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>e^x</m></cell>
+        <cell>\texttt{exp(x)}</cell>
+        <cell>\texttt{exp(x)} or \texttt{math.exp(x)}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\ln x</m></cell>
+        <cell>\texttt{ln(x)} or \texttt{log(x)}</cell>
+        <cell>\texttt{log(x)} or \texttt{math.log(x)}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\pi</m></cell>
+        <cell>\texttt{pi} or a <m>\pi</m> key</cell>
+        <cell>\texttt{pi} or \texttt{math.pi}</cell>
+      </row>
+      <row>
+        <cell><m>|x|</m></cell>
+        <cell>\texttt{abs(x)}</cell>
+        <cell>\texttt{abs(x)}</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Always check the syntax of the tool you are using.  In Python, for example,</p>
+
+  <md>x^2</md>
+
+  <p>is not exponentiation in ordinary numerical code.  Exponentiation is</p>
+
+  <md>\texttt{x**2}.</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-parentheses-syntax">
+    <title>Parentheses are part of the mathematics</title>
+
+  <p>The expression</p>
+
+  <md>\frac{1}{x+1}</md>
+
+  <p>should be typed as</p>
+
+  <md>\texttt{1/(x+1)}.</md>
+
+  <p>If we type</p>
+
+  <md>\texttt{1/x+1},</md>
+
+  <p>the machine reads</p>
+
+  <md>\frac1x+1,</md>
+
+  <p>which is different.</p>
+
+  <p>Similarly,</p>
+
+  <md>\sin(2x)</md>
+
+  <p>should be typed with the multiplication and parentheses:</p>
+
+  <md>\texttt{sin(2*x)}.</md>
+
+  <table xml:id="tab-sec-e-3-calculator-and-cas-syntax-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>intended expression</strong></cell>
+        <cell><strong>safe input</strong></cell>
+        <cell><strong>common wrong input</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \frac{1}{x+1}</m></cell>
+        <cell>\texttt{1/(x+1)}</cell>
+        <cell>\texttt{1/x+1}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \frac{x+2}{x-3}</m></cell>
+        <cell>\texttt{(x+2)/(x-3)}</cell>
+        <cell>\texttt{x+2/x-3}</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin(2x)</m></cell>
+        <cell>\texttt{sin(2*x)}</cell>
+        <cell>\texttt{sin2x}</cell>
+      </row>
+      <row>
+        <cell><m>e^{-x^2}</m></cell>
+        <cell>\texttt{exp(-x**2)}</cell>
+        <cell>\texttt{exp(-x)**2}</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The last line is especially important:</p>
+
+  <md>e^{-x^2}
+\neq
+(e^{-x})^2.</md>
+
+  <p>Indeed,</p>
+
+  <md>(e^{-x})^2=e^{-2x}.</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-radians-vs-degrees">
+    <title>Radians versus degrees</title>
+
+  <p>Calculus uses radians.</p>
+
+  <p>The derivative formula</p>
+
+  <md>\frac{d}{dx}\sin x=\cos x</md>
+
+  <p>is true when <m>x</m> is measured in radians.  If a calculator is in degree mode, numerical
+experiments with derivatives of trigonometric functions will not match the calculus
+formulas.</p>
+
+  <p>For example, in radians,</p>
+
+  <md>\sin\left(\frac{\pi}{6}\right)=\frac12.</md>
+
+  <p>In degree mode,</p>
+
+  <md>\sin(30)=\frac12.</md>
+
+  <p>Both statements can be true in their own systems.  The problem happens when the mode
+and the input do not match.</p>
+
+  <note xml:id="note-sec-e-3-calculator-and-cas-syntax-31">
+    <title>Trig mode habit</title>
+      <p>Before using technology with sine, cosine, tangent, inverse trigonometric functions,
+or polar graphs, check that the angle mode matches the problem.</p>
+      <p>In this book, use radians unless degrees are explicitly stated.</p>
+  </note>
+  </subsection>
+
+  <subsection xml:id="appsubsec-exact-approximate-cas">
+    <title>Exact and approximate answers</title>
+
+  <p>A computer algebra system may give exact answers, approximate answers, or both.</p>
+
+  <p>For example, it might return</p>
+
+  <md>\frac{\sqrt2}{2}</md>
+
+  <p>or</p>
+
+  <md>0.7071067812.</md>
+
+  <p>Both represent the same number, but they serve different purposes.</p>
+
+  <p>Exact form is usually better for algebra and proof.  Decimal form is often better for
+measurement, numerical comparison, and plotting.</p>
+
+  <table xml:id="tab-sec-e-3-calculator-and-cas-syntax-2">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>use exact form when</strong></cell>
+        <cell><strong>use decimal form when</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>simplifying symbols</cell>
+        <cell>reporting a measured quantity</cell>
+      </row>
+      <row bottom="minor">
+        <cell>checking identities</cell>
+        <cell>comparing numerical sizes quickly</cell>
+      </row>
+      <row bottom="minor">
+        <cell>finding exact roots or areas</cell>
+        <cell>plotting or simulating</cell>
+      </row>
+      <row>
+        <cell>proving a formula</cell>
+        <cell>estimating error numerically</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+  <subsection xml:id="appsubsec-cas-interpretation">
+    <title>CAS answers need interpretation</title>
+
+  <p>A CAS can differentiate, integrate, solve, and simplify.  But its output may depend on
+assumptions about domains, constants, branches, and parameters.</p>
+
+  <example xml:id="ex-sec-e-3-calculator-and-cas-syntax-1">
+    <title>logarithms and absolute values</title>
+    <statement>
+  <p>By hand,</p>
+
+  <md>\int \frac1x\,dx=\ln|x|+C.</md>
+
+  <p>Some systems may return</p>
+
+  <md>\log(x)</md>
+
+  <p>under an assumption that</p>
+
+  <md>x&gt;0.</md>
+
+  <p>The missing absolute value is not a small detail.  It changes the real-domain statement.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-e-3-calculator-and-cas-syntax-2">
+    <title>inverse trigonometric forms</title>
+    <statement>
+  <p>The integral</p>
+
+  <md>\int \frac1{1+x^2}\,dx</md>
+
+  <p>may be returned as</p>
+
+  <md>\arctan x+C.</md>
+
+  <p>An equivalent form involving complex logarithms may appear in some systems.  That is
+not wrong, but it may not be the most useful form in a single-variable real calculus
+course.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-e-3-calculator-and-cas-syntax-3">
+    <title>solving equations</title>
+    <statement>
+  <p>A command that solves</p>
+
+  <md>\sin x=0</md>
+
+  <p>may return one solution such as</p>
+
+  <md>x=0</md>
+
+  <p>unless asked for a general solution.  The full real solution set is</p>
+
+  <md>x=k\pi,
+\qquad k\in\mathbb Z.</md>
+
+  <note xml:id="note-sec-e-3-calculator-and-cas-syntax-32">
+    <title>CAS habit</title>
+      <p>When a CAS gives an answer, ask:</p>
+        <md>\text{What domain is assumed?}</md>
+        <md>\text{Is this exact or approximate?}</md>
+        <md>\text{Is it one solution or all solutions?}</md>
+        <md>\text{Can I check by differentiating, substituting, or graphing?}</md>
+  </note>
+    </statement>
+  </example>
+  </subsection>
+
+</section>

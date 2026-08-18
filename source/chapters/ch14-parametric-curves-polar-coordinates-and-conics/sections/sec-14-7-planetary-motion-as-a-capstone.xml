@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-7-planetary-motion-as-a-capstone">
+  <title>Planetary motion as a capstone</title>
+
+  <p>The last section brought conics into one family.  A parabola, ellipse, or hyperbola can
+be described by one polar equation:</p>
+
+  <md>r=\frac{p}{1+e\cos\theta}.</md>
+
+  <p>The number <m>e</m> decides the type of curve.  When <m>0&lt;e&lt;1</m>, the curve is an ellipse.</p>
+
+  <p>This is not only a classification trick.  It is the equation that appears in one of the
+great discoveries of science: planets move on ellipses with the sun at a focus.</p>
+
+  <p>That sentence is Kepler’s first law.  It belongs naturally here because the focus of a
+polar conic sits at the pole.</p>
+
+  <subsection xml:id="subsec-ellipses-polar-form">
+    <title>Ellipses in polar form</title>
+
+  <p>A usual Cartesian ellipse centered at the origin has equation</p>
+
+  <md>\frac{x^2}{a^2}+\frac{y^2}{b^2}=1.</md>
+
+  <p>That equation puts the center at the origin.</p>
+
+  <p>For an orbit, the most important point is not the center.  It is the focus, where the sun
+sits.  Polar coordinates are better suited to that geometry because the pole can be placed
+at the focus.</p>
+
+  <p>For an ellipse with focus at the pole, one standard polar form is</p>
+
+  <md>
+r=\frac{p}{1+e\cos\theta},
+\qquad 0&lt;e&lt;1.
+</md>
+
+  <p>Here <m>e</m> is the eccentricity, and <m>p</m> is the semi-latus rectum.</p>
+
+  <p>The closest point to the focus occurs when</p>
+
+  <md>\theta=0.</md>
+
+  <p>Then</p>
+
+  <md>r_{\min}=\frac{p}{1+e}.</md>
+
+  <p>The farthest point occurs when</p>
+
+  <md>\theta=\pi.</md>
+
+  <p>Then</p>
+
+  <md>r_{\max}=\frac{p}{1-e}.</md>
+
+  <p>For an ellipse, the sum of the closest and farthest distances from one focus is the length
+of the major axis:</p>
+
+  <md>r_{\min}+r_{\max}=2a.</md>
+
+  <p>Using the polar formula,</p>
+
+  <md>\frac{p}{1+e}+\frac{p}{1-e}=2a.</md>
+
+  <p>The left side simplifies:</p>
+
+  <md>p\left(\frac{1-e+1+e}{1-e^2}\right)
+=
+\frac{2p}{1-e^2}.</md>
+
+  <p>So</p>
+
+  <md>\frac{2p}{1-e^2}=2a,</md>
+
+  <p>and therefore</p>
+
+  <md>
+p=a(1-e^2).
+</md>
+
+  <p>Since</p>
+
+  <md>b^2=a^2(1-e^2),</md>
+
+  <p>we can also write</p>
+
+  <md>
+p=\frac{b^2}{a}.
+</md>
+
+  <p>Thus an ellipse with a focus at the pole can be written as</p>
+
+  <md>
+r=\frac{a(1-e^2)}{1+e\cos\theta}.
+</md>
+
+
+  <exercise xml:id="checkpoint-14-7-focus-not-center">
+        <title>Why should an orbit be written with the sun at a focus, not at a center?</title>
+        <statement>
+          <p>
+            A centered Cartesian ellipse puts the origin at the geometric center. Kepler’s first law puts the sun at a focus. In your own words, why are polar coordinates better suited to that geometry?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Polar coordinates place the pole at the physically important point. Distance from the sun is then the coordinate <m>r</m> itself.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-7-planetary-motion-as-a-capstone-1">
+    <title>Example</title>
+    <statement>
+  <p>Suppose an elliptical orbit has semi-major axis</p>
+
+  <md>a=10</md>
+
+  <p>and eccentricity</p>
+
+  <md>e=0.3.</md>
+
+  <p>Then</p>
+
+  <md>p=a(1-e^2)=10(1-0.09)=9.1.</md>
+
+  <p>So the polar equation is</p>
+
+  <md>
+r=\frac{9.1}{1+0.3\cos\theta}.
+</md>
+
+  <p>The closest distance to the focus is</p>
+
+  <md>r_{\min}=\frac{9.1}{1.3}=7.</md>
+
+  <p>The farthest distance is</p>
+
+  <md>r_{\max}=\frac{9.1}{0.7}=13.</md>
+
+  <p>Their average is</p>
+
+  <md>\frac{7+13}{2}=10,</md>
+
+  <p>which is the semi-major axis <m>a</m>.</p>
+
+  <figure xml:id="fig-ellipse-focus-at-pole">
+    <caption>In the polar form of an ellipse, the focus is placed at the pole.  The center is not at the pole.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.52\textwidth,
+    xmin=-3.4, xmax=1.35,
+    ymin=-1.9, ymax=1.9,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xlabel style={anchor=north},
+    xtick={-3,-2,-1,0,1},
+    ytick={-1,0,1},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% ellipse with a=2, e=0.55, p=1.395
+\addplot[domain=0:6.283185, samples=450, fill=gray!12, draw=none]
+    ({(1.395/(1+0.55*cos(deg(x))))*cos(deg(x))},
+     {(1.395/(1+0.55*cos(deg(x))))*sin(deg(x))}) \closedcycle;
+\addplot[very thick, domain=0:6.283185, samples=450]
+    ({(1.395/(1+0.55*cos(deg(x))))*cos(deg(x))},
+     {(1.395/(1+0.55*cos(deg(x))))*sin(deg(x))});
+
+% focus, center, perihelion, aphelion
+\addplot[only marks, mark=*] coordinates {(0,0) (-1.1,0) (0.9,0) (-3.1,0)};
+\node[anchor=south] at (axis cs:0,0) {focus};
+\node[anchor=north] at (axis cs:-1.1,0) {center};
+\node[anchor=south] at (axis cs:0.9,0) {closest};
+\node[anchor=south east] at (axis cs:-3.1,0) {farthest};
+
+% axes visible inside the ellipse
+\draw[thick, dashed] (axis cs:-3.1,0) -- (axis cs:0.9,0);
+\draw[thick, dashed] (axis cs:0,-1.39) -- (axis cs:0,1.39);
+
+\node[anchor=west] at (axis cs:-2.2,0.85) {\(r=\tfrac{p}{1+e\cos\theta}\)};
+\node[anchor=west] at (axis cs:-2.2,0.40) {\(0&lt;e&lt;1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is why polar coordinates are natural for orbits.  The force of gravity comes from the
+sun, so the sun should be one of the main points in the coordinate system.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-kepler-second-law-swept-area">
+    <title>Kepler’s second law as swept area</title>
+
+  <p>Kepler’s first law says that a planet moves on an ellipse with the sun at one focus.</p>
+
+  <p>Kepler’s second law says something about the speed of the motion.</p>
+
+  <note xml:id="note-sec-14-7-planetary-motion-as-a-capstone-61">
+    <title>Kepler’s second law</title>
+      <p>The line segment from the sun to the planet sweeps out equal areas in equal times.</p>
+  </note>
+
+  <p>This is an area statement, so it should remind us of the polar area formula:</p>
+
+  <md>dA=\frac12 r^2\,d\theta.</md>
+
+  <p>If the planet’s polar coordinates are</p>
+
+  <md>r=r(t),
+\qquad
+\theta=\theta(t),</md>
+
+  <p>then the swept area changes with time.  During a small time interval <m>dt</m>, the angle
+changes by</p>
+
+  <md>d\theta=\frac{d\theta}{dt}\,dt.</md>
+
+  <p>So the small swept area is</p>
+
+  <md>dA
+=
+\frac12 r^2\,d\theta
+=
+\frac12 r^2\frac{d\theta}{dt}\,dt.</md>
+
+  <p>Therefore the rate at which area is swept out is</p>
+
+  <md>
+\frac{dA}{dt}
+=
+\frac12 r^2\frac{d\theta}{dt}.
+</md>
+
+  <p>Kepler’s second law says that this quantity is constant:</p>
+
+  <md>
+\frac12 r^2\frac{d\theta}{dt}=\text{constant}.
+</md>
+
+  <p>Equivalently,</p>
+
+  <md>
+r^2\frac{d\theta}{dt}=\text{constant}.
+</md>
+
+  <p>This equation has a simple geometric meaning.  When the planet is close to the sun,
+<m>r</m> is small.  To keep</p>
+
+  <md>r^2\frac{d\theta}{dt}</md>
+
+  <p>constant, the angular speed <m>\dfrac{d\theta}{dt}</m> must be larger.  When the planet is
+far from the sun, <m>r</m> is large, so the angular speed is smaller.</p>
+
+  <md>
+\text{Planets move faster near the sun and slower far from the sun.}
+</md>
+
+  <p>The equal-area law says this precisely.</p>
+
+
+  <exercise xml:id="checkpoint-14-7-equal-areas">
+        <title>What does Kepler’s second law say in the language of polar area?</title>
+        <statement>
+          <p>
+            Equal areas in equal times means the swept-area rate <m>dA/dt</m> is constant. In your own words, why does the polar area element <m>dA=\frac12 r^2\,d\theta</m> turn that statement into a fact about <m>r^2\theta'</m>, and why must a planet move faster when it is closer to the sun?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If <m>\frac12 r^2\theta'</m> is constant, a smaller <m>r</m> forces a larger angular speed. The same ellipse is traced at different speeds.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-7-planetary-motion-as-a-capstone-2">
+    <title>comparing angular speeds</title>
+    <statement>
+  <p>Suppose an orbit has eccentricity</p>
+
+  <md>e=0.5.</md>
+
+  <p>Then</p>
+
+  <md>r_{\min}=a(1-e)=\frac{a}{2},</md>
+
+  <p>and</p>
+
+  <md>r_{\max}=a(1+e)=\frac{3a}{2}.</md>
+
+  <p>At the closest and farthest points, Kepler’s second law gives</p>
+
+  <md>r_{\min}^2\theta'_{\min}=r_{\max}^2\theta'_{\max}.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{\theta'_{\min}}{\theta'_{\max}}
+=
+\frac{r_{\max}^2}{r_{\min}^2}.</md>
+
+  <p>Substitute the distances:</p>
+
+  <md>\frac{\theta'_{\min}}{\theta'_{\max}}
+=
+\frac{(3a/2)^2}{(a/2)^2}
+=
+9.</md>
+
+  <p>So the angular speed at the closest point is <m>9</m> times the angular speed at the farthest
+point.</p>
+
+  <p>This does not mean the planet has changed orbit.  It means the same ellipse is traced at
+different speeds.</p>
+
+  <note xml:id="note-sec-14-7-planetary-motion-as-a-capstone-62">
+    <title>Curve versus motion</title>
+      <p>The equation</p>
+        <md>r=\frac{p}{1+e\cos\theta}</md>
+      <p>describes the shape of the orbit.</p>
+      <p>Kepler’s second law</p>
+        <md>\frac{dA}{dt}=\frac12 r^2\frac{d\theta}{dt}</md>
+      <p>describes how the planet moves along that shape.</p>
+  </note>
+
+  <p>This is the same distinction we met at the beginning of the chapter.  A parametrization
+contains more information than the geometric curve alone.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-central-force-preview">
+    <title>Central force preview</title>
+
+  <p>Kepler discovered his laws from astronomical data.  Newton explained them from a force
+law.</p>
+
+  <p>The key idea is that gravity is a <em>central force</em>.  It points along the line from the
+planet to the sun.</p>
+
+  <p>So gravity can pull the planet inward or outward along the radial direction, but it does
+not push sideways.</p>
+
+  <p>This sideways fact is what produces equal areas in equal times.</p>
+
+  <p>Here is the calculation, as a preview of multivariable calculus.</p>
+
+  <p>Let</p>
+
+  <md>\mathbf e_r</md>
+
+  <p>be the unit vector pointing from the sun to the planet, and let</p>
+
+  <md>\mathbf e_\theta</md>
+
+  <p>be the unit vector perpendicular to <m>\mathbf e_r</m>, in the direction of increasing
+<m>\theta</m>.</p>
+
+  <p>The planet’s position can be written as</p>
+
+  <md>\mathbf r(t)=r(t)\mathbf e_r.</md>
+
+  <p>Because the directions <m>\mathbf e_r</m> and <m>\mathbf e_\theta</m> rotate as the planet moves,
+the velocity has two pieces:</p>
+
+  <md>\mathbf v
+=
+r'\mathbf e_r+r\theta'\mathbf e_\theta.</md>
+
+  <p>The first term is radial motion.  The second term is sideways motion around the sun.</p>
+
+  <p>A calculation gives the acceleration:</p>
+
+  <md>\mathbf a
+=
+\bigl(r''-r(\theta')^2\bigr)\mathbf e_r
++
+\bigl(r\theta''+2r'\theta'\bigr)\mathbf e_\theta.</md>
+
+  <p>The <m>\mathbf e_\theta</m>-component is the sideways component of acceleration.  If the
+force is central, there is no sideways acceleration.  Therefore</p>
+
+  <md>r\theta''+2r'\theta'=0.</md>
+
+  <p>Multiply by <m>r</m>:</p>
+
+  <md>r^2\theta''+2rr'\theta'=0.</md>
+
+  <p>But the left side is exactly the derivative of</p>
+
+  <md>r^2\theta'.</md>
+
+  <p>Indeed,</p>
+
+  <md>\frac{d}{dt}\bigl(r^2\theta'\bigr)
+=
+2rr'\theta'+r^2\theta''.</md>
+
+  <p>So</p>
+
+  <md>\frac{d}{dt}\bigl(r^2\theta'\bigr)=0.</md>
+
+  <p>Therefore</p>
+
+  <md>
+r^2\theta'=\text{constant}.
+</md>
+
+  <p>And this is Kepler’s second law.</p>
+
+  <md>\frac{dA}{dt}
+=
+\frac12 r^2\theta'
+=
+\text{constant}.</md>
+
+  <note xml:id="note-sec-14-7-planetary-motion-as-a-capstone-63">
+    <title>Central force <m>\Longrightarrow</m> equal areas</title>
+      <p>A central force has no sideways component.  That makes <m>r^2\theta'</m> constant.
+Since</p>
+        <md>\frac{dA}{dt}=\frac12 r^2\theta',</md>
+      <p>the swept area rate is constant.</p>
+  </note>
+
+  <p>This is one of the beautiful moments in calculus: geometry, motion, and area become
+one statement.</p>
+
+  <exercise xml:id="checkpoint-14-7-central-force">
+        <title>Why does a central force produce equal areas in equal times?</title>
+        <statement>
+          <p>
+            Gravity points along the line from the planet to the sun, so it has no sideways component. In your own words, why does that make <m>r^2\theta'</m> constant, and what part of the story still belongs to multivariable calculus?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            No sideways force means the areal velocity does not change. Single-variable calculus can compute swept area; explaining the force as a vector is the next subject.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-planetary-motion-next-multivariable">
+    <title>Why this belongs to multivariable calculus next</title>
+
+  <p>We have enough single-variable calculus to understand the formulas:</p>
+
+  <md>r=\frac{p}{1+e\cos\theta}</md>
+
+  <p>and</p>
+
+  <md>\frac{dA}{dt}=\frac12 r^2\frac{d\theta}{dt}.</md>
+
+  <p>We also have enough to see the beginning of the dynamics:</p>
+
+  <md>\frac{d}{dt}\bigl(r^2\theta'\bigr)=0.</md>
+
+  <p>But the full story naturally belongs to multivariable calculus.</p>
+
+  <p>There are several reasons.</p>
+
+  <p>First, a planet moves in a plane, so its position is not one number.  It is a vector:</p>
+
+  <md>\mathbf r(t)=\langle x(t),y(t)\rangle.</md>
+
+  <p>Second, gravity is a vector force.  It has magnitude and direction.</p>
+
+  <p>Third, the compact form of Newton’s law is</p>
+
+  <md>m\mathbf r''=\mathbf F.</md>
+
+  <p>For gravity, the force points toward the sun and has magnitude proportional to</p>
+
+  <md>\frac{1}{r^2}.</md>
+
+  <p>This inverse-square law is what leads to conic orbits.</p>
+
+  <note xml:id="note-sec-14-7-planetary-motion-as-a-capstone-64">
+    <title>What we have seen</title>
+      <p>Single-variable calculus can describe the orbit as a polar curve and compute swept area.</p>
+      <p>Multivariable calculus explains why the motion follows that curve.</p>
+  </note>
+
+  <p>The bridge is already visible.  A planet is a moving point, like the parametric curves at
+the start of this chapter.  Its coordinates change with time.  Its velocity and acceleration
+are pairs of derivatives.  Its force has a direction.</p>
+
+  <p>So the chapter’s first idea returns in a richer form:</p>
+
+  <md>\text{a curve is not only a set of points; it can be a motion.}</md>
+
+  <p>The next optional bridge uses the same plane in a different language.  Instead of writing a
+point as <m>(x,y)</m>, or as <m>(r,\theta)</m>, we write it as one number:</p>
+
+  <md>x+iy.</md>
+
+  <p>That number is complex, and multiplication by it knows about rotation.</p>
+
+  <exercise xml:id="checkpoint-14-7-curve-versus-motion">
+        <title>What is the difference between the orbit shape and the motion along it?</title>
+        <statement>
+          <p>
+            The polar equation <m>r=p/(1+e\cos\theta)</m> describes the curve. Kepler’s second law describes how the planet travels that curve. In your own words, why is that the same distinction as a geometric curve versus a parametrization?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The set of points is the orbit. The schedule along those points is the motion. Area-sweeping is information about the schedule.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

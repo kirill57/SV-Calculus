@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-5-alternating-series">
+  <title>Alternating series</title>
+
+  <p>Positive series have no cancellation.  Every term pushes the partial sums upward.  That
+is why comparison and the integral test work so cleanly.</p>
+
+  <p>But many important series change sign:</p>
+
+  <md>1-\frac12+\frac13-\frac14+\frac15-\cdots.</md>
+
+  <p>The positive version,</p>
+
+  <md>1+\frac12+\frac13+\frac14+\cdots,</md>
+
+  <p>diverges.  The alternating version behaves differently because each term partially
+corrects the last one.</p>
+
+  <p>This is the next idea:</p>
+
+  <md>
+\text{organized cancellation can make an infinite sum converge.}
+</md>
+
+  <subsection xml:id="subsec-first-alternating-sum">
+    <title>A first alternating sum</title>
+
+  <p>Consider</p>
+
+  <md>1-\frac12+\frac13-\frac14+\frac15-\frac16+\cdots.</md>
+
+  <p>The terms alternate sign.  The partial sums are</p>
+
+  <md>S_1=1,</md>
+
+  <md>S_2=1-\frac12=\frac12,</md>
+
+  <md>S_3=1-\frac12+\frac13=\frac56,</md>
+
+  <md>S_4=1-\frac12+\frac13-\frac14=\frac7{12}.</md>
+
+  <p>The odd partial sums are</p>
+
+  <md>S_1,\ S_3,\ S_5,\ldots,</md>
+
+  <p>and the even partial sums are</p>
+
+  <md>S_2,\ S_4,\ S_6,\ldots.</md>
+
+  <p>The odd sums come from stopping immediately after adding a positive term.  They sit
+above the final value.  The even sums come from stopping immediately after subtracting
+a term.  They sit below the final value.</p>
+
+  <p>The positive and negative corrections get smaller:</p>
+
+  <md>1,\quad \frac12,\quad \frac13,\quad \frac14,\quad\ldots.</md>
+
+  <p>So the partial sums bounce back and forth across a narrowing gap.</p>
+
+  <figure xml:id="fig-alternating-harmonic-partial-sums">
+    <caption>The alternating harmonic partial sums bounce above and below their limiting value.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=12.5,
+    ymin=0.35, ymax=1.05,
+    axis lines=left,
+    xlabel={\(n\)},
+    ylabel={\(S_n\)},
+    xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+    ytick={0.5,0.7,0.9,1.0},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (1,1)
+    (2,0.5)
+    (3,0.833333)
+    (4,0.583333)
+    (5,0.783333)
+    (6,0.616667)
+    (7,0.759524)
+    (8,0.634524)
+    (9,0.745635)
+    (10,0.645635)
+    (11,0.736544)
+    (12,0.653211)
+};
+\addplot[thick, dashed, domain=0:12.3, samples=2] {0.693147};
+\node[anchor=west] at (axis cs:7.3,0.705) {limiting value};
+\node[anchor=west] at (axis cs:2.1,0.96) {odd sums};
+\node[anchor=west] at (axis cs:2.1,0.48) {even sums};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This picture suggests convergence, but it also suggests more: the error after stopping is
+controlled by the next term.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-alternating-series-test">
+    <title>Alternating Series Test</title>
+
+  <p>An alternating series has the form</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}b_k
+=
+b_1-b_2+b_3-b_4+\cdots,</md>
+
+  <p>or the form</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^k b_k
+=
+-b_1+b_2-b_3+b_4-\cdots,</md>
+
+  <p>where</p>
+
+  <md>b_k\ge0.</md>
+
+  <p>The signs alternate.  The numbers <m>b_k</m> are the sizes of the terms.</p>
+
+  <p>The clean convergence theorem requires two conditions:</p>
+
+  <md>b_{k+1}\le b_k</md>
+
+  <p>and</p>
+
+  <md>b_k\to0.</md>
+
+  <p>So the term sizes must decrease to zero.</p>
+
+  <note xml:id="note-sec-15-5-alternating-series-102">
+    <title>Alternating Series Test</title>
+      <p>Suppose</p>
+        <md>b_k\ge0,
+\qquad
+b_{k+1}\le b_k,</md>
+      <p>and</p>
+        <md>b_k\to0.</md>
+      <p>Then the alternating series</p>
+        <md>
+\sum_{k=1}^{\infty}(-1)^{k-1}b_k
+</md>
+      <p>converges.</p>
+  </note>
+
+  <p>The same conclusion holds for</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^k b_k,</md>
+
+  <p>which only changes the overall sign.</p>
+
+  <paragraphs>
+    <title>Why the test works</title>
+
+  <p>Let</p>
+
+  <md>S_n=b_1-b_2+b_3-b_4+\cdots+(-1)^{n-1}b_n.</md>
+
+  <p>Look first at the even partial sums:</p>
+
+  <md>S_2=b_1-b_2,</md>
+
+  <md>S_4=b_1-b_2+b_3-b_4,</md>
+
+  <md>S_6=b_1-b_2+b_3-b_4+b_5-b_6.</md>
+
+  <p>Because</p>
+
+  <md>b_3\ge b_4,
+\qquad
+b_5\ge b_6,</md>
+
+  <p>each new pair adds a nonnegative amount.  Thus</p>
+
+  <md>S_2\le S_4\le S_6\le\cdots.</md>
+
+  <p>So the even partial sums increase.</p>
+
+  <p>Now look at the odd partial sums:</p>
+
+  <md>S_1=b_1,</md>
+
+  <md>S_3=b_1-b_2+b_3,</md>
+
+  <md>S_5=b_1-b_2+b_3-b_4+b_5.</md>
+
+  <p>Going from <m>S_1</m> to <m>S_3</m> changes the sum by</p>
+
+  <md>-b_2+b_3\le0,</md>
+
+  <p>because <m>b_2\ge b_3</m>.  Similarly,</p>
+
+  <md>S_5-S_3=-b_4+b_5\le0.</md>
+
+  <p>So the odd partial sums decrease:</p>
+
+  <md>S_1\ge S_3\ge S_5\ge\cdots.</md>
+
+  <p>Every even partial sum lies below every later odd partial sum.  The gap between two
+consecutive partial sums is the size of the next term:</p>
+
+  <md>S_{n+1}-S_n=(-1)^n b_{n+1}.</md>
+
+  <p>Since</p>
+
+  <md>b_{n+1}\to0,</md>
+
+  <p>the gap between the upper and lower sums shrinks to zero.  Therefore the even and odd
+partial sums approach the same limit, and the whole sequence of partial sums converges.</p>
+
+  <note xml:id="note-sec-15-5-alternating-series-103">
+    <title>Geometric picture of the proof</title>
+      <p>The partial sums are trapped between two fences:</p>
+        <md>S_2\le S_4\le S_6\le\cdots</md>
+      <p>and</p>
+        <md>S_1\ge S_3\ge S_5\ge\cdots.</md>
+      <p>The lower fence rises.  The upper fence falls.  The distance between the fences shrinks
+to zero.</p>
+  </note>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-15-5-organized-cancellation">
+        <title>Why can organized cancellation save a series?</title>
+        <statement>
+          <p>
+            The harmonic series diverges, but the alternating harmonic series converges. In your own words, why do the partial sums bounce across a narrowing gap, and why is that a different mechanism from the positive-series tests?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each new term partially undoes the last one, and the corrections get smaller. Positive tests have no cancellation to use; here the cancellation is the engine.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-5-alternating-series-2">
+    <title>the alternating harmonic series</title>
+    <statement>
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k
+=
+1-\frac12+\frac13-\frac14+\cdots</md>
+
+  <p>has</p>
+
+  <md>b_k=\frac1k.</md>
+
+  <p>The terms <m>b_k</m> are positive, decreasing, and satisfy</p>
+
+  <md>b_k\to0.</md>
+
+  <p>Therefore the alternating harmonic series converges.</p>
+
+  <md>
+1-\frac12+\frac13-\frac14+\cdots \text{ converges.}
+</md>
+
+  <p>This is our first major example of cancellation changing the outcome.  The positive
+series</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1k</md>
+
+  <p>diverges, but the alternating version converges.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-5-alternating-series-3">
+    <title>an alternating <m>p</m>-series</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1{\sqrt{k}}</md>
+
+  <p>converges.</p>
+
+  <p>Let</p>
+
+  <md>b_k=\frac1{\sqrt{k}}.</md>
+
+  <p>Then</p>
+
+  <md>b_k&gt;0,</md>
+
+  <md>b_{k+1}\le b_k,</md>
+
+  <p>and</p>
+
+  <md>b_k\to0.</md>
+
+  <p>Therefore, by the Alternating Series Test,</p>
+
+  <md>
+\sum_{k=1}^{\infty}(-1)^{k-1}\frac1{\sqrt{k}}
+\text{ converges.}
+</md>
+
+  <p>The positive series</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{\sqrt{k}}</md>
+
+  <p>diverges because it is a <m>p</m>-series with <m>p=1/2</m>.  So again, alternating signs create
+convergence by cancellation.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-alternating-hypotheses-matter">
+    <title>Why the hypotheses matter</title>
+
+  <p>The Alternating Series Test has two real hypotheses:</p>
+
+  <md>b_k\to0</md>
+
+  <p>and</p>
+
+  <md>b_{k+1}\le b_k.</md>
+
+  <p>Neither should be ignored.</p>
+
+  <paragraphs>
+    <title>The terms must approach zero</title>
+
+  <p>Consider</p>
+
+  <md>1-1+1-1+\cdots.</md>
+
+  <p>Here</p>
+
+  <md>b_k=1.</md>
+
+  <p>The sequence <m>b_k</m> is decreasing in the weak sense</p>
+
+  <md>b_{k+1}\le b_k,</md>
+
+  <p>but it does not approach zero.  The partial sums are</p>
+
+  <md>1,\ 0,\ 1,\ 0,\ldots,</md>
+
+  <p>so the series diverges.</p>
+
+  <md>
+\text{Alternating signs alone do not guarantee convergence.}
+</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>The decreasing condition matters</title>
+
+  <p>The condition that <m>b_k</m> decrease cannot simply be thrown away.</p>
+
+  <p>Define</p>
+
+  <md>b_{2m-1}=\frac1m,
+\qquad
+b_{2m}=\frac1{m^2},
+\qquad m=1,2,3,\ldots.</md>
+
+  <p>Then</p>
+
+  <md>b_k\to0.</md>
+
+  <p>But the terms are not decreasing.  For example,</p>
+
+  <md>b_4=\frac14
+\qquad\text{and}\qquad
+b_5=\frac13,</md>
+
+  <p>so the sequence of sizes goes up at that point.</p>
+
+  <p>Now consider the alternating series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}b_k.</md>
+
+  <p>Group terms in pairs:</p>
+
+  <md>(b_1-b_2)+(b_3-b_4)+(b_5-b_6)+\cdots.</md>
+
+  <p>Using the definition of <m>b_k</m>, this becomes</p>
+
+  <md>\left(1-1\right)
++
+\left(\frac12-\frac14\right)
++
+\left(\frac13-\frac19\right)
++
+\left(\frac14-\frac1{16}\right)
++\cdots.</md>
+
+  <p>The <m>m</m>-th pair is</p>
+
+  <md>\frac1m-\frac1{m^2}.</md>
+
+  <p>For <m>m\ge2</m>,</p>
+
+  <md>\frac1m-\frac1{m^2}
+=
+\frac{m-1}{m^2}
+\ge
+\frac1{2m}.</md>
+
+  <p>Since</p>
+
+  <md>\sum_{m=2}^{\infty}\frac1{2m}</md>
+
+  <p>diverges, the paired sums diverge.  Therefore the original alternating series diverges.</p>
+
+  <p>This example has terms tending to zero, but the sizes do not decrease in the organized
+way required by the test.</p>
+
+  <md>
+\text{For the Alternating Series Test, decreasing term sizes are part of the mechanism.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-15-5-ast-hypotheses">
+        <title>Why do both Alternating Series Test hypotheses matter?</title>
+        <statement>
+          <p>
+            The Alternating Series Test needs decreasing term sizes and terms approaching zero. In your own words, why do alternating signs alone fail, and why can terms going to zero still fail if the sizes are not decreasing in an organized way?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Without sizes going to zero, the bounce never shrinks. Without decreasing sizes, a later positive lump can be larger than the previous correction, and the paired sums can still diverge.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-alternating-series-estimation">
+    <title>Alternating Series Estimation Theorem</title>
+
+  <p>The alternating test gives convergence.  It also gives an unusually simple error estimate.</p>
+
+  <p>Suppose</p>
+
+  <md>S=\sum_{k=1}^{\infty}(-1)^{k-1}b_k</md>
+
+  <p>where</p>
+
+  <md>b_k\ge0,
+\qquad
+b_{k+1}\le b_k,
+\qquad
+b_k\to0.</md>
+
+  <p>Let</p>
+
+  <md>S_n=\sum_{k=1}^{n}(-1)^{k-1}b_k</md>
+
+  <p>be the <m>n</m>-th partial sum.</p>
+
+  <p>The error after <m>n</m> terms is</p>
+
+  <md>R_n=S-S_n.</md>
+
+  <p>Because the partial sums bounce across the true sum and the bounce sizes decrease, the
+true sum is no farther than the first omitted term:</p>
+
+  <md>
+|S-S_n|\le b_{n+1}.
+</md>
+
+  <p>This is the Alternating Series Estimation Theorem.</p>
+
+  <theorem xml:id="thm-sec-15-5-alternating-series-104">
+    <title>Alternating Series Estimation Theorem</title>
+    <statement>
+      <p>If</p>
+        <md>\sum_{k=1}^{\infty}(-1)^{k-1}b_k</md>
+      <p>satisfies the hypotheses of the Alternating Series Test, and</p>
+        <md>S_n=\sum_{k=1}^{n}(-1)^{k-1}b_k,</md>
+      <p>then</p>
+        <md>
+|S-S_n|\le b_{n+1}.
+</md>
+      <p>The error is at most the size of the first omitted term.</p>
+    </statement>
+  </theorem>
+
+  <p>There is also a sign rule.  The error has the sign of the first omitted term:</p>
+
+  <md>S-S_n</md>
+
+  <p>has the same sign as</p>
+
+  <md>(-1)^n b_{n+1}.</md>
+
+  <p>So if the next term is positive, the true sum is above the partial sum.  If the next term
+is negative, the true sum is below the partial sum.</p>
+
+
+  <exercise xml:id="checkpoint-15-5-next-term-error">
+        <title>Why is the error at most the first omitted term?</title>
+        <statement>
+          <p>
+            Under the Alternating Series Test hypotheses, <m>|S-S_n|\le b_{n+1}</m>. In your own words, why does the next bounce size control the leftover error, and why does the sign of the first omitted term tell which side of the true sum you are on?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Odd and even partial sums sit on opposite sides of the limit, and the remaining gap is no larger than the next correction. Stopping after a positive term leaves you below the next overshoot.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-5-alternating-series-6">
+    <title>estimating an alternating sum</title>
+    <statement>
+  <p>Let</p>
+
+  <md>S=1-\frac12+\frac13-\frac14+\cdots.</md>
+
+  <p>Use the first four terms:</p>
+
+  <md>S_4=1-\frac12+\frac13-\frac14.</md>
+
+  <p>Compute:</p>
+
+  <md>S_4=\frac{12-6+4-3}{12}=\frac7{12}.</md>
+
+  <p>The first omitted term is</p>
+
+  <md>\frac15.</md>
+
+  <p>Therefore</p>
+
+  <md>\left|S-\frac7{12}\right|\le \frac15.</md>
+
+  <p>This is a crude estimate, because four terms are not many.  But it is guaranteed.</p>
+
+  <p>Since the first omitted term is positive, the true sum is above <m>S_4</m>:</p>
+
+  <md>S_4&lt;S&lt;S_5.</md>
+
+  <p>So</p>
+
+  <md>\frac7{12}&lt;S&lt;\frac7{12}+\frac15.</md>
+
+  <p>That is,</p>
+
+  <md>\frac7{12}&lt;S&lt;\frac{47}{60}.</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-5-alternating-series-7">
+    <title>error less than <m>0.001</m></title>
+    <statement>
+  <p>How many terms are needed to approximate</p>
+
+  <md>S=\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k</md>
+
+  <p>with error less than <m>0.001</m>?</p>
+
+  <p>The error after <m>n</m> terms is at most</p>
+
+  <md>b_{n+1}=\frac1{n+1}.</md>
+
+  <p>We want</p>
+
+  <md>\frac1{n+1}&lt;0.001.</md>
+
+  <p>Since</p>
+
+  <md>0.001=\frac1{1000},</md>
+
+  <p>we need</p>
+
+  <md>n+1&gt;1000.</md>
+
+  <p>Thus</p>
+
+  <md>
+n=1000
+</md>
+
+  <p>terms are enough, because</p>
+
+  <md>\frac1{1001}&lt;0.001.</md>
+
+  <p>This is honest, but not fast.  Alternating convergence can be slow when the term sizes
+decrease slowly.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-5-alternating-series-8">
+    <title>a faster alternating series</title>
+    <statement>
+  <p>Approximate</p>
+
+  <md>S=\sum_{k=1}^{\infty}(-1)^{k-1}\frac1{k^2}</md>
+
+  <p>using the first five terms, and give an error bound.</p>
+
+  <p>The fifth partial sum is</p>
+
+  <md>S_5=1-\frac1{2^2}+\frac1{3^2}-\frac1{4^2}+\frac1{5^2}.</md>
+
+  <p>So</p>
+
+  <md>S_5
+=
+1-\frac14+\frac19-\frac1{16}+\frac1{25}.</md>
+
+  <p>The first omitted term has size</p>
+
+  <md>\frac1{6^2}=\frac1{36}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+|S-S_5|\le \frac1{36}.
+</md>
+
+  <p>Because the first omitted term is negative, the true sum is below <m>S_5</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-conditional-convergence">
+    <title>Conditional convergence</title>
+
+  <p>The alternating harmonic series converges:</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k</md>
+
+  <p>converges.</p>
+
+  <p>But the positive series made from the absolute values is the harmonic series:</p>
+
+  <md>\sum_{k=1}^{\infty}\left|(-1)^{k-1}\frac1k\right|
+=
+\sum_{k=1}^{\infty}\frac1k,</md>
+
+  <p>and this diverges.</p>
+
+  <p>So the convergence of the alternating harmonic series depends on cancellation.  If we
+remove the signs, it falls apart.</p>
+
+  <note xml:id="note-sec-15-5-alternating-series-105">
+    <title>Conditional convergence</title>
+      <p>A series</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>is <em>conditionally convergent</em> if</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>converges, but</p>
+        <md>\sum_{k=1}^{\infty}|a_k|</md>
+      <p>diverges.</p>
+  </note>
+
+  <p>Thus</p>
+
+  <md>
+\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k
+\text{ is conditionally convergent.}
+</md>
+
+  <p>Conditional convergence is useful, but delicate.  It depends on a balance between
+positive and negative terms.</p>
+
+  <p>This delicacy is one reason we next study <em>absolute convergence</em>, which is safer.
+If a series converges even after all signs are made positive, then it does not need
+cancellation to survive.</p>
+
+  <exercise xml:id="checkpoint-15-5-conditional-delicate">
+        <title>Why is conditional convergence delicate?</title>
+        <statement>
+          <p>
+            A series converges conditionally if it converges, but the series of absolute values diverges. In your own words, why does that mean the convergence depends on cancellation, and why is a safer kind of convergence waiting in the next section?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Remove the signs and the harmonic series reappears. Survival that requires a balance of plus and minus is useful, but it is not the same as having finite total size.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

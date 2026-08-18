@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-3-the-harmonic-series-and-first-warnings">
+  <title>The harmonic series and first warnings</title>
+
+  <p>The last section gave two friendly kinds of series.  A geometric series has partial sums
+with a formula.  A telescoping series has partial sums with cancellation.</p>
+
+  <p>Most series are less generous.  We often cannot compute</p>
+
+  <md>S_n=a_1+a_2+\cdots+a_n</md>
+
+  <p>exactly.  We need tests that tell whether the partial sums settle down.</p>
+
+  <p>The first test is not a convergence test.  It is a warning test.</p>
+
+  <md>
+\text{If an infinite sum converges, the terms being added must become small.}
+</md>
+
+  <p>That sounds obvious.  The danger is the converse.  Terms can become small and still add
+up to infinity.</p>
+
+  <subsection xml:id="subsec-terms-zero-series-diverges">
+    <title>Terms can go to zero while the series diverges</title>
+
+  <p>Look at the series</p>
+
+  <md>1+\frac12+\frac13+\frac14+\frac15+\cdots.</md>
+
+  <p>Its terms are</p>
+
+  <md>a_k=\frac1k.</md>
+
+  <p>These terms approach zero:</p>
+
+  <md>\frac1k\to0.</md>
+
+  <p>So each individual term becomes tiny.  But the accumulated sum is another question.
+The first few partial sums are</p>
+
+  <md>S_1=1,</md>
+
+  <md>S_2=1+\frac12=1.5,</md>
+
+  <md>S_3=1+\frac12+\frac13\approx1.833,</md>
+
+  <md>S_4=1+\frac12+\frac13+\frac14\approx2.083.</md>
+
+  <p>The partial sums keep increasing.  That alone does not prove divergence.  They might
+increase toward a horizontal ceiling, as the geometric partial sums did.</p>
+
+  <p>The surprise is that there is no ceiling.</p>
+
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1k</md>
+
+  <p>is called the <em>harmonic series</em>.  It diverges, even though its terms approach
+zero.</p>
+
+  <p>This is the first essential warning in infinite series:</p>
+
+  <md>
+ a_k\to0 \quad \text{does not imply} \quad \sum_{k=1}^{\infty}a_k \text{ converges.}
+</md>
+
+  <p>A term is one small contribution.  A series is the accumulated effect of infinitely many
+contributions.  Small pieces can still have an infinite total.</p>
+
+  <exercise xml:id="checkpoint-15-3-terms-zero-not-enough">
+        <title>Why can terms go to zero while the series diverges?</title>
+        <statement>
+          <p>
+            The harmonic series has terms <m>1/k\to 0</m>, yet it diverges. In your own words, why is a term only one small contribution, and why can infinitely many shrinking contributions still have an infinite total?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Convergence is about accumulated running totals, not about one term becoming tiny. Small pieces can still pile up without a ceiling.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-necessary-condition-for-series-convergence">
+    <title>A necessary condition for convergence</title>
+
+  <p>There is one statement we can prove immediately.</p>
+
+  <p>Suppose the series</p>
+
+  <md>\sum_{k=1}^{\infty}a_k</md>
+
+  <p>converges.  Its partial sums</p>
+
+  <md>S_n=a_1+a_2+\cdots+a_n</md>
+
+  <p>approach some number <m>S</m>:</p>
+
+  <md>S_n\to S.</md>
+
+  <p>The term <m>a_n</m> is the difference between two consecutive partial sums:</p>
+
+  <md>a_n=S_n-S_{n-1},
+\qquad n\ge2.</md>
+
+  <p>Since</p>
+
+  <md>S_n\to S
+\qquad\text{and}\qquad
+S_{n-1}\to S,</md>
+
+  <p>we get</p>
+
+  <md>a_n=S_n-S_{n-1}\to S-S=0.</md>
+
+  <p>So the terms of a convergent series must approach zero.</p>
+
+  <note xml:id="note-sec-15-3-the-harmonic-series-and-first-warnings-43">
+    <title>Necessary condition for convergence</title>
+      <p>If</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>converges, then</p>
+        <md>a_k\to0.</md>
+      <p>Equivalently, if <m>a_k</m> does not approach <m>0</m>, then</p>
+        <md>\sum_{k=1}^{\infty}a_k \text{ diverges.}</md>
+  </note>
+
+  <p>The second form is often called the <em>term test for divergence</em>.</p>
+
+  <p>The name matters.  It is a divergence test, not a convergence test.</p>
+
+  <md>
+\text{If the terms do not go to zero, the series diverges.}
+</md>
+
+  <p>But if the terms do go to zero, we still do not know.</p>
+
+
+  <exercise xml:id="checkpoint-15-3-term-test-one-way">
+        <title>Why is the term test only a divergence test?</title>
+        <statement>
+          <p>
+            If a series converges, then <m>a_k\to 0</m>. Equivalently, if the terms do not approach zero, the series diverges. In your own words, why does that implication run in only one direction, and what has been learned if the terms do go to zero?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A necessary condition can rule a series out, but it cannot rule a series in. Passing the first obstacle is not the same as arriving.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-3-the-harmonic-series-and-first-warnings-1">
+    <title>terms do not go to zero</title>
+    <statement>
+  <p>Show that</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{k}{k+1}</md>
+
+  <p>diverges.</p>
+
+  <p>The terms are</p>
+
+  <md>a_k=\frac{k}{k+1}.</md>
+
+  <p>Since</p>
+
+  <md>\frac{k}{k+1}=\frac{1}{1+\frac1k}\to1,</md>
+
+  <p>the terms do not approach zero.  Therefore the series diverges.</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{k}{k+1} \text{ diverges.}
+</md>
+
+  <p>There is no need to study the partial sums.  The individual terms are already too large
+to allow convergence.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-3-the-harmonic-series-and-first-warnings-2">
+    <title>oscillating terms</title>
+    <statement>
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^k</md>
+
+  <p>has terms</p>
+
+  <md>-1,
+\quad 1,
+\quad -1,
+\quad 1,
+\quad\ldots.</md>
+
+  <p>The terms do not approach zero.  Therefore the series diverges.</p>
+
+  <p>This agrees with what we saw from partial sums:</p>
+
+  <md>-1,
+\quad 0,
+\quad -1,
+\quad 0,
+\quad\ldots.</md>
+
+  <p>The partial sums oscillate instead of approaching a number.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-3-the-harmonic-series-and-first-warnings-3">
+    <title>terms go to zero, but the test says nothing</title>
+    <statement>
+  <p>For the harmonic series,</p>
+
+  <md>a_k=\frac1k\to0.</md>
+
+  <p>The term test gives no conclusion.  It does not say the harmonic series converges.
+It only says that the first obstacle to convergence has been passed.</p>
+
+  <p>We need another idea.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-harmonic-series">
+    <title>The harmonic series</title>
+
+  <p>The harmonic series is</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac1k
+=1+\frac12+\frac13+\frac14+\cdots.
+</md>
+
+  <p>It is the simplest series whose terms go to zero but whose sum still diverges.</p>
+
+  <p>The partial sums grow slowly:</p>
+
+  <md>
+    <mrow>\begin{array}{c|c}
+ n \amp S_n=1+\frac12+\cdots+\frac1n</mrow>
+    <mrow>\hline
+ 1 \amp 1</mrow>
+    <mrow>2 \amp 1.5</mrow>
+    <mrow>4 \amp 2.083\ldots</mrow>
+    <mrow>8 \amp 2.718\ldots</mrow>
+    <mrow>16 \amp 3.381\ldots
+\end{array}</mrow>
+  </md>
+
+  <p>Slow growth can look like convergence if we only compute a few terms.  This is a
+common trap in numerical work.  A long plateau is not the same as a limit.</p>
+
+  <p>The right proof groups the terms.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-grouping-harmonic-divergence">
+    <title>Grouping terms to see divergence</title>
+
+  <p>Write the harmonic series in blocks whose lengths double:</p>
+
+  <md>1
++\frac12
++\left(\frac13+\frac14\right)
++\left(\frac15+\frac16+\frac17+\frac18\right)
++\cdots.</md>
+
+  <p>Now estimate each block from below.</p>
+
+  <p>The block</p>
+
+  <md>\frac13+\frac14</md>
+
+  <p>has two terms, and each is at least <m>1/4</m>.  Therefore</p>
+
+  <md>\frac13+\frac14\ge \frac14+\frac14=\frac12.</md>
+
+  <p>The next block</p>
+
+  <md>\frac15+\frac16+\frac17+\frac18</md>
+
+  <p>has four terms, and each is at least <m>1/8</m>.  Therefore</p>
+
+  <md>\frac15+\frac16+\frac17+\frac18
+\ge
+4\cdot\frac18
+=
+\frac12.</md>
+
+  <p>The next block has eight terms, each at least <m>1/16</m>, so it also contributes at least
+<m>1/2</m>.</p>
+
+  <p>In general, the block</p>
+
+  <md>\frac1{2^{m-1}+1}+\frac1{2^{m-1}+2}+\cdots+\frac1{2^m}</md>
+
+  <p>has <m>2^{m-1}</m> terms, and each term is at least <m>1/2^m</m>.  Thus the block contributes
+at least</p>
+
+  <md>2^{m-1}\cdot\frac1{2^m}=\frac12.</md>
+
+  <p>So after enough blocks, the harmonic series is at least</p>
+
+  <md>1+\frac12+\frac12+\frac12+\cdots.</md>
+
+  <p>More precisely,</p>
+
+  <md>S_{2^m}
+=
+1+\frac12+\left(\frac13+\frac14\right)+\cdots+
+\left(\frac1{2^{m-1}+1}+\cdots+\frac1{2^m}\right)
+\ge
+1+\frac{m}{2}.</md>
+
+  <p>Since</p>
+
+  <md>1+\frac{m}{2}\to\infty,</md>
+
+  <p>the partial sums of the harmonic series are unbounded.  Therefore the harmonic series
+diverges.</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac1k \text{ diverges.}
+</md>
+
+  <figure xml:id="fig-harmonic-grouping-blocks">
+    <caption>Grouping the harmonic series into doubled blocks shows that the partial sums keep gaining at least <m>1/2</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=0.95, yscale=1.0, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (0,0) -- (13.2,0) node[right] {terms};
+  \draw[-&gt;, thick] (0,0) -- (0,2.2) node[above] {block size};
+
+  % first block
+  \draw[fill=gray!20, draw=gray!70] (0.3,0) rectangle (1.0,1.6);
+  \node[above] at (0.65,1.62) {\(1\)};
+
+  % second block
+  \draw[fill=gray!20, draw=gray!70] (1.2,0) rectangle (1.9,0.8);
+  \node[above] at (1.55,0.82) {\(\frac12\)};
+
+  % third block two terms
+  \draw[fill=gray!20, draw=gray!70] (2.3,0) rectangle (3.0,0.533);
+  \draw[fill=gray!20, draw=gray!70] (3.0,0) rectangle (3.7,0.4);
+  \draw[decorate, decoration={brace, amplitude=5pt}] (2.3,-0.15) -- (3.7,-0.15);
+  \node[below] at (3.0,-0.38) {\(\ge \frac12\)};
+
+  % fourth block four terms
+  \foreach \x/\h in {4.2/0.32,4.9/0.267,5.6/0.229,6.3/0.2} {
+    \draw[fill=gray!20, draw=gray!70] (\x,0) rectangle +(0.7,\h);
+  }
+  \draw[decorate, decoration={brace, amplitude=5pt}] (4.2,-0.15) -- (7.0,-0.15);
+  \node[below] at (5.6,-0.38) {\(\ge \frac12\)};
+
+  % fifth block eight stylized terms at common lower height
+  \foreach \i in {0,...,7} {
+    \draw[fill=gray!20, draw=gray!70] ({7.7+0.55*\i},0) rectangle +(0.55,0.1);
+  }
+  \draw[decorate, decoration={brace, amplitude=5pt}] (7.7,-0.15) -- (12.1,-0.15);
+  \node[below] at (9.9,-0.38) {\(\ge \frac12\)};
+
+  \node[align=center] at (7.4,1.55) {each new doubled block\\adds at least \(\frac12\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This proof is more than a trick.  It shows a new habit.  When we cannot compute partial
+sums exactly, we compare them with something simpler.</p>
+
+  <p>That is the main idea behind the next tests.</p>
+
+  <exercise xml:id="checkpoint-15-3-grouping-blocks">
+        <title>Why does grouping doubled blocks prove harmonic divergence?</title>
+        <statement>
+          <p>
+            Grouping the harmonic series into blocks whose lengths double shows that each new block contributes at least <m>1/2</m>. In your own words, why does that force the partial sums to be unbounded, and what new habit does the argument teach for later tests?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Infinitely many blocks of size at least <m>1/2</m> cannot have a finite total. When exact partial sums are unavailable, comparison with something simpler becomes the method.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

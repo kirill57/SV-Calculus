@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-6-computing-experiments">
+  <title>Computing experiments</title>
+
+  <p>Numerical methods become real when we use them.</p>
+
+  <p>The purpose of these experiments is not only to produce decimals.  A calculator can
+produce decimals.  The purpose is to learn how numerical answers behave when the
+step size changes, when the function becomes less smooth, and when an algorithm is
+implemented by an actual person or machine.</p>
+
+  <p>Each experiment follows the same pattern:</p>
+
+  <md>\text{compute},\qquad
+\text{compare},\qquad
+\text{explain}.</md>
+
+  <subsection xml:id="subsec-experiment-approximate-pi">
+    <title>Experiment 1: approximate <m>\pi</m> by integration</title>
+
+  <p>The number <m>\pi</m> can be computed from an integral.</p>
+
+  <p>Since</p>
+
+  <md>\frac{d}{dx}\arctan x=\frac{1}{1+x^2},</md>
+
+  <p>we have</p>
+
+  <md>\int_0^1 \frac{1}{1+x^2}\,dx
+=
+\arctan(1)-\arctan(0)
+=
+\frac{\pi}{4}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\pi=4\int_0^1 \frac{1}{1+x^2}\,dx.
+</md>
+
+  <p>So we can approximate <m>\pi</m> by approximating the integral</p>
+
+  <md>\int_0^1 \frac{4}{1+x^2}\,dx.</md>
+
+  <p>Let</p>
+
+  <md>f(x)=\frac{4}{1+x^2}.</md>
+
+  <p>Use the midpoint rule, trapezoidal rule, and Simpson’s Rule on <m>[0,1]</m>.</p>
+
+  <table xml:id="tab-sec-12-6-computing-experiments-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>n</m></cell>
+        <cell><m>M_n</m></cell>
+        <cell><m>T_n</m></cell>
+        <cell><m>S_n</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>4</m></cell>
+        <cell><m>3.146801</m></cell>
+        <cell><m>3.131176</m></cell>
+        <cell><m>3.141569</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>8</m></cell>
+        <cell><m>3.142895</m></cell>
+        <cell><m>3.138988</m></cell>
+        <cell><m>3.141593</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>16</m></cell>
+        <cell><m>3.141918</m></cell>
+        <cell><m>3.140942</m></cell>
+        <cell><m>3.141593</m></cell>
+      </row>
+      <row>
+        <cell><m>32</m></cell>
+        <cell><m>3.141674</m></cell>
+        <cell><m>3.141430</m></cell>
+        <cell><m>3.141593</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The true value begins</p>
+
+  <md>\pi=3.1415926535\ldots.</md>
+
+  <p>Simpson’s Rule performs very well here because the integrand is smooth on the whole
+interval.</p>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+  <p>Complete the following.</p>
+
+    <ol>
+      <li>
+        <p>Reproduce the table above using a calculator, spreadsheet, or program.</p>
+      </li>
+      <li>
+        <p>Add a column for the absolute error</p>
+          <md>|\pi-\text{approximation}|.</md>
+      </li>
+      <li>
+        <p>When <m>n</m> doubles, how does the error change for each rule?</p>
+      </li>
+      <li>
+        <p>Which rule gives the best answer for the same <m>n</m>?</p>
+      </li>
+      <li>
+        <p>Which rule gives the best answer for the same number of function evaluations?</p>
+      </li>
+      <li>
+        <p>Use the Simpson error bound to explain why the Simpson values stabilize so
+quickly.</p>
+      </li>
+      <li>
+        <p>Repeat the experiment using the quarter-circle formula</p>
+          <md>\pi=4\int_0^1 \sqrt{1-x^2}\,dx.</md>
+        <p>Which formula is numerically friendlier?  Why might the endpoint <m>x=1</m> cause
+trouble for error bounds?</p>
+      </li>
+    </ol>
+
+  <p>The last question is important.  Two different integrals can equal the same number, but
+they may not be equally good for computation.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-6-compute-compare-explain">
+        <title>What is a computing experiment supposed to teach?</title>
+        <statement>
+          <p>
+            A calculator can already produce decimals. In your own words, why is the pattern compute–compare–explain the real purpose of these experiments, and what should change in your explanation when the integrand becomes less smooth?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Watch how answers behave when the step size changes and when the function is no longer smooth. Observed error should match the smoothness the theory assumes.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-experiment-probability-density">
+    <title>Experiment 2: estimate a probability from a density</title>
+
+  <p>A probability density is a function whose accumulated area gives probability.</p>
+
+  <p>The standard normal density is</p>
+
+  <md>\phi(x)=\frac{1}{\sqrt{2\pi}}e^{-x^2/2}.</md>
+
+  <p>It is centered at <m>0</m>, symmetric, and bell-shaped.</p>
+
+  <p>The probability that a standard normal quantity lies between <m>-1</m> and <m>1</m> is</p>
+
+  <md>P(-1\le Z\le1)
+=
+\int_{-1}^{1}
+\frac{1}{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
+
+  <p>This integral has no elementary antiderivative.  Numerical integration is the natural
+tool.</p>
+
+  <p>Using Simpson’s Rule gives:</p>
+
+  <table xml:id="tab-sec-12-6-computing-experiments-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>n</m></cell>
+        <cell>Simpson approximation to <m>P(-1\le Z\le1)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>4</m></cell>
+        <cell><m>0.683058</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>8</m></cell>
+        <cell><m>0.682711</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>16</m></cell>
+        <cell><m>0.682691</m></cell>
+      </row>
+      <row>
+        <cell><m>32</m></cell>
+        <cell><m>0.682690</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>A more refined computation gives approximately</p>
+
+  <md>P(-1\le Z\le1)\approx0.682689.</md>
+
+  <p>So about <m>68.27\%</m> of the probability lies within one standard deviation of the mean.</p>
+
+  <figure xml:id="fig-normal-density-probability">
+    <caption>For a probability density, area under the curve is probability.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-3.5, xmax=3.5,
+    ymin=0, ymax=0.45,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(\phi(x)\)},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={0,0.2,0.4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=-1:1, samples=150, fill=gray!18, draw=none]
+  {1/sqrt(2*pi)*exp(-x^2/2)} \closedcycle;
+\addplot[very thick, domain=-3.4:3.4, samples=250]
+  {1/sqrt(2*pi)*exp(-x^2/2)};
+\draw[dashed] (axis cs:-1,0) -- (axis cs:-1,{1/sqrt(2*pi)*exp(-0.5)});
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,{1/sqrt(2*pi)*exp(-0.5)});
+\node[anchor=south] at (axis cs:0,0.09)
+  {\(\displaystyle \int_{-1}^{1}\phi(x)\,dx\)};
+\node[anchor=west] at (axis cs:1.4,0.28) {standard normal density};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+  <p>Complete the following.</p>
+
+    <ol>
+      <li>
+        <p>Use the midpoint, trapezoidal, and Simpson rules to approximate</p>
+          <md>\int_{-1}^{1}\phi(x)\,dx.</md>
+        <p>Use <m>n=4,8,16,32</m>.</p>
+      </li>
+      <li>
+        <p>Compare your answers with</p>
+          <md>0.682689.</md>
+      </li>
+      <li>
+        <p>Use symmetry to explain why</p>
+          <md>\int_{-1}^{1}\phi(x)\,dx
+=
+2\int_0^1\phi(x)\,dx.</md>
+      </li>
+      <li>
+        <p>Estimate</p>
+          <md>\int_{-2}^{2}\phi(x)\,dx.</md>
+        <p>How much larger is this probability?</p>
+      </li>
+      <li>
+        <p>Estimate</p>
+          <md>\int_{-4}^{4}\phi(x)\,dx.</md>
+        <p>Why is this close to <m>1</m>, even though the true total probability is the improper
+integral</p>
+          <md>\int_{-\infty}^{\infty}\phi(x)\,dx?</md>
+      </li>
+    </ol>
+
+  <p>This experiment connects three ideas: numerical integration, improper integrals, and
+probability.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-experiment-smooth-rough">
+    <title>Experiment 3: compare rules on smooth and rough functions</title>
+
+  <p>Error bounds have hypotheses.  Simpson’s Rule needs a bounded fourth derivative for
+its standard error bound.  The midpoint and trapezoidal bounds need a bounded second
+derivative.</p>
+
+  <p>Smooth functions reward high-order methods.  Less smooth functions may not.</p>
+
+  <p>Compare these two integrals:</p>
+
+  <md>I_1=\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>and</p>
+
+  <md>I_2=\int_0^1 \sqrt{x}\,dx.</md>
+
+  <p>The first integrand is smooth.  The second is continuous, but its derivatives become
+large near <m>x=0</m>.  In fact,</p>
+
+  <md>\frac{d^2}{dx^2}\sqrt{x}
+=
+-\frac{1}{4x^{3/2}}</md>
+
+  <p>for <m>x&gt;0</m>, which is unbounded near <m>0</m>.</p>
+
+  <p>The exact value of <m>I_2</m> is</p>
+
+  <md>I_2=\frac23.</md>
+
+  <p>A refined value of <m>I_1</m> is</p>
+
+  <md>I_1\approx0.7468241328.</md>
+
+  <p>Using Simpson’s Rule gives the following comparison.</p>
+
+  <table xml:id="tab-sec-12-6-computing-experiments-4">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>n</m></cell>
+        <cell>Simpson for <m>\int_0^1 e^{-x^2}\,dx</m></cell>
+        <cell>Simpson for <m>\int_0^1 \sqrt{x}\,dx</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>4</m></cell>
+        <cell><m>0.746855</m></cell>
+        <cell><m>0.656526</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>8</m></cell>
+        <cell><m>0.746826</m></cell>
+        <cell><m>0.663079</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>16</m></cell>
+        <cell><m>0.746824</m></cell>
+        <cell><m>0.665398</m></cell>
+      </row>
+      <row>
+        <cell><m>32</m></cell>
+        <cell><m>0.746824</m></cell>
+        <cell><m>0.666218</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The smooth integral stabilizes very quickly.  The square-root integral improves, but more
+slowly.</p>
+
+  <figure xml:id="fig-smooth-vs-rough-integration">
+    <caption>High-order numerical rules are most powerful when the function is smooth enough for their error theory.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-smooth-vs-rough-integration-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=1.1,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,0.5,1},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={smooth}
+]
+\addplot[very thick, domain=0:1, samples=150] {exp(-x^2)};
+\node[anchor=west] at (axis cs:0.22,0.82) {\(e^{-x^2}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-smooth-vs-rough-integration-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=1.1,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,0.5,1},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={not smooth at the endpoint}
+]
+\addplot[very thick, domain=0:1, samples=150] {sqrt(x)};
+\node[anchor=west] at (axis cs:0.28,0.42) {\(\sqrt{x}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+  <p>Complete the following.</p>
+
+    <ol>
+      <li>
+        <p>For each integral, compute midpoint, trapezoidal, and Simpson approximations
+with <m>n=4,8,16,32</m>.</p>
+      </li>
+      <li>
+        <p>Compute the absolute errors using</p>
+          <md>\int_0^1 \sqrt{x}\,dx=\frac23</md>
+        <p>and the refined value</p>
+          <md>\int_0^1 e^{-x^2}\,dx\approx0.7468241328.</md>
+      </li>
+      <li>
+        <p>For each rule, estimate how the error changes when <m>n</m> doubles.</p>
+      </li>
+      <li>
+        <p>Which rule benefits most from smoothness?</p>
+      </li>
+      <li>
+        <p>Explain why the standard midpoint, trapezoidal, and Simpson error bounds are
+not directly available for <m>\sqrt{x}</m> on <m>[0,1]</m>.</p>
+      </li>
+      <li>
+        <p>Try splitting the square-root integral:</p>
+          <md>\int_0^1\sqrt{x}\,dx
+=
+\int_0^{0.01}\sqrt{x}\,dx+\int_{0.01}^{1}\sqrt{x}\,dx.</md>
+        <p>Compute the first part exactly, and approximate the second part numerically.  Does this
+improve the result?</p>
+      </li>
+    </ol>
+
+  <p>This experiment is a counterexample to a lazy belief:</p>
+
+  <md>\text{``A more powerful rule always gives its promised error behavior.''}</md>
+
+  <p>The rule’s error theorem has hypotheses.  The function must meet them.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-6-successive-difference">
+        <title>Why is a small change between successive approximations not a proof?</title>
+        <statement>
+          <p>
+            One experiment keeps doubling <m>n</m> until two successive approximations differ by less than a tolerance. In your own words, why is that difference useful evidence, and why is it still not the same thing as an error bound?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Two close wrong answers can agree with each other. Stabilization supports confidence; a theorem or independent estimate supplies a guarantee.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-build-small-numerical-integration-program">
+    <title>Experiment 4: build a small numerical-integration program</title>
+
+  <p>A numerical method becomes clearer when you implement it yourself.</p>
+
+  <p>The goal is not to build a professional scientific library.  The goal is to translate the
+formulas into an algorithm and test the algorithm on examples where you know what
+should happen.</p>
+
+  <paragraphs>
+    <title>Midpoint rule</title>
+
+  <md>M_n=\Delta x\sum_{i=1}^{n} f\left(a+\left(i-\frac12\right)\Delta x\right),
+\qquad
+\Delta x=\frac{b-a}{n}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Trapezoidal rule</title>
+
+  <md>T_n=\Delta x\left[
+\frac12f(a)+f(a+\Delta x)+\cdots+f(a+(n-1)\Delta x)+\frac12f(b)
+\right].</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Simpson’s Rule</title>
+
+  <p>For even <m>n</m>,</p>
+
+  <md>
+    <mrow>S_n=
+\frac{\Delta x}{3}
+\left[
+f(x_0)+f(x_n)
++
+4\sum_{\substack{1\le i\le n-1</mrow>
+    <mrow>i\text{ odd}}}f(x_i)
++
+2\sum_{\substack{2\le i\le n-2</mrow>
+    <mrow>i\text{ even}}}f(x_i)
+\right].</mrow>
+  </md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Pseudocode</title>
+
+  <p>The following language-neutral pseudocode gives the structure.</p>
+
+  <pre>
+function midpoint(f, a, b, n):
+    dx = (b-a)/n
+    total = 0
+    for i = 1 to n:
+        xmid = a + (i - 0.5)*dx
+        total = total + f(xmid)
+    return dx*total
+
+function trapezoid(f, a, b, n):
+    dx = (b-a)/n
+    total = 0.5*f(a) + 0.5*f(b)
+    for i = 1 to n-1:
+        x = a + i*dx
+        total = total + f(x)
+    return dx*total
+
+function simpson(f, a, b, n):
+    if n is odd:
+        stop with message "Simpson's Rule requires even n"
+    dx = (b-a)/n
+    total = f(a) + f(b)
+    for i = 1 to n-1:
+        x = a + i*dx
+        if i is odd:
+            total = total + 4*f(x)
+        else:
+            total = total + 2*f(x)
+    return dx*total/3
+  </pre>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Testing your program</title>
+
+  <p>A numerical program should be tested on simple cases before it is trusted on hard ones.</p>
+
+  <p>Use these tests.</p>
+
+  <table xml:id="tab-sec-12-6-computing-experiments-5">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>test integral</strong></cell>
+        <cell><strong>exact value</strong></cell>
+        <cell><strong>what should happen</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \int_0^1 5\,dx</m></cell>
+        <cell><m>5</m></cell>
+        <cell>all three rules exact</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\displaystyle \int_0^1 x\,dx</m></cell>
+        <cell><m>1/2</m></cell>
+        <cell>all three rules exact</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\displaystyle \int_0^1 x^2\,dx</m></cell>
+        <cell><m>1/3</m></cell>
+        <cell>Simpson exact; midpoint and trapezoid converge</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\displaystyle \int_0^1 x^3\,dx</m></cell>
+        <cell><m>1/4</m></cell>
+        <cell>Simpson exact when <m>n</m> is even</cell>
+      </row>
+      <row>
+        <cell>
+<m>\displaystyle \int_0^1 \frac{4}{1+x^2}\,dx</m></cell>
+        <cell><m>\pi</m></cell>
+        <cell>approximates <m>\pi</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>If your program fails one of these tests, do not move on.  A mistake in the loop limits
+or weights can produce convincing-looking wrong numbers.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+  <p>Build the three functions above in a spreadsheet, calculator, or programming language.
+Then complete the following.</p>
+
+    <ol>
+      <li>
+        <p>Verify the five tests in the table.</p>
+      </li>
+      <li>
+        <p>Use your program to approximate</p>
+          <md>\int_0^1 e^{-x^2}\,dx</md>
+        <p>with <m>n=4,8,16,32,64</m>.</p>
+      </li>
+      <li>
+        <p>Use your program to approximate</p>
+          <md>\int_0^1 \sqrt{x}\,dx</md>
+        <p>with the same values of <m>n</m>.</p>
+      </li>
+      <li>
+        <p>Use your program to approximate</p>
+          <md>\pi=4\int_0^1 \frac{1}{1+x^2}\,dx.</md>
+      </li>
+      <li>
+        <p>Make a table of errors for each rule.</p>
+      </li>
+      <li>
+        <p>For each rule, estimate the factor by which the error shrinks when <m>n</m> doubles.</p>
+      </li>
+      <li>
+        <p>Write one paragraph explaining when Simpson’s Rule looks dramatically better,
+and one paragraph explaining when its advantage is less dramatic.</p>
+      </li>
+      <li>
+        <p>Add a safety check to your Simpson function so that it refuses odd <m>n</m>.</p>
+      </li>
+      <li>
+        <p>Add an optional feature that keeps doubling <m>n</m> until two successive
+approximations differ by less than a chosen tolerance.</p>
+      </li>
+    </ol>
+
+  <note xml:id="note-sec-12-6-computing-experiments-49">
+    <title>What the project tests</title>
+      <p>A numerical answer should not arrive alone.  It should come with checks:</p>
+        <md>\text{Does the algorithm reproduce simple exact cases?}</md>
+        <md>\text{Do the approximations stabilize as \(n\) increases?}</md>
+        <md>\text{Do the observed errors match the smoothness of the function?}</md>
+        <md>\text{Does the code enforce the hypotheses of the rule?}</md>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-6-test-the-implementation">
+        <title>Why should a numerical program reproduce simple exact cases?</title>
+        <statement>
+          <p>
+            Before trusting a homemade integrator on a hard integral, we test it on cases whose exact values we know. In your own words, why is that a mathematical check and not just a programming convenience?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the code cannot recover a line, a quadratic, or another exact case the rule should get right, later decimals have no authority.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-final-computational-habit">
+    <title>A final computational habit</title>
+
+  <p>Numerical computation is not button pressing.  It is mathematical experimentation
+with responsibility.</p>
+
+  <p>For every numerical answer, ask:</p>
+
+    <ol>
+      <li>
+        <p>What exact quantity is being approximated?</p>
+      </li>
+      <li>
+        <p>Which rule or algorithm produced the approximation?</p>
+      </li>
+      <li>
+        <p>What hypotheses does the rule need?</p>
+      </li>
+      <li>
+        <p>What error estimate or stability evidence supports the answer?</p>
+      </li>
+      <li>
+        <p>What simple test case confirms that the implementation is working?</p>
+      </li>
+    </ol>
+
+  <p>This chapter began with numerical integration: approximating accumulated quantities.
+It then returned to numerical root-finding: approximating solutions of equations.</p>
+
+  <p>Both stories have the same lesson.</p>
+
+  <md>
+\text{An approximation is useful only when we understand its error.}
+</md>
+
+  <p>The next chapter carries this lesson into a new setting.  A differential equation gives a
+law for a derivative, but the unknown function may not have a formula we can write
+down.  Then we must do for functions what we have done for numbers and integrals:
+build approximations step by step, and ask how much to trust them.</p>
+
+  <exercise xml:id="checkpoint-12-6-five-questions">
+        <title>What five questions should travel with every numerical answer?</title>
+        <statement>
+          <p>
+            The section ends with a computational habit: name the exact quantity, the rule, the hypotheses, the error evidence, and a test case. In your own words, why would omitting any one of those five leave the answer incomplete?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A decimal without a method, a method without hypotheses, or a result without a check is still only a number with arithmetic attached.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

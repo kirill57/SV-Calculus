@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-7-applications-of-taylor-series">
+  <title>Applications of Taylor series</title>
+
+  <p>The last section collected Taylor series for the elementary functions:</p>
+
+  <md>e^x,\qquad \sin x,\qquad \cos x,\qquad \ln(1+x),\qquad \arctan x,
+\qquad (1+x)^p.</md>
+
+  <p>These formulas are not only identities.  They are tools.</p>
+
+  <p>A Taylor series can turn a difficult function into a polynomial calculation.  That makes
+it useful for estimating function values, evaluating limits, approximating integrals, and
+solving differential equations.</p>
+
+  <p>But the same warning remains:</p>
+
+  <md>
+\text{A Taylor approximation is useful only when its error is controlled.}
+</md>
+
+  <p>So every application in this section will keep the error visible.</p>
+
+  <subsection xml:id="subsec-estimating-function-values-taylor">
+    <title>Estimating function values</title>
+
+  <p>A calculator gives decimal values quickly.  Taylor series explain where those decimals can
+come from.</p>
+
+  <p>The basic idea is simple:</p>
+
+  <md>\text{replace the function by a polynomial near the center.}</md>
+
+  <p>The error estimate tells how many terms are needed.</p>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-1">
+    <title>estimating <m>e^{0.2}</m></title>
+    <statement>
+  <p>Use the Maclaurin series</p>
+
+  <md>e^x=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\frac{x^4}{4!}+\cdots.</md>
+
+  <p>At <m>x=0.2</m>, terms shrink quickly.  Use terms through degree <m>4</m>:</p>
+
+  <md>e^{0.2}
+\approx
+1+0.2+\frac{0.2^2}{2!}+\frac{0.2^3}{3!}+\frac{0.2^4}{4!}.</md>
+
+  <p>Compute:</p>
+
+  <md>1+0.2+0.02+\frac{0.008}{6}+\frac{0.0016}{24}
+=
+1.2214.</md>
+
+  <p>Now bound the error.  Taylor’s theorem gives</p>
+
+  <md>R_4(0.2)=\frac{e^c}{5!}(0.2)^5</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>0.2</m>.  Since</p>
+
+  <md>e^c&lt;2</md>
+
+  <p>on this interval,</p>
+
+  <md>|R_4(0.2)|
+&lt;
+\frac{2(0.2)^5}{5!}.</md>
+
+  <p>Because</p>
+
+  <md>(0.2)^5=0.00032
+\qquad\text{and}\qquad
+5!=120,</md>
+
+  <p>we get</p>
+
+  <md>|R_4(0.2)|&lt;0.000006.</md>
+
+  <p>Therefore</p>
+
+  <md>
+e^{0.2}\approx1.2214
+</md>
+
+  <p>with error less than <m>0.000006</m>.</p>
+
+  <p>The decimal is not just a guess.  It has a guarantee.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-2">
+    <title>estimating <m>\sin(0.5)</m> to six decimal places</title>
+    <statement>
+  <p>The sine series is</p>
+
+  <md>\sin x=
+x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots.</md>
+
+  <p>At <m>x=0.5</m>, the series is alternating and the term sizes decrease.  To get six decimal
+places, we want the error less than about</p>
+
+  <md>0.000001.</md>
+
+  <p>If we stop after the <m>x^5</m> term, the first omitted term has size</p>
+
+  <md>\frac{0.5^7}{7!}
+=
+\frac{0.0078125}{5040}
+&gt;
+0.000001.</md>
+
+  <p>So include the <m>x^7</m> term.  Then the first omitted term has size</p>
+
+  <md>\frac{0.5^9}{9!}
+&lt;0.000000006.</md>
+
+  <p>Thus</p>
+
+  <md>\sin(0.5)
+\approx
+0.5-\frac{0.5^3}{3!}
++\frac{0.5^5}{5!}
+-\frac{0.5^7}{7!}.</md>
+
+  <p>Compute:</p>
+
+  <md>0.5-\frac{0.125}{6}
++\frac{0.03125}{120}
+-\frac{0.0078125}{5040}
+=
+0.4794255\ldots.</md>
+
+  <p>So</p>
+
+  <md>
+\sin(0.5)\approx0.479426
+</md>
+
+  <p>to six decimal places.</p>
+
+  <warning xml:id="warn-sec-16-7-applications-of-taylor-series-115">
+    <title>Radian warning</title>
+      <p>The Taylor series for <m>\sin x</m> and <m>\cos x</m> use radians.  The approximation</p>
+        <md>\sin x\approx x</md>
+      <p>near <m>0</m> is true when <m>x</m> is measured in radians, not degrees.</p>
+  </warning>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Choosing the center</title>
+
+  <p>Taylor series work best near their center.</p>
+
+  <p>To estimate</p>
+
+  <md>e^{3.02},</md>
+
+  <p>the Maclaurin series for <m>e^x</m> would converge, but the input <m>3.02</m> is not small.
+A better idea is to write</p>
+
+  <md>e^{3.02}=e^3e^{0.02}.</md>
+
+  <p>Then the Taylor series is used only on</p>
+
+  <md>e^{0.02},</md>
+
+  <p>where the powers of <m>0.02</m> shrink very quickly.</p>
+
+  <p>This is a general strategy:</p>
+
+  <md>
+\text{move the hard part into a known value and use Taylor series on a small remainder.}
+</md>
+
+  <p>For logarithms, this often means rewriting the input so that it is close to <m>1</m>.  For
+trigonometric functions, it often means using symmetry or periodicity to reduce the
+angle.</p>
+
+  <table xml:id="tab-sec-16-7-applications-of-taylor-series-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>function</strong></cell>
+        <cell><strong>series center</strong></cell>
+        <cell><strong>best inputs</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>e^x</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>x</m> close to <m>0</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin x,\cos x</m></cell>
+        <cell><m>0</m></cell>
+        <cell>angles close to <m>0</m>, in radians</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\ln(1+x)</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1+x</m> close to <m>1</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\arctan x</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>x</m> close to <m>0</m></cell>
+      </row>
+      <row>
+        <cell><m>(1+x)^p</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1+x</m> close to <m>1</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>A Taylor series is local information.  A good computation respects that locality.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-7-choose-the-center">
+        <title>Why should a Taylor computation respect locality?</title>
+        <statement>
+          <p>
+            To estimate <m>e^{3.02}</m>, it is better to use a known value of <m>e^3</m> and expand only <m>e^{0.02}</m>. In your own words, why do Taylor series work best near their center, and what strategy does that suggest for logarithms and trigonometric functions as well?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Powers of a small remainder shrink quickly, and the remainder bound is controlled by distance from the center. Move the hard part into a known value; let Taylor work on a nearby leftover. Use radians for sine and cosine.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-evaluating-limits-taylor">
+    <title>Evaluating limits</title>
+
+  <p>Taylor series are especially powerful for limits where direct substitution gives</p>
+
+  <md>0/0.</md>
+
+  <p>They reveal which terms cancel and which term survives.</p>
+
+
+  <exercise xml:id="checkpoint-16-7-limits-by-cancellation">
+        <title>Why can Taylor series evaluate a limit that looks like cancellation?</title>
+        <statement>
+          <p>
+            A limit that pits two functions against each other often asks which derivative first distinguishes them. In your own words, why do you keep Taylor terms until the first surviving term after cancellation, and why is that still the derivative story in disguise?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Matching initial derivatives makes the first few terms cancel. The first unmatched term is the first local difference, which is exactly what a higher derivative measures.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-4">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\lim_{x\to0}\frac{1-\cos x}{x^2}.</md>
+
+  <p>Use the Maclaurin series</p>
+
+  <md>\cos x=
+1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots.</md>
+
+  <p>Then</p>
+
+  <md>1-\cos x
+=
+1-\left(1-\frac{x^2}{2!}+\frac{x^4}{4!}-\cdots\right).</md>
+
+  <p>So</p>
+
+  <md>1-\cos x
+=
+\frac{x^2}{2!}-\frac{x^4}{4!}+\cdots.</md>
+
+  <p>Divide by <m>x^2</m>:</p>
+
+  <md>\frac{1-\cos x}{x^2}
+=
+\frac12-\frac{x^2}{4!}+\cdots.</md>
+
+  <p>As <m>x\to0</m>, every remaining term with a positive power of <m>x</m> goes to <m>0</m>.  Therefore</p>
+
+  <md>
+\lim_{x\to0}\frac{1-\cos x}{x^2}=\frac12.
+</md>
+
+  <p>The series showed the true leading behavior:</p>
+
+  <md>1-\cos x\approx \frac{x^2}{2}</md>
+
+  <p>near <m>0</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-5">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\lim_{x\to0}\frac{e^x-1-x}{x^2}.</md>
+
+  <p>Use</p>
+
+  <md>e^x=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots.</md>
+
+  <p>Then</p>
+
+  <md>e^x-1-x
+=
+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots.</md>
+
+  <p>Divide by <m>x^2</m>:</p>
+
+  <md>\frac{e^x-1-x}{x^2}
+=
+\frac12+\frac{x}{3!}+\cdots.</md>
+
+  <p>Thus</p>
+
+  <md>
+\lim_{x\to0}\frac{e^x-1-x}{x^2}=\frac12.
+</md>
+
+  <p>The constant and linear terms cancel.  The quadratic term is the first surviving term.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-6">
+    <title>keep enough terms</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\lim_{x\to0}
+\frac{\ln(1+x)-x+\frac{x^2}{2}}{x^3}.</md>
+
+  <p>Use</p>
+
+  <md>\ln(1+x)=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+
+  <p>Then</p>
+
+  <md>\ln(1+x)-x+\frac{x^2}{2}
+=
+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+
+  <p>Divide by <m>x^3</m>:</p>
+
+  <md>\frac{\ln(1+x)-x+\frac{x^2}{2}}{x^3}
+=
+\frac13-\frac{x}{4}+\cdots.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\lim_{x\to0}
+\frac{\ln(1+x)-x+\frac{x^2}{2}}{x^3}
+=
+\frac13.
+</md>
+
+  <p>Here the first two nonzero Taylor terms of <m>\ln(1+x)</m> were not enough.  They canceled
+with the expression in the numerator.  We had to keep the first term that survived.</p>
+
+  <note xml:id="note-sec-16-7-applications-of-taylor-series-116">
+    <title>Taylor limit strategy</title>
+      <p>To evaluate a limit using Taylor series:</p>
+          <ol>
+      <li>
+        <p>Expand each function around the point of approach.</p>
+      </li>
+      <li>
+        <p>Keep enough terms to see the first nonzero term after cancellation.</p>
+      </li>
+      <li>
+        <p>Divide by the denominator.</p>
+      </li>
+      <li>
+        <p>Let <m>x</m> approach the point.</p>
+      </li>
+    </ol>
+  </note>
+
+  <p>This method is not separate from the derivative story.  Taylor series are built from
+derivatives.  A limit that asks about cancellation is often asking which derivative first
+distinguishes two functions.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-approximating-integrals-taylor">
+    <title>Approximating integrals</title>
+
+  <p>Some definite integrals have no elementary antiderivative.  Taylor series can still produce
+accurate approximations.</p>
+
+  <p>A classic example is</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx.</md>
+
+  <p>The function <m>e^{-x^2}</m> is smooth and easy to evaluate, but it has no elementary
+antiderivative.  Power series give another route.</p>
+
+  <p>Start with</p>
+
+  <md>e^u=
+1+u+\frac{u^2}{2!}+\frac{u^3}{3!}+\cdots.</md>
+
+  <p>Put</p>
+
+  <md>u=-x^2.</md>
+
+  <p>Then</p>
+
+  <md>e^{-x^2}
+=
+1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}
++\frac{x^8}{4!}-\frac{x^{10}}{5!}+\cdots.</md>
+
+  <p>Now integrate term by term from <m>0</m> to <m>1</m>:</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx
+=
+\int_0^1
+\left(
+1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}
++\frac{x^8}{4!}-\frac{x^{10}}{5!}+\cdots
+\right)dx.</md>
+
+  <p>So</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx
+=
+1-\frac13+\frac{1}{2!\cdot5}
+-\frac{1}{3!\cdot7}
++\frac{1}{4!\cdot9}
+-\frac{1}{5!\cdot11}
++\cdots.</md>
+
+  <p>Using terms through the <m>x^{10}</m> term gives</p>
+
+  <md>1-\frac13+\frac1{10}-\frac1{42}
++\frac1{216}-\frac1{1320}.</md>
+
+  <p>Thus</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx
+\approx
+0.746729\ldots.</md>
+
+  <p>The integrated series is alternating, and the next omitted term has size</p>
+
+  <md>\frac{1}{6!\cdot 13}
+=
+\frac1{9360}
+&lt;0.000107.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int_0^1 e^{-x^2}\,dx
+\approx0.746729
+</md>
+
+  <p>with error less than <m>0.000107</m>.</p>
+
+  <figure xml:id="fig-gaussian-taylor-approx">
+    <caption>On <m>[0,1]</m>, a Taylor polynomial gives a close approximation to <m>e^{-x^2}</m>, and integrating the polynomial gives an approximation to the area.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0.25, ymax=1.08,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1},
+    ytick={0.4,0.6,0.8,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.03)}, anchor=south west}
+]
+\addplot[very thick, domain=0:1, samples=200] {exp(-x^2)};
+\addlegendentry{\(e^{-x^2}\)}
+
+\addplot[thick, dashed, domain=0:1, samples=200] {1-x^2+x^4/2-x^6/6+x^8/24-x^10/120};
+\addlegendentry{\(1-x^2+\frac{x^4}{2!}-\cdots-\frac{x^{10}}{5!}\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example shows a new use of series.  A function may have no elementary
+antiderivative, but its Taylor series may integrate term by term into a useful numerical
+answer.</p>
+
+  <paragraphs>
+    <title>Another short example</title>
+
+  <p>Approximate</p>
+
+  <md>\int_0^{0.2}\frac{\sin x}{x}\,dx.</md>
+
+  <p>The integrand is not defined by the formula at <m>x=0</m>, but the limit exists.  Since</p>
+
+  <md>\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots,</md>
+
+  <p>we have, for <m>x\neq0</m>,</p>
+
+  <md>\frac{\sin x}{x}
+=
+1-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots.</md>
+
+  <p>The limiting value at <m>x=0</m> is <m>1</m>, so this series gives the continuous extension.</p>
+
+  <p>Integrate:</p>
+
+  <md>\int_0^{0.2}\frac{\sin x}{x}\,dx
+=
+\int_0^{0.2}
+\left(
+1-\frac{x^2}{3!}+\frac{x^4}{5!}-\cdots
+\right)dx.</md>
+
+  <p>Using the first two terms,</p>
+
+  <md>\int_0^{0.2}\frac{\sin x}{x}\,dx
+\approx
+0.2-\frac{(0.2)^3}{3\cdot 3!}.</md>
+
+  <p>So</p>
+
+  <md>\int_0^{0.2}\frac{\sin x}{x}\,dx
+\approx
+0.2-\frac{0.008}{18}
+=
+0.199555\ldots.</md>
+
+  <p>The next term has size</p>
+
+  <md>\frac{(0.2)^5}{5\cdot 5!}
+=
+\frac{0.00032}{600}
+&lt;0.000001.</md>
+
+  <p>Thus the approximation is accurate to within <m>0.000001</m>.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-7-integrals-without-antiderivatives">
+        <title>Why can a series approximate an integral with no elementary antiderivative?</title>
+        <statement>
+          <p>
+            The integrand <m>e^{-x^2}</m> has no elementary antiderivative, yet its Taylor series can be integrated term by term. In your own words, why does replacing a function by a polynomial near the center turn a hard integral into arithmetic, and why must the remainder still be watched?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Polynomials are easy to integrate. The series is justified on an interval inside the radius, so the integrated tail is a boundable error rather than an unknown mystery.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-solving-differential-equations-series">
+    <title>Solving differential equations by series</title>
+
+  <p>A differential equation gives a law for an unknown function.  Sometimes the solution is
+one of the familiar functions.  Sometimes it is not.</p>
+
+  <p>Power series give a way to build a solution from its coefficients.</p>
+
+  <p>The idea is to assume</p>
+
+  <md>y=a_0+a_1x+a_2x^2+a_3x^3+\cdots,</md>
+
+  <p>substitute into the differential equation, and match coefficients.</p>
+
+
+  <exercise xml:id="checkpoint-16-7-series-as-unknown-function">
+        <title>Why can a differential equation be solved by matching coefficients?</title>
+        <statement>
+          <p>
+            Assuming <m>y=\sum a_n x^n</m> and substituting into a differential equation produces relations among the coefficients. In your own words, why is that a way to build a solution from local data, and why must an application still report an error bound rather than a polynomial alone?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A differential equation is a law for derivatives. A power series stores those derivatives as coefficients. The resulting algorithm is trustworthy only when the leftover terms are controlled.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-8">
+    <title>the sine function from a differential equation</title>
+    <statement>
+  <p>Solve</p>
+
+  <md>y''+y=0,
+\qquad
+y(0)=0,
+\qquad
+y'(0)=1</md>
+
+  <p>by a power series.</p>
+
+  <p>Assume</p>
+
+  <md>y=\sum_{n=0}^{\infty}a_nx^n.</md>
+
+  <p>Then</p>
+
+  <md>y'=\sum_{n=1}^{\infty}n a_n x^{n-1},</md>
+
+  <p>and</p>
+
+  <md>y''=\sum_{n=2}^{\infty}n(n-1)a_nx^{n-2}.</md>
+
+  <p>Rewrite <m>y”</m> so that the power is <m>x^n</m>:</p>
+
+  <md>y''=
+\sum_{n=0}^{\infty}
+(n+2)(n+1)a_{n+2}x^n.</md>
+
+  <p>The equation <m>y”+y=0</m> becomes</p>
+
+  <md>\sum_{n=0}^{\infty}
+\bigl((n+2)(n+1)a_{n+2}+a_n\bigr)x^n=0.</md>
+
+  <p>For this power series to be zero for all <m>x</m> near <m>0</m>, each coefficient must be zero:</p>
+
+  <md>(n+2)(n+1)a_{n+2}+a_n=0.</md>
+
+  <p>Thus</p>
+
+  <md>
+a_{n+2}=-\frac{a_n}{(n+2)(n+1)}.
+</md>
+
+  <p>The initial conditions give</p>
+
+  <md>y(0)=a_0=0,</md>
+
+  <p>and</p>
+
+  <md>y'(0)=a_1=1.</md>
+
+  <p>Now use the recurrence.</p>
+
+  <p>Since <m>a_0=0</m>,</p>
+
+  <md>a_2=-\frac{a_0}{2\cdot1}=0.</md>
+
+  <p>Since <m>a_1=1</m>,</p>
+
+  <md>a_3=-\frac{a_1}{3\cdot2}=-\frac1{3!}.</md>
+
+  <p>Then</p>
+
+  <md>a_4=0,</md>
+
+  <p>and</p>
+
+  <md>a_5=-\frac{a_3}{5\cdot4}
+=
+\frac1{5!}.</md>
+
+  <p>Continuing,</p>
+
+  <md>a_7=-\frac1{7!},
+\qquad
+a_9=\frac1{9!},
+\qquad\ldots.</md>
+
+  <p>So</p>
+
+  <md>y=x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots.</md>
+
+  <p>Therefore</p>
+
+  <md>
+y=\sin x.
+</md>
+
+  <p>The sine function is not just a triangle ratio.  It is also the solution of the differential
+equation</p>
+
+  <md>y''+y=0</md>
+
+  <p>with the initial conditions</p>
+
+  <md>y(0)=0,
+\qquad
+y'(0)=1.</md>
+
+  <p>That fact will become important when we discuss oscillation.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-9">
+    <title>a series solution that is not elementary</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>y''=xy,
+\qquad
+y(0)=1,
+\qquad
+y'(0)=0.</md>
+
+  <p>Again assume</p>
+
+  <md>y=\sum_{n=0}^{\infty}a_nx^n.</md>
+
+  <p>Then</p>
+
+  <md>y''=
+\sum_{n=0}^{\infty}
+(n+2)(n+1)a_{n+2}x^n.</md>
+
+  <p>Also,</p>
+
+  <md>xy=x\sum_{n=0}^{\infty}a_nx^n
+=
+a_0x+a_1x^2+a_2x^3+\cdots.</md>
+
+  <p>The coefficient of <m>x^0</m> on the right is <m>0</m>, so</p>
+
+  <md>2a_2=0,
+\qquad
+a_2=0.</md>
+
+  <p>For <m>n\ge1</m>, the coefficient of <m>x^n</m> on the right is <m>a_{n-1}</m>.  Hence</p>
+
+  <md>(n+2)(n+1)a_{n+2}=a_{n-1},
+\qquad n\ge1.</md>
+
+  <p>The initial conditions give</p>
+
+  <md>a_0=1,
+\qquad
+a_1=0.</md>
+
+  <p>Now compute the first few coefficients:</p>
+
+  <md>a_2=0,</md>
+
+  <md>a_3=\frac{a_0}{3\cdot2}=\frac16,</md>
+
+  <md>a_4=\frac{a_1}{4\cdot3}=0,</md>
+
+  <md>a_5=\frac{a_2}{5\cdot4}=0,</md>
+
+  <md>a_6=\frac{a_3}{6\cdot5}=\frac1{180}.</md>
+
+  <p>So the solution begins</p>
+
+  <md>
+y=1+\frac{x^3}{6}+\frac{x^6}{180}+\cdots.
+</md>
+
+  <p>This differential equation leads to functions beyond the usual elementary list.  The
+series is not a trick for re-discovering old functions; it is a way to create new ones.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-error-bounds-applications-taylor">
+    <title>Error bounds in applications</title>
+
+  <p>In applications, an approximation is judged by the error the situation can tolerate.</p>
+
+  <p>A navigation problem, a physics simulation, and a classroom estimate may all use the
+same Taylor series, but they may require different numbers of terms.</p>
+
+  <example xml:id="ex-sec-16-7-applications-of-taylor-series-10">
+    <title>the small-angle approximation</title>
+    <statement>
+  <p>For small angles, in radians,</p>
+
+  <md>\sin \theta\approx \theta.</md>
+
+  <p>Taylor’s theorem explains the error.  Since</p>
+
+  <md>\sin \theta
+=
+\theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}-\cdots,</md>
+
+  <p>the first omitted term after using <m>\sin\theta\approx\theta</m> is approximately</p>
+
+  <md>\frac{\theta^3}{6}.</md>
+
+  <p>More rigorously, Taylor’s theorem gives</p>
+
+  <md>\sin\theta
+=
+\theta+\frac{f'''(c)}{3!}\theta^3</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>\theta</m>.  Since</p>
+
+  <md>|f'''(c)|=|-\cos c|\le1,</md>
+
+  <p>we have</p>
+
+  <md>
+|\sin\theta-\theta|\le \frac{|\theta|^3}{6}.
+</md>
+
+  <p>If</p>
+
+  <md>|\theta|\le0.1,</md>
+
+  <p>then</p>
+
+  <md>|\sin\theta-\theta|
+\le
+\frac{0.1^3}{6}
+=
+0.000166\ldots.</md>
+
+  <p>So for angles within <m>0.1</m> radian of <m>0</m>, the approximation <m>\sin\theta\approx\theta</m>
+has absolute error less than <m>0.00017</m>.</p>
+
+  <p>For <m>5^\circ</m>,</p>
+
+  <md>\theta=\frac{5\pi}{180}=\frac{\pi}{36}</md>
+
+  <p>radians, so</p>
+
+  <md>|\sin\theta-\theta|
+\le
+\frac{(\pi/36)^3}{6}
+&lt;0.00012.</md>
+
+  <p>The approximation is good because the angle is small in radians.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Choosing enough terms from a tolerance</title>
+
+  <p>Suppose we want to approximate</p>
+
+  <md>\cos(0.4)</md>
+
+  <p>with error less than</p>
+
+  <md>0.00001.</md>
+
+  <p>The cosine series is alternating:</p>
+
+  <md>\cos x
+=
+1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots.</md>
+
+  <p>If we use terms through <m>x^4</m>, the first omitted term has size</p>
+
+  <md>\frac{0.4^6}{6!}.</md>
+
+  <p>Now</p>
+
+  <md>0.4^6=0.004096
+\qquad\text{and}\qquad
+6!=720.</md>
+
+  <p>So</p>
+
+  <md>\frac{0.4^6}{6!}
+=
+\frac{0.004096}{720}
+&lt;0.000006.</md>
+
+  <p>This is already less than <m>0.00001</m>.  Therefore</p>
+
+  <md>\cos(0.4)
+\approx
+1-\frac{0.4^2}{2!}+\frac{0.4^4}{4!}</md>
+
+  <p>meets the required tolerance.</p>
+
+  <p>Compute:</p>
+
+  <md>1-\frac{0.16}{2}+\frac{0.0256}{24}
+=
+1-0.08+0.001066\ldots
+=
+0.921066\ldots.</md>
+
+  <p>Thus</p>
+
+  <md>
+\cos(0.4)\approx0.921067
+</md>
+
+  <p>with error less than <m>0.00001</m>.</p>
+
+  <note xml:id="note-sec-16-7-applications-of-taylor-series-117">
+    <title>Practical Taylor workflow</title>
+          <ol>
+      <li>
+        <p>Choose a center close to the input.</p>
+      </li>
+      <li>
+        <p>Write the Taylor series.</p>
+      </li>
+      <li>
+        <p>Use enough terms so that the remainder is below the desired tolerance.</p>
+      </li>
+      <li>
+        <p>State the approximation and the error bound together.</p>
+      </li>
+    </ol>
+  </note>
+
+  <p>Taylor series turn functions into algorithms.  But the algorithms work because their
+errors can be bounded.  The next section explains, in a preview form, why power series
+allow such safe term-by-term work inside their radius of convergence.</p>
+  </paragraphs>
+  </subsection>
+
+
+
+</section>

@@ -1,26 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-precise-limit-definition">
+<section xml:id="sec-3-4-the-precise-definition-of-a-limit">
   <title>The precise definition of a limit</title>
 
-  <p>The word <q>approaches</q> has done a lot of work. It helped us describe average velocities, holes, jumps, asymptotes, and end behavior. But pictures and tables can only suggest a limit. To prove a limit, we need a precise test.</p>
+  <p>The word “approaches” has done a lot of work.  It helped us describe average velocities, holes, jumps, asymptotes, and end behavior.  But pictures and tables can only suggest a limit.  To prove a limit, we need a precise test.</p>
 
   <p>The test begins with error.</p>
 
   <p>For <m>s(t)=t^2</m>, the average velocity from <m>t=2</m> to <m>t=2+h</m> is</p>
-  <md>A(h)=4+h, \qquad h\neq 0.</md>
+
+  <md>A(h)=4+h,
+\qquad h\neq0.</md>
 
   <p>We said that</p>
-  <md>A(h)\to 4 \qquad\text{as}\qquad h\to 0.</md>
 
-  <p>Why? Because the error is</p>
-  <md>|A(h)-4| = |(4+h)-4| = |h|.</md>
+  <md>A(h)\to4
+\qquad\text{as}\qquad
+h\to0.</md>
+
+  <p>Why?  Because the error is</p>
+
+  <md>|A(h)-4|
+=
+|(4+h)-4|
+=
+|h|.</md>
 
   <p>If someone wants the output error to be less than <m>0.01</m>, we can require</p>
-  <md>|h|\lt 0.01.</md>
+
+  <md>|h|&lt;0.01.</md>
 
   <p>If someone wants the output error to be less than <m>0.000001</m>, we can require</p>
-  <md>|h|\lt 0.000001.</md>
+
+  <md>|h|&lt;0.000001.</md>
 
   <p>Every requested output accuracy can be met by choosing a small enough input window around <m>0</m>.</p>
 
@@ -29,273 +41,568 @@
   <subsection xml:id="subsec-epsilon-challenge">
     <title>The epsilon challenge</title>
 
-    <p>The Greek letter <m>\varepsilon</m>, pronounced <q>epsilon,</q> will represent the allowed output error.</p>
+  <p>The Greek letter <m>\varepsilon</m>, pronounced “epsilon,” will represent the allowed output error.</p>
 
-    <p>To say that <m>f(x)</m> is within <m>\varepsilon</m> of <m>L</m> means</p>
-    <md>|f(x)-L|\lt \varepsilon.</md>
+  <p>To say that <m>f(x)</m> is within <m>\varepsilon</m> of <m>L</m> means</p>
 
-    <p>This inequality says that <m>f(x)</m> lies in the interval</p>
-    <md>(L-\varepsilon, L+\varepsilon).</md>
+  <md>|f(x)-L|&lt;\varepsilon.</md>
 
-    <p>The number <m>\varepsilon</m> is not one special tiny number. It means <em>any</em> positive tolerance.</p>
-    <md>\varepsilon=0.1,\quad \varepsilon=0.001,\quad \varepsilon=10^{-9}</md>
-    <p>must all be allowed.</p>
+  <p>This inequality says that <m>f(x)</m> lies in the interval</p>
 
-    <p>A limit claim must survive every epsilon challenge.</p>
+  <md>(L-\varepsilon,L+\varepsilon).</md>
 
-    <principle xml:id="principle-epsilon-challenge">
-      <title>The epsilon challenge</title>
-      <statement>
-        <p>To prove</p>
+  <p>The number <m>\varepsilon</m> is not one special tiny number.  It means <em>any</em> positive tolerance.</p>
+
+  <md>\varepsilon=0.1,\quad
+\varepsilon=0.001,\quad
+\varepsilon=10^{-9}</md>
+
+  <p>must all be allowed.</p>
+
+  <p>A limit claim must survive every epsilon challenge.</p>
+
+  <note xml:id="note-sec-3-4-the-precise-definition-of-a-limit-84">
+    <title>The epsilon challenge</title>
+      <p>To prove</p>
         <md>\lim_{x\to a}f(x)=L,</md>
-        <p>we must be able to make</p>
-        <md>|f(x)-L|\lt \varepsilon</md>
-        <p>for every <m>\varepsilon\gt 0</m>.</p>
-      </statement>
-    </principle>
+      <p>we must be able to make</p>
+        <md>|f(x)-L|&lt;\varepsilon</md>
+      <p>for every <m>\varepsilon&gt;0</m>.</p>
+  </note>
 
-    <p>The challenger chooses the output tolerance <m>\varepsilon</m>. We must respond by telling how close <m>x</m> must be to <m>a</m>.</p>
+  <p>The challenger chooses the output tolerance <m>\varepsilon</m>.  We must respond by telling how close <m>x</m> must be to <m>a</m>.</p>
+
+  <exercise xml:id="checkpoint-3-4-epsilon-challenge">
+        <title>What challenge must every limit claim survive?</title>
+        <statement>
+          <p>
+            The letter <m>\varepsilon</m> stands for an allowed output error, and it is not one special tiny number. In your own words, what is the epsilon challenge, and why must a limit claim work for every positive tolerance rather than for one convenient choice?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A table can meet a few tolerances. A limit promises that any requested closeness of outputs can be achieved. The challenger chooses <m>\varepsilon</m> first.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-delta-response">
     <title>Delta as a response</title>
 
-    <p>The Greek letter <m>\delta</m>, pronounced <q>delta,</q> will represent the allowed input error.</p>
+  <p>The Greek letter <m>\delta</m>, pronounced “delta,” will represent the allowed input error.</p>
 
-    <p>To say that <m>x</m> is within <m>\delta</m> of <m>a</m>, but not equal to <m>a</m>, means</p>
-    <md>0\lt |x-a|\lt \delta.</md>
+  <p>To say that <m>x</m> is within <m>\delta</m> of <m>a</m>, but not equal to <m>a</m>, means</p>
 
-    <p>The condition <m>|x-a|\lt \delta</m> places <m>x</m> inside the interval <m>(a-\delta, a+\delta)</m>.</p>
-    <p>The condition <m>0\lt |x-a|</m> removes the point <m>x=a</m>. This matters because a limit watches nearby values, not necessarily the value at the point.</p>
+  <md>0&lt;|x-a|&lt;\delta.</md>
 
-    <p>Now we can state the definition.</p>
+  <p>The condition</p>
 
-    <definition xml:id="def-precise-limit">
-      <title>Precise definition of a finite limit</title>
-      <statement>
-        <p>We write</p>
+  <md>|x-a|&lt;\delta</md>
+
+  <p>places <m>x</m> inside the interval</p>
+
+  <md>(a-\delta,a+\delta).</md>
+
+  <p>The condition</p>
+
+  <md>0&lt;|x-a|</md>
+
+  <p>removes the point <m>x=a</m>.  This matters because a limit watches nearby values, not necessarily the value at the point.</p>
+
+  <p>Now we can state the definition.</p>
+
+  <definition xml:id="def-sec-3-4-the-precise-definition-of-a-limit-85">
+    <title>Precise definition of a finite limit</title>
+    <statement>
+      <p>We write</p>
         <md>\lim_{x\to a}f(x)=L</md>
-        <p>if the following condition holds:</p>
-        <p>For every <m>\varepsilon\gt 0</m>, there exists a <m>\delta\gt 0</m> such that whenever <m>x</m> is in the domain of <m>f</m> and</p>
-        <md>0\lt |x-a|\lt \delta,</md>
-        <p>we have</p>
-        <md>|f(x)-L|\lt \varepsilon.</md>
-      </statement>
-    </definition>
+      <p>if the following condition holds:</p>
+      <p>For every <m>\varepsilon&gt;0</m>, there exists a <m>\delta&gt;0</m> such that whenever <m>x</m> is in the domain of <m>f</m> and</p>
+        <md>0&lt;|x-a|&lt;\delta,</md>
+      <p>we have</p>
+        <md>|f(x)-L|&lt;\varepsilon.</md>
+    </statement>
+  </definition>
 
-    <p>The order matters: first comes <m>\varepsilon</m>, then we choose <m>\delta</m>.</p>
-    <p>The value of <m>\delta</m> is allowed to depend on <m>\varepsilon</m>. Usually, smaller <m>\varepsilon</m> requires smaller <m>\delta</m>.</p>
+  <p>The order matters.</p>
 
-    <p><em>The definition in one sentence.</em> The limit of <m>f(x)</m> as <m>x\to a</m> is <m>L</m> if every output window around <m>L</m> contains all nearby values <m>f(x)</m>, once <m>x</m> is restricted to a small enough punctured input window around <m>a</m>.</p>
+  <md>
+\text{First comes }\varepsilon.
+\quad
+\text{Then we choose }\delta.
+</md>
+
+  <p>The value of <m>\delta</m> is allowed to depend on <m>\varepsilon</m>.  Usually, smaller <m>\varepsilon</m> requires smaller <m>\delta</m>.</p>
+
+  <paragraphs>
+    <title>The definition in one sentence</title>
+
+  <p>The limit of <m>f(x)</m> as <m>x\to a</m> is <m>L</m> if every output window around <m>L</m> contains all nearby values <m>f(x)</m>, once <m>x</m> is restricted to a small enough punctured input window around <m>a</m>.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-4-delta-as-response">
+        <title>Why does <m>\delta</m> come after <m>\varepsilon</m>?</title>
+        <statement>
+          <p>
+            The letter <m>\delta</m> is an allowed input error: a response, not a challenge. In your own words, why does the order <q>first <m>\varepsilon</m>, then <m>\delta</m></q> matter, and what does a successful <m>\delta</m> guarantee about nearby outputs?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            You do not get to name the output tolerance. You only get to name how close the input must be. Once <m>0&lt;|x-a|&lt;\delta</m>, the outputs must all lie inside the chosen <m>\varepsilon</m>-window around <m>L</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-why-punctured">
     <title>Why the point <m>x=a</m> is excluded</title>
 
-    <p>The condition <m>0\lt |x-a|</m> is not a technical nuisance. It preserves the meaning of a limit.</p>
+  <p>The condition</p>
 
-    <p>Recall the function</p>
-    <md>
-      F(x)=
-      \begin{cases}
-      2x+1, \amp x\neq 1,\\
-      -1, \amp x=1.
-      \end{cases}
-    </md>
+  <md>0&lt;|x-a|</md>
 
-    <p>We know that <m>\lim_{x\to 1}F(x)=3</m>, even though <m>F(1)=-1</m>.</p>
+  <p>is not a technical nuisance.  It preserves the meaning of a limit.</p>
 
-    <p>If the definition forced us to check <m>x=1</m>, then the output error from <m>3</m> would be</p>
-    <md>|F(1)-3|=|-1-3|=4.</md>
-    <p>For <m>\varepsilon=1</m>, this would fail. But that failure should not destroy the limit, because a limit is about nearby values.</p>
+  <p>Recall the function</p>
 
-    <p>The puncture <m>0\lt |x-a|</m> lets the limit ignore the value at <m>a</m>.</p>
-    <p>Limits are local around the point, not necessarily at the point.</p>
+  <md>
+    <mrow>F(x)=
+\begin{cases}
+2x+1, \amp x\neq1,</mrow>
+    <mrow>-1, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>We know that</p>
+
+  <md>\lim_{x\to1}F(x)=3,</md>
+
+  <p>even though</p>
+
+  <md>F(1)=-1.</md>
+
+  <p>If the definition forced us to check <m>x=1</m>, then the output error from <m>3</m> would be</p>
+
+  <md>|F(1)-3|=|-1-3|=4.</md>
+
+  <p>For <m>\varepsilon=1</m>, this would fail.  But that failure should not destroy the limit, because a limit is about nearby values.</p>
+
+  <p>The puncture</p>
+
+  <md>0&lt;|x-a|</md>
+
+  <p>lets the limit ignore the value at <m>a</m>.</p>
+
+  <md>\text{Limits are local around the point, not necessarily at the point.}</md>
+
+  <exercise xml:id="checkpoint-3-4-why-punctured">
+        <title>Why does the definition puncture the point <m>x=a</m>?</title>
+        <statement>
+          <p>
+            The condition <m>0&lt;|x-a|</m> removes the center of the input window. In your own words, why is that puncture not a technical nuisance, and what would go wrong if a limit were forced to check the value at the point itself?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A limit is about nearby values. If the assigned height at <m>a</m> is missing or wrong, checking <m>x=a</m> would unfairly destroy a claim that the neighborhood is already making.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-proving-simple-limits">
     <title>Proving simple limits</title>
 
-    <p>An <m>\varepsilon</m>-<m>\delta</m> proof often begins by working backward.</p>
+  <p>An <m>\varepsilon</m>-<m>\delta</m> proof often begins by working backward.</p>
 
-    <p>We ask: What condition on <m>|x-a|</m> would force <m>|f(x)-L|\lt \varepsilon</m>?</p>
-    <p>Then we choose <m>\delta</m> to guarantee that condition.</p>
+  <p>We ask:</p>
 
-    <example xml:id="ex-epsilon-delta-linear">
-      <title>A linear function</title>
-      <statement>
-        <p>Prove that</p>
-        <md>\lim_{x\to 3}(2x+5)=11.</md>
-        <p>We need to make <m>|(2x+5)-11|\lt \varepsilon</m>. Simplify the error:</p>
-        <md>|(2x+5)-11| = |2x-6| = 2|x-3|.</md>
-        <p>So it is enough to require <m>2|x-3|\lt \varepsilon</m>, that is, <m>|x-3|\lt \frac{\varepsilon}{2}</m>. This tells us what to choose: <m>\delta=\frac{\varepsilon}{2}</m>.</p>
-      </statement>
-      <proof>
-        <p>Let <m>\varepsilon\gt 0</m> be given. Choose <m>\delta=\frac{\varepsilon}{2}</m>.</p>
-        <p>If <m>0\lt |x-3|\lt \delta</m>, then</p>
-        <md>|(2x+5)-11| = 2|x-3| \lt 2\delta = 2\cdot \frac{\varepsilon}{2} = \varepsilon.</md>
-        <p>Therefore</p>
-        <md>\lim_{x\to 3}(2x+5)=11.</md>
-      </proof>
-    </example>
+  <md>\text{What condition on }|x-a|\text{ would force }|f(x)-L|&lt;\varepsilon?</md>
 
-    <p>The proof does not say that <m>x</m> is close to <m>3</m> in vague language. It gives a rule. If the requested output error is <m>\varepsilon</m>, then the input error <m>\delta=\varepsilon/2</m> is enough.</p>
+  <p>Then we choose <m>\delta</m> to guarantee that condition.</p>
 
-    <example xml:id="ex-epsilon-delta-quadratic">
-      <title>A quadratic function</title>
-      <statement>
-        <p>Prove that</p>
-        <md>\lim_{x\to 2}x^2=4.</md>
-        <p>The output error is <m>|x^2-4|</m>. Factor:</p>
-        <md>|x^2-4| = |x-2||x+2|.</md>
-        <p>The factor <m>|x-2|</m> is the input error. The other factor, <m>|x+2|</m>, must be controlled.</p>
-        <p>If <m>x</m> is close to <m>2</m>, then <m>x+2</m> is close to <m>4</m>. We only need a simple bound, not a perfect one. Require <m>|x-2|\lt 1</m>. Then <m>1\lt x\lt 3</m>, so <m>3\lt x+2\lt 5</m>. Thus <m>|x+2|\lt 5</m>.</p>
-        <p>Therefore, when <m>|x-2|\lt 1</m>,</p>
-        <md>|x^2-4| = |x-2||x+2| \lt 5|x-2|.</md>
-        <p>To make this less than <m>\varepsilon</m>, it is enough to require <m>5|x-2|\lt \varepsilon</m>, or <m>|x-2|\lt \frac{\varepsilon}{5}</m>.</p>
-        <p>We need both requirements: <m>|x-2|\lt 1</m> and <m>|x-2|\lt \frac{\varepsilon}{5}</m>. So choose the smaller of the two: <m>\delta=\min\left(1,\frac{\varepsilon}{5}\right)</m>.</p>
-      </statement>
-      <proof>
-        <p>Let <m>\varepsilon\gt 0</m> be given. Choose</p>
+  <example xml:id="ex-sec-3-4-the-precise-definition-of-a-limit-2">
+    <title>a linear function</title>
+    <statement>
+  <p>Prove that</p>
+
+  <md>\lim_{x\to3}(2x+5)=11.</md>
+
+  <p>We need to make</p>
+
+  <md>|(2x+5)-11|&lt;\varepsilon.</md>
+
+  <p>Simplify the error:</p>
+
+  <md>|(2x+5)-11|
+=
+|2x-6|
+=
+2|x-3|.</md>
+
+  <p>So it is enough to require</p>
+
+  <md>2|x-3|&lt;\varepsilon.</md>
+
+  <p>That is,</p>
+
+  <md>|x-3|&lt;\frac{\varepsilon}{2}.</md>
+
+  <p>This tells us what to choose:</p>
+
+  <md>\delta=\frac{\varepsilon}{2}.</md>
+
+  <note xml:id="note-sec-3-4-the-precise-definition-of-a-limit-86">
+    <title>Proof</title>
+      <p>Let <m>\varepsilon&gt;0</m> be given.  Choose</p>
+        <md>\delta=\frac{\varepsilon}{2}.</md>
+      <p>If</p>
+        <md>0&lt;|x-3|&lt;\delta,</md>
+      <p>then</p>
+        <md>|(2x+5)-11|
+=
+2|x-3|
+&lt;
+2\delta
+=
+2\cdot \frac{\varepsilon}{2}
+=
+\varepsilon.</md>
+      <p>Therefore</p>
+        <md>\lim_{x\to3}(2x+5)=11.</md>
+  </note>
+
+  <p>The proof does not say that <m>x</m> is close to <m>3</m> in vague language.  It gives a rule.  If the requested output error is <m>\varepsilon</m>, then the input error <m>\delta=\varepsilon/2</m> is enough.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-3-4-the-precise-definition-of-a-limit-3">
+    <title>a quadratic function</title>
+    <statement>
+  <p>Prove that</p>
+
+  <md>\lim_{x\to2}x^2=4.</md>
+
+  <p>The output error is</p>
+
+  <md>|x^2-4|.</md>
+
+  <p>Factor:</p>
+
+  <md>|x^2-4|
+=
+|x-2||x+2|.</md>
+
+  <p>The factor <m>|x-2|</m> is the input error.  The other factor, <m>|x+2|</m>, must be controlled.</p>
+
+  <p>If <m>x</m> is close to <m>2</m>, then <m>x+2</m> is close to <m>4</m>.  We only need a simple bound, not a perfect one.  Require</p>
+
+  <md>|x-2|&lt;1.</md>
+
+  <p>Then</p>
+
+  <md>1&lt;x&lt;3,</md>
+
+  <p>so</p>
+
+  <md>3&lt;x+2&lt;5.</md>
+
+  <p>Thus</p>
+
+  <md>|x+2|&lt;5.</md>
+
+  <p>Therefore, when <m>|x-2|&lt;1</m>,</p>
+
+  <md>|x^2-4|
+=
+|x-2||x+2|
+&lt;
+5|x-2|.</md>
+
+  <p>To make this less than <m>\varepsilon</m>, it is enough to require</p>
+
+  <md>5|x-2|&lt;\varepsilon,</md>
+
+  <p>or</p>
+
+  <md>|x-2|&lt;\frac{\varepsilon}{5}.</md>
+
+  <p>We need both requirements:</p>
+
+  <md>|x-2|&lt;1</md>
+
+  <p>and</p>
+
+  <md>|x-2|&lt;\frac{\varepsilon}{5}.</md>
+
+  <p>So choose the smaller of the two:</p>
+
+  <md>\delta=\min\left(1,\frac{\varepsilon}{5}\right).</md>
+
+  <note xml:id="note-sec-3-4-the-precise-definition-of-a-limit-87">
+    <title>Proof</title>
+      <p>Let <m>\varepsilon&gt;0</m> be given.  Choose</p>
         <md>\delta=\min\left(1,\frac{\varepsilon}{5}\right).</md>
-        <p>If <m>0\lt |x-2|\lt \delta</m>, then <m>|x-2|\lt 1</m>, so <m>|x+2|\lt 5</m>. Also, <m>|x-2|\lt \frac{\varepsilon}{5}</m>.</p>
-        <p>Therefore</p>
-        <md>|x^2-4| = |x-2||x+2| \lt 5|x-2| \lt 5\cdot \frac{\varepsilon}{5} = \varepsilon.</md>
-        <p>Hence</p>
-        <md>\lim_{x\to 2}x^2=4.</md>
-      </proof>
-    </example>
+      <p>If</p>
+        <md>0&lt;|x-2|&lt;\delta,</md>
+      <p>then <m>|x-2|&lt;1</m>, so</p>
+        <md>|x+2|&lt;5.</md>
+      <p>Also,</p>
+        <md>|x-2|&lt;\frac{\varepsilon}{5}.</md>
+      <p>Therefore</p>
+        <md>|x^2-4|
+=
+|x-2||x+2|
+&lt;
+5|x-2|
+&lt;
+5\cdot \frac{\varepsilon}{5}
+=
+\varepsilon.</md>
+      <p>Hence</p>
+        <md>\lim_{x\to2}x^2=4.</md>
+  </note>
 
-    <p>This proof shows a common pattern. We first restrict <m>x</m> to a simple neighborhood of <m>a</m> so that the extra factors stay bounded. Then we choose a smaller <m>\delta</m> if needed to meet the desired error.</p>
+  <p>This proof shows a common pattern.  We first restrict <m>x</m> to a simple neighborhood of <m>a</m> so that the extra factors stay bounded.  Then we choose a smaller <m>\delta</m> if needed to meet the desired error.</p>
+    </statement>
+  </example>
 
-    <example xml:id="ex-epsilon-delta-removable">
-      <title>A removable discontinuity</title>
-      <statement>
-        <p>Prove that</p>
-        <md>\lim_{x\to 1}\frac{x^2-1}{x-1}=2.</md>
-        <p>For <m>x\neq 1</m>,</p>
-        <md>\frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1.</md>
-        <p>The limit definition already assumes <m>0\lt |x-1|</m>, so <m>x\neq 1</m>. Therefore the cancellation is legal for every <m>x</m> being tested.</p>
-        <p>The output error is</p>
-        <md>\left|\frac{x^2-1}{x-1}-2\right| = |(x+1)-2| = |x-1|.</md>
-        <p>So choose <m>\delta=\varepsilon</m>.</p>
-      </statement>
-      <proof>
-        <p>Let <m>\varepsilon\gt 0</m> be given. Choose <m>\delta=\varepsilon</m>.</p>
-        <p>If <m>0\lt |x-1|\lt \delta</m>, then <m>x\neq 1</m>, and</p>
-        <md>\left|\frac{x^2-1}{x-1}-2\right| = |x-1| \lt \delta = \varepsilon.</md>
-        <p>Therefore</p>
-        <md>\lim_{x\to 1}\frac{x^2-1}{x-1}=2.</md>
-      </proof>
-    </example>
+  <example xml:id="ex-sec-3-4-the-precise-definition-of-a-limit-4">
+    <title>a removable discontinuity</title>
+    <statement>
+  <p>Prove that</p>
 
-    <p>The hole at <m>x=1</m> causes no trouble. The definition is built to ignore that point.</p>
+  <md>\lim_{x\to1}\frac{x^2-1}{x-1}=2.</md>
+
+  <p>For <m>x\neq1</m>,</p>
+
+  <md>\frac{x^2-1}{x-1}
+=
+\frac{(x-1)(x+1)}{x-1}
+=
+x+1.</md>
+
+  <p>The limit definition already assumes</p>
+
+  <md>0&lt;|x-1|,</md>
+
+  <p>so <m>x\neq1</m>.  Therefore the cancellation is legal for every <m>x</m> being tested.</p>
+
+  <p>The output error is</p>
+
+  <md>\left|\frac{x^2-1}{x-1}-2\right|
+=
+|(x+1)-2|
+=
+|x-1|.</md>
+
+  <p>So choose</p>
+
+  <md>\delta=\varepsilon.</md>
+
+  <note xml:id="note-sec-3-4-the-precise-definition-of-a-limit-88">
+    <title>Proof</title>
+      <p>Let <m>\varepsilon&gt;0</m> be given.  Choose</p>
+        <md>\delta=\varepsilon.</md>
+      <p>If</p>
+        <md>0&lt;|x-1|&lt;\delta,</md>
+      <p>then <m>x\neq1</m>, and</p>
+        <md>\left|\frac{x^2-1}{x-1}-2\right|
+=
+|x-1|
+&lt;
+\delta
+=
+\varepsilon.</md>
+      <p>Therefore</p>
+        <md>\lim_{x\to1}\frac{x^2-1}{x-1}=2.</md>
+  </note>
+
+  <p>The hole at <m>x=1</m> causes no trouble.  The definition is built to ignore that point.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-epsilon-delta-picture">
     <title>Why the definition matches the picture</title>
 
-    <p>The picture behind the definition is simple.</p>
+  <p>The picture behind the definition is simple.</p>
 
-    <p>Draw a horizontal band around the target value <m>L</m>:</p>
-    <md>L-\varepsilon\lt y\lt L+\varepsilon.</md>
+  <p>Draw a horizontal band around the target value <m>L</m>:</p>
 
-    <p>The definition says that there must be a vertical strip around <m>a</m>:</p>
-    <md>a-\delta\lt x\lt a+\delta, \qquad x\neq a,</md>
-    <p>such that the graph inside that strip stays inside the horizontal band.</p>
+  <md>L-\varepsilon&lt;y&lt;L+\varepsilon.</md>
 
-    <figure xml:id="fig-epsilon-delta-band-strip">
-      <caption>For <m>\lim_{x\to a}f(x)=L</m>, every horizontal band around <m>L</m> must contain the graph over some punctured vertical strip around <m>a</m>.</caption>
-      <image width="76%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.76\textwidth,
-              height=0.50\textwidth,
-              xmin=1.1, xmax=2.9,
-              ymin=1.8, ymax=6.2,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1.8,2,2.2},
-              xticklabels={\(a-\delta\),\(a\),\(a+\delta\)},
-              ytick={3,4,5},
-              yticklabels={\(L-\varepsilon\),\(L\),\(L+\varepsilon\)},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \draw[fill=gray!12, draw=none] (axis cs:1.1,3) rectangle (axis cs:2.9,5);
-          \draw[fill=gray!22, draw=none] (axis cs:1.8,1.8) rectangle (axis cs:2.2,6.2);
-          \addplot[thick, domain=1.1:2.9, samples=120] {x^2};
-          \draw[dashed] (axis cs:2,1.8) -- (axis cs:2,6.2);
-          \draw[dashed] (axis cs:1.1,4) -- (axis cs:2.9,4);
-          \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(2,4)};
-          \node[anchor=west] at (axis cs:1.38,4.57) {graph stays in the band};
-          \node[anchor=west] at (axis cs:1.82,2.35) {input strip};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The definition says that there must be a vertical strip around <m>a</m>:</p>
 
-    <p>There are two important details.</p>
-    <p>First, the horizontal band is chosen first. That is the <m>\varepsilon</m>-challenge.</p>
-    <p>Second, the vertical strip may depend on the horizontal band. A thinner output band usually requires a thinner input strip.</p>
+  <md>a-\delta&lt;x&lt;a+\delta,
+\qquad x\neq a,</md>
 
-    <example xml:id="ex-failed-two-sided-signum">
-      <title>A failed two-sided limit</title>
-      <statement>
-        <p>The definition also explains why</p>
-        <md>\lim_{x\to 0}\frac{|x|}{x}</md>
-        <p>does not exist.</p>
-        <p>Suppose, for contradiction, that the limit were some number <m>L</m>. Choose <m>\varepsilon=\frac{1}{2}</m>.</p>
-        <p>No matter how small <m>\delta\gt 0</m> is, both numbers <m>x=\frac{\delta}{2}</m> and <m>x=-\frac{\delta}{2}</m> satisfy <m>0\lt |x|\lt \delta</m>.</p>
-        <p>But</p>
-        <md>\frac{|\,\delta/2\,|}{\delta/2}=1,</md>
-        <p>while</p>
-        <md>\frac{|-\delta/2|}{-\delta/2}=-1.</md>
-        <p>The definition would require both</p>
-        <md>|1-L|\lt \frac{1}{2} \qquad\text{and}\qquad |-1-L|\lt \frac{1}{2}.</md>
-        <p>The first inequality says <m>\frac{1}{2}\lt L\lt \frac{3}{2}</m>. The second says <m>-\frac{3}{2}\lt L\lt -\frac{1}{2}</m>. No number <m>L</m> can lie in both intervals. Therefore no two-sided limit exists.</p>
-        <p>This is the precise version of the picture: the two sides approach different targets.</p>
-      </statement>
-    </example>
+  <p>such that the graph inside that strip stays inside the horizontal band.</p>
+
+  <figure xml:id="fig-epsilon-delta-band-strip">
+    <caption>For <m>\lim_{x\to a}f(x)=L</m>, every horizontal band around <m>L</m> must contain the graph over some punctured vertical strip around <m>a</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.50\textwidth,
+    xmin=1.1, xmax=2.9,
+    ymin=1.8, ymax=6.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1.8,2,2.2},
+    xticklabels={\(a-\delta\),\(a\),\(a+\delta\)},
+    ytick={3,4,5},
+    yticklabels={\(L-\varepsilon\),\(L\),\(L+\varepsilon\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!12, draw=none] (axis cs:1.1,3) rectangle (axis cs:2.9,5);
+\draw[fill=gray!22, draw=none] (axis cs:1.8,1.8) rectangle (axis cs:2.2,6.2);
+\addplot[thick, domain=1.1:2.9, samples=120] {x^2};
+\draw[dashed] (axis cs:2,1.8) -- (axis cs:2,6.2);
+\draw[dashed] (axis cs:1.1,4) -- (axis cs:2.9,4);
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(2,4)};
+\node[anchor=west] at (axis cs:1.38,4.57) {graph stays in the band};
+\node[anchor=west] at (axis cs:1.82,2.35) {input strip};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>There are two important details.</p>
+
+  <p>First, the horizontal band is chosen first.  That is the <m>\varepsilon</m>-challenge.</p>
+
+  <p>Second, the vertical strip may depend on the horizontal band.  A thinner output band usually requires a thinner input strip.</p>
+
+  <paragraphs>
+    <title>A failed two-sided limit</title>
+
+  <p>The definition also explains why</p>
+
+  <md>\lim_{x\to0}\frac{|x|}{x}</md>
+
+  <p>does not exist.</p>
+
+  <p>Suppose, for contradiction, that the limit were some number <m>L</m>.  Choose</p>
+
+  <md>\varepsilon=\frac12.</md>
+
+  <p>No matter how small <m>\delta&gt;0</m> is, both numbers</p>
+
+  <md>x=\frac{\delta}{2}
+\qquad\text{and}\qquad
+x=-\frac{\delta}{2}</md>
+
+  <p>satisfy</p>
+
+  <md>0&lt;|x|&lt;\delta.</md>
+
+  <p>But</p>
+
+  <md>\frac{|\,\delta/2\,|}{\delta/2}=1,</md>
+
+  <p>while</p>
+
+  <md>\frac{|-\delta/2|}{-\delta/2}=-1.</md>
+
+  <p>The definition would require both</p>
+
+  <md>|1-L|&lt;\frac12</md>
+
+  <p>and</p>
+
+  <md>|-1-L|&lt;\frac12.</md>
+
+  <p>The first inequality says</p>
+
+  <md>\frac12&lt;L&lt;\frac32.</md>
+
+  <p>The second says</p>
+
+  <md>-\frac32&lt;L&lt;-\frac12.</md>
+
+  <p>No number <m>L</m> can lie in both intervals.  Therefore no two-sided limit exists.</p>
+
+  <p>This is the precise version of the picture: the two sides approach different targets.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-4-band-and-strip">
+        <title>How does the picture match the definition?</title>
+        <statement>
+          <p>
+            The definition says that every horizontal band around <m>L</m> must contain the graph over some punctured vertical strip around <m>a</m>. In your own words, why does a jump fail this picture, and why can one-sided versions still succeed when the two-sided test fails?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A two-sided strip has to control both sides at once. If the two sides head toward different heights, no single band around one target can hold both nearby pieces. A one-sided test only looks at one half of the strip.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-one-sided-precise-definition">
     <title>One-sided versions of the precise definition</title>
 
-    <p>One-sided limits use the same idea, but the input is restricted to one side of the point.</p>
+  <p>One-sided limits use the same idea, but the input is restricted to one side of the point.</p>
 
-    <p>For a left-hand limit, <m>\lim_{x\to a^-}f(x)=L</m>, the input condition becomes</p>
-    <md>a-\delta\lt x\lt a.</md>
+  <p>For a left-hand limit,</p>
 
-    <p>For a right-hand limit, <m>\lim_{x\to a^+}f(x)=L</m>, the input condition becomes</p>
-    <md>a\lt x\lt a+\delta.</md>
+  <md>\lim_{x\to a^-}f(x)=L,</md>
 
-    <p>The output condition remains the same:</p>
-    <md>|f(x)-L|\lt \varepsilon.</md>
+  <p>the input condition becomes</p>
 
-    <p>This is why the function <m>J(x)=\frac{|x|}{x}</m> has one-sided limits at <m>0</m>. From the left it is always <m>-1</m>, and from the right it is always <m>1</m>. The one-sided tests pass separately, but the two-sided test fails because one <m>\delta</m>-window must handle both sides at once.</p>
+  <md>a-\delta&lt;x&lt;a.</md>
+
+  <p>For a right-hand limit,</p>
+
+  <md>\lim_{x\to a^+}f(x)=L,</md>
+
+  <p>the input condition becomes</p>
+
+  <md>a&lt;x&lt;a+\delta.</md>
+
+  <p>The output condition remains the same:</p>
+
+  <md>|f(x)-L|&lt;\varepsilon.</md>
+
+  <p>This is why the function</p>
+
+  <md>J(x)=\frac{|x|}{x}</md>
+
+  <p>has one-sided limits at <m>0</m>.  From the left it is always <m>-1</m>, and from the right it is always <m>1</m>.  The one-sided tests pass separately, but the two-sided test fails because one <m>\delta</m>-window must handle both sides at once.</p>
   </subsection>
 
   <subsection xml:id="subsec-what-epsilon-delta-gives">
     <title>What the definition gives us</title>
 
-    <p>The precise definition is not meant to replace intuition. It protects intuition.</p>
+  <p>The precise definition is not meant to replace intuition.  It protects intuition.</p>
 
-    <p>It explains why a table can suggest a limit but not prove it. It explains why the value at the point may not matter. It explains why a jump breaks a two-sided limit. It gives us a way to prove limit laws instead of trusting them from graphs.</p>
+  <p>It explains why a table can suggest a limit but not prove it.  It explains why the value at the point may not matter.  It explains why a jump breaks a two-sided limit.  It gives us a way to prove limit laws instead of trusting them from graphs.</p>
 
-    <p>Most of the time, we will calculate limits using algebra, known limit laws, and continuity. But the <m>\varepsilon</m>-<m>\delta</m> definition is the foundation underneath those shortcuts.</p>
+  <p>Most of the time, we will calculate limits using algebra, known limit laws, and continuity.  But the <m>\varepsilon</m>-<m>\delta</m> definition is the foundation underneath those shortcuts.</p>
 
-    <principle xml:id="principle-what-finite-limit-really-says">
-      <title>What a finite limit really says</title>
-      <statement>
-        <p>The statement <m>\lim_{x\to a}f(x)=L</m> means that output error can be forced below any chosen tolerance by making input error small enough, while not requiring <m>x=a</m>.</p>
-      </statement>
-    </principle>
+  <note xml:id="note-sec-3-4-the-precise-definition-of-a-limit-89">
+    <title>What a finite limit really says</title>
+      <p>The statement</p>
+        <md>\lim_{x\to a}f(x)=L</md>
+      <p>means that output error can be forced below any chosen tolerance by making input error small enough, while not requiring <m>x=a</m>.</p>
+  </note>
 
-    <p>Now that limits have a precise meaning, we can define a special kind of well-behaved function. It is the case where the nearby limit and the actual value agree. That property is called continuity, and it is the reason many familiar graphs can be drawn without lifting the pencil.</p>
+  <p>Now that limits have a precise meaning, we can define a special kind of well-behaved function.  It is the case where the nearby limit and the actual value agree.  That property is called continuity, and it is the reason many familiar graphs can be drawn without lifting the pencil.</p>
   </subsection>
+
+
 
 </section>

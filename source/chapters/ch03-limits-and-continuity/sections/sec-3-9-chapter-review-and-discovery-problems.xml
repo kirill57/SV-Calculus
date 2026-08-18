@@ -1,491 +1,733 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-chapter3-review-discovery">
+<section xml:id="sec-3-9-chapter-review-and-discovery-problems">
   <title>Chapter review and discovery problems</title>
 
   <p>This chapter began with one small calculation:</p>
-  <md>\frac{(2+h)^2-2^2}{h}=4+h, \qquad h\neq 0.</md>
 
-  <p>The forbidden value <m>h=0</m> did not stop us from seeing what happens as <m>h</m> gets close to <m>0</m>. That idea became the language of limits. Limits then gave us continuity, one-sided behavior, infinite behavior, asymptotes, sequences, and two existence theorems.</p>
+  <md>\frac{(2+h)^2-2^2}{h}=4+h,
+\qquad h\neq0.</md>
+
+  <p>The forbidden value <m>h=0</m> did not stop us from seeing what happens as <m>h</m> gets close to <m>0</m>.  That idea became the language of limits.  Limits then gave us continuity, one-sided behavior, infinite behavior, asymptotes, sequences, and two existence theorems.</p>
 
   <p>Before we use limits to define derivatives, it is worth pausing to see the whole map.</p>
 
   <subsection xml:id="subsec-chapter3-one-picture">
     <title>The chapter in one picture</title>
 
-    <p>A limit is the central idea. The other ideas in the chapter are different ways of asking what a limit is doing.</p>
+  <p>A limit is the central idea.  The other ideas in the chapter are different ways of asking what a limit is doing.</p>
 
-    <figure xml:id="fig-chapter3-concept-map">
-      <caption>Limits are the center. Continuity, asymptotes, sequences, and tangent slopes all use the same idea of controlled approach.</caption>
-      <image width="85%">
-        <latex-image>
-          \begin{tikzpicture}[every node/.style={font=\small}, &gt;=stealth]
-            \node[draw, rounded corners, thick, align=center, minimum width=3.1cm, minimum height=0.9cm] (limit) at (0,0)
-              {limit\\ \(\displaystyle \lim_{x\to a}f(x)=L\)};
+  <figure xml:id="fig-chapter3-concept-map">
+    <caption>Limits are the center.  Continuity, asymptotes, sequences, and tangent slopes all use the same idea of controlled approach.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[every node/.style={font=\small}, &gt;=stealth]
+  \node[draw, rounded corners, thick, align=center, minimum width=3.1cm, minimum height=0.9cm] (limit) at (0,0)
+    {limit\\ \(\displaystyle \lim_{x\to a}f(x)=L\)};
 
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (calc) at (-4,1.8)
-              {calculating limits\\ algebra, squeeze};
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (oneside) at (4,1.8)
-              {one-sided limits\\ jumps and asymptotes};
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (precise) at (-4,-1.8)
-              {\(\varepsilon\)-\(\delta\) control\\ error made small};
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (cont) at (4,-1.8)
-              {continuity\\ \(\lim_{x\to a}f(x)=f(a)\)};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (calc) at (-4,1.8)
+    {calculating limits\\ algebra, squeeze};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (oneside) at (4,1.8)
+    {one-sided limits\\ jumps and asymptotes};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (precise) at (-4,-1.8)
+    {\(\varepsilon\)-\(\delta\) control\\ error made small};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (cont) at (4,-1.8)
+    {continuity\\ \(\lim_{x\to a}f(x)=f(a)\)};
 
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (ivt) at (1.2,-4.0)
-              {IVT\\ no skipped values};
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (evt) at (4.9,-4.0)
-              {EVT\\ max and min reached};
-            \node[draw, rounded corners, align=center, minimum width=3.0cm] (seq) at (-4,-4.0)
-              {sequences\\ \(\displaystyle \lim_{n\to\infty}a_n\)};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (ivt) at (2.35,-4.0)
+    {IVT\\ no skipped values};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (evt) at (5.55,-4.0)
+    {EVT\\ max and min reached};
+  \node[draw, rounded corners, align=center, minimum width=3.0cm] (seq) at (-4,-4.0)
+    {sequences\\ \(\displaystyle \lim_{n\to\infty}a_n\)};
 
-            \node[draw, rounded corners, thick, align=center, minimum width=3.6cm, minimum height=0.9cm] (deriv) at (0,-6.1)
-              {next chapter\\ tangent slope as a limit};
+  \node[draw, rounded corners, thick, align=center, minimum width=3.6cm, minimum height=0.9cm] (deriv) at (0,-6.1)
+    {next chapter\\ tangent slope as a limit};
 
-            \draw[-&gt;, thick] (limit) -- (calc);
-            \draw[-&gt;, thick] (limit) -- (oneside);
-            \draw[-&gt;, thick] (limit) -- (precise);
-            \draw[-&gt;, thick] (limit) -- (cont);
-            \draw[-&gt;, thick] (cont) -- (ivt);
-            \draw[-&gt;, thick] (cont) -- (evt);
-            \draw[-&gt;, thick] (precise) -- (seq);
-            \draw[-&gt;, thick] (seq) -- (deriv);
-            \draw[-&gt;, thick] (limit) -- (deriv);
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  \draw[-&gt;, thick] (limit) -- (calc);
+  \draw[-&gt;, thick] (limit) -- (oneside);
+  \draw[-&gt;, thick] (limit) -- (precise);
+  \draw[-&gt;, thick] (limit) -- (cont);
+  \draw[-&gt;, thick] (cont) -- (ivt);
+  \draw[-&gt;, thick] (cont) -- (evt);
+  \draw[-&gt;, thick] (precise) -- (seq);
+  \draw[-&gt;, thick] (seq) -- (deriv);
+  \draw[-&gt;, thick] (limit) -- (deriv);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>The most important habit is not memorizing a table of limit forms. It is asking: What is the input doing, and what target is the output approaching?</p>
+  <p>The most important habit is not memorizing a table of limit forms.  It is asking:</p>
+
+  <md>\text{What is the input doing, and what target is the output approaching?}</md>
+
+  <exercise xml:id="checkpoint-3-9-limit-watches-nearby">
+        <title>What one idea sits at the center of the chapter?</title>
+        <statement>
+          <p>
+            The chapter began with a forbidden value <m>h=0</m> that did not stop us from seeing what happens as <m>h</m> gets close to <m>0</m>. In your own words, what does a limit watch, and why can continuity, one-sided behavior, asymptotes, and sequences all be seen as different ways of asking the same nearby-target question?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A limit is a controlled approach to a target. Sometimes the input is a real number, sometimes a whole-number index, sometimes only one side, and sometimes the target is infinite rather than finite.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-chapter3-decision-guide">
     <title>A decision guide for limits and continuity</title>
 
-    <p>When you face a limit problem, begin with the simplest test. Then move only as far as the problem requires.</p>
+  <p>When you face a limit problem, begin with the simplest test.  Then move only as far as the problem requires.</p>
 
-    <table>
-      <title>Decision guide for limits and continuity</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="40%"/>
-        <col halign="left" width="60%"/>
-        <row header="yes">
-          <cell><term>what you see</term></cell>
-          <cell><term>what to try</term></cell>
-        </row>
-        <row>
-          <cell>direct substitution gives a real number</cell>
-          <cell>Use continuity or the limit laws.</cell>
-        </row>
-        <row>
-          <cell>direct substitution gives <m>\frac{0}{0}</m></cell>
-          <cell>Factor, cancel, expand, combine fractions, or rationalize. Then try again.</cell>
-        </row>
-        <row>
-          <cell>left and right sides behave differently</cell>
-          <cell>Compute one-sided limits. A two-sided limit exists only if they agree.</cell>
-        </row>
-        <row>
-          <cell>denominator approaches <m>0</m> without cancellation</cell>
-          <cell>Check signs from the left and right. The limit may be <m>\infty</m>, <m>-\infty</m>, or may fail to exist.</cell>
-        </row>
-        <row>
-          <cell><m>x\to\infty</m> or <m>x\to-\infty</m></cell>
-          <cell>Divide by the largest power, or compare leading terms.</cell>
-        </row>
-        <row>
-          <cell>an oscillating factor is multiplied by something small</cell>
-          <cell>Try the squeeze principle.</cell>
-        </row>
-        <row>
-          <cell>a theorem about continuous functions is tempting</cell>
-          <cell>Check the hypotheses first: continuity, closed interval, bounded interval, and the right endpoint information.</cell>
-        </row>
-        <row>
-          <cell>a sequence appears</cell>
-          <cell>Use the <m>\varepsilon</m>-<m>N</m> definition, algebraic limit laws, or monotone bounded convergence.</cell>
-        </row>
-      </tabular>
-    </table>
+  <table xml:id="tab-chapter3-decision-guide">
+    <tabular>
+      <row bottom="minor">
+        <cell><strong>what you see</strong></cell>
+        <cell><strong>what to try</strong></cell>
+      </row>
+      <row>
+        <cell>direct substitution gives a real number</cell>
+        <cell>Use continuity or the limit laws.</cell>
+      </row>
+      <row>
+        <cell>direct substitution gives <m>\dfrac00</m></cell>
+        <cell>Factor, cancel, expand, combine fractions, or rationalize.  Then try again.</cell>
+      </row>
+      <row>
+        <cell>left and right sides behave differently</cell>
+        <cell>Compute one-sided limits.  A two-sided limit exists only if they agree.</cell>
+      </row>
+      <row>
+        <cell>denominator approaches <m>0</m> without cancellation</cell>
+        <cell>Check signs from the left and right.  The limit may be <m>\infty</m>, <m>-\infty</m>, or may fail to exist.</cell>
+      </row>
+      <row>
+        <cell><m>x\to\infty</m> or <m>x\to-\infty</m></cell>
+        <cell>Divide by the largest power, or compare leading terms.</cell>
+      </row>
+      <row>
+        <cell>an oscillating factor is multiplied by something small</cell>
+        <cell>Try the squeeze principle.</cell>
+      </row>
+      <row>
+        <cell>a theorem about continuous functions is tempting</cell>
+        <cell>Check the hypotheses first: continuity, closed interval, bounded interval, and the right endpoint information.</cell>
+      </row>
+      <row>
+        <cell>a sequence appears</cell>
+        <cell>Use the <m>\varepsilon</m>-<m>N</m> definition, algebraic limit laws, or monotone bounded convergence.</cell>
+      </row>
+    </tabular>
+  </table>
 
-    <p>The warning examples in <xref ref="sec-warning-examples-limits-continuity"/> should stay close by. Most mistakes come from using a true theorem without checking the conditions that make it true.</p>
+  <p>The warning examples in Section <xref ref="sec-3-7-warning-examples"/> should stay close by.  Most mistakes come from using a true theorem without checking the conditions that make it true.</p>
   </subsection>
 
   <subsection xml:id="subsec-chapter3-review-problems">
     <title>Review problems</title>
 
-    <p>The problems below are grouped by purpose. Some are computational. Some ask for explanations. Some ask for proof. In the proof problems, the goal is not speed. The goal is control.</p>
+  <p>The problems below are grouped by purpose.  Some are computational.  Some ask for explanations.  Some ask for proof.  In the proof problems, the goal is not speed.  The goal is control.</p>
 
-    <paragraphs xml:id="paragraphs-review-concept-checks">
-      <title>A. Concept checks</title>
-      <ol>
-        <li><p>Explain the difference between <m>\lim_{x\to a}f(x)</m> and <m>f(a)</m>. Give an example where the limit exists but does not equal the function value.</p></li>
-        <li><p>Explain why the condition <m>0\lt |x-a|\lt \delta</m> appears in the definition of a limit.</p></li>
-        <li><p>What does the statement <m>\lim_{x\to a}f(x)=\infty</m> mean? Why is this not convergence to a real number?</p></li>
-        <li><p>A table gives values of <m>f(x)</m> near <m>x=3</m>, and the values appear to approach <m>8</m>. Why is the table useful? Why is it not, by itself, a proof?</p></li>
-        <li><p>State the two-sided limit test using left-hand and right-hand limits.</p></li>
-        <li><p>In your own words, explain what continuity at <m>a</m> means.</p></li>
-        <li><p>Why can a removable discontinuity be repaired by changing one value, but a jump discontinuity cannot?</p></li>
-        <li><p>State the Intermediate Value Theorem. Name its main hypothesis.</p></li>
-        <li><p>State the Extreme Value Theorem. Explain why both words <q>closed</q> and <q>bounded</q> matter in the interval hypothesis.</p></li>
-        <li><p>Explain the difference between convergence of a sequence and convergence of a series. Use the words <em>terms</em> and <em>partial sums</em>.</p></li>
-      </ol>
-    </paragraphs>
+  <p>\subsubsection*{A. Concept checks}</p>
 
-    <paragraphs xml:id="paragraphs-review-skills">
-      <title>B. Skills: compute and interpret limits</title>
-      <p>Compute each limit if it exists as a finite real number. If no finite two-sided limit exists, explain why. When appropriate, give one-sided limits.</p>
-      <ol>
-        <li>
-          <p>Polynomial and rational limits:</p>
-          <md>\lim_{x\to 4}(3x^2-5x+1), \qquad \lim_{x\to -2}\frac{x^2+1}{x-3},</md>
-          <md>\lim_{x\to 0}\frac{5x^3-2x+7}{x^2+1}, \qquad \lim_{x\to 3}\frac{x^2-9}{x+1}.</md>
-        </li>
-        <li>
-          <p>Removable discontinuities:</p>
-          <md>\lim_{x\to 3}\frac{x^2-9}{x-3}, \qquad \lim_{x\to 2}\frac{x^3-8}{x-2},</md>
-          <md>\lim_{x\to 4}\frac{\sqrt{x+5}-3}{x-4}, \qquad \lim_{x\to 2}\frac{\frac{1}{x}-\frac{1}{2}}{x-2}.</md>
-        </li>
-        <li>
-          <p>Squeeze principle:</p>
-          <md>\lim_{x\to 0}x\sin\frac{1}{x}, \qquad \lim_{x\to 0}x^2\cos\frac{1}{x^2}, \qquad \lim_{x\to 0}|x|\sin\frac{1}{x}.</md>
-          <p>For each one, write the inequalities that trap the function.</p>
-        </li>
-        <li>
-          <p>One-sided limits for a piecewise function. Let</p>
+    <ol>
+      <li>
+        <p>Explain the difference between</p>
+          <md>\lim_{x\to a}f(x)
+\qquad\text{and}\qquad
+f(a).</md>
+        <p>Give an example where the limit exists but does not equal the function value.</p>
+      </li>
+      <li>
+        <p>Explain why the condition</p>
+          <md>0&lt;|x-a|&lt;\delta</md>
+        <p>appears in the definition of a limit.</p>
+      </li>
+      <li>
+        <p>What does the statement</p>
+          <md>\lim_{x\to a}f(x)=\infty</md>
+        <p>mean?  Why is this not convergence to a real number?</p>
+      </li>
+      <li>
+        <p>A table gives values of <m>f(x)</m> near <m>x=3</m>, and the values appear to approach <m>8</m>.  Why is the table useful?  Why is it not, by itself, a proof?</p>
+      </li>
+      <li>
+        <p>State the two-sided limit test using left-hand and right-hand limits.</p>
+      </li>
+      <li>
+        <p>In your own words, explain what continuity at <m>a</m> means.</p>
+      </li>
+      <li>
+        <p>Why can a removable discontinuity be repaired by changing one value, but a jump discontinuity cannot?</p>
+      </li>
+      <li>
+        <p>State the Intermediate Value Theorem.  Name its main hypothesis.</p>
+      </li>
+      <li>
+        <p>State the Extreme Value Theorem.  Explain why both words “closed” and “bounded” matter in the interval hypothesis.</p>
+      </li>
+      <li>
+        <p>Explain the difference between convergence of a sequence and convergence of a series.  Use the words <em>terms</em> and <em>partial sums</em>.</p>
+      </li>
+    </ol>
+
+  <p>\subsubsection*{B. Skills: compute and interpret limits}</p>
+
+  <p>Compute each limit if it exists as a finite real number.  If no finite two-sided limit exists, explain why.  When appropriate, give one-sided limits.</p>
+
+    <ol>
+      <li>
+        <p>Polynomial and rational limits.</p>
+          <md>\lim_{x\to4}(3x^2-5x+1),
+\qquad
+\lim_{x\to-2}\frac{x^2+1}{x-3},</md>
+          <md>\lim_{x\to0}\frac{5x^3-2x+7}{x^2+1},
+\qquad
+\lim_{x\to3}\frac{x^2-9}{x+1}.</md>
+      </li>
+      <li>
+        <p>Removable discontinuities.</p>
+          <md>\lim_{x\to3}\frac{x^2-9}{x-3},
+\qquad
+\lim_{x\to2}\frac{x^3-8}{x-2},</md>
+          <md>\lim_{x\to4}\frac{\sqrt{x+5}-3}{x-4},
+\qquad
+\lim_{x\to2}\frac{\frac1x-\frac12}{x-2}.</md>
+      </li>
+      <li>
+        <p>Squeeze principle.</p>
+          <md>\lim_{x\to0}x\sin\frac1x,
+\qquad
+\lim_{x\to0}x^2\cos\frac1{x^2},</md>
+          <md>\lim_{x\to0}|x|\sin\frac1x.</md>
+        <p>For each one, write the inequalities that trap the function.</p>
+      </li>
+      <li>
+        <p>One-sided limits for a piecewise function.  Let</p>
           <md>
-            F(x)=
-            \begin{cases}
-            x^2+2, \amp x\lt 1,\\
-            4, \amp x=1,\\
-            3x, \amp x\gt 1.
-            \end{cases}
-          </md>
-          <p>Find <m>\lim_{x\to 1^-}F(x)</m>, <m>\lim_{x\to 1^+}F(x)</m>, <m>\lim_{x\to 1}F(x)</m>, and <m>F(1)</m>. Is <m>F</m> continuous at <m>1</m>?</p>
-        </li>
-        <li>
-          <p>Another piecewise function. Let</p>
+    <mrow>F(x)=
+\begin{cases}
+x^2+2, \amp x&lt;1,</mrow>
+    <mrow>4, \amp x=1,</mrow>
+    <mrow>3x, \amp x&gt;1.
+\end{cases}</mrow>
+  </md>
+        <p>Find</p>
+          <md>\lim_{x\to1^-}F(x),
+\qquad
+\lim_{x\to1^+}F(x),
+\qquad
+\lim_{x\to1}F(x),
+\qquad
+F(1).</md>
+        <p>Is <m>F</m> continuous at <m>1</m>?</p>
+      </li>
+      <li>
+        <p>Another piecewise function.  Let</p>
           <md>
-            G(x)=
-            \begin{cases}
-            2x+1, \amp x\lt 2,\\
-            5, \amp x=2,\\
-            x^2-1, \amp x\gt 2.
-            \end{cases}
-          </md>
-          <p>Find the left-hand limit, right-hand limit, two-sided limit, and function value at <m>x=2</m>. Is this a removable discontinuity, a jump discontinuity, or neither?</p>
-        </li>
-        <li>
-          <p>Infinite limits:</p>
-          <md>\lim_{x\to 3^-}\frac{1}{x-3}, \qquad \lim_{x\to 3^+}\frac{1}{x-3},</md>
-          <md>\lim_{x\to 3}\frac{1}{(x-3)^2}, \qquad \lim_{x\to 2^-}\frac{x+2}{x^2-4}, \qquad \lim_{x\to 2^+}\frac{x+2}{x^2-4}.</md>
-          <p>For each function, identify any vertical asymptote.</p>
-        </li>
-        <li>
-          <p>Limits at infinity:</p>
-          <md>\lim_{x\to\infty}\frac{5x^2-x+1}{2x^2+3}, \qquad \lim_{x\to-\infty}\frac{5x^2-x+1}{2x^2+3},</md>
-          <md>\lim_{x\to\infty}\frac{3x+7}{x^2+1}, \qquad \lim_{x\to\infty}\frac{x^2+1}{x-1}.</md>
-          <p>For the last function, decide whether there is a horizontal asymptote or a slant asymptote.</p>
-        </li>
-        <li>
-          <p>Slant asymptote. Write <m>\frac{x^2+3x}{x+1}</m> in the form <m>mx+b+\frac{r}{x+1}</m>. Then find the slant asymptote as <m>x\to\infty</m> and as <m>x\to-\infty</m>.</p>
-        </li>
-        <li>
-          <p>Sequence limits:</p>
-          <md>\lim_{n\to\infty}\frac{3n+1}{2n-5}, \qquad \lim_{n\to\infty}\left(1-\frac{1}{n}\right),</md>
-          <md>\lim_{n\to\infty}\frac{n^2+4}{5n^2-n}, \qquad \lim_{n\to\infty}(-1)^n.</md>
-          <p>Classify each sequence as convergent or divergent.</p>
-        </li>
-        <li>
-          <p>Monotone bounded sequences. For each sequence, decide whether it is increasing, decreasing, bounded above, bounded below, and convergent:</p>
-          <md>a_n=1-\frac{1}{n}, \qquad b_n=\frac{1}{n}, \qquad c_n=n, \qquad d_n=(-1)^n.</md>
-        </li>
-      </ol>
-    </paragraphs>
+    <mrow>G(x)=
+\begin{cases}
+2x+1, \amp x&lt;2,</mrow>
+    <mrow>5, \amp x=2,</mrow>
+    <mrow>x^2-1, \amp x&gt;2.
+\end{cases}</mrow>
+  </md>
+        <p>Find the left-hand limit, right-hand limit, two-sided limit, and function value at <m>x=2</m>.  Is this a removable discontinuity, a jump discontinuity, or neither?</p>
+      </li>
+      <li>
+        <p>Infinite limits.</p>
+          <md>\lim_{x\to3^-}\frac1{x-3},
+\qquad
+\lim_{x\to3^+}\frac1{x-3},</md>
+          <md>\lim_{x\to3}\frac1{(x-3)^2},
+\qquad
+\lim_{x\to2^-}\frac{x+2}{x^2-4},
+\qquad
+\lim_{x\to2^+}\frac{x+2}{x^2-4}.</md>
+        <p>For each function, identify any vertical asymptote.</p>
+      </li>
+      <li>
+        <p>Limits at infinity.</p>
+          <md>\lim_{x\to\infty}\frac{5x^2-x+1}{2x^2+3},
+\qquad
+\lim_{x\to-\infty}\frac{5x^2-x+1}{2x^2+3},</md>
+          <md>\lim_{x\to\infty}\frac{3x+7}{x^2+1},
+\qquad
+\lim_{x\to\infty}\frac{x^2+1}{x-1}.</md>
+        <p>For the last function, decide whether there is a horizontal asymptote or a slant asymptote.</p>
+      </li>
+      <li>
+        <p>Slant asymptote.  Write</p>
+          <md>\frac{x^2+3x}{x+1}</md>
+        <p>in the form</p>
+          <md>mx+b+\frac{r}{x+1}.</md>
+        <p>Then find the slant asymptote as <m>x\to\infty</m> and as <m>x\to-\infty</m>.</p>
+      </li>
+      <li>
+        <p>Sequence limits.</p>
+          <md>\lim_{n\to\infty}\frac{3n+1}{2n-5},
+\qquad
+\lim_{n\to\infty}\left(1-\frac1n\right),</md>
+          <md>\lim_{n\to\infty}\frac{n^2+4}{5n^2-n},
+\qquad
+\lim_{n\to\infty}(-1)^n.</md>
+        <p>Classify each sequence as convergent or divergent.</p>
+      </li>
+      <li>
+        <p>Monotone bounded sequences.  For each sequence, decide whether it is increasing, decreasing, bounded above, bounded below, and convergent.</p>
+          <md>a_n=1-\frac1n,
+\qquad
+b_n=\frac1n,
+\qquad
+c_n=n,
+\qquad
+d_n=(-1)^n.</md>
+      </li>
+    </ol>
 
-    <paragraphs xml:id="paragraphs-review-reading-limits">
-      <title>C. Reading limits from a graph</title>
-      <p>Use <xref ref="fig-chapter3-graph-reading-review"/> for the next problem.</p>
+  <p>\subsubsection*{C. Reading limits from a graph}</p>
 
-      <figure xml:id="fig-chapter3-graph-reading-review">
-        <caption>Graph for reading one-sided limits, function values, and discontinuities.</caption>
-        <image width="72%">
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=0.72\textwidth,
-                height=0.45\textwidth,
-                xmin=-3.2, xmax=3.2,
-                ymin=-1.2, ymax=4.2,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={-2,-1,0,1,2},
-                ytick={0,1,2,3},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-3:-1, samples=2] {2};
-            \addplot[thick, domain=-1:1, samples=2] {x+1};
-            \addplot[thick, domain=1:3, samples=2] {3};
-            \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(-1,2) (-1,0) (1,2)};
-            \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(-1,0) (1,3)};
-            \node[anchor=south] at (axis cs:-2.2,2.05) {\(y=2\)};
-            \node[anchor=west] at (axis cs:-0.2,0.8) {\(y=x+1\)};
-            \node[anchor=south] at (axis cs:2.1,3.05) {\(y=3\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <p>Use Figure <xref ref="fig-chapter3-graph-reading-review"/> for the next problem.</p>
 
-      <ol>
-        <li><p>Find <m>\lim_{x\to -1^-}f(x)</m>, <m>\lim_{x\to -1^+}f(x)</m>, <m>\lim_{x\to -1}f(x)</m>, and <m>f(-1)</m>.</p></li>
-        <li><p>Find <m>\lim_{x\to 1^-}f(x)</m>, <m>\lim_{x\to 1^+}f(x)</m>, <m>\lim_{x\to 1}f(x)</m>, and <m>f(1)</m>.</p></li>
-        <li><p>At which points shown in the graph is <m>f</m> discontinuous? Classify each discontinuity as removable, jump, or neither.</p></li>
-        <li><p>Could changing only <m>f(-1)</m> make the function continuous at <m>-1</m>? Explain.</p></li>
-        <li><p>Could changing only <m>f(1)</m> make the function continuous at <m>1</m>? Explain.</p></li>
-      </ol>
-    </paragraphs>
+  <figure xml:id="fig-chapter3-graph-reading-review">
+    <caption>Graph for reading one-sided limits, function values, and discontinuities.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.45\textwidth,
+    xmin=-3.2, xmax=3.2,
+    ymin=-1.2, ymax=4.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-3:-1, samples=2] {2};
+\addplot[thick, domain=-1:1, samples=2] {x+1};
+\addplot[thick, domain=1:3, samples=2] {3};
+\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(-1,2) (-1,0) (1,2)};
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(-1,0) (1,3)};
+\node[anchor=south] at (axis cs:-2.2,2.05) {\(y=2\)};
+\node[anchor=north] at (axis cs:0.15,0.72) {\(y=x+1\)};
+\node[anchor=south] at (axis cs:2.1,3.05) {\(y=3\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <paragraphs xml:id="paragraphs-review-continuity-theorems">
-      <title>D. Continuity and theorem use</title>
-      <ol>
-        <li>
-          <p>Find the value of <m>c</m> that makes the function continuous at <m>x=2</m>:</p>
+    <ol>
+      <li>
+        <p>Find</p>
+          <md>\lim_{x\to-1^-}f(x),
+\qquad
+\lim_{x\to-1^+}f(x),
+\qquad
+\lim_{x\to-1}f(x),
+\qquad
+f(-1).</md>
+      </li>
+      <li>
+        <p>Find</p>
+          <md>\lim_{x\to1^-}f(x),
+\qquad
+\lim_{x\to1^+}f(x),
+\qquad
+\lim_{x\to1}f(x),
+\qquad
+f(1).</md>
+      </li>
+      <li>
+        <p>At which points shown in the graph is <m>f</m> discontinuous?  Classify each discontinuity as removable, jump, or neither.</p>
+      </li>
+      <li>
+        <p>Could changing only <m>f(-1)</m> make the function continuous at <m>-1</m>?  Explain.</p>
+      </li>
+      <li>
+        <p>Could changing only <m>f(1)</m> make the function continuous at <m>1</m>?  Explain.</p>
+      </li>
+    </ol>
+
+  <p>\subsubsection*{D. Continuity and theorem use}</p>
+
+    <ol>
+      <li>
+        <p>Find the value of <m>c</m> that makes the function continuous at <m>x=2</m>:</p>
           <md>
-            H(x)=
-            \begin{cases}
-            x^2+c, \amp x\lt 2,\\
-            3x-1, \amp x\ge 2.
-            \end{cases}
-          </md>
-        </li>
-        <li>
-          <p>Find the value of <m>c</m> that makes the function continuous at <m>x=2</m>:</p>
+    <mrow>H(x)=
+\begin{cases}
+x^2+c, \amp x&lt;2,</mrow>
+    <mrow>3x-1, \amp x\ge2.
+\end{cases}</mrow>
+  </md>
+      </li>
+      <li>
+        <p>Find the value of <m>c</m> that makes the function continuous at <m>x=2</m>:</p>
           <md>
-            K(x)=
-            \begin{cases}
-            \dfrac{x^2-4}{x-2}, \amp x\neq 2,\\
-            c, \amp x=2.
-            \end{cases}
-          </md>
-        </li>
-        <li>
-          <p>Find all points where the function is discontinuous: <m>R(x)=\frac{x+1}{x^2-1}</m>. For each discontinuity, decide whether it is removable or infinite.</p>
-        </li>
-        <li>
-          <p>Use the Intermediate Value Theorem to show that the equation <m>x^3+x-3=0</m> has a solution in <m>(1,2)</m>.</p>
-        </li>
-        <li>
-          <p>Use the Intermediate Value Theorem to show that the equation <m>x^5+x-1=0</m> has a solution in <m>(0,1)</m>.</p>
-        </li>
-        <li>
-          <p>Let <m>f(x)=x^4-4x+1</m>. Explain why <m>f</m> must attain an absolute maximum and an absolute minimum on <m>[-2,3]</m>. You do not need to find them.</p>
-        </li>
-        <li>
-          <p>The function <m>f(x)=\frac{1}{x}</m> is continuous on <m>(0,1)</m>. Does the Extreme Value Theorem guarantee an absolute maximum and minimum on <m>(0,1)</m>? Explain exactly which hypothesis is missing.</p>
-        </li>
-        <li>
-          <p>A function <m>f</m> is continuous on <m>[0,4]</m>, with <m>f(0)=-2</m> and <m>f(4)=7</m>. What values must <m>f</m> take somewhere on <m>[0,4]</m>? What values might it take, but are not guaranteed by this information alone?</p>
-        </li>
-        <li>
-          <p>A function <m>g</m> is defined on <m>[0,4]</m>, with <m>g(0)=-2</m> and <m>g(4)=7</m>. But <m>g</m> is not continuous. Can we conclude that <m>g(c)=0</m> for some <m>c\in [0,4]</m>? Give an example or explain why not.</p>
-        </li>
-        <li>
-          <p>Give an example of a continuous function on an unbounded interval that has no absolute maximum.</p>
-        </li>
-      </ol>
-    </paragraphs>
+    <mrow>K(x)=
+\begin{cases}
+\dfrac{x^2-4}{x-2}, \amp x\neq2,</mrow>
+    <mrow>
+c, \amp x=2.
+\end{cases}</mrow>
+  </md>
+      </li>
+      <li>
+        <p>Find all points where the function is discontinuous:</p>
+          <md>R(x)=\frac{x+1}{x^2-1}.</md>
+        <p>For each discontinuity, decide whether it is removable or infinite.</p>
+      </li>
+      <li>
+        <p>Use the Intermediate Value Theorem to show that the equation</p>
+          <md>x^3+x-3=0</md>
+        <p>has a solution in <m>(1,2)</m>.</p>
+      </li>
+      <li>
+        <p>Use the Intermediate Value Theorem to show that the equation</p>
+          <md>x^5+x-1=0</md>
+        <p>has a solution in <m>(0,1)</m>.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>f(x)=x^4-4x+1.</md>
+        <p>Explain why <m>f</m> must attain an absolute maximum and an absolute minimum on <m>[-2,3]</m>.  You do not need to find them.</p>
+      </li>
+      <li>
+        <p>The function</p>
+          <md>f(x)=\frac1x</md>
+        <p>is continuous on <m>(0,1)</m>.  Does the Extreme Value Theorem guarantee an absolute maximum and minimum on <m>(0,1)</m>?  Explain exactly which hypothesis is missing.</p>
+      </li>
+      <li>
+        <p>A function <m>f</m> is continuous on <m>[0,4]</m>, with</p>
+          <md>f(0)=-2
+\qquad\text{and}\qquad
+f(4)=7.</md>
+        <p>What values must <m>f</m> take somewhere on <m>[0,4]</m>?  What values might it take, but are not guaranteed by this information alone?</p>
+      </li>
+      <li>
+        <p>A function <m>g</m> is defined on <m>[0,4]</m>, with</p>
+          <md>g(0)=-2
+\qquad\text{and}\qquad
+g(4)=7.</md>
+        <p>But <m>g</m> is not continuous.  Can we conclude that <m>g(c)=0</m> for some <m>c\in[0,4]</m>?  Give an example or explain why not.</p>
+      </li>
+      <li>
+        <p>Give an example of a continuous function on an unbounded interval that has no absolute maximum.</p>
+      </li>
+    </ol>
 
-    <paragraphs xml:id="paragraphs-review-proof-practice">
-      <title>E. Proof practice with <m>\varepsilon</m>, <m>\delta</m>, and <m>N</m></title>
-      <p>These problems are about writing precise arguments. Do not begin by saying <q>it is obvious from the graph.</q> Begin with the error you must control.</p>
-      <ol>
-        <li><p>Prove from the definition that <m>\lim_{x\to 3}(2x+5)=11</m>.</p></li>
-        <li><p>Prove from the definition that <m>\lim_{x\to a}(mx+b)=ma+b</m>, where <m>m</m> and <m>b</m> are constants.</p></li>
-        <li><p>Prove from the definition that <m>\lim_{x\to 2}x^2=4</m>. <em>Hint:</em> factor <m>|x^2-4|=|x-2||x+2|</m>. First make <m>|x+2|</m> bounded by requiring <m>|x-2|\lt 1</m>.</p></li>
-        <li><p>Prove from the definition that <m>\lim_{x\to 1}\frac{x^2-1}{x-1}=2</m>. Remember that the definition already assumes <m>x\neq 1</m>.</p></li>
-        <li><p>Prove that <m>\lim_{n\to\infty}\frac{1}{n}=0</m>. Use the precise definition of sequence convergence.</p></li>
-        <li><p>Prove that <m>\lim_{n\to\infty}\frac{2n+1}{n+3}=2</m>. <em>Hint:</em> <m>\left|\frac{2n+1}{n+3}-2\right| = \frac{5}{n+3}</m>.</p></li>
-        <li><p>For the sequence <m>a_n=1-\frac{1}{n}</m>, prove directly that <m>a_n\to 1</m>.</p></li>
-        <li><p>Show that the sequence <m>b_n=(-1)^n</m> does not converge. <em>Hint:</em> if it converged to <m>L</m>, the even terms and odd terms would both have to approach <m>L</m>.</p></li>
-        <li><p>Let <m>\varepsilon=10^{-4}</m>. Find a value of <m>N</m> such that <m>n\ge N \Longrightarrow \left|\frac{1}{n}-0\right|\lt 10^{-4}</m>.</p></li>
-        <li><p>Let <m>a_n=\frac{n}{n+1}</m>. Find a value of <m>N</m> such that <m>n\ge N \Longrightarrow |a_n-1|\lt 0.001</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <p>\subsubsection*{E. Proof practice with <m>\varepsilon</m>, <m>\delta</m>, and <m>N</m>}</p>
+
+  <p>These problems are about writing precise arguments.  Do not begin by saying “it is obvious from the graph.”  Begin with the error you must control.</p>
+
+    <ol>
+      <li>
+        <p>Prove from the definition that</p>
+          <md>\lim_{x\to3}(2x+5)=11.</md>
+      </li>
+      <li>
+        <p>Prove from the definition that</p>
+          <md>\lim_{x\to a}(mx+b)=ma+b,</md>
+        <p>where <m>m</m> and <m>b</m> are constants.</p>
+      </li>
+      <li>
+        <p>Prove from the definition that</p>
+          <md>\lim_{x\to2}x^2=4.</md>
+        <p>Hint: factor</p>
+          <md>|x^2-4|=|x-2||x+2|.</md>
+        <p>First make <m>|x+2|</m> bounded by requiring <m>|x-2|&lt;1</m>.</p>
+      </li>
+      <li>
+        <p>Prove from the definition that</p>
+          <md>\lim_{x\to1}\frac{x^2-1}{x-1}=2.</md>
+        <p>Remember that the definition already assumes <m>x\neq1</m>.</p>
+      </li>
+      <li>
+        <p>Prove that</p>
+          <md>\lim_{n\to\infty}\frac1n=0.</md>
+        <p>Use the precise definition of sequence convergence.</p>
+      </li>
+      <li>
+        <p>Prove that</p>
+          <md>\lim_{n\to\infty}\frac{2n+1}{n+3}=2.</md>
+        <p>Hint:</p>
+          <md>\left|\frac{2n+1}{n+3}-2\right|
+=
+\frac5{n+3}.</md>
+      </li>
+      <li>
+        <p>For the sequence</p>
+          <md>a_n=1-\frac1n,</md>
+        <p>prove directly that <m>a_n\to1</m>.</p>
+      </li>
+      <li>
+        <p>Show that the sequence</p>
+          <md>b_n=(-1)^n</md>
+        <p>does not converge.  Hint: if it converged to <m>L</m>, the even terms and odd terms would both have to approach <m>L</m>.</p>
+      </li>
+      <li>
+        <p>Let <m>\varepsilon=10^{-4}</m>.  Find a value of <m>N</m> such that</p>
+          <md>n\ge N
+\quad\Longrightarrow\quad
+\left|\frac1n-0\right|&lt;10^{-4}.</md>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>a_n=\frac{n}{n+1}.</md>
+        <p>Find a value of <m>N</m> such that</p>
+          <md>n\ge N
+\quad\Longrightarrow\quad
+|a_n-1|&lt;0.001.</md>
+      </li>
+    </ol>
+
+  <exercise xml:id="checkpoint-3-9-decision-guide">
+        <title>What should you check before forcing a two-sided finite limit?</title>
+        <statement>
+          <p>
+            Direct substitution, the form <m>\frac00</m>, disagreeing sides, and unbounded growth are different pictures. In your own words, how do you decide whether to substitute, rewrite, split into one-sided limits, or refuse a finite two-sided claim?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A number from substitution is the calm case. The form <m>\frac00</m> is a question. Different one-sided stories block a two-sided limit. Growth without bound is infinite behavior, not a real-number target.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-bisection-project">
     <title>Project: bisection method for a root</title>
 
-    <p>The Intermediate Value Theorem proves that roots exist. Bisection turns that proof into a numerical method.</p>
+  <p>The Intermediate Value Theorem proves that roots exist.  Bisection turns that proof into a numerical method.</p>
 
-    <p>Use</p>
-    <md>p(x)=x^3-x-1.</md>
-    <p>We know <m>p(1)=-1\lt 0</m> and <m>p(2)=5\gt 0</m>. Since <m>p</m> is continuous, the Intermediate Value Theorem guarantees at least one root in <m>(1,2)</m>.</p>
+  <p>Use</p>
 
-    <p><em>The method.</em> Begin with <m>[L_0,R_0]=[1,2]</m>. At each step, compute the midpoint</p>
-    <md>M_k=\frac{L_k+R_k}{2}.</md>
-    <p>Then choose the half interval where the sign change remains:</p>
-    <md>
-      [L_{k+1},R_{k+1}]=
-      \begin{cases}
-      [L_k,M_k], \amp p(L_k)\text{ and }p(M_k)\text{ have opposite signs},\\
-      [M_k,R_k], \amp p(M_k)\text{ and }p(R_k)\text{ have opposite signs}.
-      \end{cases}
-    </md>
-    <p>If <m>p(M_k)=0</m>, the midpoint is the exact root and the process stops.</p>
+  <md>p(x)=x^3-x-1.</md>
 
-    <paragraphs xml:id="paragraphs-project-part1">
-      <title>Part 1: complete the table</title>
-      <p>Use exact arithmetic or decimal approximations. Keep at least six decimal places in the midpoint and in <m>p(M_k)</m>.</p>
-      <table>
-        <title>Bisection steps for <m>p(x)=x^3-x-1</m></title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <row header="yes">
-            <cell><m>k</m></cell>
-            <cell><m>L_k</m></cell>
-            <cell><m>R_k</m></cell>
-            <cell><m>M_k</m></cell>
-            <cell><m>p(M_k)</m></cell>
-            <cell><term>next interval</term></cell>
-          </row>
-          <row>
-            <cell>0</cell>
-            <cell>1</cell>
-            <cell>2</cell>
-            <cell>1.5</cell>
-            <cell>0.875</cell>
-            <cell><m>[1,1.5]</m></cell>
-          </row>
-          <row>
-            <cell>1</cell>
-            <cell>1</cell>
-            <cell>1.5</cell>
-            <cell>1.25</cell>
-            <cell>-0.296875</cell>
-            <cell><m>[1.25,1.5]</m></cell>
-          </row>
-          <row>
-            <cell>2</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-          <row>
-            <cell>3</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-          <row>
-            <cell>4</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-          <row>
-            <cell>5</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-          <row>
-            <cell>6</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-          <row>
-            <cell>7</cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-            <cell></cell>
-          </row>
-        </tabular>
-      </table>
-    </paragraphs>
+  <p>We know</p>
 
-    <paragraphs xml:id="paragraphs-project-part2">
-      <title>Part 2: error control</title>
-      <p>After <m>N</m> completed bisections, what is the length of the interval that still contains the root? Start with length <m>R_0-L_0=1</m>. After one bisection, the length is <m>\frac{1}{2}</m>. After two bisections, the length is <m>\frac{1}{4}</m>. Find a formula for the length after <m>N</m> bisections.</p>
-    </paragraphs>
+  <md>p(1)=-1&lt;0
+\qquad\text{and}\qquad
+p(2)=5&gt;0.</md>
 
-    <paragraphs xml:id="paragraphs-project-part3">
-      <title>Part 3: midpoint estimate</title>
-      <p>If the root <m>c</m> lies inside <m>[L_N,R_N]</m>, and we report the midpoint <m>M_N=\frac{L_N+R_N}{2}</m>, show that</p>
-      <md>|M_N-c|\le \frac{R_N-L_N}{2}.</md>
-      <p>Use this to decide how many bisections are enough to guarantee an error less than <m>10^{-4}</m>.</p>
-    </paragraphs>
+  <p>Since <m>p</m> is continuous, the Intermediate Value Theorem guarantees at least one root in <m>(1,2)</m>.</p>
 
-    <paragraphs xml:id="paragraphs-project-part4">
-      <title>Part 4: why continuity matters</title>
-      <p>Construct a function that has <m>f(1)\lt 0</m> and <m>f(2)\gt 0</m>, but has no root in <m>(1,2)</m>. Explain which hypothesis of the Intermediate Value Theorem fails.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>The method</title>
 
-    <paragraphs xml:id="paragraphs-project-part5">
-      <title>Part 5: a root without a sign change</title>
-      <p>The function <m>q(x)=(x-1)^2</m> has a root at <m>x=1</m>, but <m>q(0)\gt 0</m> and <m>q(2)\gt 0</m>. What does this example show about bisection? Does bisection find every root automatically?</p>
-    </paragraphs>
+  <p>Begin with</p>
 
-    <paragraphs xml:id="paragraphs-project-part6">
-      <title>Part 6: optional computing</title>
-      <p>Use a spreadsheet or short program to continue bisection until the interval length is less than <m>10^{-8}</m>. Report the final interval and midpoint. Then graph <m>p(x)</m> near the root and check that the graph agrees with your numerical result.</p>
-    </paragraphs>
+  <md>[L_0,R_0]=[1,2].</md>
+
+  <p>At each step, compute the midpoint</p>
+
+  <md>M_k=\frac{L_k+R_k}{2}.</md>
+
+  <p>Then choose the half interval where the sign change remains:</p>
+
+  <md>
+    <mrow>[L_{k+1},R_{k+1}]
+=
+\begin{cases}
+[L_k,M_k], \amp p(L_k)\text{ and }p(M_k)\text{ have opposite signs},</mrow>
+    <mrow>[M_k,R_k], \amp p(M_k)\text{ and }p(R_k)\text{ have opposite signs}.
+\end{cases}</mrow>
+  </md>
+
+  <p>If <m>p(M_k)=0</m>, the midpoint is the exact root and the process stops.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 1: complete the table</title>
+
+  <p>Use exact arithmetic or decimal approximations.  Keep at least six decimal places in the midpoint and in <m>p(M_k)</m>.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c|c|c|c}
+k \amp L_k \amp R_k \amp M_k \amp p(M_k) \amp \text{next interval}</mrow>
+    <mrow>\hline
+0 \amp 1 \amp 2 \amp 1.5 \amp 0.875 \amp [1,1.5]</mrow>
+    <mrow>1 \amp 1 \amp 1.5 \amp 1.25 \amp -0.296875 \amp [1.25,1.5]</mrow>
+    <mrow>2 \amp \amp \amp \amp \amp</mrow>
+    <mrow>3 \amp \amp \amp \amp \amp</mrow>
+    <mrow>4 \amp \amp \amp \amp \amp</mrow>
+    <mrow>5 \amp \amp \amp \amp \amp</mrow>
+    <mrow>6 \amp \amp \amp \amp \amp</mrow>
+    <mrow>7 \amp \amp \amp \amp \amp
+\end{array}</mrow>
+  </md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 2: error control</title>
+
+  <p>After <m>N</m> completed bisections, what is the length of the interval that still contains the root?</p>
+
+  <p>Start with length</p>
+
+  <md>R_0-L_0=1.</md>
+
+  <p>After one bisection, the length is</p>
+
+  <md>\frac12.</md>
+
+  <p>After two bisections, the length is</p>
+
+  <md>\frac14.</md>
+
+  <p>Find a formula for the length after <m>N</m> bisections.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 3: midpoint estimate</title>
+
+  <p>If the root <m>c</m> lies inside <m>[L_N,R_N]</m>, and we report the midpoint</p>
+
+  <md>M_N=\frac{L_N+R_N}{2},</md>
+
+  <p>show that</p>
+
+  <md>|M_N-c|\le \frac{R_N-L_N}{2}.</md>
+
+  <p>Use this to decide how many bisections are enough to guarantee an error less than</p>
+
+  <md>10^{-4}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 4: why continuity matters</title>
+
+  <p>Construct a function that has</p>
+
+  <md>f(1)&lt;0
+\qquad\text{and}\qquad
+f(2)&gt;0,</md>
+
+  <p>but has no root in <m>(1,2)</m>.  Explain which hypothesis of the Intermediate Value Theorem fails.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 5: a root without a sign change</title>
+
+  <p>The function</p>
+
+  <md>q(x)=(x-1)^2</md>
+
+  <p>has a root at <m>x=1</m>, but</p>
+
+  <md>q(0)&gt;0
+\qquad\text{and}\qquad
+q(2)&gt;0.</md>
+
+  <p>What does this example show about bisection?  Does bisection find every root automatically?</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part 6: optional computing</title>
+
+  <p>Use a spreadsheet or short program to continue bisection until the interval length is less than</p>
+
+  <md>10^{-8}.</md>
+
+  <p>Report the final interval and midpoint.  Then graph <m>p(x)</m> near the root and check that the graph agrees with your numerical result.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-9-theorems-need-hypotheses">
+        <title>Why do IVT and EVT mistakes usually come from missing hypotheses?</title>
+        <statement>
+          <p>
+            The Intermediate Value Theorem and the Extreme Value Theorem guarantee that answers exist; they do not usually compute those answers. In your own words, which hypotheses must be checked before using each theorem, and why is a true theorem still illegal to apply when a condition is missing?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            IVT needs continuity on a closed interval. EVT needs continuity on a closed and bounded interval. The warning examples show what breaks if you skip those conditions.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-secant-slope-discovery">
     <title>Discovery problems: secant slopes becoming tangent slopes</title>
 
-    <p>The next chapter begins where this one started: with average velocity. The only new step is that we will give the limiting slope a name.</p>
+  <p>The next chapter begins where this one started: with average velocity.  The only new step is that we will give the limiting slope a name.</p>
 
-    <p>For a function <m>f</m>, a point <m>a</m>, and a nonzero number <m>h</m>, the secant slope from <m>a</m> to <m>a+h</m> is</p>
-    <md>\frac{f(a+h)-f(a)}{h}.</md>
+  <p>For a function <m>f</m>, a point <m>a</m>, and a nonzero number <m>h</m>, the secant slope from <m>a</m> to <m>a+h</m> is</p>
 
-    <p>The derivative will be the limit of this quotient as <m>h\to 0</m>, when that limit exists.</p>
+  <md>\frac{f(a+h)-f(a)}{h}.</md>
 
-    <p>The problems below let that idea appear before its definition.</p>
+  <p>The derivative will be the limit of this quotient as <m>h\to0</m>, when that limit exists.</p>
+
+  <p>The problems below let that idea appear before its definition.</p>
 
     <ol>
       <li>
-        <p>Let <m>f(x)=x^2</m> and <m>a=2</m>. Define <m>m_n=\frac{f(2+\frac{1}{n})-f(2)}{\frac{1}{n}}</m>. Compute <m>m_1,m_2,m_5,m_{10}</m>, and find <m>\lim_{n\to\infty}m_n</m>.</p>
+        <p>Let</p>
+          <md>f(x)=x^2
+\qquad\text{and}\qquad
+a=2.</md>
+        <p>Define</p>
+          <md>m_n=\frac{f\left(2+\frac1n\right)-f(2)}{\frac1n}.</md>
+        <p>Compute <m>m_1,m_2,m_5,m_{10}</m>, and find</p>
+          <md>\lim_{n\to\infty}m_n.</md>
       </li>
       <li>
-        <p>For the same function, define <m>\ell_n=\frac{f(2-\frac{1}{n})-f(2)}{-\frac{1}{n}}</m>. Compute <m>\ell_1,\ell_2,\ell_5,\ell_{10}</m>, and find <m>\lim_{n\to\infty}\ell_n</m>. Do the right-side and left-side secant slopes approach the same number?</p>
+        <p>For the same function, define</p>
+          <md>\ell_n=\frac{f\left(2-\frac1n\right)-f(2)}{-\frac1n}.</md>
+        <p>Compute <m>\ell_1,\ell_2,\ell_5,\ell_{10}</m>, and find</p>
+          <md>\lim_{n\to\infty}\ell_n.</md>
+        <p>Do the right-side and left-side secant slopes approach the same number?</p>
       </li>
       <li>
-        <p>Let <m>f(x)=x^3</m> and <m>a=2</m>. Compute <m>\frac{f(2+h)-f(2)}{h}</m> for <m>h\neq 0</m>, simplify, and then find the limit as <m>h\to 0</m>.</p>
+        <p>Let</p>
+          <md>f(x)=x^3
+\qquad\text{and}\qquad
+a=2.</md>
+        <p>Compute</p>
+          <md>\frac{f(2+h)-f(2)}{h}</md>
+        <p>for <m>h\neq0</m>, simplify, and then find the limit as <m>h\to0</m>.</p>
       </li>
       <li>
-        <p>Let <m>f(x)=|x|</m> and <m>a=0</m>. Compute the secant slope for <m>h=\frac{1}{n}</m> and for <m>h=-\frac{1}{n}</m>. Do the two sequences of slopes approach the same number?</p>
+        <p>Let</p>
+          <md>f(x)=|x|
+\qquad\text{and}\qquad
+a=0.</md>
+        <p>Compute the secant slope for</p>
+          <md>h=\frac1n</md>
+        <p>and for</p>
+          <md>h=-\frac1n.</md>
+        <p>Do the two sequences of slopes approach the same number?</p>
       </li>
       <li>
         <p>Based on the previous problem, explain why the graph of <m>y=|x|</m> should not have a tangent slope at <m>x=0</m>.</p>
       </li>
       <li>
-        <p>Let <m>f(x)=\frac{1}{x}</m> and <m>a=1</m>. Compute and simplify <m>\frac{f(1+h)-f(1)}{h}</m>. Then find the limit as <m>h\to 0</m>.</p>
+        <p>Let</p>
+          <md>f(x)=\frac1x
+\qquad\text{and}\qquad
+a=1.</md>
+        <p>Compute and simplify</p>
+          <md>\frac{f(1+h)-f(1)}{h}.</md>
+        <p>Then find the limit as <m>h\to0</m>.</p>
       </li>
       <li>
-        <p>Choose your own function <m>f</m> and point <m>a</m>. Compute several secant slopes using <m>h=0.1, 0.01, 0.001</m> and <m>h=-0.1, -0.01, -0.001</m>. Make a conjecture about the limiting slope at <m>a</m>. Then try to prove your conjecture algebraically.</p>
+        <p>Choose your own function <m>f</m> and point <m>a</m>.  Compute several secant slopes using</p>
+          <md>h=0.1,\quad 0.01,\quad 0.001</md>
+        <p>and</p>
+          <md>h=-0.1,\quad -0.01,\quad -0.001.</md>
+        <p>Make a conjecture about the limiting slope at <m>a</m>.  Then try to prove your conjecture algebraically.</p>
       </li>
     </ol>
   </subsection>
@@ -493,14 +735,32 @@
   <subsection xml:id="subsec-chapter3-hook-to-derivative">
     <title>End-of-chapter hook</title>
 
-    <p>A limit watches a quantity approach a target. In this chapter, the quantity might have been a function value, a sequence term, or an average velocity.</p>
+  <p>A limit watches a quantity approach a target.  In this chapter, the quantity might have been a function value, a sequence term, or an average velocity.</p>
 
-    <p>The next chapter chooses one limit and builds a new object from it:</p>
-    <md>\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
+  <p>The next chapter chooses one limit and builds a new object from it:</p>
 
-    <p>The numerator measures change in output. The denominator measures change in input. The quotient is an average rate of change. The limit, if it exists, is the instantaneous rate of change.</p>
+  <md>\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
 
-    <p>That number is the derivative.</p>
+  <p>The numerator measures change in output.  The denominator measures change in input.  The quotient is an average rate of change.  The limit, if it exists, is the instantaneous rate of change.</p>
+
+  <p>That number is the derivative.</p>
+
+  <exercise xml:id="checkpoint-3-9-derivative-as-next-limit">
+        <title>What new object is the next chapter about to build from a limit?</title>
+        <statement>
+          <p>
+            The next chapter chooses the limit <m>\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</m>. In your own words, what do the numerator and denominator measure, why is the quotient still an average, and what extra meaning appears if that limit exists?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The numerator is change in output. The denominator is change in input. The quotient is an average rate. The limit, if it exists, is the instantaneous rate: the derivative.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

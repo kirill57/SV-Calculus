@@ -1,0 +1,947 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-6-absolute-convergence-and-stronger-tests">
+  <title>Absolute convergence and stronger tests</title>
+
+  <p>Alternating series taught us that cancellation can make a divergent positive series turn
+into a convergent signed series.</p>
+
+  <p>But cancellation is fragile.  It depends on order and balance.</p>
+
+  <p>A stronger kind of convergence ignores cancellation entirely.  It asks whether the total
+size of all terms is finite:</p>
+
+  <md>\sum |a_k|&lt;\infty.</md>
+
+  <p>If that positive series converges, then the original signed series converges no matter how
+the signs behave.</p>
+
+  <subsection xml:id="subsec-absolute-versus-conditional-convergence">
+    <title>Absolute versus conditional convergence</title>
+
+  <p>Let</p>
+
+  <md>\sum_{k=1}^{\infty}a_k</md>
+
+  <p>be any series, with positive, negative, or mixed signs.</p>
+
+  <p>The associated absolute-value series is</p>
+
+  <md>\sum_{k=1}^{\infty}|a_k|.</md>
+
+  <note xml:id="note-sec-15-6-absolute-convergence-and-stronger-tests-119">
+    <title>Absolute convergence</title>
+      <p>A series</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>is <em>absolutely convergent</em> if</p>
+        <md>
+\sum_{k=1}^{\infty}|a_k| \text{ converges.}
+</md>
+  </note>
+
+  <p>Absolute convergence means that the total size of all terms is finite.</p>
+
+  <note xml:id="note-sec-15-6-absolute-convergence-and-stronger-tests-120">
+    <title>Absolute convergence implies convergence</title>
+      <p>If</p>
+        <md>\sum_{k=1}^{\infty}|a_k|</md>
+      <p>converges, then</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>converges.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof idea</title>
+
+  <p>Write each term as the difference between its positive part and its negative part.</p>
+
+  <p>Define</p>
+
+  <md>p_k=\frac{|a_k|+a_k}{2},
+\qquad
+q_k=\frac{|a_k|-a_k}{2}.</md>
+
+  <p>Then</p>
+
+  <md>p_k\ge0,
+\qquad
+q_k\ge0,</md>
+
+  <p>and</p>
+
+  <md>a_k=p_k-q_k.</md>
+
+  <p>Also,</p>
+
+  <md>0\le p_k\le |a_k|,
+\qquad
+0\le q_k\le |a_k|.</md>
+
+  <p>If</p>
+
+  <md>\sum |a_k|</md>
+
+  <p>converges, then by comparison both positive series</p>
+
+  <md>\sum p_k
+\qquad\text{and}\qquad
+\sum q_k</md>
+
+  <p>converge.  Therefore their difference</p>
+
+  <md>\sum (p_k-q_k)=\sum a_k</md>
+
+  <p>converges.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-15-6-absolute-versus-conditional">
+        <title>What is the difference between absolute and conditional convergence?</title>
+        <statement>
+          <p>
+            Absolute convergence means <m>\sum |a_k|</m> converges. Conditional convergence means the signed series converges while the absolute series diverges. In your own words, why does finite total size force ordinary convergence, and why is cancellation a weaker, more fragile reason to converge?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the total size is finite, the positive and negative parts are each finite, so their difference is finite. Conditional convergence keeps an infinite supply of both signs and balances them by order.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-2">
+    <title>absolute convergence</title>
+    <statement>
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^k\frac1{k^2}</md>
+
+  <p>is absolutely convergent because</p>
+
+  <md>\sum_{k=1}^{\infty}\left|(-1)^k\frac1{k^2}\right|
+=
+\sum_{k=1}^{\infty}\frac1{k^2},</md>
+
+  <p>and this <m>p</m>-series converges.</p>
+
+  <p>Therefore</p>
+
+  <md>
+\sum_{k=1}^{\infty}(-1)^k\frac1{k^2}
+\text{ converges absolutely.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-3">
+    <title>conditional convergence</title>
+    <statement>
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k</md>
+
+  <p>converges by the Alternating Series Test.</p>
+
+  <p>But</p>
+
+  <md>\sum_{k=1}^{\infty}\left|(-1)^{k-1}\frac1k\right|
+=
+\sum_{k=1}^{\infty}\frac1k</md>
+
+  <p>diverges.</p>
+
+  <p>Therefore</p>
+
+  <md>
+\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k
+\text{ converges conditionally.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-4">
+    <title>absolute convergence by comparison</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{\cos k}{k^2}</md>
+
+  <p>converges.</p>
+
+  <p>We do not need to understand the exact behavior of <m>\cos k</m>.  Since</p>
+
+  <md>|\cos k|\le1,</md>
+
+  <p>we have</p>
+
+  <md>\left|\frac{\cos k}{k^2}\right|
+\le
+\frac1{k^2}.</md>
+
+  <p>The series</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k^2}</md>
+
+  <p>converges.  By comparison,</p>
+
+  <md>\sum_{k=1}^{\infty}\left|\frac{\cos k}{k^2}\right|</md>
+
+  <p>converges.  Therefore the original series converges absolutely:</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{\cos k}{k^2}
+\text{ converges absolutely.}
+</md>
+
+  <p>Absolute convergence is often the cleanest way to handle signs that are not organized
+enough for the Alternating Series Test.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-ratio-test">
+    <title>Ratio Test</title>
+
+  <p>Some series contain factorials or exponential powers.  For these, comparing consecutive
+terms is often natural.</p>
+
+  <p>Examples include</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{3^k}{k!},
+\qquad
+\sum_{k=1}^{\infty}\frac{k!}{10^k},
+\qquad
+\sum_{k=1}^{\infty}\frac{k^4}{2^k}.</md>
+
+  <p>In each case, the quotient</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|</md>
+
+  <p>measures how the next term compares with the current term.</p>
+
+  <p>If this ratio eventually stays below a number less than <m>1</m>, the terms shrink at least
+as fast as a geometric series.  That should imply convergence.</p>
+
+  <note xml:id="note-sec-15-6-absolute-convergence-and-stronger-tests-121">
+    <title>Ratio Test</title>
+      <p>Let</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>be a series with nonzero terms for all sufficiently large <m>k</m>.  Suppose</p>
+        <md>L=\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|.</md>
+      <p>Then:</p>
+        <table xml:id="tab-sec-15-6-absolute-convergence-and-stronger-tests-0">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>value of <m>L</m></strong></cell>
+        <cell><strong>conclusion</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>L&lt;1</m></cell>
+        <cell>the series converges absolutely</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>L&gt;1</m> or <m>L=\infty</m></cell>
+        <cell>the series diverges</cell>
+      </row>
+      <row>
+        <cell>
+<m>L=1</m></cell>
+        <cell>the test gives no information</cell>
+      </row>
+    </tabular>
+  </table>
+  </note>
+
+  <paragraphs>
+    <title>Why the test works</title>
+
+  <p>If</p>
+
+  <md>L&lt;1,</md>
+
+  <p>choose a number <m>r</m> with</p>
+
+  <md>L&lt;r&lt;1.</md>
+
+  <p>For all sufficiently large <m>k</m>,</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|\le r.</md>
+
+  <p>Then the tail terms satisfy a geometric bound:</p>
+
+  <md>|a_{N+m}|\le |a_N|r^m.</md>
+
+  <p>Since</p>
+
+  <md>\sum |a_N|r^m</md>
+
+  <p>is a convergent geometric series, the tail of</p>
+
+  <md>\sum |a_k|</md>
+
+  <p>converges by comparison.  Therefore the original series converges absolutely.</p>
+
+  <p>If</p>
+
+  <md>L&gt;1,</md>
+
+  <p>then eventually</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|&gt;1.</md>
+
+  <p>The terms do not approach zero.  Therefore the series diverges by the term test.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-6">
+    <title>factorial in the denominator</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=0}^{\infty}\frac{3^k}{k!}</md>
+
+  <p>converges.</p>
+
+  <p>Let</p>
+
+  <md>a_k=\frac{3^k}{k!}.</md>
+
+  <p>Then</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac{3^{k+1}}{(k+1)!}\cdot\frac{k!}{3^k}
+=
+\frac3{k+1}.</md>
+
+  <p>So</p>
+
+  <md>\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|
+=
+0.</md>
+
+  <p>Since</p>
+
+  <md>0&lt;1,</md>
+
+  <p>the Ratio Test shows that</p>
+
+  <md>
+\sum_{k=0}^{\infty}\frac{3^k}{k!}
+\text{ converges absolutely.}
+</md>
+
+  <p>Factorials in denominators often force very fast convergence.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-7">
+    <title>factorial in the numerator</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{k!}{10^k}</md>
+
+  <p>converges.</p>
+
+  <p>Let</p>
+
+  <md>a_k=\frac{k!}{10^k}.</md>
+
+  <p>Then</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac{(k+1)!}{10^{k+1}}\cdot\frac{10^k}{k!}
+=
+\frac{k+1}{10}.</md>
+
+  <p>Thus</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|\to\infty.</md>
+
+  <p>The Ratio Test gives divergence.  In fact, the terms eventually grow rather than shrink.</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{k!}{10^k}
+\text{ diverges.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-8">
+    <title>powers against exponentials</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{k^4}{2^k}</md>
+
+  <p>converges.</p>
+
+  <p>Let</p>
+
+  <md>a_k=\frac{k^4}{2^k}.</md>
+
+  <p>Then</p>
+
+  <md>\frac{a_{k+1}}{a_k}
+=
+\frac{(k+1)^4}{2^{k+1}}\cdot\frac{2^k}{k^4}
+=
+\frac12\left(\frac{k+1}{k}\right)^4.</md>
+
+  <p>Since</p>
+
+  <md>\left(\frac{k+1}{k}\right)^4
+=
+\left(1+\frac1k\right)^4\to1,</md>
+
+  <p>we get</p>
+
+  <md>\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac12.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{k^4}{2^k}
+\text{ converges.}
+</md>
+
+  <p>This example shows a common pattern: exponential decay beats polynomial growth.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>When the Ratio Test says nothing</title>
+
+  <p>For the harmonic series,</p>
+
+  <md>a_k=\frac1k.</md>
+
+  <p>Then</p>
+
+  <md>\frac{a_{k+1}}{a_k}
+=
+\frac{1}{k+1}\cdot k
+=
+\frac{k}{k+1}
+\to1.</md>
+
+  <p>The Ratio Test gives no information.</p>
+
+  <p>For the convergent <m>p</m>-series</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k^2},</md>
+
+  <p>we also get</p>
+
+  <md>\frac{a_{k+1}}{a_k}
+=
+\frac{k^2}{(k+1)^2}
+\to1.</md>
+
+  <p>Again the Ratio Test gives no information.</p>
+
+  <p>One series diverges and the other converges.  So <m>L=1</m> truly means no conclusion.</p>
+
+  <md>
+\text{When the Ratio Test gives \(L=1\), choose another test.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-15-6-ratio-geometric">
+        <title>Why does the Ratio Test compare a series with a geometric series?</title>
+        <statement>
+          <p>
+            The Ratio Test looks at <m>\lim |a_{k+1}/a_k|</m>. In your own words, why does a limit strictly less than <m>1</m> make the terms eventually shrink like a geometric series, and why is the test especially natural for factorials and exponentials?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If consecutive terms are eventually no larger than a fixed fraction <m>r&lt;1</m> of the previous term, comparison with <m>\sum r^k</m> takes over. Factorials and exponentials change by a clean multiplicative factor from one term to the next.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-root-test">
+    <title>Root Test</title>
+
+  <p>The Ratio Test compares consecutive terms.  The Root Test measures the average
+exponential size of one term.</p>
+
+  <p>It is useful when the <m>k</m>-th term contains a <m>k</m>-th power, such as</p>
+
+  <md>\left(\frac{3k+1}{5k}\right)^k</md>
+
+  <p>or</p>
+
+  <md>\frac{2^k}{k^k}.</md>
+
+  <p>Taking the <m>k</m>-th root removes the <m>k</m>-th power.</p>
+
+  <note xml:id="note-sec-15-6-absolute-convergence-and-stronger-tests-122">
+    <title>Root Test</title>
+      <p>Let</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>be a series, and suppose</p>
+        <md>L=\lim_{k\to\infty}\sqrt[k]{|a_k|}.</md>
+      <p>Then:</p>
+        <table xml:id="tab-sec-15-6-absolute-convergence-and-stronger-tests-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>value of <m>L</m></strong></cell>
+        <cell><strong>conclusion</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>L&lt;1</m></cell>
+        <cell>the series converges absolutely</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>L&gt;1</m> or <m>L=\infty</m></cell>
+        <cell>the series diverges</cell>
+      </row>
+      <row>
+        <cell>
+<m>L=1</m></cell>
+        <cell>the test gives no information</cell>
+      </row>
+    </tabular>
+  </table>
+  </note>
+
+  <paragraphs>
+    <title>Why the test works</title>
+
+  <p>If</p>
+
+  <md>L&lt;1,</md>
+
+  <p>choose <m>r</m> with</p>
+
+  <md>L&lt;r&lt;1.</md>
+
+  <p>For all sufficiently large <m>k</m>,</p>
+
+  <md>\sqrt[k]{|a_k|}\le r.</md>
+
+  <p>Raising both sides to the <m>k</m>-th power gives</p>
+
+  <md>|a_k|\le r^k.</md>
+
+  <p>The geometric series</p>
+
+  <md>\sum r^k</md>
+
+  <p>converges, so the original series converges absolutely by comparison.</p>
+
+  <p>If</p>
+
+  <md>L&gt;1,</md>
+
+  <p>then for all large <m>k</m>,</p>
+
+  <md>\sqrt[k]{|a_k|}&gt;1.</md>
+
+  <p>So</p>
+
+  <md>|a_k|&gt;1</md>
+
+  <p>eventually.  The terms do not approach zero, and the series diverges.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-11">
+    <title>a <m>k</m>-th power</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}
+\left(\frac{3k+1}{5k}\right)^k</md>
+
+  <p>converges.</p>
+
+  <p>Let</p>
+
+  <md>a_k=\left(\frac{3k+1}{5k}\right)^k.</md>
+
+  <p>Then</p>
+
+  <md>\sqrt[k]{|a_k|}
+=
+\frac{3k+1}{5k}
+=
+\frac{3+\frac1k}{5}.</md>
+
+  <p>Therefore</p>
+
+  <md>\lim_{k\to\infty}\sqrt[k]{|a_k|}
+=
+\frac35.</md>
+
+  <p>Since</p>
+
+  <md>\frac35&lt;1,</md>
+
+  <p>the Root Test gives</p>
+
+  <md>
+\sum_{k=1}^{\infty}
+\left(\frac{3k+1}{5k}\right)^k
+\text{ converges absolutely.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-12">
+    <title>another root-test series</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{2^k}{k^k}</md>
+
+  <p>converges.</p>
+
+  <p>Rewrite the term:</p>
+
+  <md>\frac{2^k}{k^k}=\left(\frac2k\right)^k.</md>
+
+  <p>Then</p>
+
+  <md>\sqrt[k]{\left|\frac{2^k}{k^k}\right|}
+=
+\frac2k.</md>
+
+  <p>So</p>
+
+  <md>\lim_{k\to\infty}\frac2k=0.</md>
+
+  <p>The Root Test gives absolute convergence:</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{2^k}{k^k}
+\text{ converges.}
+</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>When the Root Test says nothing</title>
+
+  <p>For any <m>p</m>-series,</p>
+
+  <md>a_k=\frac1{k^p},</md>
+
+  <p>we get</p>
+
+  <md>\sqrt[k]{|a_k|}
+=
+\sqrt[k]{\frac1{k^p}}
+=
+\frac1{k^{p/k}}.</md>
+
+  <p>Since</p>
+
+  <md>k^{p/k}\to1,</md>
+
+  <p>the root limit is</p>
+
+  <md>1.</md>
+
+  <p>So the Root Test gives no information for <m>p</m>-series.  The <m>p</m>-series test is the right
+tool there.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-15-6-root-kth-power">
+        <title>When is the Root Test the natural test?</title>
+        <statement>
+          <p>
+            The Root Test looks at <m>\lim \sqrt[k]{|a_k|}</m>. In your own words, why does a <m>k</m>-th power in the term invite a <m>k</m>-th root, and why is a limit strictly less than <m>1</m> again a geometric comparison?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Taking the <m>k</m>-th root undoes a <m>k</m>-th power. If the roots settle below <m>1</m>, then eventually <m>|a_k|\le r^k</m> for some <m>r&lt;1</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-strategy-for-testing-series">
+    <title>Strategy for testing series</title>
+
+  <p>By now the list of tests is long enough that the main difficulty is choosing.</p>
+
+  <p>A series usually carries clues in its shape.  The table below is not a rigid algorithm, but
+it gives a practical order of attack.</p>
+
+  <table xml:id="tab-sec-15-6-absolute-convergence-and-stronger-tests-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>what you see</strong></cell>
+        <cell><strong>test or idea to try</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>terms do not approach <m>0</m></cell>
+        <cell>term test for divergence</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+geometric pattern <m>ar^k</m></cell>
+        <cell>geometric series test</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+large cancellation in partial sums</cell>
+        <cell>telescoping</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+positive terms with powers of <m>k</m></cell>
+        <cell><m>p</m>-series, comparison, integral test</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+rational expression in <m>k</m></cell>
+        <cell>limit comparison with leading powers</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+alternating signs and decreasing sizes</cell>
+        <cell>Alternating Series Test</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+factorials or exponentials</cell>
+        <cell>Ratio Test</cell>
+      </row>
+      <row>
+        <cell>
+<m>k</m>-th powers</cell>
+        <cell>Root Test</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Before using any subtle test, always ask the simplest question:</p>
+
+  <md>
+\text{Do the terms approach zero?}
+</md>
+
+  <p>If not, the series diverges immediately.</p>
+
+
+  <exercise xml:id="checkpoint-15-6-l-equals-one">
+        <title>Why does a limit of <m>1</m> give no information?</title>
+        <statement>
+          <p>
+            For both the Ratio Test and the Root Test, the limit <m>L=1</m> decides nothing. In your own words, why can that happen for both a divergent <m>p</m>-series and a convergent one, and what should you do next?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Polynomial decay is too slow to look geometric. The same limit <m>1</m> appears for <m>\sum 1/k</m> and for <m>\sum 1/k^2</m>, so the test cannot tell them apart. Switch to comparison, the Integral Test, or the Alternating Series Test as the shape suggests.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-14">
+    <title>choose the test</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1{k^{3/4}}</md>
+
+  <p>converges absolutely, conditionally, or not at all.</p>
+
+  <p>First test absolute convergence:</p>
+
+  <md>\sum_{k=1}^{\infty}\left|(-1)^{k-1}\frac1{k^{3/4}}\right|
+=
+\sum_{k=1}^{\infty}\frac1{k^{3/4}}.</md>
+
+  <p>This is a <m>p</m>-series with</p>
+
+  <md>p=\frac34&lt;1.</md>
+
+  <p>So the absolute-value series diverges.</p>
+
+  <p>Now test the original alternating series.  Let</p>
+
+  <md>b_k=\frac1{k^{3/4}}.</md>
+
+  <p>Then <m>b_k</m> is positive, decreasing, and</p>
+
+  <md>b_k\to0.</md>
+
+  <p>By the Alternating Series Test, the original series converges.</p>
+
+  <p>Therefore</p>
+
+  <md>
+\sum_{k=1}^{\infty}(-1)^{k-1}\frac1{k^{3/4}}
+\text{ converges conditionally.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-15">
+    <title>ratio beats comparison</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{k^3}{3^k}</md>
+
+  <p>converges.</p>
+
+  <p>The term has a polynomial part and an exponential part.  Try the Ratio Test.</p>
+
+  <p>Let</p>
+
+  <md>a_k=\frac{k^3}{3^k}.</md>
+
+  <p>Then</p>
+
+  <md>\frac{a_{k+1}}{a_k}
+=
+\frac{(k+1)^3}{3^{k+1}}\cdot\frac{3^k}{k^3}
+=
+\frac13\left(1+\frac1k\right)^3.</md>
+
+  <p>Thus</p>
+
+  <md>\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac13.</md>
+
+  <p>Since</p>
+
+  <md>\frac13&lt;1,</md>
+
+  <p>the series converges absolutely.</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{k^3}{3^k}
+\text{ converges.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-16">
+    <title>ratio gives no information, so switch tests</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{k+2}{k^3+1}</md>
+
+  <p>converges.</p>
+
+  <p>The Ratio Test would give a limit of <m>1</m>, so it is not the natural tool.  The term is a
+rational expression in <m>k</m>, so compare leading powers:</p>
+
+  <md>\frac{k+2}{k^3+1}
+\sim
+\frac{k}{k^3}
+=
+\frac1{k^2}.</md>
+
+  <p>Use limit comparison with</p>
+
+  <md>b_k=\frac1{k^2}.</md>
+
+  <p>Let</p>
+
+  <md>a_k=\frac{k+2}{k^3+1}.</md>
+
+  <p>Then</p>
+
+  <md>\frac{a_k}{b_k}
+=
+\frac{k+2}{k^3+1}\cdot k^2
+=
+\frac{k^3+2k^2}{k^3+1}.</md>
+
+  <p>Divide by <m>k^3</m>:</p>
+
+  <md>\frac{1+\frac2k}{1+\frac1{k^3}}\to1.</md>
+
+  <p>Since</p>
+
+  <md>0&lt;1&lt;\infty</md>
+
+  <p>and</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k^2}</md>
+
+  <p>converges, the given series converges:</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{k+2}{k^3+1}
+\text{ converges.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-6-absolute-convergence-and-stronger-tests-17">
+    <title>term test first</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\sum_{k=1}^{\infty}\frac{2^k}{2^k+1}</md>
+
+  <p>converges.</p>
+
+  <p>Before trying any advanced test, examine the terms:</p>
+
+  <md>a_k=\frac{2^k}{2^k+1}
+=
+\frac{1}{1+\frac1{2^k}}.</md>
+
+  <p>As <m>k\to\infty</m>,</p>
+
+  <md>a_k\to1.</md>
+
+  <p>The terms do not approach zero.  Therefore the series diverges:</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac{2^k}{2^k+1}
+\text{ diverges.}
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-where-series-tests-lead">
+    <title>Where this leads</title>
+
+  <p>We now know how to test many numerical series:</p>
+
+  <md>\sum a_k.</md>
+
+  <p>But the next chapter changes the role of a series.  The terms will contain a variable:</p>
+
+  <md>\sum_{k=0}^{\infty}a_k x^k.</md>
+
+  <p>Then an infinite series becomes a function.</p>
+
+  <p>That is how the promise from the start of this chapter becomes possible.  A function such
+as</p>
+
+  <md>e^x,
+\qquad
+\sin x,
+\qquad
+\cos x</md>
+
+  <p>can be represented by a power series.  In that form, complicated functions become
+infinite polynomials, and the tools of calculus return in a new way.</p>
+  </subsection>
+
+
+
+</section>

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-d-1-least-upper-bound-property">
+  <title>The Least Upper Bound Property</title>
+
+  <p>The real line is more than a long list of numbers.  It has no gaps.</p>
+
+  <p>That phrase sounds geometric, but it becomes useful only after we translate it into a
+precise statement about sets of numbers.</p>
+
+  <subsection xml:id="appsubsec-upper-bounds-suprema">
+    <title>Upper bounds and least upper bounds</title>
+
+  <p>Let <m>A</m> be a set of real numbers.</p>
+
+  <p>A number <m>U</m> is an <em>upper bound</em> for <m>A</m> if every number in <m>A</m> is less than
+or equal to <m>U</m>:</p>
+
+  <md>x\le U
+\qquad\text{for every }x\in A.</md>
+
+  <p>A set is <em>bounded above</em> if it has at least one upper bound.</p>
+
+  <example xml:id="ex-sec-d-1-least-upper-bound-property-1">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>A=(0,1).</md>
+
+  <p>Then <m>1</m> is an upper bound for <m>A</m>, because every <m>x\in(0,1)</m> satisfies</p>
+
+  <md>x\le1.</md>
+
+  <p>The number <m>2</m> is also an upper bound.  So is <m>100</m>.  But <m>1</m> is the smallest
+possible upper bound.</p>
+
+  <p>That makes <m>1</m> the <em>least upper bound</em> of <m>A</m>.</p>
+
+  <note xml:id="note-sec-d-1-least-upper-bound-property-43">
+    <title>Least upper bound</title>
+      <p>A number <m>s</m> is the <em>least upper bound</em> of a set <m>A</m> if</p>
+        <md>\text{1. }s\text{ is an upper bound for }A,</md>
+      <p>and</p>
+        <md>\text{2. every upper bound for }A\text{ is at least }s.</md>
+      <p>The least upper bound is also called the <em>supremum</em> of <m>A</m>, written</p>
+        <md>s=\sup A.</md>
+  </note>
+
+  <p>The supremum does not have to belong to the set.</p>
+
+  <p>For</p>
+
+  <md>A=(0,1),</md>
+
+  <p>we have</p>
+
+  <md>\sup A=1,</md>
+
+  <p>but</p>
+
+  <md>1\notin A.</md>
+
+  <p>If the supremum does belong to the set, then it is the maximum.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-d-1-least-upper-bound-property-2">
+    <title>Example</title>
+    <statement>
+  <p>For</p>
+
+  <md>B=[0,1],</md>
+
+  <p>we have</p>
+
+  <md>\sup B=1,</md>
+
+  <p>and now</p>
+
+  <md>1\in B.</md>
+
+  <p>So <m>1</m> is also the maximum value of <m>B</m>.</p>
+
+  <table xml:id="tab-sec-d-1-least-upper-bound-property-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>set</strong></cell>
+        <cell><strong>supremum</strong></cell>
+        <cell><strong>maximum?</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>(0,1)</m></cell>
+        <cell><m>1</m></cell>
+        <cell>no</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>[0,1]</m></cell>
+        <cell><m>1</m></cell>
+        <cell>yes</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\{1-\frac1n:n=1,2,3,\ldots\}</m></cell>
+        <cell><m>1</m></cell>
+        <cell>no</cell>
+      </row>
+      <row>
+        <cell><m>\{x\in\mathbb R:x^2\le4\}</m></cell>
+        <cell><m>2</m></cell>
+        <cell>yes</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The least upper bound is the boundary from above.  A maximum is an element of the
+set sitting at that boundary.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-completeness-axiom">
+    <title>The completeness axiom</title>
+
+  <p>The real numbers are complete in the following sense.</p>
+
+  <note xml:id="note-sec-d-1-least-upper-bound-property-44">
+    <title>Least Upper Bound Property</title>
+      <p>Every nonempty set of real numbers that is bounded above has a least upper bound.</p>
+  </note>
+
+  <p>This is not true for the rational numbers.</p>
+
+  <p>Let</p>
+
+  <md>A_{\mathbb Q}=\{x\in\mathbb Q:x\ge0\text{ and }x^2&lt;2\}.</md>
+
+  <p>This set is nonempty.  For example,</p>
+
+  <md>1\in A_{\mathbb Q}.</md>
+
+  <p>It is also bounded above.  For example, <m>2</m> is an upper bound.</p>
+
+  <p>Inside the rational numbers, however, there is no rational least upper bound.  The
+boundary should be</p>
+
+  <md>\sqrt2,</md>
+
+  <p>but</p>
+
+  <md>\sqrt2\notin\mathbb Q.</md>
+
+  <p>The rational line has a hole exactly where the supremum should be.</p>
+
+  <figure xml:id="fig-rational-hole-sqrt2">
+    <caption>The set of rational numbers with <m>x^2&lt;2</m> points toward <m>\sqrt2</m>, which is missing from <m>\mathbb Q</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=2.7, every node/.style={font=\small}]
+  \draw[&lt;-&gt;, thick] (0.5,0) -- (1.8,0);
+  \foreach \x/\lab in {1/1,1.414/{\(\sqrt2\)},1.7/{}} {
+    \draw[thick] (\x,0.05) -- (\x,-0.05);
+  }
+  \draw[very thick] (0.55,0) -- (1.414,0);
+  \draw[fill=white, thick] (1.414,0) circle (2.3pt);
+  \node[below] at (1,-0.06) {\(1\)};
+  \node[below] at (1.414,-0.06) {\(\sqrt2\)};
+  \node[above] at (1.05,0.15) {\(x^2&lt;2\)};
+  \node[above] at (1.58,0.15) {upper bounds};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The real numbers repair this.  In <m>\mathbb R</m>, the same set has a least upper bound,
+and that least upper bound is <m>\sqrt2</m>.</p>
+
+  <md>
+\text{Completeness turns limiting boundaries into real numbers.}
+</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-supremum-approximation-property">
+    <title>The approximation property of the supremum</title>
+
+  <p>The supremum has one small property that is used again and again.</p>
+
+  <p>Suppose</p>
+
+  <md>s=\sup A.</md>
+
+  <p>Then <m>s</m> is an upper bound.  So every <m>a\in A</m> satisfies</p>
+
+  <md>a\le s.</md>
+
+  <p>But <m>s</m> is the <em>least</em> upper bound.  Therefore, if we move even a little below
+<m>s</m>, we can no longer have an upper bound.</p>
+
+  <p>That gives the following fact.</p>
+
+  <note xml:id="note-sec-d-1-least-upper-bound-property-45">
+    <title>Approximation property of the supremum</title>
+      <p>If <m>A</m> is nonempty and bounded above, and</p>
+        <md>s=\sup A,</md>
+      <p>then for every <m>\varepsilon&gt;0</m>, there is an element <m>a\in A</m> such that</p>
+        <md>s-\varepsilon&lt;a\le s.</md>
+  </note>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Since <m>s=\sup A</m>, the number <m>s</m> is an upper bound for <m>A</m>.  Therefore</p>
+
+  <md>a\le s</md>
+
+  <p>for every <m>a\in A</m>.</p>
+
+  <p>Now let <m>\varepsilon&gt;0</m>.  If no element of <m>A</m> were larger than <m>s-\varepsilon</m>, then</p>
+
+  <md>a\le s-\varepsilon</md>
+
+  <p>for every <m>a\in A</m>.  That would make <m>s-\varepsilon</m> an upper bound for <m>A</m>.</p>
+
+  <p>But</p>
+
+  <md>s-\varepsilon&lt;s,</md>
+
+  <p>contradicting the fact that <m>s</m> is the least upper bound.</p>
+
+  <p>Therefore some <m>a\in A</m> must satisfy</p>
+
+  <md>s-\varepsilon&lt;a.</md>
+
+  <p>Together with <m>a\le s</m>, this gives</p>
+
+  <md>s-\varepsilon&lt;a\le s.</md>
+
+  <note xml:id="note-sec-d-1-least-upper-bound-property-46">
+    <title>Meaning</title>
+      <p>The supremum may not belong to the set, but the set has elements arbitrarily close to
+it from below.</p>
+  </note>
+  </paragraphs>
+
+  <example xml:id="ex-sec-d-1-least-upper-bound-property-4">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>A=(0,1).</md>
+
+  <p>Then</p>
+
+  <md>\sup A=1.</md>
+
+  <p>If <m>\varepsilon=0.01</m>, the approximation property says there is an element of <m>A</m>
+between</p>
+
+  <md>0.99</md>
+
+  <p>and</p>
+
+  <md>1.</md>
+
+  <p>For example,</p>
+
+  <md>0.995\in A.</md>
+
+  <p>If <m>\varepsilon=10^{-6}</m>, there is an element of <m>A</m> between</p>
+
+  <md>1-10^{-6}</md>
+
+  <p>and</p>
+
+  <md>1.</md>
+
+  <p>The set never reaches <m>1</m>, but it comes arbitrarily close.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-greatest-lower-bounds">
+    <title>Greatest lower bounds</title>
+
+  <p>There is a matching idea from below.</p>
+
+  <p>A number <m>L</m> is a <em>lower bound</em> for <m>A</m> if</p>
+
+  <md>L\le x
+\qquad\text{for every }x\in A.</md>
+
+  <p>A set is <em>bounded below</em> if it has a lower bound.</p>
+
+  <p>The <em>greatest lower bound</em>, or <em>infimum</em>, is the largest possible lower
+bound.  It is written</p>
+
+  <md>\inf A.</md>
+
+  <example xml:id="ex-sec-d-1-least-upper-bound-property-5">
+    <title>Example</title>
+    <statement>
+  <p>For</p>
+
+  <md>A=(0,1),</md>
+
+  <p>we have</p>
+
+  <md>\inf A=0.</md>
+
+  <p>But <m>0\notin A</m>, so <m>A</m> has no minimum.</p>
+
+  <p>For</p>
+
+  <md>B=[0,1],</md>
+
+  <p>we have</p>
+
+  <md>\inf B=0,</md>
+
+  <p>and <m>0\in B</m>, so <m>0</m> is the minimum.</p>
+
+  <p>The Least Upper Bound Property implies the matching lower-bound property: every
+nonempty set of real numbers that is bounded below has a greatest lower bound.  One
+way to see this is to reflect the set across <m>0</m>.  Lower bounds for <m>A</m> become upper
+bounds for</p>
+
+  <md>-A=\{-a:a\in A\}.</md>
+
+  <p>So the supremum of <m>-A</m> gives the infimum of <m>A</m>:</p>
+
+  <md>
+\inf A=-\sup(-A).
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+</section>

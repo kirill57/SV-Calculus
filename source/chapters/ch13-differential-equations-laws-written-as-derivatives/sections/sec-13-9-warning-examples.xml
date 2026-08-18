@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-9-warning-examples">
+  <title>Warning examples</title>
+
+  <p>Differential equations are laws written as derivatives.  In this chapter, we learned to
+read those laws in several ways:</p>
+
+  <md>\text{direction fields},
+\qquad
+\text{Euler steps},
+\qquad
+\text{separation},
+\qquad
+\text{integrating factors},
+\qquad
+\text{phase lines}.</md>
+
+  <p>Each method is useful.  Each method also has a danger.</p>
+
+  <p>Before leaving differential equations, we collect three warnings.  They are not side
+remarks.  They protect the meaning of the whole chapter.</p>
+
+  <md>
+\text{Algebra can lose solutions.}
+</md>
+
+  <md>
+\text{Numerical methods can create false behavior.}
+</md>
+
+  <md>
+\text{A differential equation is not complete without enough starting information.}
+</md>
+
+  <subsection xml:id="subsec-solution-lost-by-dividing-zero">
+    <title>A solution lost by dividing by zero</title>
+
+  <p>Separation often begins by dividing by an expression involving the unknown function.
+That division may be illegal at some values of the solution.  Those values often give
+constant solutions.</p>
+
+  <p>Start with a simple equation:</p>
+
+  <md>y'=y^2.</md>
+
+  <p>If <m>y\neq0</m>, we can separate:</p>
+
+  <md>\frac{dy}{y^2}=dt.</md>
+
+  <p>Integrate:</p>
+
+  <md>\int y^{-2}\,dy=\int 1\,dt.</md>
+
+  <p>Thus</p>
+
+  <md>-\frac1y=t+C.</md>
+
+  <p>Solving for <m>y</m>, we get</p>
+
+  <md>y=-\frac{1}{t+C}.</md>
+
+  <p>Equivalently, after renaming the constant,</p>
+
+  <md>
+y=\frac{1}{C-t}.
+</md>
+
+  <p>These are nonzero solutions.  For example, if</p>
+
+  <md>y(0)=1,</md>
+
+  <p>then</p>
+
+  <md>1=\frac1C,</md>
+
+  <p>so <m>C=1</m>, and</p>
+
+  <md>
+y(t)=\frac{1}{1-t}.
+</md>
+
+  <p>This solution increases and becomes unbounded as <m>t\to1^{-}</m>.  The differential
+equation predicts faster growth when <m>y</m> is larger, and that feedback becomes
+violent.</p>
+
+  <p>But the separation step divided by <m>y^2</m>.  It excluded the case</p>
+
+  <md>y=0.</md>
+
+  <p>Check that case separately.  The constant function</p>
+
+  <md>y(t)=0</md>
+
+  <p>has derivative</p>
+
+  <md>y'(t)=0,</md>
+
+  <p>and the right side is</p>
+
+  <md>y(t)^2=0.</md>
+
+  <p>So</p>
+
+  <md>
+y(t)=0
+</md>
+
+  <p>is also a solution of</p>
+
+  <md>y'=y^2.</md>
+
+  <p>It was lost by dividing by <m>y^2</m>.</p>
+
+  <figure xml:id="fig-yprime-y-squared-lost-solution">
+    <caption>The separated family <m>y=1/(C-t)</m> misses the equilibrium solution <m>y=0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2.0, xmax=2.0,
+    ymin=-3.2, ymax=3.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-3,-2,-1,0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.98)}, anchor=north east}
+]
+\addplot[very thick, domain=-2:0.85, samples=200] {1/(1-x)};
+\addlegendentry{\(y(0)=1\)}
+\addplot[very thick, dashed, domain=-0.85:2, samples=200] {1/(-1-x)};
+\addlegendentry{\(y(0)=-1\)}
+\addplot[thick, dotted, domain=-2:2, samples=2] {0};
+\addlegendentry{\(y=0\)}
+\draw[dashed] (axis cs:1,-3.2) -- (axis cs:1,3.2);
+\node[anchor=west] at (axis cs:1.05,2.4) {\(t=1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The same warning appears in population models.  For example,</p>
+
+  <md>P'=rP\left(1-\frac{P}{K}\right)</md>
+
+  <p>has equilibrium solutions</p>
+
+  <md>P=0
+\qquad\text{and}\qquad
+P=K.</md>
+
+  <p>If we divide by</p>
+
+  <md>P\left(1-\frac{P}{K}\right),</md>
+
+  <p>then we have already assumed</p>
+
+  <md>P\neq0
+\qquad\text{and}\qquad
+P\neq K.</md>
+
+  <p>Those two constant solutions must be checked separately.</p>
+
+  <note xml:id="note-sec-13-9-warning-examples-69">
+    <title>Division rule for separable equations</title>
+      <p>When separating variables, if you divide by an expression involving <m>y</m>, first ask:</p>
+        <md>\text{For which constant values of \(y\) does this expression equal zero?}</md>
+      <p>Those values are candidates for equilibrium solutions.</p>
+  </note>
+
+  <p>This is not only a technical warning.  In models, equilibrium solutions often carry the
+main interpretation.  Extinction, carrying capacity, room temperature, and chemical
+balance all appear as constant solutions.</p>
+
+  <p>Losing them would lose the story.</p>
+
+  <exercise xml:id="checkpoint-13-9-lost-by-division">
+        <title>Why can algebra lose the most important solutions?</title>
+        <statement>
+          <p>
+            Separation often begins by dividing by an expression involving <m>y</m>. In your own words, why are the values that make that expression zero often the equilibria of a model, and what story is lost if they are discarded?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Extinction, carrying capacity, and room temperature appear as constant solutions. Check those candidates before dividing them away.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-euler-wrong-behavior-large-step">
+    <title>Euler’s method follows the wrong behavior with a large step</title>
+
+  <p>Euler’s method follows local slopes one step at a time:</p>
+
+  <md>y_{k+1}=y_k+hF(x_k,y_k).</md>
+
+  <p>The method is built from local linear approximation.  That is its strength.  It is also its
+weakness.  If the step is too large, the tangent-line instruction may no longer represent
+the curve.</p>
+
+  <p>Consider the initial value problem</p>
+
+  <md>y'=-4y,
+\qquad
+y(0)=1.</md>
+
+  <p>The exact solution is</p>
+
+  <md>
+y=e^{-4x}.
+</md>
+
+  <p>This solution is always positive and decreases smoothly toward <m>0</m>.</p>
+
+  <p>Now apply Euler’s method.  Since</p>
+
+  <md>F(x,y)=-4y,</md>
+
+  <p>the Euler step is</p>
+
+  <md>y_{k+1}=y_k+h(-4y_k).</md>
+
+  <p>So</p>
+
+  <md>
+y_{k+1}=(1-4h)y_k.
+</md>
+
+  <p>If</p>
+
+  <md>h=0.6,</md>
+
+  <p>then</p>
+
+  <md>1-4h=1-2.4=-1.4.</md>
+
+  <p>Thus</p>
+
+  <md>y_{k+1}=-1.4y_k.</md>
+
+  <p>Starting from <m>y_0=1</m>, the Euler values are</p>
+
+  <md>1,\quad -1.4,\quad 1.96,\quad -2.744,\quad 3.8416,\ldots</md>
+
+  <p>The numerical solution alternates signs and grows in size.  The exact solution does
+neither.</p>
+
+  <table xml:id="tab-sec-13-9-warning-examples-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>step</strong></cell>
+        <cell><m>x_k</m></cell>
+        <cell><strong>Euler value <m>y_k</m></strong></cell>
+        <cell><strong>exact value <m>e^{-4x_k}</m></strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>1</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>0.6</m></cell>
+        <cell><m>-1.4</m></cell>
+        <cell><m>e^{-2.4}\approx0.0907</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2</m></cell>
+        <cell><m>1.2</m></cell>
+        <cell><m>1.96</m></cell>
+        <cell><m>e^{-4.8}\approx0.00823</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>3</m></cell>
+        <cell><m>1.8</m></cell>
+        <cell><m>-2.744</m></cell>
+        <cell><m>e^{-7.2}\approx0.000747</m></cell>
+      </row>
+      <row>
+        <cell><m>4</m></cell>
+        <cell><m>2.4</m></cell>
+        <cell><m>3.8416</m></cell>
+        <cell><m>e^{-9.6}\approx0.0000677</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The equation says decay.  Euler’s method, with this step size, says explosive
+oscillation.  The method is lying.</p>
+
+  <figure xml:id="fig-euler-large-step-false-behavior">
+    <caption>With a large step, Euler’s method can invent behavior opposite to the true solution.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=2.55,
+    ymin=-3.2, ymax=4.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.6,1.2,1.8,2.4},
+    ytick={-3,-2,-1,0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[very thick, domain=0:2.5, samples=250] {exp(-4*x)};
+\addlegendentry{exact \(e^{-4x}\)}
+\addplot[very thick, dashed, mark=*] coordinates {
+  (0,1) (0.6,-1.4) (1.2,1.96) (1.8,-2.744) (2.4,3.8416)
+};
+\addlegendentry{Euler, \(h=0.6\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The problem can be seen from the multiplier</p>
+
+  <md>1-4h.</md>
+
+  <p>For the exact differential equation, positive solutions decay.  For the Euler values to
+decay in size, we need</p>
+
+  <md>|1-4h|&lt;1.</md>
+
+  <p>This inequality gives</p>
+
+  <md>-1&lt;1-4h&lt;1.</md>
+
+  <p>Subtract <m>1</m>:</p>
+
+  <md>-2&lt;-4h&lt;0.</md>
+
+  <p>Divide by <m>-4</m>, reversing the inequalities:</p>
+
+  <md>0&lt;h&lt;\frac12.</md>
+
+  <p>So for this equation, Euler’s method behaves like decay only when</p>
+
+  <md>0&lt;h&lt;0.5.</md>
+
+  <p>The step <m>h=0.6</m> is too large.</p>
+
+  <warning xml:id="warn-sec-13-9-warning-examples-70">
+    <title>Numerical warning</title>
+      <p>A numerical method has its own behavior.  It is not the same object as the
+differential equation.</p>
+      <p>Before trusting a numerical solution, check whether it agrees with the qualitative
+behavior of the equation.</p>
+  </warning>
+
+  <p>For</p>
+
+  <md>y'=-4y,</md>
+
+  <p>the qualitative behavior is easy:</p>
+
+  <md>y&gt;0 \Longrightarrow y'&lt;0,
+\qquad
+y&lt;0 \Longrightarrow y'&gt;0.</md>
+
+  <p>So solutions are pushed toward <m>0</m>.  A numerical solution that shoots away from
+<m>0</m> is suspect.</p>
+
+  <p>This is why numerical methods and direction fields belong together.  The direction field
+does not give exact values, but it can catch a numerical approximation that is following
+the wrong story.</p>
+
+  <exercise xml:id="checkpoint-13-9-false-numerical-behavior">
+        <title>Why can Euler’s method follow the wrong story?</title>
+        <statement>
+          <p>
+            A differential equation may describe stable decay while a large Euler step produces growing oscillations. In your own words, why is the numerical method not the same object as the equation, and how can a direction field catch the false behavior?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The method has its own dynamics. Before trusting a table of values, ask whether they agree with the qualitative arrows of the field.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-same-de-different-initial-conditions">
+    <title>Same differential equation, different initial conditions</title>
+
+  <p>A differential equation gives a law of change.  It does not usually give a single history.</p>
+
+  <p>For example,</p>
+
+  <md>y'=1-y</md>
+
+  <p>has the family of solutions</p>
+
+  <md>
+y(t)=1+Ce^{-t}.
+</md>
+
+  <p>Different constants <m>C</m> give different solution curves.</p>
+
+  <p>If</p>
+
+  <md>y(0)=0,</md>
+
+  <p>then</p>
+
+  <md>0=1+C,</md>
+
+  <p>so</p>
+
+  <md>C=-1,</md>
+
+  <p>and</p>
+
+  <md>
+y(t)=1-e^{-t}.
+</md>
+
+  <p>This solution starts below <m>1</m> and rises toward <m>1</m>.</p>
+
+  <p>If</p>
+
+  <md>y(0)=2,</md>
+
+  <p>then</p>
+
+  <md>2=1+C,</md>
+
+  <p>so</p>
+
+  <md>C=1,</md>
+
+  <p>and</p>
+
+  <md>
+y(t)=1+e^{-t}.
+</md>
+
+  <p>This solution starts above <m>1</m> and falls toward <m>1</m>.</p>
+
+  <p>If</p>
+
+  <md>y(0)=1,</md>
+
+  <p>then</p>
+
+  <md>C=0,</md>
+
+  <p>and</p>
+
+  <md>
+y(t)=1.
+</md>
+
+  <p>This solution is constant.</p>
+
+  <p>The same equation gives all three behaviors.  The initial condition selects which one
+happens.</p>
+
+  <figure xml:id="fig-same-de-different-initial-conditions">
+    <caption>The equation <m>y'=1-y</m> gives a family.  The initial condition selects one solution.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.2, ymax=2.3,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:4, samples=200] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=200] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[very thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y(0)=1\)}
+\addplot[only marks, mark=*] coordinates {(0,0) (0,1) (0,2)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>For a first-order equation, one initial condition usually chooses one solution curve.
+For a second-order equation, one initial condition is usually not enough.</p>
+
+  <p>Consider the oscillator equation</p>
+
+  <md>y''+y=0.</md>
+
+  <p>The general solution is</p>
+
+  <md>y(t)=C_1\cos t+C_2\sin t.</md>
+
+  <p>If we know only</p>
+
+  <md>y(0)=1,</md>
+
+  <p>then</p>
+
+  <md>1=C_1.</md>
+
+  <p>But <m>C_2</m> is still free.  Both functions</p>
+
+  <md>y_1(t)=\cos t</md>
+
+  <p>and</p>
+
+  <md>y_2(t)=\cos t+2\sin t</md>
+
+  <p>solve</p>
+
+  <md>y''+y=0</md>
+
+  <p>and both satisfy</p>
+
+  <md>y(0)=1.</md>
+
+  <p>They differ because their initial velocities differ:</p>
+
+  <md>y_1'(0)=0,
+\qquad
+y_2'(0)=2.</md>
+
+  <p>A second-order motion needs position and velocity.</p>
+
+  <note xml:id="note-sec-13-9-warning-examples-71">
+    <title>Initial data rule</title>
+      <p>A differential equation gives the rule of motion.  Initial conditions give the starting
+state.</p>
+      <p>A first-order equation usually needs one starting value.  A second-order equation
+usually needs two: position and velocity.</p>
+  </note>
+
+  <p>This is why a spring cannot be described by its position alone.  If the mass is at
+equilibrium, it may stay there, or it may be passing through with high speed.  The
+position is the same.  The future is not.</p>
+
+  <exercise xml:id="checkpoint-13-9-family-until-initial-data">
+        <title>Why is a differential equation incomplete without enough starting information?</title>
+        <statement>
+          <p>
+            The same first-order equation can describe many histories, and a second-order spring needs both position and velocity. In your own words, what does the differential equation determine, what do initial conditions determine, and why can two masses at the same place have different futures?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The equation is the rule of motion. Initial data choose the starting state. A first-order law usually needs one starting value; a second-order law usually needs two.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-three-warnings-together">
+    <title>The three warnings together</title>
+
+  <p>The warnings can be remembered as three questions.</p>
+
+  <table xml:id="tab-sec-13-9-warning-examples-4">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>Before trusting the result, ask</strong></cell>
+        <cell><strong>What can go wrong?</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Did we divide by an expression that might be zero?</cell>
+        <cell>We may have lost equilibrium solutions.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is a numerical step size too large?</cell>
+        <cell>Euler’s method may create false oscillation or false growth.</cell>
+      </row>
+      <row>
+        <cell>
+Have we supplied enough initial information?</cell>
+        <cell>The differential equation may describe a family, not one solution.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Differential equations are powerful because they describe change locally.  That same
+local nature makes them sensitive to algebraic assumptions, numerical choices, and
+initial data.</p>
+
+  <p>The chapter ends by gathering the main methods and putting them back to work in
+applications.</p>
+  </subsection>
+
+
+
+</section>

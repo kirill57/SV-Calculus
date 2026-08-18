@@ -3,284 +3,441 @@
 <section xml:id="sec-7-8-warning-examples">
   <title>Warning examples</title>
 
-  <p>This chapter used derivatives for many practical tasks: related rates, optimization, linear approximation, Newton's method, growth models, logistic models, and least-time paths.</p>
+  <p>This chapter used derivatives for many practical tasks: related rates, optimization,
+linear approximation, Newton’s method, growth models, logistic models, and least-time
+paths.</p>
 
-  <p>Those methods are powerful. They are also easy to misuse.</p>
+  <p>Those methods are powerful.  They are also easy to misuse.</p>
 
-  <p>A derivative answers the question asked by the model. If the model has the wrong domain, the derivative may find an impossible choice. If a point is only locally best, it may lose globally. If Newton's method begins from a bad guess, the tangent line may lead somewhere unexpected.</p>
+  <p>A derivative answers the question asked by the model.  If the model has the wrong
+domain, the derivative may find an impossible choice.  If a point is only locally best,
+it may lose globally.  If Newton’s method begins from a bad guess, the tangent line may
+lead somewhere unexpected.</p>
 
-  <p>The warnings below are not exceptions to calculus. They are reminders to read the hypotheses and the situation.</p>
+  <p>The warnings below are not exceptions to calculus.  They are reminders to read the
+hypotheses and the situation.</p>
 
   <subsection xml:id="subsec-critical-point-outside-domain">
     <title>A critical point outside the physical domain</title>
 
-    <p>Suppose a profit model is</p>
-    <md>P(q)=-q^2+80q-1200,</md>
-    <p>where <m>q</m> is the number of units produced.</p>
+  <p>Suppose a profit model is</p>
 
-    <p>Differentiate:</p>
-    <md>P'(q)=-2q+80.</md>
+  <md>P(q)=-q^2+80q-1200,</md>
 
-    <p>Set the derivative equal to <m>0</m>:</p>
-    <md>-2q+80=0.</md>
-    <p>Thus</p>
-    <md>q=40.</md>
+  <p>where <m>q</m> is the number of units produced.</p>
 
-    <p>If all production levels were allowed, the maximum would occur at <m>q=40</m>, because <m>P</m> is a downward-opening parabola.</p>
+  <p>Differentiate:</p>
 
-    <p>But suppose a contract requires the company to produce between <m>50</m> and <m>100</m> units:</p>
-    <md>50\le q\le 100.</md>
+  <md>P'(q)=-2q+80.</md>
 
-    <p>Then the critical point <m>q=40</m> is outside the physical domain.</p>
+  <p>Set the derivative equal to <m>0</m>:</p>
 
-    <p>On the allowed interval,</p>
-    <md>P'(q)=-2q+80\lt 0 \qquad\text{for}\qquad q\gt 40.</md>
+  <md>-2q+80=0.</md>
 
-    <p>So <m>P</m> is decreasing throughout the allowed interval. The maximum allowed profit occurs at the left endpoint:</p>
-    <md>q=50.</md>
+  <p>Thus</p>
 
-    <figure xml:id="fig-critical-point-outside-domain">
-      <caption>The critical point <m>q=40</m> maximizes the formula on a larger domain, but it is not an allowed production level.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.48\textwidth,
-              xmin=0, xmax=105,
-              ymin=-3500, ymax=800,
-              axis lines=left,
-              xlabel={\(q\)},
-              ylabel={\(P(q)\)},
-              xtick={0,40,50,100},
-              ytick={-3000,-2000,-1000,0,300},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \path[fill=gray!18] (axis cs:50,-3500) rectangle (axis cs:100,650);
-          \addplot[thick, domain=0:100, samples=200] {-x^2+80*x-1200};
-          \addplot[only marks, mark=*] coordinates {(40,400) (50,300)};
-          \draw[dashed] (axis cs:40,-3500) -- (axis cs:40,400);
-          \draw[dashed] (axis cs:50,-3500) -- (axis cs:50,300);
-          \node[anchor=south] at (axis cs:40,400) {unallowed critical point};
-          \node[anchor=west] at (axis cs:52,300) {allowed maximum};
-          \node[anchor=south] at (axis cs:75,-3200) {allowed domain};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>q=40.</md>
 
-    <note xml:id="note-moral-domain-part-of-model">
-      <title>Moral</title>
-      <p>A critical point outside the physical domain is not a possible answer. The domain is part of the model.</p>
-    </note>
+  <p>If all production levels were allowed, the maximum would occur at <m>q=40</m>, because
+<m>P</m> is a downward-opening parabola.</p>
+
+  <p>But suppose a contract requires the company to produce between <m>50</m> and <m>100</m>
+units:</p>
+
+  <md>50\le q\le 100.</md>
+
+  <p>Then the critical point <m>q=40</m> is outside the physical domain.</p>
+
+  <p>On the allowed interval,</p>
+
+  <md>P'(q)=-2q+80&lt;0
+\qquad\text{for}\qquad q&gt;40.</md>
+
+  <p>So <m>P</m> is decreasing throughout the allowed interval.  The maximum allowed profit
+occurs at the left endpoint:</p>
+
+  <md>q=50.</md>
+
+  <figure xml:id="fig-critical-point-outside-domain">
+    <caption>The critical point <m>q=40</m> maximizes the formula on a larger domain, but it is not an allowed production level.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=105,
+    ymin=-3500, ymax=800,
+    axis lines=left,
+    xlabel={\(q\)},
+    ylabel={\(P(q)\)},
+    xtick={0,40,50,100},
+    ytick={-3000,-2000,-1000,0,300},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\path[fill=gray!18] (axis cs:50,-3500) rectangle (axis cs:100,650);
+\addplot[thick, domain=0:100, samples=200] {-x^2+80*x-1200};
+\addplot[only marks, mark=*] coordinates {(40,400) (50,300)};
+\draw[dashed] (axis cs:40,-3500) -- (axis cs:40,400);
+\draw[dashed] (axis cs:50,-3500) -- (axis cs:50,300);
+\node[anchor=south] at (axis cs:40,400) {unallowed critical point};
+\node[anchor=west] at (axis cs:50,300) {allowed maximum};
+\node[anchor=south] at (axis cs:75,-3200) {allowed domain};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-7-8-warning-examples-44">
+    <title>Moral</title>
+      <p>A critical point outside the physical domain is not a possible answer.  The domain is
+part of the model.</p>
+  </note>
+
+  <exercise xml:id="checkpoint-7-8-critical-point-outside-domain">
+        <title>Why can a critical point outside the physical domain be irrelevant?</title>
+        <statement>
+          <p>
+            A derivative can locate the vertex of a profit parabola even when a contract forbids that production level. In your own words, why is that not a failure of calculus, and why must the allowed interval be part of the question before a critical number is trusted?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A calculus method is only as good as the question it is applied to. The derivative answers the model we wrote, including a domain we may have forgotten.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-local-max-not-absolute">
     <title>A local maximum that is not the absolute maximum</title>
 
-    <p>A local maximum is a high point nearby. An absolute maximum is a high point everywhere in the domain.</p>
+  <p>A local maximum is a high point nearby.  An absolute maximum is a high point
+everywhere in the domain.</p>
 
-    <p>Those are different ideas.</p>
+  <p>Those are different ideas.</p>
 
-    <p>Consider</p>
-    <md>f(x)=x^3-3x</md>
-    <p>on the interval</p>
-    <md>[-2,3].</md>
+  <p>Consider</p>
 
-    <p>Differentiate:</p>
-    <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
+  <md>f(x)=x^3-3x</md>
 
-    <p>The critical numbers are</p>
-    <md>x=-1 \qquad\text{and}\qquad x=1.</md>
+  <p>on the interval</p>
 
-    <p>The derivative is positive on <m>(-\infty,-1)</m>, negative on <m>(-1,1)</m>, and positive on <m>(1,\infty)</m>. Therefore <m>x=-1</m> is a local maximum, and <m>x=1</m> is a local minimum.</p>
+  <md>[-2,3].</md>
 
-    <p>Now check the values that matter for the absolute maximum on <m>[-2,3]</m>:</p>
-    <md>f(-2)=-8+6=-2,</md>
-    <md>f(-1)=-1+3=2,</md>
-    <md>f(1)=1-3=-2,</md>
-    <p>and</p>
-    <md>f(3)=27-9=18.</md>
+  <p>Differentiate:</p>
 
-    <p>The local maximum value is</p>
-    <md>f(-1)=2.</md>
+  <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
 
-    <p>But the absolute maximum value is</p>
-    <md>f(3)=18.</md>
+  <p>The critical numbers are</p>
 
-    <p>So the local maximum is not the absolute maximum.</p>
+  <md>x=-1
+\qquad\text{and}\qquad
+x=1.</md>
 
-    <figure xml:id="fig-local-max-not-absolute">
-      <caption>A local high point can lose to an endpoint or to another part of the graph.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=-2.3, xmax=3.9,
-              ymin=-4, ymax=20,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-2,-1,0,1,2,3},
-              ytick={-2,0,2,10,18},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-2:3, samples=200] {x^3-3*x};
-          \addplot[only marks, mark=*] coordinates {(-2,-2) (-1,2) (1,-2) (3,18)};
-          \node[anchor=south east] at (axis cs:-1,2) {local max};
-          \node[anchor=north west] at (axis cs:1,-2) {local min};
-          \node[anchor=south east] at (axis cs:3,18) {absolute max};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The derivative is positive on <m>(-\infty,-1)</m>, negative on <m>(-1,1)</m>, and positive
+on <m>(1,\infty)</m>.  Therefore <m>x=-1</m> is a local maximum, and <m>x=1</m> is a local
+minimum.</p>
 
-    <note xml:id="note-moral-local-vs-absolute">
-      <title>Moral</title>
-      <p>A local maximum is not automatically an absolute maximum. For absolute extrema on a closed interval, check all candidates: interior critical points and endpoints.</p>
-    </note>
+  <p>Now check the values that matter for the absolute maximum on <m>[-2,3]</m>:</p>
+
+  <md>f(-2)=-8+6=-2,</md>
+
+  <md>f(-1)=-1+3=2,</md>
+
+  <md>f(1)=1-3=-2,</md>
+
+  <p>and</p>
+
+  <md>f(3)=27-9=18.</md>
+
+  <p>The local maximum value is</p>
+
+  <md>f(-1)=2.</md>
+
+  <p>But the absolute maximum value is</p>
+
+  <md>f(3)=18.</md>
+
+  <p>So the local maximum is not the absolute maximum.</p>
+
+  <figure xml:id="fig-local-max-not-absolute">
+    <caption>A local high point can lose to an endpoint or to another part of the graph.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2.3, xmax=4.8,
+    ymin=-4, ymax=20,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2,3},
+    ytick={-2,0,2,10,18},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:3, samples=200] {x^3-3*x};
+\addplot[only marks, mark=*] coordinates {(-2,-2) (-1,2) (1,-2) (3,18)};
+\node[anchor=south east] at (axis cs:-1,2) {local max};
+\node[anchor=north west] at (axis cs:1,-2) {local min};
+\node[anchor=west] at (axis cs:3,18) {absolute max};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-7-8-warning-examples-45">
+    <title>Moral</title>
+      <p>A local maximum is not automatically an absolute maximum.  For absolute extrema on
+a closed interval, check all candidates: interior critical points and endpoints.</p>
+  </note>
+
+  <exercise xml:id="checkpoint-7-8-local-not-absolute">
+        <title>Why can a local maximum fail to be the absolute maximum?</title>
+        <statement>
+          <p>
+            A nearby peak can lose to an endpoint or to a better peak farther away. In your own words, why does finding <m>f'(x)=0</m> not finish an applied optimization problem, and what extra comparisons turn a local candidate into a global decision?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Check endpoints, check the physical domain, and ask whether the result is local or absolute. A first-derivative test is a neighborhood test.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-newton-wrong-root">
-    <title>Newton's method can find the wrong root</title>
+    <title>Newton’s method can find the wrong root</title>
 
-    <p>Newton's method follows tangent lines. A tangent line can cross the <m>x</m>-axis far from the root we had in mind.</p>
+  <p>Newton’s method follows tangent lines.  A tangent line can cross the <m>x</m>-axis far
+from the root we had in mind.</p>
 
-    <p>Consider</p>
-    <md>f(x)=x^3-4x.</md>
+  <p>Consider</p>
 
-    <p>The roots are</p>
-    <md>-2,\quad 0,\quad 2.</md>
+  <md>f(x)=x^3-4x.</md>
 
-    <p>Suppose we want to find the positive root <m>2</m>, and we start with</p>
-    <md>x_0=1.</md>
+  <p>The roots are</p>
 
-    <p>Newton's method uses</p>
-    <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.</md>
+  <md>-2,\quad 0,\quad 2.</md>
 
-    <p>Here</p>
-    <md>f'(x)=3x^2-4.</md>
+  <p>Suppose we want to find the positive root <m>2</m>, and we start with</p>
 
-    <p>At <m>x_0=1</m>,</p>
-    <md>f(1)=1-4=-3,</md>
-    <p>and</p>
-    <md>f'(1)=3-4=-1.</md>
+  <md>x_0=1.</md>
 
-    <p>So</p>
-    <md>x_1 = 1-\frac{-3}{-1} = 1-3 = -2.</md>
+  <p>Newton’s method uses</p>
 
-    <p>The method lands exactly on the root</p>
-    <md>-2.</md>
+  <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.</md>
 
-    <p>That is a root of the equation, but not the root we intended to find.</p>
+  <p>Here</p>
 
-    <figure xml:id="fig-newton-wrong-root">
-      <caption>The tangent line at <m>x_0=1</m> crosses the axis at the root <m>-2</m>, not at the intended root <m>2</m>.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=-2.6, xmax=2.6,
-              ymin=-5.5, ymax=5.5,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-2,0,1,2},
-              ytick={-4,-2,0,2,4},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-2.35:2.35, samples=250] {x^3-4*x};
-          \addplot[very thick, dashed, domain=-2.45:1.4, samples=2] {-x-2};
-          \addplot[only marks, mark=*] coordinates {(1,-3) (-2,0) (0,0) (2,0)};
-          \node[anchor=north east] at (axis cs:1,-3) {\(x_0=1\)};
-          \node[anchor=south east] at (axis cs:-2,0) {\(x_1=-2\)};
-          \node[anchor=west] at (axis cs:1.15,2.7) {tangent line};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>f'(x)=3x^2-4.</md>
 
-    <note xml:id="note-moral-newton-local">
-      <title>Moral</title>
-      <p>Newton's method is local. A starting point that seems reasonable may still lead to a different root.</p>
-    </note>
+  <p>At <m>x_0=1</m>,</p>
 
-    <p>Bracketing can help. If the goal is the root <m>2</m>, we can first isolate it by checking signs on an interval such as</p>
-    <md>[1,3],</md>
-    <p>where</p>
-    <md>f(1)\lt 0 \qquad\text{and}\qquad f(3)\gt 0.</md>
+  <md>f(1)=1-4=-3,</md>
 
-    <p>Then we can monitor whether Newton's iterates remain near the intended interval.</p>
+  <p>and</p>
+
+  <md>f'(1)=3-4=-1.</md>
+
+  <p>So</p>
+
+  <md>x_1
+=
+1-\frac{-3}{-1}
+=
+1-3
+=
+-2.</md>
+
+  <p>The method lands exactly on the root</p>
+
+  <md>-2.</md>
+
+  <p>That is a root of the equation, but not the root we intended to find.</p>
+
+  <figure xml:id="fig-newton-wrong-root">
+    <caption>The tangent line at <m>x_0=1</m> crosses the axis at the root <m>-2</m>, not at the intended root <m>2</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2.6, xmax=2.6,
+    ymin=-5.5, ymax=5.5,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,0,1,2},
+    ytick={-4,-2,0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2.35:2.35, samples=250] {x^3-4*x};
+\addplot[very thick, dashed, domain=-2.45:1.4, samples=2] {-x-2};
+\addplot[only marks, mark=*] coordinates {(1,-3) (-2,0) (0,0) (2,0)};
+\node[anchor=north east] at (axis cs:1,-3) {\(x_0=1\)};
+\node[anchor=south east] at (axis cs:-2,0) {\(x_1=-2\)};
+\node[anchor=west] at (axis cs:1.15,2.7) {tangent line};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-7-8-warning-examples-46">
+    <title>Moral</title>
+      <p>Newton’s method is local.  A starting point that seems reasonable may still lead to a
+different root.</p>
+  </note>
+
+  <p>Bracketing can help.  If the goal is the root <m>2</m>, we can first isolate it by checking
+signs on an interval such as</p>
+
+  <md>[1,3],</md>
+
+  <p>where</p>
+
+  <md>f(1)&lt;0
+\qquad\text{and}\qquad
+f(3)&gt;0.</md>
+
+  <p>Then we can monitor whether Newton’s iterates remain near the intended interval.</p>
+
+  <exercise xml:id="checkpoint-7-8-newton-can-fail">
+        <title>Why can Newton’s method find the wrong root, or fail to converge?</title>
+        <statement>
+          <p>
+            A tangent from a bad starting guess can leap to a different root, cycle, or hit a horizontal tangent. In your own words, why is fast local behavior compatible with global unreliability, and what should we check before trusting the iterates?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Newton’s method needs a good starting point and a nonzero derivative. Ask whether the iterates stabilize and whether <m>f(x_n)</m> is actually small.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-newton-no-convergence-warning">
-    <title>Newton's method may not converge</title>
+    <title>Newton’s method may not converge</title>
 
-    <p>Sometimes Newton's method does not merely find the wrong root. Sometimes it does not settle down at all.</p>
+  <p>Sometimes Newton’s method does not merely find the wrong root.  Sometimes it does
+not settle down at all.</p>
 
-    <p>Consider</p>
-    <md>f(x)=x^3-2x+2.</md>
+  <p>Consider</p>
 
-    <p>Then</p>
-    <md>f'(x)=3x^2-2.</md>
+  <md>f(x)=x^3-2x+2.</md>
 
-    <p>Start with</p>
-    <md>x_0=0.</md>
+  <p>Then</p>
 
-    <p>The first Newton step gives</p>
-    <md>x_1 = 0-\frac{f(0)}{f'(0)} = 0-\frac{2}{-2} = 1.</md>
+  <md>f'(x)=3x^2-2.</md>
 
-    <p>Now compute the next step:</p>
-    <md>x_2 = 1-\frac{f(1)}{f'(1)}.</md>
+  <p>Start with</p>
 
-    <p>Since</p>
-    <md>f(1)=1-2+2=1</md>
-    <p>and</p>
-    <md>f'(1)=3-2=1,</md>
-    <p>we get</p>
-    <md>x_2=1-\frac11=0.</md>
+  <md>x_0=0.</md>
 
-    <p>So the method repeats:</p>
-    <md>0,\ 1,\ 0,\ 1,\ 0,\ 1,\ldots</md>
-    <p>It never converges.</p>
+  <p>The first Newton step gives</p>
 
-    <p>The function does have a real root. For example,</p>
-    <md>f(-2)=-8+4+2=-2,</md>
-    <p>while</p>
-    <md>f(-1)=-1+2+2=3.</md>
+  <md>x_1
+=
+0-\frac{f(0)}{f'(0)}
+=
+0-\frac{2}{-2}
+=
+1.</md>
 
-    <p>By the Intermediate Value Theorem, a root lies between <m>-2</m> and <m>-1</m>. Newton's method did not fail because no root exists. It failed because the starting point made the tangent process cycle.</p>
+  <p>Now compute the next step:</p>
 
-    <note xml:id="note-moral-newton-starting-point">
-      <title>Moral</title>
-      <p>Newton's method needs a good starting point and a nonzero derivative. It is fast when it behaves well, but it is not guaranteed to behave well from every starting point.</p>
-    </note>
+  <md>x_2
+=
+1-\frac{f(1)}{f'(1)}.</md>
+
+  <p>Since</p>
+
+  <md>f(1)=1-2+2=1</md>
+
+  <p>and</p>
+
+  <md>f'(1)=3-2=1,</md>
+
+  <p>we get</p>
+
+  <md>x_2=1-\frac11=0.</md>
+
+  <p>So the method repeats:</p>
+
+  <md>0,\ 1,\ 0,\ 1,\ 0,\ 1,\ldots</md>
+
+  <p>It never converges.</p>
+
+  <p>The function does have a real root.  For example,</p>
+
+  <md>f(-2)=-8+4+2=-2,</md>
+
+  <p>while</p>
+
+  <md>f(-1)=-1+2+2=3.</md>
+
+  <p>By the Intermediate Value Theorem, a root lies between <m>-2</m> and <m>-1</m>.  Newton’s
+method did not fail because no root exists.  It failed because the starting point made
+the tangent process cycle.</p>
+
+  <note xml:id="note-sec-7-8-warning-examples-47">
+    <title>Moral</title>
+      <p>Newton’s method needs a good starting point and a nonzero derivative.  It is fast when
+it behaves well, but it is not guaranteed to behave well from every starting point.</p>
+  </note>
   </subsection>
 
   <subsection xml:id="subsec-common-lesson-warning-examples">
     <title>The common lesson</title>
 
-    <p>The warning examples have one message:</p>
-    <md>\text{A calculus method is only as good as the question it is applied to.}</md>
+  <p>The warning examples have one message:</p>
 
-    <p>Before trusting an answer, ask:</p>
-    <ol>
-      <li><p>Is the candidate inside the physical domain?</p></li>
-      <li><p>Have the endpoints been checked?</p></li>
-      <li><p>Is the result local or absolute?</p></li>
-      <li><p>Does the sign or unit of the answer make sense?</p></li>
-      <li><p>For Newton's method, do the iterates stabilize and is <m>f(x_n)</m> small?</p></li>
-    </ol>
+  <md>
+\text{A calculus method is only as good as the question it is applied to.}
+</md>
+
+  <p>Before trusting an answer, ask:</p>
+
+  <md>
+    <mrow>\begin{array}{ll}
+\text{1.} \amp \text{Is the candidate inside the physical domain?}</mrow>
+    <mrow>\text{2.} \amp \text{Have the endpoints been checked?}</mrow>
+    <mrow>\text{3.} \amp \text{Is the result local or absolute?}</mrow>
+    <mrow>\text{4.} \amp \text{Does the sign or unit of the answer make sense?}</mrow>
+    <mrow>\text{5.} \amp \text{For Newton's method, do the iterates stabilize and is \(f(x_n)\) small?}
+\end{array}</mrow>
+  </md>
+
+  <exercise xml:id="checkpoint-7-8-method-as-good-as-question">
+        <title>Why is a calculus method only as good as the question it is applied to?</title>
+        <statement>
+          <p>
+            The warning examples of this section have one common lesson. In your own words, why do domain, endpoints, local-versus-absolute, units, and starting guesses all belong inside the mathematics rather than after it?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A derivative answers the question asked by the model. If the model has the wrong domain or the wrong interpretation, the derivative may still compute something, just not the thing we needed.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

@@ -3,616 +3,858 @@
 <section xml:id="sec-7-9-chapter-review-and-applications">
   <title>Chapter review and applications</title>
 
-  <p>This chapter began with a simple change in perspective. Instead of being handed a function and asked to differentiate it, we were asked to build the function first.</p>
+  <p>This chapter began with a simple change in perspective.  Instead of being handed a
+function and asked to differentiate it, we were asked to build the function first.</p>
 
-  <p>A ladder slides. A box is folded. A cup cools. A population grows. A light ray chooses a path. In each case, the derivative did not appear at the beginning. It appeared after we translated the situation into mathematics.</p>
+  <p>A ladder slides.  A box is folded.  A cup cools.  A population grows.  A light ray
+chooses a path.  In each case, the derivative did not appear at the beginning.  It
+appeared after we translated the situation into mathematics.</p>
 
   <p>That is the main skill of the chapter:</p>
-  <md>\text{real situation} \quad\longrightarrow\quad \text{mathematical model} \quad\longrightarrow\quad \text{derivative information} \quad\longrightarrow\quad \text{interpretation}.</md>
 
-  <p>The last step is as important as the first. A derivative answer without units, sign, domain, and meaning is not yet an answer to the problem.</p>
+  <md>\text{real situation}
+\quad\longrightarrow\quad
+\text{mathematical model}
+\quad\longrightarrow\quad
+\text{derivative information}
+\quad\longrightarrow\quad
+\text{interpretation}.</md>
+
+  <p>The last step is as important as the first.  A derivative answer without units, sign,
+domain, and meaning is not yet an answer to the problem.</p>
 
   <subsection xml:id="subsec-chapter7-one-map">
     <title>The chapter in one map</title>
 
-    <p>The chapter used derivatives in several different ways. The same derivative idea kept returning with different names.</p>
+  <p>The chapter used derivatives in several different ways.  The same derivative idea
+kept returning with different names.</p>
 
-    <table>
-      <title>Derivative roles across Chapter 7 topics</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="left"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>topic</term></cell>
-          <cell><term>main question</term></cell>
-          <cell><term>derivative role</term></cell>
-        </row>
-        <row><cell>related rates</cell><cell>How fast is one quantity changing?</cell><cell>differentiate a relation</cell></row>
-        <row><cell>optimization</cell><cell>Which choice is best?</cell><cell>find and test candidates</cell></row>
-        <row><cell>linear approximation</cell><cell>How much does the output change?</cell><cell><m>\Delta y\approx f'(x)\Delta x</m></cell></row>
-        <row><cell>Newton's method</cell><cell>Where is a zero?</cell><cell>use tangent-line correction</cell></row>
-        <row><cell>exponential models</cell><cell>What grows at a rate proportional to itself?</cell><cell><m>y'=ky</m></cell></row>
-        <row><cell>logistic models</cell><cell>How does growth slow near a limit?</cell><cell><m>P'=rP\left(1-\dfrac{P}{K}\right)</m></cell></row>
-        <row><cell>least-time paths</cell><cell>Which path makes time stationary?</cell><cell>differentiate time or distance</cell></row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>topic</strong> \amp <strong>main question</strong> \amp <strong>derivative role</strong></mrow>
+    <mrow>\hline
+\text{related rates} \amp \text{How fast is one quantity changing?}
+\amp \text{differentiate a relation}</mrow>
+    <mrow>
+\text{optimization} \amp \text{Which choice is best?}
+\amp \text{find and test candidates}</mrow>
+    <mrow>
+\text{linear approximation} \amp \text{How much does the output change?}
+\amp \Delta y\approx f'(x)\Delta x</mrow>
+    <mrow>
+\text{Newton's method} \amp \text{Where is a zero?}
+\amp \text{use tangent-line correction}</mrow>
+    <mrow>
+\text{exponential models} \amp \text{What grows at a rate proportional to itself?}
+\amp y'=ky</mrow>
+    <mrow>
+\text{logistic models} \amp \text{How does growth slow near a limit?}
+\amp P'=rP\left(1-\dfrac{P}{K}\right)</mrow>
+    <mrow>
+\text{least-time paths} \amp \text{Which path makes time stationary?}
+\amp \text{differentiate time or distance}
+\end{array}</mrow>
+  </md>
 
-    <figure xml:id="fig-chapter7-model-map">
-      <caption>The chapter's methods all follow the same modeling path: translate, differentiate, solve, and interpret.</caption>
-      <image width="85%">
-        <latex-image>
-          \begin{tikzpicture}[
-            box/.style={draw, rounded corners, align=center, minimum width=3.0cm, minimum height=0.9cm},
-            smallbox/.style={draw, rounded corners, align=center, minimum width=2.5cm, minimum height=0.78cm},
-            every node/.style={font=\small}
-          ]
-            \node[box] (model) at (0,0) {build a model};
-            \node[smallbox] (relation) at (-4,-1.7) {relation\\between variables};
-            \node[smallbox] (objective) at (0,-1.7) {objective\\and constraint};
-            \node[smallbox] (law) at (4,-1.7) {rate law\\or update rule};
+  <figure xml:id="fig-chapter7-model-map">
+    <caption>The chapter’s methods all follow the same modeling path: translate, differentiate, solve, and interpret.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[
+  box/.style={draw, rounded corners, align=center, minimum width=3.0cm, minimum height=0.9cm},
+  smallbox/.style={draw, rounded corners, align=center, minimum width=2.5cm, minimum height=0.78cm},
+  every node/.style={font=\small}
+]
+  \node[box] (model) at (0,0) {build a model};
+  \node[smallbox] (relation) at (-4,-1.7) {relation\\between variables};
+  \node[smallbox] (objective) at (0,-1.7) {objective\\and constraint};
+  \node[smallbox] (law) at (4,-1.7) {rate law\\or update rule};
 
-            \node[smallbox] (differentiate) at (-4,-3.5) {differentiate\\with respect to time};
-            \node[smallbox] (optimize) at (0,-3.5) {differentiate\\with respect to choice};
-            \node[smallbox] (solve) at (4,-3.5) {solve or\\iterate};
+  \node[smallbox] (differentiate) at (-4,-3.5) {differentiate\\with respect to time};
+  \node[smallbox] (optimize) at (0,-3.5) {differentiate\\with respect to choice};
+  \node[smallbox] (solve) at (4,-3.5) {solve or\\iterate};
 
-            \node[box] (interpret) at (0,-5.3) {interpret sign, units, domain, and reasonableness};
+  \node[box] (interpret) at (0,-5.3) {interpret sign, units, domain, and reasonableness};
 
-            \draw[-&gt;, thick] (model) -- (relation);
-            \draw[-&gt;, thick] (model) -- (objective);
-            \draw[-&gt;, thick] (model) -- (law);
+  \draw[-&gt;, thick] (model) -- (relation);
+  \draw[-&gt;, thick] (model) -- (objective);
+  \draw[-&gt;, thick] (model) -- (law);
 
-            \draw[-&gt;, thick] (relation) -- (differentiate);
-            \draw[-&gt;, thick] (objective) -- (optimize);
-            \draw[-&gt;, thick] (law) -- (solve);
+  \draw[-&gt;, thick] (relation) -- (differentiate);
+  \draw[-&gt;, thick] (objective) -- (optimize);
+  \draw[-&gt;, thick] (law) -- (solve);
 
-            \draw[-&gt;, thick] (differentiate) -- (interpret);
-            \draw[-&gt;, thick] (optimize) -- (interpret);
-            \draw[-&gt;, thick] (solve) -- (interpret);
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  \draw[-&gt;, thick] (differentiate) -- (interpret);
+  \draw[-&gt;, thick] (optimize) -- (interpret);
+  \draw[-&gt;, thick] (solve) -- (interpret);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <note xml:id="note-three-checks">
-      <title>Three checks for a derivative answer</title>
-      <p>A derivative answer must still pass three checks:</p>
-      <md>\text{Does the sign make sense?}</md>
-      <md>\text{Do the units make sense?}</md>
-      <md>\text{Is the answer allowed by the domain of the model?}</md>
-    </note>
+  <note xml:id="note-sec-7-9-chapter-review-and-applications-82">
+    <title>A derivative answer must still pass three checks</title>
+        <md>\text{Does the sign make sense?}</md>
+        <md>\text{Do the units make sense?}</md>
+        <md>\text{Is the answer allowed by the domain of the model?}</md>
+  </note>
 
-    <p>These checks are not afterthoughts. They are part of the mathematics.</p>
+  <p>These checks are not afterthoughts.  They are part of the mathematics.</p>
+
+  <exercise xml:id="checkpoint-7-9-build-the-function-first">
+        <title>Why is the main skill of the chapter building the function first?</title>
+        <statement>
+          <p>
+            A ladder slides, a box is folded, a cup cools, a population grows. In your own words, why did the derivative appear after we translated the situation into mathematics, and why is that change of perspective the chapter’s central idea?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Real situation, then model, then derivative information, then interpretation. We were not handed a function and asked to differentiate it.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-chapter7-formulas">
     <title>Formulas to remember</title>
 
-    <p>The formulas below are not separate tricks. Each is a compact version of an idea from the chapter.</p>
+  <p>The formulas below are not separate tricks.  Each is a compact version of an idea from
+the chapter.</p>
 
-    <table>
-      <title>Key formulas of Chapter 7</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><term>idea</term></cell>
-          <cell><term>formula</term></cell>
-        </row>
-        <row><cell>linear approximation</cell><cell><m>f(a+\Delta x)\approx f(a)+f'(a)\Delta x</m></cell></row>
-        <row><cell>differential estimate</cell><cell><m>dy=f'(x)\,dx</m></cell></row>
-        <row><cell>Newton's method</cell><cell><m>x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}</m></cell></row>
-        <row><cell>exponential growth or decay</cell><cell><m>y'=ky,\qquad y(t)=y_0e^{kt}</m></cell></row>
-        <row><cell>doubling time</cell><cell><m>D=\dfrac{\ln 2}{k}\quad (k\gt 0)</m></cell></row>
-        <row><cell>half-life</cell><cell><m>H=-\dfrac{\ln 2}{k}\quad (k\lt 0)</m></cell></row>
-        <row><cell>Newton's law of cooling</cell><cell><m>T(t)=T_s+\bigl(T(0)-T_s\bigr)e^{-kt}</m></cell></row>
-        <row><cell>logistic growth</cell><cell><m>P'=rP\left(1-\dfrac{P}{K}\right)</m></cell></row>
-        <row><cell>logistic solution</cell><cell><m>P(t)=\dfrac{K}{1+\left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}</m></cell></row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>idea</strong> \amp <strong>formula</strong></mrow>
+    <mrow>\hline
+\text{linear approximation} \amp
+f(a+\Delta x)\approx f(a)+f'(a)\Delta x</mrow>
+    <mrow>
+\text{differential estimate} \amp
+dy=f'(x)\,dx</mrow>
+    <mrow>
+\text{Newton's method} \amp
+x_{n+1}=x_n-\dfrac{f(x_n)}{f'(x_n)}</mrow>
+    <mrow>
+\text{exponential growth or decay} \amp
+y'=ky,\qquad y(t)=y_0e^{kt}</mrow>
+    <mrow>
+\text{doubling time} \amp
+D=\dfrac{\ln2}{k}\quad(k&gt;0)</mrow>
+    <mrow>
+\text{half-life} \amp
+H=-\dfrac{\ln2}{k}\quad(k&lt;0)</mrow>
+    <mrow>
+\text{Newton's law of cooling} \amp
+T(t)=T_s+\bigl(T(0)-T_s\bigr)e^{-kt}</mrow>
+    <mrow>
+\text{logistic growth} \amp
+P'=rP\left(1-\dfrac{P}{K}\right)</mrow>
+    <mrow>
+\text{logistic solution} \amp
+P(t)=\dfrac{K}{1+\left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}
+\end{array}</mrow>
+  </md>
 
-    <p>For related rates and optimization, the most important formulas are often not fixed in advance. The formula comes from the geometry or the constraint.</p>
+  <p>For related rates and optimization, the most important formulas are often not fixed in
+advance.  The formula comes from the geometry or the constraint.</p>
 
-    <p>A ladder problem uses</p>
-    <md>x^2+y^2=L^2.</md>
+  <p>A ladder problem uses</p>
 
-    <p>A cone problem uses</p>
-    <md>V=\frac13\pi r^2h</md>
-    <p>together with similar triangles. A box problem uses a volume formula and a physical domain. A can problem uses surface area and a fixed-volume constraint.</p>
+  <md>x^2+y^2=L^2.</md>
 
-    <p>The hard part is not memorizing formulas. The hard part is choosing the right quantities and keeping the model honest.</p>
+  <p>A cone problem uses</p>
+
+  <md>V=\frac13\pi r^2h</md>
+
+  <p>together with similar triangles.  A box problem uses a volume formula and a physical
+domain.  A can problem uses surface area and a fixed-volume constraint.</p>
+
+  <p>The hard part is not memorizing formulas.  The hard part is choosing the right
+quantities and keeping the model honest.</p>
   </subsection>
 
   <subsection xml:id="subsec-skills-related-rates-optimization">
     <title>Skills: related rates and optimization</title>
 
-    <p>Related rates and optimization are the two main problem-solving skills of this chapter. They look similar because both begin with translation, but they ask different questions.</p>
+  <p>Related rates and optimization are the two main problem-solving skills of this chapter.
+They look similar because both begin with translation, but they ask different questions.</p>
 
-    <table>
-      <title>Comparison of related rates and optimization</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="left"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>problem type</term></cell>
-          <cell><term>what changes?</term></cell>
-          <cell><term>what is the goal?</term></cell>
-        </row>
-        <row><cell>related rates</cell><cell>quantities change with time</cell><cell>find an unknown rate</cell></row>
-        <row><cell>optimization</cell><cell>a choice variable changes</cell><cell>maximize or minimize a quantity</cell></row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>problem type</strong> \amp <strong>what changes?</strong> \amp <strong>what is the goal?</strong></mrow>
+    <mrow>\hline
+\text{related rates} \amp \text{quantities change with time} \amp \text{find an unknown rate}</mrow>
+    <mrow>
+\text{optimization} \amp \text{a choice variable changes} \amp \text{maximize or minimize a quantity}
+\end{array}</mrow>
+  </md>
 
-    <paragraphs xml:id="para-related-rates-checklist">
-      <title>Related rates checklist</title>
-      <ol>
-        <li><p>Draw a picture, if geometry is involved.</p></li>
-        <li><p>Name the changing quantities as functions of time.</p></li>
-        <li><p>Write an equation relating the quantities.</p></li>
-        <li><p>Differentiate with respect to time.</p></li>
-        <li><p>Substitute values for the instant in question.</p></li>
-        <li><p>Solve for the desired rate.</p></li>
-        <li><p>Check sign and units.</p></li>
-      </ol>
-      <p>The most common mistake is substituting the instant-specific numbers too early. The variables must remain variables until after the relation has been differentiated.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Related rates checklist</title>
 
-    <paragraphs xml:id="para-optimization-checklist">
-      <title>Optimization checklist</title>
-      <ol>
-        <li><p>Name the quantity to optimize.</p></li>
-        <li><p>Name the variables.</p></li>
-        <li><p>Write the objective function.</p></li>
-        <li><p>Write the constraint.</p></li>
-        <li><p>Use the constraint to get one variable.</p></li>
-        <li><p>Find the physical domain.</p></li>
-        <li><p>Find critical numbers and check endpoints.</p></li>
-        <li><p>Translate the result back into the situation.</p></li>
-      </ol>
-      <p>The most common mistake is finding a critical point and stopping. A critical point is a candidate, not a conclusion.</p>
-    </paragraphs>
+  <md>
+    <mrow>\begin{array}{ll}
+\text{1.} \amp \text{Draw a picture, if geometry is involved.}</mrow>
+    <mrow>\text{2.} \amp \text{Name the changing quantities as functions of time.}</mrow>
+    <mrow>\text{3.} \amp \text{Write an equation relating the quantities.}</mrow>
+    <mrow>\text{4.} \amp \text{Differentiate with respect to time.}</mrow>
+    <mrow>\text{5.} \amp \text{Substitute values for the instant in question.}</mrow>
+    <mrow>\text{6.} \amp \text{Solve for the desired rate.}</mrow>
+    <mrow>\text{7.} \amp \text{Check sign and units.}
+\end{array}</mrow>
+  </md>
+
+  <p>The most common mistake is substituting the instant-specific numbers too early.  The
+variables must remain variables until after the relation has been differentiated.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Optimization checklist</title>
+
+  <md>
+    <mrow>\begin{array}{ll}
+\text{1.} \amp \text{Name the quantity to optimize.}</mrow>
+    <mrow>\text{2.} \amp \text{Name the variables.}</mrow>
+    <mrow>\text{3.} \amp \text{Write the objective function.}</mrow>
+    <mrow>\text{4.} \amp \text{Write the constraint.}</mrow>
+    <mrow>\text{5.} \amp \text{Use the constraint to get one variable.}</mrow>
+    <mrow>\text{6.} \amp \text{Find the physical domain.}</mrow>
+    <mrow>\text{7.} \amp \text{Find critical numbers and check endpoints.}</mrow>
+    <mrow>\text{8.} \amp \text{Translate the result back into the situation.}
+\end{array}</mrow>
+  </md>
+
+  <p>The most common mistake is finding a critical point and stopping.  A critical point is
+a candidate, not a conclusion.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-7-9-same-derivative-different-jobs">
+        <title>Why do related rates, optimization, and models use the same derivative differently?</title>
+        <statement>
+          <p>
+            Related rates differentiate a relation. Optimization finds and tests candidates. Exponential and logistic models begin with a law for <m>y'</m>. In your own words, why is the derivative doing one job with several names, and how do you tell which question a problem is asking?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Ask whether the problem wants a rate, a best choice, a small-error estimate, a root, or a function obeying a rate law.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-chapter7-review-problems">
     <title>Review problems</title>
 
-    <p>The problems below are meant to mix the chapter's ideas. For each one, write a complete solution with units and a sentence interpreting the answer.</p>
+  <p>The problems below are meant to mix the chapter’s ideas.  For each one, write a complete
+solution with units and a sentence interpreting the answer.</p>
 
-    <exercises xml:id="exercises-ch7-review">
-      <exercise xml:id="exer-inflating-sphere">
-        <title>Inflating sphere</title>
-        <statement>
-          <p>Air is pumped into a spherical balloon at a constant rate of</p>
+    <ol>
+      <li>
+        <p><strong>Inflating sphere.</strong>
+Air is pumped into a spherical balloon at a constant rate of</p>
           <md>30\pi\text{ cm}^3/\text{s}.</md>
-          <p>How fast is the radius increasing when the radius is <m>5</m> cm?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-sliding-ladder">
-        <title>Sliding ladder</title>
-        <statement>
-          <p>A <m>13</m>-foot ladder leans against a wall. The bottom slides away from the wall at</p>
+        <p>How fast is the radius increasing when the radius is <m>5</m> cm?</p>
+      </li>
+      <li>
+        <p><strong>Sliding ladder.</strong>
+A <m>13</m>-foot ladder leans against a wall.  The bottom slides away from the wall at</p>
           <md>3\text{ ft/s}.</md>
-          <p>How fast is the top sliding down when the bottom is <m>5</m> feet from the wall?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-water-in-cone">
-        <title>Water in a cone</title>
-        <statement>
-          <p>An inverted cone has height <m>10</m> feet and radius <m>5</m> feet at the top. Water is flowing in at</p>
+        <p>How fast is the top sliding down when the bottom is <m>5</m> feet from the wall?</p>
+      </li>
+      <li>
+        <p><strong>Water in a cone.</strong>
+An inverted cone has height <m>10</m> feet and radius <m>5</m> feet at the top.  Water is
+flowing in at</p>
           <md>3\text{ ft}^3/\text{min}.</md>
-          <p>How fast is the water level rising when the water height is <m>4</m> feet?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-two-cars">
-        <title>Two cars</title>
-        <statement>
-          <p>One car travels east from an intersection at <m>40</m> mph. Another travels north from the same intersection at <m>30</m> mph. How fast is the distance between the cars increasing <m>2</m> hours later?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-largest-rectangle-parabola">
-        <title>Largest rectangle under a parabola</title>
-        <statement>
-          <p>A rectangle has its base on the <m>x</m>-axis and its upper two vertices on the graph</p>
+        <p>How fast is the water level rising when the water height is <m>4</m> feet?</p>
+      </li>
+      <li>
+        <p><strong>Two cars.</strong>
+One car travels east from an intersection at <m>40</m> mph.  Another travels north from
+the same intersection at <m>30</m> mph.  How fast is the distance between the cars
+increasing <m>2</m> hours later?</p>
+      </li>
+      <li>
+        <p><strong>Largest rectangle under a parabola.</strong>
+A rectangle has its base on the <m>x</m>-axis and its upper two vertices on the graph</p>
           <md>y=12-x^2.</md>
-          <p>Assume the rectangle is symmetric about the <m>y</m>-axis. What dimensions give the largest area?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-open-box-sheet">
-        <title>Open box</title>
-        <statement>
-          <p>A <m>20</m>-inch by <m>30</m>-inch sheet of cardboard has equal squares of side length <m>x</m> cut from its corners. The sides are folded up to make an open box. What value of <m>x</m> gives the largest volume?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-fence-along-river">
-        <title>Fence along a river</title>
-        <statement>
-          <p>A farmer has <m>300</m> meters of fencing and wants to make a rectangular field along a river, using the river as one side. What dimensions maximize the area?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-least-material-can">
-        <title>Least material can</title>
-        <statement>
-          <p>A closed cylindrical can must hold</p>
+        <p>Assume the rectangle is symmetric about the <m>y</m>-axis.  What dimensions give the
+largest area?</p>
+      </li>
+      <li>
+        <p><strong>Open box.</strong>
+A <m>20</m>-inch by <m>30</m>-inch sheet of cardboard has equal squares of side length <m>x</m>
+cut from its corners.  The sides are folded up to make an open box.  What value of
+<m>x</m> gives the largest volume?</p>
+      </li>
+      <li>
+        <p><strong>Fence along a river.</strong>
+A farmer has <m>300</m> meters of fencing and wants to make a rectangular field along
+a river, using the river as one side.  What dimensions maximize the area?</p>
+      </li>
+      <li>
+        <p><strong>Least material can.</strong>
+A closed cylindrical can must hold</p>
           <md>1000\text{ cm}^3.</md>
-          <p>Ignoring seams and thickness, find the radius and height that minimize surface area.</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-newtons-method-x3-10">
-        <title>Newton's method</title>
-        <statement>
-          <p>Use Newton's method to approximate the positive solution of</p>
+        <p>Ignoring seams and thickness, find the radius and height that minimize surface area.</p>
+      </li>
+      <li>
+        <p><strong>Newton’s method.</strong>
+Use Newton’s method to approximate the positive solution of</p>
           <md>x^3=10.</md>
-          <p>Start with <m>x_0=2</m>. Compute <m>x_1</m>, <m>x_2</m>, and <m>x_3</m>.</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-cooling-model-review">
-        <title>Cooling model</title>
-        <statement>
-          <p>A metal object is heated to <m>100^\circ\text{C}</m> and placed in a room at <m>20^\circ\text{C}</m>. After <m>5</m> minutes, its temperature is <m>70^\circ\text{C}</m>. Assuming Newton's law of cooling, estimate its temperature after <m>15</m> minutes.</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-logistic-growth-review">
-        <title>Logistic growth</title>
-        <statement>
-          <p>A population satisfies</p>
-          <md>P'=0.6P\left(1-\frac{P}{800}\right), \qquad P(0)=100.</md>
-          <p>Find <m>P(t)</m>. When does the population reach <m>400</m>?</p>
-        </statement>
-      </exercise>
-
-      <exercise xml:id="exer-warning-problem-profit">
-        <title>A warning problem</title>
-        <statement>
-          <p>A model for profit is</p>
+        <p>Start with <m>x_0=2</m>.  Compute <m>x_1</m>, <m>x_2</m>, and <m>x_3</m>.</p>
+      </li>
+      <li>
+        <p><strong>Cooling model.</strong>
+A metal object is heated to <m>100^\circ\text{C}</m> and placed in a room at
+<m>20^\circ\text{C}</m>.  After <m>5</m> minutes, its temperature is <m>70^\circ\text{C}</m>.
+Assuming Newton’s law of cooling, estimate its temperature after <m>15</m> minutes.</p>
+      </li>
+      <li>
+        <p><strong>Logistic growth.</strong>
+A population satisfies</p>
+          <md>P'=0.6P\left(1-\frac{P}{800}\right),
+\qquad
+P(0)=100.</md>
+        <p>Find <m>P(t)</m>.  When does the population reach <m>400</m>?</p>
+      </li>
+      <li>
+        <p><strong>A warning problem.</strong>
+A model for profit is</p>
           <md>P(q)=-q^2+60q-500.</md>
-          <p>A factory is allowed to produce only</p>
+        <p>A factory is allowed to produce only</p>
           <md>40\le q\le 80</md>
-          <p>units. Find the production level that maximizes profit on the allowed domain. Explain why the unconstrained critical point is not the answer.</p>
-        </statement>
-      </exercise>
-    </exercises>
+        <p>units.  Find the production level that maximizes profit on the allowed domain.
+Explain why the unconstrained critical point is not the answer.</p>
+      </li>
+    </ol>
   </subsection>
 
   <subsection xml:id="subsec-project-least-material-container">
     <title>Project: design a least-material container</title>
 
-    <p>A basic can problem assumes that all material costs the same. Real containers are not always like that. The top and bottom may need thicker material. The side wall may be cheaper. The seams may matter.</p>
+  <p>A basic can problem assumes that all material costs the same.  Real containers are
+not always like that.  The top and bottom may need thicker material.  The side wall
+may be cheaper.  The seams may matter.</p>
 
-    <p>This project keeps the model simple but makes the design question more realistic.</p>
+  <p>This project keeps the model simple but makes the design question more realistic.</p>
 
-    <paragraphs xml:id="para-design-brief">
-      <title>Design brief</title>
-      <p>A closed cylindrical container must hold a fixed volume</p>
-      <md>V_0</md>
-      <p>cubic centimeters. The side wall costs <m>1</m> unit per square centimeter. The top and bottom cost <m>c</m> units per square centimeter, where</p>
-      <md>c\gt 0.</md>
-      <p>Find the radius and height that minimize material cost.</p>
+  <paragraphs>
+    <title>Design brief</title>
 
-      <figure xml:id="fig-least-material-container-project">
-        <caption>A more realistic container model can assign different costs to the side wall and the two circular ends.</caption>
-        <image width="75%">
-          <latex-image>
-            \begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
-              % cylinder
-              \draw[thick] (-1.6,1.3) arc[start angle=180,end angle=360,x radius=1.6,y radius=0.35];
-              \draw[dashed] (1.6,1.3) arc[start angle=0,end angle=180,x radius=1.6,y radius=0.35];
-              \draw[thick] (-1.6,-1.4) arc[start angle=180,end angle=360,x radius=1.6,y radius=0.35];
-              \draw[thick] (-1.6,-1.4) arc[start angle=180,end angle=0,x radius=1.6,y radius=0.35];
-              \draw[thick] (-1.6,1.3) -- (-1.6,-1.4);
-              \draw[thick] (1.6,1.3) -- (1.6,-1.4);
+  <p>A closed cylindrical container must hold a fixed volume</p>
 
-              % radius and height labels
-              \draw[-&gt;, thick] (0,1.3) -- (1.6,1.3);
-              \node[above] at (0.8,1.3) {\(r\)};
+  <md>V_0</md>
 
-              \draw[&lt;-&gt;] (2.15,1.3) -- (2.15,-1.4);
-              \node[right] at (2.15,-0.05) {\(h\)};
+  <p>cubic centimeters.  The side wall costs <m>1</m> unit per square centimeter.  The top and
+bottom cost <m>c</m> units per square centimeter, where</p>
 
-              % cost labels
-              \node at (0,1.85) {top cost \(c\)};
-              \node at (0,-2.05) {bottom cost \(c\)};
-              \node[rotate=90] at (-2.25,-0.05) {side cost \(1\)};
+  <md>c&gt;0.</md>
 
-              \node at (0,-2.75) {volume fixed: \(\pi r^2h=V_0\)};
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
-    </paragraphs>
+  <p>Find the radius and height that minimize material cost.</p>
 
-    <paragraphs xml:id="para-step-1-build-cost-function">
-      <title>Step 1: Build the cost function</title>
-      <p>The side area is</p>
-      <md>2\pi rh.</md>
-      <p>The top and bottom together have area</p>
-      <md>2\pi r^2.</md>
-      <p>Since the top and bottom cost <m>c</m> units per square centimeter, the material cost is</p>
-      <md>M=2\pi rh+2c\pi r^2.</md>
-      <p>The volume constraint is</p>
-      <md>\pi r^2h=V_0.</md>
-      <p>Solve the constraint for <m>h</m>:</p>
-      <md>h=\frac{V_0}{\pi r^2}.</md>
-      <p>Substitute into the cost:</p>
-      <md>M(r) = 2\pi r\left(\frac{V_0}{\pi r^2}\right)+2c\pi r^2.</md>
-      <p>Thus</p>
-      <md>M(r)=\frac{2V_0}{r}+2c\pi r^2, \qquad r\gt 0.</md>
-    </paragraphs>
+  <figure xml:id="fig-least-material-container-project">
+    <caption>A more realistic container model can assign different costs to the side wall and the two circular ends.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.0, every node/.style={font=\small}]
+  % cylinder
+  \draw[thick] (-1.6,1.3) arc[start angle=180,end angle=360,x radius=1.6,y radius=0.35];
+  \draw[dashed] (1.6,1.3) arc[start angle=0,end angle=180,x radius=1.6,y radius=0.35];
+  \draw[thick] (-1.6,-1.4) arc[start angle=180,end angle=360,x radius=1.6,y radius=0.35];
+  \draw[thick] (-1.6,-1.4) arc[start angle=180,end angle=0,x radius=1.6,y radius=0.35];
+  \draw[thick] (-1.6,1.3) -- (-1.6,-1.4);
+  \draw[thick] (1.6,1.3) -- (1.6,-1.4);
 
-    <paragraphs xml:id="para-step-2-minimize-cost">
-      <title>Step 2: Minimize</title>
-      <p>Differentiate:</p>
-      <md>M'(r)=-\frac{2V_0}{r^2}+4c\pi r.</md>
-      <p>Set <m>M'(r)=0</m>:</p>
-      <md>-\frac{2V_0}{r^2}+4c\pi r=0.</md>
-      <p>Multiply by <m>r^2</m>:</p>
-      <md>-2V_0+4c\pi r^3=0.</md>
-      <p>So</p>
-      <md>4c\pi r^3=2V_0,</md>
-      <p>and therefore</p>
-      <md>r^3=\frac{V_0}{2c\pi}.</md>
-      <p>Thus</p>
-      <md>r=\left(\frac{V_0}{2c\pi}\right)^{1/3}.</md>
-      <p>Now find the height:</p>
-      <md>h=\frac{V_0}{\pi r^2}.</md>
-      <p>Since</p>
-      <md>V_0=2c\pi r^3,</md>
-      <p>we get</p>
-      <md>h=\frac{2c\pi r^3}{\pi r^2}=2cr.</md>
-      <p>Therefore the optimal shape satisfies</p>
-      <md>h=2cr.</md>
-      <p>When <m>c=1</m>, this gives</p>
-      <md>h=2r.</md>
-      <p>So the height equals the diameter, which matches the equal-cost can from <xref ref="sec-7-2-optimization-problems"/>.</p>
-    </paragraphs>
+  % radius and height labels
+  \draw[-&gt;, thick] (0,1.3) -- (1.6,1.3);
+  \node[above] at (0.8,1.3) {\(r\)};
 
-    <paragraphs xml:id="para-step-3-interpret-parameter-c">
-      <title>Step 3: Interpret the parameter <m>c</m></title>
-      <p>The ratio</p>
-      <md>\frac{h}{r}=2c</md>
-      <p>shows how the design changes with material cost.</p>
+  \draw[&lt;-&gt;] (2.15,1.3) -- (2.15,-1.4);
+  \node[right] at (2.15,-0.05) {\(h\)};
 
-      <table>
-        <title>Optimal aspect ratio for different relative end costs</title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="left"/>
-          <row header="yes">
-            <cell><m>c</m></cell>
-            <cell><m>h/r</m></cell>
-            <cell><term>interpretation</term></cell>
-          </row>
-          <row><cell>1</cell><cell>2</cell><cell>height equals diameter</cell></row>
-          <row><cell>2</cell><cell>4</cell><cell>top and bottom are expensive, so use smaller ends</cell></row>
-          <row><cell>4</cell><cell>8</cell><cell>ends are very expensive, so make the can tall and narrow</cell></row>
-        </tabular>
-      </table>
+  % cost labels
+  \node at (0,1.85) {top cost \(c\)};
+  \node at (0,-2.05) {bottom cost \(c\)};
+  \node[rotate=90] at (-2.25,-0.05) {side cost \(1\)};
 
-      <p>The formula tells a physical story. If the circular ends are expensive, the design tries to reduce their area by using a smaller radius. To keep the same volume, the height must increase.</p>
-    </paragraphs>
+  \node at (0,-2.75) {volume fixed: \(\pi r^2h=V_0\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+  </paragraphs>
 
-    <paragraphs xml:id="para-report-questions-can">
-      <title>Report questions</title>
-      <p>Write a short report answering these questions.</p>
-      <ol>
-        <li><p>Derive the cost function <m>M(r)</m> from the geometry and the volume constraint.</p></li>
-        <li><p>Prove that the critical point gives an absolute minimum. One way is to use</p>
-        <md>M''(r)=\frac{4V_0}{r^3}+4c\pi\gt 0.</md>
-        <p>Another way is to examine what happens to <m>M(r)</m> as <m>r\to 0^+</m> and as <m>r\to\infty</m>.</p></li>
-        <li><p>For</p>
-        <md>V_0=1000\text{ cm}^3</md>
+  <paragraphs>
+    <title>Step 1: Build the cost function</title>
+
+  <p>The side area is</p>
+
+  <md>2\pi rh.</md>
+
+  <p>The top and bottom together have area</p>
+
+  <md>2\pi r^2.</md>
+
+  <p>Since the top and bottom cost <m>c</m> units per square centimeter, the material cost is</p>
+
+  <md>M=2\pi rh+2c\pi r^2.</md>
+
+  <p>The volume constraint is</p>
+
+  <md>\pi r^2h=V_0.</md>
+
+  <p>Solve the constraint for <m>h</m>:</p>
+
+  <md>h=\frac{V_0}{\pi r^2}.</md>
+
+  <p>Substitute into the cost:</p>
+
+  <md>M(r)
+=
+2\pi r\left(\frac{V_0}{\pi r^2}\right)+2c\pi r^2.</md>
+
+  <p>Thus</p>
+
+  <md>M(r)=\frac{2V_0}{r}+2c\pi r^2,
+\qquad r&gt;0.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 2: Minimize</title>
+
+  <p>Differentiate:</p>
+
+  <md>M'(r)=-\frac{2V_0}{r^2}+4c\pi r.</md>
+
+  <p>Set <m>M'(r)=0</m>:</p>
+
+  <md>-\frac{2V_0}{r^2}+4c\pi r=0.</md>
+
+  <p>Multiply by <m>r^2</m>:</p>
+
+  <md>-2V_0+4c\pi r^3=0.</md>
+
+  <p>So</p>
+
+  <md>4c\pi r^3=2V_0,</md>
+
+  <p>and therefore</p>
+
+  <md>r^3=\frac{V_0}{2c\pi}.</md>
+
+  <p>Thus</p>
+
+  <md>
+r=\left(\frac{V_0}{2c\pi}\right)^{1/3}.
+</md>
+
+  <p>Now find the height:</p>
+
+  <md>h=\frac{V_0}{\pi r^2}.</md>
+
+  <p>Since</p>
+
+  <md>V_0=2c\pi r^3,</md>
+
+  <p>we get</p>
+
+  <md>h=\frac{2c\pi r^3}{\pi r^2}=2cr.</md>
+
+  <p>Therefore the optimal shape satisfies</p>
+
+  <md>
+h=2cr.
+</md>
+
+  <p>When <m>c=1</m>, this gives</p>
+
+  <md>h=2r.</md>
+
+  <p>So the height equals the diameter, which matches the equal-cost can from Section
+<xref ref="subsec-geometry-optimization" text="title"/>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 3: Interpret the parameter <m>c</m></title>
+
+  <p>The ratio</p>
+
+  <md>\frac{h}{r}=2c</md>
+
+  <p>shows how the design changes with material cost.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+c \amp h/r \amp \text{interpretation}</mrow>
+    <mrow>\hline
+1 \amp 2 \amp \text{height equals diameter}</mrow>
+    <mrow>2 \amp 4 \amp \text{top and bottom are expensive, so use smaller ends}</mrow>
+    <mrow>4 \amp 8 \amp \text{ends are very expensive, so make the can tall and narrow}
+\end{array}</mrow>
+  </md>
+
+  <p>The formula tells a physical story.  If the circular ends are expensive, the design tries
+to reduce their area by using a smaller radius.  To keep the same volume, the height
+must increase.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Report questions</title>
+
+  <p>Write a short report answering these questions.</p>
+
+    <ol>
+      <li>
+        <p>Derive the cost function <m>M(r)</m> from the geometry and the volume constraint.</p>
+      </li>
+      <li>
+        <p>Prove that the critical point gives an absolute minimum.  One way is to use</p>
+          <md>M''(r)=\frac{4V_0}{r^3}+4c\pi&gt;0.</md>
+        <p>Another way is to examine what happens to <m>M(r)</m> as <m>r\to0^+</m> and as
+<m>r\to\infty</m>.</p>
+      </li>
+      <li>
+        <p>For</p>
+          <md>V_0=1000\text{ cm}^3</md>
         <p>compute the optimal <m>r</m> and <m>h</m> for</p>
-        <md>c=1,\qquad c=2,\qquad c=4.</md></li>
-        <li><p>Make a graph of <m>M(r)</m> for each value of <m>c</m>. Mark the minimizing radius.</p></li>
-        <li><p>Explain, in words, why increasing <m>c</m> makes the optimal container taller and narrower.</p></li>
-        <li><p>Extension. Suppose the container has no top. If the bottom costs <m>c</m> units per square centimeter and the side costs <m>1</m>, build and minimize the new cost function.</p></li>
-      </ol>
-    </paragraphs>
+          <md>c=1,\qquad c=2,\qquad c=4.</md>
+      </li>
+      <li>
+        <p>Make a graph of <m>M(r)</m> for each value of <m>c</m>.  Mark the minimizing radius.</p>
+      </li>
+      <li>
+        <p>Explain, in words, why increasing <m>c</m> makes the optimal container taller and
+narrower.</p>
+      </li>
+      <li>
+        <p>Extension.  Suppose the container has no top.  If the bottom costs <m>c</m> units per
+square centimeter and the side costs <m>1</m>, build and minimize the new cost function.</p>
+      </li>
+    </ol>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-project-model-cooling-data">
     <title>Project: model cooling data</title>
 
-    <p><xref ref="ch02-numbers-functions-and-models"/> used cooling coffee as an example of data that should not be modeled by a line forever. This chapter gives the derivative law behind the better model.</p>
+  <p>Chapter 2 used cooling coffee as an example of data that should not be modeled by a
+line forever.  This chapter gives the derivative law behind the better model.</p>
 
-    <p>Newton's law of cooling says</p>
-    <md>T'=-k(T-T_s), \qquad k\gt 0,</md>
-    <p>where <m>T_s</m> is the surrounding temperature. The solution is</p>
-    <md>T(t)=T_s+\bigl(T(0)-T_s\bigr)e^{-kt}.</md>
+  <p>Newton’s law of cooling says</p>
 
-    <p>The quantity that decays exponentially is not <m>T</m> itself. It is the excess temperature</p>
-    <md>T-T_s.</md>
+  <md>T'=-k(T-T_s),
+\qquad k&gt;0,</md>
 
-    <paragraphs xml:id="para-cooling-data">
-      <title>Data</title>
-      <p>A cup of coffee sits in a room whose temperature is</p>
-      <md>22^\circ\text{C}.</md>
-      <p>The measured temperatures are:</p>
+  <p>where <m>T_s</m> is the surrounding temperature.  The solution is</p>
 
-      <table>
-        <title>Coffee cooling measurements</title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <row header="yes">
-            <cell><m>t\text{ (minutes)}</m></cell>
-            <cell>0</cell>
-            <cell>5</cell>
-            <cell>10</cell>
-            <cell>15</cell>
-            <cell>20</cell>
-            <cell>25</cell>
-          </row>
-          <row>
-            <cell><m>T(t)\text{ }(^\circ\text{C})</m></cell>
-            <cell>90</cell>
-            <cell>73</cell>
-            <cell>60</cell>
-            <cell>51</cell>
-            <cell>44</cell>
-            <cell>39</cell>
-          </row>
-        </tabular>
-      </table>
+  <md>T(t)=T_s+\bigl(T(0)-T_s\bigr)e^{-kt}.</md>
 
-      <figure xml:id="fig-cooling-data-project">
-        <caption>Newton's law of cooling models the excess temperature <m>T-22</m> as exponential decay.</caption>
-        <image width="78%">
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=0.78\textwidth,
-                height=0.48\textwidth,
-                xmin=0, xmax=35,
-                ymin=20, ymax=95,
-                axis lines=left,
-                xlabel={\(t\) (minutes)},
-                ylabel={\(T(t)\) (\(^\circ\text{C}\))},
-                xtick={0,5,10,15,20,25,30,35},
-                ytick={22,40,60,80,90},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[only marks, mark=*] coordinates {
-                (0,90) (5,73) (10,60) (15,51) (20,44) (25,39)
-            };
-            \addplot[thick, domain=0:35, samples=200] {22+68*exp(-0.057536*x)};
-            \addplot[dashed, domain=0:35, samples=2] {22};
-            \node[anchor=west] at (axis cs:20,31) {cooling model};
-            \node[anchor=west] at (axis cs:20,24) {room temperature};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
-    </paragraphs>
+  <p>The quantity that decays exponentially is not <m>T</m> itself.  It is the excess temperature</p>
 
-    <paragraphs xml:id="para-first-model-two-points">
-      <title>A first model from two points</title>
-      <p>Since</p>
-      <md>T_s=22</md>
-      <p>and</p>
-      <md>T(0)=90,</md>
-      <p>the model has the form</p>
-      <md>T(t)=22+68e^{-kt}.</md>
-      <p>Use <m>T(5)=73</m>:</p>
-      <md>73=22+68e^{-5k}.</md>
-      <p>Thus</p>
-      <md>51=68e^{-5k},</md>
-      <p>so</p>
-      <md>e^{-5k}=\frac{51}{68}=\frac34.</md>
-      <p>Therefore</p>
-      <md>k=-\frac15\ln\left(\frac34\right).</md>
-      <p>Numerically,</p>
-      <md>k\approx 0.0575.</md>
-      <p>So a two-point model is</p>
-      <md>T(t)=22+68e^{-0.0575t}.</md>
-      <p>Equivalently,</p>
-      <md>T(t)=22+68\left(\frac34\right)^{t/5}.</md>
-      <p>This form says that every <m>5</m> minutes, the excess temperature is multiplied by about <m>3/4</m>.</p>
-    </paragraphs>
+  <md>T-T_s.</md>
 
-    <paragraphs xml:id="para-cooling-prediction">
-      <title>Prediction</title>
-      <p>The predicted temperature after <m>30</m> minutes is</p>
-      <md>T(30)=22+68\left(\frac34\right)^6.</md>
-      <p>Since</p>
-      <md>\left(\frac34\right)^6\approx 0.178,</md>
-      <p>we get</p>
-      <md>T(30)\approx 22+68(0.178)\approx 34.1^\circ\text{C}.</md>
-    </paragraphs>
+  <paragraphs>
+    <title>Data</title>
 
-    <paragraphs xml:id="para-computing-task-cooling">
-      <title>Computing task</title>
-      <p>The two-point model uses only the first two measurements. A better model should use all the data.</p>
-      <p>Let</p>
-      <md>E(t)=T(t)-22</md>
-      <p>be the excess temperature. If Newton's law is a good model, then</p>
-      <md>E(t)=E(0)e^{-kt}.</md>
-      <p>Taking natural logarithms gives</p>
-      <md>\ln E(t)=\ln E(0)-kt.</md>
-      <p>So the points</p>
-      <md>\bigl(t,\ln(T(t)-22)\bigr)</md>
-      <p>should lie approximately on a line with slope <m>-k</m>.</p>
-      <p>Complete the following tasks.</p>
-      <ol>
-        <li><p>Compute the excess temperatures <m>E(t)=T(t)-22</m>.</p></li>
-        <li><p>Compute <m>\ln E(t)</m> for each measured time.</p></li>
-        <li><p>Plot the points <m>(t,\ln E(t))</m>. Do they look approximately linear?</p></li>
-        <li><p>Estimate the slope of the best-fitting line. Then estimate <m>k=-\text{slope}</m>.</p></li>
-        <li><p>Build the model <m>T(t)=22+Ae^{-kt}</m>. You may take <m>A=68</m>, or estimate <m>A</m> from your fitted line.</p></li>
-        <li><p>Use your model to predict <m>T(30)</m>, <m>T(45)</m>, and <m>T(60)</m>.</p></li>
-        <li><p>Compute residuals:</p>
-        <md>\text{residual} = \text{measured temperature} - \text{model temperature}.</md>
-        <p>Are the residuals small? Do they show a pattern?</p></li>
-        <li><p>Compare the cooling model with the linear model through the first and last data points. Which model gives a more reasonable prediction after <m>2</m> hours? Explain.</p></li>
-      </ol>
-    </paragraphs>
+  <p>A cup of coffee sits in a room whose temperature is</p>
 
-    <note xml:id="note-what-cooling-project-tests">
-      <title>What the project tests</title>
-      <p>A model is not only a formula that fits numbers. It should also respect the behavior of the situation. A cooling object should approach room temperature, not pass below it because a line keeps decreasing forever.</p>
-    </note>
+  <md>22^\circ\text{C}.</md>
+
+  <p>The measured temperatures are:</p>
+
+  <md>
+    <mrow>\begin{array}{c|cccccc}
+t\text{ (minutes)} \amp 0 \amp 5 \amp 10 \amp 15 \amp 20 \amp 25</mrow>
+    <mrow>\hline
+T(t)\text{ }(^\circ\text{C}) \amp 90 \amp 73 \amp 60 \amp 51 \amp 44 \amp 39
+\end{array}</mrow>
+  </md>
+
+  <figure xml:id="fig-cooling-data-project">
+    <caption>Newton’s law of cooling models the excess temperature <m>T-22</m> as exponential decay.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=35,
+    ymin=20, ymax=95,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(T(t)\) (\(^\circ\text{C}\))},
+    xtick={0,5,10,15,20,25,30,35},
+    ytick={22,40,60,80,90},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,90) (5,73) (10,60) (15,51) (20,44) (25,39)
+};
+\addplot[thick, domain=0:35, samples=200] {22+68*exp(-0.057536*x)};
+\addplot[dashed, domain=0:35, samples=2] {22};
+\node[anchor=west] at (axis cs:20,31) {cooling model};
+\node[anchor=west] at (axis cs:20,24) {room temperature};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A first model from two points</title>
+
+  <p>Since</p>
+
+  <md>T_s=22</md>
+
+  <p>and</p>
+
+  <md>T(0)=90,</md>
+
+  <p>the model has the form</p>
+
+  <md>T(t)=22+68e^{-kt}.</md>
+
+  <p>Use <m>T(5)=73</m>:</p>
+
+  <md>73=22+68e^{-5k}.</md>
+
+  <p>Thus</p>
+
+  <md>51=68e^{-5k},</md>
+
+  <p>so</p>
+
+  <md>e^{-5k}=\frac{51}{68}=\frac34.</md>
+
+  <p>Therefore</p>
+
+  <md>k=-\frac15\ln\left(\frac34\right).</md>
+
+  <p>Numerically,</p>
+
+  <md>k\approx0.0575.</md>
+
+  <p>So a two-point model is</p>
+
+  <md>
+T(t)=22+68e^{-0.0575t}.
+</md>
+
+  <p>Equivalently,</p>
+
+  <md>T(t)=22+68\left(\frac34\right)^{t/5}.</md>
+
+  <p>This form says that every <m>5</m> minutes, the excess temperature is multiplied by
+about <m>3/4</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Prediction</title>
+
+  <p>The predicted temperature after <m>30</m> minutes is</p>
+
+  <md>T(30)=22+68\left(\frac34\right)^6.</md>
+
+  <p>Since</p>
+
+  <md>\left(\frac34\right)^6\approx0.178,</md>
+
+  <p>we get</p>
+
+  <md>T(30)\approx22+68(0.178)\approx34.1^\circ\text{C}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Computing task</title>
+
+  <p>The two-point model uses only the first two measurements.  A better model should
+use all the data.</p>
+
+  <p>Let</p>
+
+  <md>E(t)=T(t)-22</md>
+
+  <p>be the excess temperature.  If Newton’s law is a good model, then</p>
+
+  <md>E(t)=E(0)e^{-kt}.</md>
+
+  <p>Taking natural logarithms gives</p>
+
+  <md>\ln E(t)=\ln E(0)-kt.</md>
+
+  <p>So the points</p>
+
+  <md>\bigl(t,\ln(T(t)-22)\bigr)</md>
+
+  <p>should lie approximately on a line with slope <m>-k</m>.</p>
+
+  <p>Complete the following tasks.</p>
+
+    <ol>
+      <li>
+        <p>Compute the excess temperatures <m>E(t)=T(t)-22</m>.</p>
+      </li>
+      <li>
+        <p>Compute <m>\ln E(t)</m> for each measured time.</p>
+      </li>
+      <li>
+        <p>Plot the points</p>
+          <md>(t,\ln E(t)).</md>
+        <p>Do they look approximately linear?</p>
+      </li>
+      <li>
+        <p>Estimate the slope of the best-fitting line.  Then estimate</p>
+          <md>k=-\text{slope}.</md>
+      </li>
+      <li>
+        <p>Build the model</p>
+          <md>T(t)=22+Ae^{-kt}.</md>
+        <p>You may take <m>A=68</m>, or estimate <m>A</m> from your fitted line.</p>
+      </li>
+      <li>
+        <p>Use your model to predict <m>T(30)</m>, <m>T(45)</m>, and <m>T(60)</m>.</p>
+      </li>
+      <li>
+        <p>Compute residuals:</p>
+          <md>\text{residual}
+=
+\text{measured temperature}
+-
+\text{model temperature}.</md>
+        <p>Are the residuals small?  Do they show a pattern?</p>
+      </li>
+      <li>
+        <p>Compare the cooling model with the linear model through the first and last
+data points.  Which model gives a more reasonable prediction after <m>2</m> hours?
+Explain.</p>
+      </li>
+    </ol>
+
+  <note xml:id="note-sec-7-9-chapter-review-and-applications-83">
+    <title>What the project tests</title>
+      <p>A model is not only a formula that fits numbers.  It should also respect the behavior
+of the situation.  A cooling object should approach room temperature, not pass below
+it because a line keeps decreasing forever.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-7-9-model-is-a-promise">
+        <title>Why is a model a promise with conditions?</title>
+        <statement>
+          <p>
+            Exponential growth promises a constant relative rate. Logistic growth adds a fixed carrying capacity. In your own words, why must we check whether that promise matches the situation before trusting a formula, and what goes wrong if the conditions are invisible in the early data?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A formula can be mathematically correct and still be the wrong story. Early exponential-looking data may hide a later ceiling.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-chapter7-concept-checks">
     <title>Concept checks</title>
 
     <ol>
-      <li><p>In a related rates problem, why should we usually differentiate before substituting the values for the instant in question?</p></li>
-      <li><p>In an optimization problem, why is the physical domain part of the model?</p></li>
-      <li><p>A critical point of an objective function lies outside the physical domain. What should you do with it?</p></li>
-      <li><p>Explain the difference between absolute error and relative error.</p></li>
-      <li><p>Why does Newton's method require <m>f'(x_n)\neq 0</m>?</p></li>
-      <li><p>Give one reason Newton's method can fail even when a root exists.</p></li>
-      <li><p>In the equation <m>y'=ky</m>, what does <m>k</m> measure?</p></li>
-      <li><p>Why is <m>P'=rP\left(1-\frac{P}{K}\right)</m> approximately exponential when <m>P\ll K</m>?</p></li>
-      <li><p>In the logistic model, why is the growth fastest at <m>P=K/2</m>?</p></li>
-      <li><p>Reflection minimizes distance, but refraction minimizes time. Why are these not the same problem when the speed changes?</p></li>
+      <li>
+        <p>In a related rates problem, why should we usually differentiate before substituting
+the values for the instant in question?</p>
+      </li>
+      <li>
+        <p>In an optimization problem, why is the physical domain part of the model?</p>
+      </li>
+      <li>
+        <p>A critical point of an objective function lies outside the physical domain.  What
+should you do with it?</p>
+      </li>
+      <li>
+        <p>Explain the difference between absolute error and relative error.</p>
+      </li>
+      <li>
+        <p>Why does Newton’s method require <m>f'(x_n)\neq0</m>?</p>
+      </li>
+      <li>
+        <p>Give one reason Newton’s method can fail even when a root exists.</p>
+      </li>
+      <li>
+        <p>In the equation</p>
+          <md>y'=ky,</md>
+        <p>what does <m>k</m> measure?</p>
+      </li>
+      <li>
+        <p>Why is</p>
+          <md>P'=rP\left(1-\frac{P}{K}\right)</md>
+        <p>approximately exponential when <m>P\ll K</m>?</p>
+      </li>
+      <li>
+        <p>In the logistic model, why is the growth fastest at <m>P=K/2</m>?</p>
+      </li>
+      <li>
+        <p>Reflection minimizes distance, but refraction minimizes time.  Why are these not
+the same problem when the speed changes?</p>
+      </li>
     </ol>
+
+  <exercise xml:id="checkpoint-7-9-three-checks">
+        <title>Why must a derivative answer still pass three checks?</title>
+        <statement>
+          <p>
+            Sign, units, and domain are listed as part of the mathematics, not as afterthoughts. In your own words, why can a correctly computed derivative still fail to answer the original problem if one of those checks is skipped?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A number without direction, units, or feasibility is not yet an answer to a related-rates, optimization, or modeling question.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-chapter7-hook-integrals">
     <title>Where this points</title>
 
-    <p>This chapter showed how much can be done with a derivative.</p>
+  <p>This chapter showed how much can be done with a derivative.</p>
 
-    <p>A derivative can relate changing quantities. It can find a best choice. It can estimate error. It can turn a tangent line into a root-finding method. It can express a physical law such as</p>
-    <md>T'=-k(T-T_s)</md>
-    <p>or</p>
-    <md>P'=rP\left(1-\frac{P}{K}\right).</md>
+  <p>A derivative can relate changing quantities.  It can find a best choice.  It can estimate
+error.  It can turn a tangent line into a root-finding method.  It can express a physical
+law such as</p>
 
-    <p>But a derivative is still local. It tells how fast something is changing at an instant.</p>
+  <md>T'=-k(T-T_s)</md>
 
-    <p>Many questions ask for the accumulated result of those changes.</p>
+  <p>or</p>
 
-    <p>If velocity is known at every instant, how far did the object travel?</p>
+  <md>P'=rP\left(1-\frac{P}{K}\right).</md>
 
-    <p>If a force changes with position, how much work was done?</p>
+  <p>But a derivative is still local.  It tells how fast something is changing at an instant.</p>
 
-    <p>If density varies along a rod, what is the rod's total mass?</p>
+  <p>Many questions ask for the accumulated result of those changes.</p>
 
-    <p>If a rate law tells how a quantity changes, how much total change has occurred over an interval?</p>
+  <p>If velocity is known at every instant, how far did the object travel?</p>
 
-    <p>Those questions return us to the dashboard from the beginning of the book. The speedometer gives rate. The odometer gives accumulation.</p>
+  <p>If a force changes with position, how much work was done?</p>
 
-    <p>The next chapter builds the second great operation of calculus: adding up infinitely many small changes.</p>
+  <p>If density varies along a rod, what is the rod’s total mass?</p>
+
+  <p>If a rate law tells how a quantity changes, how much total change has occurred over
+an interval?</p>
+
+  <p>Those questions return us to the dashboard from the beginning of the book.  The
+speedometer gives rate.  The odometer gives accumulation.</p>
+
+  <p>The next chapter builds the second great operation of calculus: adding up infinitely
+many small changes.</p>
   </subsection>
+
+
 
 </section>

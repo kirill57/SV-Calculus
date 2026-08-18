@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-5-calculus-in-polar-coordinates">
+  <title>Calculus in polar coordinates</title>
+
+  <p>The last section ended with one important observation:</p>
+
+  <md>r=f(\theta)</md>
+
+  <p>is already a parametric curve, because</p>
+
+  <md>x=f(\theta)\cos\theta,
+\qquad
+y=f(\theta)\sin\theta.</md>
+
+  <p>So polar calculus is not a new kind of calculus.  It is parametric calculus with the angle
+<m>\theta</m> as the parameter.</p>
+
+  <p>The polar picture, however, gives new geometry.  A small change in <m>\theta</m> sweeps
+out a small sector.  A small change in <m>r</m> moves the point in or out along a ray.  That
+is why the formulas for slope, area, and length look different from the ones for ordinary
+graphs.</p>
+
+  <subsection xml:id="subsec-slope-polar-curve">
+    <title>Slope of a polar curve</title>
+
+  <p>Start with a simple polar curve:</p>
+
+  <md>r=\theta,
+\qquad
+\theta\ge0.</md>
+
+  <p>This is a spiral.  It is not naturally a graph <m>y=f(x)</m>.  But it is naturally a moving point:</p>
+
+  <md>x=\theta\cos\theta,
+\qquad
+y=\theta\sin\theta.</md>
+
+  <p>The slope is still</p>
+
+  <md>\frac{dy}{dx}.</md>
+
+  <p>Because both <m>x</m> and <m>y</m> depend on <m>\theta</m>, we use the parametric slope formula:</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/d\theta}{dx/d\theta}.</md>
+
+  <p>For the spiral,</p>
+
+  <md>\frac{dx}{d\theta}
+=
+\cos\theta-\theta\sin\theta,</md>
+
+  <p>and</p>
+
+  <md>\frac{dy}{d\theta}
+=
+\sin\theta+\theta\cos\theta.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{\sin\theta+\theta\cos\theta}
+{\cos\theta-\theta\sin\theta}.</md>
+
+  <p>At</p>
+
+  <md>\theta=\pi,</md>
+
+  <p>the point is</p>
+
+  <md>r=\pi,</md>
+
+  <p>so</p>
+
+  <md>x=\pi\cos\pi=-\pi,
+\qquad
+y=\pi\sin\pi=0.</md>
+
+  <p>The slope is</p>
+
+  <md>\frac{\sin\pi+\pi\cos\pi}
+{\cos\pi-\pi\sin\pi}
+=
+\frac{0-\pi}{-1-0}
+=
+\pi.</md>
+
+  <p>So the tangent line to the spiral at the point <m>(-\pi,0)</m> has slope <m>\pi</m>.</p>
+
+  <figure xml:id="fig-polar-spiral-slope">
+    <caption>A polar graph is a parametric curve with <m>\theta</m> as the parameter.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.74\textwidth,
+    height=0.58\textwidth,
+    xmin=-4.0, xmax=4.0,
+    ymin=-4.0, ymax=4.0,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-3.14159,0,3.14159},
+    xticklabels={\(-\pi\),\(0\),\(\pi\)},
+    ytick={-3,0,3},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:6.283185, samples=350]
+    ({x*cos(deg(x))},{x*sin(deg(x))});
+
+% tangent at theta=pi: point (-pi,0), slope pi
+\addplot[thick, dashed, domain=-3.85:-2.45, samples=2]
+    {3.14159*(x+3.14159)};
+
+\addplot[only marks, mark=*] coordinates {(-3.14159,0)};
+\node[anchor=south east] at (axis cs:-3.14159,0) {\(\theta=\pi\)};
+\node[anchor=west] at (axis cs:-2.55,2.1) {slope \(=\pi\)};
+\node[anchor=west] at (axis cs:1.0,-2.4) {\(r=\theta\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Now do the same calculation for a general polar curve</p>
+
+  <md>r=f(\theta).</md>
+
+  <p>To keep the notation light, write</p>
+
+  <md>r=r(\theta).</md>
+
+  <p>Then</p>
+
+  <md>x=r\cos\theta,
+\qquad
+y=r\sin\theta.</md>
+
+  <p>Differentiate with respect to <m>\theta</m>.  By the product rule,</p>
+
+  <md>\frac{dx}{d\theta}
+=
+\frac{dr}{d\theta}\cos\theta-r\sin\theta,</md>
+
+  <p>and</p>
+
+  <md>\frac{dy}{d\theta}
+=
+\frac{dr}{d\theta}\sin\theta+r\cos\theta.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac{dy}{dx}
+=
+\frac{\dfrac{dr}{d\theta}\sin\theta+r\cos\theta}
+{\dfrac{dr}{d\theta}\cos\theta-r\sin\theta}
+</md>
+
+  <p>whenever the denominator is not zero.</p>
+
+  <note xml:id="note-sec-14-5-calculus-in-polar-coordinates-148">
+    <title>Slope of a polar curve</title>
+      <p>For a polar curve</p>
+        <md>r=r(\theta),</md>
+      <p>the slope is</p>
+        <md>
+\frac{dy}{dx}
+=
+\frac{r'(\theta)\sin\theta+r(\theta)\cos\theta}
+{r'(\theta)\cos\theta-r(\theta)\sin\theta}.
+</md>
+      <p>This is just the parametric formula</p>
+        <md>\frac{dy/d\theta}{dx/d\theta}</md>
+      <p>applied to</p>
+        <md>x=r\cos\theta,
+\qquad
+y=r\sin\theta.</md>
+  </note>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-1">
+    <title>a circle in polar form</title>
+    <statement>
+  <p>The polar equation</p>
+
+  <md>r=2\cos\theta</md>
+
+  <p>is the circle</p>
+
+  <md>(x-1)^2+y^2=1.</md>
+
+  <p>Find the slope when</p>
+
+  <md>\theta=\frac{\pi}{4}.</md>
+
+  <p>First,</p>
+
+  <md>r=2\cos\theta,
+\qquad
+r'=-2\sin\theta.</md>
+
+  <p>The numerator of the slope formula is</p>
+
+  <md>r'\sin\theta+r\cos\theta
+=
+(-2\sin\theta)\sin\theta+(2\cos\theta)\cos\theta.</md>
+
+  <p>So</p>
+
+  <md>r'\sin\theta+r\cos\theta
+=
+2(\cos^2\theta-\sin^2\theta)
+=
+2\cos(2\theta).</md>
+
+  <p>The denominator is</p>
+
+  <md>r'\cos\theta-r\sin\theta
+=
+(-2\sin\theta)\cos\theta-(2\cos\theta)\sin\theta.</md>
+
+  <p>Thus</p>
+
+  <md>r'\cos\theta-r\sin\theta
+=
+-4\sin\theta\cos\theta
+=
+-2\sin(2\theta).</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{2\cos(2\theta)}{-2\sin(2\theta)}
+=
+-\cot(2\theta).</md>
+
+  <p>At</p>
+
+  <md>\theta=\frac{\pi}{4},</md>
+
+  <p>we get</p>
+
+  <md>\frac{dy}{dx}
+=
+-\cot\left(\frac{\pi}{2}\right)=0.</md>
+
+  <p>The point is</p>
+
+  <md>r=2\cos\frac{\pi}{4}=\sqrt2,</md>
+
+  <p>so</p>
+
+  <md>x=r\cos\theta=1,
+\qquad
+y=r\sin\theta=1.</md>
+
+  <p>This is the top of the circle <m>(x-1)^2+y^2=1</m>, where the tangent is horizontal.</p>
+
+  <figure xml:id="fig-polar-circle-slope">
+    <caption>The polar slope formula gives a horizontal tangent at the top of the circle <m>r=2\cos\theta</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.62\textwidth,
+    height=0.50\textwidth,
+    xmin=-0.3, xmax=2.3,
+    ymin=-1.3, ymax=1.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={-1,0,1},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1.5707963:1.5707963, samples=240]
+    ({2*cos(deg(x))*cos(deg(x))},{2*cos(deg(x))*sin(deg(x))});
+
+\addplot[only marks, mark=*] coordinates {(1,1)};
+\addplot[thick, dashed, domain=0.35:1.65, samples=2] {1};
+
+\node[anchor=south west] at (axis cs:1,1) {\(\theta=\pi/4\)};
+\node[anchor=west] at (axis cs:1.42,0.77) {horizontal tangent};
+\node[anchor=west] at (axis cs:1.3,-0.75) {\(r=2\cos\theta\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Horizontal and vertical tangents</title>
+
+  <p>The polar slope formula also tells us when tangents are horizontal or vertical.</p>
+
+  <p>A horizontal tangent occurs when</p>
+
+  <md>\frac{dy}{d\theta}=0</md>
+
+  <p>and</p>
+
+  <md>\frac{dx}{d\theta}\neq0.</md>
+
+  <p>So for a polar curve,</p>
+
+  <md>
+r'(\theta)\sin\theta+r(\theta)\cos\theta=0
+</md>
+
+  <p>with</p>
+
+  <md>r'(\theta)\cos\theta-r(\theta)\sin\theta\neq0.</md>
+
+  <p>A vertical tangent occurs when</p>
+
+  <md>\frac{dx}{d\theta}=0</md>
+
+  <p>and</p>
+
+  <md>\frac{dy}{d\theta}\neq0.</md>
+
+  <p>So</p>
+
+  <md>
+r'(\theta)\cos\theta-r(\theta)\sin\theta=0
+</md>
+
+  <p>with</p>
+
+  <md>r'(\theta)\sin\theta+r(\theta)\cos\theta\neq0.</md>
+
+  <warning xml:id="warn-sec-14-5-calculus-in-polar-coordinates-149">
+    <title>Warning</title>
+      <p>If both</p>
+        <md>\frac{dx}{d\theta}=0
+\qquad\text{and}\qquad
+\frac{dy}{d\theta}=0,</md>
+      <p>then the quotient gives <m>0/0</m>.  The tangent is not decided by direct substitution.
+Study the nearby motion.</p>
+  </warning>
+
+  <p>This warning is especially important at cusps.</p>
+
+  <p>For the cardioid</p>
+
+  <md>r=1+\cos\theta,</md>
+
+  <p>the point <m>\theta=\pi</m> gives</p>
+
+  <md>r=0,
+\qquad
+r'=-\sin\pi=0.</md>
+
+  <p>Thus</p>
+
+  <md>x'(\pi)=0,
+\qquad
+y'(\pi)=0.</md>
+
+  <p>The moving point has stopped at the origin.  The curve still has a tangent there, but the
+simple slope formula cannot find it by direct substitution.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-5-polar-is-parametric">
+        <title>Why is polar calculus not a new kind of calculus?</title>
+        <statement>
+          <p>
+            The equation <m>r=f(\theta)</m> is already parametric through <m>x=r\cos\theta</m> and <m>y=r\sin\theta</m>. In your own words, why do slope, area, and length formulas then look different from the graph formulas, even though they come from the same ideas?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Polar calculus is parametric calculus with angle as the parameter. The new look comes from sector geometry and from expressing the coordinate rates in terms of <m>r</m> and <m>r'</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-area-polar-coordinates">
+    <title>Area in polar coordinates</title>
+
+  <p>The ordinary area formula for a graph uses vertical strips:</p>
+
+  <md>dA=y\,dx.</md>
+
+  <p>A polar graph suggests a different small piece.  When <m>\theta</m> changes by a small amount
+<m>\Delta\theta</m>, the radius sweeps out a thin sector.</p>
+
+  <p>For a circle of radius <m>r</m>, a sector with angle <m>\Delta\theta</m> has area</p>
+
+  <md>\frac12 r^2\Delta\theta.</md>
+
+  <p>For a polar curve <m>r=f(\theta)</m>, if <m>\Delta\theta</m> is small, the radius is nearly constant
+on that small angular interval.  So the small sector area is approximately</p>
+
+  <md>\Delta A\approx \frac12 r^2\Delta\theta.</md>
+
+  <p>Adding these small sectors gives the polar area formula.</p>
+
+  <note xml:id="note-sec-14-5-calculus-in-polar-coordinates-150">
+    <title>Area in polar coordinates</title>
+      <p>If the polar curve</p>
+        <md>r=f(\theta),
+\qquad
+\alpha\le\theta\le\beta,</md>
+      <p>traces a region once, then the area swept out by the radius vector is</p>
+        <md>
+A=\frac12\int_\alpha^\beta \bigl(f(\theta)\bigr)^2\,d\theta.
+</md>
+  </note>
+
+  <p>This formula is easy to remember:</p>
+
+  <md>
+dA=\frac12r^2\,d\theta.
+</md>
+
+  <p>It is the small area of a thin sector.</p>
+
+  <figure xml:id="fig-polar-sector-area">
+    <caption>A small angular slice is approximately a sector of area <m>\frac12r^2\Delta\theta</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
+  % axes
+  \draw[-&gt;, thick] (-0.3,0) -- (6.4,0) node[right] {\(x\)};
+  \draw[-&gt;, thick] (0,-0.3) -- (0,4.5) node[above] {\(y\)};
+
+  % angles
+  \def\a{28}
+  \def\b{46}
+  \def\rA{5.2}
+
+  % sector
+  \fill[gray!18] (0,0) -- ({\rA*cos(\a)},{\rA*sin(\a)})
+    arc (\a:\b:\rA) -- cycle;
+  \draw[very thick] (0,0) -- ({\rA*cos(\a)},{\rA*sin(\a)});
+  \draw[very thick] (0,0) -- ({\rA*cos(\b)},{\rA*sin(\b)});
+  \draw[very thick] ({\rA*cos(\a)},{\rA*sin(\a)})
+    arc (\a:\b:\rA);
+
+  % angle arcs
+  \draw[-&gt;] (0.9,0) arc (0:\a:0.9);
+  \node at (1.05,0.28) {\(\theta\)};
+  \draw[-&gt;] ({1.25*cos(\a)},{1.25*sin(\a)})
+    arc (\a:\b:1.25);
+  \node at ({1.55*cos(37)},{1.55*sin(37)}) {\(\Delta\theta\)};
+
+  \node[above] (rlabel) at ({4.2*cos(\b)},{4.2*sin(\b)}) {\(r\)};
+  \node[anchor=west, font=\scriptsize, rotate=37, inner sep=1pt]
+    at ({3.05*cos(40)},{3.05*sin(40)}) {\(\Delta A\approx\tfrac12 r^2\Delta\theta\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>There is also a parametric reason for the same formula.  For a closed curve traced
+counterclockwise,</p>
+
+  <md>A=\frac12\int (x y'-y x')\,d\theta.</md>
+
+  <p>With</p>
+
+  <md>x=r\cos\theta,
+\qquad
+y=r\sin\theta,</md>
+
+  <p>we have</p>
+
+  <md>x y'-y x'=r^2.</md>
+
+  <p>So</p>
+
+  <md>A=\frac12\int r^2\,d\theta.</md>
+
+  <p>The sector picture and the parametric area formula agree.</p>
+
+
+  <exercise xml:id="checkpoint-14-5-area-as-sectors">
+        <title>Why is polar area built from sectors rather than from vertical strips?</title>
+        <statement>
+          <p>
+            A small change in <m>\theta</m> sweeps a thin sector of area about <m>\frac12 r^2\,d\theta</m>. In your own words, why is that the natural small piece in polar coordinates, and why must you check that the interval of <m>\theta</m> traces the region exactly once?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Polar coordinates organize the plane by rays from the origin. Retracing, negative <m>r</m>, or the wrong interval can count the same region more than once.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-3">
+    <title>area of a circle</title>
+    <statement>
+  <p>The polar equation</p>
+
+  <md>r=R</md>
+
+  <p>traces a circle of radius <m>R</m> centered at the origin when</p>
+
+  <md>0\le\theta\le2\pi.</md>
+
+  <p>The polar area formula gives</p>
+
+  <md>A=\frac12\int_0^{2\pi}R^2\,d\theta.</md>
+
+  <p>Thus</p>
+
+  <md>A=\frac12R^2(2\pi)=\pi R^2.</md>
+
+  <p>The familiar circle area formula is a sector accumulation.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-4">
+    <title>area inside a cardioid</title>
+    <statement>
+  <p>Find the area enclosed by</p>
+
+  <md>r=1+\cos\theta.</md>
+
+  <p>The cardioid is traced once for</p>
+
+  <md>0\le\theta\le2\pi.</md>
+
+  <p>So</p>
+
+  <md>A=\frac12\int_0^{2\pi}(1+\cos\theta)^2\,d\theta.</md>
+
+  <p>Expand:</p>
+
+  <md>(1+\cos\theta)^2=1+2\cos\theta+\cos^2\theta.</md>
+
+  <p>Therefore</p>
+
+  <md>A
+=
+\frac12\int_0^{2\pi}
+\left(1+2\cos\theta+\cos^2\theta\right)\,d\theta.</md>
+
+  <p>Now</p>
+
+  <md>\int_0^{2\pi}1\,d\theta=2\pi,</md>
+
+  <md>\int_0^{2\pi}\cos\theta\,d\theta=0,</md>
+
+  <p>and</p>
+
+  <md>\int_0^{2\pi}\cos^2\theta\,d\theta=\pi.</md>
+
+  <p>Thus</p>
+
+  <md>A=\frac12(2\pi+\pi)=\frac{3\pi}{2}.</md>
+
+  <figure xml:id="fig-cardioid-area-polar">
+    <caption>The cardioid area is found by accumulating small sectors.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.66\textwidth,
+    height=0.52\textwidth,
+    xmin=-0.5, xmax=2.55,
+    ymin=-1.4, ymax=1.4,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1},
+    ytick={-1,0,1},
+    axis equal image,
+    axis on top,
+    ticklabel style={fill=white, inner sep=1.5pt},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:6.283185, samples=400, fill=gray!18, draw=none]
+    ({(1+cos(deg(x)))*cos(deg(x))},{(1+cos(deg(x)))*sin(deg(x))}) \closedcycle;
+\addplot[very thick, domain=0:6.283185, samples=400]
+    ({(1+cos(deg(x)))*cos(deg(x))},{(1+cos(deg(x)))*sin(deg(x))});
+\node[anchor=west] at (axis cs:0.2,0.9) {\(r=1+\cos\theta\)};
+\node[anchor=west, fill=white, inner sep=1pt] at (axis cs:2.12,0) {2};
+\node at (axis cs:0.8,-1.1) {\(A=\frac{3\pi}{2}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Area between two polar curves</title>
+
+  <p>If two polar curves share the same angular interval and one lies outside the other, then
+we subtract sector areas.</p>
+
+  <p>Suppose</p>
+
+  <md>r=R(\theta)</md>
+
+  <p>is the outer curve and</p>
+
+  <md>r=\rho(\theta)</md>
+
+  <p>is the inner curve on</p>
+
+  <md>\alpha\le\theta\le\beta.</md>
+
+  <p>Then</p>
+
+  <md>
+A=\frac12\int_\alpha^\beta
+\left(R(\theta)^2-\rho(\theta)^2\right)\,d\theta.
+</md>
+
+  <p>In words,</p>
+
+  <md>
+\text{polar area between curves}
+=
+\frac12\int
+\left((\text{outer radius})^2-(\text{inner radius})^2\right)\,d\theta.
+</md>
+
+  <p>The square is not optional.  Sector area depends on <m>r^2</m>, not on <m>r</m>.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-6">
+    <title>one petal of a rose</title>
+    <statement>
+  <p>Find the area of one petal of</p>
+
+  <md>r=2\cos(3\theta).</md>
+
+  <p>One petal is traced while <m>r\ge0</m> around <m>\theta=0</m>.  The zeros occur when</p>
+
+  <md>2\cos(3\theta)=0,</md>
+
+  <p>so</p>
+
+  <md>3\theta=\pm\frac{\pi}{2}.</md>
+
+  <p>Thus one petal is traced for</p>
+
+  <md>-\frac{\pi}{6}\le\theta\le\frac{\pi}{6}.</md>
+
+  <p>The area is</p>
+
+  <md>A=\frac12\int_{-\pi/6}^{\pi/6}4\cos^2(3\theta)\,d\theta.</md>
+
+  <p>So</p>
+
+  <md>A=2\int_{-\pi/6}^{\pi/6}\cos^2(3\theta)\,d\theta.</md>
+
+  <p>Let</p>
+
+  <md>u=3\theta,
+\qquad
+du=3\,d\theta.</md>
+
+  <p>Then</p>
+
+  <md>A=\frac23\int_{-\pi/2}^{\pi/2}\cos^2 u\,du.</md>
+
+  <p>Since</p>
+
+  <md>\int_{-\pi/2}^{\pi/2}\cos^2u\,du=\frac{\pi}{2},</md>
+
+  <p>we get</p>
+
+  <md>
+A=\frac{\pi}{3}.
+</md>
+
+  <p>The whole rose has three petals, so its total area is</p>
+
+  <md>\pi.</md>
+
+  <warning xml:id="warn-sec-14-5-calculus-in-polar-coordinates-151">
+    <title>Warning</title>
+      <p>Before using</p>
+        <md>A=\frac12\int r^2\,d\theta,</md>
+      <p>check what interval traces the region exactly once.  Polar curves can retrace themselves,
+and negative <m>r</m> can send points to the opposite side of the origin.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-arc-length-polar-coordinates">
+    <title>Arc length in polar coordinates</title>
+
+  <p>A polar curve is parametric:</p>
+
+  <md>x=r\cos\theta,
+\qquad
+y=r\sin\theta.</md>
+
+  <p>So its length is</p>
+
+  <md>L=\int_\alpha^\beta
+\sqrt{\left(\frac{dx}{d\theta}\right)^2+
+      \left(\frac{dy}{d\theta}\right)^2}\,d\theta.</md>
+
+  <p>We already computed</p>
+
+  <md>\frac{dx}{d\theta}
+=
+r'\cos\theta-r\sin\theta,</md>
+
+  <p>and</p>
+
+  <md>\frac{dy}{d\theta}
+=
+r'\sin\theta+r\cos\theta.</md>
+
+  <p>Now square and add:</p>
+
+  <md>\left(r'\cos\theta-r\sin\theta\right)^2
++
+\left(r'\sin\theta+r\cos\theta\right)^2.</md>
+
+  <p>Expand:</p>
+
+  <md>(r')^2\cos^2\theta-2rr'\sin\theta\cos\theta+r^2\sin^2\theta</md>
+
+  <md>+
+(r')^2\sin^2\theta+2rr'\sin\theta\cos\theta+r^2\cos^2\theta.</md>
+
+  <p>The cross terms cancel.  The remaining terms give</p>
+
+  <md>(r')^2(\cos^2\theta+\sin^2\theta)
++
+r^2(\sin^2\theta+\cos^2\theta).</md>
+
+  <p>So the square of the speed is</p>
+
+  <md>(r')^2+r^2.</md>
+
+  <p>Therefore</p>
+
+  <md>
+L=\int_\alpha^\beta
+\sqrt{\left(\frac{dr}{d\theta}\right)^2+r^2}\,d\theta.
+</md>
+
+  <note xml:id="note-sec-14-5-calculus-in-polar-coordinates-152">
+    <title>Arc length in polar coordinates</title>
+      <p>For</p>
+        <md>r=r(\theta),
+\qquad
+\alpha\le\theta\le\beta,</md>
+      <p>the length of the polar curve is</p>
+        <md>
+L=\int_\alpha^\beta
+\sqrt{r(\theta)^2+\bigl(r'(\theta)\bigr)^2}\,d\theta.
+</md>
+  </note>
+
+  <p>The formula has a nice geometric meaning.  As <m>\theta</m> changes, the point may move
+radially because <m>r</m> changes, and it may move around the origin because the angle
+changes.  The two effects combine by the Pythagorean theorem.</p>
+
+
+  <exercise xml:id="checkpoint-14-5-missed-intersections">
+        <title>Why can two polar curves meet without sharing the same <m>r</m> at the same <m>\theta</m>?</title>
+        <statement>
+          <p>
+            Polar names are not unique, so the same-angle equation <m>r_1(\theta)=r_2(\theta)</m> can miss intersections. In your own words, what other meetings should you look for, and why does the origin need a separate check?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Curves can meet under different angles, or both pass through the pole at different times. Nonuniqueness is useful for graphing and dangerous for solving.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-7">
+    <title>circumference of a circle</title>
+    <statement>
+  <p>For</p>
+
+  <md>r=R,</md>
+
+  <p>we have</p>
+
+  <md>r'=0.</md>
+
+  <p>Thus</p>
+
+  <md>L=\int_0^{2\pi}\sqrt{R^2+0^2}\,d\theta
+=
+\int_0^{2\pi}R\,d\theta
+=
+2\pi R.</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-8">
+    <title>length of a cardioid</title>
+    <statement>
+  <p>Find the length of</p>
+
+  <md>r=1+\cos\theta,
+\qquad
+0\le\theta\le2\pi.</md>
+
+  <p>We have</p>
+
+  <md>r'=-\sin\theta.</md>
+
+  <p>So</p>
+
+  <md>r^2+(r')^2
+=
+(1+\cos\theta)^2+\sin^2\theta.</md>
+
+  <p>Expand and simplify:</p>
+
+  <md>(1+\cos\theta)^2+\sin^2\theta
+=
+1+2\cos\theta+\cos^2\theta+\sin^2\theta
+=
+2+2\cos\theta.</md>
+
+  <p>Using</p>
+
+  <md>1+\cos\theta=2\cos^2\left(\frac{\theta}{2}\right),</md>
+
+  <p>we get</p>
+
+  <md>2+2\cos\theta
+=
+4\cos^2\left(\frac{\theta}{2}\right).</md>
+
+  <p>Therefore</p>
+
+  <md>\sqrt{r^2+(r')^2}
+=
+2\left|\cos\left(\frac{\theta}{2}\right)\right|.</md>
+
+  <p>So</p>
+
+  <md>L=\int_0^{2\pi}
+2\left|\cos\left(\frac{\theta}{2}\right)\right|\,d\theta.</md>
+
+  <p>On <m>0\le\theta\le\pi</m>, <m>\cos(\theta/2)\ge0</m>.  On <m>\pi\le\theta\le2\pi</m>, it is
+nonpositive.  Therefore</p>
+
+  <md>L=
+\int_0^\pi 2\cos\left(\frac{\theta}{2}\right)\,d\theta
++
+\int_\pi^{2\pi} -2\cos\left(\frac{\theta}{2}\right)\,d\theta.</md>
+
+  <p>Compute:</p>
+
+  <md>\int 2\cos\left(\frac{\theta}{2}\right)\,d\theta
+=
+4\sin\left(\frac{\theta}{2}\right).</md>
+
+  <p>Thus the first integral is</p>
+
+  <md>4\sin\left(\frac{\pi}{2}\right)-4\sin0=4.</md>
+
+  <p>The second integral is</p>
+
+  <md>-4\sin\left(\frac{\theta}{2}\right)\Big|_\pi^{2\pi}
+=
+-4\sin\pi+4\sin\left(\frac{\pi}{2}\right)
+=
+4.</md>
+
+  <p>So</p>
+
+  <md>
+L=8.
+</md>
+
+  <warning xml:id="warn-sec-14-5-calculus-in-polar-coordinates-153">
+    <title>A small absolute value warning</title>
+      <p>The expression</p>
+        <md>\sqrt{4\cos^2(\theta/2)}</md>
+      <p>equals</p>
+        <md>2|\cos(\theta/2)|,</md>
+      <p>not always <m>2\cos(\theta/2)</m>.  Dropping the absolute value would incorrectly make
+the length cancel to zero.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-polar-intersections-repeated-tracing">
+    <title>Intersections and repeated tracing</title>
+
+  <p>Polar coordinates are not unique.  That nonuniqueness is useful, but it makes
+intersections more delicate than in Cartesian coordinates.</p>
+
+  <p>Two polar curves can meet even when their equations do not give the same <m>r</m> at the
+same <m>\theta</m>.</p>
+
+  <p>There are three common issues.</p>
+
+  <table xml:id="tab-sec-14-5-calculus-in-polar-coordinates-5">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>Issue</strong></cell>
+        <cell><strong>What to check</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Same ray intersections</cell>
+        <cell>Solve <m>r_1(\theta)=r_2(\theta)</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+The origin</cell>
+        <cell>Check whether each curve reaches <m>r=0</m>, possibly at different angles.</cell>
+      </row>
+      <row>
+        <cell>
+Negative <m>r</m> and alternate angles</cell>
+        <cell>Remember <m>(r,\theta)=(-r,\theta+\pi)</m>.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <example xml:id="ex-sec-14-5-calculus-in-polar-coordinates-9">
+    <title>an intersection missed by the same-angle equation</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>r=2\cos\theta</md>
+
+  <p>and</p>
+
+  <md>r=2\sin\theta.</md>
+
+  <p>These are two circles:</p>
+
+  <md>(x-1)^2+y^2=1</md>
+
+  <p>and</p>
+
+  <md>x^2+(y-1)^2=1.</md>
+
+  <p>Solving with the same angle gives</p>
+
+  <md>2\cos\theta=2\sin\theta.</md>
+
+  <p>So</p>
+
+  <md>\cos\theta=\sin\theta,</md>
+
+  <p>and hence</p>
+
+  <md>\theta=\frac{\pi}{4}.</md>
+
+  <p>At this angle,</p>
+
+  <md>r=\sqrt2,</md>
+
+  <p>so the point is</p>
+
+  <md>(1,1).</md>
+
+  <p>But the circles also meet at the origin.</p>
+
+  <p>Why did the same-angle equation miss it?</p>
+
+  <p>For</p>
+
+  <md>r=2\cos\theta,</md>
+
+  <p>the origin occurs when</p>
+
+  <md>\cos\theta=0,</md>
+
+  <p>for example at</p>
+
+  <md>\theta=\frac{\pi}{2}.</md>
+
+  <p>For</p>
+
+  <md>r=2\sin\theta,</md>
+
+  <p>the origin occurs when</p>
+
+  <md>\sin\theta=0,</md>
+
+  <p>for example at</p>
+
+  <md>\theta=0.</md>
+
+  <p>The two curves reach the same Cartesian point with different polar angles.  Therefore
+the same-angle equation did not see that intersection.</p>
+
+  <figure xml:id="fig-polar-intersections-origin">
+    <caption>The two circles intersect at <m>(1,1)</m> and at the origin.  The origin is reached at different polar angles.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.62\textwidth,
+    height=0.52\textwidth,
+    xmin=-0.3, xmax=2.3,
+    ymin=-0.3, ymax=2.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={0,1,2},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1.5707963:1.5707963, samples=240]
+    ({2*cos(deg(x))*cos(deg(x))},{2*cos(deg(x))*sin(deg(x))});
+\addplot[very thick, dashed, domain=0:3.1415926, samples=240]
+    ({2*sin(deg(x))*cos(deg(x))},{2*sin(deg(x))*sin(deg(x))});
+
+\addplot[only marks, mark=*] coordinates {(0,0) (1,1)};
+\node[anchor=north east] at (axis cs:0,0) {origin};
+\node[anchor=south west] at (axis cs:1,1) {\((1,1)\)};
+\node[anchor=west] at (axis cs:1.15,0.2) {\(r=2\cos\theta\)};
+\node[anchor=west] at (axis cs:0.2,1.25) {\(r=2\sin\theta\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Repeated tracing</title>
+
+  <p>Polar curves can also trace the same geometric curve more than once.</p>
+
+  <p>For example,</p>
+
+  <md>r=2\cos\theta</md>
+
+  <p>is one circle.  The interval</p>
+
+  <md>-\frac{\pi}{2}\le\theta\le\frac{\pi}{2}</md>
+
+  <p>traces it once.</p>
+
+  <p>But the interval</p>
+
+  <md>0\le\theta\le2\pi</md>
+
+  <p>traces the same circle twice.</p>
+
+  <p>If we blindly use the polar area formula on <m>0\le\theta\le2\pi</m>, we get</p>
+
+  <md>A=\frac12\int_0^{2\pi}(2\cos\theta)^2\,d\theta.</md>
+
+  <p>This becomes</p>
+
+  <md>A=2\int_0^{2\pi}\cos^2\theta\,d\theta
+=
+2\pi.</md>
+
+  <p>But the circle has radius <m>1</m>, so its area is only</p>
+
+  <md>\pi.</md>
+
+  <p>The integral doubled the answer because the parametrization traced the circle twice.</p>
+
+  <p>Using the once-around interval gives</p>
+
+  <md>A=\frac12\int_{-\pi/2}^{\pi/2}(2\cos\theta)^2\,d\theta.</md>
+
+  <p>So</p>
+
+  <md>A=2\int_{-\pi/2}^{\pi/2}\cos^2\theta\,d\theta
+=
+2\cdot\frac{\pi}{2}
+=
+\pi.</md>
+
+  <p>That is correct.</p>
+
+  <note xml:id="note-sec-14-5-calculus-in-polar-coordinates-154">
+    <title>Polar checklist before computing area or length</title>
+      <p>Before using a polar formula, ask:</p>
+          <ol>
+      <li>
+        <p>What interval of <m>\theta</m> traces the desired curve?</p>
+      </li>
+      <li>
+        <p>Is the curve traced once or more than once?</p>
+      </li>
+      <li>
+        <p>Does <m>r</m> become negative, creating points on the opposite ray?</p>
+      </li>
+      <li>
+        <p>Does the curve pass through the origin?</p>
+      </li>
+      <li>
+        <p>If two curves intersect, are there intersections reached at different angles?</p>
+      </li>
+    </ol>
+  </note>
+
+  <p>Polar coordinates are powerful because they match circular and radial geometry.  But
+the price is that the same point may have many names.</p>
+
+  <p>The next family of curves makes especially good use of polar coordinates.  It includes
+parabolas, ellipses, and hyperbolas.  These curves can be described by distance from a
+fixed point and a fixed line, and in polar form they appear in one equation.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-5-polar-checklist">
+        <title>What should you ask before computing polar area or length?</title>
+        <statement>
+          <p>
+            The section ends with a checklist: interval, repeated tracing, negative <m>r</m>, the origin, and hidden intersections. In your own words, why does skipping those questions turn a correct formula into a wrong geometric count?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The formula integrates the parametrization you feed it. If the tracing is wrong, the integral is faithfully wrong.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

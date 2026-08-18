@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-e-5-plotting-sequences-sums-and-taylor-polynomials">
+  <title>Plotting sequences, sums, and Taylor polynomials</title>
+
+  <p>Plots are especially helpful for infinite processes.</p>
+
+  <p>A sequence is a list of points:</p>
+
+  <md>a_1,\ a_2,\ a_3,\ldots.</md>
+
+  <p>A series has partial sums:</p>
+
+  <md>S_n=a_1+a_2+\cdots+a_n.</md>
+
+  <p>A Taylor polynomial is a sequence of polynomial approximations:</p>
+
+  <md>T_1(x),\quad T_3(x),\quad T_5(x),\quad \ldots.</md>
+
+  <p>Plotting these objects helps us see convergence, divergence, and local approximation.</p>
+
+  <subsection xml:id="appsubsec-plotting-sequence">
+    <title>Plotting a sequence</title>
+
+  <p>Consider</p>
+
+  <md>a_n=1-\frac1n.</md>
+
+  <p>The terms approach</p>
+
+  <md>1.</md>
+
+  <p>In a Python environment with \texttt{matplotlib}, one could plot the first several terms:</p>
+
+  <pre>
+import matplotlib.pyplot as plt
+
+N = 30
+n_values = list(range(1, N + 1))
+a_values = [1 - 1/n for n in n_values]
+
+plt.scatter(n_values, a_values)
+plt.axhline(1, linestyle="--")
+plt.xlabel("n")
+plt.ylabel("a_n")
+plt.show()
+  </pre>
+
+  <p>The horizontal line at <m>1</m> marks the limiting value.  The points approach it from
+below.</p>
+
+  <note xml:id="note-sec-e-5-plotting-sequences-sums-and-taylor-polynomials-20">
+    <title>Sequence plotting habit</title>
+      <p>Plot sequence terms as points, not as a connected curve, unless the connection has a
+meaning.</p>
+      <p>The input <m>n</m> is discrete.</p>
+  </note>
+  </subsection>
+
+  <subsection xml:id="appsubsec-plotting-partial-sums">
+    <title>Plotting partial sums</title>
+
+  <p>For a series</p>
+
+  <md>\sum_{k=1}^{\infty} a_k,</md>
+
+  <p>the partial sums are</p>
+
+  <md>S_n=\sum_{k=1}^{n}a_k.</md>
+
+  <p>The series converges exactly when the sequence of partial sums converges.</p>
+
+  <example xml:id="ex-sec-e-5-plotting-sequences-sums-and-taylor-polynomials-1">
+    <title>alternating harmonic partial sums</title>
+    <statement>
+  <p>The alternating harmonic series is</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k.</md>
+
+  <p>The partial sums are</p>
+
+  <md>S_n=\sum_{k=1}^{n}(-1)^{k-1}\frac1k.</md>
+
+  <p>A program can compute and plot them.</p>
+
+  <pre>
+import matplotlib.pyplot as plt
+import math
+
+N = 100
+partial_sums = []
+total = 0.0
+
+for k in range(1, N + 1):
+    total += (-1)**(k - 1) / k
+    partial_sums.append(total)
+
+n_values = list(range(1, N + 1))
+
+plt.scatter(n_values, partial_sums, s=10)
+plt.axhline(math.log(2), linestyle="--")
+plt.xlabel("n")
+plt.ylabel("S_n")
+plt.show()
+  </pre>
+
+  <p>The dashed line marks</p>
+
+  <md>\ln2,</md>
+
+  <p>the exact sum of the alternating harmonic series.</p>
+
+  <p>This plot shows a typical alternating pattern: the partial sums bounce above and below
+the limit, while the error shrinks.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-plotting-taylor-polynomials">
+    <title>Plotting Taylor polynomials</title>
+
+  <p>The Maclaurin polynomials for <m>\sin x</m> are</p>
+
+  <md>T_1(x)=x,</md>
+
+  <md>T_3(x)=x-\frac{x^3}{3!},</md>
+
+  <md>T_5(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!},</md>
+
+  <p>and so on.</p>
+
+  <p>Near <m>x=0</m>, these polynomials approximate <m>\sin x</m>.  Farther away, the lower-degree
+polynomials drift away.</p>
+
+  <figure xml:id="fig-technology-taylor-polynomials-sine">
+    <caption>Taylor polynomials approximate <m>\sin x</m> best near their center <m>0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=-4, xmax=4,
+    ymin=-2.2, ymax=2.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+    xticklabels={\(-\pi\),\(-\frac{\pi}{2}\),\(0\),\(\frac{\pi}{2}\),\(\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[very thick, domain=-4:4, samples=250] {sin(deg(x))};
+\addlegendentry{\(\sin x\)}
+\addplot[thick, dashed, domain=-2.2:2.2, samples=150] {x};
+\addlegendentry{\(T_1=x\)}
+\addplot[thick, dotted, domain=-3.1:3.1, samples=180] {x - x^3/6};
+\addlegendentry{\(T_3=x-\frac{x^3}{3!}\)}
+\addplot[thick, dashdotted, domain=-4:4, samples=220] {x - x^3/6 + x^5/120};
+\addlegendentry{\(T_5=x-\frac{x^3}{3!}+\frac{x^5}{5!}\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>A Python plot uses the same formulas:</p>
+
+  <pre>
+import math
+import matplotlib.pyplot as plt
+
+def T1(x):
+    return x
+
+def T3(x):
+    return x - x**3 / math.factorial(3)
+
+def T5(x):
+    return x - x**3 / math.factorial(3) + x**5 / math.factorial(5)
+
+x_values = [ -4 + 8*j/400 for j in range(401) ]
+
+plt.plot(x_values, [math.sin(x) for x in x_values], label="sin x")
+plt.plot(x_values, [T1(x) for x in x_values], label="T1")
+plt.plot(x_values, [T3(x) for x in x_values], label="T3")
+plt.plot(x_values, [T5(x) for x in x_values], label="T5")
+
+plt.ylim(-2.2, 2.2)
+plt.legend()
+plt.show()
+  </pre>
+
+  <p>The plot should not be read as proof that the Taylor series converges.  It is visual
+evidence.  Taylor’s theorem gives the error estimate.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-taylor-series-calculator">
+    <title>A Taylor-series calculator</title>
+
+  <p>A finite Taylor polynomial can be used as a calculator.</p>
+
+  <p>For example, for <m>\sin x</m>,</p>
+
+  <md>\sin x
+=
+x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots.</md>
+
+  <p>The following function computes the Maclaurin polynomial through the term
+<m>x^{2N+1}</m>:</p>
+
+  <pre>
+import math
+
+def sin_taylor(x, N):
+    total = 0.0
+    for n in range(N + 1):
+        term = (-1)**n * x**(2*n + 1) / math.factorial(2*n + 1)
+        total += term
+    return total
+
+for N in [0, 1, 2, 3, 4]:
+    approx = sin_taylor(1.0, N)
+    print(N, approx, abs(approx - math.sin(1.0)))
+  </pre>
+
+  <p>For <m>x=1</m>, the series is alternating with decreasing term sizes.  The alternating error
+estimate says that the error is at most the first omitted term:</p>
+
+  <md>\left|\sin 1-\sum_{n=0}^{N}(-1)^n\frac{1^{2n+1}}{(2n+1)!}\right|
+\le
+\frac{1^{2N+3}}{(2N+3)!}.</md>
+
+  <p>So the code can be paired with a proof-based error bound.</p>
+
+  <note xml:id="note-sec-e-5-plotting-sequences-sums-and-taylor-polynomials-21">
+    <title>Computing principle</title>
+      <p>A decimal answer becomes more valuable when it comes with a reason to trust the
+digits.</p>
+  </note>
+  </subsection>
+
+</section>

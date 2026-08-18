@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-1-power-series">
+  <title>Power series</title>
+
+  <p>The simplest infinite polynomial is</p>
+
+  <md>1+x+x^2+x^3+\cdots.</md>
+
+  <p>For a fixed value of <m>x</m>, this becomes a numerical series.  The same formula can
+converge for some inputs and diverge for others.</p>
+
+  <p>That is the first new question:</p>
+
+  <md>
+\text{For which \(x\)-values does the infinite polynomial make sense?}
+</md>
+
+  <subsection xml:id="subsec-polynomial-with-infinitely-many-terms">
+    <title>A polynomial with infinitely many terms</title>
+
+  <p>Start with</p>
+
+  <md>1+x+x^2+x^3+\cdots.</md>
+
+  <p>If <m>x=\frac12</m>, then the series becomes</p>
+
+  <md>1+\frac12+\frac14+\frac18+\cdots.</md>
+
+  <p>This is a geometric series with ratio <m>\frac12</m>, so it converges.</p>
+
+  <p>If <m>x=2</m>, then the series becomes</p>
+
+  <md>1+2+4+8+\cdots,</md>
+
+  <p>which diverges.</p>
+
+  <p>If <m>x=1</m>, then the series becomes</p>
+
+  <md>1+1+1+1+\cdots,</md>
+
+  <p>which diverges.</p>
+
+  <p>If <m>x=-1</m>, then the series becomes</p>
+
+  <md>1-1+1-1+\cdots,</md>
+
+  <p>whose partial sums are</p>
+
+  <md>1,\ 0,\ 1,\ 0,\ldots.</md>
+
+  <p>Those partial sums do not approach one number, so the series diverges.</p>
+
+  <p>The same expression</p>
+
+  <md>1+x+x^2+x^3+\cdots</md>
+
+  <p>therefore behaves differently at different <m>x</m>-values.  It converges at
+<m>x=\frac12</m>, but diverges at <m>x=2</m>, <m>x=1</m>, and <m>x=-1</m>.</p>
+
+  <p>A finite polynomial does not have this issue.  For example,</p>
+
+  <md>1+x+x^2+x^3</md>
+
+  <p>is defined for every real number <m>x</m>.  There are only four terms to add.  An infinite
+polynomial needs a convergence test at each input.</p>
+
+  <note xml:id="note-sec-16-1-power-series-83">
+    <title>Power series centered at <m>0</m></title>
+      <p>A <em>power series centered at <m>0</m></em> is a series of the form</p>
+        <md>
+\sum_{n=0}^{\infty} c_n x^n
+=
+c_0+c_1x+c_2x^2+c_3x^3+\cdots.
+</md>
+      <p>The constants <m>c_0,c_1,c_2,\ldots</m> are called the <em>coefficients</em> of the power
+series.</p>
+  </note>
+
+  <p>The word “power” comes from the powers</p>
+
+  <md>1,\ x,\ x^2,\ x^3,\ldots.</md>
+
+  <p>For each fixed <m>x</m>, the power series becomes the numerical series</p>
+
+  <md>\sum_{n=0}^{\infty} c_n x^n.</md>
+
+  <p>It may converge or diverge.  The set of all <m>x</m>-values where it converges is called
+the <em>interval of convergence</em>.</p>
+
+
+  <exercise xml:id="checkpoint-16-1-infinite-polynomial-needs-domain">
+        <title>Why does an infinite polynomial need a domain?</title>
+        <statement>
+          <p>
+            A finite polynomial such as <m>1+x+x^2+x^3</m> is defined for every real <m>x</m>. The infinite expression <m>1+x+x^2+x^3+\cdots</m> is not. In your own words, why does a power series become a numerical series at each input, and why can the same formula converge at one <m>x</m> and diverge at another?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            There is no last term to add. At each fixed <m>x</m>, you must ask whether the partial sums settle. Geometric series already show that the answer depends on the size of <m>x</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-1-power-series-1">
+    <title>Example</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>\sum_{n=0}^{\infty} x^n.</md>
+
+  <p>This is the series</p>
+
+  <md>1+x+x^2+x^3+\cdots.</md>
+
+  <p>For a fixed <m>x</m>, it is a geometric series with ratio <m>x</m>.  Therefore it converges
+when</p>
+
+  <md>|x|&lt;1,</md>
+
+  <p>and diverges when</p>
+
+  <md>|x|\ge 1.</md>
+
+  <p>So its interval of convergence is</p>
+
+  <md>(-1,1).</md>
+
+  <p>Later we will use the geometric series to represent a familiar function.  For now, the
+important lesson is simpler: a power series comes with a domain, and that domain
+must be found.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-center-of-power-series">
+    <title>Center of a power series</title>
+
+  <p>Power series do not have to be centered at <m>0</m>.  They can be centered at any real
+number <m>a</m>.</p>
+
+  <p>For example,</p>
+
+  <md>1+(x-3)+(x-3)^2+(x-3)^3+\cdots</md>
+
+  <p>is built from powers of <m>x-3</m>.  Its center is <m>3</m>.  At <m>x=3</m>, every term after the
+first is <m>0</m>, so the series becomes</p>
+
+  <md>1+0+0+0+\cdots.</md>
+
+  <p>The center is always included in the interval of convergence.</p>
+
+  <note xml:id="note-sec-16-1-power-series-84">
+    <title>Power series centered at <m>a</m></title>
+      <p>A <em>power series centered at <m>a</m></em> is a series of the form</p>
+        <md>
+\sum_{n=0}^{\infty} c_n(x-a)^n
+=
+c_0+c_1(x-a)+c_2(x-a)^2+\cdots.
+</md>
+      <p>The number <m>a</m> is called the <em>center</em> of the power series.</p>
+  </note>
+
+  <p>The expression <m>x-a</m> measures the signed distance from <m>x</m> to the center.  That is
+why convergence will be controlled by</p>
+
+  <md>|x-a|.</md>
+
+  <p>Power series usually converge near their center and fail farther away.</p>
+
+
+  <exercise xml:id="checkpoint-16-1-why-a-center">
+        <title>Why does a power series have a center?</title>
+        <statement>
+          <p>
+            A power series centered at <m>a</m> is built from powers of <m>x-a</m>. In your own words, why is the center always a point of convergence, and why is distance from that center the quantity that controls the rest of the story?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            At <m>x=a</m>, every term after the constant is zero, so there is nothing infinite left to add. Farther from the center, the powers <m>(x-a)^n</m> grow or shrink according to <m>|x-a|</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-1-power-series-2">
+    <title>Example</title>
+    <statement>
+  <p>Find where the power series</p>
+
+  <md>\sum_{n=0}^{\infty}\left(\frac{x-3}{2}\right)^n</md>
+
+  <p>converges.</p>
+
+  <p>For a fixed <m>x</m>, this is a geometric series with ratio</p>
+
+  <md>r=\frac{x-3}{2}.</md>
+
+  <p>It converges when</p>
+
+  <md>|r|&lt;1.</md>
+
+  <p>Thus</p>
+
+  <md>\left|\frac{x-3}{2}\right|&lt;1.</md>
+
+  <p>Multiply by <m>2</m>:</p>
+
+  <md>|x-3|&lt;2.</md>
+
+  <p>This means</p>
+
+  <md>1&lt;x&lt;5.</md>
+
+  <p>Now test the endpoints.</p>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>\frac{x-3}{2}=-1,</md>
+
+  <p>so the series becomes</p>
+
+  <md>1-1+1-1+\cdots,</md>
+
+  <p>which diverges.</p>
+
+  <p>At <m>x=5</m>,</p>
+
+  <md>\frac{x-3}{2}=1,</md>
+
+  <p>so the series becomes</p>
+
+  <md>1+1+1+1+\cdots,</md>
+
+  <p>which diverges.</p>
+
+  <p>Therefore the interval of convergence is</p>
+
+  <md>(1,5).</md>
+
+  <p>The interval is centered at <m>3</m>, with distance <m>2</m> to each endpoint.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-radius-interval-convergence">
+    <title>Radius and interval of convergence</title>
+
+  <p>The examples suggest a pattern.  A power series converges in a symmetric region
+around its center.  The endpoints need separate attention.</p>
+
+  <figure xml:id="fig-radius-of-convergence">
+    <caption>A power series has a center <m>a</m> and a radius of convergence <m>R</m>.  Endpoint behavior is not decided by the radius alone.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.15, every node/.style={font=\small}]
+  \draw[&lt;-&gt;, thick] (-4.5,0) -- (4.5,0);
+
+  \draw[very thick] (-3,0) -- (3,0);
+  \draw[fill=white, thick] (-3,0) circle (2.6pt);
+  \draw[fill=white, thick] (3,0) circle (2.6pt);
+  \draw[fill=black] (0,0) circle (2.2pt);
+
+  \node[below] at (-3,-0.08) {\(a-R\)};
+  \node[below] at (0,-0.08) {\(a\)};
+  \node[below] at (3,-0.08) {\(a+R\)};
+
+  \node[above] at (-1.5,0.15) {converges absolutely};
+  \node[above] at (1.5,0.15) {inside};
+  \node[above] at (-3,0.35) {test};
+  \node[above] at (3,0.35) {test};
+
+  \draw[&lt;-&gt;] (0,-0.55) -- (3,-0.55);
+  \node[below] at (1.5,-0.55) {radius \(R\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-16-1-power-series-85">
+    <title>Radius of convergence</title>
+      <p>For a power series</p>
+        <md>\sum_{n=0}^{\infty} c_n(x-a)^n,</md>
+      <p>exactly one of the following happens.</p>
+          <ol>
+      <li>
+        <p>The series converges only at its center <m>x=a</m>.  Then the radius of convergence is</p>
+          <md>R=0.</md>
+      </li>
+      <li>
+        <p>The series converges for every real number <m>x</m>.  Then the radius of convergence is</p>
+          <md>R=\infty.</md>
+      </li>
+      <li>
+        <p>There is a positive number <m>R</m> such that the series converges absolutely when</p>
+          <md>|x-a|&lt;R</md>
+        <p>and diverges when</p>
+          <md>|x-a|&gt;R.</md>
+        <p>The endpoints</p>
+          <md>x=a-R
+\qquad\text{and}\qquad
+x=a+R</md>
+        <p>must be tested separately.</p>
+      </li>
+    </ol>
+  </note>
+
+  <p>The <em>interval of convergence</em> is the full set of <m>x</m>-values where the series
+converges.  It depends on the radius and on what happens at the endpoints.</p>
+
+  <paragraphs>
+    <title>Why the convergence set is an interval</title>
+
+  <p>Here is the main idea.</p>
+
+  <p>Suppose the power series</p>
+
+  <md>\sum_{n=0}^{\infty} c_n(x-a)^n</md>
+
+  <p>converges at some point <m>x_1\neq a</m>.  Let</p>
+
+  <md>r_1=|x_1-a|.</md>
+
+  <p>Then the terms</p>
+
+  <md>c_n(x_1-a)^n</md>
+
+  <p>approach <m>0</m>, so their absolute values are bounded.  That means there is some
+number <m>M</m> such that</p>
+
+  <md>|c_n(x_1-a)^n|\le M</md>
+
+  <p>for all <m>n</m>.</p>
+
+  <p>Now choose any <m>x</m> closer to the center than <m>x_1</m> is:</p>
+
+  <md>|x-a|&lt;|x_1-a|.</md>
+
+  <p>Set</p>
+
+  <md>q=\frac{|x-a|}{|x_1-a|}.</md>
+
+  <p>Then</p>
+
+  <md>0\le q&lt;1.</md>
+
+  <p>For each <m>n</m>,</p>
+
+  <md>|c_n(x-a)^n|
+=
+|c_n(x_1-a)^n|
+\left(\frac{|x-a|}{|x_1-a|}\right)^n
+\le
+Mq^n.</md>
+
+  <p>But</p>
+
+  <md>\sum_{n=0}^{\infty} Mq^n</md>
+
+  <p>is a convergent geometric series.  By comparison,</p>
+
+  <md>\sum_{n=0}^{\infty} |c_n(x-a)^n|</md>
+
+  <p>converges.  So the original power series converges absolutely at every point closer
+to the center.</p>
+
+  <p>This explains the shape: once a power series converges at one point, it converges at
+all points closer to the center.</p>
+
+  <p>The opposite statement follows by the same logic.  If the series diverges at some
+point, it must diverge at every point farther from the center.  Otherwise convergence
+farther out would force convergence closer in.</p>
+
+  <p>That is why the convergence set is an interval centered at <m>a</m>, with possible choices
+about the two endpoints.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-16-1-why-an-interval">
+        <title>Why is the convergence set always an interval?</title>
+        <statement>
+          <p>
+            A power series converges in a disk of some radius <m>R</m> around its center, with endpoints left to be tested. In your own words, why can the set of convergent inputs not be a scattered collection of points, and what do the three possibilities <m>R=0</m>, <m>R=\infty</m>, and <m>0&lt;R&lt;\infty</m> mean?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the series converges at some point, it converges absolutely at every closer point. That forces a solid interval around the center, possibly degenerating to a single point or expanding to the whole line.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-1-power-series-4">
+    <title>infinite radius</title>
+    <statement>
+  <p>Find the radius of convergence of</p>
+
+  <md>\sum_{n=0}^{\infty}\frac{x^n}{n!}.</md>
+
+  <p>Use the Ratio Test.  Let</p>
+
+  <md>a_n=\frac{x^n}{n!}.</md>
+
+  <p>Then</p>
+
+  <md>\left|\frac{a_{n+1}}{a_n}\right|
+=
+\left|\frac{x^{n+1}}{(n+1)!}\cdot \frac{n!}{x^n}\right|
+=
+\frac{|x|}{n+1}.</md>
+
+  <p>As <m>n\to\infty</m>,</p>
+
+  <md>\frac{|x|}{n+1}\to0</md>
+
+  <p>for every fixed real number <m>x</m>.  Since the ratio limit is always less than <m>1</m>, the
+series converges for every <m>x</m>.</p>
+
+  <p>Therefore</p>
+
+  <md>R=\infty</md>
+
+  <p>and the interval of convergence is</p>
+
+  <md>(-\infty,\infty).</md>
+
+  <p>This series will become one of the most important series in calculus.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-1-power-series-5">
+    <title>radius zero</title>
+    <statement>
+  <p>Find the radius of convergence of</p>
+
+  <md>\sum_{n=0}^{\infty} n!x^n.</md>
+
+  <p>Again use the Ratio Test.  Let</p>
+
+  <md>a_n=n!x^n.</md>
+
+  <p>Then</p>
+
+  <md>\left|\frac{a_{n+1}}{a_n}\right|
+=
+\left|\frac{(n+1)!x^{n+1}}{n!x^n}\right|
+=
+(n+1)|x|.</md>
+
+  <p>If <m>x\neq0</m>, then</p>
+
+  <md>(n+1)|x|\to\infty.</md>
+
+  <p>So the series diverges for every <m>x\neq0</m>.  At the center <m>x=0</m>, the series becomes</p>
+
+  <md>1+0+0+0+\cdots,</md>
+
+  <p>which converges.</p>
+
+  <p>Therefore the series converges only at <m>x=0</m>, and</p>
+
+  <md>R=0.</md>
+
+  <p>Not every power series gives a useful function on an interval.  Some collapse to a
+single point.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-endpoint-testing-power-series">
+    <title>Endpoint testing</title>
+
+  <p>The radius tells us what happens inside and outside.  It does not tell us what happens
+at the endpoints.</p>
+
+  <p>The reason is simple: the Ratio Test often gives the limiting value <m>1</m> at the endpoints,
+and the Ratio Test is silent when the limit is <m>1</m>.</p>
+
+
+  <exercise xml:id="checkpoint-16-1-endpoints-separate">
+        <title>Why must endpoints be tested separately?</title>
+        <statement>
+          <p>
+            The radius decides the open interval of guaranteed absolute convergence. The two endpoints are another story. In your own words, why can two series share a radius but have different intervals of convergence, and what extra work do the endpoints require?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            At an endpoint the geometric safety margin disappears, and you are back to a numerical series. That series may converge, diverge, or converge only conditionally, independently of the interior.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-1-power-series-6">
+    <title>one endpoint included</title>
+    <statement>
+  <p>Find the interval of convergence of</p>
+
+  <md>\sum_{n=1}^{\infty}\frac{x^n}{n}.</md>
+
+  <p>For <m>x\neq0</m>, use the Ratio Test on the absolute values:</p>
+
+  <md>\left|
+\frac{x^{n+1}}{n+1}\cdot\frac{n}{x^n}
+\right|
+=
+|x|\frac{n}{n+1}.</md>
+
+  <p>As <m>n\to\infty</m>,</p>
+
+  <md>|x|\frac{n}{n+1}\to |x|.</md>
+
+  <p>So the series converges absolutely when</p>
+
+  <md>|x|&lt;1</md>
+
+  <p>and diverges when</p>
+
+  <md>|x|&gt;1.</md>
+
+  <p>The radius is</p>
+
+  <md>R=1.</md>
+
+  <p>Now test the endpoints.</p>
+
+  <p>At <m>x=1</m>, the series becomes</p>
+
+  <md>\sum_{n=1}^{\infty}\frac1n,</md>
+
+  <p>the harmonic series.  It diverges.</p>
+
+  <p>At <m>x=-1</m>, the series becomes</p>
+
+  <md>\sum_{n=1}^{\infty}\frac{(-1)^n}{n}.</md>
+
+  <p>This is an alternating harmonic series.  It converges by the Alternating Series Test.</p>
+
+  <p>Therefore the interval of convergence is</p>
+
+  <md>[-1,1).</md>
+
+  <p>One endpoint is included, and the other is not.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-1-power-series-7">
+    <title>both endpoints included</title>
+    <statement>
+  <p>Find the interval of convergence of</p>
+
+  <md>\sum_{n=1}^{\infty}\frac{(x-2)^n}{n^2}.</md>
+
+  <p>Use the Ratio Test on absolute values:</p>
+
+  <md>\left|
+\frac{(x-2)^{n+1}}{(n+1)^2}\cdot \frac{n^2}{(x-2)^n}
+\right|
+=
+|x-2|\frac{n^2}{(n+1)^2}.</md>
+
+  <p>As <m>n\to\infty</m>,</p>
+
+  <md>|x-2|\frac{n^2}{(n+1)^2}\to |x-2|.</md>
+
+  <p>Thus the series converges absolutely when</p>
+
+  <md>|x-2|&lt;1,</md>
+
+  <p>or</p>
+
+  <md>1&lt;x&lt;3.</md>
+
+  <p>The radius is <m>1</m>, centered at <m>2</m>.</p>
+
+  <p>Now test endpoints.</p>
+
+  <p>At <m>x=1</m>, the series becomes</p>
+
+  <md>\sum_{n=1}^{\infty}\frac{(-1)^n}{n^2}.</md>
+
+  <p>This converges absolutely because</p>
+
+  <md>\sum_{n=1}^{\infty}\frac1{n^2}</md>
+
+  <p>converges.</p>
+
+  <p>At <m>x=3</m>, the series becomes</p>
+
+  <md>\sum_{n=1}^{\infty}\frac1{n^2},</md>
+
+  <p>which also converges.</p>
+
+  <p>Therefore the interval of convergence is</p>
+
+  <md>[1,3].</md>
+
+  <note xml:id="note-sec-16-1-power-series-86">
+    <title>Endpoint checklist</title>
+      <p>After finding the radius <m>R</m>, do not stop at</p>
+        <md>|x-a|&lt;R.</md>
+      <p>Test</p>
+        <md>x=a-R
+\qquad\text{and}\qquad
+x=a+R</md>
+      <p>as two ordinary numerical series.  Use the tests from Chapter <xref ref="ch15-sequences-and-infinite-series"/>:
+geometric, <m>p</m>-series, comparison, alternating, ratio, root, or term test.</p>
+  </note>
+
+  <p>The next section shows why power series are worth this work.  Inside their interval of
+convergence, they can be handled almost like polynomials.</p>
+    </statement>
+  </example>
+  </subsection>
+
+
+
+</section>

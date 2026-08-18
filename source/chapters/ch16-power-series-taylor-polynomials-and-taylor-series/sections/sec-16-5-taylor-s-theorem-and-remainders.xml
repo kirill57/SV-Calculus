@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-5-taylor-s-theorem-and-remainders">
+  <title>Taylor’s theorem and remainders</title>
+
+  <p>Taylor polynomials gave us a finite approximation:</p>
+
+  <md>f(x)\approx T_n(x).</md>
+
+  <p>But approximation without an error term is only a hope.  The next question is the one
+calculus must answer:</p>
+
+  <md>
+\text{How far is \(f(x)\) from its Taylor polynomial?}
+</md>
+
+  <p>The difference</p>
+
+  <md>f(x)-T_n(x)</md>
+
+  <p>is called the <em>remainder</em>.  It is the part of the function that the polynomial has
+not yet captured.</p>
+
+  <subsection xml:id="subsec-error-term-matters">
+    <title>The error term matters</title>
+
+  <p>For <m>f(x)=e^x</m>, the cubic Maclaurin polynomial is</p>
+
+  <md>T_3(x)=1+x+\frac{x^2}{2!}+\frac{x^3}{3!}.</md>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>T_3(1)=1+1+\frac12+\frac16=\frac83.</md>
+
+  <p>So</p>
+
+  <md>e\approx \frac83\approx2.6667.</md>
+
+  <p>This is a reasonable first approximation, but the important question is not whether it
+looks reasonable.  The important question is:</p>
+
+  <md>\text{How large can the error be?}</md>
+
+  <p>Define</p>
+
+  <md>R_3(1)=e^1-T_3(1).</md>
+
+  <p>Then</p>
+
+  <md>e=T_3(1)+R_3(1).</md>
+
+  <p>The polynomial gives the part we can compute easily.  The remainder tells how much
+we may be missing.</p>
+
+  <figure xml:id="fig-taylor-remainder-gap">
+    <caption>The remainder is the vertical gap between the function and its Taylor polynomial at the chosen input.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-1.15, xmax=1.25,
+    ymin=0, ymax=3.25,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[very thick, domain=-1.05:1.15, samples=200] {exp(x)};
+\addlegendentry{\(e^x\)}
+
+\addplot[thick, dashed, domain=-1.05:1.15, samples=200] {1+x+x^2/2+x^3/6};
+\addlegendentry{\(T_3(x)\)}
+
+\draw[&lt;-&gt;, thick] (axis cs:1,2.6666667) -- (axis cs:1,2.7182818);
+\node[anchor=west] at (axis cs:1.03,2.69) {\(R_3(1)\)};
+\addplot[only marks, mark=*] coordinates {(1,2.7182818) (1,2.6666667)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>For a general function <m>f</m>, centered at <m>a</m>, the degree <m>n</m> Taylor polynomial is</p>
+
+  <md>T_n(x)=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(a)}{k!}(x-a)^k.</md>
+
+  <p>The remainder is</p>
+
+  <md>
+R_n(x)=f(x)-T_n(x).
+</md>
+
+  <p>So Taylor’s formula is</p>
+
+  <md>
+f(x)=T_n(x)+R_n(x).
+</md>
+
+  <p>This equation is exact.  The approximation happens only when we ignore or estimate
+<m>R_n(x)</m>.</p>
+
+  <note xml:id="note-sec-16-5-taylor-s-theorem-and-remainders-88">
+    <title>Taylor approximation and Taylor formula</title>
+        <md>f(x)\approx T_n(x)</md>
+      <p>is an approximation.</p>
+        <md>f(x)=T_n(x)+R_n(x)</md>
+      <p>is an exact formula.</p>
+  </note>
+
+  <p>The rest of this section is about estimating <m>R_n(x)</m>.</p>
+
+  <exercise xml:id="checkpoint-16-5-error-term-matters">
+        <title>Why is approximation without a remainder only a hope?</title>
+        <statement>
+          <p>
+            A Taylor polynomial gives a computable piece of a function. The remainder is the part not yet captured. In your own words, why is <q>the approximation looks reasonable</q> not yet a mathematical statement, and what question does the remainder force you to answer?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Looking nearby is not a bound. The remainder asks how large the gap can be, which is the only way an approximation gets a scale.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-lagrange-remainder">
+    <title>Lagrange form of the remainder</title>
+
+  <p>The first useful form of the remainder looks surprisingly like the next Taylor term.</p>
+
+  <p>For a degree <m>n</m> Taylor polynomial, the next possible power is</p>
+
+  <md>(x-a)^{n+1}.</md>
+
+  <p>Taylor’s theorem says that the error is exactly this power multiplied by the
+<m>(n+1)</m>-st derivative at some point between <m>a</m> and <m>x</m>.</p>
+
+  <theorem xml:id="thm-sec-16-5-taylor-s-theorem-and-remainders-89">
+    <title>Taylor’s Theorem with Lagrange remainder</title>
+    <statement>
+      <p>Suppose <m>f</m> has continuous derivatives through order <m>n+1</m> on an interval containing
+<m>a</m> and <m>x</m>.  Then</p>
+        <md>
+f(x)=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(a)}{k!}(x-a)^k
++
+\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+</md>
+      <p>for some number <m>c</m> between <m>a</m> and <m>x</m>.</p>
+      <p>Equivalently,</p>
+        <md>
+R_n(x)=
+\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}
+</md>
+      <p>for some <m>c</m> between <m>a</m> and <m>x</m>.</p>
+    </statement>
+  </theorem>
+
+  <p>The theorem does not usually tell us the exact value of <m>c</m>.  That is fine.  For error
+bounds, we usually do not need <m>c</m>.  We only need a bound on the derivative.</p>
+
+  <p>If</p>
+
+  <md>|f^{(n+1)}(t)|\le M</md>
+
+  <p>for all <m>t</m> between <m>a</m> and <m>x</m>, then</p>
+
+  <md>
+|R_n(x)|
+\le
+\frac{M}{(n+1)!}|x-a|^{n+1}.
+</md>
+
+  <p>This is the main practical form.</p>
+
+  <example xml:id="ex-sec-16-5-taylor-s-theorem-and-remainders-1">
+    <title>bounding the error in <m>e</m></title>
+    <statement>
+  <p>Use the degree <m>7</m> Maclaurin polynomial for <m>e^x</m> to approximate <m>e</m>.</p>
+
+  <p>The polynomial is</p>
+
+  <md>T_7(x)
+=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}
++\frac{x^4}{4!}+\frac{x^5}{5!}
++\frac{x^6}{6!}+\frac{x^7}{7!}.</md>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>T_7(1)=
+1+1+\frac12+\frac16+\frac1{24}+\frac1{120}+\frac1{720}+\frac1{5040}.</md>
+
+  <p>So</p>
+
+  <md>T_7(1)\approx 2.718254.</md>
+
+  <p>Now estimate the error.  Since every derivative of <m>e^x</m> is <m>e^x</m>, the Lagrange
+remainder is</p>
+
+  <md>R_7(1)=\frac{e^c}{8!}</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>1</m>.</p>
+
+  <p>On this interval,</p>
+
+  <md>e^c&lt;3.</md>
+
+  <p>Therefore</p>
+
+  <md>|R_7(1)|&lt;\frac3{8!}.</md>
+
+  <p>Since</p>
+
+  <md>8!=40320,</md>
+
+  <p>we get</p>
+
+  <md>|R_7(1)|&lt;\frac3{40320}&lt;0.000075.</md>
+
+  <p>Thus</p>
+
+  <md>
+e=2.718254\ldots \quad \text{with error less than }0.000075.
+</md>
+
+  <p>The approximation is not just a decimal.  It comes with a guarantee.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-5-taylor-s-theorem-and-remainders-2">
+    <title>a sine approximation</title>
+    <statement>
+  <p>Approximate</p>
+
+  <md>\sin(0.5)</md>
+
+  <p>using</p>
+
+  <md>\sin x\approx x-\frac{x^3}{3!}.</md>
+
+  <p>This is the fourth-degree Maclaurin polynomial too, because the <m>x^4</m> coefficient is
+zero:</p>
+
+  <md>T_4(x)=x-\frac{x^3}{3!}.</md>
+
+  <p>Taylor’s theorem gives</p>
+
+  <md>R_4(x)=\frac{f^{(5)}(c)}{5!}x^5</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>x</m>.  For <m>f(x)=\sin x</m>, the fifth derivative is</p>
+
+  <md>f^{(5)}(x)=\cos x.</md>
+
+  <p>Thus</p>
+
+  <md>|f^{(5)}(c)|=|\cos c|\le1.</md>
+
+  <p>So</p>
+
+  <md>|R_4(x)|\le \frac{|x|^5}{5!}.</md>
+
+  <p>At <m>x=0.5</m>,</p>
+
+  <md>|R_4(0.5)|\le \frac{(0.5)^5}{120}.</md>
+
+  <p>Since</p>
+
+  <md>(0.5)^5=\frac1{32},</md>
+
+  <p>we have</p>
+
+  <md>|R_4(0.5)|\le \frac1{3840}&lt;0.0003.</md>
+
+  <p>The approximation is</p>
+
+  <md>0.5-\frac{(0.5)^3}{6}
+=
+0.5-\frac{0.125}{6}
+=
+0.479166\ldots.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\sin(0.5)\approx0.479166
+</md>
+
+  <p>with error less than <m>0.0003</m>.</p>
+
+  <note xml:id="note-sec-16-5-taylor-s-theorem-and-remainders-90">
+    <title>What controls the error?</title>
+      <p>The bound</p>
+        <md>|R_n(x)|\le
+\frac{M}{(n+1)!}|x-a|^{n+1}</md>
+      <p>has three ingredients:</p>
+        <table xml:id="tab-sec-16-5-taylor-s-theorem-and-remainders-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>ingredient</strong></cell>
+        <cell><strong>meaning</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>M</m></cell>
+        <cell>how large the next derivative can be</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>|x-a|^{n+1}</m></cell>
+        <cell>how far <m>x</m> is from the center</cell>
+      </row>
+      <row>
+        <cell><m>(n+1)!</m></cell>
+        <cell>how strongly higher degree terms are divided down</cell>
+      </row>
+    </tabular>
+  </table>
+  </note>
+
+  <p>This explains why Taylor polynomials are local.  If <m>x</m> is close to <m>a</m>, the factor</p>
+
+  <md>|x-a|^{n+1}</md>
+
+  <p>is small.  If <m>x</m> is far from <m>a</m>, the same polynomial may lose accuracy.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A local warning</title>
+
+  <p>For</p>
+
+  <md>\frac1{1-x},</md>
+
+  <p>the Maclaurin polynomials are</p>
+
+  <md>1+x+x^2+\cdots+x^n.</md>
+
+  <p>At <m>x=\frac12</m>, these polynomials approach</p>
+
+  <md>\frac1{1-\frac12}=2.</md>
+
+  <p>But at <m>x=2</m>, the same partial sums are</p>
+
+  <md>1+2+2^2+\cdots+2^n,</md>
+
+  <p>which do not approach</p>
+
+  <md>\frac1{1-2}=-1.</md>
+
+  <p>The problem is not the function.  The function is defined at <m>x=2</m>.  The problem is
+that the power series centered at <m>0</m> has radius <m>1</m>.  A Taylor polynomial is built
+from local information.  It should not be trusted far from its center without an error
+estimate.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-5-what-controls-error">
+        <title>What controls the size of a Taylor error?</title>
+        <statement>
+          <p>
+            The Lagrange remainder bound involves a bound <m>M</m> on the next derivative, the distance <m>|x-a|^{n+1}</m>, and a factorial <m>(n+1)!</m>. In your own words, why do those three ingredients explain both why Taylor polynomials are local and why higher degree can still help?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Far from the center, the power of distance grows. Close to the center, that power is small, and dividing by a factorial makes higher-degree leftovers even smaller if the next derivative is not too wild.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-proof-idea-taylor-theorem">
+    <title>Proof idea for Taylor’s theorem</title>
+
+  <p>Taylor’s theorem is a higher-order version of the Mean Value Theorem.</p>
+
+  <p>For <m>n=0</m>, Taylor’s theorem says</p>
+
+  <md>f(x)=f(a)+f'(c)(x-a)</md>
+
+  <p>for some <m>c</m> between <m>a</m> and <m>x</m>.  This is exactly the Mean Value Theorem.</p>
+
+  <p>For larger <m>n</m>, the idea is to subtract off a polynomial that matches <m>f</m> at <m>a</m> as
+closely as possible, then apply Rolle’s Theorem repeatedly.</p>
+
+  <p>Here is the proof.</p>
+
+  <p>Assume <m>x\neq a</m>, and let</p>
+
+  <md>T_n(t)=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(a)}{k!}(t-a)^k.</md>
+
+  <p>Define</p>
+
+  <md>K=\frac{f(x)-T_n(x)}{(x-a)^{n+1}}.</md>
+
+  <p>Now build the auxiliary function</p>
+
+  <md>\Phi(t)=f(t)-T_n(t)-K(t-a)^{n+1}.</md>
+
+  <p>This function is designed so that</p>
+
+  <md>\Phi(x)=0.</md>
+
+  <p>It also satisfies</p>
+
+  <md>\Phi(a)=0.</md>
+
+  <p>Even more is true.  Since <m>T_n</m> matches <m>f</m> and its first <m>n</m> derivatives at <m>a</m>,</p>
+
+  <md>\Phi(a)=\Phi'(a)=\Phi''(a)=\cdots=\Phi^{(n)}(a)=0.</md>
+
+  <p>The function <m>\Phi</m> has zeros at <m>a</m> and <m>x</m>.  By Rolle’s Theorem, <m>\Phi'</m> has a
+zero between <m>a</m> and <m>x</m>.  Since <m>\Phi'(a)=0</m>, Rolle’s Theorem can be applied
+again to <m>\Phi'</m>.  Repeating this idea <m>n+1</m> times gives a point <m>c</m> between <m>a</m>
+and <m>x</m> such that</p>
+
+  <md>\Phi^{(n+1)}(c)=0.</md>
+
+  <p>Now compute <m>\Phi^{(n+1)}</m>.  The polynomial <m>T_n</m> has degree <m>n</m>, so its
+<m>(n+1)</m>-st derivative is <m>0</m>.  Also,</p>
+
+  <md>\frac{d^{\,n+1}}{dt^{n+1}}(t-a)^{n+1}=(n+1)!.</md>
+
+  <p>Thus</p>
+
+  <md>\Phi^{(n+1)}(t)=f^{(n+1)}(t)-K(n+1)!.</md>
+
+  <p>At <m>t=c</m>,</p>
+
+  <md>0=f^{(n+1)}(c)-K(n+1)!.</md>
+
+  <p>Therefore</p>
+
+  <md>K=\frac{f^{(n+1)}(c)}{(n+1)!}.</md>
+
+  <p>Since</p>
+
+  <md>f(x)-T_n(x)=K(x-a)^{n+1},</md>
+
+  <p>we get</p>
+
+  <md>f(x)-T_n(x)
+=
+\frac{f^{(n+1)}(c)}{(n+1)!}(x-a)^{n+1}.</md>
+
+  <p>This is the Lagrange remainder.</p>
+
+  <theorem xml:id="thm-sec-16-5-taylor-s-theorem-and-remainders-91">
+    <title>Why Rolle’s Theorem appears</title>
+    <statement>
+      <p>The Taylor polynomial makes the function and polynomial agree at <m>a</m> through many
+derivatives.  After subtracting them, we get many zeros at <m>a</m>.  Rolle’s Theorem turns
+many zeros into information about a higher derivative.</p>
+    </statement>
+  </theorem>
+
+  <exercise xml:id="checkpoint-16-5-higher-mean-value">
+        <title>Why is Taylor’s theorem a higher-order Mean Value Theorem?</title>
+        <statement>
+          <p>
+            After subtracting a Taylor polynomial, the function and the polynomial agree through many derivatives at the center. In your own words, why do those many zeros invite Rolle’s Theorem, and why does a higher derivative then appear in the remainder?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Many zeros at one point, together with one extra zero of the error at <m>x</m>, produce an intermediate point where a higher derivative vanishes or is forced to a definite value. That is the Mean Value Theorem in a higher-order costume.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-integral-form-remainder">
+    <title>Integral form of the remainder</title>
+
+  <p>The Lagrange form is excellent for error bounds.  There is another form that shows the
+accumulation structure more clearly.</p>
+
+  <note xml:id="note-sec-16-5-taylor-s-theorem-and-remainders-92">
+    <title>Integral form of the Taylor remainder</title>
+      <p>If <m>f^{(n+1)}</m> is continuous on an interval containing <m>a</m> and <m>x</m>, then</p>
+        <md>
+R_n(x)=
+\int_a^x
+\frac{f^{(n+1)}(t)}{n!}(x-t)^n\,dt.
+</md>
+  </note>
+
+  <p>This says that the error is accumulated from the next derivative, with a weight</p>
+
+  <md>\frac{(x-t)^n}{n!}.</md>
+
+  <p>For <m>n=0</m>, the formula becomes</p>
+
+  <md>R_0(x)=\int_a^x f'(t)\,dt.</md>
+
+  <p>Since</p>
+
+  <md>R_0(x)=f(x)-f(a),</md>
+
+  <p>this is just the Fundamental Theorem:</p>
+
+  <md>f(x)-f(a)=\int_a^x f'(t)\,dt.</md>
+
+  <p>So the integral remainder is a higher-order version of the same accumulation idea.</p>
+
+  <example xml:id="ex-sec-16-5-taylor-s-theorem-and-remainders-4">
+    <title>the first few cases</title>
+    <statement>
+  <p>For <m>n=1</m>,</p>
+
+  <md>f(x)=f(a)+f'(a)(x-a)+\int_a^x f''(t)(x-t)\,dt.</md>
+
+  <p>For <m>n=2</m>,</p>
+
+  <md>f(x)=f(a)+f'(a)(x-a)+\frac{f''(a)}{2}(x-a)^2
++\int_a^x \frac{f'''(t)}{2}(x-t)^2\,dt.</md>
+
+  <p>The pattern is visible.  The Taylor polynomial uses derivative information at the center.
+The remainder accumulates the next derivative over the interval.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why the formula is true</title>
+
+  <p>Start with the Fundamental Theorem:</p>
+
+  <md>f(x)-f(a)=\int_a^x f'(t)\,dt.</md>
+
+  <p>Now integrate by parts with</p>
+
+  <md>u=f'(t),
+\qquad
+dv=dt.</md>
+
+  <p>A more useful repeated version is this: each integration by parts pulls out one Taylor
+term at <m>a</m>, and leaves an integral involving one higher derivative.</p>
+
+  <p>For example,</p>
+
+  <md>\int_a^x f''(t)(x-t)\,dt
+=
+f(x)-f(a)-f'(a)(x-a).</md>
+
+  <p>Rearranging gives</p>
+
+  <md>f(x)=f(a)+f'(a)(x-a)+\int_a^x f''(t)(x-t)\,dt.</md>
+
+  <p>Repeating the same step gives the general formula.</p>
+
+  <p>This form is optional for computation, but important for the story.  Taylor’s theorem is
+not magic.  The error is an accumulated effect of higher derivatives.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-5-two-error-languages">
+        <title>Why are there two useful languages for Taylor error?</title>
+        <statement>
+          <p>
+            The Lagrange form bounds the next derivative. The integral form writes the remainder as accumulated next-derivative information. Alternating estimates apply when Taylor terms bounce and shrink. In your own words, why do these views complement one another rather than compete?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            One form is built for a worst-case bound. One form shows the remainder as an accumulation, the same idea as the Fundamental Theorem. Alternation is a special mechanism that names the next omitted term as the gap.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-alternating-series-remainders-special-case">
+    <title>Alternating-series remainders as a special case</title>
+
+  <p>Some Taylor series are alternating series.  When the term sizes decrease to <m>0</m>, the
+Alternating Series Estimation Theorem gives a very simple error bound:</p>
+
+  <md>
+\text{error} \le \text{first omitted term in absolute value}.
+</md>
+
+  <p>This often gives a sharper and easier estimate than the Lagrange bound.</p>
+
+  <p>From Section <xref ref="subsec-series-for-arctan" text="title"/>, we found</p>
+
+  <md>\arctan x
+=
+x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots,
+\qquad |x|\le1.</md>
+
+  <p>For <m>0&lt;x\le1</m>, the terms alternate and decrease in size.  Therefore, if we stop after</p>
+
+  <md>x-\frac{x^3}{3}+\frac{x^5}{5},</md>
+
+  <p>then the error is at most</p>
+
+  <md>\frac{x^7}{7}.</md>
+
+  <example xml:id="ex-sec-16-5-taylor-s-theorem-and-remainders-6">
+    <title>estimating <m>\arctan(1/2)</m></title>
+    <statement>
+  <p>Use</p>
+
+  <md>\arctan x
+\approx
+x-\frac{x^3}{3}+\frac{x^5}{5}.</md>
+
+  <p>At <m>x=\frac12</m>,</p>
+
+  <md>\arctan\frac12
+\approx
+\frac12-\frac{1}{3\cdot2^3}+\frac{1}{5\cdot2^5}.</md>
+
+  <p>Compute:</p>
+
+  <md>\frac12-\frac1{24}+\frac1{160}
+=
+0.464583\ldots.</md>
+
+  <p>The first omitted term has size</p>
+
+  <md>\frac{(1/2)^7}{7}
+=
+\frac1{7\cdot128}
+=
+\frac1{896}.</md>
+
+  <p>So</p>
+
+  <md>
+\left|
+\arctan\frac12-0.464583\ldots
+\right|
+\le
+\frac1{896}
+&lt;0.0012.
+</md>
+
+  <p>Since the first omitted term is negative, the true value is slightly less than the
+partial sum.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-5-taylor-s-theorem-and-remainders-7">
+    <title>estimating <m>\ln(1.1)</m></title>
+    <statement>
+  <p>From Section <xref ref="subsec-series-for-log-one-plus-x" text="title"/>,</p>
+
+  <md>\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots</md>
+
+  <p>for <m>-1&lt;x\le1</m>.  At <m>x=0.1</m>, use four terms:</p>
+
+  <md>\ln(1.1)
+\approx
+0.1-\frac{0.1^2}{2}+\frac{0.1^3}{3}-\frac{0.1^4}{4}.</md>
+
+  <p>The first omitted term has size</p>
+
+  <md>\frac{0.1^5}{5}=0.000002.</md>
+
+  <p>Thus</p>
+
+  <md>
+\left|
+\ln(1.1)
+-
+\left(
+0.1-\frac{0.1^2}{2}+\frac{0.1^3}{3}-\frac{0.1^4}{4}
+\right)
+\right|
+\le 0.000002.
+</md>
+
+  <p>The input <m>0.1</m> is small, so the powers shrink quickly.</p>
+
+  <note xml:id="note-sec-16-5-taylor-s-theorem-and-remainders-93">
+    <title>Two ways to estimate a Taylor error</title>
+        <table xml:id="tab-sec-16-5-taylor-s-theorem-and-remainders-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>method</strong></cell>
+        <cell><strong>when it is useful</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Lagrange remainder</cell>
+        <cell>when we can bound the next derivative</cell>
+      </row>
+      <row>
+        <cell>
+Alternating estimate</cell>
+        <cell>when the Taylor terms alternate and decrease</cell>
+      </row>
+    </tabular>
+  </table>
+  </note>
+
+  <p>Taylor’s theorem gives finite approximations with controlled error.  The next step is to
+let the degree grow without bound.  If the remainders tend to <m>0</m>, the Taylor
+polynomials become a Taylor series for the function.</p>
+    </statement>
+  </example>
+  </subsection>
+
+
+
+</section>

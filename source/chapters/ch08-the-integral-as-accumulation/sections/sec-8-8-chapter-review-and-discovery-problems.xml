@@ -6,495 +6,650 @@
   <p>This chapter built the integral from the ground up.</p>
 
   <p>We started with velocity and distance:</p>
+
   <md>\text{distance}\approx \sum \text{velocity}\cdot\text{time}.</md>
 
   <p>Then we saw the geometric version:</p>
+
   <md>\text{area}\approx \sum \text{height}\cdot\text{width}.</md>
 
   <p>The definite integral is the limiting version of those sums:</p>
+
   <md>\int_a^b f(x)\,dx.</md>
 
-  <p>It measures signed accumulation. When <m>f\ge 0</m>, it also measures ordinary area. When <m>f</m> changes sign, it measures positive accumulation minus negative accumulation.</p>
+  <p>It measures signed accumulation.  When <m>f\ge0</m>, it also measures ordinary area.
+When <m>f</m> changes sign, it measures positive accumulation minus negative
+accumulation.</p>
 
-  <table>
-    <title>Core concepts of accumulation and definite integration</title>
-    <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
-      <col halign="left"/>
-      <col halign="left"/>
-      <col halign="left"/>
-      <row header="yes">
-        <cell><m>\textbf{idea}</m></cell>
-        <cell><m>\textbf{formula}</m></cell>
-        <cell><m>\textbf{meaning}</m></cell>
-      </row>
-      <row>
-        <cell>Riemann sum</cell>
-        <cell><m>\displaystyle \sum_{j=1}^n f(x_j^*)\Delta x_j</m></cell>
-        <cell>finite estimate</cell>
-      </row>
-      <row>
-        <cell>definite integral</cell>
-        <cell><m>\displaystyle \int_a^b f(x)\,dx</m></cell>
-        <cell>limit of Riemann sums</cell>
-      </row>
-      <row>
-        <cell>displacement</cell>
-        <cell><m>\displaystyle \int_a^b v(t)\,dt</m></cell>
-        <cell>net change in position</cell>
-      </row>
-      <row>
-        <cell>distance traveled</cell>
-        <cell><m>\displaystyle \int_a^b |v(t)|\,dt</m></cell>
-        <cell>total motion</cell>
-      </row>
-      <row>
-        <cell>average value</cell>
-        <cell><m>\displaystyle \frac{1}{b-a}\int_a^b f(x)\,dx</m></cell>
-        <cell>constant height with same area</cell>
-      </row>
-    </tabular>
-  </table>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>idea</strong> \amp <strong>formula</strong> \amp <strong>meaning</strong></mrow>
+    <mrow>\hline
+\text{Riemann sum}
+\amp
+\displaystyle \sum_{j=1}^n f(x_j^*)\Delta x_j
+\amp
+\text{finite estimate}</mrow>
+    <mrow>[2mm]
+\text{definite integral}
+\amp
+\displaystyle \int_a^b f(x)\,dx
+\amp
+\text{limit of Riemann sums}</mrow>
+    <mrow>[2mm]
+\text{displacement}
+\amp
+\displaystyle \int_a^b v(t)\,dt
+\amp
+\text{net change in position}</mrow>
+    <mrow>[2mm]
+\text{distance traveled}
+\amp
+\displaystyle \int_a^b |v(t)|\,dt
+\amp
+\text{total motion}</mrow>
+    <mrow>[2mm]
+\text{average value}
+\amp
+\displaystyle \frac{1}{b-a}\int_a^b f(x)\,dx
+\amp
+\text{constant height with same area}
+\end{array}</mrow>
+  </md>
 
   <subsection xml:id="subsec-skills-set-up-riemann-sums">
     <title>Skills: set up Riemann sums</title>
 
-    <p>A Riemann sum setup has four parts:</p>
-    <md>\text{interval},\qquad \text{partition},\qquad \text{sample points},\qquad \text{sum}.</md>
+  <p>A Riemann sum setup has four parts:</p>
 
-    <p>For an equal partition of <m>[a,b]</m> into <m>n</m> pieces,</p>
-    <md>\Delta x=\frac{b-a}{n}.</md>
+  <md>\text{interval},\qquad
+\text{partition},\qquad
+\text{sample points},\qquad
+\text{sum}.</md>
 
-    <p>The endpoints are</p>
-    <md>x_j=a+j\Delta x.</md>
+  <p>For an equal partition of <m>[a,b]</m> into <m>n</m> pieces,</p>
 
-    <p>Right endpoints use <m>x_j</m>. Left endpoints use <m>x_{j-1}</m>. Midpoints use</p>
-    <md>\frac{x_{j-1}+x_j}{2} = a+\left(j-\frac12\right)\Delta x.</md>
+  <md>\Delta x=\frac{b-a}{n}.</md>
 
-    <example xml:id="ex-worked-riemann-limit-quadratic">
-      <title>Limit of right endpoint Riemann sums</title>
-      <statement>
-        <p>Write</p>
-        <md>\int_0^2 (1+x^2)\,dx</md>
-        <p>as a limit of right endpoint Riemann sums. Then evaluate the limit using the power sum formula.</p>
-        <p>The interval is <m>[0,2]</m>, so</p>
-        <md>\Delta x=\frac{2}{n}.</md>
-        <p>The right endpoint of the <m>j</m>-th subinterval is</p>
-        <md>x_j=\frac{2j}{n}.</md>
-        <p>Thus</p>
-        <md>\int_0^2 (1+x^2)\,dx = \lim_{n\to\infty} \sum_{j=1}^{n} \left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n}.</md>
-        <p>Simplify the sum:</p>
-        <md>\sum_{j=1}^{n} \left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n} = \sum_{j=1}^{n}\frac{2}{n} + \sum_{j=1}^{n}\frac{8j^2}{n^3}.</md>
-        <p>The first sum is</p>
-        <md>\sum_{j=1}^{n}\frac{2}{n}=2.</md>
-        <p>The second sum is</p>
-        <md>\frac{8}{n^3}\sum_{j=1}^{n}j^2.</md>
-        <p>Using</p>
-        <md>\sum_{j=1}^{n}j^2=\frac{n(n+1)(2n+1)}{6},</md>
-        <p>we get</p>
-        <md>\frac{8}{n^3}\sum_{j=1}^{n}j^2 = \frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}.</md>
-        <p>As <m>n\to\infty</m>,</p>
-        <md>\frac{n(n+1)(2n+1)}{n^3}\to 2.</md>
-        <p>Therefore</p>
-        <md>\frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6} \to \frac{8\cdot 2}{6} = \frac83.</md>
-        <p>So</p>
-        <md>\int_0^2 (1+x^2)\,dx = 2+\frac83 = \frac{14}{3}.</md>
-        <p>No antiderivative was used. This came directly from the definition.</p>
-      </statement>
-    </example>
+  <p>The endpoints are</p>
 
-    <paragraphs>
-      <title>Setup practice</title>
-      <p>For each integral, write a Riemann sum using the requested sample points. Do not evaluate the limit unless asked.</p>
-      <ol>
-        <li>
-          <p>Use left endpoints:</p>
+  <md>x_j=a+j\Delta x.</md>
+
+  <p>Right endpoints use <m>x_j</m>.  Left endpoints use <m>x_{j-1}</m>.  Midpoints use</p>
+
+  <md>\frac{x_{j-1}+x_j}{2}
+=
+a+\left(j-\frac12\right)\Delta x.</md>
+
+  <paragraphs>
+    <title>Worked example</title>
+
+  <p>Write</p>
+
+  <md>\int_0^2 (1+x^2)\,dx</md>
+
+  <p>as a limit of right endpoint Riemann sums.  Then evaluate the limit using the power
+sum formula.</p>
+
+  <p>The interval is <m>[0,2]</m>, so</p>
+
+  <md>\Delta x=\frac{2}{n}.</md>
+
+  <p>The right endpoint of the <m>j</m>-th subinterval is</p>
+
+  <md>x_j=\frac{2j}{n}.</md>
+
+  <p>Thus</p>
+
+  <md>\int_0^2 (1+x^2)\,dx
+=
+\lim_{n\to\infty}
+\sum_{j=1}^{n}
+\left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n}.</md>
+
+  <p>Simplify the sum:</p>
+
+  <md>\sum_{j=1}^{n}
+\left(1+\left(\frac{2j}{n}\right)^2\right)\frac{2}{n}
+=
+\sum_{j=1}^{n}\frac{2}{n}
++
+\sum_{j=1}^{n}\frac{8j^2}{n^3}.</md>
+
+  <p>The first sum is</p>
+
+  <md>\sum_{j=1}^{n}\frac{2}{n}=2.</md>
+
+  <p>The second sum is</p>
+
+  <md>\frac{8}{n^3}\sum_{j=1}^{n}j^2.</md>
+
+  <p>Using</p>
+
+  <md>\sum_{j=1}^{n}j^2=\frac{n(n+1)(2n+1)}{6},</md>
+
+  <p>we get</p>
+
+  <md>\frac{8}{n^3}\sum_{j=1}^{n}j^2
+=
+\frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}.</md>
+
+  <p>As <m>n\to\infty</m>,</p>
+
+  <md>\frac{n(n+1)(2n+1)}{n^3}\to2.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{8}{n^3}\cdot \frac{n(n+1)(2n+1)}{6}
+\to
+\frac{8\cdot2}{6}
+=
+\frac83.</md>
+
+  <p>So</p>
+
+  <md>
+\int_0^2 (1+x^2)\,dx
+=
+2+\frac83
+=
+\frac{14}{3}.
+</md>
+
+  <p>No antiderivative was used.  This came directly from the definition.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Setup practice</title>
+
+  <p>For each integral, write a Riemann sum using the requested sample points.  Do not
+evaluate the limit unless asked.</p>
+
+    <ol>
+      <li>
+        <p>Use left endpoints:</p>
           <md>\int_1^5 \sqrt{x}\,dx.</md>
-          <p>Here</p>
-          <md>\Delta x=\frac4n, \qquad x_{j-1}=1+\frac{4(j-1)}{n}.</md>
-          <p>So the sum is</p>
-          <md>\sum_{j=1}^{n} \sqrt{1+\frac{4(j-1)}{n}}\cdot \frac4n.</md>
-        </li>
-        <li>
-          <p>Use midpoints:</p>
+        <p>Here</p>
+          <md>\Delta x=\frac4n,
+\qquad
+x_{j-1}=1+\frac{4(j-1)}{n}.</md>
+        <p>So the sum is</p>
+          <md>\sum_{j=1}^{n}
+\sqrt{1+\frac{4(j-1)}{n}}\cdot \frac4n.</md>
+      </li>
+      <li>
+        <p>Use midpoints:</p>
           <md>\int_{-2}^{2}(3-x^2)\,dx.</md>
-          <p>Here</p>
-          <md>\Delta x=\frac4n, \qquad x_j^*=-2+\left(j-\frac12\right)\frac4n.</md>
-          <p>So the sum is</p>
-          <md>\sum_{j=1}^{n} \left[ 3- \left( -2+\left(j-\frac12\right)\frac4n \right)^2 \right]\frac4n.</md>
-        </li>
-        <li>
-          <p>Use right endpoints:</p>
+        <p>Here</p>
+          <md>\Delta x=\frac4n,
+\qquad
+x_j^*=-2+\left(j-\frac12\right)\frac4n.</md>
+        <p>So the sum is</p>
+          <md>\sum_{j=1}^{n}
+\left[
+3-
+\left(
+-2+\left(j-\frac12\right)\frac4n
+\right)^2
+\right]\frac4n.</md>
+      </li>
+      <li>
+        <p>Use right endpoints:</p>
           <md>\int_0^\pi \sin x\,dx.</md>
-          <p>Here</p>
-          <md>\Delta x=\frac{\pi}{n}, \qquad x_j=\frac{j\pi}{n}.</md>
-          <p>So the sum is</p>
-          <md>\sum_{j=1}^{n} \sin\left(\frac{j\pi}{n}\right)\frac{\pi}{n}.</md>
-        </li>
-        <li>
-          <p>A particle has velocity</p>
+        <p>Here</p>
+          <md>\Delta x=\frac{\pi}{n},
+\qquad
+x_j=\frac{j\pi}{n}.</md>
+        <p>So the sum is</p>
+          <md>\sum_{j=1}^{n}
+\sin\left(\frac{j\pi}{n}\right)\frac{\pi}{n}.</md>
+      </li>
+      <li>
+        <p>A particle has velocity</p>
           <md>v(t)=t^2+1</md>
-          <p>meters per second for <m>0\le t\le 3</m>. Write a right endpoint sum for its displacement.</p>
-          <p>The displacement is</p>
+        <p>meters per second for <m>0\le t\le3</m>.  Write a right endpoint sum for its displacement.</p>
+        <p>The displacement is</p>
           <md>\int_0^3 (t^2+1)\,dt.</md>
-          <p>With</p>
-          <md>\Delta t=\frac3n, \qquad t_j=\frac{3j}{n},</md>
-          <p>the sum is</p>
-          <md>\sum_{j=1}^{n} \left[ \left(\frac{3j}{n}\right)^2+1 \right]\frac3n.</md>
-        </li>
-      </ol>
-    </paragraphs>
+        <p>With</p>
+          <md>\Delta t=\frac3n,
+\qquad
+t_j=\frac{3j}{n},</md>
+        <p>the sum is</p>
+          <md>\sum_{j=1}^{n}
+\left[
+\left(\frac{3j}{n}\right)^2+1
+\right]\frac3n.</md>
+      </li>
+    </ol>
+  </paragraphs>
 
-    <paragraphs>
-      <title>Common traps</title>
-      <p>A Riemann sum fails for predictable reasons.</p>
+  <paragraphs>
+    <title>Common traps</title>
 
-      <table>
-        <title>Common Riemann sum traps and fixes</title>
-        <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="left"/>
-          <col halign="left"/>
-          <row header="yes">
-            <cell><m>\textbf{trap}</m></cell>
-            <cell><m>\textbf{fix}</m></cell>
-          </row>
-          <row>
-            <cell>forgetting the factor <m>\Delta x</m></cell>
-            <cell>every rectangle needs width</cell>
-          </row>
-          <row>
-            <cell>using <m>j</m> instead of <m>x_j^*</m></cell>
-            <cell>the function is evaluated at an <m>x</m>-value</cell>
-          </row>
-          <row>
-            <cell>using the wrong interval length</cell>
-            <cell><m>\Delta x=(b-a)/n</m></cell>
-          </row>
-          <row>
-            <cell>mixing left and right endpoints unintentionally</cell>
-            <cell>write <m>x_{j-1},x_j,</m> or <m>x_j^*</m> clearly</cell>
-          </row>
-          <row>
-            <cell>forgetting units</cell>
-            <cell><m>\text{height units}\cdot\text{width units}=\text{accumulated units}</m></cell>
-          </row>
-        </tabular>
-      </table>
-    </paragraphs>
+  <p>A Riemann sum fails for predictable reasons.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>trap</strong> \amp <strong>fix</strong></mrow>
+    <mrow>\hline
+\text{forgetting the factor }\Delta x
+\amp
+\text{every rectangle needs width}</mrow>
+    <mrow>[1mm]
+\text{using }j\text{ instead of }x_j^*
+\amp
+\text{the function is evaluated at an }x\text{-value}</mrow>
+    <mrow>[1mm]
+\text{using the wrong interval length}
+\amp
+\Delta x=(b-a)/n</mrow>
+    <mrow>[1mm]
+\text{mixing left and right endpoints unintentionally}
+\amp
+\text{write }x_{j-1},x_j,\text{ or }x_j^*\text{ clearly}</mrow>
+    <mrow>[1mm]
+\text{forgetting units}
+\amp
+\text{height units}\cdot\text{width units}=\text{accumulated units}
+\end{array}</mrow>
+  </md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-8-8-integral-as-limit-of-sums">
+        <title>Why is the integral the limiting version of rate-times-width sums?</title>
+        <statement>
+          <p>
+            The chapter began with distance as a sum of velocity times time, then area as a sum of height times width. In your own words, why is <m>\int_a^b f(x)\,dx</m> the same accumulation idea after the rectangles have been made infinitely thin?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A Riemann sum is a finite estimate. The definite integral is the limit of those estimates.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-project-estimate-energy-power-data">
     <title>Project: estimate energy use from power data</title>
 
-    <p>Power is the rate at which energy is used. If power is measured in kilowatts and time is measured in hours, then</p>
-    <md>\text{kilowatts}\cdot\text{hours}=\text{kilowatt-hours}.</md>
+  <p>Power is the rate at which energy is used.  If power is measured in kilowatts and time
+is measured in hours, then</p>
 
-    <p>So the energy used from time <m>a</m> to time <m>b</m> is</p>
-    <md>E=\int_a^b P(t)\,dt,</md>
-    <p>where <m>P(t)</m> is power.</p>
+  <md>\text{kilowatts}\cdot\text{hours}=\text{kilowatt-hours}.</md>
 
-    <p>Suppose a small building has the following power readings during an <m>8</m>-hour period.</p>
+  <p>So the energy used from time <m>a</m> to time <m>b</m> is</p>
 
-    <table>
-      <title>Power readings during an 8-hour period</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <row header="yes">
-          <cell><m>t\text{ (hours)}</m></cell>
-          <cell>0</cell>
-          <cell>1</cell>
-          <cell>2</cell>
-          <cell>3</cell>
-          <cell>4</cell>
-          <cell>5</cell>
-          <cell>6</cell>
-          <cell>7</cell>
-          <cell>8</cell>
-        </row>
-        <row>
-          <cell><m>P(t)\text{ (kW)}</m></cell>
-          <cell>1.1</cell>
-          <cell>1.3</cell>
-          <cell>2.4</cell>
-          <cell>3.1</cell>
-          <cell>2.7</cell>
-          <cell>2.2</cell>
-          <cell>3.6</cell>
-          <cell>4.0</cell>
-          <cell>2.5</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>E=\int_a^b P(t)\,dt,</md>
 
-    <figure xml:id="fig-power-data-energy-project">
-      <caption>Energy use is accumulated power. The area under the power graph has units of kilowatt-hours.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.45\textwidth,
-              xmin=0, xmax=8.3,
-              ymin=0, ymax=4.5,
-              axis lines=left,
-              xlabel={\(t\) (hours)},
-              ylabel={\(P(t)\) (kW)},
-              xtick={0,1,2,3,4,5,6,7,8},
-              ytick={0,1,2,3,4},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[only marks, mark=*] coordinates {
-              (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
-              (5,2.2) (6,3.6) (7,4.0) (8,2.5)
-          };
-          \addplot[thick] coordinates {
-              (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
-              (5,2.2) (6,3.6) (7,4.0) (8,2.5)
-          };
-          \node[anchor=west] at (axis cs:1.0,4.15) {sampled power data};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>where <m>P(t)</m> is power.</p>
 
-    <paragraphs>
-      <title>Project tasks</title>
-      <p>Use the data to estimate the total energy used.</p>
-      <ol>
-        <li>
-          <p>Compute the left endpoint estimate</p>
-          <md>L_8 = 1\bigl(P(0)+P(1)+\cdots+P(7)\bigr).</md>
-          <p>What are its units?</p>
-        </li>
-        <li>
-          <p>Compute the right endpoint estimate</p>
-          <md>R_8 = 1\bigl(P(1)+P(2)+\cdots+P(8)\bigr).</md>
-        </li>
-        <li>
-          <p>Compute the trapezoid estimate</p>
+  <p>Suppose a small building has the following power readings during an <m>8</m>-hour period.</p>
+
+  <md>
+    <mrow>\begin{array}{c|ccccccccc}
+t\text{ (hours)} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \amp 7 \amp 8</mrow>
+    <mrow>\hline
+P(t)\text{ (kW)} \amp 1.1 \amp 1.3 \amp 2.4 \amp 3.1 \amp 2.7 \amp 2.2 \amp 3.6 \amp 4.0 \amp 2.5
+\end{array}</mrow>
+  </md>
+
+  <figure xml:id="fig-power-data-energy-project">
+    <caption>Energy use is accumulated power.  The area under the power graph has units of kilowatt-hours.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=8.3,
+    ymin=0, ymax=4.5,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(P(t)\) (kW)},
+    xtick={0,1,2,3,4,5,6,7,8},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
+    (5,2.2) (6,3.6) (7,4.0) (8,2.5)
+};
+\addplot[thick] coordinates {
+    (0,1.1) (1,1.3) (2,2.4) (3,3.1) (4,2.7)
+    (5,2.2) (6,3.6) (7,4.0) (8,2.5)
+};
+\node[anchor=west] at (axis cs:1.0,4.15) {sampled power data};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+  <p>Use the data to estimate the total energy used.</p>
+
+    <ol>
+      <li>
+        <p>Compute the left endpoint estimate</p>
+          <md>L_8=
+1\bigl(P(0)+P(1)+\cdots+P(7)\bigr).</md>
+        <p>What are its units?</p>
+      </li>
+      <li>
+        <p>Compute the right endpoint estimate</p>
+          <md>R_8=
+1\bigl(P(1)+P(2)+\cdots+P(8)\bigr).</md>
+      </li>
+      <li>
+        <p>Compute the trapezoid estimate</p>
           <md>T_8=\frac{L_8+R_8}{2}.</md>
-          <p>Equivalently,</p>
-          <md>T_8 = \frac12P(0)+P(1)+P(2)+\cdots+P(7)+\frac12P(8),</md>
-          <p>because the time width is <m>1</m> hour.</p>
-        </li>
-        <li>
-          <p>Which estimate would you trust most from this data: <m>L_8</m>, <m>R_8</m>, or <m>T_8</m>? Explain.</p>
-        </li>
-        <li>
-          <p>The power rises and falls during the interval. Why is it not correct to say that the left estimate is automatically an underestimate or automatically an overestimate?</p>
-        </li>
-        <li>
-          <p>Suppose the utility company charges <m>\$0.18</m> per kilowatt-hour. Use your energy estimate to estimate the cost of this <m>8</m>-hour period.</p>
-        </li>
-        <li>
-          <p>What additional data would improve the estimate?</p>
-        </li>
-      </ol>
-    </paragraphs>
+        <p>Equivalently,</p>
+          <md>T_8=
+\frac12P(0)+P(1)+P(2)+\cdots+P(7)+\frac12P(8),</md>
+        <p>because the time width is <m>1</m> hour.</p>
+      </li>
+      <li>
+        <p>Which estimate would you trust most from this data: <m>L_8</m>, <m>R_8</m>, or <m>T_8</m>?
+Explain.</p>
+      </li>
+      <li>
+        <p>The power rises and falls during the interval.  Why is it not correct to say that
+the left estimate is automatically an underestimate or automatically an overestimate?</p>
+      </li>
+      <li>
+        <p>Suppose the utility company charges <m>\$0.18</m> per kilowatt-hour.  Use your
+energy estimate to estimate the cost of this <m>8</m>-hour period.</p>
+      </li>
+      <li>
+        <p>What additional data would improve the estimate?</p>
+      </li>
+    </ol>
 
-    <note xml:id="note-what-project-tests">
-      <title>What the project tests</title>
-      <p>An integral is not only an area under a drawn curve. It is accumulated rate. Power accumulates into energy, just as velocity accumulates into displacement.</p>
-    </note>
+  <note xml:id="note-sec-8-8-chapter-review-and-discovery-problems-72">
+    <title>What the project tests</title>
+      <p>An integral is not only an area under a drawn curve.  It is accumulated rate.
+Power accumulates into energy, just as velocity accumulates into displacement.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-8-8-signed-versus-total">
+        <title>Why must we keep signed accumulation distinct from total accumulation?</title>
+        <statement>
+          <p>
+            Displacement integrates velocity; distance traveled integrates speed. In your own words, why is that distinction the chapter’s main interpretive warning, and what goes wrong if we treat every integral as ordinary geometric area?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            When <m>f\ge0</m>, the integral is ordinary area. When <m>f</m> changes sign, it measures positive accumulation minus negative accumulation.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-computing-compare-riemann-estimates">
     <title>Computing: compare left, right, midpoint, and trapezoid estimates</title>
 
-    <p>Different rectangle choices can converge to the same integral at different speeds.</p>
+  <p>Different rectangle choices can converge to the same integral at different speeds.</p>
 
-    <p>For an equal partition of <m>[a,b]</m>, let</p>
-    <md>\Delta x=\frac{b-a}{n}.</md>
+  <p>For an equal partition of <m>[a,b]</m>, let</p>
 
-    <p>The standard estimates are:</p>
-    <md>L_n=\sum_{j=0}^{n-1} f(a+j\Delta x)\Delta x,</md>
-    <md>R_n=\sum_{j=1}^{n} f(a+j\Delta x)\Delta x,</md>
-    <md>M_n=\sum_{j=1}^{n} f\left(a+\left(j-\frac12\right)\Delta x\right)\Delta x,</md>
-    <p>and</p>
-    <md>T_n = \frac{\Delta x}{2} \left[ f(a)+2\sum_{j=1}^{n-1}f(a+j\Delta x)+f(b) \right].</md>
+  <md>\Delta x=\frac{b-a}{n}.</md>
 
-    <p>The estimate <m>T_n</m> is the trapezoid estimate. It replaces rectangles by trapezoids. For equal partitions,</p>
-    <md>T_n=\frac{L_n+R_n}{2}.</md>
+  <p>The standard estimates are:</p>
 
-    <paragraphs>
-      <title>Experiment</title>
-      <p>Use</p>
-      <md>f(x)=1+x^2</md>
-      <p>on <m>[0,2]</m>. From the worked example,</p>
-      <md>\int_0^2(1+x^2)\,dx=\frac{14}{3}\approx 4.666667.</md>
-      <p>The following table compares the estimates.</p>
+  <md>L_n=\sum_{j=0}^{n-1} f(a+j\Delta x)\Delta x,</md>
 
-      <table>
-        <title>Comparison of numerical integration estimates</title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <row header="yes">
-            <cell><m>n</m></cell>
-            <cell><m>L_n</m></cell>
-            <cell><m>R_n</m></cell>
-            <cell><m>M_n</m></cell>
-            <cell><m>T_n</m></cell>
-          </row>
-          <row>
-            <cell>4</cell>
-            <cell>3.750000</cell>
-            <cell>5.750000</cell>
-            <cell>4.625000</cell>
-            <cell>4.750000</cell>
-          </row>
-          <row>
-            <cell>8</cell>
-            <cell>4.187500</cell>
-            <cell>5.187500</cell>
-            <cell>4.656250</cell>
-            <cell>4.687500</cell>
-          </row>
-          <row>
-            <cell>16</cell>
-            <cell>4.421875</cell>
-            <cell>4.921875</cell>
-            <cell>4.664063</cell>
-            <cell>4.671875</cell>
-          </row>
-          <row>
-            <cell>32</cell>
-            <cell>4.542969</cell>
-            <cell>4.792969</cell>
-            <cell>4.666016</cell>
-            <cell>4.667969</cell>
-          </row>
-        </tabular>
-      </table>
+  <md>R_n=\sum_{j=1}^{n} f(a+j\Delta x)\Delta x,</md>
 
-      <p>The left and right estimates move toward the integral. The midpoint and trapezoid estimates move toward it faster in this example.</p>
-    </paragraphs>
+  <md>M_n=\sum_{j=1}^{n}
+f\left(a+\left(j-\frac12\right)\Delta x\right)\Delta x,</md>
 
-    <paragraphs>
-      <title>Computing tasks</title>
-      <p>Use a calculator, spreadsheet, or short program.</p>
-      <ol>
-        <li><p>Extend the table to <m>n=64</m> and <m>n=128</m>.</p></li>
-        <li>
-          <p>Compute the absolute errors</p>
-          <md>|L_n-\tfrac{14}{3}|, \qquad |R_n-\tfrac{14}{3}|, \qquad |M_n-\tfrac{14}{3}|, \qquad |T_n-\tfrac{14}{3}|.</md>
-        </li>
-        <li><p>What happens to the errors when <m>n</m> doubles?</p></li>
-        <li>
-          <p>Repeat the experiment for</p>
+  <p>and</p>
+
+  <md>T_n=
+\frac{\Delta x}{2}
+\left[
+f(a)+2\sum_{j=1}^{n-1}f(a+j\Delta x)+f(b)
+\right].</md>
+
+  <p>The estimate <m>T_n</m> is the trapezoid estimate.  It replaces rectangles by trapezoids.
+For equal partitions,</p>
+
+  <md>T_n=\frac{L_n+R_n}{2}.</md>
+
+  <paragraphs>
+    <title>Experiment</title>
+
+  <p>Use</p>
+
+  <md>f(x)=1+x^2</md>
+
+  <p>on <m>[0,2]</m>.  From the worked example,</p>
+
+  <md>\int_0^2(1+x^2)\,dx=\frac{14}{3}\approx4.666667.</md>
+
+  <p>The following table compares the estimates.</p>
+
+  <md>
+    <mrow>\begin{array}{c|cccc}
+n \amp L_n \amp R_n \amp M_n \amp T_n</mrow>
+    <mrow>\hline
+4  \amp 3.750000 \amp 5.750000 \amp 4.625000 \amp 4.750000</mrow>
+    <mrow>8  \amp 4.187500 \amp 5.187500 \amp 4.656250 \amp 4.687500</mrow>
+    <mrow>16 \amp 4.421875 \amp 4.921875 \amp 4.664063 \amp 4.671875</mrow>
+    <mrow>32 \amp 4.542969 \amp 4.792969 \amp 4.666016 \amp 4.667969
+\end{array}</mrow>
+  </md>
+
+  <p>The left and right estimates move toward the integral.  The midpoint and trapezoid
+estimates move toward it faster in this example.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Computing tasks</title>
+
+  <p>Use a calculator, spreadsheet, or short program.</p>
+
+    <ol>
+      <li>
+        <p>Extend the table to <m>n=64</m> and <m>n=128</m>.</p>
+      </li>
+      <li>
+        <p>Compute the absolute errors</p>
+          <md>|L_n-\tfrac{14}{3}|,
+\qquad
+|R_n-\tfrac{14}{3}|,
+\qquad
+|M_n-\tfrac{14}{3}|,
+\qquad
+|T_n-\tfrac{14}{3}|.</md>
+      </li>
+      <li>
+        <p>What happens to the errors when <m>n</m> doubles?</p>
+      </li>
+      <li>
+        <p>Repeat the experiment for</p>
           <md>f(x)=\sqrt{1+x^2}</md>
-          <p>on <m>[0,2]</m>. Since we do not yet have an exact value, use a very fine estimate, such as <m>M_{10000}</m>, as a reference value.</p>
-        </li>
-        <li>
-          <p>Try a function that changes direction, such as</p>
+        <p>on <m>[0,2]</m>.  Since we do not yet have an exact value, use a very fine estimate,
+such as <m>M_{10000}</m>, as a reference value.</p>
+      </li>
+      <li>
+        <p>Try a function that changes direction, such as</p>
           <md>f(x)=2+\sin x</md>
-          <p>on <m>[0,2\pi]</m>. Does the left estimate always stay below the right estimate? Explain.</p>
-        </li>
-      </ol>
-      <p>This experiment prepares a later topic: numerical integration. The integral is exact, but in many real problems we can only approximate it. Then the real question is not only</p>
-      <md>\text{What estimate did we compute?}</md>
-      <p>but also</p>
-      <md>\text{How trustworthy is the estimate?}</md>
-    </paragraphs>
+        <p>on <m>[0,2\pi]</m>.  Does the left estimate always stay below the right estimate?
+Explain.</p>
+      </li>
+    </ol>
 
-    <paragraphs>
-      <title>Concept checks</title>
-      <p>Answer each question in words before using formulas.</p>
-      <ol>
-        <li><p>What does <m>\Delta x</m> represent in a Riemann sum?</p></li>
-        <li>
-          <p>Why does</p>
+  <p>This experiment prepares a later topic: numerical integration.  The integral is exact,
+but in many real problems we can only approximate it.  Then the real question is not
+only</p>
+
+  <md>\text{What estimate did we compute?}</md>
+
+  <p>but also</p>
+
+  <md>\text{How trustworthy is the estimate?}</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Concept checks</title>
+
+  <p>Answer each question in words before using formulas.</p>
+
+    <ol>
+      <li>
+        <p>What does <m>\Delta x</m> represent in a Riemann sum?</p>
+      </li>
+      <li>
+        <p>Why does</p>
           <md>\int_a^b f(x)\,dx</md>
-          <p>measure signed area rather than ordinary area?</p>
-        </li>
-        <li>
-          <p>What is the difference between</p>
+        <p>measure signed area rather than ordinary area?</p>
+      </li>
+      <li>
+        <p>What is the difference between</p>
           <md>\int_a^b v(t)\,dt</md>
-          <p>and</p>
+        <p>and</p>
           <md>\int_a^b |v(t)|\,dt?</md>
-        </li>
-        <li><p>Why does changing a function at one point not change its Riemann integral?</p></li>
-        <li><p>Give an example of an integrable function with a jump discontinuity.</p></li>
-        <li><p>Give an example of a bounded function that is not Riemann integrable.</p></li>
-        <li>
-          <p>If <m>f(x)\le g(x)</m> on <m>[a,b]</m>, with <m>a\lt b</m>, why must</p>
+      </li>
+      <li>
+        <p>Why does changing a function at one point not change its Riemann integral?</p>
+      </li>
+      <li>
+        <p>Give an example of an integrable function with a jump discontinuity.</p>
+      </li>
+      <li>
+        <p>Give an example of a bounded function that is not Riemann integrable.</p>
+      </li>
+      <li>
+        <p>If <m>f(x)\le g(x)</m> on <m>[a,b]</m>, with <m>a&lt;b</m>, why must</p>
           <md>\int_a^b f(x)\,dx\le \int_a^b g(x)\,dx?</md>
-        </li>
-        <li>
-          <p>What does the average value</p>
+      </li>
+      <li>
+        <p>What does the average value</p>
           <md>\frac1{b-a}\int_a^b f(x)\,dx</md>
-          <p>mean geometrically?</p>
-        </li>
-      </ol>
-    </paragraphs>
+        <p>mean geometrically?</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-8-8-existence-before-value">
+        <title>Why does existence of an integral precede computing its value?</title>
+        <statement>
+          <p>
+            Continuous functions, monotone functions, and functions with finitely many jumps are integrable; some bounded functions are not. In your own words, why must we know that the Riemann sums settle before we treat the integral as a number we can split, compare, or interpret?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Properties assume the integral exists. The upper-lower test is what makes that assumption legitimate for the functions we actually use.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-hook-accumulation-function-slope">
     <title>Hook: an accumulation function has a slope</title>
 
-    <p>The integral adds up a function over an interval. But what happens if one endpoint moves?</p>
+  <p>The integral adds up a function over an interval.  But what happens if one endpoint
+moves?</p>
 
-    <p>Let</p>
-    <md>A(x)=\int_0^x f(t)\,dt.</md>
+  <p>Let</p>
 
-    <p>Now <m>A</m> is a function. Its input is the endpoint <m>x</m>. Its output is accumulated signed area from <m>0</m> to <m>x</m>.</p>
+  <md>A(x)=\int_0^x f(t)\,dt.</md>
 
-    <figure xml:id="fig-accumulation-moving-endpoint-hook">
-      <caption>When the endpoint moves from <m>x</m> to <m>x+h</m>, the accumulation changes by the area of a thin strip.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.45\textwidth,
-              xmin=0, xmax=3.6,
-              ymin=0, ymax=3.4,
-              axis lines=left,
-              xlabel={\(t\)},
-              ylabel={\(f(t)\)},
-              xtick={0,2,2.45,3},
-              xticklabels={\(0\),\(x\),\(x+h\),\(3\)},
-              ytick={0,1,2,3},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[domain=0:2, samples=100, fill=gray!15, draw=none]
-              {1+0.25*x+0.15*x^2} \closedcycle;
-          \addplot[domain=2:2.45, samples=100, fill=gray!35, draw=none]
-              {1+0.25*x+0.15*x^2} \closedcycle;
-          \addplot[very thick, domain=0:3.2, samples=150] {1+0.25*x+0.15*x^2};
-          \draw[dashed] (axis cs:2,0) -- (axis cs:2,2.1);
-          \draw[dashed] (axis cs:2.45,0) -- (axis cs:2.45,2.51);
-          \node[anchor=west] at (axis cs:0.55,0.55) {\(A(x)=\int_0^x f(t)\,dt\)};
-          \node[rotate=90, anchor=center] at (axis cs:2.225,1.25) {new thin strip};
-          \node[anchor=west] at (axis cs:2.05,2.8) {\(y=f(t)\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>Now <m>A</m> is a function.  Its input is the endpoint <m>x</m>.  Its output is accumulated
+signed area from <m>0</m> to <m>x</m>.</p>
 
-    <p>If the endpoint moves from <m>x</m> to <m>x+h</m>, the change in accumulated area is</p>
-    <md>A(x+h)-A(x) = \int_x^{x+h} f(t)\,dt.</md>
+  <figure xml:id="fig-accumulation-moving-endpoint-hook">
+    <caption>When the endpoint moves from <m>x</m> to <m>x+h</m>, the accumulation changes by the area of a thin strip.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=3.6,
+    ymin=0, ymax=3.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(f(t)\)},
+    xtick={0,2,2.45,3},
+    xticklabels={\(0\),\(x\),\(x+h\),\(3\)},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:2, samples=100, fill=gray!15, draw=none]
+    {1+0.25*x+0.15*x^2} \closedcycle;
+\addplot[domain=2:2.45, samples=100, fill=gray!35, draw=none]
+    {1+0.25*x+0.15*x^2} \closedcycle;
+\addplot[very thick, domain=0:3.2, samples=150] {1+0.25*x+0.15*x^2};
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,2.1);
+\draw[dashed] (axis cs:2.45,0) -- (axis cs:2.45,2.51);
+\node[anchor=west] at (axis cs:0.55,0.55) {\(A(x)=\int_0^x f(t)\,dt\)};
+\node[rotate=90, anchor=center] at (axis cs:2.225,1.25) {new thin strip};
+\node[anchor=west] at (axis cs:2.05,2.8) {\(y=f(t)\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>For small <m>h</m>, the graph has little time to change. The thin strip is approximately a rectangle with width <m>h</m> and height <m>f(x)</m>:</p>
-    <md>A(x+h)-A(x)\approx f(x)h.</md>
+  <p>If the endpoint moves from <m>x</m> to <m>x+h</m>, the change in accumulated area is</p>
 
-    <p>Divide by <m>h</m>:</p>
-    <md>\frac{A(x+h)-A(x)}{h}\approx f(x).</md>
+  <md>A(x+h)-A(x)
+=
+\int_x^{x+h} f(t)\,dt.</md>
 
-    <p>Now let <m>h\to 0</m>. The approximation should become exact:</p>
-    <md>A'(x)=f(x).</md>
+  <p>For small <m>h</m>, the graph has little time to change.  The thin strip is approximately a
+rectangle with width <m>h</m> and height <m>f(x)</m>:</p>
 
-    <p>This is the next great surprise.</p>
+  <md>A(x+h)-A(x)\approx f(x)h.</md>
 
-    <p>The derivative of accumulated area is the original height.</p>
+  <p>Divide by <m>h</m>:</p>
 
-    <p>The next chapter proves this carefully. It is the first half of the Fundamental Theorem of Calculus, and it completes the loop that began with the dashboard:</p>
-    <md>\text{rate accumulates into amount}, \qquad \text{and accumulated amount differentiates back to rate.}</md>
+  <md>\frac{A(x+h)-A(x)}{h}\approx f(x).</md>
+
+  <p>Now let <m>h\to0</m>.  The approximation should become exact:</p>
+
+  <md>A'(x)=f(x).</md>
+
+  <p>This is the next great surprise.</p>
+
+  <p>The derivative of accumulated area is the original height.</p>
+
+  <p>The next chapter proves this carefully.  It is the first half of the Fundamental Theorem
+of Calculus, and it completes the loop that began with the dashboard:</p>
+
+  <md>\text{rate accumulates into amount},
+\qquad
+\text{and accumulated amount differentiates back to rate.}</md>
+
+  <exercise xml:id="checkpoint-8-8-properties-from-sums">
+        <title>Why do the algebraic properties of the integral come from finite sums?</title>
+        <statement>
+          <p>
+            Linearity, splitting over intervals, order, and symmetry all appeared first as habits of addition. In your own words, why should those rules be usable before we know many antiderivatives, and what does that say about where the integral’s arithmetic comes from?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The integral was born from sums. Its basic properties are inherited from sums, then preserved by taking limits.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

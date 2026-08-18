@@ -4,461 +4,785 @@
   <title>Average value and probability</title>
 
   <p>Hydrostatic force added pressure over area:</p>
+
   <md>dF=(\text{pressure})(\text{small area}).</md>
 
   <p>Work added force over distance:</p>
+
   <md>dW=(\text{force})(\text{small displacement}).</md>
 
   <p>Mass added density over length or area.</p>
 
-  <p>Now we ask a quieter question. Suppose a quantity changes over an interval. What single number best represents it?</p>
+  <p>Now we ask a quieter question.  Suppose a quantity changes over an interval.  What
+single number best represents it?</p>
 
-  <p>If a car's velocity changes during a trip, we can still ask for its average velocity. If a temperature changes during a day, we can still ask for the average temperature. If a probability is spread over many possible outcomes, we can still ask for the expected outcome.</p>
+  <p>If a car’s velocity changes during a trip, we can still ask for its average velocity.  If a
+temperature changes during a day, we can still ask for the average temperature.  If a
+probability is spread over many possible outcomes, we can still ask for the expected
+outcome.</p>
 
   <p>The integral answers all of these by the same idea:</p>
-  <md>\text{average}=\frac{\text{total accumulated amount}}{\text{size of the interval}}.</md>
+
+  <md>
+\text{average}=\frac{\text{total accumulated amount}}{\text{size of the interval}}.
+</md>
 
   <subsection xml:id="subsec-average-value-continuous-function">
     <title>Average value of a continuous function</title>
 
-    <p>Start with a familiar finite average. If five test scores are</p>
-    <md>82,\quad 90,\quad 76,\quad 88,\quad 94,</md>
-    <p>then their average is</p>
-    <md>\frac{82+90+76+88+94}{5}.</md>
+  <p>Start with a familiar finite average.  If five test scores are</p>
 
-    <p>We add the values and divide by the number of values.</p>
+  <md>82,\quad 90,\quad 76,\quad 88,\quad 94,</md>
 
-    <p>For a function, there are infinitely many values on an interval. We cannot add them one by one. But we can imitate the finite average with a Riemann sum.</p>
+  <p>then their average is</p>
 
-    <p>Let <m>f</m> be continuous on <m>[a,b]</m>. Divide the interval into <m>n</m> equal pieces. Then</p>
-    <md>\Delta x=\frac{b-a}{n}.</md>
+  <md>\frac{82+90+76+88+94}{5}.</md>
 
-    <p>Choose sample points</p>
-    <md>x_1^*,x_2^*,\ldots,x_n^*</md>
-    <p>in the subintervals. The ordinary average of the sampled values is</p>
-    <md>\frac{f(x_1^*)+f(x_2^*)+\cdots+f(x_n^*)}{n}.</md>
+  <p>We add the values and divide by the number of values.</p>
 
-    <p>Since</p>
-    <md>\frac1n=\frac{\Delta x}{b-a},</md>
-    <p>this becomes</p>
-    <md>\frac{1}{b-a}\left(f(x_1^*)\Delta x+f(x_2^*)\Delta x+\cdots+f(x_n^*)\Delta x\right).</md>
+  <p>For a function, there are infinitely many values on an interval.  We cannot add them one
+by one.  But we can imitate the finite average with a Riemann sum.</p>
 
-    <p>As <m>n\to\infty</m>, the sum inside the parentheses approaches</p>
-    <md>\int_a^b f(x)\,dx.</md>
+  <p>Let <m>f</m> be continuous on <m>[a,b]</m>.  Divide the interval into <m>n</m> equal pieces.  Then</p>
 
-    <p>So the average value of <m>f</m> on <m>[a,b]</m> is</p>
+  <md>\Delta x=\frac{b-a}{n}.</md>
 
-    <definition xml:id="def-average-value-function">
-      <title>Average value of a continuous function</title>
-      <statement>
-        <md>f_{\text{avg}} = \frac1{b-a}\int_a^b f(x)\,dx.</md>
-      </statement>
-    </definition>
+  <p>Choose sample points</p>
 
-    <p>This formula says:</p>
-    <md>\int_a^b f(x)\,dx = (\text{average height})(\text{width}).</md>
+  <md>x_1^*,x_2^*,\ldots,x_n^*</md>
 
-    <p>So the average value is the height of a rectangle whose area matches the signed area under the graph.</p>
+  <p>in the subintervals.  The ordinary average of the sampled values is</p>
 
-    <example xml:id="ex-average-value-x-squared">
-      <title>Average value of <m>x^2</m></title>
-      <statement>
-        <p>Find the average value of</p>
-        <md>f(x)=x^2</md>
-        <p>on</p>
-        <md>[0,3].</md>
-        <p>By the formula,</p>
-        <md>f_{\text{avg}} = \frac1{3-0}\int_0^3 x^2\,dx.</md>
-        <p>Compute:</p>
-        <md>f_{\text{avg}} = \frac13\left(\frac{x^3}{3}\right)\Big|_0^3 = \frac13\cdot 9 = 3.</md>
-        <p>So the average value of <m>x^2</m> on <m>[0,3]</m> is <m>3</m>.</p>
-        <p>This does not mean that <m>x^2=3</m> at the midpoint <m>x=1.5</m>. In fact,</p>
-        <md>(1.5)^2=2.25.</md>
-        <p>The average value is not usually the value at the midpoint. It is the height that gives the same accumulated area.</p>
+  <md>\frac{f(x_1^*)+f(x_2^*)+\cdots+f(x_n^*)}{n}.</md>
 
-        <figure xml:id="fig-average-value-x-squared">
-          <caption>The average value is the height of a rectangle with the same area as the region under the graph.</caption>
-          <image width="78%">
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=0.78\textwidth,
-                  height=0.48\textwidth,
-                  xmin=0, xmax=3.4,
-                  ymin=0, ymax=10,
-                  axis lines=left,
-                  xlabel={\(x\)},
-                  ylabel={\(y\)},
-                  xtick={0,1,2,3},
-                  ytick={0,3,9},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              % Rectangle of average height
-              \draw[fill=gray!12, draw=gray!60] (axis cs:0,0) rectangle (axis cs:3,3);
+  <p>Since</p>
 
-              % Area under curve
-              \addplot[domain=0:3, samples=120, fill=gray!25, draw=none] {x^2} \closedcycle;
+  <md>\frac1n=\frac{\Delta x}{b-a},</md>
 
-              % Curve and average line
-              \addplot[very thick, domain=0:3.1, samples=120] {x^2};
-              \addplot[thick, dashed, domain=0:3, samples=2] {3};
+  <p>this becomes</p>
 
-              \node[anchor=west] at (axis cs:1.95,3.35) {\(f_{\text{avg}}=3\)};
-              \node[anchor=east] at (axis cs:2.35,6.1) {\(y=x^2\)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </statement>
-    </example>
+  <md>\frac{1}{b-a}
+\left(
+f(x_1^*)\Delta x+f(x_2^*)\Delta x+\cdots+f(x_n^*)\Delta x
+\right).</md>
 
-    <example xml:id="ex-average-velocity">
-      <title>Average velocity</title>
-      <statement>
-        <p>If <m>s(t)</m> is position, then velocity is</p>
-        <md>v(t)=s'(t).</md>
-        <p>The average value of velocity on <m>[a,b]</m> is</p>
-        <md>v_{\text{avg}} = \frac1{b-a}\int_a^b v(t)\,dt.</md>
-        <p>By the Fundamental Theorem,</p>
-        <md>\int_a^b v(t)\,dt=s(b)-s(a).</md>
-        <p>So</p>
-        <md>v_{\text{avg}} = \frac{s(b)-s(a)}{b-a}.</md>
-        <p>This is the average velocity we used at the beginning of the book. The integral formula has brought us back to the same idea:</p>
-        <md>\text{average velocity} = \frac{\text{displacement}}{\text{elapsed time}}.</md>
-      </statement>
-    </example>
+  <p>As <m>n\to\infty</m>, the sum inside the parentheses approaches</p>
 
-    <example xml:id="ex-average-temperature">
-      <title>Average temperature</title>
-      <statement>
-        <p>Suppose the temperature during a <m>12</m>-hour period is modeled by</p>
-        <md>T(t)=60+10\sin\left(\frac{\pi t}{12}\right), \qquad 0\le t\le 12,</md>
-        <p>where <m>t</m> is measured in hours and <m>T(t)</m> in degrees Fahrenheit.</p>
-        <p>The average temperature is</p>
-        <md>T_{\text{avg}} = \frac1{12}\int_0^{12}\left(60+10\sin\left(\frac{\pi t}{12}\right)\right)\,dt.</md>
-        <p>Compute the two parts:</p>
-        <md>\frac1{12}\int_0^{12}60\,dt=60.</md>
-        <p>For the sine part,</p>
-        <md>\int_0^{12}10\sin\left(\frac{\pi t}{12}\right)\,dt = 10\left[-\frac{12}{\pi}\cos\left(\frac{\pi t}{12}\right)\right]_0^{12}.</md>
-        <p>Thus</p>
-        <md>\int_0^{12}10\sin\left(\frac{\pi t}{12}\right)\,dt = -\frac{120}{\pi}\bigl(\cos\pi-\cos 0\bigr).</md>
-        <p>Since</p>
-        <md>\cos\pi=-1, \qquad \cos 0=1,</md>
-        <p>we get</p>
-        <md>-\frac{120}{\pi}(-2)=\frac{240}{\pi}.</md>
-        <p>Therefore</p>
-        <md>T_{\text{avg}} = 60+\frac1{12}\cdot\frac{240}{\pi} = 60+\frac{20}{\pi}.</md>
-        <p>Numerically,</p>
-        <md>T_{\text{avg}}\approx 66.37.</md>
-        <p>The average is above <m>60</m> because this <m>12</m>-hour interval covers the positive half of the sine wave.</p>
-      </statement>
-    </example>
+  <md>\int_a^b f(x)\,dx.</md>
+
+  <p>So the average value of <m>f</m> on <m>[a,b]</m> is</p>
+
+  <md>
+f_{\text{avg}}
+=
+\frac1{b-a}\int_a^b f(x)\,dx.
+</md>
+
+  <p>This formula says:</p>
+
+  <md>
+\int_a^b f(x)\,dx
+=
+(\text{average height})(\text{width}).
+</md>
+
+  <p>So the average value is the height of a rectangle whose area matches the signed area
+under the graph.</p>
+
+
+  <exercise xml:id="checkpoint-10-7-attained">
+        <title>Why does a continuous function reach its average value?</title>
+        <statement>
+          <p>
+            The average value theorem says there is some <m>c</m> in <m>[a,b]</m> with <m>f(c)=f_{\text{avg}}</m>. In your own words, why is continuity needed for that guarantee, and what would go wrong if the graph were allowed to jump over its average height?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A continuous function on a closed interval attains its min and max, so its average is trapped between them. The Intermediate Value Theorem then supplies a height equal to that average.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-7-average-value-and-probability-1">
+    <title>average value of <m>x^2</m></title>
+    <statement>
+  <p>Find the average value of</p>
+
+  <md>f(x)=x^2</md>
+
+  <p>on</p>
+
+  <md>[0,3].</md>
+
+  <p>By the formula,</p>
+
+  <md>f_{\text{avg}}
+=
+\frac1{3-0}\int_0^3 x^2\,dx.</md>
+
+  <p>Compute:</p>
+
+  <md>f_{\text{avg}}
+=
+\frac13\left(\frac{x^3}{3}\right)\Big|_0^3
+=
+\frac13\cdot 9
+=
+3.</md>
+
+  <p>So the average value of <m>x^2</m> on <m>[0,3]</m> is <m>3</m>.</p>
+
+  <p>This does not mean that <m>x^2=3</m> at the midpoint <m>x=1.5</m>.  In fact,</p>
+
+  <md>(1.5)^2=2.25.</md>
+
+  <p>The average value is not usually the value at the midpoint.  It is the height that gives
+the same accumulated area.</p>
+
+  <figure xml:id="fig-average-value-x-squared">
+    <caption>The average value is the height of a rectangle with the same area as the region under the graph.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.4,
+    ymin=0, ymax=10,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2,3},
+    ytick={0,3,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% Rectangle of average height
+\draw[fill=gray!12, draw=gray!60] (axis cs:0,0) rectangle (axis cs:3,3);
+
+% Area under curve
+\addplot[domain=0:3, samples=120, fill=gray!25, draw=none] {x^2} \closedcycle;
+
+% Curve and average line
+\addplot[very thick, domain=0:3.1, samples=120] {x^2};
+\addplot[thick, dashed, domain=0:3, samples=2] {3};
+
+\node[anchor=west] at (axis cs:1.95,3.35) {\(f_{\text{avg}}=3\)};
+\node[anchor=east] at (axis cs:2.35,6.1) {\(y=x^2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-10-7-average-value-and-probability-2">
+    <title>average velocity</title>
+    <statement>
+  <p>If <m>s(t)</m> is position, then velocity is</p>
+
+  <md>v(t)=s'(t).</md>
+
+  <p>The average value of velocity on <m>[a,b]</m> is</p>
+
+  <md>v_{\text{avg}}
+=
+\frac1{b-a}\int_a^b v(t)\,dt.</md>
+
+  <p>By the Fundamental Theorem,</p>
+
+  <md>\int_a^b v(t)\,dt=s(b)-s(a).</md>
+
+  <p>So</p>
+
+  <md>v_{\text{avg}}
+=
+\frac{s(b)-s(a)}{b-a}.</md>
+
+  <p>This is the average velocity we used at the beginning of the book.  The integral formula
+has brought us back to the same idea:</p>
+
+  <md>
+\text{average velocity}
+=
+\frac{\text{displacement}}{\text{elapsed time}}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-10-7-average-value-and-probability-3">
+    <title>average temperature</title>
+    <statement>
+  <p>Suppose the temperature during a <m>12</m>-hour period is modeled by</p>
+
+  <md>T(t)=60+10\sin\left(\frac{\pi t}{12}\right),
+\qquad 0\le t\le12,</md>
+
+  <p>where <m>t</m> is measured in hours and <m>T(t)</m> in degrees Fahrenheit.</p>
+
+  <p>The average temperature is</p>
+
+  <md>T_{\text{avg}}
+=
+\frac1{12}\int_0^{12}
+\left(60+10\sin\left(\frac{\pi t}{12}\right)\right)\,dt.</md>
+
+  <p>Compute the two parts:</p>
+
+  <md>\frac1{12}\int_0^{12}60\,dt=60.</md>
+
+  <p>For the sine part,</p>
+
+  <md>\int_0^{12}10\sin\left(\frac{\pi t}{12}\right)\,dt
+=
+10\left[
+-\frac{12}{\pi}\cos\left(\frac{\pi t}{12}\right)
+\right]_0^{12}.</md>
+
+  <p>Thus</p>
+
+  <md>\int_0^{12}10\sin\left(\frac{\pi t}{12}\right)\,dt
+=
+-\frac{120}{\pi}\bigl(\cos\pi-\cos0\bigr).</md>
+
+  <p>Since</p>
+
+  <md>\cos\pi=-1,
+\qquad
+\cos0=1,</md>
+
+  <p>we get</p>
+
+  <md>-\frac{120}{\pi}(-2)=\frac{240}{\pi}.</md>
+
+  <p>Therefore</p>
+
+  <md>T_{\text{avg}}
+=
+60+\frac1{12}\cdot\frac{240}{\pi}
+=
+
+60+\frac{20}{\pi}
+.</md>
+
+  <p>Numerically,</p>
+
+  <md>T_{\text{avg}}\approx 66.37.</md>
+
+  <p>The average is above <m>60</m> because this <m>12</m>-hour interval covers the positive half of
+the sine wave.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-average-value-theorem-integrals">
     <title>The average value theorem for integrals</title>
 
-    <p>For <m>f(x)=x^2</m> on <m>[0,3]</m>, the average value was <m>3</m>. Since</p>
-    <md>x^2=3</md>
-    <p>when</p>
-    <md>x=\sqrt{3},</md>
-    <p>the graph actually reaches its average height.</p>
+  <p>For <m>f(x)=x^2</m> on <m>[0,3]</m>, the average value was <m>3</m>.  Since</p>
 
-    <p>That is guaranteed for continuous functions.</p>
+  <md>x^2=3</md>
 
-    <theorem xml:id="thm-mean-value-theorem-for-integrals">
-      <title>Average value theorem for integrals</title>
-      <statement>
-        <p>If <m>f</m> is continuous on <m>[a,b]</m>, then there is at least one number <m>c\in[a,b]</m> such that</p>
-        <md>f(c)=\frac1{b-a}\int_a^b f(x)\,dx.</md>
-      </statement>
-    </theorem>
+  <p>when</p>
 
-    <p>In words:</p>
-    <note xml:id="note-continuous-function-reaches-average">
-      <p>A continuous function reaches its average value somewhere.</p>
-    </note>
+  <md>x=\sqrt3,</md>
 
-    <proof>
-      <title>Idea of the proof</title>
-      <p>Because <m>f</m> is continuous on <m>[a,b]</m>, the Extreme Value Theorem says that <m>f</m> has an absolute minimum <m>m</m> and an absolute maximum <m>M</m> on the interval.</p>
-      <p>So</p>
-      <md>m\le f(x)\le M</md>
-      <p>for every <m>x\in[a,b]</m>. Integrating gives</p>
-      <md>m(b-a)\le \int_a^b f(x)\,dx\le M(b-a).</md>
-      <p>Divide by <m>b-a\gt 0</m>:</p>
-      <md>m\le \frac1{b-a}\int_a^b f(x)\,dx \le M.</md>
-      <p>Thus the average value lies between the minimum and the maximum. Since <m>f</m> is continuous, the Intermediate Value Theorem says that <m>f</m> takes every value between <m>m</m> and <m>M</m>. Therefore <m>f</m> takes its average value at some point <m>c</m>.</p>
-    </proof>
+  <p>the graph actually reaches its average height.</p>
 
-    <paragraphs>
-      <title>Why continuity matters</title>
-      <p>The average value can exist even when the function is not continuous. But without continuity, the function may not actually equal its average anywhere.</p>
-      <p>Define</p>
-      <md>
-        f(x)=
-        \begin{cases}
-        0, &amp; 0\le x\lt \frac12,\\
-        1, &amp; \frac12\le x\le 1.
-        \end{cases}
-      </md>
-      <p>Then</p>
-      <md>\int_0^1 f(x)\,dx=\frac12.</md>
-      <p>So the average value is</p>
-      <md>f_{\text{avg}} = \frac1{1-0}\int_0^1 f(x)\,dx = \frac12.</md>
-      <p>But <m>f(x)</m> is only <m>0</m> or <m>1</m>. It is never equal to <m>\frac12</m>.</p>
-    </paragraphs>
+  <p>That is guaranteed for continuous functions.</p>
 
-    <note xml:id="note-moral-average-value">
-      <title>Moral</title>
+  <theorem xml:id="thm-sec-10-7-average-value-and-probability-84">
+    <title>Average value theorem for integrals</title>
+    <statement>
+      <p>If <m>f</m> is continuous on <m>[a,b]</m>, then there is at least one number <m>c\in[a,b]</m> such
+that</p>
+        <md>
+f(c)=\frac1{b-a}\int_a^b f(x)\,dx.
+</md>
+    </statement>
+  </theorem>
+
+  <p>In words:</p>
+
+  <md>
+\text{A continuous function reaches its average value somewhere.}
+</md>
+
+  <paragraphs>
+    <title>Idea of the proof</title>
+
+  <p>Because <m>f</m> is continuous on <m>[a,b]</m>, the Extreme Value Theorem says that <m>f</m>
+has an absolute minimum <m>m</m> and an absolute maximum <m>M</m> on the interval.</p>
+
+  <p>So</p>
+
+  <md>m\le f(x)\le M</md>
+
+  <p>for every <m>x\in[a,b]</m>.  Integrating gives</p>
+
+  <md>m(b-a)\le \int_a^b f(x)\,dx\le M(b-a).</md>
+
+  <p>Divide by <m>b-a&gt;0</m>:</p>
+
+  <md>m\le
+\frac1{b-a}\int_a^b f(x)\,dx
+\le M.</md>
+
+  <p>Thus the average value lies between the minimum and the maximum.  Since <m>f</m> is
+continuous, the Intermediate Value Theorem says that <m>f</m> takes every value between
+<m>m</m> and <m>M</m>.  Therefore <m>f</m> takes its average value at some point <m>c</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why continuity matters</title>
+
+  <p>The average value can exist even when the function is not continuous.  But without
+continuity, the function may not actually equal its average anywhere.</p>
+
+  <p>Define</p>
+
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+0, \amp 0\le x&lt;\frac12,</mrow>
+    <mrow>1, \amp \frac12\le x\le1.
+\end{cases}</mrow>
+  </md>
+
+  <p>Then</p>
+
+  <md>\int_0^1 f(x)\,dx=\frac12.</md>
+
+  <p>So the average value is</p>
+
+  <md>f_{\text{avg}}
+=
+\frac1{1-0}\int_0^1 f(x)\,dx
+=
+\frac12.</md>
+
+  <p>But <m>f(x)</m> is only <m>0</m> or <m>1</m>.  It is never equal to <m>\frac12</m>.</p>
+
+  <note xml:id="note-sec-10-7-average-value-and-probability-85">
+    <title>Moral</title>
       <p>The formula</p>
-      <md>f_{\text{avg}}=\frac1{b-a}\int_a^b f(x)\,dx</md>
-      <p>can make sense for many integrable functions. But the guarantee that the function actually reaches its average value uses continuity.</p>
-    </note>
+        <md>f_{\text{avg}}=\frac1{b-a}\int_a^b f(x)\,dx</md>
+      <p>can make sense for many integrable functions.  But the guarantee that the function
+actually reaches its average value uses continuity.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-10-7-average-value">
+        <title>Why is the average value of a function an integral divided by a length?</title>
+        <statement>
+          <p>
+            A finite average adds values and divides by how many there are. In your own words, why does a continuous function on <m>[a,b]</m> need <m>\frac{1}{b-a}\int_a^b f(x)\,dx</m> instead, and what is being added in the numerator?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            There are infinitely many values, so we imitate the finite average with a Riemann sum. The integral accumulates the values; dividing by the length of the interval turns that total into an average height.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-probability-density">
     <title>Probability density</title>
 
-    <p>Area can also measure probability.</p>
+  <p>Area can also measure probability.</p>
 
-    <p>Imagine a spinner that can land anywhere between <m>0</m> and <m>1</m>. If all positions are equally likely, then the probability of landing between <m>0.2</m> and <m>0.5</m> should be the length of that interval:</p>
-    <md>0.5-0.2=0.3.</md>
+  <p>Imagine a spinner that can land anywhere between <m>0</m> and <m>1</m>.  If all positions are
+equally likely, then the probability of landing between <m>0.2</m> and <m>0.5</m> should be the
+length of that interval:</p>
 
-    <p>Here probability is spread uniformly over <m>[0,1]</m>. The density is</p>
-    <md>p(x)=1.</md>
+  <md>0.5-0.2=0.3.</md>
 
-    <p>Then</p>
-    <md>P(0.2\le X\le 0.5) = \int_{0.2}^{0.5}1\,dx = 0.3.</md>
+  <p>Here probability is spread uniformly over <m>[0,1]</m>.  The density is</p>
 
-    <p>The integral has become probability.</p>
+  <md>p(x)=1.</md>
 
-    <definition xml:id="def-probability-density">
-      <title>Probability density on an interval</title>
-      <statement>
-        <p>A function <m>p(x)</m> is a probability density on <m>[a,b]</m> if</p>
-        <md>p(x)\ge 0</md>
-        <p>and</p>
-        <md>\int_a^b p(x)\,dx=1.</md>
-        <p>Then the probability that the outcome <m>X</m> lies between <m>c</m> and <m>d</m>, where <m>a\le c\le d\le b</m>, is</p>
-        <md>P(c\le X\le d)=\int_c^d p(x)\,dx.</md>
-      </statement>
-    </definition>
+  <p>Then</p>
 
-    <p>The total area under a probability density is <m>1</m>, because total probability is <m>1</m>.</p>
+  <md>P(0.2\le X\le0.5)
+=
+\int_{0.2}^{0.5}1\,dx
+=
+0.3.</md>
 
-    <example xml:id="ex-triangular-density">
-      <title>A triangular density</title>
-      <statement>
-        <p>Let</p>
-        <md>p(x)=2x, \qquad 0\le x\le 1.</md>
-        <p>First check that this is a density:</p>
-        <md>\int_0^1 2x\,dx = x^2\Big|_0^1 = 1.</md>
-        <p>Also,</p>
-        <md>p(x)\ge 0</md>
-        <p>on <m>[0,1]</m>. So <m>p</m> is a probability density.</p>
-        <p>Now find</p>
-        <md>P\left(0\le X\le\frac12\right).</md>
-        <p>We compute</p>
-        <md>P\left(0\le X\le\frac12\right) = \int_0^{1/2}2x\,dx = x^2\Big|_0^{1/2} = \frac14.</md>
-        <p>So the probability that <m>X</m> lies in the left half of the interval is only</p>
-        <md>\frac14.</md>
-        <p>The right half has probability</p>
-        <md>1-\frac14=\frac34.</md>
-        <p>That makes sense because the density <m>p(x)=2x</m> is larger near <m>1</m> than near <m>0</m>.</p>
+  <p>The integral has become probability.</p>
 
-        <figure xml:id="fig-triangular-density">
-          <caption>For the density <m>p(x)=2x</m>, probability is area under the density curve.</caption>
-          <image width="76%">
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=0.76\textwidth,
-                  height=0.48\textwidth,
-                  xmin=0, xmax=1.15,
-                  ymin=0, ymax=2.25,
-                  axis lines=left,
-                  xlabel={\(x\)},
-                  ylabel={\(p(x)\)},
-                  xtick={0,0.5,1},
-                  xticklabels={\(0\),\(\frac12\),\(1\)},
-                  ytick={0,1,2},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \addplot[domain=0:0.5, samples=2, fill=gray!25, draw=none] {2*x} \closedcycle;
-              \addplot[very thick, domain=0:1, samples=2] {2*x};
-              \draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,1);
-              \node[anchor=east] at (axis cs:0.52,1.15) {\(p(x)=2x\)};
-              \node at (axis cs:0.28,0.25) {\(\frac14\)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </statement>
-    </example>
+  <note xml:id="note-sec-10-7-average-value-and-probability-86">
+    <title>Probability density on an interval</title>
+      <p>A function <m>p(x)</m> is a probability density on <m>[a,b]</m> if</p>
+        <md>p(x)\ge0</md>
+      <p>and</p>
+        <md>
+\int_a^b p(x)\,dx=1.
+</md>
+      <p>Then the probability that the outcome <m>X</m> lies between <m>c</m> and <m>d</m>, where
+<m>a\le c\le d\le b</m>, is</p>
+        <md>
+P(c\le X\le d)=\int_c^d p(x)\,dx.
+</md>
+  </note>
 
-    <paragraphs>
-      <title>Density is not probability</title>
-      <p>A probability is between <m>0</m> and <m>1</m>. A density does not have to be.</p>
-      <p>For example, define</p>
-      <md>p(x)=4, \qquad 0\le x\le\frac14.</md>
-      <p>Then</p>
-      <md>\int_0^{1/4}4\,dx=1,</md>
-      <p>so this is a probability density on <m>[0,\frac14]</m>. The density value <m>4</m> is bigger than <m>1</m>, and that is not a problem.</p>
-      <p>The probability of an interval is area:</p>
-      <md>P\left(0\le X\le \frac{1}{10}\right) = \int_0^{1/10}4\,dx = \frac{4}{10} = 0.4.</md>
-    </paragraphs>
+  <p>The total area under a probability density is <m>1</m>, because total probability is <m>1</m>.</p>
 
-    <warning xml:id="warning-density-not-probability">
-      <p>A density value is not a probability. A density measures probability per unit length. Only an integral of density over an interval gives probability.</p>
-    </warning>
+  <example xml:id="ex-sec-10-7-average-value-and-probability-6">
+    <title>a triangular density</title>
+    <statement>
+  <p>Let</p>
+
+  <md>p(x)=2x,
+\qquad 0\le x\le1.</md>
+
+  <p>First check that this is a density:</p>
+
+  <md>\int_0^1 2x\,dx
+=
+x^2\Big|_0^1
+=
+1.</md>
+
+  <p>Also,</p>
+
+  <md>p(x)\ge0</md>
+
+  <p>on <m>[0,1]</m>.  So <m>p</m> is a probability density.</p>
+
+  <p>Now find</p>
+
+  <md>P\left(0\le X\le\frac12\right).</md>
+
+  <p>We compute</p>
+
+  <md>P\left(0\le X\le\frac12\right)
+=
+\int_0^{1/2}2x\,dx
+=
+x^2\Big|_0^{1/2}
+=
+\frac14.</md>
+
+  <p>So the probability that <m>X</m> lies in the left half of the interval is only</p>
+
+  <md>\frac14.</md>
+
+  <p>The right half has probability</p>
+
+  <md>1-\frac14=\frac34.</md>
+
+  <p>That makes sense because the density <m>p(x)=2x</m> is larger near <m>1</m> than near <m>0</m>.</p>
+
+  <figure xml:id="fig-triangular-density">
+    <caption>For the density <m>p(x)=2x</m>, probability is area under the density curve.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1.15,
+    ymin=0, ymax=2.25,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(p(x)\)},
+    xtick={0,0.5,1},
+    xticklabels={\(0\),\(\frac12\),\(1\)},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:0.5, samples=2, fill=gray!25, draw=none] {2*x} \closedcycle;
+\addplot[very thick, domain=0:1, samples=2] {2*x};
+\draw[dashed] (axis cs:0.5,0) -- (axis cs:0.5,1);
+\node[anchor=west] at (axis cs:0.55,1.1) {\(p(x)=2x\)};
+\node at (axis cs:0.28,0.25) {\(\frac14\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Density is not probability</title>
+
+  <p>A probability is between <m>0</m> and <m>1</m>.  A density does not have to be.</p>
+
+  <p>For example, define</p>
+
+  <md>p(x)=4,
+\qquad 0\le x\le\frac14.</md>
+
+  <p>Then</p>
+
+  <md>\int_0^{1/4}4\,dx=1,</md>
+
+  <p>so this is a probability density on <m>[0,\frac14]</m>.  The density value <m>4</m> is bigger
+than <m>1</m>, and that is not a problem.</p>
+
+  <p>The probability of an interval is area:</p>
+
+  <md>P\left(0\le X\le \frac{1}{10}\right)
+=
+\int_0^{1/10}4\,dx
+=
+\frac{4}{10}
+=
+0.4.</md>
+
+  <warning xml:id="warn-sec-10-7-average-value-and-probability-87">
+    <title>Warning</title>
+      <p>A density value is not a probability.  A density measures probability per unit length.
+Only an integral of density over an interval gives probability.</p>
+  </warning>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-10-7-density-not-probability">
+        <title>Why is a density value not a probability?</title>
+        <statement>
+          <p>
+            A probability density can be larger than <m>1</m>, even though a probability cannot. In your own words, why does <m>p(x)</m> measure probability per unit length, and why is only an integral of density over an interval a probability?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Units matter: density times length gives probability. A tall spike on a short interval can still enclose area less than <m>1</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-expected-value">
     <title>Expected value</title>
 
-    <p>Average value and probability meet in the idea of expected value.</p>
+  <p>Average value and probability meet in the idea of expected value.</p>
 
-    <p>For a finite list of outcomes, a weighted average has the form</p>
-    <md>(\text{outcome})(\text{weight}) + (\text{outcome})(\text{weight}) + \cdots.</md>
+  <p>For a finite list of outcomes, a weighted average has the form</p>
 
-    <p>For a continuous density, the small probability near <m>x</m> is approximately</p>
-    <md>p(x)\,dx.</md>
+  <md>(\text{outcome})(\text{weight})
++
+(\text{outcome})(\text{weight})
++
+\cdots.</md>
 
-    <p>So the small contribution to the average outcome is</p>
-    <md>x\,p(x)\,dx.</md>
+  <p>For a continuous density, the small probability near <m>x</m> is approximately</p>
 
-    <p>Adding gives the expected value.</p>
+  <md>p(x)\,dx.</md>
 
-    <definition xml:id="def-expected-value">
-      <title>Expected value</title>
-      <statement>
-        <p>If <m>X</m> has probability density <m>p(x)</m> on <m>[a,b]</m>, then its expected value is</p>
-        <md>E[X]=\int_a^b x\,p(x)\,dx.</md>
-      </statement>
-    </definition>
+  <p>So the small contribution to the average outcome is</p>
 
-    <p>The expected value is the balance point of the probability distribution. It is the probability version of center of mass.</p>
+  <md>x\,p(x)\,dx.</md>
 
-    <example xml:id="ex-expected-value-uniform">
-      <title>Expected value of a uniform density</title>
-      <statement>
-        <p>Let</p>
-        <md>p(x)=\frac1{b-a}, \qquad a\le x\le b.</md>
-        <p>This is uniform density on <m>[a,b]</m>. Then</p>
-        <md>E[X]=\int_a^b x\frac1{b-a}\,dx.</md>
-        <p>Compute:</p>
-        <md>E[X] = \frac1{b-a}\left(\frac{x^2}{2}\right)\Big|_a^b = \frac{b^2-a^2}{2(b-a)}.</md>
-        <p>Factor:</p>
-        <md>b^2-a^2=(b-a)(b+a).</md>
-        <p>So</p>
-        <md>E[X]=\frac{a+b}{2}.</md>
-        <p>A uniform distribution balances at the midpoint.</p>
-      </statement>
-    </example>
+  <p>Adding gives the expected value.</p>
 
-    <example xml:id="ex-expected-value-triangular">
-      <title>Expected value for the triangular density</title>
-      <statement>
-        <p>For</p>
-        <md>p(x)=2x, \qquad 0\le x\le 1,</md>
-        <p>the expected value is</p>
-        <md>E[X]=\int_0^1 x(2x)\,dx.</md>
-        <p>Thus</p>
-        <md>E[X]=\int_0^1 2x^2\,dx = \frac{2x^3}{3}\Big|_0^1 = \frac23.</md>
-        <p>The expected value is to the right of the midpoint <m>\frac12</m>, because the density is heavier near <m>1</m>.</p>
-      </statement>
-    </example>
+  <note xml:id="note-sec-10-7-average-value-and-probability-88">
+    <title>Expected value</title>
+      <p>If <m>X</m> has probability density <m>p(x)</m> on <m>[a,b]</m>, then its expected value is</p>
+        <md>
+E[X]=\int_a^b x\,p(x)\,dx.
+</md>
+  </note>
 
-    <note xml:id="note-center-of-mass-probability-analogy">
-      <title>Center of mass analogy</title>
+  <p>The expected value is the balance point of the probability distribution.  It is the
+probability version of center of mass.</p>
+
+
+  <exercise xml:id="checkpoint-10-7-expected-value">
+        <title>Why is expected value the probability version of center of mass?</title>
+        <statement>
+          <p>
+            The expected value is <m>E[X]=\int_a^b x\,p(x)\,dx</m>. In your own words, why is <m>x\,p(x)\,dx</m> a small contribution to an average outcome, and why is this the same averaging idea as weighting position by mass?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The small probability near <m>x</m> is about <m>p(x)\,dx</m>. Multiplying by the outcome <m>x</m> and adding produces a balance point of the distribution.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-7-average-value-and-probability-8">
+    <title>expected value of a uniform density</title>
+    <statement>
+  <p>Let</p>
+
+  <md>p(x)=\frac1{b-a},
+\qquad a\le x\le b.</md>
+
+  <p>This is uniform density on <m>[a,b]</m>.  Then</p>
+
+  <md>E[X]=\int_a^b x\frac1{b-a}\,dx.</md>
+
+  <p>Compute:</p>
+
+  <md>E[X]
+=
+\frac1{b-a}\left(\frac{x^2}{2}\right)\Big|_a^b
+=
+\frac{b^2-a^2}{2(b-a)}.</md>
+
+  <p>Factor:</p>
+
+  <md>b^2-a^2=(b-a)(b+a).</md>
+
+  <p>So</p>
+
+  <md>E[X]
+=
+
+\frac{a+b}{2}
+.</md>
+
+  <p>A uniform distribution balances at the midpoint.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-10-7-average-value-and-probability-9">
+    <title>expected value for the triangular density</title>
+    <statement>
+  <p>For</p>
+
+  <md>p(x)=2x,
+\qquad 0\le x\le1,</md>
+
+  <p>the expected value is</p>
+
+  <md>E[X]=\int_0^1 x(2x)\,dx.</md>
+
+  <p>Thus</p>
+
+  <md>E[X]=\int_0^1 2x^2\,dx
+=
+\frac{2x^3}{3}\Big|_0^1
+=
+\frac23.</md>
+
+  <p>The expected value is to the right of the midpoint <m>\frac12</m>, because the density is
+heavier near <m>1</m>.</p>
+
+  <note xml:id="note-sec-10-7-average-value-and-probability-89">
+    <title>Center of mass analogy</title>
       <p>For a rod with density <m>\lambda(x)</m>,</p>
-      <md>\bar x=\frac{\int x\lambda(x)\,dx}{\int \lambda(x)\,dx}.</md>
+        <md>\bar x=\frac{\int x\lambda(x)\,dx}{\int \lambda(x)\,dx}.</md>
       <p>For a probability density <m>p(x)</m>,</p>
-      <md>E[X]=\int x p(x)\,dx,</md>
+        <md>E[X]=\int x p(x)\,dx,</md>
       <p>because</p>
-      <md>\int p(x)\,dx=1.</md>
+        <md>\int p(x)\,dx=1.</md>
       <p>Probability density is mass density with total mass normalized to <m>1</m>.</p>
-    </note>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-normal-distribution-preview">
     <title>Normal distribution as a preview of non-elementary integrals</title>
 
-    <p>Many real measurements cluster around a typical value: measurement errors, biological variation, repeated experimental noise. A common model is the normal distribution.</p>
+  <p>Many real measurements cluster around a typical value: measurement errors, biological
+variation, repeated experimental noise.  A common model is the normal distribution.</p>
 
-    <p>The normal density with mean <m>\mu</m> and standard deviation <m>\sigma</m> is</p>
-    <md>p(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}}.</md>
+  <p>The normal density with mean <m>\mu</m> and standard deviation <m>\sigma</m> is</p>
 
-    <p>The parameter <m>\mu</m> gives the center. The parameter <m>\sigma</m> controls the spread.</p>
+  <md>p(x)
+=
+\frac{1}{\sigma\sqrt{2\pi}}
+e^{-\frac{(x-\mu)^2}{2\sigma^2}}.</md>
 
-    <p>The standard normal density has</p>
-    <md>\mu=0, \qquad \sigma=1.</md>
+  <p>The parameter <m>\mu</m> gives the center.  The parameter <m>\sigma</m> controls the spread.</p>
 
-    <p>It is</p>
-    <md>\phi(x)=\frac1{\sqrt{2\pi}}e^{-x^2/2}.</md>
+  <p>The standard normal density has</p>
 
-    <figure xml:id="fig-standard-normal-density">
-      <caption>For a normal density, probabilities are areas under the bell-shaped curve.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=-4, xmax=4,
-              ymin=0, ymax=0.45,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(\phi(x)\)},
-              xtick={-3,-2,-1,0,1,2,3},
-              ytick={0,0.2,0.4},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[domain=-1:1, samples=120, fill=gray!25, draw=none]
-              {exp(-x^2/2)/sqrt(2*pi)} \closedcycle;
-          \addplot[very thick, domain=-4:4, samples=250]
-              {exp(-x^2/2)/sqrt(2*pi)};
-          \draw[dashed] (axis cs:-1,0) -- (axis cs:-1,0.242);
-          \draw[dashed] (axis cs:1,0) -- (axis cs:1,0.242);
-          \node[anchor=west] at (axis cs:1.15,0.30) {\(\phi(x)=\dfrac1{\sqrt{2\pi}}e^{-x^2/2}\)};
-          \node at (axis cs:0,0.08) {area \(=P(-1\le X\le1)\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>\mu=0,
+\qquad
+\sigma=1.</md>
 
-    <p>If <m>X</m> has standard normal density, then</p>
-    <md>P(-1\le X\le 1) = \int_{-1}^{1}\frac1{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
+  <p>It is</p>
 
-    <p>This integral has a perfectly clear meaning: it is an area, and therefore a probability.</p>
+  <md>\phi(x)=\frac1{\sqrt{2\pi}}e^{-x^2/2}.</md>
 
-    <p>But there is a surprise. The function</p>
-    <md>e^{-x^2/2}</md>
-    <p>does not have an elementary antiderivative. That means no combination of the usual functions from algebra, trigonometry, exponentials, and logarithms gives an exact antiderivative.</p>
+  <figure xml:id="fig-standard-normal-density">
+    <caption>For a normal density, probabilities are areas under the bell-shaped curve.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-4, xmax=4,
+    ymin=0, ymax=0.45,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(\phi(x)\)},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={0,0.2,0.4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=-1:1, samples=120, fill=gray!25, draw=none]
+    {exp(-x^2/2)/sqrt(2*pi)} \closedcycle;
+\addplot[very thick, domain=-4:4, samples=250]
+    {exp(-x^2/2)/sqrt(2*pi)};
+\draw[dashed] (axis cs:-1,0) -- (axis cs:-1,0.242);
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,0.242);
+\node[anchor=west] at (axis cs:1.15,0.30) {\(\phi(x)=\dfrac1{\sqrt{2\pi}}e^{-x^2/2}\)};
+\node at (axis cs:0,0.08) {area \(=P(-1\le X\le1)\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>So probability leads naturally to integrals that are meaningful but not elementary.</p>
+  <p>If <m>X</m> has standard normal density, then</p>
 
-    <p>For the standard normal distribution, we define the accumulation function</p>
-    <md>\Phi(z)=\int_{-\infty}^{z}\frac1{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
+  <md>P(-1\le X\le1)
+=
+\int_{-1}^{1}
+\frac1{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
 
-    <p>The infinite endpoint will be made precise later when we study improper integrals. For now, the meaning is this: <m>\Phi(z)</m> is the probability that a standard normal variable is at most <m>z</m>.</p>
-    <md>\Phi(z)=P(X\le z).</md>
+  <p>This integral has a perfectly clear meaning: it is an area, and therefore a probability.</p>
 
-    <p>The values of <m>\Phi</m> are found by numerical integration, tables, or technology.</p>
+  <p>But there is a surprise.  The function</p>
 
-    <note xml:id="note-what-probability-teaches">
-      <title>What probability teaches us</title>
-      <p>A definite integral may have an exact meaning even when no elementary antiderivative exists. The integral can define a new function.</p>
-    </note>
+  <md>e^{-x^2/2}</md>
 
-    <p>Average value and probability both use integrals to summarize spread-out information. The next section changes the geometry again. Instead of adding vertical strips, slices, or forces, we add tiny pieces of a curve itself.</p>
+  <p>does not have an elementary antiderivative.  That means no combination of the usual
+functions from algebra, trigonometry, exponentials, and logarithms gives an exact
+antiderivative.</p>
+
+  <p>So probability leads naturally to integrals that are meaningful but not elementary.</p>
+
+  <p>For the standard normal distribution, we define the accumulation function</p>
+
+  <md>\Phi(z)=\int_{-\infty}^{z}
+\frac1{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
+
+  <p>The infinite endpoint will be made precise later when we study improper integrals.
+For now, the meaning is this: <m>\Phi(z)</m> is the probability that a standard normal
+variable is at most <m>z</m>.</p>
+
+  <md>
+\Phi(z)=P(X\le z).
+</md>
+
+  <p>The values of <m>\Phi</m> are found by numerical integration, tables, or technology.</p>
+
+  <note xml:id="note-sec-10-7-average-value-and-probability-90">
+    <title>What probability teaches us</title>
+      <p>A definite integral may have an exact meaning even when no elementary antiderivative
+exists.  The integral can define a new function.</p>
+  </note>
+
+  <p>Average value and probability both use integrals to summarize spread-out information.
+The next section changes the geometry again.  Instead of adding vertical strips, slices,
+or forces, we add tiny pieces of a curve itself.</p>
   </subsection>
+
+
 
 </section>

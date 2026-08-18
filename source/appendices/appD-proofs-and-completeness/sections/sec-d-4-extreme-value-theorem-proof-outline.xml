@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-d-4-extreme-value-theorem-proof-outline">
+  <title>The Extreme Value Theorem: Proof Outline</title>
+
+  <p>The Extreme Value Theorem says that a continuous function on a closed and bounded
+interval reaches its highest and lowest values.</p>
+
+  <p>The theorem sounds visually obvious.  But each word is doing work.</p>
+
+  <md>
+\text{continuous on a closed bounded interval}
+\quad\Longrightarrow\quad
+\text{absolute max and min are attained.}
+</md>
+
+  <p>This section explains why completeness is hiding behind that statement.</p>
+
+  <subsection xml:id="appsubsec-evt-statement">
+    <title>Statement of the theorem</title>
+
+  <theorem xml:id="thm-sec-d-4-extreme-value-theorem-proof-outline-25">
+    <title>Extreme Value Theorem</title>
+    <statement>
+      <p>If <m>f</m> is continuous on the closed interval <m>[a,b]</m>, then <m>f</m> has an absolute maximum
+and an absolute minimum on <m>[a,b]</m>.</p>
+      <p>That is, there are points <m>c,d\in[a,b]</m> such that</p>
+        <md>f(c)\le f(x)\le f(d)</md>
+      <p>for every <m>x\in[a,b]</m>.</p>
+    </statement>
+  </theorem>
+
+  <p>The theorem has two parts:</p>
+
+  <md>\text{the values are bounded}</md>
+
+  <p>and</p>
+
+  <md>\text{the top and bottom values are actually reached.}</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-evt-bounded-proof">
+    <title>Why the function is bounded</title>
+
+  <p>First we explain why a continuous function on <m>[a,b]</m> cannot blow up.</p>
+
+  <p>Suppose, for contradiction, that <m>f</m> is not bounded above on <m>[a,b]</m>.</p>
+
+  <p>Bisect the interval <m>[a,b]</m>.  If <m>f</m> were bounded above on both halves, then it would
+be bounded above on the whole interval.  So at least one half must still have no upper
+bound.</p>
+
+  <p>Choose such a half.  Bisect it again.  Again choose a half where <m>f</m> is not bounded
+above.</p>
+
+  <p>This produces nested intervals</p>
+
+  <md>I_1\supset I_2\supset I_3\supset\cdots</md>
+
+  <p>whose lengths shrink to <m>0</m>.  By the Nested Interval Principle, they trap a point
+<m>c\in[a,b]</m>.</p>
+
+  <p>Because <m>f</m> is continuous at <m>c</m>, there is a small interval around <m>c</m> on which the
+values of <m>f</m> stay close to <m>f(c)</m>.  For example, there is a <m>\delta&gt;0</m> such that</p>
+
+  <md>|x-c|&lt;\delta
+\quad\Longrightarrow\quad
+|f(x)-f(c)|&lt;1.</md>
+
+  <p>So on that small interval,</p>
+
+  <md>f(c)-1&lt;f(x)&lt;f(c)+1.</md>
+
+  <p>Thus <m>f</m> is bounded there.</p>
+
+  <p>But the nested intervals eventually become so short that one of them lies entirely inside</p>
+
+  <md>(c-\delta,c+\delta).</md>
+
+  <p>That chosen interval was supposed to be one where <m>f</m> is not bounded above.  This is
+a contradiction.</p>
+
+  <p>Therefore <m>f</m> must be bounded above.</p>
+
+  <p>The same argument applied to <m>-f</m> shows that <m>f</m> is bounded below.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-evt-maximum-proof">
+    <title>Why the maximum is reached</title>
+
+  <p>Since <m>f</m> is bounded above on <m>[a,b]</m>, the set of values</p>
+
+  <md>V=\{f(x):x\in[a,b]\}</md>
+
+  <p>is nonempty and bounded above.  By the Least Upper Bound Property, it has a
+supremum.  Call it <m>M</m>:</p>
+
+  <md>M=\sup V.</md>
+
+  <p>So <m>M</m> is the least upper bound of all function values.</p>
+
+  <p>We must show that some point <m>c\in[a,b]</m> actually satisfies</p>
+
+  <md>f(c)=M.</md>
+
+  <p>If the graph only approached <m>M</m> but never reached it, then <m>M</m> would be a
+supremum but not a maximum.  The closed interval and continuity prevent that.</p>
+
+  <p>Here is the bisection idea.</p>
+
+  <p>Start with</p>
+
+  <md>I_1=[a,b].</md>
+
+  <p>The supremum of <m>f</m> on <m>I_1</m> is <m>M</m>.  Bisect <m>I_1</m>.  At least one half must still
+have supremum <m>M</m>.  If both halves had supremum less than <m>M</m>, then their union
+would also have supremum less than <m>M</m>, which is impossible.</p>
+
+  <p>Choose a half whose supremum is still <m>M</m>.  Call it <m>I_2</m>.  Repeat.</p>
+
+  <p>This creates nested intervals</p>
+
+  <md>I_1\supset I_2\supset I_3\supset\cdots</md>
+
+  <p>with lengths tending to <m>0</m>, and with the property that the supremum of <m>f</m> on each
+<m>I_n</m> is <m>M</m>.</p>
+
+  <p>By the Nested Interval Principle, these intervals trap a point <m>c</m>.</p>
+
+  <p>Now suppose</p>
+
+  <md>f(c)&lt;M.</md>
+
+  <p>Choose</p>
+
+  <md>\varepsilon=\frac{M-f(c)}{2}&gt;0.</md>
+
+  <p>By continuity at <m>c</m>, there is a <m>\delta&gt;0</m> such that</p>
+
+  <md>|x-c|&lt;\delta
+\quad\Longrightarrow\quad
+|f(x)-f(c)|&lt;\varepsilon.</md>
+
+  <p>Then every such <m>x</m> satisfies</p>
+
+  <md>f(x)&lt;f(c)+\varepsilon
+=
+\frac{f(c)+M}{2}
+&lt;
+M.</md>
+
+  <p>For large <m>n</m>, the interval <m>I_n</m> lies inside <m>(c-\delta,c+\delta)</m>.  On that whole
+interval, <m>f(x)</m> is bounded above by a number smaller than <m>M</m>.</p>
+
+  <p>That contradicts the way <m>I_n</m> was chosen: its supremum was supposed to be <m>M</m>.</p>
+
+  <p>Therefore the assumption <m>f(c)&lt;M</m> is impossible.  Hence</p>
+
+  <md>f(c)=M.</md>
+
+  <p>So <m>f</m> reaches its absolute maximum.</p>
+
+  <p>The absolute minimum follows by applying the maximum argument to</p>
+
+  <md>-f.</md>
+
+  <figure xml:id="fig-evt-maximum-reached">
+    <caption>Continuity on a closed interval forces the supremum of the values to be reached.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.46\textwidth,
+    xmin=0, xmax=5,
+    ymin=-0.5, ymax=4.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(f(x)\)},
+    xtick={0.5,4.5},
+    xticklabels={\(a\),\(b\)},
+    ytick={0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0.5:4.5, samples=220] {2.4 + 1.0*sin(deg(1.5*x)) - 0.18*(x-2.6)^2 + 0.25*cos(deg(3*x))};
+\addplot[only marks, mark=*] coordinates {(1.402,3.176)};
+\draw[dashed] (axis cs:1.402,0) -- (axis cs:1.402,3.176);
+\draw[dashed] (axis cs:0.5,3.176) -- (axis cs:4.5,3.176);
+\node[anchor=south] at (axis cs:1.402,3.176) {absolute maximum};
+\node[anchor=west] at (axis cs:3.0,3.26) {\(M\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+  </subsection>
+
+  <subsection xml:id="appsubsec-evt-hypotheses-matter">
+    <title>Why the hypotheses matter</title>
+
+  <p>The hypotheses of the Extreme Value Theorem cannot be removed.</p>
+
+  <paragraphs>
+    <title>Missing endpoint</title>
+
+  <p>The function</p>
+
+  <md>f(x)=x</md>
+
+  <p>on</p>
+
+  <md>(0,1)</md>
+
+  <p>is continuous on its domain, but it has no absolute maximum and no absolute minimum.</p>
+
+  <p>The values approach <m>1</m>, but never reach <m>1</m>.  They approach <m>0</m>, but never reach
+<m>0</m>.</p>
+
+  <p>The problem is that the interval is not closed.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Unbounded interval</title>
+
+  <p>The function</p>
+
+  <md>f(x)=x</md>
+
+  <p>on</p>
+
+  <md>[0,\infty)</md>
+
+  <p>is continuous and the interval is closed, but the interval is not bounded.  The function
+has a minimum value <m>0</m>, but no maximum.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Discontinuity</title>
+
+  <p>Define</p>
+
+  <md>
+    <mrow>g(x)=
+\begin{cases}
+x, \amp 0\le x&lt;1,</mrow>
+    <mrow>0, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>The function is defined on the closed bounded interval <m>[0,1]</m>, but it is not
+continuous at <m>1</m>.  Its values get arbitrarily close to <m>1</m>, but no input gives value
+<m>1</m>.</p>
+
+  <p>So <m>g</m> has no absolute maximum.</p>
+
+  <note xml:id="note-sec-d-4-extreme-value-theorem-proof-outline-26">
+    <title>Closed, bounded, continuous</title>
+      <p>Each word in the Extreme Value Theorem protects against a different failure.</p>
+  </note>
+  </paragraphs>
+  </subsection>
+
+</section>

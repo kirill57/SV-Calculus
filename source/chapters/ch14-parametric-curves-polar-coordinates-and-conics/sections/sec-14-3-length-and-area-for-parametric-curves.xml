@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-3-length-and-area-for-parametric-curves">
+  <title>Length and area for parametric curves</title>
+
+  <p>The last section used the coordinate rates</p>
+
+  <md>\frac{dx}{dt}
+\qquad\text{and}\qquad
+\frac{dy}{dt}</md>
+
+  <p>to find slope and concavity.  Those same rates also measure something more physical:
+how much distance the moving point travels.</p>
+
+  <p>A parametric curve is drawn by motion.  So its length should come from speed.</p>
+
+  <subsection xml:id="subsec-parametric-arc-length-speed">
+    <title>Arc length from speed</title>
+
+  <p>Suppose a point has position</p>
+
+  <md>P(t)=(x(t),y(t)),
+\qquad
+a\le t\le b.</md>
+
+  <p>During a short time interval of length <m>\Delta t</m>, the coordinate changes are
+approximately</p>
+
+  <md>\Delta x\approx x'(t)\Delta t,
+\qquad
+\Delta y\approx y'(t)\Delta t.</md>
+
+  <p>The small distance traveled is therefore approximately</p>
+
+  <md>\Delta s
+\approx
+\sqrt{(\Delta x)^2+(\Delta y)^2}.</md>
+
+  <p>Substitute the approximations:</p>
+
+  <md>\Delta s
+\approx
+\sqrt{\bigl(x'(t)\Delta t\bigr)^2+\bigl(y'(t)\Delta t\bigr)^2}.</md>
+
+  <p>Thus</p>
+
+  <md>\Delta s
+\approx
+\sqrt{(x'(t))^2+(y'(t))^2}\,\Delta t.</md>
+
+  <p>The square root is the speed of the point.  Adding these small distances and passing to
+the limit gives the length.</p>
+
+  <note xml:id="note-sec-14-3-length-and-area-for-parametric-curves-97">
+    <title>Arc length of a parametric curve</title>
+      <p>If <m>x'(t)</m> and <m>y'(t)</m> are continuous on <m>[a,b]</m>, then the distance traveled by</p>
+        <md>P(t)=(x(t),y(t)),
+\qquad
+a\le t\le b,</md>
+      <p>is</p>
+        <md>
+L=\int_a^b
+\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}\,dt.
+</md>
+      <p>In words,</p>
+        <md>
+\text{length}=\int \text{speed}\,dt.
+</md>
+  </note>
+
+  <p>This formula measures the distance traveled by the moving point.  If the point traces
+the same curve twice, the integral counts both trips.</p>
+
+  <example xml:id="ex-sec-14-3-length-and-area-for-parametric-curves-1">
+    <title>a line segment</title>
+    <statement>
+  <p>Let</p>
+
+  <md>x=1+4t,
+\qquad
+y=2+2t,
+\qquad
+0\le t\le1.</md>
+
+  <p>The point starts at</p>
+
+  <md>(1,2)</md>
+
+  <p>and ends at</p>
+
+  <md>(5,4).</md>
+
+  <p>The coordinate rates are</p>
+
+  <md>\frac{dx}{dt}=4,
+\qquad
+\frac{dy}{dt}=2.</md>
+
+  <p>So the speed is</p>
+
+  <md>\sqrt{4^2+2^2}=\sqrt{20}=2\sqrt5.</md>
+
+  <p>Therefore</p>
+
+  <md>L=\int_0^1 2\sqrt5\,dt=2\sqrt5.</md>
+
+  <p>This agrees with the distance formula:</p>
+
+  <md>\sqrt{(5-1)^2+(4-2)^2}
+=
+\sqrt{16+4}
+=
+2\sqrt5.</md>
+
+  <p>The arc length formula passes the simplest test.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-3-length-and-area-for-parametric-curves-2">
+    <title>circumference of a circle</title>
+    <statement>
+  <p>A circle of radius <m>R</m> can be parametrized by</p>
+
+  <md>x=R\cos t,
+\qquad
+y=R\sin t,
+\qquad
+0\le t\le 2\pi.</md>
+
+  <p>Then</p>
+
+  <md>\frac{dx}{dt}=-R\sin t,
+\qquad
+\frac{dy}{dt}=R\cos t.</md>
+
+  <p>The speed is</p>
+
+  <md>\sqrt{R^2\sin^2t+R^2\cos^2t}
+=
+R.</md>
+
+  <p>Thus the length is</p>
+
+  <md>L=\int_0^{2\pi} R\,dt=2\pi R.</md>
+
+  <p>So the familiar circumference formula comes from accumulated speed.</p>
+
+  <figure xml:id="fig-parametric-circle-length">
+    <caption>The circle is traced at constant speed <m>R</m>, so its length is <m>2\pi R</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.0, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.35,0) -- (1.45,0) node[right] {\(x\)};
+  \draw[-&gt;] (0,-1.35) -- (0,1.45) node[above] {\(y\)};
+
+  \draw[very thick] (0,0) circle (1);
+
+  \draw[-&gt;, thick] (0.85,0.15) arc (10:55:0.86);
+  \draw[-&gt;, thick] (-0.15,0.85) arc (100:145:0.86);
+  \draw[-&gt;, thick] (-0.85,-0.15) arc (190:235:0.86);
+  \draw[-&gt;, thick] (0.15,-0.85) arc (280:325:0.86);
+
+  \draw[thick] (0,0) -- ({cos(35)},{sin(35)});
+  \fill ({cos(35)},{sin(35)}) circle (1.5pt);
+  \node[above right] at ({cos(35)},{sin(35)}) {\((R\cos t,R\sin t)\)};
+  \node at (0.42,0.18) {\(R\)};
+
+  \node at (0,-1.62) {\(\text{speed}=R,\quad L=2\pi R\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>The graph formula as a special case</title>
+
+  <p>If a curve is already given as a graph</p>
+
+  <md>y=f(x),
+\qquad
+a\le x\le b,</md>
+
+  <p>we can parametrize it by</p>
+
+  <md>x=t,
+\qquad
+y=f(t),
+\qquad
+a\le t\le b.</md>
+
+  <p>Then</p>
+
+  <md>\frac{dx}{dt}=1,
+\qquad
+\frac{dy}{dt}=f'(t).</md>
+
+  <p>The parametric arc length formula becomes</p>
+
+  <md>L=\int_a^b \sqrt{1+\bigl(f'(t)\bigr)^2}\,dt.</md>
+
+  <p>This is exactly the arc length formula for a graph.  The parametric formula is not a new
+kind of length.  It is the same length written in a more flexible language.</p>
+
+  <warning xml:id="warn-sec-14-3-length-and-area-for-parametric-curves-98">
+    <title>Warning: geometric length versus distance traveled</title>
+      <p>The integral</p>
+        <md>\int_a^b
+\sqrt{(x'(t))^2+(y'(t))^2}\,dt</md>
+      <p>counts distance traveled during the parametrized motion.</p>
+      <p>If the same geometric curve is traced twice, the integral doubles.  If the point stops
+momentarily, the formula still works; a zero speed at an instant contributes no length.</p>
+  </warning>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-3-length-from-speed">
+        <title>Why is parametric arc length an integral of speed?</title>
+        <statement>
+          <p>
+            During a short time <m>\Delta t</m>, the moving point travels about <m>\sqrt{(\Delta x)^2+(\Delta y)^2}</m>. In your own words, why does accumulating those small distances produce <m>\int_a^b\sqrt{(x')^2+(y')^2}\,dt</m>, and why is the graph formula a special case of the same idea?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Speed is the Pythagorean combination of the coordinate rates. A graph <m>y=f(x)</m> is the parametrization <m>x=t</m>, <m>y=f(t)</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-parametric-surface-area-revolution">
+    <title>Surface area from a parametrized curve of revolution</title>
+
+  <p>Earlier, surface area of revolution came from a simple small piece:</p>
+
+  <md>dS=(\text{circumference})(\text{small arc length}).</md>
+
+  <p>The same idea now works for a parametrized curve.</p>
+
+  <p>Suppose</p>
+
+  <md>x=x(t),
+\qquad
+y=y(t),
+\qquad
+a\le t\le b,</md>
+
+  <p>with <m>y(t)\ge0</m>.  Rotate the curve around the <m>x</m>-axis.</p>
+
+  <p>A small arc segment has length</p>
+
+  <md>ds=
+\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}\,dt.</md>
+
+  <p>At height <m>y(t)</m>, that small segment sweeps out a thin band whose circumference is</p>
+
+  <md>2\pi y(t).</md>
+
+  <p>So the small surface area is</p>
+
+  <md>dS
+=
+2\pi y(t)\,ds.</md>
+
+  <p>Therefore</p>
+
+  <md>dS
+=
+2\pi y(t)
+\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}\,dt.</md>
+
+  <note xml:id="note-sec-14-3-length-and-area-for-parametric-curves-99">
+    <title>Surface area around the <m>x</m>-axis</title>
+      <p>If <m>x'(t)</m> and <m>y'(t)</m> are continuous and <m>y(t)\ge0</m> on <m>[a,b]</m>, then rotating the
+parametric curve</p>
+        <md>x=x(t),
+\qquad
+y=y(t)</md>
+      <p>around the <m>x</m>-axis gives surface area</p>
+        <md>
+S=
+2\pi\int_a^b
+y(t)
+\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}\,dt.
+</md>
+  </note>
+
+  <p>For rotation around the <m>y</m>-axis, the radius is <m>x(t)</m>, assuming <m>x(t)\ge0</m>.  Then</p>
+
+  <md>
+S=
+2\pi\int_a^b
+x(t)
+\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}\,dt.
+</md>
+
+  <p>More generally, the radius is always the distance from the curve to the axis of rotation.</p>
+
+
+  <exercise xml:id="checkpoint-14-3-distance-versus-geometry">
+        <title>What is the difference between geometric length and distance traveled?</title>
+        <statement>
+          <p>
+            If a parametrization traces the same geometric curve twice, the speed integral doubles. In your own words, why is that the right answer for distance traveled and the wrong answer if you wanted the length of the set of points, and what happens if the point pauses for an instant?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The integral counts the motion. A zero-speed instant contributes no length; a second tracing contributes a second copy of the length.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-3-length-and-area-for-parametric-curves-4">
+    <title>surface area of a sphere</title>
+    <statement>
+  <p>Rotate the upper semicircle</p>
+
+  <md>x=R\cos t,
+\qquad
+y=R\sin t,
+\qquad
+0\le t\le\pi,</md>
+
+  <p>around the <m>x</m>-axis.  This produces a sphere of radius <m>R</m>.</p>
+
+  <p>We already know the speed:</p>
+
+  <md>\sqrt{\left(\frac{dx}{dt}\right)^2+
+      \left(\frac{dy}{dt}\right)^2}
+=
+R.</md>
+
+  <p>Therefore</p>
+
+  <md>S=
+2\pi\int_0^\pi (R\sin t)(R)\,dt.</md>
+
+  <p>So</p>
+
+  <md>S=2\pi R^2\int_0^\pi \sin t\,dt.</md>
+
+  <p>Since</p>
+
+  <md>\int_0^\pi \sin t\,dt=2,</md>
+
+  <p>we get</p>
+
+  <md>
+S=4\pi R^2.
+</md>
+
+  <p>The familiar surface area of a sphere is again an accumulated band area.</p>
+
+  <figure xml:id="fig-sphere-from-parametric-semicircle">
+    <caption>The sphere is built from rotating small arc segments of the upper semicircle.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
+  % axes
+  \draw[-&gt;, thick] (-2.5,0) -- (2.7,0) node[right] {\(x\)};
+  \draw[-&gt;, thick] (0,-0.2) -- (0,2.0) node[above] {\(y\)};
+
+  % semicircle
+  \draw[very thick] (-2,0) arc (180:0:2);
+
+  % rotation hints
+  \draw[dashed] (0,0) ellipse (0.18 and 1.55);
+  \draw[dashed] (-1.2,0) ellipse (0.14 and 1.25);
+  \draw[dashed] (1.2,0) ellipse (0.14 and 1.25);
+
+  % sample point/radius
+  \draw[thick] (0,0) -- (0,2);
+  \node[right] at (0.05,1.0) {\(R\)};
+
+  \node[above] at (0,2.05) {\(x=R\cos t,\; y=R\sin t\)};
+  \node[below] at (0,-0.35) {rotating the upper semicircle gives a sphere};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <warning xml:id="warn-sec-14-3-length-and-area-for-parametric-curves-100">
+    <title>Warning about the radius</title>
+      <p>In a surface area formula, the factor <m>2\pi(\text{radius})</m> must use a nonnegative
+distance to the axis of rotation.</p>
+      <p>If the curve crosses the axis, or if a parametrization uses negative coordinates, check
+the geometry before inserting a formula.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-area-enclosed-parametric-curve">
+    <title>Area enclosed by a parametric curve</title>
+
+  <p>Area also has a parametric form.</p>
+
+  <p>Start with the ordinary formula for area under a graph:</p>
+
+  <md>A=\int y\,dx.</md>
+
+  <p>If</p>
+
+  <md>x=x(t),
+\qquad
+y=y(t),</md>
+
+  <p>then</p>
+
+  <md>dx=x'(t)\,dt.</md>
+
+  <p>So whenever the curve is used as the upper boundary and <m>x</m> increases from left to
+right, the area under the curve is</p>
+
+  <md>
+A=\int_a^b y(t)x'(t)\,dt.
+</md>
+
+  <p>This formula is a change of variable in disguise.  It says:</p>
+
+  <md>\int y\,dx
+=
+\int y(t)\frac{dx}{dt}\,dt.</md>
+
+
+  <exercise xml:id="checkpoint-14-3-area-and-orientation">
+        <title>Why do parametric area formulas care about orientation?</title>
+        <statement>
+          <p>
+            Area under a graph becomes <m>\int y(t)x'(t)\,dt</m> after the change of variable <m>dx=x'(t)\,dt</m>. In your own words, why can tracing a closed curve clockwise versus counterclockwise change the signed area, and why can repeated tracing double the integral?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The formula counts with the parametrization. Direction can reverse the sign; tracing twice can double the count.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-3-length-and-area-for-parametric-curves-5">
+    <title>area under one arch of a parabola</title>
+    <statement>
+  <p>The curve</p>
+
+  <md>x=t,
+\qquad
+y=4-t^2,
+\qquad
+-2\le t\le 2</md>
+
+  <p>is the graph</p>
+
+  <md>y=4-x^2</md>
+
+  <p>from <m>x=-2</m> to <m>x=2</m>.  Since</p>
+
+  <md>x'(t)=1,</md>
+
+  <p>the area under the curve and above the <m>x</m>-axis is</p>
+
+  <md>A=\int_{-2}^{2} (4-t^2)\,dt.</md>
+
+  <p>Compute:</p>
+
+  <md>A=
+\left(4t-\frac{t^3}{3}\right)\Big|_{-2}^{2}
+=
+\left(8-\frac83\right)-\left(-8+\frac83\right).</md>
+
+  <p>Thus</p>
+
+  <md>A=\frac{16}{3}+\frac{16}{3}
+=
+\frac{32}{3}.</md>
+
+  <p>The parametric formula reduces to the ordinary area formula because <m>x=t</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Closed curves and orientation</title>
+
+  <p>For a closed curve, the formula <m>\int y\,dx</m> becomes a signed quantity.  Its sign depends
+on orientation.</p>
+
+  <p>If a simple closed curve is traced once counterclockwise, then</p>
+
+  <md>\int y\,dx</md>
+
+  <p>is negative.  The positive enclosed area is</p>
+
+  <md>-\int y\,dx.</md>
+
+  <p>A symmetric and orientation-friendly formula is</p>
+
+  <md>
+A=
+\frac12\int_a^b
+\left(
+x(t)y'(t)-y(t)x'(t)
+\right)\,dt
+</md>
+
+  <p>when the curve is traced once counterclockwise.</p>
+
+  <p>If the curve is traced clockwise, this integral is negative, and the positive area is its
+absolute value.</p>
+
+  <note xml:id="note-sec-14-3-length-and-area-for-parametric-curves-101">
+    <title>Area enclosed by a parametric curve</title>
+      <p>For a simple closed curve traced once counterclockwise,</p>
+        <md>
+A=
+\int_a^b x(t)y'(t)\,dt
+=
+-\int_a^b y(t)x'(t)\,dt
+=
+\frac12\int_a^b
+\bigl(x(t)y'(t)-y(t)x'(t)\bigr)\,dt.
+</md>
+      <p>If the orientation is clockwise, these signed formulas change sign.</p>
+  </note>
+  </paragraphs>
+
+  <example xml:id="ex-sec-14-3-length-and-area-for-parametric-curves-7">
+    <title>area of an ellipse</title>
+    <statement>
+  <p>Parametrize the ellipse</p>
+
+  <md>\frac{x^2}{a^2}+\frac{y^2}{b^2}=1</md>
+
+  <p>by</p>
+
+  <md>x=a\cos t,
+\qquad
+y=b\sin t,
+\qquad
+0\le t\le2\pi.</md>
+
+  <p>This traces the ellipse counterclockwise.</p>
+
+  <p>We use</p>
+
+  <md>A=
+\frac12\int_0^{2\pi}
+\bigl(x(t)y'(t)-y(t)x'(t)\bigr)\,dt.</md>
+
+  <p>Compute the derivatives:</p>
+
+  <md>x'(t)=-a\sin t,
+\qquad
+y'(t)=b\cos t.</md>
+
+  <p>Then</p>
+
+  <md>x(t)y'(t)-y(t)x'(t)
+=
+(a\cos t)(b\cos t)-(b\sin t)(-a\sin t).</md>
+
+  <p>So</p>
+
+  <md>x(t)y'(t)-y(t)x'(t)
+=
+ab\cos^2t+ab\sin^2t
+=
+ab.</md>
+
+  <p>Therefore</p>
+
+  <md>A=
+\frac12\int_0^{2\pi} ab\,dt
+=
+\frac12 ab(2\pi)
+=
+\pi ab.</md>
+
+  <p>When <m>a=b=R</m>, this becomes</p>
+
+  <md>\pi R^2,</md>
+
+  <p>the area of a circle.</p>
+
+  <figure xml:id="fig-parametric-ellipse-area">
+    <caption>The counterclockwise parametrization of an ellipse gives the area <m>\pi ab</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.45\textwidth,
+    xmin=-2.6, xmax=2.6,
+    ymin=-1.8, ymax=1.8,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,0,2},
+    ytick={-1.2,0,1.2},
+    axis equal image,
+    axis on top,
+    ticklabel style={fill=white, inner sep=1.5pt},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:360, samples=240, fill=gray!18, fill opacity=0.45, draw=none]
+    ({2*cos(x)},{1.2*sin(x)}) \closedcycle;
+\addplot[very thick, domain=0:360, samples=240]
+    ({2*cos(x)},{1.2*sin(x)});
+\draw[-&gt;, thick] (axis cs:1.5,0.79) -- (axis cs:1.25,0.94);
+\node[anchor=west] at (axis cs:0.5,1.35) {\(x=a\cos t,\;y=b\sin t\)};
+\node at (axis cs:0,-1.45) {\(A=\pi ab\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <warning xml:id="warn-sec-14-3-length-and-area-for-parametric-curves-102">
+    <title>Warning about repeated tracing</title>
+      <p>The area formulas count with the parametrization.</p>
+      <p>If a curve is traced twice counterclockwise, the signed area integral doubles.  If one
+part is traced clockwise and another counterclockwise, cancellation can occur.</p>
+      <p>Before using a closed-curve area formula, check how many times the curve is traced and
+in which direction.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-cycloids-rolling-motion">
+    <title>Cycloids and rolling motion</title>
+
+  <p>A wheel rolling along a road draws one of the most beautiful curves in calculus.</p>
+
+  <p>Fix a point on the rim of a circle of radius <m>R</m>.  Let the circle roll to the right without
+slipping.  The point on the rim traces a curve called a <em>cycloid</em>.</p>
+
+  <p>If <m>t</m> is the angle through which the wheel has rotated, then the center of the wheel has
+moved horizontally a distance</p>
+
+  <md>Rt.</md>
+
+  <p>Relative to the center, the point on the rim has coordinates</p>
+
+  <md>(-R\sin t,\,-R\cos t).</md>
+
+  <p>Since the center is at</p>
+
+  <md>(Rt,R),</md>
+
+  <p>the point on the rim is</p>
+
+  <md>
+x=R(t-\sin t),
+\qquad
+y=R(1-\cos t).
+</md>
+
+  <p>One arch of the cycloid occurs for</p>
+
+  <md>0\le t\le 2\pi.</md>
+
+  <p>At <m>t=0</m>, the point is on the ground:</p>
+
+  <md>(x,y)=(0,0).</md>
+
+  <p>At <m>t=2\pi</m>, the point returns to the ground:</p>
+
+  <md>(x,y)=(2\pi R,0).</md>
+
+  <figure xml:id="fig-cycloid-one-arch">
+    <caption>A point on a rolling wheel traces a cycloid.  The picture is scaled by <m>R</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.42\textwidth,
+    xmin=-0.3, xmax=6.8,
+    ymin=-0.15, ymax=2.35,
+    axis lines=left,
+    xlabel={\(x/R\)},
+    ylabel={\(y/R\)},
+    xtick={0,3.14159,6.28318},
+    xticklabels={\(0\),\(\pi\),\(2\pi\)},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:6.283185, samples=240, fill=gray!18, draw=none]
+    ({x - sin(deg(x))},{1 - cos(deg(x))}) \closedcycle;
+\addplot[very thick, domain=0:6.283185, samples=240]
+    ({x - sin(deg(x))},{1 - cos(deg(x))});
+\addplot[only marks, mark=*] coordinates {(0,0) (3.14159,2) (6.28318,0)};
+\node[anchor=south] at (axis cs:3.14159,2) {\(t=\pi\)};
+\node[anchor=north west] at (axis cs:0,0) {\(t=0\)};
+\node[anchor=north east] at (axis cs:6.28318,0) {\(t=2\pi\)};
+\node[anchor=west] at (axis cs:3.7,1.25) {one arch of a cycloid};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <paragraphs>
+    <title>Length of one arch</title>
+
+  <p>Differentiate:</p>
+
+  <md>\frac{dx}{dt}=R(1-\cos t),
+\qquad
+\frac{dy}{dt}=R\sin t.</md>
+
+  <p>The speed is</p>
+
+  <md>\sqrt{R^2(1-\cos t)^2+R^2\sin^2t}.</md>
+
+  <p>Factor out <m>R</m>:</p>
+
+  <md>\text{speed}
+=
+R\sqrt{(1-\cos t)^2+\sin^2t}.</md>
+
+  <p>Simplify the expression inside the square root:</p>
+
+  <md>(1-\cos t)^2+\sin^2t
+=
+1-2\cos t+\cos^2t+\sin^2t
+=
+2-2\cos t.</md>
+
+  <p>Using</p>
+
+  <md>1-\cos t=2\sin^2\left(\frac t2\right),</md>
+
+  <p>we get</p>
+
+  <md>2-2\cos t=4\sin^2\left(\frac t2\right).</md>
+
+  <p>On <m>0\le t\le2\pi</m>,</p>
+
+  <md>\sin\left(\frac t2\right)\ge0.</md>
+
+  <p>Therefore</p>
+
+  <md>\text{speed}=2R\sin\left(\frac t2\right).</md>
+
+  <p>The length of one arch is</p>
+
+  <md>L=\int_0^{2\pi}2R\sin\left(\frac t2\right)\,dt.</md>
+
+  <p>Compute:</p>
+
+  <md>L
+=
+2R\left[-2\cos\left(\frac t2\right)\right]_0^{2\pi}.</md>
+
+  <p>So</p>
+
+  <md>L
+=
+-4R\left(\cos\pi-\cos0\right)
+=
+-4R(-1-1)
+=
+8R.</md>
+
+  <p>This is a surprising answer.  The width of one arch is <m>2\pi R</m>, but the length of the
+curved arch is <m>8R</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Area under one arch</title>
+
+  <p>Since</p>
+
+  <md>x'(t)=R(1-\cos t)</md>
+
+  <p>and</p>
+
+  <md>y(t)=R(1-\cos t),</md>
+
+  <p>the area under one arch is</p>
+
+  <md>A=\int_0^{2\pi} y(t)x'(t)\,dt
+=
+R^2\int_0^{2\pi}(1-\cos t)^2\,dt.</md>
+
+  <p>Expand:</p>
+
+  <md>(1-\cos t)^2=1-2\cos t+\cos^2t.</md>
+
+  <p>Therefore</p>
+
+  <md>A=
+R^2\int_0^{2\pi}
+\left(1-2\cos t+\cos^2t\right)\,dt.</md>
+
+  <p>Now</p>
+
+  <md>\int_0^{2\pi}1\,dt=2\pi,</md>
+
+  <md>\int_0^{2\pi}\cos t\,dt=0,</md>
+
+  <p>and</p>
+
+  <md>\int_0^{2\pi}\cos^2t\,dt=\pi.</md>
+
+  <p>Thus</p>
+
+  <md>A=R^2(2\pi+\pi)=3\pi R^2.</md>
+
+  <p>One arch of a cycloid encloses exactly three times the area of the rolling circle.</p>
+
+  <note xml:id="note-sec-14-3-length-and-area-for-parametric-curves-103">
+    <title>Cycloid facts</title>
+      <p>For the cycloid</p>
+        <md>x=R(t-\sin t),
+\qquad
+y=R(1-\cos t),
+\qquad
+0\le t\le2\pi,</md>
+      <p>one arch has</p>
+        <md>L=8R
+\qquad\text{and}\qquad
+A=3\pi R^2.</md>
+  </note>
+
+  <p>At the endpoints of the arch,</p>
+
+  <md>x'(t)=0
+\qquad\text{and}\qquad
+y'(t)=0.</md>
+
+  <p>The point on the wheel momentarily stops when it touches the ground.  The curve has
+cusps there.  This is exactly the kind of behavior that parametric equations handle
+naturally: the formulas describe not only the curve, but also the motion that creates it.</p>
+
+  <p>The next coordinate system also comes from motion, but of a different kind.  Instead of
+following horizontal and vertical coordinates, we measure a point by how far it is from
+the origin and which direction it lies.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-3-cycloid-as-motion">
+        <title>What do cycloids show that a static curve equation would hide?</title>
+        <statement>
+          <p>
+            A cycloid is traced by a point on a rolling wheel. In your own words, why is a parametrization the natural language for that curve, and what does a cusp at the ground contact reveal about motion versus shape?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The formulas describe not only the curve but the rolling that creates it. At a cusp the point momentarily stops, which parametric derivatives detect directly.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

@@ -1,369 +1,588 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-calculating-limits">
+<section xml:id="sec-3-2-calculating-limits">
   <title>Calculating limits</title>
 
-  <p>A table can point toward a limit, but a table only checks a few inputs. A graph can reveal the shape, but a graph depends on the viewing window. Algebra lets us prove what the nearby values are doing.</p>
+  <p>A table can point toward a limit, but a table only checks a few inputs.  A graph can reveal the shape, but a graph depends on the viewing window.  Algebra lets us prove what the nearby values are doing.</p>
 
   <p>The first limits we can calculate are the ones where nearby behavior is preserved by arithmetic.</p>
 
   <subsection xml:id="subsec-first-limit-law-example">
     <title>A first limit law from an example</title>
 
-    <p>Suppose</p>
-    <md>f(x)=x^2 \qquad\text{and}\qquad g(x)=3x-1.</md>
+  <p>Suppose</p>
 
-    <p>As <m>x\to 2</m>,</p>
-    <md>f(x)\to 4 \qquad\text{and}\qquad g(x)\to 5.</md>
+  <md>f(x)=x^2
+\qquad\text{and}\qquad
+g(x)=3x-1.</md>
 
-    <p>Now look at their sum:</p>
-    <md>f(x)+g(x)=x^2+3x-1.</md>
+  <p>As <m>x\to2</m>,</p>
 
-    <p>As <m>x\to 2</m>, this approaches</p>
-    <md>4+5=9.</md>
+  <md>f(x)\to4
+\qquad\text{and}\qquad
+g(x)\to5.</md>
 
-    <p>So</p>
-    <md>\lim_{x\to 2}(x^2+3x-1)=9.</md>
+  <p>Now look at their sum:</p>
 
-    <p>The limit of the sum is the sum of the limits.</p>
+  <md>f(x)+g(x)=x^2+3x-1.</md>
 
-    <p>The same thing happens for products:</p>
-    <md>f(x)g(x)=x^2(3x-1).</md>
+  <p>As <m>x\to2</m>, this approaches</p>
 
-    <p>As <m>x\to 2</m>, this approaches</p>
-    <md>4\cdot 5=20.</md>
+  <md>4+5=9.</md>
 
-    <p>So</p>
-    <md>\lim_{x\to 2}x^2(3x-1)=20.</md>
+  <p>So</p>
 
-    <p>The nearby behavior of the pieces controls the nearby behavior of the expression built from them.</p>
+  <md>\lim_{x\to2}(x^2+3x-1)=9.</md>
+
+  <p>The limit of the sum is the sum of the limits.</p>
+
+  <p>The same thing happens for products:</p>
+
+  <md>f(x)g(x)=x^2(3x-1).</md>
+
+  <p>As <m>x\to2</m>, this approaches</p>
+
+  <md>4\cdot5=20.</md>
+
+  <p>So</p>
+
+  <md>\lim_{x\to2}x^2(3x-1)=20.</md>
+
+  <p>The nearby behavior of the pieces controls the nearby behavior of the expression built from them.</p>
   </subsection>
 
   <subsection xml:id="subsec-limit-laws">
     <title>Limit laws</title>
 
-    <p>The example suggests the general rules.</p>
+  <p>The example suggests the general rules.</p>
 
-    <theorem xml:id="thm-limit-laws">
-      <title>Limit laws</title>
-      <statement>
-        <p>Suppose</p>
-        <md>\lim_{x\to a}f(x)=L \qquad\text{and}\qquad \lim_{x\to a}g(x)=M.</md>
-        <p>Then:</p>
-        <md>
-          <mrow>\lim_{x\to a}\bigl(f(x)+g(x)\bigr)\amp=L+M,</mrow>
-          <mrow>\lim_{x\to a}\bigl(f(x)-g(x)\bigr)\amp=L-M,</mrow>
-          <mrow>\lim_{x\to a}\bigl(cf(x)\bigr)\amp=cL \qquad\text{for any constant }c,</mrow>
-          <mrow>\lim_{x\to a}\bigl(f(x)g(x)\bigr)\amp=LM,</mrow>
-        </md>
-        <p>and, if <m>M\neq 0</m>,</p>
+  <note xml:id="note-sec-3-2-calculating-limits-64">
+    <title>Limit laws</title>
+      <p>Suppose</p>
+        <md>\lim_{x\to a}f(x)=L
+\qquad\text{and}\qquad
+\lim_{x\to a}g(x)=M.</md>
+      <p>Then:</p>
+        <md>\lim_{x\to a}\bigl(f(x)+g(x)\bigr)=L+M,</md>
+        <md>\lim_{x\to a}\bigl(f(x)-g(x)\bigr)=L-M,</md>
+        <md>\lim_{x\to a}\bigl(cf(x)\bigr)=cL
+\qquad\text{for any constant }c,</md>
+        <md>\lim_{x\to a}\bigl(f(x)g(x)\bigr)=LM,</md>
+      <p>and, if <m>M\neq0</m>,</p>
         <md>\lim_{x\to a}\frac{f(x)}{g(x)}=\frac{L}{M}.</md>
-      </statement>
-    </theorem>
+  </note>
 
-    <p>The condition <m>M\neq 0</m> in the quotient law is not decoration. Division by a quantity approaching <m>0</m> can behave wildly.</p>
+  <p>The condition <m>M\neq0</m> in the quotient law is not decoration.  Division by a quantity approaching <m>0</m> can behave wildly.</p>
 
-    <p><em>Why the sum law is believable.</em> If <m>f(x)</m> is close to <m>L</m>, and <m>g(x)</m> is close to <m>M</m>, then <m>f(x)+g(x)</m> should be close to <m>L+M</m>. The error is controlled by</p>
-    <md>\bigl|(f(x)+g(x))-(L+M)\bigr| = \bigl|(f(x)-L)+(g(x)-M)\bigr|.</md>
-    <p>Using the triangle inequality,</p>
-    <md>\bigl|(f(x)-L)+(g(x)-M)\bigr| \le |f(x)-L|+|g(x)-M|.</md>
-    <p>So if both errors on the right are small, the error on the left is small. This is the whole idea. The precise <m>\varepsilon</m>-<m>\delta</m> proof will come later.</p>
+  <paragraphs>
+    <title>Why the sum law is believable</title>
 
-    <warning xml:id="warn-quotient-law-zero-denominator">
-      <title>Warning: the quotient law needs a nonzero limiting denominator</title>
-      <p>Consider <m>\frac{1}{x}</m>. As <m>x\to 0</m>, the denominator approaches <m>0</m>, and the quotient does not approach a finite number. From the right it grows without bound; from the left it becomes negative without bound.</p>
-      <p>So we cannot use a quotient rule when the denominator limit is <m>0</m>. Sometimes a different algebraic simplification saves the limit. Sometimes no finite limit exists.</p>
-    </warning>
+  <p>If <m>f(x)</m> is close to <m>L</m>, and <m>g(x)</m> is close to <m>M</m>, then</p>
 
-    <warning xml:id="warn-limit-laws-backward">
-      <title>Warning: limit laws do not work backward</title>
-      <p>It is possible for a sum to have a limit even when the pieces do not.</p>
-      <p>For <m>x\neq 0</m>, let</p>
-      <md>f(x)=\sin\frac{1}{x} \qquad\text{and}\qquad g(x)=-\sin\frac{1}{x}.</md>
-      <p>Neither <m>f(x)</m> nor <m>g(x)</m> approaches a single value as <m>x\to 0</m>. They oscillate. But</p>
-      <md>f(x)+g(x)=0</md>
-      <p>for every <m>x\neq 0</m>. Therefore</p>
-      <md>\lim_{x\to 0}\bigl(f(x)+g(x)\bigr)=0.</md>
-      <p>The limit law says: <em>if the two separate limits exist, then the limit of the sum is the sum.</em> It does not say the converse.</p>
-    </warning>
+  <md>f(x)+g(x)</md>
+
+  <p>should be close to</p>
+
+  <md>L+M.</md>
+
+  <p>The error is controlled by</p>
+
+  <md>\bigl|(f(x)+g(x))-(L+M)\bigr|
+=
+\bigl|(f(x)-L)+(g(x)-M)\bigr|.</md>
+
+  <p>Using the triangle inequality,</p>
+
+  <md>\bigl|(f(x)-L)+(g(x)-M)\bigr|
+\le
+|f(x)-L|+|g(x)-M|.</md>
+
+  <p>So if both errors on the right are small, the error on the left is small.  This is the whole idea.  The precise <m>\varepsilon</m>-<m>\delta</m> proof will come later.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Warning: the quotient law needs a nonzero limiting denominator</title>
+
+  <p>Consider</p>
+
+  <md>\frac{1}{x}.</md>
+
+  <p>As <m>x\to0</m>, the denominator approaches <m>0</m>, and the quotient does not approach a finite number.  From the right it grows without bound; from the left it becomes negative without bound.</p>
+
+  <p>So we cannot use a quotient rule when the denominator limit is <m>0</m>.  Sometimes a different algebraic simplification saves the limit.  Sometimes no finite limit exists.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Warning: limit laws do not work backward</title>
+
+  <p>It is possible for a sum to have a limit even when the pieces do not.</p>
+
+  <p>For <m>x\neq0</m>, let</p>
+
+  <md>f(x)=\sin\frac1x
+\qquad\text{and}\qquad
+g(x)=-\sin\frac1x.</md>
+
+  <p>Neither <m>f(x)</m> nor <m>g(x)</m> approaches a single value as <m>x\to0</m>.  They oscillate.  But</p>
+
+  <md>f(x)+g(x)=0</md>
+
+  <p>for every <m>x\neq0</m>.  Therefore</p>
+
+  <md>\lim_{x\to0}\bigl(f(x)+g(x)\bigr)=0.</md>
+
+  <p>The limit law says:</p>
+
+  <md>\text{if the two separate limits exist, then the limit of the sum is the sum.}</md>
+
+  <p>It does not say the converse.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-2-limit-laws-nearby-pieces">
+        <title>Why do nearby pieces control a nearby combination?</title>
+        <statement>
+          <p>
+            If <m>f(x)</m> approaches <m>L</m> and <m>g(x)</m> approaches <m>M</m>, then their sum approaches <m>L+M</m>. In your own words, why is that believable from error control, and why do the limit laws refuse to run backward: a sum can have a limit even when the pieces do not?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The error of a sum is no worse than the sum of the errors. Cancellation can hide wild pieces inside a calm total, so existence of the combination does not imply existence of the parts.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-polynomials-direct-substitution">
     <title>Polynomials and direct substitution</title>
 
-    <p>The limit laws immediately handle polynomials.</p>
+  <p>The limit laws immediately handle polynomials.</p>
 
-    <p>A polynomial is built from constants, powers of <m>x</m>, sums, and products. Since</p>
-    <md>\lim_{x\to a}x=a,</md>
-    <p>we get</p>
-    <md>\lim_{x\to a}x^n=a^n</md>
-    <p>for positive integers <m>n</m>. Then sums and constant multiples give the whole polynomial.</p>
+  <p>A polynomial is built from constants, powers of <m>x</m>, sums, and products.  Since</p>
 
-    <theorem xml:id="thm-polynomial-limit-rule">
-      <title>Polynomial limit rule</title>
-      <statement>
-        <p>If <m>p(x)</m> is a polynomial, then</p>
+  <md>\lim_{x\to a}x=a,</md>
+
+  <p>we get</p>
+
+  <md>\lim_{x\to a}x^n=a^n</md>
+
+  <p>for positive integers <m>n</m>.  Then sums and constant multiples give the whole polynomial.</p>
+
+  <note xml:id="note-sec-3-2-calculating-limits-65">
+    <title>Polynomial limit rule</title>
+      <p>If <m>p(x)</m> is a polynomial, then</p>
         <md>\lim_{x\to a}p(x)=p(a).</md>
-      </statement>
-    </theorem>
+  </note>
 
-    <example xml:id="ex-polynomial-direct-substitution">
-      <title>Evaluating a polynomial limit</title>
-      <statement>
-        <p>Find</p>
-        <md>\lim_{x\to -1}(3x^4-2x^2+5x-7).</md>
-      </statement>
-      <solution>
-        <p>Because the expression is a polynomial, substitute <m>x=-1</m>:</p>
-        <md>3(-1)^4-2(-1)^2+5(-1)-7 = 3-2-5-7 = -11.</md>
-        <p>So</p>
-        <md>\lim_{x\to -1}(3x^4-2x^2+5x-7)=-11.</md>
-      </solution>
-    </example>
+  <example xml:id="ex-sec-3-2-calculating-limits-4">
+    <title>Example</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\lim_{x\to -1}(3x^4-2x^2+5x-7).</md>
+
+  <p>Because the expression is a polynomial, substitute <m>x=-1</m>:</p>
+
+  <md>3(-1)^4-2(-1)^2+5(-1)-7
+=
+3-2-5-7
+=
+-11.</md>
+
+  <p>So</p>
+
+  <md>\lim_{x\to -1}(3x^4-2x^2+5x-7)=-11.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-rational-functions-limits">
     <title>Rational functions</title>
 
-    <p>A rational function is a quotient of polynomials:</p>
-    <md>R(x)=\frac{p(x)}{q(x)}.</md>
-    <p>If the denominator is not approaching <m>0</m>, the quotient law applies.</p>
+  <p>A rational function is a quotient of polynomials:</p>
 
-    <theorem xml:id="thm-rational-function-limit-rule">
-      <title>Rational function limit rule</title>
-      <statement>
-        <p>If <m>p</m> and <m>q</m> are polynomials and <m>q(a)\neq 0</m>, then</p>
-        <md>\lim_{x\to a}\frac{p(x)}{q(x)} = \frac{p(a)}{q(a)}.</md>
-      </statement>
-    </theorem>
+  <md>R(x)=\frac{p(x)}{q(x)}.</md>
 
-    <example xml:id="ex-rational-function-substitution">
-      <title>Evaluating a rational function limit</title>
-      <statement>
-        <p>Find</p>
-        <md>\lim_{x\to 2}\frac{x^2+3x}{x-5}.</md>
-      </statement>
-      <solution>
-        <p>The denominator at <m>x=2</m> is <m>2-5=-3</m>, which is not <m>0</m>. So direct substitution is legal:</p>
-        <md>\lim_{x\to 2}\frac{x^2+3x}{x-5} = \frac{2^2+3(2)}{2-5} = \frac{10}{-3} = -\frac{10}{3}.</md>
-      </solution>
-    </example>
+  <p>If the denominator is not approaching <m>0</m>, the quotient law applies.</p>
 
-    <p><em>What direct substitution can tell us.</em> When direct substitution gives a number, that number is the limit.</p>
-    <p>When direct substitution gives something like <m>\frac{0}{0}</m>, it tells us only that the direct method failed. It does not tell us the limit. The expression may have a removable hole, or it may have no finite limit.</p>
-    <p>The next examples show the difference.</p>
+  <note xml:id="note-sec-3-2-calculating-limits-66">
+    <title>Rational function limit rule</title>
+      <p>If <m>p</m> and <m>q</m> are polynomials and <m>q(a)\neq0</m>, then</p>
+        <md>\lim_{x\to a}\frac{p(x)}{q(x)}
+=
+\frac{p(a)}{q(a)}.</md>
+  </note>
+
+  <example xml:id="ex-sec-3-2-calculating-limits-5">
+    <title>Example</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\lim_{x\to2}\frac{x^2+3x}{x-5}.</md>
+
+  <p>The denominator at <m>x=2</m> is</p>
+
+  <md>2-5=-3,</md>
+
+  <p>which is not <m>0</m>.  So direct substitution is legal:</p>
+
+  <md>\lim_{x\to2}\frac{x^2+3x}{x-5}
+=
+\frac{2^2+3(2)}{2-5}
+=
+\frac{10}{-3}
+=
+-\frac{10}{3}.</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>What direct substitution can tell us</title>
+
+  <p>When direct substitution gives a number, that number is the limit.</p>
+
+  <p>When direct substitution gives something like</p>
+
+  <md>\frac{0}{0},</md>
+
+  <p>it tells us only that the direct method failed.  It does not tell us the limit.  The expression may have a removable hole, or it may have no finite limit.</p>
+
+  <p>The next examples show the difference.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-2-direct-substitution">
+        <title>When is plugging in legal, and when is it only a warning?</title>
+        <statement>
+          <p>
+            For a polynomial, <m>\lim_{x\to a}p(x)=p(a)</m>. For a rational function, the same substitution is legal when the denominator is not zero at <m>a</m>. In your own words, what does a successful substitution tell you, and what does an appearance of <m>\frac00</m> refuse to tell you?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A number from substitution is the limit. The form <m>\frac00</m> only says the direct method failed. The nearby values may still settle, or they may not.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-removing-removable-discontinuity">
     <title>Removing a removable discontinuity</title>
 
-    <p>Return to</p>
-    <md>g(x)=\frac{x^2-1}{x-1}.</md>
-    <p>Direct substitution at <m>x=1</m> gives <m>\frac{0}{0}</m>, so the rational function rule does not apply.</p>
+  <p>Return to</p>
 
-    <p>But the numerator factors:</p>
-    <md>x^2-1=(x-1)(x+1).</md>
-    <p>For <m>x\neq 1</m>,</p>
-    <md>\frac{x^2-1}{x-1} = \frac{(x-1)(x+1)}{x-1} = x+1.</md>
-    <p>When taking the limit as <m>x\to 1</m>, we are allowed to assume <m>x\neq 1</m>. That is built into the meaning of a limit. So near <m>1</m>, except at <m>1</m>, the function agrees with <m>x+1</m>.</p>
-    <p>Therefore</p>
-    <md>\lim_{x\to 1}\frac{x^2-1}{x-1} = \lim_{x\to 1}(x+1) = 2.</md>
-    <p>The original function has a hole at <m>x=1</m>. The simplified function fills the hole.</p>
+  <md>g(x)=\frac{x^2-1}{x-1}.</md>
 
-    <figure xml:id="fig-removable-hole">
-      <caption>For <m>x\neq 1</m>, <m>\frac{x^2-1}{x-1}=x+1</m>. The limit sees the nearby line, not the missing point.</caption>
-      <image width="65%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.65\textwidth,
-              height=0.45\textwidth,
-              xmin=-1.2, xmax=3,
-              ymin=-0.5, ymax=4.5,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1},
-              ytick={2},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-1:3, samples=2] {x+1};
-          \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,2)};
-          \node[anchor=west] at (axis cs:1.12,2.12) {hole};
-          \node[anchor=west] at (axis cs:1.7,2.65) {\(y=x+1\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>Direct substitution at <m>x=1</m> gives</p>
 
-    <example xml:id="ex-removable-root-conjugate">
-      <title>A second removable discontinuity</title>
-      <statement>
-        <p>Find</p>
-        <md>\lim_{x\to 0}\frac{\sqrt{4+x}-2}{x}.</md>
-      </statement>
-      <solution>
-        <p>Direct substitution gives <m>\frac{0}{0}</m>. The numerator contains a difference of square roots. Multiply by the conjugate:</p>
-        <md>\frac{\sqrt{4+x}-2}{x} \cdot \frac{\sqrt{4+x}+2}{\sqrt{4+x}+2} = \frac{(4+x)-4}{x(\sqrt{4+x}+2)} = \frac{x}{x(\sqrt{4+x}+2)}.</md>
-        <p>For <m>x\neq 0</m>,</p>
-        <md>\frac{\sqrt{4+x}-2}{x} = \frac{1}{\sqrt{4+x}+2}.</md>
-        <p>Now the limit is easy:</p>
-        <md>\lim_{x\to 0}\frac{1}{\sqrt{4+x}+2} = \frac{1}{\sqrt{4}+2} = \frac{1}{4}.</md>
-        <p>Therefore</p>
-        <md>\lim_{x\to 0}\frac{\sqrt{4+x}-2}{x} = \frac{1}{4}.</md>
-        <p>This example also explains why algebraic rewriting matters in numerical work. The original expression subtracts nearly equal numbers when <m>x</m> is small. The rewritten expression avoids that subtraction.</p>
-      </solution>
-    </example>
+  <md>\frac{0}{0},</md>
+
+  <p>so the rational function rule does not apply.</p>
+
+  <p>But the numerator factors:</p>
+
+  <md>x^2-1=(x-1)(x+1).</md>
+
+  <p>For <m>x\neq1</m>,</p>
+
+  <md>\frac{x^2-1}{x-1}
+=
+\frac{(x-1)(x+1)}{x-1}
+=
+x+1.</md>
+
+  <p>When taking the limit as <m>x\to1</m>, we are allowed to assume <m>x\neq1</m>.  That is built into the meaning of a limit.  So near <m>1</m>, except at <m>1</m>, the function agrees with <m>x+1</m>.</p>
+
+  <p>Therefore</p>
+
+  <md>\lim_{x\to1}\frac{x^2-1}{x-1}
+=
+\lim_{x\to1}(x+1)
+=
+2.</md>
+
+  <p>The original function has a hole at <m>x=1</m>.  The simplified function fills the hole.</p>
+
+  <figure xml:id="fig-removable-hole">
+    <caption>For <m>x\neq1</m>, <m>\dfrac{x^2-1}{x-1}=x+1</m>.  The limit sees the nearby line, not the missing point.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.65\textwidth,
+    height=0.45\textwidth,
+    xmin=-1.2, xmax=3,
+    ymin=-0.5, ymax=4.5,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1},
+    ytick={2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-1:3, samples=2] {x+1};
+\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,2)};
+\node[anchor=west] at (axis cs:1.12,2.12) {hole};
+\node[anchor=west] at (axis cs:1.7,2.65) {\(y=x+1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <paragraphs>
+    <title>A second removable discontinuity</title>
+
+  <p>Find</p>
+
+  <md>\lim_{x\to0}\frac{\sqrt{4+x}-2}{x}.</md>
+
+  <p>Direct substitution gives</p>
+
+  <md>\frac{0}{0}.</md>
+
+  <p>The numerator contains a difference of square roots.  Multiply by the conjugate:</p>
+
+  <md>\frac{\sqrt{4+x}-2}{x}
+\cdot
+\frac{\sqrt{4+x}+2}{\sqrt{4+x}+2}
+=
+\frac{(4+x)-4}{x(\sqrt{4+x}+2)}.</md>
+
+  <p>So</p>
+
+  <md>\frac{\sqrt{4+x}-2}{x}
+=
+\frac{x}{x(\sqrt{4+x}+2)}.</md>
+
+  <p>For <m>x\neq0</m>,</p>
+
+  <md>\frac{\sqrt{4+x}-2}{x}
+=
+\frac{1}{\sqrt{4+x}+2}.</md>
+
+  <p>Now the limit is easy:</p>
+
+  <md>\lim_{x\to0}\frac{1}{\sqrt{4+x}+2}
+=
+\frac{1}{\sqrt4+2}
+=
+\frac14.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\lim_{x\to0}\frac{\sqrt{4+x}-2}{x}
+=
+\frac14.
+</md>
+
+  <p>This example also explains why algebraic rewriting matters in numerical work.  The original expression subtracts nearly equal numbers when <m>x</m> is small.  The rewritten expression avoids that subtraction.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-2-hole-versus-indeterminate">
+        <title>Why is <m>\frac00</m> a question, not an answer?</title>
+        <statement>
+          <p>
+            After canceling <m>x-1</m>, the function <m>\frac{x^2-1}{x-1}</m> agrees with <m>x+1</m> near <m>x=1</m>, so the limit exists. Canceling in <m>\frac{x}{x^2}</m> produces <m>\frac1x</m>, which has no finite two-sided limit. In your own words, why does an indeterminate form need more work, and why is a limit allowed to ignore the missing point after rewriting?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A limit already assumes <m>x\neq a</m>. Algebra can therefore rewrite the nearby rule. The rewritten rule may be calm, or it may still blow up or disagree from the two sides.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-cancellation-does-not-save">
     <title>When cancellation does not save the limit</title>
 
-    <p>Not every <m>\frac{0}{0}</m> expression has a removable hole.</p>
+  <p>Not every <m>\frac00</m> expression has a removable hole.</p>
 
-    <p>Consider</p>
-    <md>\frac{x}{x^2}.</md>
-    <p>For <m>x\neq 0</m>,</p>
-    <md>\frac{x}{x^2}=\frac{1}{x}.</md>
-    <p>As <m>x\to 0</m>, this does not approach a finite number. So</p>
-    <md>\lim_{x\to 0}\frac{x}{x^2}</md>
-    <p>does not exist as a finite limit.</p>
+  <p>Consider</p>
 
-    <p>The symbol <m>\frac{0}{0}</m> is called an <term>indeterminate form</term>. It means the expression needs more work. It does not determine the answer.</p>
+  <md>\frac{x}{x^2}.</md>
 
-    <table>
-      <title>Comparison of indeterminate forms</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>limit</term></cell>
-          <cell><term>simplification</term></cell>
-          <cell><term>result</term></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to 1}\frac{x^2-1}{x-1}</m></cell>
-          <cell><m>x+1</m></cell>
-          <cell><m>2</m></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to 0}\frac{x}{x^2}</m></cell>
-          <cell><m>\frac{1}{x}</m></cell>
-          <cell>no finite two-sided limit</cell>
-        </row>
-      </tabular>
-    </table>
+  <p>For <m>x\neq0</m>,</p>
 
-    <p>Same first appearance, different behavior. This is why we do not treat <m>\frac{0}{0}</m> as a number.</p>
+  <md>\frac{x}{x^2}=\frac1x.</md>
+
+  <p>As <m>x\to0</m>, this does not approach a finite number.  So</p>
+
+  <md>\lim_{x\to0}\frac{x}{x^2}</md>
+
+  <p>does not exist as a finite limit.</p>
+
+  <p>The symbol <m>\frac00</m> is called an <em>indeterminate form</em>.  It means the expression needs more work.  It does not determine the answer.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>limit</strong> \amp <strong>simplification</strong> \amp <strong>result</strong></mrow>
+    <mrow>\hline
+\displaystyle \lim_{x\to1}\frac{x^2-1}{x-1}
+\amp
+x+1
+\amp
+2</mrow>
+    <mrow>
+\displaystyle \lim_{x\to0}\frac{x}{x^2}
+\amp
+\dfrac1x
+\amp
+\text{no finite two-sided limit}
+\end{array}</mrow>
+  </md>
+
+  <p>Same first appearance, different behavior.  This is why we do not treat <m>\frac00</m> as a number.</p>
   </subsection>
 
   <subsection xml:id="subsec-squeeze-idea">
     <title>The squeeze idea</title>
 
-    <p>Some limits cannot be found by simplifying an expression into something calm. Instead, we trap the function between two simpler functions.</p>
+  <p>Some limits cannot be found by simplifying an expression into something calm.  Instead, we trap the function between two simpler functions.</p>
 
-    <p>Consider</p>
-    <md>f(x)=x^2\sin\frac{1}{x}, \qquad x\neq 0.</md>
-    <p>The factor <m>\sin(1/x)</m> oscillates faster and faster as <m>x\to 0</m>. It does not approach any one number. But it is always trapped between <m>-1</m> and <m>1</m>:</p>
-    <md>-1\le \sin\frac{1}{x}\le 1.</md>
-    <p>Multiplying by <m>x^2</m>, which is nonnegative, gives</p>
-    <md>-x^2\le x^2\sin\frac{1}{x}\le x^2.</md>
-    <p>As <m>x\to 0</m>,</p>
-    <md>-x^2\to 0 \qquad\text{and}\qquad x^2\to 0.</md>
-    <p>The function is squeezed between two quantities that both approach <m>0</m>. Therefore it must also approach <m>0</m>:</p>
-    <md>\lim_{x\to 0}x^2\sin\frac{1}{x}=0.</md>
+  <p>Consider</p>
 
-    <figure xml:id="fig-squeeze-x2-sin">
-      <caption>The oscillating graph is trapped between <m>y=-x^2</m> and <m>y=x^2</m>. The walls close in at <m>0</m>.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.46\textwidth,
-              xmin=-0.45, xmax=0.45,
-              ymin=-0.22, ymax=0.22,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-0.4,-0.2,0.2,0.4},
-              ytick={-0.16,0.16},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-0.45:-0.025, samples=500] {x^2*sin(deg(1/x))};
-          \addplot[thick, domain=0.025:0.45, samples=500] {x^2*sin(deg(1/x))};
-          \addplot[dashed, domain=-0.45:0.45, samples=100] {x^2};
-          \addplot[dashed, domain=-0.45:0.45, samples=100] {-x^2};
-          \node[anchor=west] at (axis cs:0.22,0.08) {\(y=x^2\)};
-          \node[anchor=west] at (axis cs:0.20,-0.09) {\(y=-x^2\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>f(x)=x^2\sin\frac1x,
+\qquad x\neq0.</md>
 
-    <theorem xml:id="thm-squeeze-principle">
-      <title>Squeeze Principle</title>
-      <statement>
-        <p>Suppose that, for all <m>x</m> sufficiently close to <m>a</m> with <m>x\neq a</m>,</p>
+  <p>The factor <m>\sin(1/x)</m> oscillates faster and faster as <m>x\to0</m>.  It does not approach any one number.  But it is always trapped between <m>-1</m> and <m>1</m>:</p>
+
+  <md>-1\le \sin\frac1x\le 1.</md>
+
+  <p>Multiplying by <m>x^2</m>, which is nonnegative, gives</p>
+
+  <md>-x^2\le x^2\sin\frac1x\le x^2.</md>
+
+  <p>As <m>x\to0</m>,</p>
+
+  <md>-x^2\to0
+\qquad\text{and}\qquad
+x^2\to0.</md>
+
+  <p>The function is squeezed between two quantities that both approach <m>0</m>.  Therefore it must also approach <m>0</m>:</p>
+
+  <md>\lim_{x\to0}x^2\sin\frac1x=0.</md>
+
+  <figure xml:id="fig-squeeze-x2-sin">
+    <caption>The oscillating graph is trapped between <m>y=-x^2</m> and <m>y=x^2</m>.  The walls close in at <m>0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.46\textwidth,
+    xmin=-0.45, xmax=0.45,
+    ymin=-0.22, ymax=0.22,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-0.4,-0.2,0.2,0.4},
+    ytick={-0.16,0.16},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-0.45:-0.025, samples=500] {x^2*sin(deg(1/x))};
+\addplot[thick, domain=0.025:0.45, samples=500] {x^2*sin(deg(1/x))};
+\addplot[dashed, domain=-0.45:0.45, samples=100] {x^2};
+\addplot[dashed, domain=-0.45:0.45, samples=100] {-x^2};
+\node[anchor=west] at (axis cs:0.22,0.08) {\(y=x^2\)};
+\node[anchor=west] at (axis cs:0.20,-0.09) {\(y=-x^2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-3-2-calculating-limits-67">
+    <title>Squeeze Principle</title>
+      <p>Suppose that, for all <m>x</m> sufficiently close to <m>a</m> with <m>x\neq a</m>,</p>
         <md>p(x)\le f(x)\le q(x).</md>
-        <p>If</p>
-        <md>\lim_{x\to a}p(x)=L \qquad\text{and}\qquad \lim_{x\to a}q(x)=L,</md>
-        <p>then</p>
+      <p>If</p>
+        <md>\lim_{x\to a}p(x)=L
+\qquad\text{and}\qquad
+\lim_{x\to a}q(x)=L,</md>
+      <p>then</p>
         <md>\lim_{x\to a}f(x)=L.</md>
-      </statement>
-    </theorem>
+  </note>
 
-    <p>The squeeze principle is not a trick. It is a statement about error. If <m>f(x)</m> is trapped between two quantities that both get close to <m>L</m>, then <m>f(x)</m> has no room to go anywhere else.</p>
+  <p>The squeeze principle is not a trick.  It is a statement about error.  If <m>f(x)</m> is trapped between two quantities that both get close to <m>L</m>, then <m>f(x)</m> has no room to go anywhere else.</p>
 
-    <p><em>Why the two outside limits must match.</em> The bounds must close in on the same number. If all we know is <m>-1\le \sin\frac{1}{x}\le 1</m>, then we cannot conclude that <m>\sin\frac{1}{x}</m> has a limit as <m>x\to 0</m>. The walls <m>-1</m> and <m>1</m> do not close in. In fact, <m>\sin(1/x)</m> has no limit at <m>0</m>.</p>
-    <p>The squeeze principle works because the trap becomes narrow.</p>
+  <paragraphs>
+    <title>Why the two outside limits must match</title>
+
+  <p>The bounds must close in on the same number.  If all we know is</p>
+
+  <md>-1\le \sin\frac1x\le1,</md>
+
+  <p>then we cannot conclude that</p>
+
+  <md>\sin\frac1x</md>
+
+  <p>has a limit as <m>x\to0</m>.  The walls <m>-1</m> and <m>1</m> do not close in.  In fact, <m>\sin(1/x)</m> has no limit at <m>0</m>.</p>
+
+  <p>The squeeze principle works because the trap becomes narrow.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-2-squeeze-idea">
+        <title>How can a trapped oscillation still have a limit?</title>
+        <statement>
+          <p>
+            The factor <m>\sin(1/x)</m> does not approach one number as <m>x\to0</m>, yet <m>x^2\sin(1/x)</m> does approach <m>0</m>. In your own words, what is the squeeze idea, and why must the two outside functions approach the same target?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If a function is trapped between two others, and those two walls close in on the same number, the trapped graph has nowhere else to go. If the walls headed toward different numbers, there would be a gap to hide in.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-first-limit-tools-guide">
     <title>A short guide to the first limit tools</title>
 
-    <p>The first questions to ask are these.</p>
+  <p>The first questions to ask are these.</p>
 
-    <table>
-      <title>Guide to early limit calculations</title>
-      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="38%"/>
-        <col halign="left" width="58%"/>
-        <row header="yes">
-          <cell><term>what happens?</term></cell>
-          <cell><term>what to try</term></cell>
-        </row>
-        <row>
-          <cell>direct substitution gives a number</cell>
-          <cell>Use the polynomial or rational function rules.</cell>
-        </row>
-        <row>
-          <cell>direct substitution gives <m>\frac{0}{0}</m></cell>
-          <cell>Factor, cancel, expand, or rationalize. Then try the limit again.</cell>
-        </row>
-        <row>
-          <cell>an oscillating factor is multiplied by something small</cell>
-          <cell>Try to squeeze it between two functions with the same limit.</cell>
-        </row>
-        <row>
-          <cell>left and right behavior look different</cell>
-          <cell>Do not force a two-sided limit. The limit may fail to exist.</cell>
-        </row>
-        <row>
-          <cell>the expression grows without bound</cell>
-          <cell>A finite limit may not exist. We will give this behavior a name soon.</cell>
-        </row>
-      </tabular>
-    </table>
+  <table xml:id="tab-first-limit-tools-guide">
+    <tabular>
+      <row bottom="minor">
+        <cell><strong>what happens?</strong></cell>
+        <cell><strong>what to try</strong></cell>
+      </row>
+      <row>
+        <cell>direct substitution gives a number</cell>
+        <cell>Use the polynomial or rational function rules.</cell>
+      </row>
+      <row>
+        <cell>direct substitution gives <m>\frac00</m></cell>
+        <cell>Factor, cancel, expand, or rationalize.  Then try the limit again.</cell>
+      </row>
+      <row>
+        <cell>an oscillating factor is multiplied by something small</cell>
+        <cell>Try to squeeze it between two functions with the same limit.</cell>
+      </row>
+      <row>
+        <cell>left and right behavior look different</cell>
+        <cell>Do not force a two-sided limit.  The limit may fail to exist.</cell>
+      </row>
+      <row>
+        <cell>the expression grows without bound</cell>
+        <cell>A finite limit may not exist.  We will give this behavior a name soon.</cell>
+      </row>
+    </tabular>
+  </table>
 
-    <p>These tools are enough for many early limits. They are not the whole story. Limits can fail from a jump, explode toward infinity, or behave differently on the two sides of a point.</p>
+  <p>These tools are enough for many early limits.  They are not the whole story.  Limits can fail from a jump, explode toward infinity, or behave differently on the two sides of a point.</p>
 
-    <p>The next section separates those possibilities. A limit can miss because the two sides disagree, or because the values do not settle down to any finite number.</p>
+  <p>The next section separates those possibilities.  A limit can miss because the two sides disagree, or because the values do not settle down to any finite number.</p>
   </subsection>
+
+
 
 </section>

@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-b-1-lines">
+  <title>Lines</title>
+
+  <p>The first graph in calculus is often a line.  Constant velocity gives a line.  A
+tangent approximation gives a line.  Newton’s method follows a line.  The Mean
+Value Theorem compares a tangent slope with a secant slope.</p>
+
+  <p>So lines deserve to be completely familiar.</p>
+
+  <subsection xml:id="appsubsec-slope">
+    <title>Slope</title>
+
+  <p>A nonvertical line has a constant steepness.  That steepness is its <em>slope</em>.</p>
+
+  <p>If a line passes through two distinct points</p>
+
+  <md>(x_1,y_1)
+\qquad\text{and}\qquad
+(x_2,y_2),</md>
+
+  <p>with <m>x_1\neq x_2</m>, then its slope is</p>
+
+  <md>
+m=\frac{y_2-y_1}{x_2-x_1}.
+</md>
+
+  <p>In words,</p>
+
+  <md>
+\text{slope}=\frac{\text{change in }y}{\text{change in }x}
+=
+\frac{\text{rise}}{\text{run}}.
+</md>
+
+  <figure xml:id="fig-appendix-slope-rise-run">
+    <caption>Slope measures vertical change per horizontal change.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.43\textwidth,
+    xmin=0, xmax=6,
+    ymin=0, ymax=5,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,5},
+    ytick={1,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0.6:5.5, samples=2] {0.75*x+0.25};
+\addplot[only marks, mark=*] coordinates {(1,1) (5,4)};
+\draw[dashed, thick] (axis cs:1,1) -- (axis cs:5,1);
+\draw[dashed, thick] (axis cs:5,1) -- (axis cs:5,4);
+\node[anchor=north] at (axis cs:3,1) {\(\Delta x=4\)};
+\node[anchor=west] at (axis cs:5,2.5) {\(\Delta y=3\)};
+\node[anchor=east] at (axis cs:1,1.15) {\((1,1)\)};
+\node[anchor=west] at (axis cs:5,4) {\((5,4)\)};
+\node[anchor=west] at (axis cs:2.4,3.2) {\(m=\dfrac34\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <example xml:id="ex-sec-b-1-lines-1">
+    <title>Example</title>
+    <statement>
+  <p>Find the slope of the line through</p>
+
+  <md>(1,1)
+\qquad\text{and}\qquad
+(5,4).</md>
+
+  <p>The change in <m>y</m> is</p>
+
+  <md>4-1=3.</md>
+
+  <p>The change in <m>x</m> is</p>
+
+  <md>5-1=4.</md>
+
+  <p>Therefore</p>
+
+  <md>
+m=\frac34.
+</md>
+
+  <p>The line rises <m>3</m> units for every <m>4</m> units it moves to the right.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-b-1-lines-2">
+    <title>Example</title>
+    <statement>
+  <p>Find the slope of the line through</p>
+
+  <md>(2,5)
+\qquad\text{and}\qquad
+(6,-3).</md>
+
+  <p>We compute</p>
+
+  <md>m=\frac{-3-5}{6-2}=\frac{-8}{4}=-2.</md>
+
+  <p>The negative sign means the line falls as <m>x</m> increases.</p>
+
+  <note xml:id="note-sec-b-1-lines-67">
+    <title>Vertical lines</title>
+      <p>A vertical line has no slope, because its run is <m>0</m>.  The slope formula would
+require division by <m>0</m>.</p>
+      <p>A vertical line has equation</p>
+        <md>x=a.</md>
+      <p>A horizontal line has slope <m>0</m> and equation</p>
+        <md>y=b.</md>
+  </note>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-point-slope-form">
+    <title>Point-slope form</title>
+
+  <p>If a line has slope <m>m</m> and passes through the point</p>
+
+  <md>(x_1,y_1),</md>
+
+  <p>then every point <m>(x,y)</m> on the line satisfies</p>
+
+  <md>\frac{y-y_1}{x-x_1}=m</md>
+
+  <p>when <m>x\neq x_1</m>.  Multiplying by <m>x-x_1</m> gives the most useful form:</p>
+
+  <md>
+y-y_1=m(x-x_1).
+</md>
+
+  <p>This is called the <em>point-slope form</em> of a line.</p>
+
+  <p>It is the same form used for tangent lines in calculus:</p>
+
+  <md>y-f(a)=f'(a)(x-a).</md>
+
+  <example xml:id="ex-sec-b-1-lines-3">
+    <title>Example</title>
+    <statement>
+  <p>Find an equation of the line through</p>
+
+  <md>(2,-1)</md>
+
+  <p>with slope</p>
+
+  <md>m=\frac32.</md>
+
+  <p>Use point-slope form:</p>
+
+  <md>y-(-1)=\frac32(x-2).</md>
+
+  <p>Thus</p>
+
+  <md>
+y+1=\frac32(x-2).
+</md>
+
+  <p>If we solve for <m>y</m>,</p>
+
+  <md>y+1=\frac32x-3,</md>
+
+  <p>so</p>
+
+  <md>
+y=\frac32x-4.
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-slope-intercept-form">
+    <title>Slope-intercept form</title>
+
+  <p>If a line has slope <m>m</m> and crosses the <m>y</m>-axis at</p>
+
+  <md>(0,b),</md>
+
+  <p>then point-slope form gives</p>
+
+  <md>y-b=m(x-0).</md>
+
+  <p>So</p>
+
+  <md>
+y=mx+b.
+</md>
+
+  <p>This is the <em>slope-intercept form</em>.  The number <m>b</m> is the
+<em><m>y</m>-intercept</em>.</p>
+
+  <example xml:id="ex-sec-b-1-lines-4">
+    <title>Example</title>
+    <statement>
+  <p>The line</p>
+
+  <md>y=-2x+5</md>
+
+  <p>has slope</p>
+
+  <md>m=-2</md>
+
+  <p>and <m>y</m>-intercept</p>
+
+  <md>b=5.</md>
+
+  <p>So it crosses the <m>y</m>-axis at</p>
+
+  <md>(0,5).</md>
+
+  <p>It falls <m>2</m> units for every <m>1</m> unit it moves to the right.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-line-through-two-points">
+    <title>Line through two points</title>
+
+  <p>To find a line through two points:</p>
+
+  <md>\text{first find the slope, then use point-slope form.}</md>
+
+  <example xml:id="ex-sec-b-1-lines-5">
+    <title>Example</title>
+    <statement>
+  <p>Find an equation of the line through</p>
+
+  <md>(1,4)
+\qquad\text{and}\qquad
+(5,-2).</md>
+
+  <p>First compute the slope:</p>
+
+  <md>m=\frac{-2-4}{5-1}=\frac{-6}{4}=-\frac32.</md>
+
+  <p>Use point-slope form with <m>(1,4)</m>:</p>
+
+  <md>y-4=-\frac32(x-1).</md>
+
+  <p>This is already a good equation.  If we want slope-intercept form,</p>
+
+  <md>y-4=-\frac32x+\frac32,</md>
+
+  <p>so</p>
+
+  <md>
+y=-\frac32x+\frac{11}{2}.
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-general-form-lines">
+    <title>General form</title>
+
+  <p>Every line can be written in the form</p>
+
+  <md>
+Ax+By+C=0,
+</md>
+
+  <p>where <m>A</m>, <m>B</m>, and <m>C</m> are constants, and <m>A</m> and <m>B</m> are not both <m>0</m>.</p>
+
+  <p>If <m>B\neq0</m>, then we can solve for <m>y</m>:</p>
+
+  <md>By=-Ax-C,</md>
+
+  <p>so</p>
+
+  <md>y=-\frac ABx-\frac CB.</md>
+
+  <p>Therefore the slope is</p>
+
+  <md>
+m=-\frac AB
+</md>
+
+  <p>and the <m>y</m>-intercept is</p>
+
+  <md>
+b=-\frac CB.
+</md>
+
+  <p>If <m>B=0</m>, the equation becomes</p>
+
+  <md>Ax+C=0,</md>
+
+  <p>so</p>
+
+  <md>x=-\frac CA.</md>
+
+  <p>That is a vertical line.</p>
+
+  <example xml:id="ex-sec-b-1-lines-6">
+    <title>Example</title>
+    <statement>
+  <p>Find the slope and intercepts of</p>
+
+  <md>3x-5y=15.</md>
+
+  <p>Solve for <m>y</m>:</p>
+
+  <md>-5y=15-3x.</md>
+
+  <p>Thus</p>
+
+  <md>y=\frac35x-3.</md>
+
+  <p>So the slope is</p>
+
+  <md>\frac35</md>
+
+  <p>and the <m>y</m>-intercept is</p>
+
+  <md>(0,-3).</md>
+
+  <p>To find the <m>x</m>-intercept, set <m>y=0</m>:</p>
+
+  <md>3x=15,</md>
+
+  <p>so</p>
+
+  <md>x=5.</md>
+
+  <p>Thus the <m>x</m>-intercept is</p>
+
+  <md>(5,0).</md>
+
+  <figure xml:id="fig-appendix-line-intercepts">
+    <caption>The intercepts are often the quickest way to sketch a line in general form.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.66\textwidth,
+    height=0.45\textwidth,
+    xmin=-1, xmax=7,
+    ymin=-4, ymax=3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,5},
+    ytick={-3,0},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-0.5:6.5, samples=2] {(3/5)*x-3};
+\addplot[only marks, mark=*] coordinates {(0,-3) (5,0)};
+\node[anchor=north east] at (axis cs:0,-3) {\((0,-3)\)};
+\node[anchor=south west] at (axis cs:5,0) {\((5,0)\)};
+\node[anchor=west] at (axis cs:3.0,-1.0) {\(3x-5y=15\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-parallel-perpendicular-lines">
+    <title>Parallel and perpendicular lines</title>
+
+  <p>Slope detects parallel and perpendicular lines.</p>
+
+  <note xml:id="note-sec-b-1-lines-68">
+    <title>Parallel lines</title>
+      <p>Two nonvertical lines are parallel exactly when they have the same slope.</p>
+  </note>
+
+  <note xml:id="note-sec-b-1-lines-69">
+    <title>Perpendicular lines</title>
+      <p>Two nonvertical lines with slopes <m>m_1</m> and <m>m_2</m> are perpendicular exactly when</p>
+        <md>
+m_1m_2=-1.
+</md>
+      <p>Equivalently,</p>
+        <md>m_2=-\frac1{m_1}.</md>
+  </note>
+
+  <p>A vertical line is perpendicular to a horizontal line.</p>
+
+  <example xml:id="ex-sec-b-1-lines-7">
+    <title>Example</title>
+    <statement>
+  <p>Find the line through</p>
+
+  <md>(-1,2)</md>
+
+  <p>parallel to</p>
+
+  <md>2x-3y=6.</md>
+
+  <p>First solve the given line for <m>y</m>:</p>
+
+  <md>-3y=6-2x,</md>
+
+  <p>so</p>
+
+  <md>y=\frac23x-2.</md>
+
+  <p>The slope is</p>
+
+  <md>m=\frac23.</md>
+
+  <p>A parallel line has the same slope.  Using point-slope form,</p>
+
+  <md>y-2=\frac23(x+1).</md>
+
+  <p>Thus</p>
+
+  <md>
+y=\frac23x+\frac83.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-b-1-lines-8">
+    <title>Example</title>
+    <statement>
+  <p>Find the line through</p>
+
+  <md>(4,-1)</md>
+
+  <p>perpendicular to</p>
+
+  <md>y=-4x+7.</md>
+
+  <p>The given line has slope</p>
+
+  <md>-4.</md>
+
+  <p>A perpendicular line has slope</p>
+
+  <md>\frac14,</md>
+
+  <p>because</p>
+
+  <md>(-4)\left(\frac14\right)=-1.</md>
+
+  <p>Thus</p>
+
+  <md>y+1=\frac14(x-4).</md>
+
+  <p>So</p>
+
+  <md>
+y=\frac14x-2.
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+</section>

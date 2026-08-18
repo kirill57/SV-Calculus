@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-8-complex-numbers-and-polar-form">
+  <title>Complex numbers and polar form</title>
+
+  <p>Polar coordinates describe a point by distance and angle.  Complex numbers give another
+way to do the same thing.</p>
+
+  <p>At first this looks like notation.  Then multiplication reveals the surprise.</p>
+
+  <p>In ordinary coordinates, multiplying two points does not make sense.  In complex
+coordinates, multiplying two points means:</p>
+
+  <md>
+\text{multiply the distances and add the angles.}
+</md>
+
+  <p>That is why complex numbers are so useful for rotation and oscillation.</p>
+
+  <subsection xml:id="subsec-complex-numbers-points-plane">
+    <title>Complex numbers as points in the plane</title>
+
+  <p>A complex number has the form</p>
+
+  <md>z=a+bi,</md>
+
+  <p>where <m>a</m> and <m>b</m> are real numbers, and</p>
+
+  <md>i^2=-1.</md>
+
+  <p>The number <m>a</m> is the real part.  The number <m>b</m> is the imaginary part.</p>
+
+  <p>We picture</p>
+
+  <md>z=a+bi</md>
+
+  <p>as the point</p>
+
+  <md>(a,b)</md>
+
+  <p>in the plane.</p>
+
+  <md>
+a+bi
+\quad\longleftrightarrow\quad
+(a,b).
+</md>
+
+  <p>The horizontal axis is called the real axis.  The vertical axis is called the imaginary axis.</p>
+
+  <figure xml:id="fig-complex-number-as-point">
+    <caption>The complex number <m>a+bi</m> is the point <m>(a,b)</m> in the plane.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (-0.5,0) -- (4.3,0) node[right] {real axis};
+  \draw[-&gt;, thick] (0,-0.4) -- (0,3.1) node[above] {imaginary axis};
+
+  \coordinate (Z) at (3.2,1.8);
+
+  \draw[very thick] (0,0) -- (Z);
+  \draw[dashed] (Z) -- (3.2,0);
+  \draw[dashed] (Z) -- (0,1.8);
+  \fill (Z) circle (2pt);
+
+  \node[below] at (3.2,0) {\(a\)};
+  \node[left] at (0,1.8) {\(b\)};
+  \node[above right] at (Z) {\(z=a+bi\)};
+
+  \draw[-&gt;, thick] (0.75,0) arc (0:29.36:0.75);
+  \node at (0.95,0.25) {\(\theta\)};
+  \node[above] at (1.65,0.92) {\(r=|z|\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The distance from <m>0</m> to <m>z</m> is called the <em>modulus</em> of <m>z</m>:</p>
+
+  <md>
+|z|=\sqrt{a^2+b^2}.
+</md>
+
+  <p>The angle <m>\theta</m> that <m>z</m> makes with the positive real axis is called an
+<em>argument</em> of <m>z</m>.</p>
+
+  <p>Thus</p>
+
+  <md>a=r\cos\theta,
+\qquad
+b=r\sin\theta.</md>
+
+  <p>So</p>
+
+  <md>z=a+bi
+=
+r\cos\theta+i r\sin\theta.</md>
+
+  <p>Factor out <m>r</m>:</p>
+
+  <md>
+z=r(\cos\theta+i\sin\theta).
+</md>
+
+  <p>This is the polar form of a complex number.</p>
+
+
+  <exercise xml:id="checkpoint-14-8-complex-as-points">
+        <title>How is a complex number a point in the plane?</title>
+        <statement>
+          <p>
+            The number <m>a+bi</m> is pictured as the point <m>(a,b)</m>. In your own words, why does that identification make polar coordinates a natural language for complex numbers, and what do modulus and argument measure?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Distance from the origin is the modulus. Angle from the positive real axis is the argument. Those are exactly polar coordinates.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-8-complex-numbers-and-polar-form-1">
+    <title>Example</title>
+    <statement>
+  <p>Write</p>
+
+  <md>z=1+i\sqrt3</md>
+
+  <p>in polar form.</p>
+
+  <p>The modulus is</p>
+
+  <md>r=\sqrt{1^2+(\sqrt3)^2}=\sqrt4=2.</md>
+
+  <p>The point <m>(1,\sqrt3)</m> lies in Quadrant I, and</p>
+
+  <md>\tan\theta=\sqrt3.</md>
+
+  <p>Thus</p>
+
+  <md>\theta=\frac{\pi}{3}.</md>
+
+  <p>So</p>
+
+  <md>
+1+i\sqrt3
+=
+2\left(\cos\frac{\pi}{3}+i\sin\frac{\pi}{3}\right).
+</md>
+
+  <p>As with polar coordinates, the angle is not unique.  We can also write</p>
+
+  <md>\theta=\frac{\pi}{3}+2\pi k</md>
+
+  <p>for any integer <m>k</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-complex-multiplication-scaling-rotation">
+    <title>Multiplication as scaling and rotation</title>
+
+  <p>The real advantage of polar form appears when we multiply.</p>
+
+  <p>Let</p>
+
+  <md>z_1=r_1(\cos\alpha+i\sin\alpha)</md>
+
+  <p>and</p>
+
+  <md>z_2=r_2(\cos\beta+i\sin\beta).</md>
+
+  <p>Then</p>
+
+  <md>z_1z_2
+=
+r_1r_2(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta).</md>
+
+  <p>Multiply the two parentheses:</p>
+
+  <md>(\cos\alpha\cos\beta-\sin\alpha\sin\beta)
++
+i(\sin\alpha\cos\beta+\cos\alpha\sin\beta).</md>
+
+  <p>By the angle addition formulas,</p>
+
+  <md>\cos\alpha\cos\beta-\sin\alpha\sin\beta=\cos(\alpha+\beta),</md>
+
+  <p>and</p>
+
+  <md>\sin\alpha\cos\beta+\cos\alpha\sin\beta=\sin(\alpha+\beta).</md>
+
+  <p>Therefore</p>
+
+  <md>
+z_1z_2
+=
+r_1r_2\bigl(\cos(\alpha+\beta)+i\sin(\alpha+\beta)\bigr).
+</md>
+
+  <p>This is the key rule.</p>
+
+  <note xml:id="note-sec-14-8-complex-numbers-and-polar-form-75">
+    <title>Multiplication in polar form</title>
+      <p>When complex numbers are multiplied:</p>
+        <md>
+\text{moduli multiply}
+</md>
+      <p>and</p>
+        <md>
+\text{arguments add}.
+</md>
+  </note>
+
+  <p>So multiplication by a complex number has two geometric effects:</p>
+
+  <md>\text{scale by its modulus}</md>
+
+  <p>and</p>
+
+  <md>\text{rotate by its argument}.</md>
+
+
+  <exercise xml:id="checkpoint-14-8-multiply-to-rotate">
+        <title>What geometric meaning does complex multiplication have?</title>
+        <statement>
+          <p>
+            In polar form, moduli multiply and arguments add. In your own words, why does that make multiplication by a complex number a combination of scaling and rotation, and what special motion does multiplication by <m>i</m> produce?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Multiplying distances scales; adding angles rotates. The number <m>i</m> has modulus <m>1</m> and argument <m>\pi/2</m>, so it rotates by a right angle without changing size.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-8-complex-numbers-and-polar-form-2">
+    <title>multiplying by <m>i</m></title>
+    <statement>
+  <p>The number <m>i</m> has polar form</p>
+
+  <md>i=\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}.</md>
+
+  <p>Its modulus is <m>1</m>, and its angle is <m>\pi/2</m>.  Therefore multiplying by <m>i</m> rotates
+a point by <m>90^\circ</m> counterclockwise without changing its distance from the origin.</p>
+
+  <p>Algebraically,</p>
+
+  <md>i(a+bi)=ai+b i^2=-b+ai.</md>
+
+  <p>So multiplication by <m>i</m> sends</p>
+
+  <md>(a,b)</md>
+
+  <p>to</p>
+
+  <md>(-b,a).</md>
+
+  <p>That is exactly a <m>90^\circ</m> counterclockwise rotation.</p>
+
+  <figure xml:id="fig-c14-multiply-by-i-rotation">
+    <caption>Multiplication by <m>i</m> rotates the plane by <m>90^\circ</m> counterclockwise.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (-2.4,0) -- (2.7,0) node[right] {real};
+  \draw[-&gt;, thick] (0,-0.7) -- (0,2.7) node[above] {imaginary};
+
+  \coordinate (Z) at (1.7,0.8);
+  \coordinate (IZ) at (-0.8,1.7);
+
+  \draw[very thick,-&gt;] (0,0) -- (Z);
+  \draw[very thick,-&gt;] (0,0) -- (IZ);
+
+  \node[anchor=south west] at (Z) {\(z=a+bi\)};
+  \node[anchor=south east] at (IZ) {\(iz=-b+ai\)};
+
+  \draw[-&gt;, thick] (0.85,0.4) arc (25.2:115.2:0.94);
+  \node at (0.15,1.08) {\(\pi/2\)};
+
+  \draw[dashed] (Z) -- (1.7,0);
+  \draw[dashed] (IZ) -- (0,1.7);
+
+  \fill (Z) circle (1.8pt);
+  \fill (IZ) circle (1.8pt);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-8-complex-numbers-and-polar-form-3">
+    <title>multiplying two polar numbers</title>
+    <statement>
+  <p>Let</p>
+
+  <md>z_1=2\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right)</md>
+
+  <p>and</p>
+
+  <md>z_2=3\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right).</md>
+
+  <p>Then</p>
+
+  <md>z_1z_2
+=
+6\left(\cos\left(\frac{\pi}{6}+\frac{\pi}{4}\right)
++i\sin\left(\frac{\pi}{6}+\frac{\pi}{4}\right)\right).</md>
+
+  <p>Since</p>
+
+  <md>\frac{\pi}{6}+\frac{\pi}{4}
+=
+\frac{2\pi}{12}+\frac{3\pi}{12}
+=
+\frac{5\pi}{12},</md>
+
+  <p>we get</p>
+
+  <md>
+z_1z_2
+=
+6\left(\cos\frac{5\pi}{12}+i\sin\frac{5\pi}{12}\right).
+</md>
+
+  <p>The moduli multiplied:</p>
+
+  <md>2\cdot3=6.</md>
+
+  <p>The angles added:</p>
+
+  <md>\frac{\pi}{6}+\frac{\pi}{4}=\frac{5\pi}{12}.</md>
+
+  <p>That is the whole multiplication.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-euler-formula-preview">
+    <title>Euler’s formula preview</title>
+
+  <p>The expression</p>
+
+  <md>\cos\theta+i\sin\theta</md>
+
+  <p>appears so often that it deserves a shorter name.</p>
+
+  <p>Later, power series will justify the remarkable identity</p>
+
+  <md>
+e^{i\theta}=\cos\theta+i\sin\theta.
+</md>
+
+  <p>This is Euler’s formula.</p>
+
+  <p>For now, read it as a preview and a compact notation for a point on the unit circle.</p>
+
+  <p>With Euler’s formula, the polar form</p>
+
+  <md>z=r(\cos\theta+i\sin\theta)</md>
+
+  <p>becomes</p>
+
+  <md>
+z=re^{i\theta}.
+</md>
+
+  <p>The multiplication rule becomes almost effortless:</p>
+
+  <md>(r_1e^{i\alpha})(r_2e^{i\beta})
+=
+r_1r_2e^{i(\alpha+\beta)}.</md>
+
+  <p>So the usual exponential law</p>
+
+  <md>e^Ae^B=e^{A+B}</md>
+
+  <p>matches the geometry of rotations.</p>
+
+  <note xml:id="note-sec-14-8-complex-numbers-and-polar-form-76">
+    <title>Euler’s formula as geometry</title>
+      <p>The formula</p>
+        <md>e^{i\theta}=\cos\theta+i\sin\theta</md>
+      <p>puts the unit circle into exponential notation.  The angle <m>\theta</m> becomes the
+exponent.</p>
+  </note>
+
+  <p>Some famous special cases fall out immediately.</p>
+
+  <p>When</p>
+
+  <md>\theta=0,</md>
+
+  <p>we get</p>
+
+  <md>e^{0}=1.</md>
+
+  <p>When</p>
+
+  <md>\theta=\frac{\pi}{2},</md>
+
+  <p>we get</p>
+
+  <md>e^{i\pi/2}=i.</md>
+
+  <p>When</p>
+
+  <md>\theta=\pi,</md>
+
+  <p>we get</p>
+
+  <md>e^{i\pi}=-1.</md>
+
+  <p>So</p>
+
+  <md>
+e^{i\pi}+1=0.
+</md>
+
+  <p>This compact equation connects five fundamental constants:</p>
+
+  <md>e,\quad i,\quad \pi,\quad 1,\quad 0.</md>
+
+  <p>We will return to the proof after Taylor series, where <m>e^x</m>, <m>\sin x</m>, and <m>\cos x</m>
+will all be written as infinite polynomials.</p>
+
+  <exercise xml:id="checkpoint-14-8-euler-geometry">
+        <title>What does Euler’s formula put into exponential notation?</title>
+        <statement>
+          <p>
+            The formula <m>e^{i\theta}=\cos\theta+i\sin\theta</m> places the unit circle in exponential language. In your own words, why is that compatible with the law <m>e^A e^B=e^{A+B}</m>, and what famous points on the circle fall out immediately?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Adding exponents adds angles, which is how rotations compose. In particular, <m>e^{i\pi}=-1</m> and <m>e^{i\pi/2}=i</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-oscillation-written-exponentially">
+    <title>Oscillation written exponentially</title>
+
+  <p>Complex numbers also simplify oscillation.</p>
+
+  <p>A point moving around the unit circle at angular speed <m>\omega</m> has complex position</p>
+
+  <md>z(t)=e^{i\omega t}.</md>
+
+  <p>Using Euler’s formula,</p>
+
+  <md>z(t)=\cos(\omega t)+i\sin(\omega t).</md>
+
+  <p>The real part is</p>
+
+  <md>\cos(\omega t),</md>
+
+  <p>and the imaginary part is</p>
+
+  <md>\sin(\omega t).</md>
+
+  <p>So ordinary sine and cosine oscillations are shadows of circular motion.</p>
+
+  <figure xml:id="fig-oscillation-complex-exponential">
+    <caption>Sine and cosine are projections of circular motion.  Euler’s formula writes that motion as <m>e^{i\omega t}</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.0, every node/.style={font=\small}]
+  \def\ang{50}
+  \coordinate (O) at (0,0);
+  \coordinate (P) at ({cos(\ang)},{sin(\ang)});
+  \coordinate (X) at ({cos(\ang)},0);
+
+  \draw[-&gt;, thick] (-1.25,0) -- (1.35,0) node[right] {real};
+  \draw[-&gt;, thick] (0,-1.25) -- (0,1.35) node[above] {imaginary};
+
+  \draw[very thick] (O) circle (1);
+  \draw[very thick,-&gt;] (O) -- (P);
+  \draw[dashed] (P) -- (X);
+  \draw[very thick] (O) -- (X);
+
+  \fill (P) circle (1.6pt);
+  \fill (X) circle (1.4pt);
+
+  \draw[-&gt;] (0.35,0) arc (0:\ang:0.35);
+  \node at (0.45,0.2) {\(\omega t\)};
+
+  \node[above right] at (P) {\(e^{i\omega t}\)};
+  \node[below] at (X) {\(\cos(\omega t)\)};
+  \node[left] at (0,0.78) {\(\sin(\omega t)\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The derivative is especially clean.  Starting from</p>
+
+  <md>z(t)=\cos(\omega t)+i\sin(\omega t),</md>
+
+  <p>differentiate:</p>
+
+  <md>z'(t)
+=
+-\omega\sin(\omega t)+i\omega\cos(\omega t).</md>
+
+  <p>Factor out <m>i\omega</m>:</p>
+
+  <md>i\omega z(t)
+=
+i\omega\bigl(\cos(\omega t)+i\sin(\omega t)\bigr).</md>
+
+  <p>Since <m>i^2=-1</m>,</p>
+
+  <md>i\omega z(t)
+=
+i\omega\cos(\omega t)-\omega\sin(\omega t).</md>
+
+  <p>This matches <m>z'(t)</m>.  Therefore</p>
+
+  <md>
+z'(t)=i\omega z(t).
+</md>
+
+  <p>Differentiating again gives</p>
+
+  <md>z''(t)=i\omega z'(t)=i\omega(i\omega z(t)).</md>
+
+  <p>Since</p>
+
+  <md>i^2=-1,</md>
+
+  <p>we get</p>
+
+  <md>
+z''(t)=-\omega^2 z(t).
+</md>
+
+  <p>Thus</p>
+
+  <md>z''+\omega^2z=0.</md>
+
+  <p>Taking the real part gives</p>
+
+  <md>x(t)=\cos(\omega t),</md>
+
+  <p>and</p>
+
+  <md>x''+\omega^2x=0.</md>
+
+  <p>Taking the imaginary part gives</p>
+
+  <md>y(t)=\sin(\omega t),</md>
+
+  <p>and again</p>
+
+  <md>y''+\omega^2y=0.</md>
+
+  <note xml:id="note-sec-14-8-complex-numbers-and-polar-form-77">
+    <title>Why complex exponentials are useful</title>
+      <p>The oscillation equation</p>
+        <md>x''+\omega^2x=0</md>
+      <p>has sine and cosine solutions.  Complex notation packages both into one function:</p>
+        <md>e^{i\omega t}.</md>
+      <p>Differentiation becomes multiplication by <m>i\omega</m>.</p>
+  </note>
+
+  <p>This is a bridge, not a new requirement for the rest of the chapter.  But it shows where
+the story is going.</p>
+
+  <p>Parametric curves taught us to let time move a point in the plane.  Polar coordinates
+taught us to measure that point by radius and angle.  Complex numbers show that the
+same plane can be treated as a number system, where multiplication rotates.</p>
+
+  <p>The proof of Euler’s formula still waits.  To prove it, we need a new kind of infinite
+process: not an infinite area, but an infinite sum of functions.</p>
+
+  <exercise xml:id="checkpoint-14-8-oscillation-exponential">
+        <title>Why are complex exponentials useful for oscillation?</title>
+        <statement>
+          <p>
+            The equation <m>x''+\omega^2 x=0</m> has sine and cosine solutions, which complex notation packages as <m>e^{i\omega t}</m>. In your own words, what computational convenience does that packaging provide, and why is this a bridge rather than a new requirement for the chapter?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Differentiation becomes multiplication by <m>i\omega</m>. The same plane is being treated as a number system whose multiplication rotates.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

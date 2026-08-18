@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-2-direction-fields">
+  <title>Direction fields</title>
+
+  <p>A first-order differential equation of the form</p>
+
+  <md>y'=F(t,y)</md>
+
+  <p>assigns a slope to each point in the <m>(t,y)</m>-plane.  At the point <m>(t,y)</m>, a solution
+curve passing through that point must have slope</p>
+
+  <md>F(t,y).</md>
+
+  <p>So even before solving the equation, we can draw a small line segment at many points.
+The collection of these little segments is a picture of the differential equation.</p>
+
+  <subsection xml:id="subsec-slope-field-picture">
+    <title>Slope field as a picture of a differential equation</title>
+
+  <p>Return to the equation</p>
+
+  <md>y'=1-y.</md>
+
+  <p>At a point where <m>y=0</m>,</p>
+
+  <md>y'=1-0=1.</md>
+
+  <p>So the solution curve has slope <m>1</m>.</p>
+
+  <p>At a point where <m>y=1</m>,</p>
+
+  <md>y'=1-1=0.</md>
+
+  <p>So the solution curve is horizontal.</p>
+
+  <p>At a point where <m>y=2</m>,</p>
+
+  <md>y'=1-2=-1.</md>
+
+  <p>So the solution curve has slope <m>-1</m>.</p>
+
+  <p>Notice that the right side does not depend on <m>t</m>.  Every point along the same
+horizontal line has the same slope.</p>
+
+  <figure xml:id="fig-direction-field-one-minus-y">
+    <caption>A direction field draws the slope prescribed by <m>y'=1-y</m> at many points.  Solution curves follow the field.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.52\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.2, ymax=2.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+% direction field for y' = 1-y
+\foreach \xx in {0,0.5,...,4} {
+  \foreach \yy in {0,0.25,...,2.25} {
+    \pgfmathsetmacro{\m}{1-\yy}
+    \pgfmathsetmacro{\len}{0.14}
+    \pgfmathsetmacro{\dx}{\len/sqrt(1+\m*\m)}
+    \pgfmathsetmacro{\dy}{\m*\dx}
+    
+    % Pre-calculate coordinate points to avoid parsing issues in axis cs
+    \pgfmathsetmacro{\xOne}{\xx-\dx}
+    \pgfmathsetmacro{\yOne}{\yy-\dy}
+    \pgfmathsetmacro{\xTwo}{\xx+\dx}
+    \pgfmathsetmacro{\yTwo}{\yy+\dy}
+    
+    % \edef expands the variables into hard numbers immediately
+    \edef\temp{%
+      \noexpand\draw[gray!65] (axis cs:\xOne,\yOne) -- (axis cs:\xTwo,\yTwo);%
+    }
+    % Execute the expanded command
+    \temp
+  }
+}
+% solution curves y=1+C e^{-t}
+\addplot[very thick, domain=0:4, samples=150] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=150] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y=1\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The little segments are not solution curves.  They are instructions for solution curves.
+A true solution curve must pass through the field by matching the local direction at
+each point.</p>
+
+  <note xml:id="note-sec-13-2-direction-fields-41">
+    <title>Direction field</title>
+      <p>For a differential equation</p>
+        <md>y'=F(t,y),</md>
+      <p>a <em>direction field</em> or <em>slope field</em> is a plot of small line segments, where
+the segment at <m>(t,y)</m> has slope <m>F(t,y)</m>.</p>
+  </note>
+
+  <p>The direction field is especially helpful when the equation is hard to solve exactly.  It
+can show whether solutions rise or fall, whether they approach a stable value, and how
+different initial conditions change the behavior.</p>
+
+  <exercise xml:id="checkpoint-13-2-slope-field-picture">
+        <title>What is a direction field a picture of?</title>
+        <statement>
+          <p>
+            The equation <m>y'=F(t,y)</m> assigns a slope to each point <m>(t,y)</m>. In your own words, why are the little segments not themselves solution curves, and what instruction do they give to any true solution that passes through a point?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each segment is a local direction, not a whole history. A solution curve must match the prescribed slope at every point it visits.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-equilibrium-solutions">
+    <title>Equilibrium solutions</title>
+
+  <p>Some solutions do not move at all.</p>
+
+  <p>For</p>
+
+  <md>y'=1-y,</md>
+
+  <p>the constant function</p>
+
+  <md>y(t)=1</md>
+
+  <p>is a solution.  Its derivative is</p>
+
+  <md>y'=0,</md>
+
+  <p>and the right side is</p>
+
+  <md>1-y=1-1=0.</md>
+
+  <p>So the equation is true.</p>
+
+  <p>This constant solution is called an equilibrium solution.</p>
+
+  <note xml:id="note-sec-13-2-direction-fields-42">
+    <title>Equilibrium solution</title>
+      <p>For an equation</p>
+        <md>y'=F(t,y),</md>
+      <p>a constant solution <m>y(t)=c</m> is called an <em>equilibrium solution</em>.</p>
+      <p>If the equation is autonomous,</p>
+        <md>y'=f(y),</md>
+      <p>then equilibria occur at values <m>c</m> satisfying</p>
+        <md>f(c)=0.</md>
+  </note>
+
+  <p>The word <em>autonomous</em> means that the independent variable <m>t</m> does not appear
+explicitly on the right side.  For example,</p>
+
+  <md>y'=1-y</md>
+
+  <p>is autonomous, while</p>
+
+  <md>y'=t-y</md>
+
+  <p>is not.</p>
+
+  <p>For an autonomous equation, all points with the same <m>y</m>-value have the same slope.
+That is why the direction field in Figure <xref ref="fig-direction-field-one-minus-y"/> looks the
+same across each horizontal row.</p>
+
+  <exercise xml:id="checkpoint-13-2-equilibrium-solution">
+        <title>What is an equilibrium solution?</title>
+        <statement>
+          <p>
+            For <m>y'=1-y</m>, the constant function <m>y=1</m> is a solution. In your own words, why does a constant solution correspond to a place where the right-hand side is zero, and what extra feature does an autonomous equation <m>y'=f(y)</m> give the picture?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If <m>y</m> never changes, then <m>y'=0</m>, so <m>F(t,c)=0</m>. In an autonomous equation, every point at the same height has the same slope.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-qualitative-behavior-direction-fields">
+    <title>Qualitative behavior</title>
+
+  <p>A direction field can tell us how solutions behave without giving exact formulas.</p>
+
+  <p>For</p>
+
+  <md>y'=1-y,</md>
+
+  <p>the sign of <m>y'</m> depends on whether <m>y</m> is below, equal to, or above <m>1</m>.</p>
+
+  <table xml:id="tab-sec-13-2-direction-fields-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>region</strong></cell>
+        <cell><strong>sign of <m>y'=1-y</m></strong></cell>
+        <cell><strong>behavior of solution</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>y&lt;1</m></cell>
+        <cell>positive</cell>
+        <cell>rises</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>y=1</m></cell>
+        <cell>zero</cell>
+        <cell>stays constant</cell>
+      </row>
+      <row>
+        <cell><m>y&gt;1</m></cell>
+        <cell>negative</cell>
+        <cell>falls</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>So the line</p>
+
+  <md>y=1</md>
+
+  <p>acts like a attracting level.  Solutions below it rise toward it.  Solutions above it fall
+toward it.</p>
+
+  <p>We can read this from the equation, from the sign table, or from the direction field.
+The three views agree.</p>
+
+
+  <exercise xml:id="checkpoint-13-2-qualitative-behavior">
+        <title>What can you read from a direction field without a formula?</title>
+        <statement>
+          <p>
+            A sign chart or a field can say whether solutions rise, fall, or approach a level. In your own words, what kind of question is that qualitative information answering, and what kind of question does it deliberately not answer?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Long-term trend and shape often come from the sign of <m>y'</m>. Exact values at a specific time usually require a formula or a numerical method.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-13-2-direction-fields-1">
+    <title>logistic behavior without solving</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>y'=y(1-y).</md>
+
+  <p>This is the normalized logistic equation.  It appears when a quantity grows almost
+exponentially when it is small, but slows as it approaches a carrying capacity.  Here the
+carrying capacity has been scaled to <m>1</m>.</p>
+
+  <p>Equilibrium solutions occur when</p>
+
+  <md>y(1-y)=0.</md>
+
+  <p>Thus</p>
+
+  <md>y=0
+\qquad\text{and}\qquad
+y=1</md>
+
+  <p>are equilibrium solutions.</p>
+
+  <p>Now read the sign of <m>y(1-y)</m>.</p>
+
+  <table xml:id="tab-sec-13-2-direction-fields-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>region</strong></cell>
+        <cell><strong>sign of <m>y(1-y)</m></strong></cell>
+        <cell><strong>behavior</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>y&lt;0</m></cell>
+        <cell>negative</cell>
+        <cell>falls</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0&lt;y&lt;1</m></cell>
+        <cell>positive</cell>
+        <cell>rises</cell>
+      </row>
+      <row>
+        <cell><m>y&gt;1</m></cell>
+        <cell>negative</cell>
+        <cell>falls</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>For a population model, we care mainly about</p>
+
+  <md>y\ge0.</md>
+
+  <p>If</p>
+
+  <md>0&lt;y(0)&lt;1,</md>
+
+  <p>the solution rises.</p>
+
+  <p>If</p>
+
+  <md>y(0)&gt;1,</md>
+
+  <p>the solution falls.</p>
+
+  <p>In both cases, the solution is pushed toward</p>
+
+  <md>y=1.</md>
+
+  <p>The equilibrium <m>y=1</m> is stable.  The equilibrium <m>y=0</m> is unstable: a solution that
+starts exactly at <m>0</m> stays there, but a solution that starts slightly above <m>0</m> moves
+away from <m>0</m>.</p>
+
+  <figure xml:id="fig-ch13-logistic-phase-line">
+    <caption>For <m>y'=y(1-y)</m>, the arrows show whether solutions move up or down.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.2, yscale=1.2, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (0,-0.9) -- (0,2.0);
+  \node[above] at (0,2.0) {\(y\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,1) -- (0.08,1);
+
+  \node[left] at (-0.08,0) {\(0\)};
+  \node[left] at (-0.08,1) {\(1\)};
+
+  % arrows
+  \draw[-&gt;, thick] (0,-0.65) -- (0,-0.25);
+  \draw[-&gt;, thick] (0,0.25) -- (0,0.65);
+  \draw[-&gt;, thick] (0,1.65) -- (0,1.25);
+
+  \node[right] at (0.18,-0.45) {\(y'&lt;0\)};
+  \node[right] at (0.18,0.45) {\(y'&gt;0\)};
+  \node[right] at (0.18,1.45) {\(y'&lt;0\)};
+
+  \node[right] at (0.18,0) {unstable equilibrium};
+  \node[right] at (0.18,1) {stable equilibrium};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This small vertical picture is a compressed direction field.  Because the equation is
+autonomous, the sign depends only on <m>y</m>, so one vertical line can summarize the
+rise-and-fall behavior.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-reading-long-term-behavior-field">
+    <title>Reading long-term behavior from the field</title>
+
+  <p>A direction field can answer questions that do not require an exact formula.</p>
+
+  <p>For</p>
+
+  <md>y'=1-y,</md>
+
+  <p>the field shows that solutions approach</p>
+
+  <md>y=1</md>
+
+  <p>as <m>t</m> increases.  The field also shows that the approach slows down, because slopes
+near <m>y=1</m> are small.</p>
+
+  <p>For</p>
+
+  <md>y'=y(1-y),</md>
+
+  <p>the sign chart shows:</p>
+
+  <md>0&lt;y(0)&lt;1
+\quad\Longrightarrow\quad
+\text{the solution rises toward }1,</md>
+
+  <p>and</p>
+
+  <md>y(0)&gt;1
+\quad\Longrightarrow\quad
+\text{the solution falls toward }1.</md>
+
+  <p>These conclusions are qualitative.  They tell the shape and long-term trend, not the
+exact value at a specific time.</p>
+
+  <p>That is often enough for a first understanding of a model.  Before computing, we should
+know what kind of behavior to expect.</p>
+
+  <paragraphs>
+    <title>Warning: the physical domain matters</title>
+
+  <p>The logistic equation</p>
+
+  <md>y'=y(1-y)</md>
+
+  <p>may be used for a normalized population.  In that interpretation,</p>
+
+  <md>y&lt;0</md>
+
+  <p>does not make physical sense.  The equation still has mathematical behavior there, but
+the model should not be interpreted as a population model for negative <m>y</m>.</p>
+
+  <p>A differential equation is not the world.  It is a model of selected features of the world.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Warning: a direction field is not a uniqueness proof</title>
+
+  <p>A direction field can suggest that one solution curve passes through each point.  For
+many equations in this chapter, that is true.  But it is not automatic.</p>
+
+  <p>Consider</p>
+
+  <md>y'=\sqrt{|y|},
+\qquad
+y(0)=0.</md>
+
+  <p>The constant function</p>
+
+  <md>y(t)=0</md>
+
+  <p>is a solution.</p>
+
+  <p>Another solution is</p>
+
+  <md>
+    <mrow>y(t)=
+\begin{cases}
+0, \amp t\le 0,</mrow>
+    <mrow>
+\dfrac{t^2}{4}, \amp t\ge 0.
+\end{cases}</mrow>
+  </md>
+
+  <p>For <m>t&gt;0</m>,</p>
+
+  <md>y'(t)=\frac{t}{2}</md>
+
+  <p>and</p>
+
+  <md>\sqrt{|y(t)|}
+=
+\sqrt{\frac{t^2}{4}}
+=
+\frac{t}{2}.</md>
+
+  <p>For <m>t&lt;0</m>, both sides are <m>0</m>.  At <m>t=0</m>, the derivative is also <m>0</m>.  So this
+piecewise function solves the same initial value problem.</p>
+
+  <p>Two different solution curves pass through the same initial point.</p>
+
+  <warning xml:id="warn-sec-13-2-direction-fields-43">
+    <title>What the warning teaches</title>
+      <p>A direction field is a powerful picture, but it is still a picture.  Clean uniqueness
+requires hypotheses on the function <m>F(t,y)</m>.  In this chapter, our examples will be
+well behaved, but we should remember that the warning exists.</p>
+  </warning>
+
+  <p>The direction field gives the geometry of a differential equation.  The next question is
+computational.  If the field tells us the slope at every point, can we follow those slopes
+one small step at a time and build an approximate solution curve?</p>
+
+  <p>That step-by-step method is Euler’s method.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-2-picture-is-not-a-proof">
+        <title>Why is a direction field not a uniqueness proof?</title>
+        <statement>
+          <p>
+            A field may look as if one curve passes through each point, yet <m>y'=\sqrt{|y|}</m> with <m>y(0)=0</m> has more than one solution. In your own words, what does the picture fail to guarantee, and why does the physical domain of a model matter even when the mathematics continues?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Clean uniqueness needs hypotheses on <m>F(t,y)</m>. A model of population, for example, should not be interpreted for negative values even if the equation still has behavior there.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-9-warning-examples">
+  <title>Warning examples</title>
+
+  <p>Uniform convergence explained why power series behave so well inside their radius.
+That explanation should not make us careless.  Infinite processes are powerful because
+they are controlled.  When the control is missing, familiar-looking operations can fail.</p>
+
+  <p>This section collects the warnings that belong at the end of the story.</p>
+
+  <md>
+\text{A Taylor series is not automatically the function that produced it.}
+</md>
+
+  <md>
+\text{Endpoint behavior is not decided by the interior.}
+</md>
+
+  <md>
+\text{Term-by-term operations need hypotheses.}
+</md>
+
+  <subsection xml:id="subsec-taylor-series-not-function">
+    <title>A Taylor series can converge but not to the function</title>
+
+  <p>The most surprising warning is this: all derivatives at one point may fail to determine
+the function near that point.</p>
+
+  <p>Define</p>
+
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+e^{-1/x^2}, \amp x\neq0,</mrow>
+    <mrow>0, \amp x=0.
+\end{cases}</mrow>
+  </md>
+
+  <p>For <m>x\neq0</m>, the function is positive.  For example,</p>
+
+  <md>f(1)=e^{-1}&gt;0.</md>
+
+  <p>But near <m>0</m>, the values are extremely small.  The factor <m>e^{-1/x^2}</m> goes to <m>0</m>
+faster than any power of <m>x</m>.</p>
+
+  <figure xml:id="fig-flat-function">
+    <caption>The function <m>e^{-1/x^2}</m>, with <m>f(0)=0</m>, is positive away from <m>0</m> but is infinitely flat at <m>0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=-2.1, xmax=2.1,
+    ymin=-0.05, ymax=0.9,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={0,0.25,0.5,0.75},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2:-0.05, samples=200] {exp(-1/(x^2))};
+\addplot[very thick, domain=0.05:2, samples=200] {exp(-1/(x^2))};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\addplot[thick, dashed, domain=-2:2, samples=2] {0};
+\node[anchor=west] at (axis cs:0.65,0.38) {\(e^{-1/x^2}\)};
+\node[anchor=south west] at (axis cs:0.05,0.04) {flat at \(0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Let us compute the first derivative at <m>0</m>.  By definition,</p>
+
+  <md>f'(0)=\lim_{h\to0}\frac{f(h)-f(0)}{h}
+=
+\lim_{h\to0}\frac{e^{-1/h^2}}{h}.</md>
+
+  <p>The numerator goes to <m>0</m> faster than the denominator goes to <m>0</m>, so</p>
+
+  <md>f'(0)=0.</md>
+
+  <p>The same phenomenon happens for every higher derivative.  For <m>x\neq0</m>, each
+derivative has the form</p>
+
+  <md>f^{(n)}(x)=P_n\left(\frac1x\right)e^{-1/x^2},</md>
+
+  <p>where <m>P_n</m> is some polynomial.  The polynomial may grow as <m>x\to0</m>, but the
+exponential factor still wins.  Therefore</p>
+
+  <md>f^{(n)}(0)=0</md>
+
+  <p>for every <m>n\ge0</m>.</p>
+
+  <p>So the Taylor series of <m>f</m> centered at <m>0</m> is</p>
+
+  <md>\sum_{n=0}^{\infty}\frac{f^{(n)}(0)}{n!}x^n
+=
+0+0x+0x^2+0x^3+\cdots.</md>
+
+  <p>Thus the Taylor series is the zero series:</p>
+
+  <md>
+0.
+</md>
+
+  <p>This series converges for every <m>x</m>.  But it does not equal <m>f(x)</m> when <m>x\neq0</m>,
+because</p>
+
+  <md>f(x)=e^{-1/x^2}&gt;0.</md>
+
+  <p>So we have found a function whose Taylor series converges everywhere but agrees with
+the function only at the center.</p>
+
+  <note xml:id="note-sec-16-9-warning-examples-53">
+    <title>Moral</title>
+      <p>The Taylor series is built from derivative data at one point.  That data can be
+insufficient.  To prove that a Taylor series equals a function, we need the remainder
+to satisfy</p>
+        <md>R_n(x)\to0.</md>
+  </note>
+
+  <p>This is why Taylor’s theorem was not optional bookkeeping.  The remainder is the
+bridge between the Taylor polynomials and the function.</p>
+
+  <exercise xml:id="checkpoint-16-9-series-not-the-function">
+        <title>Why can a Taylor series converge without equaling the function?</title>
+        <statement>
+          <p>
+            The flat function that is <m>e^{-1/x^2}</m> away from <m>0</m> has every derivative zero at the origin, so its Taylor series is identically zero. In your own words, why does that show that derivative data at one point can be insufficient, and what extra statement is needed before the series is the function?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The Taylor series records only the derivatives at the center. If those derivatives cannot see the function, the series cannot either. The remainder must tend to zero.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-endpoint-behavior-differs">
+    <title>Endpoint behavior differs from interior behavior</title>
+
+  <p>Inside the radius of convergence, power series behave predictably.  They converge
+absolutely.  They can be differentiated and integrated term by term.</p>
+
+  <p>At the endpoints, that safety margin disappears.</p>
+
+  <p>Several power series have the same radius but different endpoint behavior:</p>
+
+  <table xml:id="tab-sec-16-9-warning-examples-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>series</strong></cell>
+        <cell><strong>radius</strong></cell>
+        <cell><strong>interval of convergence</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}x^n</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>(-1,1)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}\frac{x^n}{n}</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>[-1,1)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^n}{n}</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>(-1,1]</m></cell>
+      </row>
+      <row>
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}\frac{x^n}{n^2}</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>[-1,1]</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The radius only tells us what happens when</p>
+
+  <md>|x|&lt;1</md>
+
+  <p>and when</p>
+
+  <md>|x|&gt;1.</md>
+
+  <p>It does not decide what happens at</p>
+
+  <md>x=-1
+\qquad\text{or}\qquad
+x=1.</md>
+
+  <p>Those endpoints become ordinary numerical series, and ordinary series tests must be
+used.</p>
+
+  <paragraphs>
+    <title>Differentiation can lose endpoints</title>
+
+  <p>Consider</p>
+
+  <md>F(x)=\sum_{n=1}^{\infty}\frac{x^n}{n}.</md>
+
+  <p>Its interval of convergence is</p>
+
+  <md>[-1,1).</md>
+
+  <p>Inside <m>(-1,1)</m>, differentiate term by term:</p>
+
+  <md>F'(x)=\sum_{n=1}^{\infty}x^{n-1}.</md>
+
+  <p>This derivative series is geometric:</p>
+
+  <md>1+x+x^2+x^3+\cdots.</md>
+
+  <p>Its interval of convergence is</p>
+
+  <md>(-1,1).</md>
+
+  <p>So the original series converged at <m>x=-1</m>, but the differentiated series does not.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Integration can gain endpoints</title>
+
+  <p>Start with the geometric series:</p>
+
+  <md>1+x+x^2+x^3+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>Integrate from <m>0</m> to <m>x</m>:</p>
+
+  <md>x+\frac{x^2}{2}+\frac{x^3}{3}+\frac{x^4}{4}+\cdots.</md>
+
+  <p>The original geometric series diverges at both endpoints.  The integrated series
+converges at <m>x=-1</m> by the Alternating Series Test, but diverges at <m>x=1</m> as the
+harmonic series.</p>
+
+  <p>So the integrated series has interval</p>
+
+  <md>[-1,1).</md>
+
+  <p>The radius stayed the same.  The endpoint behavior changed.</p>
+
+  <note xml:id="note-sec-16-9-warning-examples-54">
+    <title>Endpoint rule</title>
+      <p>Differentiation and integration preserve the radius of convergence, but they do not
+preserve endpoint behavior.</p>
+      <p>After any term-by-term operation, test endpoints again.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-9-endpoints-not-interior">
+        <title>Why is endpoint behavior not decided by the interior?</title>
+        <statement>
+          <p>
+            Differentiation and integration preserve radius but not endpoint behavior. In your own words, why can the interior be completely safe while an endpoint still requires a fresh numerical test, and why should every term-by-term operation be followed by that test?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Inside the radius there is a geometric margin. An endpoint sits exactly where that margin vanishes, so a new series may gain or lose an endpoint even though <m>R</m> is unchanged.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-termwise-operations-fail">
+    <title>Termwise operations can fail for arbitrary function series</title>
+
+  <p>Power series behave well inside their radius because they have geometric control.
+Arbitrary infinite sums of functions may have no such control.</p>
+
+  <p>Here is a concrete failure for integration.</p>
+
+  <p>For <m>n\ge2</m>, define a triangular spike on <m>[0,1]</m>:</p>
+
+  <md>
+    <mrow>g_n(x)=
+\begin{cases}
+n^2x, \amp 0\le x\le \frac1n,</mrow>
+    <mrow>
+2n-n^2x, \amp \frac1n&lt;x\le \frac2n,</mrow>
+    <mrow>
+0, \amp \frac2n&lt;x\le1.
+\end{cases}</mrow>
+  </md>
+
+  <p>Each <m>g_n</m> is a triangle with base</p>
+
+  <md>\frac2n</md>
+
+  <p>and height</p>
+
+  <md>n.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_0^1 g_n(x)\,dx
+=
+\frac12\cdot \frac2n\cdot n
+=
+1.</md>
+
+  <p>For each fixed <m>x&gt;0</m>, eventually <m>x&gt;\frac2n</m>, so</p>
+
+  <md>g_n(x)=0.</md>
+
+  <p>Also,</p>
+
+  <md>g_n(0)=0.</md>
+
+  <p>Thus</p>
+
+  <md>g_n(x)\to0</md>
+
+  <p>pointwise on <m>[0,1]</m>, even though every spike has area <m>1</m>.</p>
+
+  <p>Now define</p>
+
+  <md>h_n(x)=g_n(x)-g_{n+1}(x),
+\qquad n\ge2.</md>
+
+  <p>The series</p>
+
+  <md>\sum_{n=2}^{\infty} h_n(x)</md>
+
+  <p>telescopes.  Its <m>N</m>-th partial sum is</p>
+
+  <md>S_N(x)=\sum_{n=2}^{N}h_n(x)
+=
+g_2(x)-g_{N+1}(x).</md>
+
+  <p>Since <m>g_{N+1}(x)\to0</m> pointwise,</p>
+
+  <md>S_N(x)\to g_2(x).</md>
+
+  <p>Therefore</p>
+
+  <md>\sum_{n=2}^{\infty}h_n(x)=g_2(x)</md>
+
+  <p>pointwise.</p>
+
+  <p>Now compare the two ways of integrating.</p>
+
+  <p>First integrate the pointwise sum:</p>
+
+  <md>\int_0^1 \left(\sum_{n=2}^{\infty}h_n(x)\right)dx
+=
+\int_0^1 g_2(x)\,dx
+=
+1.</md>
+
+  <p>But each <m>h_n</m> has integral</p>
+
+  <md>\int_0^1 h_n(x)\,dx
+=
+\int_0^1 g_n(x)\,dx-\int_0^1 g_{n+1}(x)\,dx
+=
+1-1
+=
+0.</md>
+
+  <p>So</p>
+
+  <md>\sum_{n=2}^{\infty}\int_0^1 h_n(x)\,dx
+=
+0.</md>
+
+  <p>Thus</p>
+
+  <md>
+\int_0^1 \left(\sum_{n=2}^{\infty}h_n(x)\right)dx
+\neq
+\sum_{n=2}^{\infty}\int_0^1 h_n(x)\,dx.
+</md>
+
+  <p>The failure came from the moving spike.  The spike disappears at every fixed point, but
+its area does not disappear.  Pointwise convergence did not control the accumulated
+error.</p>
+
+  <paragraphs>
+    <title>Differentiation has its own warning</title>
+
+  <p>Even uniform convergence of functions is not enough to justify differentiating limits.</p>
+
+  <p>On <m>[-1,1]</m>, define</p>
+
+  <md>F_n(x)=\sqrt{x^2+\frac1n}.</md>
+
+  <p>Each <m>F_n</m> is differentiable.  Also,</p>
+
+  <md>F_n(x)\to |x|</md>
+
+  <p>uniformly on <m>[-1,1]</m>.  Indeed,</p>
+
+  <md>0\le F_n(x)-|x|
+\le \frac1{\sqrt n}.</md>
+
+  <p>But the limit function</p>
+
+  <md>|x|</md>
+
+  <p>is not differentiable at <m>0</m>.</p>
+
+  <p>So differentiating the approximating functions did not guarantee differentiability of the
+limit.  To pass derivatives through a limit or an infinite sum, we need extra control,
+usually control of the derivative series itself.</p>
+
+  <note xml:id="note-sec-16-9-warning-examples-55">
+    <title>Moral</title>
+      <p>Pointwise convergence is usually too weak for term-by-term operations.</p>
+      <p>Power series are special because they converge uniformly on every closed interval
+strictly inside their radius of convergence.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-9-termwise-needs-hypotheses">
+        <title>Why do term-by-term operations need hypotheses?</title>
+        <statement>
+          <p>
+            Arbitrary series of functions can fail to pass integrals or derivatives through the limit, even when each approximant is well behaved. In your own words, why is pointwise convergence usually too weak, and why are power series special inside their radius?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Passing an integral or a derivative through a limit is an interval-wide claim. Power series earn that claim by uniform geometric control on compact subintervals of the open interval of convergence.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-local-approximation-bad-far-away">
+    <title>A good local approximation can become bad far away</title>
+
+  <p>Taylor polynomials are local approximations.  They are built from derivative information
+at one center.  A polynomial that is excellent near the center can be useless far away.</p>
+
+  <p>The geometric series gives the clearest example:</p>
+
+  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>The degree <m>N</m> partial sum is</p>
+
+  <md>S_N(x)=1+x+x^2+\cdots+x^N.</md>
+
+  <p>For <m>|x|&lt;1</m>,</p>
+
+  <md>\frac1{1-x}-S_N(x)
+=
+\frac{x^{N+1}}{1-x}.</md>
+
+  <p>At <m>x=\frac12</m>,</p>
+
+  <md>\left|
+\frac1{1-\frac12}-S_N\left(\frac12\right)
+\right|
+=
+\frac{(1/2)^{N+1}}{1/2}
+=
+\frac1{2^N}.</md>
+
+  <p>So the approximation becomes excellent quickly.</p>
+
+  <p>But at <m>x=2</m>, the function is perfectly defined:</p>
+
+  <md>\frac1{1-2}=-1.</md>
+
+  <p>The partial sums are</p>
+
+  <md>S_N(2)=1+2+2^2+\cdots+2^N=2^{N+1}-1.</md>
+
+  <p>These values grow without bound.  They do not approach <m>-1</m>.</p>
+
+  <p>The problem is not that <m>1/(1-x)</m> is undefined at <m>2</m>.  It is defined there.  The
+problem is that the power series centered at <m>0</m> has radius <m>1</m>.  The singularity at
+<m>x=1</m> blocks the series before it can reach <m>x=2</m>.</p>
+
+  <figure xml:id="fig-local-series-radius-block">
+    <caption>The Maclaurin series for <m>\frac1{1-x}</m> has radius <m>1</m>.  It cannot pass the singularity at <m>x=1</m>, even though the function is defined again at <m>x=2</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.25, every node/.style={font=\small}]
+  \draw[&lt;-&gt;, thick] (-2.4,0) -- (3.1,0);
+
+  \draw[very thick] (-1,0) -- (1,0);
+  \draw[fill=white, thick] (-1,0) circle (2.6pt);
+  \draw[fill=white, thick] (1,0) circle (2.6pt);
+  \draw[fill=black] (0,0) circle (2.2pt);
+
+  \draw[thick] (2,0.1) -- (2,-0.1);
+  \node[below] at (0,-0.08) {\(0\)};
+  \node[below] at (-1,-0.08) {\(-1\)};
+  \node[below] at (1,-0.08) {\(1\)};
+  \node[below] at (2,-0.08) {\(2\)};
+
+  \node[above] at (0,0.2) {series works};
+  \node[above] at (1,0.45) {singularity};
+  \node[above] at (2,0.2) {function defined, series fails};
+
+  \draw[-&gt;, thick] (0,0.65) -- (0.85,0.18);
+  \node[above] at (0,0.78) {center};
+
+  \draw[-&gt;, thick] (1,0.82) -- (1,0.18);
+  \node[above] at (1,0.95) {\(x=1\)};
+
+  \draw[-&gt;, thick] (2,0.65) -- (2,0.18);
+  \node[above] at (2,0.78) {\(x=2\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <warning xml:id="warn-sec-16-9-warning-examples-56">
+    <title>Local approximation warning</title>
+      <p>A Taylor polynomial may be excellent near its center and poor far away.</p>
+      <p>A Taylor series may represent a function only on part of the function’s domain.</p>
+  </warning>
+
+  <p>These warnings complete the chapter’s main lesson.  Infinite polynomials are useful
+because they come with a domain, a remainder, and a convergence story.  Without those
+three pieces, the formulas are only formal patterns.</p>
+
+  <exercise xml:id="checkpoint-16-9-local-becomes-bad">
+        <title>Why can a good local approximation become useless far away?</title>
+        <statement>
+          <p>
+            The geometric partial sums approach <m>1/(1-x)</m> for <m>|x|&lt;1</m>, but at <m>x=2</m> they explode while the function is perfectly defined. In your own words, why is a Taylor polynomial a local object, and why does existence of the function at a far point not license using the series there?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The polynomial is built from data at one center and inherits that center’s radius. A function can be defined beyond the radius; the series need not follow it.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

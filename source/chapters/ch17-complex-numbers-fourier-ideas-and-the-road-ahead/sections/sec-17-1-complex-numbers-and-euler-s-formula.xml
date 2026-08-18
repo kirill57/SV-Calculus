@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-1-complex-numbers-and-euler-s-formula">
+  <title>Complex numbers and Euler’s formula</title>
+
+  <p>The real number line is one-dimensional.  It can measure position to the left and right,
+size, error, and signed change.  But it cannot solve</p>
+
+  <md>x^2+1=0.</md>
+
+  <p>No real number has square <m>-1</m>.</p>
+
+  <p>Instead of giving up, mathematics enlarges the number system.</p>
+
+  <subsection xml:id="subsec-complex-plane">
+    <title>The complex plane</title>
+
+  <p>Define a new number <m>i</m> by the rule</p>
+
+  <md>i^2=-1.</md>
+
+  <p>A <em>complex number</em> is a number of the form</p>
+
+  <md>z=a+bi,</md>
+
+  <p>where <m>a</m> and <m>b</m> are real numbers.</p>
+
+  <p>The number <m>a</m> is called the <em>real part</em> of <m>z</m>, and <m>b</m> is called the
+<em>imaginary part</em> of <m>z</m>:</p>
+
+  <md>\operatorname{Re}(z)=a,
+\qquad
+\operatorname{Im}(z)=b.</md>
+
+  <p>For example,</p>
+
+  <md>z=3+4i</md>
+
+  <p>has</p>
+
+  <md>\operatorname{Re}(z)=3,
+\qquad
+\operatorname{Im}(z)=4.</md>
+
+  <p>A complex number can be drawn as a point in a plane.  The horizontal axis records the
+real part.  The vertical axis records the imaginary part.</p>
+
+  <figure xml:id="fig-complex-plane-3-plus-4i">
+    <caption>The complex number <m>3+4i</m> is drawn as the point <m>(3,4)</m> in the complex plane.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=0.8, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (-4.5,0) -- (5,0) node[right] {real axis};
+  \draw[-&gt;, thick] (0,-3.5) -- (0,5) node[above] {imaginary axis};
+
+  \foreach \x in {-4,-3,-2,-1,1,2,3,4} {
+    \draw (\x,0.08) -- (\x,-0.08);
+    \node[below] at (\x,-0.08) {\(\x\)};
+  }
+
+  \foreach \y in {-3,-2,-1,1,2,3,4} {
+    \draw (0.08,\y) -- (-0.08,\y);
+    \node[left] at (-0.08,\y) {\(\y i\)};
+  }
+
+  \coordinate (Z) at (3,4);
+  \draw[very thick,-&gt;] (0,0) -- (Z);
+  \draw[dashed] (3,0) -- (Z);
+  \draw[dashed] (0,4) -- (Z);
+  \fill (Z) circle (2pt);
+
+  \node[above right] at (Z) {\(z=3+4i\)};
+  \node[below] at (1.5,0) {real part \(3\)};
+  \node[right] at (3,2) {imaginary part \(4\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Addition works just like vector addition:</p>
+
+  <md>(a+bi)+(c+di)=(a+c)+(b+d)i.</md>
+
+  <p>Subtraction is the same:</p>
+
+  <md>(a+bi)-(c+di)=(a-c)+(b-d)i.</md>
+
+  <p>Multiplication uses the single rule <m>i^2=-1</m>:</p>
+
+  <md>(a+bi)(c+di)
+=
+ac+adi+bci+bdi^2.</md>
+
+  <p>Since <m>i^2=-1</m>,</p>
+
+  <md>
+(a+bi)(c+di)=(ac-bd)+(ad+bc)i.
+</md>
+
+
+  <exercise xml:id="checkpoint-17-1-why-a-plane">
+        <title>Why do complex numbers live in a plane?</title>
+        <statement>
+          <p>
+            A complex number <m>z=a+bi</m> is drawn as the point <m>(a,b)</m>. In your own words, why does solving <m>x^2+1=0</m> force a second direction off the real line, and what do the real and imaginary parts record geometrically?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            No real number squares to <m>-1</m>, so a new axis is opened. Horizontal position is the real part; vertical position is the imaginary part. Addition then looks like vector addition.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-1">
+    <title>Example</title>
+    <statement>
+  <p>Multiply</p>
+
+  <md>(2+3i)(4-i).</md>
+
+  <p>We compute</p>
+
+  <md>(2+3i)(4-i)
+=
+8-2i+12i-3i^2.</md>
+
+  <p>Since <m>i^2=-1</m>,</p>
+
+  <md>-3i^2=3.</md>
+
+  <p>Thus</p>
+
+  <md>(2+3i)(4-i)=11+10i.</md>
+
+  <p>Complex arithmetic is ordinary algebra, together with the rule <m>i^2=-1</m>.</p>
+
+  <note xml:id="note-sec-17-1-complex-numbers-and-euler-s-formula-110">
+    <title>Complex conjugate and modulus</title>
+      <p>If</p>
+        <md>z=a+bi,</md>
+      <p>then its <em>complex conjugate</em> is</p>
+        <md>\overline{z}=a-bi.</md>
+      <p>Its <em>modulus</em> is its distance from <m>0</m> in the complex plane:</p>
+        <md>|z|=\sqrt{a^2+b^2}.</md>
+  </note>
+
+  <p>The conjugate reflects a complex number across the real axis.</p>
+
+  <p>The modulus is the length of the vector from <m>0</m> to <m>z</m>.  For <m>z=3+4i</m>,</p>
+
+  <md>|z|=\sqrt{3^2+4^2}=5.</md>
+
+  <p>The conjugate and modulus are connected by a useful identity:</p>
+
+  <md>z\overline{z}=(a+bi)(a-bi).</md>
+
+  <p>Multiplying,</p>
+
+  <md>z\overline{z}
+=
+a^2-ab i+ab i-b^2 i^2
+=
+a^2+b^2.</md>
+
+  <p>Therefore</p>
+
+  <md>
+z\overline{z}=|z|^2.
+</md>
+
+  <p>This identity lets us divide complex numbers.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-2">
+    <title>Example</title>
+    <statement>
+  <p>Simplify</p>
+
+  <md>\frac{1}{3+4i}.</md>
+
+  <p>Multiply numerator and denominator by the conjugate:</p>
+
+  <md>\frac{1}{3+4i}
+=
+\frac{1}{3+4i}\cdot\frac{3-4i}{3-4i}.</md>
+
+  <p>Then</p>
+
+  <md>(3+4i)(3-4i)=3^2+4^2=25.</md>
+
+  <p>So</p>
+
+  <md>
+\frac{1}{3+4i}=\frac{3-4i}{25}
+=
+\frac{3}{25}-\frac{4}{25}i.
+</md>
+
+  <p>The complex plane now gives <m>i</m> a geometric meaning.  The number <m>i</m> is the point</p>
+
+  <md>0+1i.</md>
+
+  <p>It is one unit above the origin.  Multiplication by <m>i</m> will turn out to mean a
+quarter-turn rotation.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-complex-polar-form">
+    <title>Polar form</title>
+
+  <p>A nonzero point in the plane can be described in two ways.</p>
+
+  <p>We can give its horizontal and vertical coordinates:</p>
+
+  <md>z=a+bi.</md>
+
+  <p>Or we can give its distance from the origin and its angle from the positive real axis.</p>
+
+  <p>Let</p>
+
+  <md>r=|z|=\sqrt{a^2+b^2}.</md>
+
+  <p>If <m>z\neq0</m>, choose an angle <m>\theta</m> so that</p>
+
+  <md>a=r\cos\theta,
+\qquad
+b=r\sin\theta.</md>
+
+  <p>Then</p>
+
+  <md>z=a+bi
+=
+r\cos\theta+i r\sin\theta.</md>
+
+  <p>So</p>
+
+  <md>
+z=r(\cos\theta+i\sin\theta).
+</md>
+
+  <p>This is called the <em>polar form</em> of <m>z</m>.</p>
+
+  <figure xml:id="fig-complex-polar-form">
+    <caption>Polar form records a complex number by its length <m>r</m> and angle <m>\theta</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.1, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.35,0) -- (2.1,0) node[right] {real};
+  \draw[-&gt;] (0,-0.45) -- (0,1.55) node[above] {imaginary};
+
+  \def\r{1.55}
+  \def\ang{35}
+  \coordinate (Z) at ({\r*cos(\ang)},{\r*sin(\ang)});
+
+  \draw[very thick,-&gt;] (0,0) -- (Z);
+  \draw[dashed] ({\r*cos(\ang)},0) -- (Z);
+  \draw[dashed] (0,{\r*sin(\ang)}) -- (Z);
+
+  \draw[thick] (0.42,0) arc (0:\ang:0.42);
+  \node at ({0.58*cos(18)},{0.58*sin(18)}) {\(\theta\)};
+
+  \node[above right] at (Z) {\(z=a+bi\)};
+  \node[below] at ({\r*cos(\ang)/2},0) {\(a=r\cos\theta\)};
+  \node[left] at (0,{\r*sin(\ang)/2}) {\(b=r\sin\theta\)};
+  \node[above left] at ({0.72*cos(\ang)},{0.72*sin(\ang)}) {\(r=|z|\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The angle <m>\theta</m> is called an <em>argument</em> of <m>z</m>.</p>
+
+  <p>There is one warning: angles are not unique.  Turning once around the circle does not
+change the point.  Thus</p>
+
+  <md>\theta,\quad \theta+2\pi,\quad \theta-2\pi,\quad \theta+4\pi,\ldots</md>
+
+  <p>all describe the same direction.</p>
+
+  <p>So a nonzero complex number has many polar forms:</p>
+
+  <md>r(\cos\theta+i\sin\theta)
+=
+r(\cos(\theta+2\pi k)+i\sin(\theta+2\pi k)),
+\qquad k\in\mathbb Z.</md>
+
+  <p>The number <m>0</m> has modulus <m>0</m>, but it has no preferred angle.  Every direction
+points away from the origin, and <m>0</m> is not away from the origin.</p>
+
+
+  <exercise xml:id="checkpoint-17-1-polar-form">
+        <title>What extra information does polar form record?</title>
+        <statement>
+          <p>
+            Polar form writes <m>z=r(\cos\theta+i\sin\theta)</m>. In your own words, why are length and angle a natural pair of coordinates, and why is the argument of a nonzero complex number not unique?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A point not at the origin is determined by how far it is from the origin and which way it points. Turning all the way around the circle returns to the same point, so <m>\theta</m> and <m>\theta+2\pi</m> describe the same direction.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-3">
+    <title>Example</title>
+    <statement>
+  <p>Write</p>
+
+  <md>1+i</md>
+
+  <p>in polar form.</p>
+
+  <p>Its modulus is</p>
+
+  <md>r=\sqrt{1^2+1^2}=\sqrt2.</md>
+
+  <p>Its angle is</p>
+
+  <md>\theta=\frac{\pi}{4}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+1+i=\sqrt2\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right).
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-4">
+    <title>Example</title>
+    <statement>
+  <p>Write</p>
+
+  <md>-2</md>
+
+  <p>in polar form.</p>
+
+  <p>This point lies on the negative real axis.  Its modulus is</p>
+
+  <md>r=2.</md>
+
+  <p>One argument is</p>
+
+  <md>\theta=\pi.</md>
+
+  <p>So</p>
+
+  <md>
+-2=2(\cos\pi+i\sin\pi).
+</md>
+
+  <p>We could also use <m>\theta=-\pi</m>, or <m>\theta=3\pi</m>.  The polar form is not unique
+because angle is not unique.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-complex-multiplication-rotation-scaling">
+    <title>Multiplication as rotation and scaling</title>
+
+  <p>Complex addition is like vector addition.  Complex multiplication is more surprising.</p>
+
+  <p>Take two nonzero complex numbers in polar form:</p>
+
+  <md>z=r(\cos\theta+i\sin\theta),</md>
+
+  <md>w=s(\cos\phi+i\sin\phi).</md>
+
+  <p>Then</p>
+
+  <md>zw
+=
+rs(\cos\theta+i\sin\theta)(\cos\phi+i\sin\phi).</md>
+
+  <p>Multiply:</p>
+
+  <md>zw
+=
+rs\Bigl[
+\cos\theta\cos\phi
+-\sin\theta\sin\phi
++i(\sin\theta\cos\phi+\cos\theta\sin\phi)
+\Bigr].</md>
+
+  <p>Using the angle addition identities,</p>
+
+  <md>\cos(\theta+\phi)=\cos\theta\cos\phi-\sin\theta\sin\phi,</md>
+
+  <p>and</p>
+
+  <md>\sin(\theta+\phi)=\sin\theta\cos\phi+\cos\theta\sin\phi,</md>
+
+  <p>we get</p>
+
+  <md>
+zw
+=
+rs\bigl(\cos(\theta+\phi)+i\sin(\theta+\phi)\bigr).
+</md>
+
+  <p>So multiplication has a geometric meaning:</p>
+
+  <md>
+\text{moduli multiply, and arguments add.}
+</md>
+
+  <p>In words:</p>
+
+  <md>
+\text{Complex multiplication scales and rotates.}
+</md>
+
+  <note xml:id="note-sec-17-1-complex-numbers-and-euler-s-formula-111">
+    <title>Multiplication in polar form</title>
+      <p>If</p>
+        <md>z=r(\cos\theta+i\sin\theta),
+\qquad
+w=s(\cos\phi+i\sin\phi),</md>
+      <p>then</p>
+        <md>
+zw=rs\bigl(\cos(\theta+\phi)+i\sin(\theta+\phi)\bigr).
+</md>
+  </note>
+
+
+  <exercise xml:id="checkpoint-17-1-multiply-means-rotate">
+        <title>Why does complex multiplication rotate and scale?</title>
+        <statement>
+          <p>
+            In polar form, moduli multiply and arguments add. In your own words, why is that the geometric meaning of <m>zw</m>, and why does multiplication by <m>i</m> turn every complex number by a quarter-turn?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The angle-addition formulas are exactly the real and imaginary parts of the product. The number <m>i</m> has length <m>1</m> and angle <m>\pi/2</m>, so it preserves length and adds a right angle.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-5">
+    <title>multiplying by <m>i</m></title>
+    <statement>
+  <p>The number <m>i</m> has polar form</p>
+
+  <md>i=\cos\frac{\pi}{2}+i\sin\frac{\pi}{2}.</md>
+
+  <p>Multiplying by <m>i</m> preserves length and adds angle <m>\pi/2</m>.  Therefore multiplication
+by <m>i</m> rotates every complex number counterclockwise by <m>90^\circ</m>.</p>
+
+  <p>Algebra confirms this.  If</p>
+
+  <md>z=a+bi,</md>
+
+  <p>then</p>
+
+  <md>iz=i(a+bi)=ai+b i^2=-b+ai.</md>
+
+  <p>So</p>
+
+  <md>
+i(a+bi)=-b+ai.
+</md>
+
+  <p>The point <m>(a,b)</m> becomes <m>(-b,a)</m>, which is a <m>90^\circ</m> counterclockwise
+rotation.</p>
+
+  <figure xml:id="fig-c17-multiply-by-i-rotation">
+    <caption>Multiplication by <m>i</m> rotates a complex number counterclockwise by <m>90^\circ</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (-4.2,0) -- (4.5,0) node[right] {real};
+  \draw[-&gt;, thick] (0,-3.3) -- (0,4.3) node[above] {imaginary};
+
+  \coordinate (Z) at (3,1);
+  \coordinate (IZ) at (-1,3);
+
+  \draw[very thick,-&gt;] (0,0) -- (Z);
+  \draw[very thick,-&gt;] (0,0) -- (IZ);
+
+  \draw[thick,-&gt;] (1.0,0.33) arc (18.4:108.4:1.05);
+
+  \fill (Z) circle (2pt);
+  \fill (IZ) circle (2pt);
+
+  \node[right] at (Z) {\(z=3+i\)};
+  \node[above left] at (IZ) {\(iz=-1+3i\)};
+  \node at (0.9,1.2) {\(\frac{\pi}{2}\) rotation};
+
+  \draw[dashed] (3,0) -- (Z);
+  \draw[dashed] (0,1) -- (Z);
+  \draw[dashed] (-1,0) -- (IZ);
+  \draw[dashed] (0,3) -- (IZ);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-6">
+    <title>Example</title>
+    <statement>
+  <p>Compute the product</p>
+
+  <md>\left(\sqrt2\left(\cos\frac{\pi}{4}+i\sin\frac{\pi}{4}\right)\right)
+\left(3\left(\cos\frac{\pi}{6}+i\sin\frac{\pi}{6}\right)\right).</md>
+
+  <p>The moduli multiply:</p>
+
+  <md>\sqrt2\cdot 3=3\sqrt2.</md>
+
+  <p>The angles add:</p>
+
+  <md>\frac{\pi}{4}+\frac{\pi}{6}
+=
+\frac{3\pi}{12}+\frac{2\pi}{12}
+=
+\frac{5\pi}{12}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+zw=3\sqrt2\left(\cos\frac{5\pi}{12}+i\sin\frac{5\pi}{12}\right).
+</md>
+
+  <p>Polar form turns multiplication into geometry.  This is the reason complex numbers are
+so useful for oscillation: oscillation is repeated rotation.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-euler-formula-from-taylor-series">
+    <title>Euler’s formula from Taylor series</title>
+
+  <p>The last chapter gave the Taylor series</p>
+
+  <md>e^x
+=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}
++\frac{x^4}{4!}+\cdots,</md>
+
+  <md>\cos x
+=
+1-\frac{x^2}{2!}+\frac{x^4}{4!}
+-\frac{x^6}{6!}+\cdots,</md>
+
+  <p>and</p>
+
+  <md>\sin x
+=
+x-\frac{x^3}{3!}+\frac{x^5}{5!}
+-\frac{x^7}{7!}+\cdots.</md>
+
+  <p>We now define the complex exponential by the same power series:</p>
+
+  <md>
+e^z=\sum_{n=0}^{\infty}\frac{z^n}{n!}
+</md>
+
+  <p>for a complex number <m>z</m>.</p>
+
+  <p>The same factorial growth that made the real exponential series converge also makes
+this complex series converge.  The modulus of <m>z^n/n!</m> is</p>
+
+  <md>\frac{|z|^n}{n!},</md>
+
+  <p>and factorials eventually dominate fixed powers.</p>
+
+  <p>Now put</p>
+
+  <md>z=i\theta.</md>
+
+  <p>Then</p>
+
+  <md>e^{i\theta}
+=
+1+i\theta+\frac{(i\theta)^2}{2!}
++\frac{(i\theta)^3}{3!}
++\frac{(i\theta)^4}{4!}
++\frac{(i\theta)^5}{5!}
++\cdots.</md>
+
+  <p>The powers of <m>i</m> cycle:</p>
+
+  <md>i^0=1,
+\qquad
+i^1=i,
+\qquad
+i^2=-1,
+\qquad
+i^3=-i,
+\qquad
+i^4=1.</md>
+
+  <p>So the even powers contribute real terms:</p>
+
+  <md>1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}
+-\frac{\theta^6}{6!}+\cdots,</md>
+
+  <p>and the odd powers contribute imaginary terms:</p>
+
+  <md>i\left(
+\theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}
+-\frac{\theta^7}{7!}+\cdots
+\right).</md>
+
+  <p>Thus</p>
+
+  <md>e^{i\theta}
+=
+\left(
+1-\frac{\theta^2}{2!}+\frac{\theta^4}{4!}
+-\frac{\theta^6}{6!}+\cdots
+\right)
++
+i\left(
+\theta-\frac{\theta^3}{3!}+\frac{\theta^5}{5!}
+-\frac{\theta^7}{7!}+\cdots
+\right).</md>
+
+  <p>The first series is <m>\cos\theta</m>.  The second series is <m>\sin\theta</m>.  Therefore</p>
+
+  <md>
+e^{i\theta}=\cos\theta+i\sin\theta.
+</md>
+
+  <p>This is <em>Euler’s formula</em>.</p>
+
+  <note xml:id="note-sec-17-1-complex-numbers-and-euler-s-formula-112">
+    <title>Euler’s formula</title>
+      <p>For every real <m>\theta</m>,</p>
+        <md>
+e^{i\theta}=\cos\theta+i\sin\theta.
+</md>
+  </note>
+
+  <p>The formula gives a compact polar form:</p>
+
+  <md>
+r(\cos\theta+i\sin\theta)=re^{i\theta}.
+</md>
+
+  <p>So every nonzero complex number can be written as</p>
+
+  <md>
+z=re^{i\theta},
+</md>
+
+  <p>where</p>
+
+  <md>r=|z|.</md>
+
+
+  <exercise xml:id="checkpoint-17-1-euler-from-taylor">
+        <title>Why does Euler’s formula fall out of Taylor series?</title>
+        <statement>
+          <p>
+            Defining <m>e^z</m> by the same power series as the real exponential, and substituting <m>z=i\theta</m>, splits the series into the cosine series plus <m>i</m> times the sine series. In your own words, why do the powers of <m>i</m> create that split, and why is the resulting identity more than a coincidence of formulas?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The cycle <m>1,i,-1,-i</m> sends even powers to the real axis and odd powers to the imaginary axis, with the familiar alternating signs. The exponential series is then visibly the rotating point <m>\cos\theta+i\sin\theta</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-7">
+    <title>Euler’s identity</title>
+    <statement>
+  <p>Put <m>\theta=\pi</m>.  Then</p>
+
+  <md>e^{i\pi}=\cos\pi+i\sin\pi.</md>
+
+  <p>Since</p>
+
+  <md>\cos\pi=-1,
+\qquad
+\sin\pi=0,</md>
+
+  <p>we get</p>
+
+  <md>e^{i\pi}=-1.</md>
+
+  <p>So</p>
+
+  <md>
+e^{i\pi}+1=0.
+</md>
+
+  <p>This one line connects</p>
+
+  <md>e,\quad i,\quad \pi,\quad 1,\quad 0.</md>
+
+  <p>It is famous because it brings together growth, rotation, circles, multiplication, and
+addition.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-17-1-complex-numbers-and-euler-s-formula-8">
+    <title>roots of unity</title>
+    <statement>
+  <p>Solve</p>
+
+  <md>z^4=1.</md>
+
+  <p>Write</p>
+
+  <md>1=e^{i2\pi k}</md>
+
+  <p>for any integer <m>k</m>.  Then the fourth roots are</p>
+
+  <md>z=e^{i(2\pi k/4)}=e^{i k\pi/2}.</md>
+
+  <p>Using <m>k=0,1,2,3</m>, we get</p>
+
+  <md>1,\quad i,\quad -1,\quad -i.</md>
+
+  <p>These are the four points equally spaced around the unit circle.</p>
+
+  <figure xml:id="fig-fourth-roots-unity">
+    <caption>The equation <m>z^4=1</m> has four solutions on the unit circle.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.1, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.35,0) -- (1.45,0) node[right] {real};
+  \draw[-&gt;] (0,-1.35) -- (0,1.45) node[above] {imaginary};
+  \draw[thick] (0,0) circle (1);
+
+  \foreach \ang/\lab/\pos in {
+    0/{1}/right,
+    90/{i}/above,
+    180/{-1}/left,
+    270/{-i}/below} { % &lt;-- Brace moved up, no comma
+    \fill ({cos(\ang)},{sin(\ang)}) circle (2pt);
+    \node[\pos] at ({cos(\ang)},{sin(\ang)}) {\(\lab\)};
+  }
+
+  \node at (0,-1.65) {The fourth roots of \(1\) are equally spaced rotations.};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Euler’s formula turns angle into exponent:</p>
+
+  <md>e^{i\theta}e^{i\phi}
+=
+\bigl(\cos\theta+i\sin\theta\bigr)
+\bigl(\cos\phi+i\sin\phi\bigr).</md>
+
+  <p>By the multiplication rule in polar form,</p>
+
+  <md>e^{i\theta}e^{i\phi}=e^{i(\theta+\phi)}.</md>
+
+  <p>So multiplying unit complex numbers adds angles.  The exponential has become a
+rotation machine.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-eit-natural-language-oscillation">
+    <title>Why <m>e^{it}</m> is the natural language of oscillation</title>
+
+  <p>Euler’s formula says</p>
+
+  <md>e^{it}=\cos t+i\sin t.</md>
+
+  <p>As <m>t</m> changes, this complex number moves around the unit circle.</p>
+
+  <p>Its real part is</p>
+
+  <md>\cos t,</md>
+
+  <p>and its imaginary part is</p>
+
+  <md>\sin t.</md>
+
+  <p>So the moving point</p>
+
+  <md>e^{it}</md>
+
+  <p>is the same point we described parametrically earlier as</p>
+
+  <md>(\cos t,\sin t).</md>
+
+  <figure xml:id="fig-eit-position-velocity">
+    <caption>The position <m>e^{it}</m> lies on the unit circle.  Its velocity <m>ie^{it}</m> is a quarter-turn of the position.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.35, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.25,0) -- (1.35,0) node[right] {real};
+  \draw[-&gt;] (0,-1.25) -- (0,1.35) node[above] {imaginary};
+
+  \draw[thick] (0,0) circle (1);
+
+  \def\ang{50}
+  \coordinate (P) at ({cos(\ang)},{sin(\ang)});
+  \coordinate (V) at ({-sin(\ang)},{cos(\ang)});
+
+  \draw[very thick,-&gt;] (0,0) -- (P);
+  \draw[very thick,-&gt;] (P) -- ++({0.42*(-sin(\ang))},{0.42*cos(\ang)});
+
+  \draw[dashed] ({cos(\ang)},0) -- (P);
+  \draw[dashed] (0,{sin(\ang)}) -- (P);
+
+  \draw[thick] (0.32,0) arc (0:\ang:0.32);
+
+  \node at ({0.48*cos(25)},{0.48*sin(25)}) {\(t\)};
+  \node[above right] at (P) {\(e^{it}\)};
+  \node[right] at ({cos(\ang)-0.10},{sin(\ang)+0.38}) {\(ie^{it}\)};
+  \node[below] at ({cos(\ang)},0) {\(\cos t\)};
+  \node[left] at (0,{sin(\ang)}) {\(\sin t\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Differentiate the exponential series term by term, or use the exponential rule with the
+chain rule:</p>
+
+  <md>
+\frac{d}{dt}e^{it}=ie^{it}.
+</md>
+
+  <p>Multiplication by <m>i</m> rotates by <m>90^\circ</m>.  So the velocity of <m>e^{it}</m> is tangent to
+the circle.</p>
+
+  <p>Differentiate again:</p>
+
+  <md>\frac{d^2}{dt^2}e^{it}
+=
+i^2e^{it}
+=
+-e^{it}.</md>
+
+  <p>Thus the acceleration points back toward the origin:</p>
+
+  <md>
+\frac{d^2}{dt^2}e^{it}=-e^{it}.
+</md>
+
+  <p>This is exactly the geometry of circular motion.</p>
+
+  <p>For angular frequency <m>\omega&gt;0</m>,</p>
+
+  <md>e^{i\omega t}
+=
+\cos(\omega t)+i\sin(\omega t).</md>
+
+  <p>Then</p>
+
+  <md>\frac{d}{dt}e^{i\omega t}=i\omega e^{i\omega t},</md>
+
+  <p>and</p>
+
+  <md>\frac{d^2}{dt^2}e^{i\omega t}=-\omega^2 e^{i\omega t}.</md>
+
+  <p>So</p>
+
+  <md>
+z(t)=e^{i\omega t}
+</md>
+
+  <p>solves the complex differential equation</p>
+
+  <md>
+z''+\omega^2z=0.
+</md>
+
+  <p>Taking real and imaginary parts gives</p>
+
+  <md>\cos(\omega t)
+\qquad\text{and}\qquad
+\sin(\omega t),</md>
+
+  <p>the two basic real oscillations.</p>
+
+  <p>More generally,</p>
+
+  <md>A\cos(\omega t)+B\sin(\omega t)</md>
+
+  <p>can be written as the real part of a complex exponential:</p>
+
+  <md>
+A\cos(\omega t)+B\sin(\omega t)
+=
+\operatorname{Re}\bigl((A-Bi)e^{i\omega t}\bigr).
+</md>
+
+  <p>The complex coefficient</p>
+
+  <md>A-Bi</md>
+
+  <p>stores the amplitude and phase.  The exponential</p>
+
+  <md>e^{i\omega t}</md>
+
+  <p>stores the rotation.</p>
+
+  <p>That is why complex numbers are not extra decoration.  They compress the language of
+oscillation.</p>
+
+  <p>A vibrating spring is the next place this language becomes useful.</p>
+
+  <exercise xml:id="checkpoint-17-1-eit-language-of-oscillation">
+        <title>Why is <m>e^{it}</m> the natural language of oscillation?</title>
+        <statement>
+          <p>
+            As <m>t</m> changes, <m>e^{it}</m> moves around the unit circle, with velocity a quarter-turn of position and acceleration pointing back to the origin. In your own words, why does that make sine and cosine shadows of one rotation, rather than two unrelated waves?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The real part is cosine and the imaginary part is sine. Differentiating multiplies by <m>i</m>, which rotates the velocity onto the tangent. Differentiating again multiplies by <m>-1</m>, which is the geometry of circular motion.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

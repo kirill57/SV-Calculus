@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-7-rearrangement-and-the-danger-of-infinity">
+  <title>Rearrangement and the danger of infinity</title>
+
+  <p>Absolute convergence gave us a safer kind of infinite sum.  If</p>
+
+  <md>\sum_{k=1}^{\infty}|a_k|</md>
+
+  <p>converges, then the original series</p>
+
+  <md>\sum_{k=1}^{\infty}a_k</md>
+
+  <p>converges without needing cancellation.</p>
+
+  <p>Conditional convergence is different.  It survives because positive and negative terms
+balance each other.  That balance is real, but it is fragile.</p>
+
+  <p>The next question is simple to ask:</p>
+
+  <md>
+\text{Can we rearrange the terms of an infinite sum?}
+</md>
+
+  <p>For finite sums, the answer is yes.  For infinite sums, the answer depends on what kind
+of convergence we have.</p>
+
+  <subsection xml:id="subsec-finite-sums-rearranged-freely">
+    <title>Finite sums can be rearranged freely</title>
+
+  <p>A finite sum does not care about order:</p>
+
+  <md>3-5+2+10=10+2+3-5.</md>
+
+  <p>Both sides use exactly the same four numbers.  Addition is commutative and associative,
+so rearranging finitely many terms does not change the answer.</p>
+
+  <p>This is one of the habits we bring from algebra.</p>
+
+  <p>But an infinite sum is not completed all at once.  It is a limit of partial sums:</p>
+
+  <md>\sum_{k=1}^{\infty}a_k
+=
+\lim_{n\to\infty}(a_1+a_2+\cdots+a_n).</md>
+
+  <p>So the order matters because the order controls the path taken by the partial sums.</p>
+
+  <p>A finite sum has a last term.  An infinite sum does not.</p>
+
+  <md>
+\text{Infinite addition is not just finite addition with more terms.}
+</md>
+
+  <exercise xml:id="checkpoint-15-7-order-matters">
+        <title>Why can order matter for an infinite sum but not a finite one?</title>
+        <statement>
+          <p>
+            Finite addition is commutative: rearranging finitely many terms cannot change the answer. In your own words, why is an infinite sum not just finite addition with more terms, and why does order control the path taken by the partial sums?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A finite sum has a last term, so the whole collection is added at once. An infinite sum is a limit of running totals, and a different order is a different sequence of running totals.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-rearranged-alternating-harmonic">
+    <title>A rearranged alternating harmonic series</title>
+
+  <p>The alternating harmonic series is</p>
+
+  <md>L=
+1-\frac12+\frac13-\frac14+\frac15-\frac16+\cdots.</md>
+
+  <p>We already know it converges by the Alternating Series Test.  It is not absolutely
+convergent, because</p>
+
+  <md>1+\frac12+\frac13+\frac14+\cdots</md>
+
+  <p>diverges.</p>
+
+  <p>Now rearrange the same terms by putting two positive terms, then one negative term:</p>
+
+  <md>R=
+1+\frac13-\frac12
++\frac15+\frac17-\frac14
++\frac19+\frac1{11}-\frac16+\cdots.</md>
+
+  <p>This new series contains the same terms as the alternating harmonic series, only in a
+different order.</p>
+
+  <p>The surprising fact is:</p>
+
+  <md>
+R=\frac32 L.
+</md>
+
+  <p>Since <m>L&gt;0</m>, this is a different sum.</p>
+
+  <p>Let us see why.</p>
+
+  <p>Group the rearranged series in blocks:</p>
+
+  <md>R=
+\left(1+\frac13-\frac12\right)
++
+\left(\frac15+\frac17-\frac14\right)
++
+\left(\frac19+\frac1{11}-\frac16\right)
++\cdots.</md>
+
+  <p>The <m>N</m>-th grouped partial sum is</p>
+
+  <md>R_N=
+\sum_{m=0}^{N-1}
+\left(
+\frac1{4m+1}
++
+\frac1{4m+3}
+-
+\frac1{2m+2}
+\right).</md>
+
+  <p>Now compare this with the ordinary alternating harmonic partial sum through <m>4N</m>
+terms:</p>
+
+  <md>L_{4N}
+=
+\sum_{m=0}^{N-1}
+\left(
+\frac1{4m+1}
+-\frac1{4m+2}
++\frac1{4m+3}
+-\frac1{4m+4}
+\right).</md>
+
+  <p>Subtract:</p>
+
+  <md>R_N-L_{4N}
+=
+\sum_{m=0}^{N-1}
+\left(
+\frac1{4m+2}
+-\frac1{4m+4}
+\right).</md>
+
+  <p>Factor out <m>\frac12</m>:</p>
+
+  <md>\frac1{4m+2}-\frac1{4m+4}
+=
+\frac12
+\left(
+\frac1{2m+1}
+-
+\frac1{2m+2}
+\right).</md>
+
+  <p>Therefore</p>
+
+  <md>R_N-L_{4N}
+=
+\frac12
+\sum_{m=0}^{N-1}
+\left(
+\frac1{2m+1}
+-
+\frac1{2m+2}
+\right).</md>
+
+  <p>The sum on the right is the alternating harmonic partial sum through <m>2N</m> terms:</p>
+
+  <md>L_{2N}
+=
+\sum_{m=0}^{N-1}
+\left(
+\frac1{2m+1}
+-
+\frac1{2m+2}
+\right).</md>
+
+  <p>So</p>
+
+  <md>R_N=L_{4N}+\frac12 L_{2N}.</md>
+
+  <p>Now let <m>N\to\infty</m>.  Since</p>
+
+  <md>L_{4N}\to L
+\qquad\text{and}\qquad
+L_{2N}\to L,</md>
+
+  <p>we get</p>
+
+  <md>R_N\to L+\frac12L=\frac32L.</md>
+
+  <p>The grouped partial sums approach <m>\frac32L</m>.  The partial sums inside each group
+differ from the grouped sums by terms that approach <m>0</m>, so the rearranged series
+itself also converges to</p>
+
+  <md>
+\frac32L.
+</md>
+
+  <p>This is a serious warning.</p>
+
+  <md>
+\text{A conditionally convergent series can change sum when rearranged.}
+</md>
+
+  <exercise xml:id="checkpoint-15-7-same-terms-new-sum">
+        <title>How can the same terms produce a different sum?</title>
+        <statement>
+          <p>
+            A rearrangement of the alternating harmonic series can converge to <m>\frac32</m> of the original sum. In your own words, why does using the same terms in a different order change the accumulated limit, and what does that warn about conditional convergence?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Putting two positive terms before each negative term changes how the running totals climb and drop. The terms are the same; the path of partial sums is not.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-why-conditional-convergence-fragile">
+    <title>Why conditional convergence is fragile</title>
+
+  <p>For a conditionally convergent series, the positive terms and negative terms each have
+infinite total size.</p>
+
+  <p>That sentence is worth unpacking.</p>
+
+  <p>Suppose</p>
+
+  <md>\sum_{k=1}^{\infty}a_k</md>
+
+  <p>converges conditionally.  Define the positive and negative parts:</p>
+
+  <md>p_k=\max(a_k,0),
+\qquad
+q_k=\max(-a_k,0).</md>
+
+  <p>Then</p>
+
+  <md>a_k=p_k-q_k,</md>
+
+  <p>and</p>
+
+  <md>|a_k|=p_k+q_k.</md>
+
+  <p>Since the original series converges but the absolute-value series diverges, the positive
+and negative parts cannot both have finite total size.  If they did, then</p>
+
+  <md>\sum |a_k|=\sum(p_k+q_k)</md>
+
+  <p>would converge.</p>
+
+  <p>They also cannot have only one infinite side.  If</p>
+
+  <md>\sum p_k=\infty
+\quad\text{but}\quad
+\sum q_k&lt;\infty,</md>
+
+  <p>then the original partial sums would drift to <m>+\infty</m>.  If</p>
+
+  <md>\sum q_k=\infty
+\quad\text{but}\quad
+\sum p_k&lt;\infty,</md>
+
+  <p>then the original partial sums would drift to <m>-\infty</m>.</p>
+
+  <p>So for conditional convergence we must have</p>
+
+  <md>\sum p_k=\infty
+\qquad\text{and}\qquad
+\sum q_k=\infty.</md>
+
+  <p>There is infinite positive supply and infinite negative supply.  The original order
+balances them just enough to converge.</p>
+
+  <p>A rearrangement can disturb that balance.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-riemann-rearrangement-idea">
+    <title>The Riemann rearrangement idea</title>
+
+  <p>The last observation leads to a striking theorem.</p>
+
+  <theorem xml:id="thm-sec-15-7-rearrangement-and-the-danger-of-infinity-39">
+    <title>Riemann rearrangement theorem</title>
+    <statement>
+      <p>If a series converges conditionally, then its terms can be rearranged to converge to any
+real number chosen in advance.</p>
+    </statement>
+  </theorem>
+
+  <p>A full proof belongs in a later analysis course, but the idea is accessible.</p>
+
+  <p>Suppose the target number is <m>T</m>.</p>
+
+  <p>Start adding positive terms until the partial sum rises above <m>T</m>.  This is always
+possible because the positive terms have infinite total sum.</p>
+
+  <p>Then add negative terms until the partial sum falls below <m>T</m>.  This is always possible
+because the negative terms have infinite total size.</p>
+
+  <p>Then add positive terms again until the partial sum rises above <m>T</m>.  Then negative
+terms until it falls below <m>T</m>.  Continue forever.</p>
+
+  <md>\text{above }T,
+\quad
+\text{below }T,
+\quad
+\text{above }T,
+\quad
+\text{below }T,
+\quad\ldots</md>
+
+  <p>The overshoots get smaller because the individual terms of any convergent series must
+approach <m>0</m>.  So the rearranged partial sums are forced closer and closer to <m>T</m>.</p>
+
+  <figure xml:id="fig-riemann-rearrangement-idea">
+    <caption>The Riemann rearrangement idea: alternate above and below a target, with shrinking overshoots.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.42\textwidth,
+    xmin=0, xmax=12,
+    ymin=-0.8, ymax=1.8,
+    axis lines=left,
+    xlabel={step},
+    ylabel={partial sum},
+    xtick={0,2,4,6,8,10,12},
+    ytick={0.5},
+    yticklabels={\(T\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, dashed, domain=0:12, samples=2] {0.5};
+\addplot[very thick, mark=*] coordinates {
+    (0,0)
+    (1,1.45)
+    (2,0.15)
+    (3,1.05)
+    (4,0.32)
+    (5,0.86)
+    (6,0.39)
+    (7,0.73)
+    (8,0.44)
+    (9,0.64)
+    (10,0.47)
+    (11,0.57)
+};
+\node[anchor=west] at (axis cs:6.3,1.25) {overshoots shrink};
+\node[anchor=west] at (axis cs:6.3,0.58) {target \(T\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This theorem is one of the clearest signs that infinity changes the rules.  A finite sum
+cannot be rearranged to become a different number.  A conditionally convergent infinite
+sum can.</p>
+
+  <exercise xml:id="checkpoint-15-7-riemann-idea">
+        <title>Why can a conditionally convergent series be steered to any target?</title>
+        <statement>
+          <p>
+            The Riemann rearrangement theorem says that the terms of a conditionally convergent series can be rearranged to converge to any chosen real number. In your own words, why does infinite positive supply and infinite negative supply make that possible, and why do the overshoots still shrink?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            You can always add enough unused positive terms to rise above the target, then enough unused negative terms to fall below it. Individual terms of a convergent series go to zero, so the overshoots become small.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-why-absolute-convergence-safer">
+    <title>Why absolute convergence is safer</title>
+
+  <p>Absolute convergence prevents this danger.</p>
+
+  <note xml:id="note-sec-15-7-rearrangement-and-the-danger-of-infinity-40">
+    <title>Rearrangements of absolutely convergent series</title>
+      <p>If</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p>converges absolutely, then every rearrangement of the series converges to the same sum.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof idea</title>
+
+  <p>Let</p>
+
+  <md>S=\sum_{k=1}^{\infty}a_k</md>
+
+  <p>and suppose</p>
+
+  <md>\sum_{k=1}^{\infty}|a_k|</md>
+
+  <p>converges.</p>
+
+  <p>Given an error tolerance <m>\varepsilon&gt;0</m>, choose <m>N</m> so large that the absolute tail is
+small:</p>
+
+  <md>\sum_{k=N+1}^{\infty}|a_k|&lt;\varepsilon.</md>
+
+  <p>Now take any rearrangement of the series.  Go far enough in the rearranged partial sums
+so that all of the first <m>N</m> original terms</p>
+
+  <md>a_1,a_2,\ldots,a_N</md>
+
+  <p>have appeared.</p>
+
+  <p>After that point, the only possible difference between the rearranged partial sum and
+the full sum <m>S</m> comes from terms in the tail</p>
+
+  <md>a_{N+1},a_{N+2},\ldots.</md>
+
+  <p>The total absolute size of that tail is less than <m>\varepsilon</m>.  Therefore the rearranged
+partial sums must stay within <m>\varepsilon</m> of <m>S</m>.</p>
+
+  <p>Since <m>\varepsilon</m> was arbitrary, the rearranged series converges to <m>S</m>.</p>
+
+  <md>
+\text{Absolute convergence makes the order irrelevant.}
+</md>
+
+  <p>This is why absolute convergence is stronger than ordinary convergence.  It says the
+series has finite total size, not merely a lucky cancellation pattern.</p>
+
+  <p>The next section collects the main traps in this chapter.  Each trap comes from using a
+test after forgetting one of its hypotheses.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-15-7-absolute-order-irrelevant">
+        <title>Why does absolute convergence make order irrelevant?</title>
+        <statement>
+          <p>
+            If <m>\sum |a_k|</m> converges, every rearrangement converges to the same sum. In your own words, why does a small absolute tail lock the sum in place no matter which later terms appear next?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Once the first <m>N</m> original terms have all appeared, any remaining difference comes from the tail. Finite total size makes that tail smaller than any chosen tolerance, independently of order.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

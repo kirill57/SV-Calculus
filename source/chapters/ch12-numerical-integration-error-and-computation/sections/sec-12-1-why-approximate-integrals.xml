@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-1-why-approximate-integrals">
+  <title>Why approximate integrals?</title>
+
+  <p>A definite integral is an exact idea.  Numerical integration is the art of computing a
+usable approximation to that exact idea.</p>
+
+  <p>This is not a retreat from calculus.  It is one of the main ways calculus is used.</p>
+
+  <subsection xml:id="subsec-data-instead-of-formulas-numerical-integration">
+    <title>Data instead of formulas</title>
+
+  <p>The Fundamental Theorem says that if we know an antiderivative <m>F</m> of <m>f</m>, then</p>
+
+  <md>\int_a^b f(x)\,dx=F(b)-F(a).</md>
+
+  <p>But a laboratory instrument may not give us a formula.  It may only give measurements.</p>
+
+  <p>Suppose a small cart is pulled along a track.  A sensor records the force at several
+positions.</p>
+
+  <table xml:id="tab-sec-12-1-why-approximate-integrals-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>x\text{ (meters)}</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>1.0</m></cell>
+        <cell><m>1.5</m></cell>
+        <cell><m>2.0</m></cell>
+      </row>
+      <row>
+        <cell><m>F(x)\text{ (newtons)}</m></cell>
+        <cell><m>4.0</m></cell>
+        <cell><m>4.8</m></cell>
+        <cell><m>6.1</m></cell>
+        <cell><m>7.9</m></cell>
+        <cell><m>10.0</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The work done by the force is</p>
+
+  <md>W=\int_0^2 F(x)\,dx.</md>
+
+  <p>The units confirm the meaning:</p>
+
+  <md>\text{newtons}\cdot\text{meters}=\text{joules}.</md>
+
+  <p>But the table does not give a formula for <m>F(x)</m>.  There is no antiderivative to find.
+Still, the work is a real physical quantity.  The cart moved.  The force did work.</p>
+
+  <p>We have to estimate the integral from the data.</p>
+
+  <p>The simplest idea is familiar from the first chapters on integration: on each short
+interval, pretend the force is nearly constant.  Then</p>
+
+  <md>\text{small work}\approx \text{force sample}\cdot \text{small distance}.</md>
+
+  <p>Adding these small pieces gives an approximate total work.</p>
+
+  <note xml:id="note-sec-12-1-why-approximate-integrals-23">
+    <title>Data form of the integral problem</title>
+      <p>A table can give enough information to estimate an integral, even when it does not give
+enough information to find an exact antiderivative.</p>
+  </note>
+
+  <p>This happens constantly: velocity from GPS samples, temperature from a probe, force
+from a sensor, power usage from a meter, rainfall from a weather station, and density
+from measurements along a rod.</p>
+
+  <p>The integral still means accumulation.  Only the method of computation changes.</p>
+
+  <exercise xml:id="checkpoint-12-1-data-instead-of-formulas">
+        <title>Why can a table still define an integral problem?</title>
+        <statement>
+          <p>
+            A force sensor may give only a table of values, not a formula for <m>F(x)</m>. In your own words, why is the work <m>\int_a^b F(x)\,dx</m> still a real quantity, and what information does the table give that an antiderivative formula would have given?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The integral still means accumulation. A table supplies samples of the integrand, not an elementary antiderivative.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-non-elementary-antiderivatives">
+    <title>Non-elementary antiderivatives</title>
+
+  <p>Sometimes we do have a formula, but the formula has no antiderivative built from the
+elementary functions of this course.</p>
+
+  <p>A standard example is</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx.</md>
+
+  <p>The integrand</p>
+
+  <md>f(x)=e^{-x^2}</md>
+
+  <p>is continuous, positive, and easy to evaluate.  So the definite integral exists.  It is a
+real number: the area under the curve from <m>0</m> to <m>1</m>.</p>
+
+  <figure xml:id="fig-gaussian-integral-piece">
+    <caption>The area <m>\int_0^1 e^{-x^2}\,dx</m> exists, even though the antiderivative is not elementary.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=1.15,
+    ymin=0, ymax=1.12,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[domain=0:1, samples=150, fill=gray!18, draw=none] {exp(-x^2)} \closedcycle;
+\addplot[very thick, domain=0:1.08, samples=150] {exp(-x^2)};
+\node[anchor=west] at (axis cs:0.44,0.78) {\(y=e^{-x^2}\)};
+\node at (axis cs:0.47,0.28) {\(\displaystyle \int_0^1 e^{-x^2}\,dx\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The difficulty is not the integral.  The difficulty is the antiderivative.  There is no
+elementary function <m>F</m> such that</p>
+
+  <md>F'(x)=e^{-x^2}.</md>
+
+  <p>Proving that fact belongs to a later course.  For us, the practical consequence is enough:
+the Fundamental Theorem cannot turn this integral into a simple endpoint calculation
+using familiar functions.</p>
+
+  <p>But the integral still has a decimal value.  In fact,</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx\approx 0.746824.</md>
+
+  <p>A numerical method should be able to recover this number, and should tell us how much
+confidence to place in the digits.</p>
+
+  <note xml:id="note-sec-12-1-why-approximate-integrals-24">
+    <title>Important distinction</title>
+      <p>A function can be easy to evaluate but hard to antidifferentiate.</p>
+      <p>Numerical integration uses values of the function directly.  It does not require an
+elementary antiderivative.</p>
+  </note>
+
+  <exercise xml:id="checkpoint-12-1-easy-to-evaluate">
+        <title>Why can a function be easy to evaluate but hard to antidifferentiate?</title>
+        <statement>
+          <p>
+            The integrand <m>e^{-x^2}</m> is continuous and easy to compute, yet <m>\int_0^1 e^{-x^2}\,dx</m> cannot be finished by the Fundamental Theorem with elementary functions. In your own words, what distinction does that example make, and why does numerical integration still make sense?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Existence of a definite integral is about the integrand, not about whether an antiderivative is elementary. Numerical rules use values of <m>f</m> directly.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-speed-versus-accuracy">
+    <title>Speed versus accuracy</title>
+
+  <p>The original definition of the integral used Riemann sums:</p>
+
+  <md>\sum_{j=1}^n f(x_j^*)\Delta x.</md>
+
+  <p>If <m>n</m> is large and the function is well behaved, these sums can approximate the
+integral well.  But a large <m>n</m> means many function evaluations.</p>
+
+  <p>There is a practical tradeoff:</p>
+
+  <md>\text{more samples}
+\quad\Longrightarrow\quad
+\text{usually better accuracy, but more computation}.</md>
+
+  <p>The word “usually” matters.  More samples help when they are used intelligently and
+when the function is well behaved on the interval.  They do not automatically fix every
+problem.</p>
+
+  <p>For example, if the integrand has a sharp spike, a coarse grid may miss it.  If the
+integral is improper, applying a rule directly at an infinite endpoint or a vertical
+asymptote may make no sense.  If a computer subtracts nearly equal numbers many
+times, roundoff error may accumulate.</p>
+
+  <p>So numerical integration has two parts:</p>
+
+  <md>\text{choose a reasonable approximation rule}</md>
+
+  <p>and</p>
+
+  <md>\text{estimate or control the error}.</md>
+
+  <p>A fast approximation without an error estimate is only a guess with arithmetic attached.</p>
+
+  <exercise xml:id="checkpoint-12-1-speed-versus-accuracy">
+        <title>Why is more sampling not automatically better?</title>
+        <statement>
+          <p>
+            Riemann sums suggest that a larger <m>n</m> should improve an approximation. In your own words, why is that only usually true, and what can go wrong even if you take many samples?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Think about a missed spike, an improper integral, or arithmetic that subtracts nearly equal numbers. A rule without an error story is still a guess.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-role-of-error-estimates">
+    <title>The role of error estimates</title>
+
+  <p>Let</p>
+
+  <md>I=\int_a^b f(x)\,dx</md>
+
+  <p>be the exact value of an integral, and let <m>A</m> be an approximation.</p>
+
+  <p>The <em>absolute error</em> is</p>
+
+  <md>
+|I-A|.
+</md>
+
+  <p>If</p>
+
+  <md>|I-A|&lt;0.001,</md>
+
+  <p>then the approximation is within <m>0.001</m> of the true value.</p>
+
+  <p>Sometimes we care about the size of the error relative to the size of the true answer.  If
+<m>I\neq0</m>, the <em>relative error</em> is</p>
+
+  <md>
+\frac{|I-A|}{|I|}.
+</md>
+
+  <p>For example, an absolute error of <m>0.01</m> is large if the true value is <m>0.02</m>, but tiny if
+the true value is <m>10{,}000</m>.</p>
+
+  <note xml:id="note-sec-12-1-why-approximate-integrals-25">
+    <title>Numerical integration needs an error statement</title>
+      <p>A useful numerical answer should say something like</p>
+        <md>\int_a^b f(x)\,dx\approx A</md>
+      <p>with</p>
+        <md>|I-A|&lt;\text{known tolerance}.</md>
+  </note>
+
+  <p>There are two common ways to judge an approximation.</p>
+
+  <p>First, if we know enough about the function, we can use an <em>error bound</em>.  An error
+bound gives a guaranteed maximum possible error.</p>
+
+  <p>Second, if we compute several approximations using smaller and smaller step sizes, we
+can watch the values stabilize.  This gives evidence, and often very good evidence, but it
+is not the same as a proof unless it is supported by a theorem.</p>
+
+
+  <exercise xml:id="checkpoint-12-1-error-statement">
+        <title>What extra sentence makes a numerical answer useful?</title>
+        <statement>
+          <p>
+            Suppose a computation reports <m>\int_a^b f(x)\,dx\approx A</m>. In your own words, why is that incomplete, and what is the difference between watching approximations stabilize and having an error bound?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Absolute error is <m>|I-A|</m>. Stabilization is evidence. A bound is a guarantee, provided the hypotheses of the theorem hold.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-1-why-approximate-integrals-1">
+    <title>watching approximations stabilize</title>
+    <statement>
+  <p>For</p>
+
+  <md>I=\int_0^1 e^{-x^2}\,dx,</md>
+
+  <p>a numerical computation might produce the following approximations.</p>
+
+  <table xml:id="tab-sec-12-1-why-approximate-integrals-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>number of subintervals</strong></cell>
+        <cell><strong>approximation</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>4</m></cell>
+        <cell><m>0.748747</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>8</m></cell>
+        <cell><m>0.747290</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>16</m></cell>
+        <cell><m>0.746941</m></cell>
+      </row>
+      <row>
+        <cell><m>32</m></cell>
+        <cell><m>0.746853</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The values appear to be approaching a number near</p>
+
+  <md>0.7468.</md>
+
+  <p>That is encouraging.  But the table alone does not prove how close the last value is.
+For proof, we need an error estimate.</p>
+
+  <p>The next section builds two rules whose geometry is easy to see and whose errors can be
+controlled: the midpoint rule and the trapezoidal rule.</p>
+    </statement>
+  </example>
+  </subsection>
+
+
+
+</section>

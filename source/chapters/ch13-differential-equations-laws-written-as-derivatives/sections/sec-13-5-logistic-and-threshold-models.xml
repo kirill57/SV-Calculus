@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-5-logistic-and-threshold-models">
+  <title>Logistic and threshold models</title>
+
+  <p>Separable equations gave us exact formulas when the variables could be pulled apart.
+But the formula is not always the first thing we should look for.</p>
+
+  <p>For an autonomous equation</p>
+
+  <md>y'=f(y),</md>
+
+  <p>the graph of <m>f</m> already tells a story.  It tells where solutions rise, where they fall,
+and which equilibrium values attract nearby solutions.</p>
+
+  <p>The logistic equation is the best first example.  It can be solved by separation, but it is
+often understood first from its phase line.</p>
+
+  <subsection xml:id="subsec-carrying-capacity">
+    <title>Carrying capacity</title>
+
+  <p>Pure exponential growth says</p>
+
+  <md>P'=rP,
+\qquad r&gt;0.</md>
+
+  <p>The rate is proportional to the current population.  That can describe early growth, when
+resources are plentiful.  It cannot describe growth forever.</p>
+
+  <p>A population in a fixed environment has limited food, space, or available hosts.  The
+model should slow down as the population approaches a maximum sustainable size.</p>
+
+  <p>Let</p>
+
+  <md>K=\text{carrying capacity}.</md>
+
+  <p>The simplest slowing factor is</p>
+
+  <md>1-\frac{P}{K}.</md>
+
+  <p>When</p>
+
+  <md>P\ll K,</md>
+
+  <p>this factor is close to <m>1</m>, so the equation looks almost exponential:</p>
+
+  <md>P'\approx rP.</md>
+
+  <p>When</p>
+
+  <md>P=K,</md>
+
+  <p>the factor becomes <m>0</m>, so growth stops.</p>
+
+  <p>This gives the logistic equation:</p>
+
+  <md>
+P'=rP\left(1-\frac{P}{K}\right),
+\qquad r&gt;0,\quad K&gt;0.
+</md>
+
+  <p>The two factors have different meanings:</p>
+
+  <md>rP</md>
+
+  <p>says that a larger current population creates more births, while</p>
+
+  <md>1-\frac{P}{K}</md>
+
+  <p>says that limited remaining capacity slows the growth.</p>
+
+  <paragraphs>
+    <title>Solving the logistic equation</title>
+
+  <p>Assume for the moment that</p>
+
+  <md>P\neq0
+\qquad\text{and}\qquad
+P\neq K.</md>
+
+  <p>Then we can separate variables:</p>
+
+  <md>\frac{dP}{P\left(1-\frac{P}{K}\right)}=r\,dt.</md>
+
+  <p>Since</p>
+
+  <md>P\left(1-\frac{P}{K}\right)=\frac{P(K-P)}{K},</md>
+
+  <p>we have</p>
+
+  <md>\frac{1}{P\left(1-\frac{P}{K}\right)}
+=
+\frac{K}{P(K-P)}.</md>
+
+  <p>Use partial fractions:</p>
+
+  <md>\frac{K}{P(K-P)}
+=
+\frac1P+\frac1{K-P}.</md>
+
+  <p>Therefore</p>
+
+  <md>\int\left(\frac1P+\frac1{K-P}\right)\,dP
+=
+\int r\,dt.</md>
+
+  <p>The left side is</p>
+
+  <md>\ln|P|-\ln|K-P|.</md>
+
+  <p>So</p>
+
+  <md>\ln\left|\frac{P}{K-P}\right|=rt+C.</md>
+
+  <p>Exponentiating gives</p>
+
+  <md>\frac{P}{K-P}=Ae^{rt},</md>
+
+  <p>where <m>A</m> is a nonzero constant.  Solving for <m>P</m>,</p>
+
+  <md>P=Ae^{rt}(K-P),</md>
+
+  <p>so</p>
+
+  <md>P(1+Ae^{rt})=KAe^{rt}.</md>
+
+  <p>Thus</p>
+
+  <md>P(t)=\frac{KAe^{rt}}{1+Ae^{rt}}.</md>
+
+  <p>Dividing numerator and denominator by <m>Ae^{rt}</m>, we get the usual form:</p>
+
+  <md>
+P(t)=\frac{K}{1+Be^{-rt}}.
+</md>
+
+  <p>If</p>
+
+  <md>P(0)=P_0,
+\qquad P_0&gt;0,</md>
+
+  <p>then</p>
+
+  <md>P_0=\frac{K}{1+B}.</md>
+
+  <p>So</p>
+
+  <md>1+B=\frac{K}{P_0},</md>
+
+  <p>and therefore</p>
+
+  <md>
+B=\frac{K-P_0}{P_0}.
+</md>
+
+  <p>Thus, for <m>P_0&gt;0</m>,</p>
+
+  <md>
+P(t)=\frac{K}{1+\left(\frac{K-P_0}{P_0}\right)e^{-rt}}.
+</md>
+
+  <p>This formula includes the case <m>P_0=K</m>, where the constant in the denominator is
+<m>0</m>, and the solution is</p>
+
+  <md>P(t)=K.</md>
+
+  <p>The solution <m>P(t)=0</m> is also an equilibrium solution, but it was lost when we divided
+by <m>P</m>.  This is the same warning we saw in separable equations: division can erase
+constant solutions.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-13-5-carrying-capacity">
+        <title>Why does logistic growth slow as it approaches a carrying capacity?</title>
+        <statement>
+          <p>
+            The logistic equation multiplies the exponential factor <m>rP</m> by <m>1-P/K</m>. In your own words, what story do those two factors tell, and why is pure exponential growth a good early approximation but a bad forever-model?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            When <m>P</m> is much smaller than <m>K</m>, the slowing factor is near <m>1</m>. When <m>P=K</m>, growth stops because remaining capacity is gone.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-13-5-logistic-and-threshold-models-2">
+    <title>Example</title>
+    <statement>
+  <p>A population grows according to</p>
+
+  <md>P'=0.4P\left(1-\frac{P}{1000}\right),
+\qquad
+P(0)=100.</md>
+
+  <p>Here</p>
+
+  <md>r=0.4,
+\qquad
+K=1000,
+\qquad
+P_0=100.</md>
+
+  <p>So</p>
+
+  <md>B=\frac{1000-100}{100}=9.</md>
+
+  <p>The solution is</p>
+
+  <md>
+P(t)=\frac{1000}{1+9e^{-0.4t}}.
+</md>
+
+  <p>When does the population reach half the carrying capacity?</p>
+
+  <p>Set</p>
+
+  <md>P(t)=500.</md>
+
+  <p>Then</p>
+
+  <md>500=\frac{1000}{1+9e^{-0.4t}}.</md>
+
+  <p>So</p>
+
+  <md>1+9e^{-0.4t}=2,</md>
+
+  <p>and therefore</p>
+
+  <md>9e^{-0.4t}=1.</md>
+
+  <p>Thus</p>
+
+  <md>e^{-0.4t}=\frac19.</md>
+
+  <p>Taking logarithms,</p>
+
+  <md>-0.4t=-\ln9.</md>
+
+  <p>So</p>
+
+  <md>
+t=\frac{\ln9}{0.4}\approx5.49.
+</md>
+
+  <p>The population reaches <m>500</m> after about <m>5.49</m> time units.</p>
+
+  <figure xml:id="fig-logistic-solutions-ch13">
+    <caption>Logistic solutions move toward the carrying capacity.  From below they rise toward <m>K</m>; from above they fall toward <m>K</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=20,
+    ymin=0, ymax=1300,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(P(t)\)},
+    xtick={0,5,10,15,20},
+    ytick={0,500,1000},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=3, font=\small}
+]
+\addplot[very thick, domain=0:20, samples=200] {1000/(1+9*exp(-0.4*x))};
+\addlegendentry{\(P_0=100\)}
+
+\addplot[very thick, dashed, domain=0:20, samples=200] {1000/(1-0.1666667*exp(-0.4*x))};
+\addlegendentry{\(P_0=1200\)}
+
+\addplot[thick, dotted, domain=0:20, samples=2] {1000};
+\addlegendentry{\(P=K\)}
+
+\addplot[only marks, mark=*] coordinates {(5.493,500)};
+\node[anchor=west] at (axis cs:5.493,500) {\(P=K/2\)};
+\node[anchor=west] at (axis cs:8,1180) {carrying capacity};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The formula gives exact values.  But the most important behavior was already visible
+from the differential equation:</p>
+
+  <md>0&lt;P&lt;K
+\quad\Longrightarrow\quad
+P'&gt;0,</md>
+
+  <p>and</p>
+
+  <md>P&gt;K
+\quad\Longrightarrow\quad
+P'&lt;0.</md>
+
+  <p>So the equation pushes positive solutions toward <m>K</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-phase-line">
+    <title>Phase line</title>
+
+  <p>For an autonomous equation</p>
+
+  <md>y'=f(y),</md>
+
+  <p>the sign of <m>f(y)</m> depends only on <m>y</m>.  That means one vertical line can summarize
+the motion.</p>
+
+  <p>This vertical summary is called a phase line.</p>
+
+  <p>For the logistic equation</p>
+
+  <md>P'=rP\left(1-\frac{P}{K}\right),</md>
+
+  <p>the equilibria occur where</p>
+
+  <md>rP\left(1-\frac{P}{K}\right)=0.</md>
+
+  <p>Thus</p>
+
+  <md>P=0
+\qquad\text{and}\qquad
+P=K</md>
+
+  <p>are equilibrium solutions.</p>
+
+  <p>Now read the sign:</p>
+
+  <md>P&lt;0
+\quad\Longrightarrow\quad
+P'&lt;0,</md>
+
+  <md>0&lt;P&lt;K
+\quad\Longrightarrow\quad
+P'&gt;0,</md>
+
+  <md>P&gt;K
+\quad\Longrightarrow\quad
+P'&lt;0.</md>
+
+  <p>The phase line is:</p>
+
+  <figure xml:id="fig-logistic-phase-line-ch13">
+    <caption>The logistic phase line shows how the equation pushes solutions along the <m>P</m>-axis.</caption>
+    <image width="38%">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.25, yscale=1.2, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (0,-1.0) -- (0,3.0);
+  \node[above] at (0,3.0) {\(P\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,2) -- (0.08,2);
+
+  \node[left] at (-0.1,0) {\(0\)};
+  \node[left] at (-0.1,2) {\(K\)};
+
+  \draw[-&gt;, thick] (0,-0.8) -- (0,-0.35);
+  \draw[-&gt;, thick] (0,0.45) -- (0,1.45);
+  \draw[-&gt;, thick] (0,2.75) -- (0,2.25);
+
+  \node[right] at (0.15,-0.6) {\(P'&lt;0\)};
+  \node[right] at (0.15,0.95) {\(P'&gt;0\)};
+  \node[right] at (0.15,2.55) {\(P'&lt;0\)};
+
+  \node[right] at (0.15,0) {unstable};
+  \node[right] at (0.15,2) {stable};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The arrows tell us the long-term behavior.</p>
+
+  <p>If</p>
+
+  <md>0&lt;P(0)&lt;K,</md>
+
+  <p>then <m>P</m> rises toward <m>K</m>.</p>
+
+  <p>If</p>
+
+  <md>P(0)&gt;K,</md>
+
+  <p>then <m>P</m> falls toward <m>K</m>.</p>
+
+  <p>If</p>
+
+  <md>P(0)=K,</md>
+
+  <p>then <m>P(t)=K</m> forever.</p>
+
+  <p>If</p>
+
+  <md>P(0)=0,</md>
+
+  <p>then <m>P(t)=0</m> forever.</p>
+
+  <p>For a population model, the physically meaningful domain is usually</p>
+
+  <md>P\ge0.</md>
+
+  <p>The mathematical equation also has behavior for <m>P&lt;0</m>, but negative population is
+not part of the model’s interpretation.</p>
+
+  <note xml:id="note-sec-13-5-logistic-and-threshold-models-103">
+    <title>Phase line</title>
+      <p>For an autonomous equation</p>
+        <md>y'=f(y),</md>
+      <p>a <em>phase line</em> marks the equilibrium values <m>f(y)=0</m> and uses arrows to show
+where <m>y'&gt;0</m> and where <m>y'&lt;0</m>.</p>
+  </note>
+
+  <p>A phase line is a compressed direction field.  Since the slope depends only on <m>y</m>,
+the whole plane can be summarized on one vertical axis.</p>
+
+  <paragraphs>
+    <title>A threshold model</title>
+
+  <p>The logistic equation says that any small positive population grows.  Some populations
+do not behave that way.  If the population is too small, individuals may have trouble
+finding mates, protecting each other, or maintaining enough genetic variety.  Below a
+threshold, the population may decline.</p>
+
+  <p>Let</p>
+
+  <md>A=\text{threshold population},
+\qquad
+K=\text{carrying capacity},</md>
+
+  <p>where</p>
+
+  <md>0&lt;A&lt;K.</md>
+
+  <p>A simple threshold model is</p>
+
+  <md>
+P'=rP\left(1-\frac{P}{K}\right)\left(\frac{P}{A}-1\right),
+\qquad r&gt;0.
+</md>
+
+  <p>This equation has three equilibria:</p>
+
+  <md>P=0,\qquad P=A,\qquad P=K.</md>
+
+  <p>The signs are:</p>
+
+  <md>0&lt;P&lt;A
+\quad\Longrightarrow\quad
+P'&lt;0,</md>
+
+  <md>A&lt;P&lt;K
+\quad\Longrightarrow\quad
+P'&gt;0,</md>
+
+  <md>P&gt;K
+\quad\Longrightarrow\quad
+P'&lt;0.</md>
+
+  <p>So the phase line is:</p>
+
+  <figure xml:id="fig-threshold-phase-line">
+    <caption>In a threshold model, the population must start above <m>A</m> to move toward the carrying capacity <m>K</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.25, yscale=1.05, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (0,-0.5) -- (0,3.3);
+  \node[above] at (0,3.3) {\(P\)};
+
+  \draw[thick] (-0.08,0) -- (0.08,0);
+  \draw[thick] (-0.08,1.2) -- (0.08,1.2);
+  \draw[thick] (-0.08,2.6) -- (0.08,2.6);
+
+  \node[left] at (-0.1,0) {\(0\)};
+  \node[left] at (-0.1,1.2) {\(A\)};
+  \node[left] at (-0.1,2.6) {\(K\)};
+
+  \draw[-&gt;, thick] (0,0.95) -- (0,0.35);
+  \draw[-&gt;, thick] (0,1.55) -- (0,2.25);
+  \draw[-&gt;, thick] (0,3.05) -- (0,2.75);
+
+  \node[right] at (0.15,0.65) {\(P'&lt;0\)};
+  \node[right] at (0.15,1.9) {\(P'&gt;0\)};
+  \node[right] at (0.15,2.95) {\(P'&lt;0\)};
+
+  \node[right] at (0.15,0) {stable from the right};
+  \node[right] at (0.15,1.2) {unstable threshold};
+  \node[right] at (0.15,2.6) {stable};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This model has a different story from logistic growth.</p>
+
+  <p>If</p>
+
+  <md>0&lt;P(0)&lt;A,</md>
+
+  <p>the population declines toward extinction.</p>
+
+  <p>If</p>
+
+  <md>A&lt;P(0)&lt;K,</md>
+
+  <p>the population grows toward <m>K</m>.</p>
+
+  <p>If</p>
+
+  <md>P(0)&gt;K,</md>
+
+  <p>the population decreases toward <m>K</m>.</p>
+
+  <p>The value <m>A</m> is a tipping threshold.  Starting just above it and starting just below it
+lead to opposite long-term outcomes.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-5-phase-line">
+        <title>What information is compressed into a phase line?</title>
+        <statement>
+          <p>
+            For an autonomous equation <m>y'=f(y)</m>, a phase line marks equilibria and uses arrows to show rise or fall. In your own words, why can one vertical axis summarize the whole direction field, and what does that picture tell you before any formula is found?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the slope depends only on <m>y</m>, every horizontal row of the plane looks the same. The arrows already predict long-term approach or departure.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-stable-unstable-equilibria">
+    <title>Stable and unstable equilibria</title>
+
+  <p>An equilibrium solution is a constant solution.  But not all equilibria behave the same
+way.</p>
+
+  <p>For</p>
+
+  <md>y'=f(y),</md>
+
+  <p>an equilibrium <m>y=c</m> occurs when</p>
+
+  <md>f(c)=0.</md>
+
+  <p>The arrows near <m>c</m> decide whether nearby solutions move toward <m>c</m> or away from it.</p>
+
+  <note xml:id="note-sec-13-5-logistic-and-threshold-models-104">
+    <title>Stable and unstable equilibrium</title>
+      <p>An equilibrium <m>y=c</m> is <em>stable</em> if solutions that start near <m>c</m> move toward
+<m>c</m> as <m>t</m> increases.</p>
+      <p>It is <em>unstable</em> if solutions that start near <m>c</m> move away from <m>c</m> as <m>t</m>
+increases.</p>
+  </note>
+
+  <p>For the logistic equation,</p>
+
+  <md>P'=rP\left(1-\frac{P}{K}\right),</md>
+
+  <p>the equilibrium <m>P=K</m> is stable.  Solutions below <m>K</m> move upward, and solutions
+above <m>K</m> move downward.</p>
+
+  <p>The equilibrium <m>P=0</m> is unstable.  A solution that starts exactly at <m>0</m> stays there,
+but a solution that starts slightly above <m>0</m> moves away from <m>0</m>.</p>
+
+  <p>For the threshold model,</p>
+
+  <md>P'=rP\left(1-\frac{P}{K}\right)\left(\frac{P}{A}-1\right),</md>
+
+  <p>the equilibrium <m>P=A</m> is unstable.  A tiny change in the initial condition can change
+the long-term outcome.</p>
+
+  <md>P(0)=A+\text{small positive amount}
+\quad\Longrightarrow\quad
+P(t)\to K,</md>
+
+  <p>while</p>
+
+  <md>P(0)=A-\text{small positive amount}
+\quad\Longrightarrow\quad
+P(t)\to0.</md>
+
+  <p>The threshold <m>A</m> is not a resting place that attracts the population.  It is a dividing
+line.</p>
+
+  <note xml:id="note-sec-13-5-logistic-and-threshold-models-105">
+    <title>What stability means in a model</title>
+      <p>A stable equilibrium is forgiving: small errors in the starting value still lead back to it.</p>
+      <p>An unstable equilibrium is delicate: small errors in the starting value move the solution
+away from it.</p>
+  </note>
+
+  <p>This matters in applications.  A population near a stable carrying capacity can recover
+from small disturbances.  A population near an unstable threshold may not.</p>
+
+  <exercise xml:id="checkpoint-13-5-stable-versus-unstable">
+        <title>What is the difference between a stable equilibrium and a threshold?</title>
+        <statement>
+          <p>
+            In the logistic model, <m>P=K</m> attracts nearby solutions, while <m>P=0</m> does not. In a threshold model, starting just above or just below <m>A</m> leads to opposite futures. In your own words, what does stability mean for a model, and why is an unstable threshold a dividing line rather than a resting place?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A stable equilibrium is forgiving of small errors in the starting value. An unstable one is delicate: nearby solutions move away, so the long-term outcome can flip.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-harvesting-tipping-points">
+    <title>Harvesting and tipping points</title>
+
+  <p>A fish population may grow logistically, but people may also remove fish by harvesting.
+A simple constant-harvest model is</p>
+
+  <md>
+P'=rP\left(1-\frac{P}{K}\right)-h,
+</md>
+
+  <p>where</p>
+
+  <md>h=\text{harvest rate}.</md>
+
+  <p>The term</p>
+
+  <md>rP\left(1-\frac{P}{K}\right)</md>
+
+  <p>is natural growth.  The term <m>h</m> is removal.</p>
+
+  <p>Equilibria occur when</p>
+
+  <md>rP\left(1-\frac{P}{K}\right)=h.</md>
+
+  <p>So the equilibrium populations are intersection points between the logistic growth curve
+and the horizontal harvest line.</p>
+
+  <p>The growth curve</p>
+
+  <md>G(P)=rP\left(1-\frac{P}{K}\right)</md>
+
+  <p>is a parabola.  Its maximum occurs at</p>
+
+  <md>P=\frac K2.</md>
+
+  <p>The maximum value is</p>
+
+  <md>G\left(\frac K2\right)
+=
+r\frac K2\left(1-\frac12\right)
+=
+\frac{rK}{4}.</md>
+
+  <p>This number is the largest sustainable constant harvest in the model.</p>
+
+  <md>
+h_{\max}=\frac{rK}{4}.
+</md>
+
+  <figure xml:id="fig-harvesting-growth-curve">
+    <caption>A constant harvest is sustainable only if the harvest line meets the natural growth curve.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=1000,
+    ymin=0, ymax=190,
+    axis lines=left,
+    xlabel={\(P\)},
+    ylabel={rate},
+    xtick={0,200,500,800,1000},
+    ytick={0,96,150,180},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[very thick, domain=0:1000, samples=200] {0.6*x*(1-x/1000)};
+\addlegendentry{\(G(P)=0.6P(1-P/1000)\)}
+
+\addplot[thick, dashed, domain=0:1000, samples=2] {96};
+\addlegendentry{\(h=96\)}
+
+\addplot[thick, dotted, domain=0:1000, samples=2] {150};
+\addlegendentry{\(h=150\)}
+
+\addplot[thick, dash dot, domain=0:1000, samples=2] {180};
+\addlegendentry{\(h=180\)}
+
+\addplot[only marks, mark=*] coordinates {(200,96) (800,96) (500,150)};
+\node[anchor=south] at (axis cs:500,152) {maximum sustainable harvest};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <example xml:id="ex-sec-13-5-logistic-and-threshold-models-4">
+    <title>Example</title>
+    <statement>
+  <p>Suppose</p>
+
+  <md>r=0.6,
+\qquad
+K=1000.</md>
+
+  <p>Then</p>
+
+  <md>h_{\max}=\frac{rK}{4}=\frac{0.6(1000)}{4}=150.</md>
+
+  <p>If the harvest rate is</p>
+
+  <md>h=96,</md>
+
+  <p>then equilibria satisfy</p>
+
+  <md>0.6P\left(1-\frac{P}{1000}\right)=96.</md>
+
+  <p>Expand:</p>
+
+  <md>0.6P-0.0006P^2=96.</md>
+
+  <p>Move all terms to one side:</p>
+
+  <md>0.0006P^2-0.6P+96=0.</md>
+
+  <p>Divide by <m>0.0006</m>:</p>
+
+  <md>P^2-1000P+160000=0.</md>
+
+  <p>Factor:</p>
+
+  <md>(P-200)(P-800)=0.</md>
+
+  <p>So the equilibria are</p>
+
+  <md>P=200
+\qquad\text{and}\qquad
+P=800.</md>
+
+  <p>To determine stability, examine the sign of</p>
+
+  <md>P'=G(P)-96.</md>
+
+  <p>When <m>P&lt;200</m>, the harvest is larger than natural growth, so</p>
+
+  <md>P'&lt;0.</md>
+
+  <p>When <m>200&lt;P&lt;800</m>, natural growth is larger than harvest, so</p>
+
+  <md>P'&gt;0.</md>
+
+  <p>When <m>P&gt;800</m>, natural growth is again smaller than harvest, so</p>
+
+  <md>P'&lt;0.</md>
+
+  <p>Thus <m>P=200</m> is unstable, and <m>P=800</m> is stable.</p>
+
+  <p>The lower equilibrium is a threshold.  If the population falls below <m>200</m>, the model
+predicts decline toward extinction.  If the population stays above <m>200</m>, it can recover
+toward <m>800</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Three harvesting regimes</title>
+
+  <p>The model has three cases.</p>
+
+  <table xml:id="tab-sec-13-5-logistic-and-threshold-models-4">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>harvest rate</strong></cell>
+        <cell><strong>equilibria</strong></cell>
+        <cell><strong>behavior</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0&lt;h&lt;\dfrac{rK}{4}</m></cell>
+        <cell>two positive equilibria</cell>
+        <cell>lower unstable, upper stable</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>h=\dfrac{rK}{4}</m></cell>
+        <cell>one positive equilibrium at <m>K/2</m></cell>
+        <cell>tipping point</cell>
+      </row>
+      <row>
+        <cell>
+<m>h&gt;\dfrac{rK}{4}</m></cell>
+        <cell>no positive equilibrium</cell>
+        <cell>harvest exceeds natural growth</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The middle case is delicate.  If</p>
+
+  <md>h=\frac{rK}{4},</md>
+
+  <p>then</p>
+
+  <md>P'=rP\left(1-\frac{P}{K}\right)-\frac{rK}{4}.</md>
+
+  <p>For <m>K=1000</m> and <m>r=0.6</m>, this becomes</p>
+
+  <md>P'=0.6P\left(1-\frac{P}{1000}\right)-150.</md>
+
+  <p>The right side is</p>
+
+  <md>-0.0006(P-500)^2.</md>
+
+  <p>So</p>
+
+  <md>P'\le0</md>
+
+  <p>for every <m>P</m>, and equality occurs only at <m>P=500</m>.  A population starting above
+<m>500</m> decreases toward <m>500</m>.  A population starting below <m>500</m> decreases away
+from <m>500</m> toward extinction.</p>
+
+  <warning xml:id="warn-sec-13-5-logistic-and-threshold-models-106">
+    <title>Model warning</title>
+      <p>The equation</p>
+        <md>P'=rP\left(1-\frac{P}{K}\right)-h</md>
+      <p>continues mathematically below <m>P=0</m>, but the population model does not.</p>
+      <p>If the population reaches extinction, harvesting cannot continue at the same constant
+rate.  The physical domain <m>P\ge0</m> is part of the model.</p>
+  </warning>
+
+  <p>The logistic and threshold models show why a differential equation is more than a
+formula to solve.  It is a field of tendencies.  It tells what the system tries to do from
+each starting value.</p>
+
+  <p>The next class of equations has a different structure.  It may include an outside input,
+such as salt entering a tank or money deposited into an account.  The equation is not
+always separable, but the product rule gives it a way forward.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-5-harvesting-tipping">
+        <title>Why can a constant harvest create a tipping point?</title>
+        <statement>
+          <p>
+            In <m>P'=rP(1-P/K)-h</m>, equilibria occur where the logistic growth curve meets the harvest line. In your own words, why is there a largest sustainable constant harvest, and what happens to the story if the harvest exceeds that value?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The growth parabola has a maximum. If the harvest line misses that curve, there is no positive equilibrium, and harvesting exceeds natural growth. The model also stops making sense at extinction.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

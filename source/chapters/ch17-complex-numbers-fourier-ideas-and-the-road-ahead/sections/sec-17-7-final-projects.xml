@@ -1,0 +1,1312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-7-final-projects">
+  <title>Final projects</title>
+
+  <p>The book began with two instruments on a dashboard.  One measured accumulated
+distance.  The other measured instantaneous change.</p>
+
+  <p>Since then, the same two ideas have appeared in many forms:</p>
+
+  <md>\text{derivatives measure local change},
+\qquad
+\text{integrals accumulate small pieces}.</md>
+
+  <p>Taylor polynomials turned local derivative information into approximations.  Differential
+equations turned laws of change into unknown functions.  Parametric curves let motion
+draw geometry.  Fourier ideas built periodic motion from waves.  The one-dimensional
+Stokes theorem revealed the Fundamental Theorem as a boundary theorem.</p>
+
+  <p>These final projects ask you to use the whole story.</p>
+
+  <figure xml:id="fig-final-project-map">
+    <caption>Calculus is one connected language: change, accumulation, approximation, models, and boundary terms.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[every node/.style={font=\small}, scale=1]
+  \node[draw, rounded corners, align=center, minimum width=3.1cm, minimum height=1cm] (change) at (0,2.3)
+  {instantaneous\\change};
+
+  \node[draw, rounded corners, align=center, minimum width=3.1cm, minimum height=1cm] (accum) at (5.2,2.3)
+  {accumulated\\change};
+
+  \node[draw, rounded corners, align=center, minimum width=3.1cm, minimum height=1cm] (approx) at (0,-0.3)
+  {approximation\\and error};
+
+  \node[draw, rounded corners, align=center, minimum width=3.1cm, minimum height=1cm] (models) at (5.2,-0.3)
+  {models and\\differential equations};
+
+  \node[draw, rounded corners, align=center, minimum width=3.1cm, minimum height=1cm] (boundary) at (2.6,-2.5)
+  {boundary\\ideas};
+
+  \draw[-&gt;, thick] (change) -- node[above] {integrate} (accum);
+  \draw[-&gt;, thick] (accum) -- node[below] {differentiate} (change);
+
+  \draw[-&gt;, thick] (change) -- (approx);
+  \draw[-&gt;, thick] (approx) -- (models);
+  \draw[-&gt;, thick] (models) -- (accum);
+
+  \draw[-&gt;, thick] (accum) -- (boundary);
+  \draw[-&gt;, thick] (boundary) -- (change);
+
+  \node[align=center] at (2.6,3.25)
+  {The final projects connect the main ideas of the book.};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Each project below can be done alone or with a small group.  A good solution should
+include clear calculations, graphs when they help, and a short written explanation of what
+the calculations mean.</p>
+
+  <subsection xml:id="subsec-project-cooling-law">
+    <title>Model, solve, and test a cooling law</title>
+
+  <p>Newton’s law of cooling was one of our first differential equation models:</p>
+
+  <md>T'=-k(T-T_s).</md>
+
+  <p>It says that the rate of cooling is proportional to the temperature difference between the
+object and its surroundings.</p>
+
+  <p>This project asks you to build the model from data, solve it, and then test whether it
+deserves to be trusted.</p>
+
+  <note xml:id="note-sec-17-7-final-projects-104">
+    <title>Project question</title>
+      <p>A cup of coffee is placed in a room whose temperature is</p>
+        <md>T_s=22^\circ\text{C}.</md>
+      <p>The coffee temperature is recorded every <m>5</m> minutes.</p>
+        <table xml:id="tab-sec-17-7-final-projects-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>t</m> (minutes)</cell>
+        <cell><m>0</m></cell>
+        <cell><m>5</m></cell>
+        <cell><m>10</m></cell>
+        <cell><m>15</m></cell>
+        <cell><m>20</m></cell>
+        <cell><m>25</m></cell>
+        <cell><m>30</m></cell>
+      </row>
+      <row>
+        <cell><m>T(t)</m> <m>(^\circ\text{C})</m></cell>
+        <cell><m>86</m></cell>
+        <cell><m>71</m></cell>
+        <cell><m>59</m></cell>
+        <cell><m>50</m></cell>
+        <cell><m>43</m></cell>
+        <cell><m>38</m></cell>
+        <cell><m>34</m></cell>
+      </row>
+    </tabular>
+  </table>
+      <p>Does Newton’s law of cooling give a reasonable model for this data?</p>
+  </note>
+
+  <paragraphs>
+    <title>Part A: solve the model</title>
+
+  <p>Start from</p>
+
+  <md>T'=-k(T-T_s).</md>
+
+  <p>Let</p>
+
+  <md>u=T-T_s.</md>
+
+  <p>Then</p>
+
+  <md>u'=T',</md>
+
+  <p>so the differential equation becomes</p>
+
+  <md>u'=-ku.</md>
+
+  <p>Therefore</p>
+
+  <md>u(t)=Ce^{-kt}.</md>
+
+  <p>Since</p>
+
+  <md>u(t)=T(t)-T_s,</md>
+
+  <p>the temperature model is</p>
+
+  <md>
+T(t)=T_s+Ce^{-kt}.
+</md>
+
+  <p>Using the initial temperature <m>T(0)=86</m>, find <m>C</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part B: estimate the cooling constant</title>
+
+  <p>Use the first and last data points to estimate <m>k</m>.  Since</p>
+
+  <md>T(t)-T_s=Ce^{-kt},</md>
+
+  <p>we have</p>
+
+  <md>\frac{T(t_2)-T_s}{T(t_1)-T_s}
+=
+e^{-k(t_2-t_1)}.</md>
+
+  <p>Taking logarithms gives</p>
+
+  <md>
+k
+=
+-\frac{1}{t_2-t_1}
+\ln
+\left(
+\frac{T(t_2)-T_s}{T(t_1)-T_s}
+\right).
+</md>
+
+  <p>Using <m>t_1=0</m> and <m>t_2=30</m>,</p>
+
+  <md>k
+\approx
+-\frac1{30}
+\ln
+\left(
+\frac{34-22}{86-22}
+\right).</md>
+
+  <p>Compute this value.  Then write the complete model</p>
+
+  <md>T(t)=22+Ce^{-kt}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part C: linearize the data</title>
+
+  <p>The model predicts</p>
+
+  <md>T(t)-T_s=Ce^{-kt}.</md>
+
+  <p>Taking logarithms gives</p>
+
+  <md>
+\ln(T(t)-T_s)=\ln C-kt.
+</md>
+
+  <p>So if Newton’s law is a good model, the points</p>
+
+  <md>\bigl(t,\ln(T(t)-22)\bigr)</md>
+
+  <p>should lie approximately on a line.</p>
+
+  <p>Make a table of</p>
+
+  <md>\ln(T(t)-22)</md>
+
+  <p>for the data.  Plot these transformed points.  Estimate the slope of the line and compare
+it with <m>-k</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part D: test the model</title>
+
+  <p>For each recorded time <m>t_j</m>, compute the model prediction</p>
+
+  <md>T_{\text{model}}(t_j)=22+Ce^{-kt_j}.</md>
+
+  <p>Then compute the residual</p>
+
+  <md>R_j=T_{\text{data}}(t_j)-T_{\text{model}}(t_j).</md>
+
+  <p>Record your results in a table.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>time</strong> <m>t_j</m></cell>
+        <cell><strong>data</strong> <m>T_{\text{data}}(t_j)</m></cell>
+        <cell><strong>model</strong> <m>T_{\text{model}}(t_j)</m></cell>
+        <cell><strong>residual</strong> <m>R_j</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Plot the residuals.  A good model should not show a strong pattern in the residuals.
+If the residuals are all positive early and all negative later, the model is missing
+something systematic.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part E: interpret the result</title>
+
+  <p>Write a short conclusion answering these questions.</p>
+
+    <ol>
+      <li>
+        <p>What value of <m>k</m> did you find, and what are its units?</p>
+      </li>
+      <li>
+        <p>According to your model, when will the coffee reach <m>40^\circ\text{C}</m>?</p>
+      </li>
+      <li>
+        <p>Does the transformed logarithm plot look approximately linear?</p>
+      </li>
+      <li>
+        <p>Are the residuals small compared with the temperature changes?</p>
+      </li>
+      <li>
+        <p>What physical effects might make the model imperfect?</p>
+      </li>
+    </ol>
+
+  <p>A model is not good because it has a formula.  A model is good when it explains the
+data well enough for the question being asked.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-7-model-solve-test">
+        <title>Why must a model be solved and then tested?</title>
+        <statement>
+          <p>
+            The cooling project asks you to solve Newton’s law, estimate a constant from data, and then check whether the model deserves trust. In your own words, why is solving a differential equation not the end of the scientific story, and what does a mismatch with data force you to admit?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A solved formula is only as good as the law and the measurements that produced it. Testing asks whether the local rule actually shapes the observed global behavior.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-project-approximate-difficult-integral">
+    <title>Approximate a difficult integral three ways</title>
+
+  <p>Some integrals exist clearly but do not have elementary antiderivatives.  The integral</p>
+
+  <md>I=\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>is one of the most important examples.</p>
+
+  <p>The function</p>
+
+  <md>e^{-x^2}</md>
+
+  <p>is continuous and positive on <m>[0,1]</m>, so the integral exists.  But no elementary
+function has derivative <m>e^{-x^2}</m>.  The Fundamental Theorem still tells us what an
+antiderivative would do, but it does not supply one from our usual list.</p>
+
+  <p>So we approximate.</p>
+
+  <note xml:id="note-sec-17-7-final-projects-105">
+    <title>Project question</title>
+      <p>Approximate</p>
+        <md>
+I=\int_0^1 e^{-x^2}\,dx
+</md>
+      <p>using three numerical methods, compare the answers, and give an error discussion.</p>
+  </note>
+
+  <paragraphs>
+    <title>Part A: midpoint rule</title>
+
+  <p>Divide <m>[0,1]</m> into <m>n</m> equal subintervals of width</p>
+
+  <md>\Delta x=\frac1n.</md>
+
+  <p>The midpoint rule is</p>
+
+  <md>
+M_n
+=
+\Delta x
+\sum_{j=1}^{n}
+f\left(\frac{x_{j-1}+x_j}{2}\right),
+</md>
+
+  <p>where</p>
+
+  <md>f(x)=e^{-x^2}.</md>
+
+  <p>Compute <m>M_n</m> for</p>
+
+  <md>n=4,\quad 8,\quad 16,\quad 32.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part B: trapezoidal rule</title>
+
+  <p>The trapezoidal rule is</p>
+
+  <md>
+T_n
+=
+\frac{\Delta x}{2}
+\left[
+f(x_0)+2f(x_1)+2f(x_2)+\cdots+2f(x_{n-1})+f(x_n)
+\right].
+</md>
+
+  <p>Compute <m>T_n</m> for</p>
+
+  <md>n=4,\quad 8,\quad 16,\quad 32.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part C: Simpson’s rule</title>
+
+  <p>For even <m>n</m>, Simpson’s rule is</p>
+
+  <md>
+S_n
+=
+\frac{\Delta x}{3}
+\left[
+f(x_0)
++
+4f(x_1)
++
+2f(x_2)
++
+4f(x_3)
++\cdots+
+2f(x_{n-2})
++
+4f(x_{n-1})
++
+f(x_n)
+\right].
+</md>
+
+  <p>Compute <m>S_n</m> for</p>
+
+  <md>n=4,\quad 8,\quad 16,\quad 32.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part D: organize the results</title>
+
+  <p>Make a table.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>\boldsymbol{n}</m></cell>
+        <cell><m>\boldsymbol{M_n}</m></cell>
+        <cell><m>\boldsymbol{T_n}</m></cell>
+        <cell><m>\boldsymbol{S_n}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>4</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>8</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>16</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row>
+        <cell><m>32</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Which column appears to settle fastest?</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part E: use error bounds</title>
+
+  <p>For</p>
+
+  <md>f(x)=e^{-x^2}</md>
+
+  <p>on <m>[0,1]</m>, you may use the bounds</p>
+
+  <md>|f''(x)|\le 2</md>
+
+  <p>and</p>
+
+  <md>|f^{(4)}(x)|\le 12.</md>
+
+  <p>The midpoint and trapezoidal error estimates are</p>
+
+  <md>
+|E_M|
+\le
+\frac{K(b-a)^3}{24n^2}
+</md>
+
+  <p>and</p>
+
+  <md>
+|E_T|
+\le
+\frac{K(b-a)^3}{12n^2},
+</md>
+
+  <p>where</p>
+
+  <md>|f''(x)|\le K.</md>
+
+  <p>Simpson’s rule has the error estimate</p>
+
+  <md>
+|E_S|
+\le
+\frac{K(b-a)^5}{180n^4},
+</md>
+
+  <p>where</p>
+
+  <md>|f^{(4)}(x)|\le K.</md>
+
+  <p>Use these formulas to give guaranteed error bounds for <m>M_{32}</m>, <m>T_{32}</m>, and
+<m>S_{32}</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Optional extension: Taylor series method</title>
+
+  <p>Use the Taylor series</p>
+
+  <md>e^{-x^2}
+=
+1-x^2+\frac{x^4}{2!}-\frac{x^6}{3!}
++\frac{x^8}{4!}-\cdots.</md>
+
+  <p>Integrate term by term on <m>[0,1]</m>:</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx
+=
+1-\frac13+\frac{1}{2!\,5}
+-\frac{1}{3!\,7}
++\frac{1}{4!\,9}
+-\cdots.</md>
+
+  <p>Compare this series approximation with your numerical approximations.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Final report</title>
+
+  <p>Your report should include:</p>
+
+    <ol>
+      <li>
+        <p>the three approximation tables;</p>
+      </li>
+      <li>
+        <p>at least one graph of <m>y=e^{-x^2}</m> on <m>[0,1]</m>;</p>
+      </li>
+      <li>
+        <p>a comparison of midpoint, trapezoidal, and Simpson approximations;</p>
+      </li>
+      <li>
+        <p>a clear error statement for your best approximation;</p>
+      </li>
+      <li>
+        <p>a paragraph explaining why numerical integration is needed here.</p>
+      </li>
+    </ol>
+
+  <p>A decimal answer without an error statement is unfinished calculus.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-7-approximation-needs-error">
+        <title>Why is an approximation incomplete without an error bound?</title>
+        <statement>
+          <p>
+            The integral and Taylor-calculator projects compare several numerical methods and insist on a stopping rule. In your own words, why can three different approximations of the same integral still be unfinished work until their errors are controlled?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            More digits are not a guarantee. An error bound turns a computation into a promise, which is the same remainder idea that made Taylor series into algorithms.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-project-taylor-series-calculator">
+    <title>Build a Taylor-series calculator</title>
+
+  <p>A calculator evaluates functions so quickly that it is easy to forget the question:</p>
+
+  <md>\text{How does the calculator know the value?}</md>
+
+  <p>For many functions, one answer is Taylor series.  The calculator does not store every
+value of <m>\sin x</m>, <m>e^x</m>, or <m>\cos x</m>.  It uses algorithms, and Taylor polynomials are
+one of the first algorithms we can understand.</p>
+
+  <note xml:id="note-sec-17-7-final-projects-106">
+    <title>Project question</title>
+      <p>Build a Taylor-series calculator for one or more elementary functions, and test its
+accuracy.</p>
+  </note>
+
+  <p>Choose at least one of the following functions.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-4">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>function</strong></cell>
+        <cell><strong>series centered at <m>0</m></strong></cell>
+        <cell><strong>natural domain for project</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>e^x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}\frac{x^n}{n!}</m></cell>
+        <cell><m>-3\le x\le3</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}</m></cell>
+        <cell><m>-\pi\le x\le\pi</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\cos x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}</m></cell>
+        <cell><m>-\pi\le x\le\pi</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\ln(1+x)</m></cell>
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}(-1)^{n+1}\frac{x^n}{n}</m></cell>
+        <cell><m>-1&lt;x\le1</m></cell>
+      </row>
+      <row>
+        <cell><m>\arctan x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}</m></cell>
+        <cell><m>-1\le x\le1</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <paragraphs>
+    <title>Part A: write the partial sums</title>
+
+  <p>For your chosen function, define the <m>N</m>-th Taylor approximation.</p>
+
+  <p>For example, for <m>\sin x</m>,</p>
+
+  <md>S_N(x)
+=
+\sum_{n=0}^{N}
+(-1)^n\frac{x^{2n+1}}{(2n+1)!}.</md>
+
+  <p>For <m>\cos x</m>,</p>
+
+  <md>C_N(x)
+=
+\sum_{n=0}^{N}
+(-1)^n\frac{x^{2n}}{(2n)!}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part B: avoid recomputing factorials</title>
+
+  <p>A practical calculator should not recompute every factorial from scratch.  Use a recurrence
+for the terms.</p>
+
+  <p>For <m>e^x</m>, if</p>
+
+  <md>a_n=\frac{x^n}{n!},</md>
+
+  <p>then</p>
+
+  <md>
+a_{n+1}=a_n\frac{x}{n+1}.
+</md>
+
+  <p>For <m>\sin x</m>, if</p>
+
+  <md>a_n=(-1)^n\frac{x^{2n+1}}{(2n+1)!},</md>
+
+  <p>then</p>
+
+  <md>
+a_{n+1}
+=
+-a_n
+\frac{x^2}{(2n+2)(2n+3)}.
+</md>
+
+  <p>For <m>\cos x</m>, if</p>
+
+  <md>a_n=(-1)^n\frac{x^{2n}}{(2n)!},</md>
+
+  <p>then</p>
+
+  <md>
+a_{n+1}
+=
+-a_n
+\frac{x^2}{(2n+1)(2n+2)}.
+</md>
+
+  <p>Use a similar recurrence for your chosen series.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part C: choose a stopping rule</title>
+
+  <p>Pick a tolerance such as</p>
+
+  <md>10^{-4},\qquad 10^{-6},\qquad \text{or}\qquad 10^{-8}.</md>
+
+  <p>For alternating series with decreasing term sizes, the alternating series estimate gives</p>
+
+  <md>
+|\text{error}|\le \text{first omitted term}.
+</md>
+
+  <p>That applies cleanly to many values of <m>\sin x</m>, <m>\cos x</m>, <m>\ln(1+x)</m>, and
+<m>\arctan x</m>, but only when the term sizes are decreasing.</p>
+
+  <p>For <m>e^x</m>, use the Lagrange remainder estimate:</p>
+
+  <md>
+|R_N(x)|
+\le
+\frac{e^B |x|^{N+1}}{(N+1)!}
+</md>
+
+  <p>when</p>
+
+  <md>|x|\le B.</md>
+
+  <p>On the interval <m>[-3,3]</m>, you may use <m>B=3</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part D: test the calculator</title>
+
+  <p>Choose at least <m>8</m> input values in the interval.  For each one, record:</p>
+
+    <ol>
+      <li>
+        <p>the Taylor approximation;</p>
+      </li>
+      <li>
+        <p>the number of terms used;</p>
+      </li>
+      <li>
+        <p>the value from a calculator or computer;</p>
+      </li>
+      <li>
+        <p>the absolute error.</p>
+      </li>
+    </ol>
+
+  <p>Use a table.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-5">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>\boldsymbol{x}</m></cell>
+        <cell><strong>Taylor approximation</strong></cell>
+        <cell><strong>terms used</strong></cell>
+        <cell><strong>reference value</strong></cell>
+        <cell><strong>absolute error</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+    </tabular>
+  </table>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part E: graph the error</title>
+
+  <p>Let <m>P_N(x)</m> be your Taylor approximation.  Plot</p>
+
+  <md>E_N(x)=|f(x)-P_N(x)|</md>
+
+  <p>on the interval.  Make several plots using different values of <m>N</m>.</p>
+
+  <p>Explain where the approximation is best and where it is worst.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Warning: small terms are not always enough</title>
+
+  <p>A common mistake is to stop when the next term is small, without knowing whether the
+tail is controlled.  For alternating series with decreasing terms, that is justified.  For
+other series, it may not be.</p>
+
+  <p>A calculator must be fast, but it must also be honest.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-project-parametric-motion-data">
+    <title>Analyze a parametric curve from motion data</title>
+
+  <p>Parametric equations describe a moving point:</p>
+
+  <md>x=x(t),
+\qquad
+y=y(t).</md>
+
+  <p>Real motion data often comes as sampled positions, not exact formulas.  This project asks
+you to recover velocity, speed, distance traveled, and qualitative shape from a table.</p>
+
+  <note xml:id="note-sec-17-7-final-projects-107">
+    <title>Project question</title>
+      <p>A small robot moves in the plane.  Its position is recorded every <m>0.5</m> seconds.</p>
+        <table xml:id="tab-sec-17-7-final-projects-6">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>t</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>1.0</m></cell>
+        <cell><m>1.5</m></cell>
+        <cell><m>2.0</m></cell>
+        <cell><m>2.5</m></cell>
+        <cell><m>3.0</m></cell>
+        <cell><m>3.5</m></cell>
+        <cell><m>4.0</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>x(t)</m></cell>
+        <cell><m>0.0</m></cell>
+        <cell><m>0.8</m></cell>
+        <cell><m>1.4</m></cell>
+        <cell><m>1.8</m></cell>
+        <cell><m>2.0</m></cell>
+        <cell><m>1.9</m></cell>
+        <cell><m>1.6</m></cell>
+        <cell><m>1.1</m></cell>
+        <cell><m>0.5</m></cell>
+      </row>
+      <row>
+        <cell><m>y(t)</m></cell>
+        <cell><m>0.0</m></cell>
+        <cell><m>0.3</m></cell>
+        <cell><m>0.8</m></cell>
+        <cell><m>1.5</m></cell>
+        <cell><m>2.3</m></cell>
+        <cell><m>3.0</m></cell>
+        <cell><m>3.5</m></cell>
+        <cell><m>3.8</m></cell>
+        <cell><m>3.9</m></cell>
+      </row>
+    </tabular>
+  </table>
+      <p>Analyze the motion.</p>
+  </note>
+
+  <paragraphs>
+    <title>Part A: plot the path</title>
+
+  <p>Plot the points</p>
+
+  <md>(x(t_j),y(t_j)).</md>
+
+  <p>Connect consecutive points with line segments.  Add arrows to show the direction of
+increasing <m>t</m>.</p>
+
+  <p>Describe the shape of the path.  Is it nearly straight, curved, looping, or bending sharply?</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part B: estimate velocity components</title>
+
+  <p>At an interior time <m>t_j</m>, estimate the velocity components using centered differences:</p>
+
+  <md>
+x'(t_j)\approx
+\frac{x(t_{j+1})-x(t_{j-1})}{t_{j+1}-t_{j-1}},
+</md>
+
+  <md>
+y'(t_j)\approx
+\frac{y(t_{j+1})-y(t_{j-1})}{t_{j+1}-t_{j-1}}.
+</md>
+
+  <p>Since the time step is <m>0.5</m>, the denominator is</p>
+
+  <md>t_{j+1}-t_{j-1}=1.</md>
+
+  <p>Estimate</p>
+
+  <md>x'(t),\qquad y'(t)</md>
+
+  <p>at</p>
+
+  <md>t=0.5,\ 1.0,\ 1.5,\ 2.0,\ 2.5,\ 3.0,\ 3.5.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part C: estimate speed</title>
+
+  <p>The speed is the length of the velocity vector:</p>
+
+  <md>
+v(t)=\sqrt{(x'(t))^2+(y'(t))^2}.
+</md>
+
+  <p>Make a table of estimated speeds.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-7">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>\boldsymbol{t}</m></cell>
+        <cell><m>\boldsymbol{x'(t)}</m></cell>
+        <cell><m>\boldsymbol{y'(t)}</m></cell>
+        <cell><m>\boldsymbol{v(t)}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0.5</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1.0</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1.5</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2.0</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2.5</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>3.0</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+      <row>
+        <cell><m>3.5</m></cell>
+        <cell></cell>
+        <cell></cell>
+        <cell></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>When is the robot moving fastest?  When is it moving slowest?</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part D: estimate total distance traveled</title>
+
+  <p>The robot’s total distance traveled is approximately the sum of the chord lengths between
+successive recorded positions:</p>
+
+  <md>
+L
+\approx
+\sum_{j=0}^{7}
+\sqrt{
+\bigl(x(t_{j+1})-x(t_j)\bigr)^2
++
+\bigl(y(t_{j+1})-y(t_j)\bigr)^2
+}.
+</md>
+
+  <p>Compute this estimate.</p>
+
+  <p>This is the data version of the arc length formula</p>
+
+  <md>L=\int_a^b
+\sqrt{
+\left(\frac{dx}{dt}\right)^2
++
+\left(\frac{dy}{dt}\right)^2
+}
+\,dt.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part E: estimate acceleration</title>
+
+  <p>At an interior time, use second differences:</p>
+
+  <md>
+x''(t_j)
+\approx
+\frac{x(t_{j+1})-2x(t_j)+x(t_{j-1})}{(\Delta t)^2},
+</md>
+
+  <md>
+y''(t_j)
+\approx
+\frac{y(t_{j+1})-2y(t_j)+y(t_{j-1})}{(\Delta t)^2},
+</md>
+
+  <p>where</p>
+
+  <md>\Delta t=0.5.</md>
+
+  <p>Estimate acceleration at several times.  Mark on your path where the direction of motion
+seems to change most strongly.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part F: write a motion report</title>
+
+  <p>Your report should answer:</p>
+
+    <ol>
+      <li>
+        <p>What is the approximate total distance traveled?</p>
+      </li>
+      <li>
+        <p>How is this different from the straight-line distance between the first and last
+points?</p>
+      </li>
+      <li>
+        <p>Where is the speed largest?</p>
+      </li>
+      <li>
+        <p>Where does the path bend most noticeably?</p>
+      </li>
+      <li>
+        <p>How do finite differences imitate derivatives?</p>
+      </li>
+      <li>
+        <p>What information would improve your estimates?</p>
+      </li>
+    </ol>
+
+  <p>Motion data turns the derivative from a formula into a measurement problem.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-project-ftc-boundary-theorem">
+    <title>Explain the FTC as the first boundary theorem</title>
+
+  <p>The Fundamental Theorem of Calculus says</p>
+
+  <md>\int_a^b F'(x)\,dx=F(b)-F(a).</md>
+
+  <p>For most of the book, this was the theorem that connected antiderivatives and definite
+integrals.  In Section <xref ref="sec-17-4-the-one-dimensional-stokes-theorem"/>, we gave it a second
+meaning:</p>
+
+  <md>
+\int_{[a,b]} dF=\int_{\partial[a,b]}F.
+</md>
+
+  <p>The derivative is accumulated over the interval.  The original function is evaluated on
+the boundary.</p>
+
+  <note xml:id="note-sec-17-7-final-projects-108">
+    <title>Project question</title>
+      <p>Write a short explanation of the Fundamental Theorem as the one-dimensional version
+of a boundary theorem.</p>
+  </note>
+
+  <paragraphs>
+    <title>Part A: start with finite differences</title>
+
+  <p>Let</p>
+
+  <md>a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b.</md>
+
+  <p>Show that</p>
+
+  <md>\bigl(F(x_1)-F(x_0)\bigr)
++
+\bigl(F(x_2)-F(x_1)\bigr)
++\cdots+
+\bigl(F(x_n)-F(x_{n-1})\bigr)
+=
+F(b)-F(a).</md>
+
+  <p>Explain the cancellation in words:</p>
+
+  <md>
+\text{interior values cancel; boundary values remain.}
+</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part B: pass from finite differences to the integral</title>
+
+  <p>Use the idea</p>
+
+  <md>F(x_j)-F(x_{j-1})
+\approx
+F'(x_j^*)\Delta x</md>
+
+  <p>to explain why the telescoping sum becomes</p>
+
+  <md>\int_a^b F'(x)\,dx=F(b)-F(a)</md>
+
+  <p>in the limit.</p>
+
+  <p>You do not need to give a fully rigorous proof.  The goal is to explain the idea clearly.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part C: explain orientation</title>
+
+  <p>Draw an oriented interval from <m>a</m> to <m>b</m>.  Label the left endpoint with a minus sign
+and the right endpoint with a plus sign.</p>
+
+  <p>Then explain the notation</p>
+
+  <md>
+\partial[a,b]=\{b\}-\{a\}.
+</md>
+
+  <p>Use this to explain why</p>
+
+  <md>\int_{\partial[a,b]}F=F(b)-F(a).</md>
+
+  <p>Also explain why reversing the interval reverses the sign:</p>
+
+  <md>\int_b^a F'(x)\,dx=F(a)-F(b).</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part D: include examples</title>
+
+  <p>Your explanation should include at least two ordinary calculus examples.</p>
+
+  <p>For example,</p>
+
+  <md>F(x)=x^2</md>
+
+  <p>gives</p>
+
+  <md>dF=2x\,dx.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_1^4 2x\,dx
+=
+F(4)-F(1)
+=
+16-1
+=
+15.</md>
+
+  <p>Also include an example with a trigonometric function, such as</p>
+
+  <md>F(x)=\sin x.</md>
+
+  <p>Then</p>
+
+  <md>dF=\cos x\,dx,</md>
+
+  <p>so</p>
+
+  <md>\int_0^\pi \cos x\,dx
+=
+\sin\pi-\sin0
+=
+0.</md>
+
+  <p>Explain why the signed positive and negative parts cancel.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Part E: connect to the road ahead</title>
+
+  <p>End your report by explaining at least one of the following bridges.</p>
+
+    <ol>
+      <li>
+        <p>In line integrals, the interval becomes a curve, but the boundary is still the two
+endpoints.</p>
+      </li>
+      <li>
+        <p>In Green’s theorem, a region in the plane has a boundary curve.</p>
+      </li>
+      <li>
+        <p>In the Divergence Theorem, a solid has a boundary surface.</p>
+      </li>
+      <li>
+        <p>In conservation laws, the amount inside changes because something crosses the
+boundary or is created inside.</p>
+      </li>
+    </ol>
+
+  <p>The exact higher-dimensional theorems belong to multivariable calculus.  But the pattern
+already appears in one dimension:</p>
+
+  <md>
+\text{integral of a derivative over a region}
+=
+\text{integral of the original quantity over the boundary.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-7-ftc-first-boundary-theorem">
+        <title>Why is the Fundamental Theorem the first boundary theorem?</title>
+        <statement>
+          <p>
+            One project asks you to explain the FTC as a telescoping finite-difference statement that becomes an integral of a derivative. In your own words, why do interior cancellations leave only the boundary, and why does that viewpoint point toward Green, Stokes, and the Divergence Theorem?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Adding consecutive changes cancels everything except the last value minus the first. In higher dimensions the same pattern remains: what happens inside is measured by what happens on the oriented boundary.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-closing-note-calculus">
+    <title>Closing note: what calculus has taught us</title>
+
+  <p>This book has followed one thread through many forms.</p>
+
+  <p>A derivative began as a velocity:</p>
+
+  <md>v(t)=s'(t).</md>
+
+  <p>Then it became a tangent slope, a local linear approximation, a sensitivity, an optimizer,
+and a law of change.</p>
+
+  <p>An integral began as accumulated distance:</p>
+
+  <md>\int_a^b v(t)\,dt.</md>
+
+  <p>Then it became area, mass, work, probability, numerical approximation, and a boundary
+principle.</p>
+
+  <p>A Taylor polynomial began as a local approximation:</p>
+
+  <md>f(x)\approx
+f(a)+f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots.</md>
+
+  <p>Then it became a gateway to infinite series, Euler’s formula, and waves.</p>
+
+  <p>The same ideas now point outward.</p>
+
+  <table xml:id="tab-sec-17-7-final-projects-8">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>single-variable idea</strong></cell>
+        <cell><strong>where it leads next</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>derivative</cell>
+        <cell>partial derivatives, gradients, differential equations</cell>
+      </row>
+      <row bottom="minor">
+        <cell>integral</cell>
+        <cell>double integrals, triple integrals, line integrals, surface integrals</cell>
+      </row>
+      <row bottom="minor">
+        <cell>FTC</cell>
+        <cell>Green’s theorem, Stokes’ theorem, Divergence Theorem</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Taylor series</cell>
+        <cell>approximation theory, numerical methods, complex analysis</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Fourier preview</cell>
+        <cell>waves, signal processing, heat flow, quantum mechanics</cell>
+      </row>
+      <row bottom="minor">
+        <cell>conservation laws</cell>
+        <cell>fluid flow, electromagnetism, continuum mechanics</cell>
+      </row>
+      <row>
+        <cell>least action</cell>
+        <cell>mechanics, geometry, optimization over functions</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The subject is larger than this book.  But the central pattern is already here:</p>
+
+  <md>
+\text{calculus measures change, accumulates change, and explains how local rules shape global behavior.}
+</md>
+
+  <p>That pattern is worth carrying forward.</p>
+
+  <exercise xml:id="checkpoint-17-7-local-rules-shape-global">
+        <title>What pattern has calculus been teaching all along?</title>
+        <statement>
+          <p>
+            The book began with a speedometer and an odometer and ended with series, waves, conservation, and paths. In your own words, why are derivatives, integrals, remainders, and boundary terms one language rather than four subjects, and what does it mean that local rules shape global behavior?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Instantaneous change and accumulated change undo each other. Approximations become trustworthy through error. Models and conservation laws turn a local derivative statement into a global picture. That is the pattern to carry forward.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

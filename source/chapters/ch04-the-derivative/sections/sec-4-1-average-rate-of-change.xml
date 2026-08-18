@@ -1,275 +1,425 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-average-rate-of-change">
+<section xml:id="sec-4-1-average-rate-of-change">
   <title>Average rate of change</title>
 
-  <p>A limit of average rates cannot be understood until the average rate itself is clear. So we begin with the ordinary slope between two points.</p>
+  <p>A limit of average rates cannot be understood until the average rate itself is clear.  So we begin with the ordinary slope between two points.</p>
 
-  <p>If <m>f</m> is a function and the input changes from <m>a</m> to <m>b</m>, then the output changes from <m>f(a)</m> to <m>f(b)</m>. The average rate of change compares these two changes:</p>
-  <md>\frac{\text{change in output}}{\text{change in input}} = \frac{f(b)-f(a)}{b-a}.</md>
+  <p>If <m>f</m> is a function and the input changes from <m>a</m> to <m>b</m>, then the output changes from <m>f(a)</m> to <m>f(b)</m>.  The average rate of change compares these two changes:</p>
 
-  <p>This is the slope of the line through the two graph points <m>(a,f(a))</m> and <m>(b,f(b))</m>. That line is called a <term>secant line</term>.</p>
+  <md>\frac{\text{change in output}}{\text{change in input}}
+=
+\frac{f(b)-f(a)}{b-a}.</md>
+
+  <p>This is the slope of the line through the two graph points</p>
+
+  <md>(a,f(a))
+\qquad\text{and}\qquad
+(b,f(b)).</md>
+
+  <p>That line is called a secant line.</p>
 
   <subsection xml:id="subsec-secant-slope">
     <title>Secant slope</title>
 
-    <p>On a straight line, one slope tells the whole story. On a curved graph, the slope between two points depends on which two points we choose.</p>
+  <p>On a straight line, one slope tells the whole story.  On a curved graph, the slope between two points depends on which two points we choose.</p>
 
-    <p>Let <m>f(x)=x^2</m>. Between <m>x=1</m> and <m>x=3</m>, the function changes from <m>f(1)=1</m> to <m>f(3)=9</m>. The average rate of change is</p>
-    <md>\frac{f(3)-f(1)}{3-1} = \frac{9-1}{2} = 4.</md>
-    <p>So over this interval the graph rises, on average, <m>4</m> units of output for each <m>1</m> unit of input.</p>
+  <p>Let</p>
 
-    <figure xml:id="fig-secant-slope-parabola">
-      <caption>The average rate of change is the slope of the secant line through two graph points.</caption>
-      <image width="76%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.76\textwidth,
-              height=0.48\textwidth,
-              xmin=0, xmax=3.7,
-              ymin=0, ymax=11,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1,3},
-              ytick={1,9},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=0:3.4, samples=100] {x^2};
-          \addplot[very thick, domain=0.45:3.35, samples=2] {4*x-3};
-          \addplot[only marks, mark=*] coordinates {(1,1) (3,9)};
-          \draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
-          \draw[dashed] (axis cs:3,0) -- (axis cs:3,9);
-          \draw[dashed] (axis cs:1,1) -- (axis cs:3,1);
-          \draw[dashed] (axis cs:3,1) -- (axis cs:3,9);
-          \node[anchor=east] at (axis cs:1,1.2) {\((1,1)\)};
-          \node[anchor=west] at (axis cs:3,9) {\((3,9)\)};
-          \node[anchor=south] at (axis cs:2,1.05) {\(\Delta x=2\)};
-          \node[anchor=west] at (axis cs:3.05,5) {\(\Delta y=8\)};
-          \node[anchor=west] at (axis cs:1.55,7.0) {secant slope \(=\dfrac{8}{2}=4\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>f(x)=x^2.</md>
 
-    <p>The symbols <m>\Delta x</m> and <m>\Delta y</m> are useful here. The Greek letter <m>\Delta</m> means <q>change in.</q></p>
-    <p>For the example above,</p>
-    <md>\Delta x=3-1=2, \qquad \Delta y=f(3)-f(1)=9-1=8.</md>
-    <p>So</p>
-    <md>\text{secant slope} = \frac{\Delta y}{\Delta x} = \frac{8}{2} = 4.</md>
+  <p>Between <m>x=1</m> and <m>x=3</m>, the function changes from</p>
 
-    <definition xml:id="def-average-rate-of-change">
-      <title>Average rate of change</title>
-      <statement>
-        <p>For a function <m>f</m>, the average rate of change from <m>x=a</m> to <m>x=b</m>, where <m>a\neq b</m>, is</p>
-        <md>\frac{f(b)-f(a)}{b-a}.</md>
-        <p>Geometrically, this is the slope of the secant line through <m>(a,f(a))</m> and <m>(b,f(b))</m>.</p>
-      </statement>
-    </definition>
+  <md>f(1)=1</md>
 
-    <p>The order matters only through the signs. If we compute from <m>b</m> back to <m>a</m>, then both the numerator and denominator change sign:</p>
-    <md>\frac{f(a)-f(b)}{a-b} = \frac{-(f(b)-f(a))}{-(b-a)} = \frac{f(b)-f(a)}{b-a}.</md>
-    <p>So the secant slope is the same line slope either way.</p>
+  <p>to</p>
 
-    <example xml:id="ex-average-rate-parabola">
-      <title>Computing an average rate</title>
-      <statement>
-        <p>Find the average rate of change of <m>f(x)=x^2</m> from <m>x=2</m> to <m>x=5</m>.</p>
-      </statement>
-      <solution>
-        <p>We compute</p>
-        <md>\frac{f(5)-f(2)}{5-2} = \frac{25-4}{3} = 7.</md>
-        <p>So on the interval <m>[2,5]</m>, the function <m>x^2</m> increases by an average of <m>7</m> output units per input unit.</p>
-        <p>Notice that this does not mean the graph has slope <m>7</m> everywhere between <m>2</m> and <m>5</m>. Near <m>x=2</m>, the graph is less steep. Near <m>x=5</m>, it is steeper. The number <m>7</m> describes the whole interval at once.</p>
-      </solution>
-    </example>
+  <md>f(3)=9.</md>
+
+  <p>The average rate of change is</p>
+
+  <md>\frac{f(3)-f(1)}{3-1}
+=
+\frac{9-1}{2}
+=
+4.</md>
+
+  <p>So over this interval the graph rises, on average, <m>4</m> units of output for each <m>1</m> unit of input.</p>
+
+  <figure xml:id="fig-secant-slope-parabola">
+    <caption>The average rate of change is the slope of the secant line through two graph points.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.7,
+    ymin=0, ymax=11,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,3},
+    ytick={1,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=0:3.4, samples=100] {x^2};
+\addplot[very thick, domain=0.45:3.35, samples=2] {4*x-3};
+\addplot[only marks, mark=*] coordinates {(1,1) (3,9)};
+\draw[dashed] (axis cs:1,0) -- (axis cs:1,1);
+\draw[dashed] (axis cs:3,0) -- (axis cs:3,9);
+\draw[dashed] (axis cs:1,1) -- (axis cs:3,1);
+\draw[dashed] (axis cs:3,1) -- (axis cs:3,9);
+\node[anchor=east] at (axis cs:1,1.2) {\((1,1)\)};
+\node[anchor=west] at (axis cs:3,9) {\((3,9)\)};
+\node[anchor=south] at (axis cs:2,1.05) {\(\Delta x=2\)};
+\node[anchor=west] at (axis cs:3.05,5) {\(\Delta y=8\)};
+\node[fill=white, inner sep=1.5pt, anchor=south] at (axis cs:1.15,8.7) {secant slope \(=\dfrac{8}{2}=4\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The symbols <m>\Delta x</m> and <m>\Delta y</m> are useful here.  The Greek letter <m>\Delta</m> means “change in.”</p>
+
+  <p>For the example above,</p>
+
+  <md>\Delta x=3-1=2,</md>
+
+  <p>and</p>
+
+  <md>\Delta y=f(3)-f(1)=9-1=8.</md>
+
+  <p>So</p>
+
+  <md>\text{secant slope}
+=
+\frac{\Delta y}{\Delta x}
+=
+\frac{8}{2}
+=
+4.</md>
+
+  <note xml:id="note-sec-4-1-average-rate-of-change-36">
+    <title>Average rate of change</title>
+      <p>For a function <m>f</m>, the average rate of change from <m>x=a</m> to <m>x=b</m>, where <m>a\neq b</m>, is</p>
+        <md>
+\frac{f(b)-f(a)}{b-a}.
+</md>
+      <p>Geometrically, this is the slope of the secant line through <m>(a,f(a))</m> and <m>(b,f(b))</m>.</p>
+  </note>
+
+  <p>The order matters only through the signs.  If we compute from <m>b</m> back to <m>a</m>, then both the numerator and denominator change sign:</p>
+
+  <md>\frac{f(a)-f(b)}{a-b}
+=
+\frac{-(f(b)-f(a))}{-(b-a)}
+=
+\frac{f(b)-f(a)}{b-a}.</md>
+
+  <p>So the secant slope is the same line slope either way.</p>
+
+
+  <exercise xml:id="checkpoint-4-1-secant-not-local">
+        <title>Why is an average rate a secant slope rather than a local slope?</title>
+        <statement>
+          <p>
+            The average rate of change of <m>f</m> from <m>a</m> to <m>b</m> is the slope of the line through <m>(a,f(a))</m> and <m>(b,f(b))</m>. In your own words, why does that number describe the whole interval at once, and why is it not the slope of the graph at every point in between?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A secant uses two points. On a curved graph, nearby pairs of points can produce different slopes.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-4-1-average-rate-of-change-1">
+    <title>Example</title>
+    <statement>
+  <p>Find the average rate of change of</p>
+
+  <md>f(x)=x^2</md>
+
+  <p>from <m>x=2</m> to <m>x=5</m>.</p>
+
+  <p>We compute</p>
+
+  <md>\frac{f(5)-f(2)}{5-2}
+=
+\frac{25-4}{3}
+=
+7.</md>
+
+  <p>So on the interval <m>[2,5]</m>, the function <m>x^2</m> increases by an average of <m>7</m> output units per input unit.</p>
+
+  <p>Notice that this does not mean the graph has slope <m>7</m> everywhere between <m>2</m> and <m>5</m>.  Near <m>x=2</m>, the graph is less steep.  Near <m>x=5</m>, it is steeper.  The number <m>7</m> describes the whole interval at once.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-average-velocity">
     <title>Average velocity</title>
 
-    <p>The same quotient appears in motion.</p>
+  <p>The same quotient appears in motion.</p>
 
-    <p>Let <m>s(t)</m> be the position of an object at time <m>t</m>. If <m>s</m> is measured in meters and <m>t</m> is measured in seconds, then</p>
-    <md>\frac{s(b)-s(a)}{b-a}</md>
-    <p>has units meters/seconds. That is a velocity.</p>
+  <p>Let <m>s(t)</m> be the position of an object at time <m>t</m>.  If <m>s</m> is measured in meters and <m>t</m> is measured in seconds, then</p>
 
-    <definition xml:id="def-average-velocity">
-      <title>Average velocity</title>
-      <statement>
-        <p>If <m>s(t)</m> is position, then the average velocity from <m>t=a</m> to <m>t=b</m> is</p>
-        <md>\frac{s(b)-s(a)}{b-a}.</md>
-      </statement>
-    </definition>
+  <md>\frac{s(b)-s(a)}{b-a}</md>
 
-    <example xml:id="ex-average-velocity-particle">
-      <title>Average velocity calculations</title>
-      <statement>
-        <p>Suppose a particle moves along a line with position <m>s(t)=t^2</m> meters after <m>t</m> seconds.</p>
-        <p>From <m>t=2</m> to <m>t=5</m>, the average velocity is</p>
-        <md>\frac{s(5)-s(2)}{5-2} = \frac{25-4}{3} = 7.</md>
-        <p>So the average velocity over those <m>3</m> seconds is <m>7\text{ meters/second}</m>.</p>
-        <p>From <m>t=2</m> to <m>t=3</m>, the average velocity is</p>
-        <md>\frac{s(3)-s(2)}{3-2} = \frac{9-4}{1} = 5\text{ meters/second}.</md>
-        <p>From <m>t=2</m> to <m>t=2.1</m>, the average velocity is</p>
-        <md>\frac{s(2.1)-s(2)}{2.1-2} = \frac{4.41-4}{0.1} = 4.1\text{ meters/second}.</md>
-        <p>The interval is getting shorter, and the average velocity is getting closer to the velocity at the instant <m>t=2</m>. That is the idea we will make precise in <xref ref="sec-instantaneous-rate-of-change"/>.</p>
-      </statement>
-    </example>
+  <p>has units</p>
 
-    <paragraphs xml:id="paragraphs-displacement-not-distance">
-      <title>Displacement, not distance traveled</title>
-      <p>Average velocity uses signed change in position: <m>s(b)-s(a)</m>. If an object moves forward and then backward, its displacement can be small even if it traveled a long distance.</p>
-      <p>For example, suppose a runner starts at <m>0</m> meters, runs to <m>100</m> meters, and then returns to <m>0</m> meters in <m>20</m> seconds. The average velocity over the full trip is</p>
-      <md>\frac{0-0}{20}=0\text{ meters/second}.</md>
-      <p>That does not mean the runner was standing still. It means the net change in position was <m>0</m>. Average velocity measures net signed change per unit time.</p>
-    </paragraphs>
+  <md>\frac{\text{meters}}{\text{seconds}}.</md>
+
+  <p>That is a velocity.</p>
+
+  <note xml:id="note-sec-4-1-average-rate-of-change-37">
+    <title>Average velocity</title>
+      <p>If <m>s(t)</m> is position, then the average velocity from <m>t=a</m> to <m>t=b</m> is</p>
+        <md>
+\frac{s(b)-s(a)}{b-a}.
+</md>
+  </note>
+
+  <example xml:id="ex-sec-4-1-average-rate-of-change-2">
+    <title>Example</title>
+    <statement>
+  <p>Suppose a particle moves along a line with position</p>
+
+  <md>s(t)=t^2</md>
+
+  <p>meters after <m>t</m> seconds.</p>
+
+  <p>From <m>t=2</m> to <m>t=5</m>, the average velocity is</p>
+
+  <md>\frac{s(5)-s(2)}{5-2}
+=
+\frac{25-4}{3}
+=
+7.</md>
+
+  <p>So the average velocity over those <m>3</m> seconds is</p>
+
+  <md>7\text{ meters/second}.</md>
+
+  <p>From <m>t=2</m> to <m>t=3</m>, the average velocity is</p>
+
+  <md>\frac{s(3)-s(2)}{3-2}
+=
+\frac{9-4}{1}
+=
+5\text{ meters/second}.</md>
+
+  <p>From <m>t=2</m> to <m>t=2.1</m>, the average velocity is</p>
+
+  <md>\frac{s(2.1)-s(2)}{2.1-2}
+=
+\frac{4.41-4}{0.1}
+=
+4.1\text{ meters/second}.</md>
+
+  <p>The interval is getting shorter, and the average velocity is getting closer to the velocity at the instant <m>t=2</m>.  That is the idea we will make precise in Section <xref ref="sec-4-2-instantaneous-rate-of-change"/>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Displacement, not distance traveled</title>
+
+  <p>Average velocity uses signed change in position:</p>
+
+  <md>s(b)-s(a).</md>
+
+  <p>If an object moves forward and then backward, its displacement can be small even if it traveled a long distance.</p>
+
+  <p>For example, suppose a runner starts at <m>0</m> meters, runs to <m>100</m> meters, and then returns to <m>0</m> meters in <m>20</m> seconds.  The average velocity over the full trip is</p>
+
+  <md>\frac{0-0}{20}=0\text{ meters/second}.</md>
+
+  <p>That does not mean the runner was standing still.  It means the net change in position was <m>0</m>.  Average velocity measures net signed change per unit time.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-1-displacement-not-distance">
+        <title>Why can average velocity be zero even if the object moved?</title>
+        <statement>
+          <p>
+            A runner who goes out and back in <m>20</m> seconds has average velocity <m>0</m>. In your own words, why does that not mean the runner stood still, and what quantity is average velocity actually using?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Average velocity uses signed change in position. Distance traveled counts every step, forward or back.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-average-rate-from-data">
     <title>Average rate from data</title>
 
-    <p>A formula is not required. If we have a table, we can still compute average rates.</p>
+  <p>A formula is not required.  If we have a table, we can still compute average rates.</p>
 
-    <p>Recall the cooling coffee data from Chapter 2:</p>
+  <p>Recall the cooling coffee data from Chapter 2:</p>
 
-    <table>
-      <title>Cooling coffee temperature data</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>t\text{ (minutes)}</m></cell>
-          <cell><m>0</m></cell>
-          <cell><m>5</m></cell>
-          <cell><m>10</m></cell>
-          <cell><m>15</m></cell>
-          <cell><m>20</m></cell>
-          <cell><m>25</m></cell>
-        </row>
-        <row>
-          <cell><m>T(t)\text{ (degrees C)}</m></cell>
-          <cell><m>90</m></cell>
-          <cell><m>73</m></cell>
-          <cell><m>60</m></cell>
-          <cell><m>51</m></cell>
-          <cell><m>44</m></cell>
-          <cell><m>39</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|cccccc}
+t\text{ (minutes)} \amp 0 \amp 5 \amp 10 \amp 15 \amp 20 \amp 25</mrow>
+    <mrow>\hline
+T(t)\text{ (degrees C)} \amp 90 \amp 73 \amp 60 \amp 51 \amp 44 \amp 39
+\end{array}</mrow>
+  </md>
 
-    <p>The average rate of change of the coffee temperature from <m>t=0</m> to <m>t=5</m> is</p>
-    <md>\frac{T(5)-T(0)}{5-0} = \frac{73-90}{5} = -\frac{17}{5} = -3.4.</md>
-    <p>The units are degrees Celsius per minute. So during the first <m>5</m> minutes, the coffee cooled at an average rate of <m>3.4^\circ\text{C per minute}</m>. The negative sign means the temperature decreased.</p>
+  <p>The average rate of change of the coffee temperature from <m>t=0</m> to <m>t=5</m> is</p>
 
-    <p>From <m>t=15</m> to <m>t=25</m>, the average rate is</p>
-    <md>\frac{T(25)-T(15)}{25-15} = \frac{39-51}{10} = -1.2.</md>
-    <p>So between <m>15</m> and <m>25</m> minutes, the coffee cooled at an average rate of <m>1.2^\circ\text{C per minute}</m>.</p>
+  <md>\frac{T(5)-T(0)}{5-0}
+=
+\frac{73-90}{5}
+=
+-\frac{17}{5}
+=
+-3.4.</md>
 
-    <p>The coffee cools more slowly later. The average rate depends on the interval.</p>
+  <p>The units are degrees Celsius per minute.  So during the first <m>5</m> minutes, the coffee cooled at an average rate of</p>
 
-    <figure xml:id="fig-coffee-average-rates">
-      <caption>Average rates from data are secant slopes between measured points.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=0, xmax=27,
-              ymin=30, ymax=95,
-              axis lines=left,
-              xlabel={\(t\) (minutes)},
-              ylabel={\(T(t)\) (degrees C)},
-              xtick={0,5,10,15,20,25},
-              ytick={40,60,80,90},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[only marks, mark=*] coordinates {
-              (0,90) (5,73) (10,60) (15,51) (20,44) (25,39)
-          };
-          \addplot[very thick, domain=0:5, samples=2] {90 - 3.4*x};
-          \addplot[very thick, domain=15:25, samples=2] {51 - 1.2*(x-15)};
-          \node[anchor=west] at (axis cs:5.4,77) {average rate \(-3.4\)};
-          \node[anchor=west] at (axis cs:16.5,47) {average rate \(-1.2\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>3.4^\circ\text{C per minute}.</md>
 
-    <p>A table gives only certain points. We can compute average rates between those points, but we cannot know the exact instantaneous rate from the table alone. We can estimate it by using nearby data, but the estimate depends on the quality and spacing of the measurements.</p>
+  <p>The negative sign means the temperature decreased.</p>
+
+  <p>From <m>t=15</m> to <m>t=25</m>, the average rate is</p>
+
+  <md>\frac{T(25)-T(15)}{25-15}
+=
+\frac{39-51}{10}
+=
+-1.2.</md>
+
+  <p>So between <m>15</m> and <m>25</m> minutes, the coffee cooled at an average rate of</p>
+
+  <md>1.2^\circ\text{C per minute}.</md>
+
+  <p>The coffee cools more slowly later.  The average rate depends on the interval.</p>
+
+  <figure xml:id="fig-coffee-average-rates">
+    <caption>Average rates from data are secant slopes between measured points.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=27,
+    ymin=30, ymax=95,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(T(t)\) (degrees C)},
+    xtick={0,5,10,15,20,25},
+    ytick={40,60,80,90},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,90) (5,73) (10,60) (15,51) (20,44) (25,39)
+};
+\addplot[very thick, domain=0:5, samples=2] {90 - 3.4*x};
+\addplot[very thick, domain=15:25, samples=2] {51 - 1.2*(x-15)};
+\node[anchor=west] at (axis cs:5.4,77) {average rate \(-3.4\)};
+\node[fill=white, inner sep=1pt, anchor=west] at (axis cs:16.2,57) {average rate \(-1.2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>A table gives only certain points.  We can compute average rates between those points, but we cannot know the exact instantaneous rate from the table alone.  We can estimate it by using nearby data, but the estimate depends on the quality and spacing of the measurements.</p>
+
+  <exercise xml:id="checkpoint-4-1-order-of-endpoints">
+        <title>Why does reversing the endpoints leave the secant slope unchanged?</title>
+        <statement>
+          <p>
+            Computing from <m>b</m> back to <m>a</m> changes the sign of both the numerator and the denominator. In your own words, why is the average rate the same either way, and what geometric object is being measured?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A line through two points has one slope. Changing the order of the two points does not change the line.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-units-of-rate">
     <title>Units of a rate</title>
 
-    <p>The units of an average rate come from the quotient:</p>
-    <md>\frac{\text{output units}}{\text{input units}}.</md>
-    <p>That simple rule prevents many mistakes.</p>
+  <p>The units of an average rate come from the quotient:</p>
 
-    <table>
-      <title>Units of common average rates</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="35%"/>
-        <col halign="center" width="35%"/>
-        <col halign="left" width="30%"/>
-        <row header="yes">
-          <cell><term>function</term></cell>
-          <cell><term>average rate</term></cell>
-          <cell><term>units</term></cell>
-        </row>
-        <row>
-          <cell><m>s(t)=\text{position}</m></cell>
-          <cell><m>\dfrac{s(b)-s(a)}{b-a}</m></cell>
-          <cell>meters/second</cell>
-        </row>
-        <row>
-          <cell><m>T(t)=\text{temperature}</m></cell>
-          <cell><m>\dfrac{T(b)-T(a)}{b-a}</m></cell>
-          <cell><m>^\circ</m>C/minute</cell>
-        </row>
-        <row>
-          <cell><m>C(q)=\text{cost}</m></cell>
-          <cell><m>\dfrac{C(b)-C(a)}{b-a}</m></cell>
-          <cell>dollars/item</cell>
-        </row>
-        <row>
-          <cell><m>P(t)=\text{population}</m></cell>
-          <cell><m>\dfrac{P(b)-P(a)}{b-a}</m></cell>
-          <cell>people/year</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>\frac{\text{output units}}{\text{input units}}.</md>
 
-    <p>The units also explain the meaning of the sign.</p>
+  <p>That simple rule prevents many mistakes.</p>
 
-    <p>If <m>\frac{T(5)-T(0)}{5-0}=-3.4</m>, then the coffee temperature is decreasing by an average of <m>3.4^\circ\text{C}</m> per minute.</p>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>function</strong> \amp <strong>average rate</strong> \amp <strong>units</strong></mrow>
+    <mrow>\hline
+s(t)=\text{position} \amp \dfrac{s(b)-s(a)}{b-a} \amp \text{meters/second}</mrow>
+    <mrow>
+T(t)=\text{temperature} \amp \dfrac{T(b)-T(a)}{b-a} \amp ^\circ\text{C/minute}</mrow>
+    <mrow>
+C(q)=\text{cost} \amp \dfrac{C(b)-C(a)}{b-a} \amp \text{dollars/item}</mrow>
+    <mrow>
+P(t)=\text{population} \amp \dfrac{P(b)-P(a)}{b-a} \amp \text{people/year}
+\end{array}</mrow>
+  </md>
 
-    <p>If <m>\frac{P(2030)-P(2020)}{2030-2020}=15000</m>, then the population is increasing by an average of <m>15{,}000</m> people per year.</p>
+  <p>The units also explain the meaning of the sign.</p>
 
-    <p>If <m>\frac{C(101)-C(100)}{101-100}=8.25</m>, then producing the <m>101</m>st item increased the cost by <m>8.25</m> dollars compared with producing <m>100</m> items. This is an average over one item, and in many cost models it is close to what economists call marginal cost.</p>
+  <p>If</p>
 
-    <principle xml:id="principle-meaning-before-formulas">
-      <title>Meaning before formulas</title>
-      <statement>
-        <p>An average rate of change is always a comparison: <m>\frac{\text{how much the output changed}}{\text{how much the input changed}}</m>. The units tell what kind of comparison it is.</p>
-      </statement>
-    </principle>
+  <md>\frac{T(5)-T(0)}{5-0}=-3.4,</md>
 
-    <p>Average rates are useful, but they still describe an interval. A speedometer does not report the average velocity over the last hour. It reports what is happening now.</p>
+  <p>then the coffee temperature is decreasing by an average of <m>3.4^\circ\text{C}</m> per minute.</p>
 
-    <p>To get that number from position, we must make the interval shrink.</p>
+  <p>If</p>
+
+  <md>\frac{P(2030)-P(2020)}{2030-2020}=15000,</md>
+
+  <p>then the population is increasing by an average of <m>15{,}000</m> people per year.</p>
+
+  <p>If</p>
+
+  <md>\frac{C(101)-C(100)}{101-100}=8.25,</md>
+
+  <p>then producing the <m>101</m>st item increased the cost by <m>8.25</m> dollars compared with producing <m>100</m> items.  This is an average over one item, and in many cost models it is close to what economists call marginal cost.</p>
+
+  <note xml:id="note-sec-4-1-average-rate-of-change-38">
+    <title>Meaning before formulas</title>
+      <p>An average rate of change is always a comparison:</p>
+        <md>\frac{\text{how much the output changed}}{\text{how much the input changed}}.</md>
+      <p>The units tell what kind of comparison it is.</p>
+  </note>
+
+  <p>Average rates are useful, but they still describe an interval.  A speedometer does not report the average velocity over the last hour.  It reports what is happening now.</p>
+
+  <p>To get that number from position, we must make the interval shrink.</p>
+
+  <exercise xml:id="checkpoint-4-1-units-and-interval">
+        <title>Why do units and the chosen interval both matter?</title>
+        <statement>
+          <p>
+            An average rate always has the form <q>output units per input unit</q>, and its value depends on which two data points we compare. In your own words, why do the units tell the meaning of the comparison, and why can a table give average rates without giving an exact instantaneous rate?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A quotient inherits units from numerator and denominator. A table only supplies certain points, so any rate computed from it still belongs to an interval.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

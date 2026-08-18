@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-f-4-series-tests">
+  <title>Series tests</title>
+
+  <p>A series</p>
+
+  <md>\sum_{n=1}^{\infty}a_n</md>
+
+  <p>converges if its partial sums approach a finite number.</p>
+
+  <p>The tests below are tools for deciding convergence.  They do not all give the sum.</p>
+
+  <subsection xml:id="appsubsec-basic-series-tests-table">
+    <title>Basic comparison and structure tests</title>
+
+  <table xml:id="tab-sec-f-4-series-tests-0">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>test</strong></cell>
+        <cell><strong>hypotheses/check</strong></cell>
+        <cell><strong>conclusion</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Term test for divergence</cell>
+        <cell>Compute <m>\displaystyle \lim_{n\to\infty}a_n</m>.</cell>
+        <cell>If the limit is not <m>0</m>, or does not exist, then <m>\sum a_n</m> diverges.
+If the limit is <m>0</m>, the test is inconclusive.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Geometric series</cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty} ar^n</m>.</cell>
+        <cell>Converges if <m>|r|&lt;1</m>, with sum
+<m>\displaystyle \frac{a}{1-r}</m>.
+Diverges if <m>|r|\ge1</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>p</m>-series</cell>
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}\frac1{n^p}</m>.</cell>
+        <cell>Converges if <m>p&gt;1</m>.  Diverges if <m>p\le1</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Telescoping series</cell>
+        <cell>Partial sums collapse after cancellation.</cell>
+        <cell>Write <m>S_N</m>, cancel, then take <m>\displaystyle \lim_{N\to\infty}S_N</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Direct comparison</cell>
+        <cell>Assume <m>0\le a_n\le b_n</m> eventually.</cell>
+        <cell>If <m>\sum b_n</m> converges, then <m>\sum a_n</m> converges.
+If <m>\sum a_n</m> diverges, then <m>\sum b_n</m> diverges.</cell>
+      </row>
+      <row>
+        <cell>Limit comparison</cell>
+        <cell>Assume <m>a_n,b_n&gt;0</m> eventually and compute
+<m>\displaystyle L=\lim_{n\to\infty}\frac{a_n}{b_n}</m>.</cell>
+        <cell>If <m>0&lt;L&lt;\infty</m>, then <m>\sum a_n</m> and <m>\sum b_n</m> either both converge
+or both diverge.</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+  <subsection xml:id="appsubsec-advanced-series-tests-table">
+    <title>Integral, alternating, ratio, and root tests</title>
+
+  <table xml:id="tab-sec-f-4-series-tests-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>test</strong></cell>
+        <cell><strong>hypotheses/check</strong></cell>
+        <cell><strong>conclusion</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Integral test</cell>
+        <cell><m>a_n=f(n)</m>, where <m>f</m> is positive, continuous, and decreasing for large <m>x</m>.</cell>
+        <cell><m>\displaystyle \sum a_n</m> and <m>\displaystyle \int^\infty f(x)\,dx</m> either both
+converge or both diverge.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Integral-test remainder</cell>
+        <cell>Same hypotheses as the integral test.</cell>
+        <cell>For <m>S=\sum_{n=1}^{\infty}a_n</m> and <m>S_N=\sum_{n=1}^{N}a_n</m>,
+
+\[
+\int_{N+1}^{\infty}f(x)\,dx
+\le
+S-S_N
+\le
+\int_N^{\infty}f(x)\,dx.
+\]</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Alternating series test</cell>
+        <cell><m>\displaystyle \sum (-1)^{n-1}b_n</m>, where <m>b_n\ge0</m>, <m>b_n</m> decreases, and
+<m>b_n\to0</m>.</cell>
+        <cell>The series converges.  Also,
+
+\[
+|S-S_N|\le b_{N+1}.
+\]</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Absolute convergence</cell>
+        <cell>Check whether <m>\displaystyle \sum |a_n|</m> converges.</cell>
+        <cell>If <m>\sum |a_n|</m> converges, then <m>\sum a_n</m> converges.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Conditional convergence</cell>
+        <cell><m>\displaystyle \sum a_n</m> converges but <m>\displaystyle \sum |a_n|</m> diverges.</cell>
+        <cell>The series converges conditionally.  Alternating series often behave this way.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Ratio test</cell>
+        <cell>Compute
+\[
+L=\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|.
+\]</cell>
+        <cell>If <m>L&lt;1</m>, the series converges absolutely.
+If <m>L&gt;1</m> or <m>L=\infty</m>, it diverges.
+If <m>L=1</m>, inconclusive.</cell>
+      </row>
+      <row>
+        <cell>Root test</cell>
+        <cell>Compute
+\[
+L=\lim_{n\to\infty}\sqrt[n]{|a_n|}.
+\]</cell>
+        <cell>If <m>L&lt;1</m>, the series converges absolutely.
+If <m>L&gt;1</m> or <m>L=\infty</m>, it diverges.
+If <m>L=1</m>, inconclusive.</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+  <subsection xml:id="appsubsec-power-series-tests-table">
+    <title>Power series convergence</title>
+
+  <p>For a power series</p>
+
+  <md>\sum_{n=0}^{\infty} c_n(x-a)^n,</md>
+
+  <p>the convergence set is centered at <m>a</m>.</p>
+
+  <table xml:id="tab-sec-f-4-series-tests-2">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>quantity</strong></cell>
+        <cell><strong>meaning</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Center</cell>
+        <cell>The number <m>a</m> in powers of <m>(x-a)</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Radius of convergence <m>R</m></cell>
+        <cell>The series converges absolutely for <m>|x-a|&lt;R</m> and diverges for <m>|x-a|&gt;R</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Endpoints</cell>
+        <cell>The points <m>a-R</m> and <m>a+R</m>.  Test them separately.</cell>
+      </row>
+      <row>
+        <cell>Interval of convergence</cell>
+        <cell>The full set of <m>x</m>-values where the series converges, including any endpoints that
+pass their tests.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The ratio test often gives the radius.  If</p>
+
+  <md>L=\lim_{n\to\infty}
+\left|
+\frac{c_{n+1}(x-a)^{n+1}}{c_n(x-a)^n}
+\right|</md>
+
+  <p>has the form</p>
+
+  <md>L=\frac{|x-a|}{R},</md>
+
+  <p>then the radius of convergence is <m>R</m>.</p>
+
+  <warning xml:id="warn-sec-f-4-series-tests-7">
+    <title>Endpoint warning</title>
+      <p>The ratio and root tests usually decide what happens inside and outside the radius.
+They usually do not decide what happens at the endpoints.</p>
+  </warning>
+  </subsection>
+
+</section>

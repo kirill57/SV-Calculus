@@ -1,420 +1,621 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-concavity-second-derivatives">
+<section xml:id="sec-6-4-concavity-and-second-derivatives">
   <title>Concavity and second derivatives</title>
 
-  <p>The first derivative tells whether a function is rising or falling. It does not tell the whole shape.</p>
+  <p>The first derivative tells whether a function is rising or falling.  It does not tell the
+whole shape.</p>
 
-  <p>A car can move forward while speeding up. It can also move forward while slowing down. In both cases the velocity is positive, but the motion feels different.</p>
+  <p>A car can move forward while speeding up.  It can also move forward while slowing
+down.  In both cases the velocity is positive, but the motion feels different.</p>
 
-  <p>Graphs have the same distinction. A graph can be increasing while bending upward, or increasing while bending downward. The second derivative measures that bending.</p>
+  <p>Graphs have the same distinction.  A graph can be increasing while bending upward,
+or increasing while bending downward.  The second derivative measures that bending.</p>
 
   <subsection xml:id="subsec-velocity-changing-acceleration">
     <title>Velocity changing: acceleration</title>
 
-    <p>Let</p>
-    <md>s(t)=t^2.</md>
-    <p>Then</p>
-    <md>v(t)=s'(t)=2t,</md>
-    <p>and</p>
-    <md>a(t)=v'(t)=s''(t)=2.</md>
-    <p>The velocity is increasing. The object is speeding up. The graph of <m>s(t)</m> bends upward.</p>
+  <p>Let</p>
 
-    <p>Now let</p>
-    <md>r(t)=6t-t^2</md>
-    <p>on <m>0\le t\le 3</m>. Then</p>
-    <md>r'(t)=6-2t.</md>
-    <p>This velocity is positive on <m>0\lt t\lt 3</m>, so the position is still increasing. But the velocity is decreasing, because</p>
-    <md>r''(t)=-2.</md>
-    <p>The object is moving forward while slowing down. The graph bends downward.</p>
+  <md>s(t)=t^2.</md>
 
-    <figure xml:id="fig-increasing-different-concavity">
-      <caption>Both positions increase on the interval, but one bends upward and the other bends downward.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=0, xmax=3.2,
-              ymin=0, ymax=9.8,
-              axis lines=left,
-              xlabel={\(t\)},
-              ylabel={position},
-              xtick={0,1,2,3},
-              ytick={0,3,6,9},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
-          ]
-          \addplot[thick, domain=0:3, samples=200] {x^2};
-          \addlegendentry{\(s(t)=t^2\), speeding up}
+  <p>Then</p>
 
-          \addplot[thick, dashed, domain=0:3, samples=200] {6*x-x^2};
-          \addlegendentry{\(r(t)=6t-t^2\), slowing down}
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>v(t)=s'(t)=2t,</md>
 
-    <definition xml:id="def-second-derivative">
-      <title>Second derivative</title>
-      <statement>
-        <p>If <m>f'</m> is differentiable, then the derivative of <m>f'</m> is called the second derivative of <m>f</m>:</p>
-        <md>f''(x)=\frac{d}{dx}\bigl(f'(x)\bigr).</md>
-        <p>In motion, if <m>s(t)</m> is position, then</p>
+  <p>and</p>
+
+  <md>a(t)=v'(t)=s''(t)=2.</md>
+
+  <p>The velocity is increasing.  The object is speeding up.  The graph of <m>s(t)</m> bends
+upward.</p>
+
+  <p>Now let</p>
+
+  <md>r(t)=6t-t^2</md>
+
+  <p>on <m>0\le t\le 3</m>.  Then</p>
+
+  <md>r'(t)=6-2t.</md>
+
+  <p>This velocity is positive on <m>0&lt;t&lt;3</m>, so the position is still increasing.  But the
+velocity is decreasing, because</p>
+
+  <md>r''(t)=-2.</md>
+
+  <p>The object is moving forward while slowing down.  The graph bends downward.</p>
+
+  <figure xml:id="fig-increasing-different-concavity">
+    <caption>Both positions increase on the interval, but one bends upward and the other bends downward.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=3.2,
+    ymin=0, ymax=9.8,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={position},
+    xtick={0,1,2,3},
+    ytick={0,3,6,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=1, font=\small}
+]
+\addplot[thick, domain=0:3, samples=200] {x^2};
+\addlegendentry{\(s(t)=t^2\), speeding up}
+
+\addplot[thick, dashed, domain=0:3, samples=200] {6*x-x^2};
+\addlegendentry{\(r(t)=6t-t^2\), slowing down}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-6-4-concavity-and-second-derivatives-65">
+    <title>Second derivative</title>
+      <p>If <m>f'</m> is differentiable, then the derivative of <m>f'</m> is called the second derivative
+of <m>f</m>:</p>
+        <md>
+f''(x)=\frac{d}{dx}\bigl(f'(x)\bigr).
+</md>
+      <p>In motion, if <m>s(t)</m> is position, then</p>
         <md>s'(t)=v(t)</md>
-        <p>is velocity, and</p>
+      <p>is velocity, and</p>
         <md>s''(t)=v'(t)=a(t)</md>
-        <p>is acceleration.</p>
-      </statement>
-    </definition>
+      <p>is acceleration.</p>
+  </note>
 
-    <p>The units also tell the story. If <m>s(t)</m> is measured in meters and <m>t</m> in seconds, then</p>
-    <md>s'(t)</md>
-    <p>has units</p>
-    <md>\frac{\text{meters}}{\text{second}},</md>
-    <p>and</p>
-    <md>s''(t)</md>
-    <p>has units</p>
-    <md>\frac{\text{meters}}{\text{second}^2}.</md>
-    <p>Acceleration measures how fast velocity changes.</p>
+  <p>The units also tell the story.  If <m>s(t)</m> is measured in meters and <m>t</m> in seconds,
+then</p>
+
+  <md>s'(t)</md>
+
+  <p>has units</p>
+
+  <md>\frac{\text{meters}}{\text{second}},</md>
+
+  <p>and</p>
+
+  <md>s''(t)</md>
+
+  <p>has units</p>
+
+  <md>\frac{\text{meters}}{\text{second}^2}.</md>
+
+  <p>Acceleration measures how fast velocity changes.</p>
+
+  <exercise xml:id="checkpoint-6-4-increasing-versus-concavity">
+        <title>Why can two increasing graphs still have different shapes?</title>
+        <statement>
+          <p>
+            A car can move forward while speeding up, or move forward while slowing down. In both cases velocity is positive. In your own words, why does the first derivative miss this distinction, and what extra question does the second derivative ask?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            <m>f'</m> tells whether the graph is rising or falling. <m>f''</m> tells whether those slopes themselves are increasing or decreasing.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-concave-up-down">
     <title>Concave up and concave down</title>
 
-    <p>The word <term>concavity</term> describes the direction a graph bends.</p>
+  <p>The word <em>concavity</em> describes the direction a graph bends.</p>
 
-    <p>If the slopes are increasing as we move left to right, the graph is <term>concave up</term>. It bends like a cup.</p>
+  <p>If the slopes are increasing as we move left to right, the graph is <em>concave up</em>.
+It bends like a cup.</p>
 
-    <p>If the slopes are decreasing as we move left to right, the graph is <term>concave down</term>. It bends like a cap.</p>
+  <p>If the slopes are decreasing as we move left to right, the graph is <em>concave down</em>.
+It bends like a cap.</p>
 
-    <definition xml:id="def-concavity">
-      <title>Concavity</title>
-      <statement>
-        <p>Suppose <m>f</m> is differentiable on an interval <m>I</m>.</p>
-        <p>The function <m>f</m> is <term>concave up</term> on <m>I</m> if <m>f'</m> is increasing on <m>I</m>.</p>
-        <p>The function <m>f</m> is <term>concave down</term> on <m>I</m> if <m>f'</m> is decreasing on <m>I</m>.</p>
-      </statement>
-    </definition>
+  <note xml:id="note-sec-6-4-concavity-and-second-derivatives-66">
+    <title>Concavity</title>
+      <p>Suppose <m>f</m> is differentiable on an interval <m>I</m>.</p>
+      <p>The function <m>f</m> is <em>concave up</em> on <m>I</m> if <m>f'</m> is increasing on <m>I</m>.</p>
+      <p>The function <m>f</m> is <em>concave down</em> on <m>I</m> if <m>f'</m> is decreasing on <m>I</m>.</p>
+  </note>
 
-    <p>This definition says that concavity is really a statement about how the tangent slopes change.</p>
-    <md>\text{concave up} \quad\Longleftrightarrow\quad \text{slopes increase},</md>
-    <md>\text{concave down} \quad\Longleftrightarrow\quad \text{slopes decrease}.</md>
+  <p>This definition says that concavity is really a statement about how the tangent slopes
+change.</p>
 
-    <p>Because the second derivative is the derivative of <m>f'</m>, the first derivative sign rule applied to <m>f'</m> gives the main test.</p>
+  <md>\text{concave up}
+\quad\Longleftrightarrow\quad
+\text{slopes increase},</md>
 
-    <theorem xml:id="thm-second-derivative-sign-rule">
-      <title>Second derivative sign rule</title>
-      <statement>
-        <p>Suppose <m>f''</m> exists on an interval <m>I</m>.</p>
-        <p>If</p>
-        <md>f''(x)\gt 0</md>
-        <p>on <m>I</m>, then <m>f</m> is concave up on <m>I</m>.</p>
-        <p>If</p>
-        <md>f''(x)\lt 0</md>
-        <p>on <m>I</m>, then <m>f</m> is concave down on <m>I</m>.</p>
-      </statement>
-    </theorem>
+  <md>\text{concave down}
+\quad\Longleftrightarrow\quad
+\text{slopes decrease}.</md>
 
-    <p>The reason is direct. If <m>f''\gt 0</m>, then <m>f'</m> is increasing. If <m>f''\lt 0</m>, then <m>f'</m> is decreasing.</p>
+  <p>Because the second derivative is the derivative of <m>f'</m>, the first derivative sign rule
+applied to <m>f'</m> gives the main test.</p>
 
-    <figure xml:id="fig-concave-up-down-basic">
-      <caption>Concave up means slopes increase. Concave down means slopes decrease.</caption>
-      <image width="80%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.80\textwidth,
-              height=0.48\textwidth,
-              xmin=-2.4, xmax=2.4,
-              ymin=-0.5, ymax=5.2,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={},
-              xtick={-2,-1,0,1,2},
-              ytick={0,1,2,3,4,5},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
-          ]
-          \addplot[thick, domain=-2.2:2.2, samples=200] {x^2};
-          \addlegendentry{\(y=x^2\), concave up}
+  <note xml:id="note-sec-6-4-concavity-and-second-derivatives-67">
+    <title>Second derivative sign rule</title>
+      <p>Suppose <m>f”</m> exists on an interval <m>I</m>.</p>
+      <p>If</p>
+        <md>f''(x)&gt;0</md>
+      <p>on <m>I</m>, then <m>f</m> is concave up on <m>I</m>.</p>
+      <p>If</p>
+        <md>f''(x)&lt;0</md>
+      <p>on <m>I</m>, then <m>f</m> is concave down on <m>I</m>.</p>
+  </note>
 
-          \addplot[thick, dashed, domain=-2.2:2.2, samples=200] {4-x^2};
-          \addlegendentry{\(y=4-x^2\), concave down}
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The reason is direct.  If <m>f”&gt;0</m>, then <m>f'</m> is increasing.  If <m>f”&lt;0</m>, then
+<m>f'</m> is decreasing.</p>
+
+  <figure xml:id="fig-concave-up-down-basic">
+    <caption>Concave up means slopes increase.  Concave down means slopes decrease.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.80\textwidth,
+    height=0.48\textwidth,
+    xmin=-2.4, xmax=2.4,
+    ymin=-0.5, ymax=5.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={-2,-1,0,1,2},
+    ytick={0,1,2,3,4,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[thick, domain=-2.2:2.2, samples=200] {x^2};
+\addlegendentry{\(y=x^2\), concave up}
+
+\addplot[thick, dashed, domain=-2.2:2.2, samples=200] {4-x^2};
+\addlegendentry{\(y=4-x^2\), concave down}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <exercise xml:id="checkpoint-6-4-concavity-is-about-slopes">
+        <title>Why is concavity a statement about changing slopes?</title>
+        <statement>
+          <p>
+            Concave up means <m>f'</m> is increasing; concave down means <m>f'</m> is decreasing. In your own words, why is that not the same as <m>f</m> being positive, and why does the sign of <m>f''</m> become a test for concavity?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Apply the first derivative sign rule to <m>f'</m> itself. A cup-shaped graph is one whose tangent slopes are getting steeper as you move right.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-second-derivative-sign-chart">
     <title>A sign chart for the second derivative</title>
 
-    <p>Consider again</p>
-    <md>f(x)=x^3-3x.</md>
-    <p>Then</p>
-    <md>f'(x)=3x^2-3,</md>
-    <p>and</p>
-    <md>f''(x)=6x.</md>
-    <p>The second derivative is negative when <m>x\lt 0</m> and positive when <m>x\gt 0</m>.</p>
+  <p>Consider again</p>
 
-    <table>
-      <title>Concavity analysis for <m>f(x)=x^3-3x</m></title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>interval</term></cell>
-          <cell><term>sign of <m>f''(x)</m></term></cell>
-          <cell><term>concavity of <m>f</m></term></cell>
-        </row>
-        <row>
-          <cell><m>(-\infty,0)</m></cell>
-          <cell><m>-</m></cell>
-          <cell>concave down</cell>
-        </row>
-        <row>
-          <cell><m>(0,\infty)</m></cell>
-          <cell><m>+</m></cell>
-          <cell>concave up</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>f(x)=x^3-3x.</md>
 
-    <p>The graph bends downward to the left of <m>0</m>, and upward to the right of <m>0</m>.</p>
+  <p>Then</p>
 
-    <figure xml:id="fig-cubic-concavity-chart">
-      <caption>The sign of <m>f''</m> gives the concavity of <m>f</m>.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=-2.4, xmax=2.4,
-              ymin=-4.5, ymax=4.5,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={},
-              xtick={-2,-1,0,1,2},
-              ytick={-4,-2,0,2,4},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25}
-          ]
-          \addplot[thick, domain=-2.2:2.2, samples=200] {x^3-3*x};
-          \draw[dashed] (axis cs:0,-4.2) -- (axis cs:0,4.2);
-          \addplot[only marks, mark=*] coordinates {(0,0)};
-          \node[anchor=south east] at (axis cs:-0.15,0.15) {inflection point};
-          \node[anchor=west] at (axis cs:-2.1,3.2) {concave down};
-          \node[anchor=west] at (axis cs:0.55,-3.4) {concave up};
-          \end{axis}
-          \end{tikzpicture}
+  <md>f'(x)=3x^2-3,</md>
 
-          \vspace{0.5em}
+  <p>and</p>
 
-          \begin{tikzpicture}[xscale=1.25, every node/.style={font=\small}]
-            \draw[-&gt;, thick] (-3.0,0) -- (3.0,0);
-            \draw[thick] (0,0.08) -- (0,-0.08);
-            \node[below] at (0,-0.08) {\(0\)};
-            \node[above] at (-1.5,0.15) {\(f''\lt 0\)};
-            \node[above] at (1.5,0.15) {\(f''\gt 0\)};
-            \node[below] at (-1.5,-0.50) {concave down};
-            \node[below] at (1.5,-0.50) {concave up};
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>f''(x)=6x.</md>
 
-    <p>This example also shows a new kind of point: the graph changes concavity at <m>x=0</m>.</p>
+  <p>The second derivative is negative when <m>x&lt;0</m> and positive when <m>x&gt;0</m>.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+\text{interval} \amp \text{sign of } f''(x) \amp \text{concavity of } f</mrow>
+    <mrow>\hline
+(-\infty,0) \amp - \amp \text{concave down}</mrow>
+    <mrow>(0,\infty) \amp + \amp \text{concave up}
+\end{array}</mrow>
+  </md>
+
+  <p>The graph bends downward to the left of <m>0</m>, and upward to the right of <m>0</m>.</p>
+
+  <figure xml:id="fig-cubic-concavity-chart">
+    <caption>The sign of <m>f”</m> gives the concavity of <m>f</m>.</caption>
+                <image xml:id="fig-cubic-concavity-chart-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2.4, xmax=2.4,
+    ymin=-4.5, ymax=4.5,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={-2,-1,0,1,2},
+    ytick={-4,-2,0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25}
+]
+\addplot[thick, domain=-2.2:2.2, samples=200] {x^3-3*x};
+\draw[dashed] (axis cs:0,-4.2) -- (axis cs:0,4.2);
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[anchor=south east] at (axis cs:-0.15,0.15) {inflection point};
+\node[anchor=west] at (axis cs:-2.1,3.2) {concave down};
+\node[anchor=west] at (axis cs:0.55,-3.4) {concave up};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-cubic-concavity-chart-panel-2">
+      <latex-image>
+\begin{tikzpicture}[xscale=1.25, every node/.style={font=\small}]
+  \draw[-&gt;, thick] (-3.0,0) -- (3.0,0);
+  \draw[thick] (0,0.08) -- (0,-0.08);
+  \node[below] at (0,-0.08) {\(0\)};
+  \node[above] at (-1.5,0.15) {\(f''&lt;0\)};
+  \node[above] at (1.5,0.15) {\(f''&gt;0\)};
+  \node[below] at (-1.5,-0.50) {concave down};
+  \node[below] at (1.5,-0.50) {concave up};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example also shows a new kind of point: the graph changes concavity at
+<m>x=0</m>.</p>
   </subsection>
 
   <subsection xml:id="subsec-inflection-points">
     <title>Inflection points</title>
 
-    <p>A point where the concavity changes is called an inflection point.</p>
+  <p>A point where the concavity changes is called an inflection point.</p>
 
-    <definition xml:id="def-inflection-point">
-      <title>Inflection point</title>
-      <statement>
-        <p>A point <m>(c,f(c))</m> on the graph of <m>f</m> is an <term>inflection point</term> if the concavity of <m>f</m> changes at <m>c</m>.</p>
-      </statement>
-    </definition>
+  <note xml:id="note-sec-6-4-concavity-and-second-derivatives-68">
+    <title>Inflection point</title>
+      <p>A point <m>(c,f(c))</m> on the graph of <m>f</m> is an <em>inflection point</em> if the concavity
+of <m>f</m> changes at <m>c</m>.</p>
+  </note>
 
-    <p>The number <m>c</m> is often found by looking for places where</p>
-    <md>f''(c)=0</md>
-    <p>or where</p>
-    <md>f''(c)</md>
-    <p>does not exist. But these are only candidates. The concavity must actually change.</p>
+  <p>The number <m>c</m> is often found by looking for places where</p>
 
-    <example xml:id="ex-inflection-cubic">
-      <title>An inflection point</title>
-      <statement>
-        <p>For</p>
-        <md>f(x)=x^3,</md>
-        <p>we have</p>
-        <md>f'(x)=3x^2, \qquad f''(x)=6x.</md>
-        <p>The second derivative changes from negative to positive at <m>0</m>. Therefore <m>(0,0)</m> is an inflection point.</p>
-      </statement>
-    </example>
+  <md>f''(c)=0</md>
 
-    <example xml:id="ex-inflection-false-candidate">
-      <title>A false candidate</title>
-      <statement>
-        <p>For</p>
-        <md>g(x)=x^4,</md>
-        <p>we have</p>
-        <md>g'(x)=4x^3, \qquad g''(x)=12x^2.</md>
-        <p>At <m>x=0</m>,</p>
-        <md>g''(0)=0.</md>
-        <p>But</p>
-        <md>g''(x)\gt 0</md>
-        <p>for <m>x\neq 0</m>. The graph is concave up on both sides of <m>0</m>. So <m>(0,0)</m> is not an inflection point.</p>
-      </statement>
-    </example>
+  <p>or where</p>
 
-    <note xml:id="note-inflection-candidate">
-      <title>Key take-away</title>
-      <p><m>f''(c)=0</m> makes <m>c</m> a candidate, not a conclusion.</p>
-    </note>
+  <md>f''(c)</md>
 
-    <p>This is the second-derivative version of the warning about critical numbers. A zero derivative may or may not give an extremum. A zero second derivative may or may not give an inflection point.</p>
+  <p>does not exist.  But these are only candidates.  The concavity must actually change.</p>
+
+
+  <exercise xml:id="checkpoint-6-4-inflection-candidates">
+        <title>Why is <m>f''(c)=0</m> only a candidate for an inflection point?</title>
+        <statement>
+          <p>
+            An inflection point is a point where concavity actually changes. In your own words, why might we look where <m>f''</m> is zero or undefined, and why can <m>f''(c)=0</m> fail to produce an inflection, as with <m>x^4</m> at the origin?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            This is the second-derivative version of the warning about critical numbers. A zero second derivative may or may not be a place where the bending switches.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-6-4-concavity-and-second-derivatives-1">
+    <title>an inflection point</title>
+    <statement>
+  <p>For</p>
+
+  <md>f(x)=x^3,</md>
+
+  <p>we have</p>
+
+  <md>f'(x)=3x^2,
+\qquad
+f''(x)=6x.</md>
+
+  <p>The second derivative changes from negative to positive at <m>0</m>.  Therefore
+<m>(0,0)</m> is an inflection point.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-6-4-concavity-and-second-derivatives-2">
+    <title>a false candidate</title>
+    <statement>
+  <p>For</p>
+
+  <md>g(x)=x^4,</md>
+
+  <p>we have</p>
+
+  <md>g'(x)=4x^3,
+\qquad
+g''(x)=12x^2.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>g''(0)=0.</md>
+
+  <p>But</p>
+
+  <md>g''(x)&gt;0</md>
+
+  <p>for <m>x\neq0</m>.  The graph is concave up on both sides of <m>0</m>.  So <m>(0,0)</m> is
+not an inflection point.</p>
+
+  <md>
+f''(c)=0 \text{ makes } c \text{ a candidate, not a conclusion.}
+</md>
+
+  <p>This is the second-derivative version of the warning about critical numbers.  A
+zero derivative may or may not give an extremum.  A zero second derivative may or
+may not give an inflection point.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-second-derivative-test">
     <title>The second derivative test</title>
 
-    <p>The first derivative test studies the sign of <m>f'</m> on both sides of a critical number. The second derivative test is faster when it works.</p>
+  <p>The first derivative test studies the sign of <m>f'</m> on both sides of a critical number.
+The second derivative test is faster when it works.</p>
 
-    <p>The idea is simple. Suppose</p>
-    <md>f'(c)=0.</md>
-    <p>If</p>
-    <md>f''(c)\gt 0,</md>
-    <p>then near <m>c</m>, the derivative <m>f'</m> is increasing. Since <m>f'(c)=0</m>, the derivative tends to be negative just before <m>c</m> and positive just after <m>c</m>. That means <m>f</m> decreases into <m>c</m> and increases away from <m>c</m>, so <m>c</m> gives a local minimum.</p>
+  <p>The idea is simple.  Suppose</p>
 
-    <p>If</p>
-    <md>f''(c)\lt 0,</md>
-    <p>then <m>f'</m> is decreasing. The derivative tends to be positive before <m>c</m> and negative after <m>c</m>, so <m>c</m> gives a local maximum.</p>
+  <md>f'(c)=0.</md>
 
-    <theorem xml:id="thm-second-derivative-test">
-      <title>Second derivative test</title>
-      <statement>
-        <p>Suppose <m>f'(c)=0</m>, and suppose <m>f''</m> is continuous near <m>c</m>.</p>
-        <p>If</p>
-        <md>f''(c)\gt 0,</md>
-        <p>then <m>f</m> has a local minimum at <m>c</m>.</p>
-        <p>If</p>
-        <md>f''(c)\lt 0,</md>
-        <p>then <m>f</m> has a local maximum at <m>c</m>.</p>
-        <p>If</p>
+  <p>If</p>
+
+  <md>f''(c)&gt;0,</md>
+
+  <p>then near <m>c</m>, the derivative <m>f'</m> is increasing.  Since <m>f'(c)=0</m>, the derivative
+tends to be negative just before <m>c</m> and positive just after <m>c</m>.  That means <m>f</m>
+decreases into <m>c</m> and increases away from <m>c</m>, so <m>c</m> gives a local minimum.</p>
+
+  <p>If</p>
+
+  <md>f''(c)&lt;0,</md>
+
+  <p>then <m>f'</m> is decreasing.  The derivative tends to be positive before <m>c</m> and negative
+after <m>c</m>, so <m>c</m> gives a local maximum.</p>
+
+  <note xml:id="note-sec-6-4-concavity-and-second-derivatives-69">
+    <title>Second derivative test</title>
+      <p>Suppose <m>f'(c)=0</m>, and suppose <m>f”</m> is continuous near <m>c</m>.</p>
+      <p>If</p>
+        <md>f''(c)&gt;0,</md>
+      <p>then <m>f</m> has a local minimum at <m>c</m>.</p>
+      <p>If</p>
+        <md>f''(c)&lt;0,</md>
+      <p>then <m>f</m> has a local maximum at <m>c</m>.</p>
+      <p>If</p>
         <md>f''(c)=0,</md>
-        <p>the test gives no conclusion.</p>
-      </statement>
-      <proof>
-        <p>Assume first that</p>
-        <md>f''(c)\gt 0.</md>
-        <p>Since <m>f''</m> is continuous near <m>c</m>, it stays positive on some small interval around <m>c</m>. On that interval, <m>f'</m> is increasing.</p>
-        <p>Because</p>
-        <md>f'(c)=0,</md>
-        <p>we have</p>
-        <md>f'(x)\lt 0</md>
-        <p>for <m>x\lt c</m> close to <m>c</m>, and</p>
-        <md>f'(x)\gt 0</md>
-        <p>for <m>x\gt c</m> close to <m>c</m>. By the first derivative test, <m>f</m> has a local minimum at <m>c</m>.</p>
-        <p>The case</p>
-        <md>f''(c)\lt 0</md>
-        <p>is similar. Then <m>f'</m> is decreasing near <m>c</m>, so <m>f'</m> changes from positive to negative at <m>c</m>. By the first derivative test, <m>f</m> has a local maximum at <m>c</m>.</p>
-      </proof>
-    </theorem>
+      <p>the test gives no conclusion.</p>
+  </note>
 
-    <example xml:id="ex-second-derivative-test-cubic">
-      <title>Applying the second derivative test</title>
-      <statement>
-        <p>Let</p>
-        <md>f(x)=x^3-3x.</md>
-        <p>The critical numbers come from</p>
-        <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
-        <p>So</p>
-        <md>x=-1 \qquad\text{and}\qquad x=1</md>
-        <p>are critical numbers.</p>
-        <p>The second derivative is</p>
-        <md>f''(x)=6x.</md>
-        <p>At <m>x=-1</m>,</p>
-        <md>f''(-1)=-6\lt 0,</md>
-        <p>so <m>f</m> has a local maximum at <m>x=-1</m>. The value is</p>
-        <md>f(-1)=2.</md>
-        <p>At <m>x=1</m>,</p>
-        <md>f''(1)=6\gt 0,</md>
-        <p>so <m>f</m> has a local minimum at <m>x=1</m>. The value is</p>
-        <md>f(1)=-2.</md>
-        <p>This agrees with the first derivative sign chart, but it is quicker once <m>f''</m> is known.</p>
-      </statement>
-    </example>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Assume first that</p>
+
+  <md>f''(c)&gt;0.</md>
+
+  <p>Since <m>f”</m> is continuous near <m>c</m>, it stays positive on some small interval around
+<m>c</m>.  On that interval, <m>f'</m> is increasing.</p>
+
+  <p>Because</p>
+
+  <md>f'(c)=0,</md>
+
+  <p>we have</p>
+
+  <md>f'(x)&lt;0</md>
+
+  <p>for <m>x&lt;c</m> close to <m>c</m>, and</p>
+
+  <md>f'(x)&gt;0</md>
+
+  <p>for <m>x&gt;c</m> close to <m>c</m>.  By the first derivative test, <m>f</m> has a local minimum at
+<m>c</m>.</p>
+
+  <p>The case</p>
+
+  <md>f''(c)&lt;0</md>
+
+  <p>is similar.  Then <m>f'</m> is decreasing near <m>c</m>, so <m>f'</m> changes from positive to
+negative at <m>c</m>.  By the first derivative test, <m>f</m> has a local maximum at <m>c</m>.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-6-4-second-derivative-test">
+        <title>Why can the second derivative test succeed, and why can it stay silent?</title>
+        <statement>
+          <p>
+            If <m>f'(c)=0</m> and <m>f''(c)&gt;0</m>, then <m>c</m> is a local minimum. In your own words, why does a positive second derivative at a critical number force the first derivative to change from negative to positive, and why does <m>f''(c)=0</m> give no conclusion?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Near <m>c</m>, <m>f''&gt;0</m> means <m>f'</m> is increasing through zero. When <m>f''(c)=0</m>, the same first-derivative sign pattern can be a min, a max, or neither.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-6-4-concavity-and-second-derivatives-4">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=x^3-3x.</md>
+
+  <p>The critical numbers come from</p>
+
+  <md>f'(x)=3x^2-3=3(x-1)(x+1).</md>
+
+  <p>So</p>
+
+  <md>x=-1
+\qquad\text{and}\qquad
+x=1</md>
+
+  <p>are critical numbers.</p>
+
+  <p>The second derivative is</p>
+
+  <md>f''(x)=6x.</md>
+
+  <p>At <m>x=-1</m>,</p>
+
+  <md>f''(-1)=-6&lt;0,</md>
+
+  <p>so <m>f</m> has a local maximum at <m>x=-1</m>.  The value is</p>
+
+  <md>f(-1)=2.</md>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>f''(1)=6&gt;0,</md>
+
+  <p>so <m>f</m> has a local minimum at <m>x=1</m>.  The value is</p>
+
+  <md>f(1)=-2.</md>
+
+  <p>This agrees with the first derivative sign chart, but it is quicker once <m>f”</m> is known.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-second-derivative-test-inconclusive">
     <title>When the second derivative test is inconclusive</title>
 
-    <p>The last line of the test matters:</p>
-    <md>f''(c)=0 \quad\Longrightarrow\quad \text{no conclusion}.</md>
-    <p>Three different things can happen.</p>
+  <p>The last line of the test matters:</p>
 
-    <paragraphs xml:id="para-inconclusive-local-min">
-      <title>A local minimum</title>
-      <p>Let</p>
-      <md>f(x)=x^4.</md>
-      <p>Then</p>
-      <md>f'(x)=4x^3, \qquad f''(x)=12x^2.</md>
-      <p>At <m>x=0</m>,</p>
-      <md>f'(0)=0, \qquad f''(0)=0.</md>
-      <p>The second derivative test gives no conclusion. But <m>x^4\ge 0</m> for all <m>x</m>, so <m>f</m> has a local minimum at <m>0</m>.</p>
-    </paragraphs>
+  <md>f''(c)=0
+\quad\Longrightarrow\quad
+\text{no conclusion}.</md>
 
-    <paragraphs xml:id="para-inconclusive-local-max">
-      <title>A local maximum</title>
-      <p>Let</p>
-      <md>g(x)=-x^4.</md>
-      <p>Then</p>
-      <md>g'(x)=-4x^3, \qquad g''(x)=-12x^2.</md>
-      <p>At <m>x=0</m>,</p>
-      <md>g'(0)=0, \qquad g''(0)=0.</md>
-      <p>Again the test gives no conclusion. But <m>-x^4\le 0</m> for all <m>x</m>, so <m>g</m> has a local maximum at <m>0</m>.</p>
-    </paragraphs>
+  <p>Three different things can happen.</p>
 
-    <paragraphs xml:id="para-inconclusive-no-extremum">
-      <title>No extremum</title>
-      <p>Let</p>
-      <md>h(x)=x^3.</md>
-      <p>Then</p>
-      <md>h'(x)=3x^2, \qquad h''(x)=6x.</md>
-      <p>At <m>x=0</m>,</p>
-      <md>h'(0)=0, \qquad h''(0)=0.</md>
-      <p>But <m>x^3</m> is increasing through <m>0</m>, so there is no local maximum or local minimum there.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>A local minimum</title>
 
-    <note xml:id="note-second-derivative-inconclusive">
-      <title>Key take-away</title>
-      <p><m>f''(c)=0</m> does not mean the test says <q>minimum.</q></p>
-    </note>
+  <p>Let</p>
 
-    <p>It means the test is silent. We must return to the first derivative test, the shape of the graph, or another argument.</p>
+  <md>f(x)=x^4.</md>
+
+  <p>Then</p>
+
+  <md>f'(x)=4x^3,
+\qquad
+f''(x)=12x^2.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>f'(0)=0,
+\qquad
+f''(0)=0.</md>
+
+  <p>The second derivative test gives no conclusion.  But <m>x^4\ge0</m> for all <m>x</m>, so
+<m>f</m> has a local minimum at <m>0</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A local maximum</title>
+
+  <p>Let</p>
+
+  <md>g(x)=-x^4.</md>
+
+  <p>Then</p>
+
+  <md>g'(x)=-4x^3,
+\qquad
+g''(x)=-12x^2.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>g'(0)=0,
+\qquad
+g''(0)=0.</md>
+
+  <p>Again the test gives no conclusion.  But <m>-x^4\le0</m> for all <m>x</m>, so <m>g</m> has a
+local maximum at <m>0</m>.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>No extremum</title>
+
+  <p>Let</p>
+
+  <md>h(x)=x^3.</md>
+
+  <p>Then</p>
+
+  <md>h'(x)=3x^2,
+\qquad
+h''(x)=6x.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>h'(0)=0,
+\qquad
+h''(0)=0.</md>
+
+  <p>But <m>x^3</m> is increasing through <m>0</m>, so there is no local maximum or local
+minimum there.</p>
+
+  <md>
+f''(c)=0 \text{ does not mean the test says ``minimum.''}
+</md>
+
+  <p>It means the test is silent.  We must return to the first derivative test, the shape of
+the graph, or another argument.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-concavity-hook-graph-sketching">
     <title>Where this points</title>
 
-    <p>The first derivative tells where the graph rises and falls. The second derivative tells where the graph bends upward and downward.</p>
+  <p>The first derivative tells where the graph rises and falls.  The second derivative
+tells where the graph bends upward and downward.</p>
 
-    <p>Together, they give a much richer picture:</p>
-    <md>f' \quad\text{controls increasing and decreasing},</md>
-    <md>f'' \quad\text{controls concavity}.</md>
+  <p>Together, they give a much richer picture:</p>
 
-    <p>But a graph can also have asymptotes, holes, intercepts, and end behavior. The next step is to put all the evidence together into a graph-sketching method that is guided by calculus rather than by guesswork.</p>
+  <md>f' \quad\text{controls increasing and decreasing},</md>
+
+  <md>f'' \quad\text{controls concavity}.</md>
+
+  <p>But a graph can also have asymptotes, holes, intercepts, and end behavior.  The next
+step is to put all the evidence together into a graph-sketching method that is guided
+by calculus rather than by guesswork.</p>
   </subsection>
+
+
 
 </section>

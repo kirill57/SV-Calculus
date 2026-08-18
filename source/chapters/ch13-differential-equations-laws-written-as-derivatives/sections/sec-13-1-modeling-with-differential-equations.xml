@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-1-modeling-with-differential-equations">
+  <title>Modeling with differential equations</title>
+
+  <p>A derivative measures an instant-by-instant rate.  A differential equation starts when a
+situation gives that rate before it gives the function.</p>
+
+  <md>\text{law of change}
+\quad\Longrightarrow\quad
+\text{equation for a derivative}
+\quad\Longrightarrow\quad
+\text{unknown function}.</md>
+
+  <p>The direction is different from many earlier problems.  We are not given <m>y(t)</m> and
+asked to find <m>y'(t)</m>.  We are given information about <m>y'(t)</m> and asked to find
+<m>y(t)</m>.</p>
+
+  <subsection xml:id="subsec-law-gives-rate">
+    <title>A law that gives a rate</title>
+
+  <p>A hot cup of coffee cools quickly when it is much hotter than the room.  Later, when it
+is only a little warmer than the room, it cools slowly.</p>
+
+  <p>That observation is the heart of Newton’s law of cooling:</p>
+
+  <md>\text{rate of cooling is proportional to the temperature difference}.</md>
+
+  <p>Let</p>
+
+  <md>T(t)=\text{temperature of the coffee after \(t\) minutes},</md>
+
+  <p>and suppose the room temperature is</p>
+
+  <md>T_s=20^\circ\text{C}.</md>
+
+  <p>The temperature difference is</p>
+
+  <md>T(t)-20.</md>
+
+  <p>Cooling means this difference decreases.  A simple model is</p>
+
+  <md>
+T'=-k(T-20),
+</md>
+
+  <p>where <m>k&gt;0</m> is a constant.</p>
+
+  <p>If <m>k=0.08</m>, then</p>
+
+  <md>T'=-0.08(T-20).</md>
+
+  <p>When the coffee is <m>80^\circ\text{C}</m>,</p>
+
+  <md>T'=-0.08(80-20)=-4.8.</md>
+
+  <p>So at that instant, the coffee is cooling at</p>
+
+  <md>4.8^\circ\text{C per minute}.</md>
+
+  <p>When the coffee is <m>30^\circ\text{C}</m>,</p>
+
+  <md>T'=-0.08(30-20)=-0.8.</md>
+
+  <p>Now the cooling rate is only</p>
+
+  <md>0.8^\circ\text{C per minute}.</md>
+
+  <p>The equation captures the behavior:</p>
+
+  <md>\text{large temperature difference} \quad\Longrightarrow\quad \text{fast cooling},</md>
+
+  <md>\text{small temperature difference} \quad\Longrightarrow\quad \text{slow cooling}.</md>
+
+  <p>The constant <m>k</m> has units of <m>1/\text{minute}</m>.  This is necessary because</p>
+
+  <md>T'</md>
+
+  <p>has units of degrees per minute, while</p>
+
+  <md>T-20</md>
+
+  <p>has units of degrees.</p>
+
+  <note xml:id="note-sec-13-1-modeling-with-differential-equations-62">
+    <title>A differential equation</title>
+      <p>A <em>differential equation</em> is an equation involving an unknown function and one
+or more of its derivatives.</p>
+      <p>The equation</p>
+        <md>T'=-0.08(T-20)</md>
+      <p>is a first-order differential equation because it involves the first derivative <m>T'</m>, but
+not higher derivatives such as <m>T”</m>.</p>
+  </note>
+
+  <p>The equation does not yet tell us the temperature at every time.  It tells us how the
+temperature should be changing once the temperature is known.</p>
+
+  <p>That is the new kind of problem.</p>
+
+  <exercise xml:id="checkpoint-13-1-law-as-derivative">
+        <title>What does it mean to write a law as a derivative?</title>
+        <statement>
+          <p>
+            A differential equation specifies <m>y'</m> rather than <m>y</m> itself. In your own words, why is that a natural way to write a scientific law, and what extra information is needed before a unique solution is determined?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Many laws say how a quantity is changing, not what its current value is. An initial condition picks one graph from a family.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-solution-as-unknown-function">
+    <title>Solution as an unknown function</title>
+
+  <p>A solution of a differential equation is a function that makes the equation true.</p>
+
+  <p>Start with a simpler equation:</p>
+
+  <md>y'=1-y.</md>
+
+  <p>This says that the rate of change of <m>y</m> depends on the current value of <m>y</m>.</p>
+
+  <p>If <m>y</m> is below <m>1</m>, then <m>1-y&gt;0</m>, so the solution should rise.</p>
+
+  <p>If <m>y</m> is above <m>1</m>, then <m>1-y&lt;0</m>, so the solution should fall.</p>
+
+  <p>If <m>y=1</m>, then <m>1-y=0</m>, so the solution should stay flat.</p>
+
+  <p>Before solving the equation by a method, we can check proposed functions.</p>
+
+  <example xml:id="ex-sec-13-1-modeling-with-differential-equations-1">
+    <title>Example</title>
+    <statement>
+  <p>Show that</p>
+
+  <md>y(t)=1-e^{-t}</md>
+
+  <p>is a solution of</p>
+
+  <md>y'=1-y.</md>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)=e^{-t}.</md>
+
+  <p>Now compute the right side of the differential equation:</p>
+
+  <md>1-y(t)=1-\bigl(1-e^{-t}\bigr)=e^{-t}.</md>
+
+  <p>The two sides agree:</p>
+
+  <md>y'=e^{-t}
+\qquad\text{and}\qquad
+1-y=e^{-t}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+y(t)=1-e^{-t}
+</md>
+
+  <p>solves</p>
+
+  <md>y'=1-y.</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-13-1-modeling-with-differential-equations-2">
+    <title>Example</title>
+    <statement>
+  <p>The function</p>
+
+  <md>y(t)=1+2e^{-t}</md>
+
+  <p>also solves the same equation.</p>
+
+  <p>Indeed,</p>
+
+  <md>y'(t)=-2e^{-t},</md>
+
+  <p>and</p>
+
+  <md>1-y(t)=1-\bigl(1+2e^{-t}\bigr)=-2e^{-t}.</md>
+
+  <p>So</p>
+
+  <md>y'=1-y.</md>
+
+  <p>The same differential equation has many solutions.  That should not be surprising.
+An antiderivative also comes with a constant <m>C</m>.  A differential equation often gives
+a whole family of possible functions.</p>
+
+  <note xml:id="note-sec-13-1-modeling-with-differential-equations-63">
+    <title>Solution of a differential equation</title>
+      <p>A function <m>y(t)</m> is a <em>solution</em> of a differential equation on an interval <m>I</m>
+if <m>y</m> is differentiable on <m>I</m> and the equation is true for every <m>t</m> in <m>I</m>.</p>
+  </note>
+
+  <p>The interval matters.  A formula may solve an equation on one interval but fail to make
+sense on another.  This is the same domain discipline we used for logarithms, square
+roots, inverse trigonometric functions, and improper integrals.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A false proposed solution</title>
+
+  <p>Check whether</p>
+
+  <md>y(t)=1+t</md>
+
+  <p>solves</p>
+
+  <md>y'=1-y.</md>
+
+  <p>The derivative is</p>
+
+  <md>y'(t)=1.</md>
+
+  <p>But the right side is</p>
+
+  <md>1-y(t)=1-(1+t)=-t.</md>
+
+  <p>These are not equal for all <m>t</m>.  They agree only when</p>
+
+  <md>1=-t,</md>
+
+  <p>or</p>
+
+  <md>t=-1.</md>
+
+  <p>A differential equation must hold on an interval, not just at one point.  Therefore</p>
+
+  <md>
+y(t)=1+t \text{ is not a solution of } y'=1-y.
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-1-solution-is-a-function">
+        <title>What does it mean for a function to solve a differential equation?</title>
+        <statement>
+          <p>
+            The same equation <m>y'=1-y</m> is solved both by <m>1-e^{-t}</m> and by <m>1+2e^{-t}</m>, while <m>y=1+t</m> is not a solution. In your own words, what must be true on an interval for a proposed function to count as a solution, and why is agreement at a single point not enough?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Substitute the function and its derivative into the equation. The identity must hold for every <m>t</m> in an interval, not just at one instant.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-initial-conditions">
+    <title>Initial conditions</title>
+
+  <p>A differential equation often describes a family of possible motions or histories.  A
+starting value chooses one member of the family.</p>
+
+  <p>For</p>
+
+  <md>y'=1-y,</md>
+
+  <p>the functions</p>
+
+  <md>y(t)=1+Ce^{-t}</md>
+
+  <p>all solve the equation, for any constant <m>C</m>.  Check:</p>
+
+  <md>y'(t)=-Ce^{-t},</md>
+
+  <p>and</p>
+
+  <md>1-y(t)=1-\bigl(1+Ce^{-t}\bigr)=-Ce^{-t}.</md>
+
+  <p>So</p>
+
+  <md>y'=1-y.</md>
+
+  <p>Now suppose we also know</p>
+
+  <md>y(0)=0.</md>
+
+  <p>Substitute <m>t=0</m>:</p>
+
+  <md>0=y(0)=1+Ce^0=1+C.</md>
+
+  <p>Thus</p>
+
+  <md>C=-1.</md>
+
+  <p>So the solution with <m>y(0)=0</m> is</p>
+
+  <md>
+y(t)=1-e^{-t}.
+</md>
+
+  <p>If instead</p>
+
+  <md>y(0)=2,</md>
+
+  <p>then</p>
+
+  <md>2=1+C,</md>
+
+  <p>so</p>
+
+  <md>C=1,</md>
+
+  <p>and the solution is</p>
+
+  <md>
+y(t)=1+e^{-t}.
+</md>
+
+  <note xml:id="note-sec-13-1-modeling-with-differential-equations-64">
+    <title>Initial value problem</title>
+      <p>An <em>initial value problem</em> combines a differential equation with a starting value.
+For example,</p>
+        <md>y'=1-y,
+\qquad
+y(0)=0.</md>
+      <p>The differential equation gives the law of change.  The initial condition tells which
+solution curve we are on.</p>
+  </note>
+
+  <figure xml:id="fig-initial-values-select-solutions">
+    <caption>The equation <m>y'=1-y</m> gives a family of solution curves.  An initial condition selects one curve.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=4.2,
+    ymin=-0.3, ymax=2.4,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1,2,3,4},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=3, font=\small}
+]
+\addplot[very thick, domain=0:4, samples=150] {1-exp(-x)};
+\addlegendentry{\(y(0)=0\)}
+\addplot[very thick, dashed, domain=0:4, samples=150] {1+exp(-x)};
+\addlegendentry{\(y(0)=2\)}
+\addplot[thick, dotted, domain=0:4, samples=2] {1};
+\addlegendentry{\(y=1\)}
+\addplot[only marks, mark=*] coordinates {(0,0) (0,2)};
+\node[anchor=west] at (axis cs:2.3,1.55) {same equation};
+\node[anchor=west] at (axis cs:2.3,1.32) {different initial values};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The picture shows what the algebra said.  Both solutions move toward <m>y=1</m>.  One
+starts below <m>1</m> and rises.  The other starts above <m>1</m> and falls.</p>
+
+  <exercise xml:id="checkpoint-13-1-initial-value-problem">
+        <title>Why does an initial condition select one history from a family?</title>
+        <statement>
+          <p>
+            The functions <m>y=1+Ce^{-t}</m> all solve <m>y'=1-y</m>. In your own words, what does the differential equation determine, what does <m>y(0)=y_0</m> determine, and why should that pair be called an initial value problem?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The equation gives the law of change. The starting value tells which solution curve we are on.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-checking-proposed-solution">
+    <title>Checking a proposed solution</title>
+
+  <p>Checking a solution is often easier than finding one.  It is also one of the best ways to
+understand what the equation means.</p>
+
+  <note xml:id="note-sec-13-1-modeling-with-differential-equations-65">
+    <title>How to check a proposed solution</title>
+      <p>To check a proposed solution of a differential equation:</p>
+          <ol>
+      <li>
+        <p>State the interval where the function is being considered.</p>
+      </li>
+      <li>
+        <p>Differentiate the proposed function.</p>
+      </li>
+      <li>
+        <p>Substitute the function and its derivative into the differential equation.</p>
+      </li>
+      <li>
+        <p>Check that the equation is true for every point of the interval.</p>
+      </li>
+      <li>
+        <p>If there is an initial condition, check it separately.</p>
+      </li>
+    </ol>
+  </note>
+
+  <example xml:id="ex-sec-13-1-modeling-with-differential-equations-4">
+    <title>checking a cooling model</title>
+    <statement>
+  <p>Suppose the room temperature is <m>20^\circ\text{C}</m>, and the proposed coffee
+temperature is</p>
+
+  <md>T(t)=20+60e^{-0.08t},
+\qquad t\ge0.</md>
+
+  <p>Check that it solves</p>
+
+  <md>T'=-0.08(T-20),
+\qquad
+T(0)=80.</md>
+
+  <p>First differentiate:</p>
+
+  <md>T'(t)=60(-0.08)e^{-0.08t}=-4.8e^{-0.08t}.</md>
+
+  <p>Now compute the right side:</p>
+
+  <md>-0.08(T(t)-20)
+=
+-0.08\bigl(20+60e^{-0.08t}-20\bigr)
+=
+-4.8e^{-0.08t}.</md>
+
+  <p>So</p>
+
+  <md>T'=-0.08(T-20).</md>
+
+  <p>Now check the initial condition:</p>
+
+  <md>T(0)=20+60e^0=80.</md>
+
+  <p>Therefore</p>
+
+  <md>
+T(t)=20+60e^{-0.08t}
+</md>
+
+  <p>solves the initial value problem.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>What the formula says</title>
+
+  <p>The number <m>20</m> is the equilibrium temperature.  The term</p>
+
+  <md>60e^{-0.08t}</md>
+
+  <p>is the remaining temperature difference above the room.  It decays toward <m>0</m>, so</p>
+
+  <md>T(t)\to20</md>
+
+  <p>as</p>
+
+  <md>t\to\infty.</md>
+
+  <p>The coffee approaches room temperature.  It does not pass below it in this model.</p>
+
+  <note xml:id="note-sec-13-1-modeling-with-differential-equations-66">
+    <title>A model check</title>
+      <p>A solution should satisfy the differential equation, the initial condition, and the
+behavior of the situation.  Algebra alone is not enough if the model’s interpretation
+has been forgotten.</p>
+  </note>
+
+  <p>Many differential equations cannot be solved by guessing a familiar formula.  But even
+without a formula, the equation still gives information.  Since</p>
+
+  <md>y'=F(t,y)</md>
+
+  <p>tells the slope a solution must have at each point <m>(t,y)</m>, we can draw those slopes.
+That picture is the next step.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-1-check-the-model">
+        <title>Why is checking a proposed solution part of understanding the model?</title>
+        <statement>
+          <p>
+            Checking a formula is often easier than finding one. In your own words, what should a complete check include besides differentiation and substitution, and why is algebra alone not enough if the interpretation has been forgotten?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            State the interval, check the differential equation, check any initial condition, and ask whether the long-term behavior matches the situation.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

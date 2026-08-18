@@ -3,612 +3,1062 @@
 <section xml:id="sec-11-7-improper-integrals">
   <title>Improper integrals</title>
 
-  <p>The last section ended with a warning. A definite integral over a closed, finite interval is safe when the integrand is continuous. The interval has finite length, the function stays bounded, and the accumulated amount is a finite number.</p>
+  <p>The last section ended with a warning.  A definite integral over a closed, finite interval is
+safe when the integrand is continuous.  The interval has finite length, the function stays
+bounded, and the accumulated amount is a finite number.</p>
 
   <p>But many natural accumulations do not fit that safe pattern.</p>
 
-  <p>A radioactive particle may decay forever. A probability density may stretch over the whole real line. A force law may blow up near a point. A curve may enclose an infinite region whose area is still finite.</p>
+  <p>A radioactive particle may decay forever.  A probability density may stretch over the
+whole real line.  A force law may blow up near a point.  A curve may enclose an infinite
+region whose area is still finite.</p>
 
   <p>So we have to ask a more careful question:</p>
-  <md>\text{When does an infinite or singular accumulation have a finite value?}</md>
+
+  <md>
+\text{When does an infinite or singular accumulation have a finite value?}
+</md>
 
   <p>That is the question of improper integrals.</p>
 
-  <p>An improper integral is not wrong or badly formed. The word <term>improper</term> means that the integral lies outside the original definition and must be interpreted as a limit.</p>
+  <p>An improper integral is not wrong or badly formed.  The word <em>improper</em> means
+that the integral lies outside the original definition and must be interpreted as a limit.</p>
 
   <subsection xml:id="subsec-infinite-intervals">
     <title>Infinite intervals</title>
 
-    <p>Start with an infinite interval.</p>
+  <p>Start with an infinite interval.</p>
 
-    <p>The expression</p>
-    <md>\int_1^\infty \frac{1}{x^2}\,dx</md>
-    <p>asks for the area under <m>1/x^2</m> from <m>x=1</m> onward forever. We cannot add area all the way to infinity in one step. Instead, we stop at a finite number <m>t</m>, compute</p>
-    <md>\int_1^t \frac{1}{x^2}\,dx,</md>
-    <p>and then let <m>t</m> move farther and farther to the right.</p>
+  <p>The expression</p>
 
-    <p>For <m>t\gt 1</m>,</p>
-    <md>\int_1^t \frac{1}{x^2}\,dx = \int_1^t x^{-2}\,dx = \left[-\frac1x\right]_1^t = -\frac1t+1.</md>
+  <md>\int_1^\infty \frac{1}{x^2}\,dx</md>
 
-    <p>Now let <m>t\to\infty</m>:</p>
-    <md>\lim_{t\to\infty}\left(1-\frac1t\right)=1.</md>
+  <p>asks for the area under <m>1/x^2</m> from <m>x=1</m> onward forever.  We cannot add area all
+the way to infinity in one step.  Instead, we stop at a finite number <m>t</m>, compute</p>
 
-    <p>Therefore</p>
-    <md>\int_1^\infty \frac{1}{x^2}\,dx=1.</md>
+  <md>\int_1^t \frac{1}{x^2}\,dx,</md>
 
-    <p>This infinite region has finite area.</p>
+  <p>and then let <m>t</m> move farther and farther to the right.</p>
 
-    <p>Now compare</p>
-    <md>\int_1^\infty \frac1x\,dx.</md>
+  <p>For <m>t&gt;1</m>,</p>
 
-    <p>Again stop at <m>t</m>:</p>
-    <md>\int_1^t \frac1x\,dx = \ln x\Big|_1^t = \ln t.</md>
+  <md>\int_1^t \frac{1}{x^2}\,dx
+=
+\int_1^t x^{-2}\,dx
+=
+\left[-\frac1x\right]_1^t
+=
+-\frac1t+1.</md>
 
-    <p>As <m>t\to\infty</m>,</p>
-    <md>\ln t\to\infty.</md>
+  <p>Now let <m>t\to\infty</m>:</p>
 
-    <p>So</p>
-    <md>\int_1^\infty \frac1x\,dx \text{ diverges.}</md>
+  <md>\lim_{t\to\infty}\left(1-\frac1t\right)=1.</md>
 
-    <p>Both functions</p>
-    <md>\frac1x \qquad\text{and}\qquad \frac1{x^2}</md>
-    <p>approach <m>0</m>. But only <m>1/x^2</m> approaches <m>0</m> fast enough to have finite total area on the infinite interval.</p>
+  <p>Therefore</p>
 
-    <figure xml:id="fig-one-over-x-vs-one-over-x-squared">
-      <caption>Both curves approach <m>0</m>, but the tail of <m>1/x</m> has infinite area while the tail of <m>1/x^2</m> has finite area.</caption>
-      <sidebyside widths="47% 47%" margins="auto" valign="bottom">
-        <figure xml:id="fig-tail-x-squared">
-          <caption><m>y = 1/x^2</m></caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\linewidth,
-                  height=0.72\linewidth,
-                  xmin=0.6, xmax=6.2,
-                  ymin=0, ymax=1.15,
-                  axis lines=left,
-                  xlabel={\(x\)},
-                  ylabel={\(y\)},
-                  xtick={1,2,4,6},
-                  ytick={0,1},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-                  title={\(\displaystyle y=\frac1{x^2}\)}
-              ]
-              \addplot[domain=1:6, samples=150, fill=gray!18, draw=none] {1/(x^2)} \closedcycle;
-              \addplot[very thick, domain=0.75:6, samples=200] {1/(x^2)};
-              \node[anchor=west] at (axis cs:2.3,0.55) {finite area};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
+  <md>
+\int_1^\infty \frac{1}{x^2}\,dx=1.
+</md>
 
-        <figure xml:id="fig-tail-one-over-x">
-          <caption><m>y = 1/x</m></caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\linewidth,
-                  height=0.72\linewidth,
-                  xmin=0.6, xmax=6.2,
-                  ymin=0, ymax=1.15,
-                  axis lines=left,
-                  xlabel={\(x\)},
-                  ylabel={\(y\)},
-                  xtick={1,2,4,6},
-                  ytick={0,1},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-                  title={\(\displaystyle y=\frac1x\)}
-              ]
-              \addplot[domain=1:6, samples=150, fill=gray!18, draw=none] {1/x} \closedcycle;
-              \addplot[very thick, domain=0.75:6, samples=200] {1/x};
-              \node[anchor=west] at (axis cs:2.2,0.55) {area keeps growing};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </sidebyside>
-    </figure>
+  <p>This infinite region has finite area.</p>
 
-    <p>This example motivates the definition.</p>
+  <p>Now compare</p>
 
-    <definition xml:id="def-improper-integral-infinite-interval">
-      <title>Improper integral on an infinite interval</title>
-      <statement>
-        <p>If <m>f</m> is continuous on <m>[a,t]</m> for every <m>t\gt a</m>, then</p>
-        <md>\int_a^\infty f(x)\,dx = \lim_{t\to\infty}\int_a^t f(x)\,dx</md>
-        <p>provided the limit exists as a finite number.</p>
-        <p>If the limit exists as a finite number, the improper integral <term>converges</term>. If the limit does not exist as a finite number, the improper integral <term>diverges</term>.</p>
-      </statement>
-    </definition>
+  <md>\int_1^\infty \frac1x\,dx.</md>
 
-    <p>Similarly,</p>
-    <md>\int_{-\infty}^b f(x)\,dx = \lim_{t\to-\infty}\int_t^b f(x)\,dx</md>
-    <p>provided the limit exists as a finite number.</p>
+  <p>Again stop at <m>t</m>:</p>
 
-    <p>For an integral over the whole real line, split at any convenient point <m>c</m>:</p>
-    <md>\int_{-\infty}^{\infty} f(x)\,dx = \int_{-\infty}^{c} f(x)\,dx + \int_c^{\infty} f(x)\,dx.</md>
+  <md>\int_1^t \frac1x\,dx
+=
+\ln x\Big|_1^t
+=
+\ln t.</md>
 
-    <p>Both pieces must converge. If either piece diverges, then the whole improper integral diverges.</p>
+  <p>As <m>t\to\infty</m>,</p>
 
-    <example xml:id="ex-improper-both-directions">
-      <title>An infinite interval in both directions</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx.</md>
-        <p>Split at <m>0</m>:</p>
-        <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx = \int_{-\infty}^{0} \frac{1}{1+x^2}\,dx + \int_0^{\infty} \frac{1}{1+x^2}\,dx.</md>
-        <p>For the right half,</p>
-        <md>\int_0^\infty \frac{1}{1+x^2}\,dx = \lim_{t\to\infty}\int_0^t \frac{1}{1+x^2}\,dx.</md>
-        <p>Since</p>
-        <md>\int \frac{1}{1+x^2}\,dx=\arctan x+C,</md>
-        <p>we get</p>
-        <md>\int_0^\infty \frac{1}{1+x^2}\,dx = \lim_{t\to\infty}\bigl(\arctan t-\arctan 0\bigr) = \frac{\pi}{2}.</md>
-        <p>For the left half,</p>
-        <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx = \lim_{t\to-\infty}\int_t^0 \frac{1}{1+x^2}\,dx.</md>
-        <p>Thus</p>
-        <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx = \lim_{t\to-\infty}\bigl(\arctan 0-\arctan t\bigr) = \frac{\pi}{2}.</md>
-        <p>Therefore</p>
-        <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx=\pi.</md>
-        <p>This integral appears in probability. It is also a reminder that finite area can stretch across an infinite line.</p>
-      </statement>
-    </example>
+  <md>\ln t\to\infty.</md>
+
+  <p>So</p>
+
+  <md>
+\int_1^\infty \frac1x\,dx
+\text{ diverges.}
+</md>
+
+  <p>Both functions</p>
+
+  <md>\frac1x
+\qquad\text{and}\qquad
+\frac1{x^2}</md>
+
+  <p>approach <m>0</m>.  But only <m>1/x^2</m> approaches <m>0</m> fast enough to have finite total
+area on the infinite interval.</p>
+
+  <figure xml:id="fig-one-over-x-vs-one-over-x-squared">
+    <caption>Both curves approach <m>0</m>, but the tail of <m>1/x</m> has infinite area while the tail of <m>1/x^2</m> has finite area.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-one-over-x-vs-one-over-x-squared-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0.6, xmax=6.2,
+    ymin=0, ymax=1.15,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,2,4,6},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={\(\displaystyle y=\frac1{x^2}\)}
+]
+\addplot[domain=1:6, samples=150, fill=gray!18, draw=none] {1/(x^2)} \closedcycle;
+\addplot[very thick, domain=0.75:6, samples=200] {1/(x^2)};
+\node[anchor=west] at (axis cs:2.3,0.55) {finite area};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-one-over-x-vs-one-over-x-squared-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0.6, xmax=6.2,
+    ymin=0, ymax=1.15,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,2,4,6},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={\(\displaystyle y=\frac1x\)}
+]
+\addplot[domain=1:6, samples=150, fill=gray!18, draw=none] {1/x} \closedcycle;
+\addplot[very thick, domain=0.75:6, samples=200] {1/x};
+\node[anchor=west] at (axis cs:2.2,0.55) {area keeps growing};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <p>This example motivates the definition.</p>
+
+  <note xml:id="note-sec-11-7-improper-integrals-133">
+    <title>Improper integral on an infinite interval</title>
+      <p>If <m>f</m> is continuous on <m>[a,t]</m> for every <m>t&gt;a</m>, then</p>
+        <md>
+\int_a^\infty f(x)\,dx
+=
+\lim_{t\to\infty}\int_a^t f(x)\,dx
+</md>
+      <p>provided the limit exists as a finite number.</p>
+      <p>If the limit exists as a finite number, the improper integral <em>converges</em>.  If the
+limit does not exist as a finite number, the improper integral <em>diverges</em>.</p>
+  </note>
+
+  <p>Similarly,</p>
+
+  <md>
+\int_{-\infty}^b f(x)\,dx
+=
+\lim_{t\to-\infty}\int_t^b f(x)\,dx
+</md>
+
+  <p>provided the limit exists as a finite number.</p>
+
+  <p>For an integral over the whole real line, split at any convenient point <m>c</m>:</p>
+
+  <md>
+\int_{-\infty}^{\infty} f(x)\,dx
+=
+\int_{-\infty}^{c} f(x)\,dx
++
+\int_c^{\infty} f(x)\,dx.
+</md>
+
+  <p>Both pieces must converge.  If either piece diverges, then the whole improper integral
+diverges.</p>
+
+
+  <exercise xml:id="checkpoint-11-7-infinite-interval">
+        <title>Why is an integral to infinity a limit?</title>
+        <statement>
+          <p>
+            We cannot add area all the way to infinity in one step. In your own words, why do we stop at a finite <m>t</m>, compute <m>\int_a^t f(x)\,dx</m>, and then let <m>t\to\infty</m>, and why can that limit be finite even though the region never ends?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The word <em>improper</em> means the integral lies outside the original definition and must be interpreted as a limit. A tail can be infinite in extent and still have finite area if it becomes thin fast enough.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-1">
+    <title>an infinite interval in both directions</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx.</md>
+
+  <p>Split at <m>0</m>:</p>
+
+  <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx
+=
+\int_{-\infty}^{0} \frac{1}{1+x^2}\,dx
++
+\int_0^{\infty} \frac{1}{1+x^2}\,dx.</md>
+
+  <p>For the right half,</p>
+
+  <md>\int_0^\infty \frac{1}{1+x^2}\,dx
+=
+\lim_{t\to\infty}\int_0^t \frac{1}{1+x^2}\,dx.</md>
+
+  <p>Since</p>
+
+  <md>\int \frac{1}{1+x^2}\,dx=\arctan x+C,</md>
+
+  <p>we get</p>
+
+  <md>\int_0^\infty \frac{1}{1+x^2}\,dx
+=
+\lim_{t\to\infty}\bigl(\arctan t-\arctan 0\bigr)
+=
+\frac{\pi}{2}.</md>
+
+  <p>For the left half,</p>
+
+  <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
+=
+\lim_{t\to-\infty}\int_t^0 \frac{1}{1+x^2}\,dx.</md>
+
+  <p>Thus</p>
+
+  <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
+=
+\lim_{t\to-\infty}\bigl(\arctan 0-\arctan t\bigr)
+=
+\frac{\pi}{2}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx=\pi.
+</md>
+
+  <p>This integral appears in probability.  It is also a reminder that finite area can stretch
+across an infinite line.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-infinite-discontinuities">
     <title>Infinite discontinuities</title>
 
-    <p>The interval can be finite and the integral can still be improper.</p>
+  <p>The interval can be finite and the integral can still be improper.</p>
 
-    <p>Consider</p>
-    <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx.</md>
+  <p>Consider</p>
 
-    <p>The interval <m>[0,1]</m> is finite, but the integrand is not defined at <m>x=0</m>, and</p>
-    <md>\frac{1}{\sqrt{x}}\to\infty \qquad\text{as}\qquad x\to 0^+.</md>
+  <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx.</md>
 
-    <p>So we approach the endpoint by a limit:</p>
-    <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx = \lim_{t\to 0^+}\int_t^1 \frac{1}{\sqrt{x}}\,dx.</md>
+  <p>The interval <m>[0,1]</m> is finite, but the integrand is not defined at <m>x=0</m>, and</p>
 
-    <p>Compute:</p>
-    <md>\int_t^1 x^{-1/2}\,dx = \left[2\sqrt{x}\right]_t^1 = 2-2\sqrt{t}.</md>
+  <md>\frac{1}{\sqrt{x}}\to\infty
+\qquad\text{as}\qquad
+x\to0^+.</md>
 
-    <p>Let <m>t\to 0^+</m>:</p>
-    <md>\lim_{t\to 0^+}(2-2\sqrt{t})=2.</md>
+  <p>So we approach the endpoint by a limit:</p>
 
-    <p>Therefore</p>
-    <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx=2.</md>
+  <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx
+=
+\lim_{t\to0^+}\int_t^1 \frac{1}{\sqrt{x}}\,dx.</md>
 
-    <p>The graph shoots upward near <m>0</m>, but the spike is narrow enough to have finite area.</p>
+  <p>Compute:</p>
 
-    <p>Now compare</p>
-    <md>\int_0^1 \frac1x\,dx.</md>
+  <md>\int_t^1 x^{-1/2}\,dx
+=
+\left[2\sqrt{x}\right]_t^1
+=
+2-2\sqrt{t}.</md>
 
-    <p>Again,</p>
-    <md>\int_0^1 \frac1x\,dx = \lim_{t\to 0^+}\int_t^1 \frac1x\,dx.</md>
+  <p>Let <m>t\to0^+</m>:</p>
 
-    <p>For <m>0\lt t\lt 1</m>,</p>
-    <md>\int_t^1 \frac1x\,dx = \left[\ln x\right]_t^1 = -\ln t.</md>
+  <md>\lim_{t\to0^+}(2-2\sqrt{t})=2.</md>
 
-    <p>As <m>t\to 0^+</m>,</p>
-    <md>-\ln t\to\infty.</md>
+  <p>Therefore</p>
 
-    <p>So</p>
-    <md>\int_0^1 \frac1x\,dx \text{ diverges.}</md>
+  <md>
+\int_0^1 \frac{1}{\sqrt{x}}\,dx=2.
+</md>
 
-    <figure xml:id="fig-infinite-discontinuity-comparison">
-      <caption>A function may become infinite near an endpoint and still have finite area. The rate of blowup matters.</caption>
-      <image>
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\linewidth,
-              height=0.48\linewidth,
-              xmin=0, xmax=1.05,
-              ymin=0, ymax=6,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={0,0.25,0.5,0.75,1},
-              ytick={0,1,2,4,6},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.98,0.98)}, anchor=north east}
-          ]
-          \addplot[very thick, domain=0.04:1, samples=200] {1/sqrt(x)};
-          \addlegendentry{\(\displaystyle 1/\sqrt{x}\)}
-          \addplot[very thick, dashed, domain=0.17:1, samples=200] {1/x};
-          \addlegendentry{\(\displaystyle 1/x\)}
-          \node[anchor=west] at (axis cs:0.32,4.7) {\(\displaystyle 1/x\) blows up too strongly};
-          \node[anchor=west] at (axis cs:0.37,2.1) {\(\displaystyle 1/\sqrt{x}\) is integrable near \(0\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The graph shoots upward near <m>0</m>, but the spike is narrow enough to have finite area.</p>
 
-    <definition xml:id="def-improper-integral-endpoint-discontinuity">
-      <title>Improper integral with an infinite endpoint discontinuity</title>
-      <statement>
-        <p>If <m>f</m> is continuous on <m>(a,b]</m>, but has an infinite discontinuity at <m>a</m>, then</p>
-        <md>\int_a^b f(x)\,dx = \lim_{t\to a^+}\int_t^b f(x)\,dx</md>
-        <p>provided the limit exists as a finite number.</p>
-        <p>If <m>f</m> is continuous on <m>[a,b)</m>, but has an infinite discontinuity at <m>b</m>, then</p>
-        <md>\int_a^b f(x)\,dx = \lim_{t\to b^-}\int_a^t f(x)\,dx.</md>
-      </statement>
-    </definition>
+  <p>Now compare</p>
 
-    <p>If the infinite discontinuity occurs at an interior point <m>c</m>, split the integral:</p>
-    <md>\int_a^b f(x)\,dx = \int_a^c f(x)\,dx+\int_c^b f(x)\,dx.</md>
+  <md>\int_0^1 \frac1x\,dx.</md>
 
-    <p>Both pieces must converge. If either one diverges, the original integral diverges.</p>
+  <p>Again,</p>
 
-    <example xml:id="ex-singularity-inside-interval">
-      <title>A singularity inside the interval</title>
-      <statement>
-        <p>Decide whether</p>
-        <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx</md>
-        <p>converges.</p>
-        <p>The integrand is singular at <m>x=0</m>. Split there:</p>
-        <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx = \int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx + \int_0^{1} \frac{1}{\sqrt{|x|}}\,dx.</md>
-        <p>On <m>(0,1]</m>,</p>
-        <md>\frac{1}{\sqrt{|x|}}=\frac1{\sqrt{x}},</md>
-        <p>so</p>
-        <md>\int_0^1 \frac{1}{\sqrt{|x|}}\,dx=2.</md>
-        <p>On <m>[-1,0)</m>, use the substitution <m>u=-x</m>. Then <m>du=-dx</m>, and</p>
-        <md>\int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx = \int_1^0 \frac{1}{\sqrt{u}}(-du) = \int_0^1 \frac{1}{\sqrt{u}}\,du = 2.</md>
-        <p>Both pieces converge, so the original integral converges and</p>
-        <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx=4.</md>
-      </statement>
-    </example>
+  <md>\int_0^1 \frac1x\,dx
+=
+\lim_{t\to0^+}\int_t^1 \frac1x\,dx.</md>
+
+  <p>For <m>0&lt;t&lt;1</m>,</p>
+
+  <md>\int_t^1 \frac1x\,dx
+=
+\left[\ln x\right]_t^1
+=
+-\ln t.</md>
+
+  <p>As <m>t\to0^+</m>,</p>
+
+  <md>-\ln t\to\infty.</md>
+
+  <p>So</p>
+
+  <md>
+\int_0^1 \frac1x\,dx
+\text{ diverges.}
+</md>
+
+  <figure xml:id="fig-infinite-discontinuity-comparison">
+    <caption>A function may become infinite near an endpoint and still have finite area.  The rate of blowup matters.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.25,0.5,0.75,1},
+    ytick={0,1,2,4,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[very thick, domain=0.04:1, samples=200] {1/sqrt(x)};
+\addlegendentry{\(\displaystyle 1/\sqrt{x}\)}
+\addplot[very thick, dashed, domain=0.17:1, samples=200] {1/x};
+\addlegendentry{\(\displaystyle 1/x\)}
+\node[anchor=east] at (axis cs:0.95,5.0) {\(\displaystyle 1/x\) blows up too strongly};
+\node[anchor=west] at (axis cs:0.5,0.85) {\(\displaystyle 1/\sqrt{x}\) is integrable near \(0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-11-7-improper-integrals-134">
+    <title>Improper integral with an infinite endpoint discontinuity</title>
+      <p>If <m>f</m> is continuous on <m>(a,b]</m>, but has an infinite discontinuity at <m>a</m>, then</p>
+        <md>
+\int_a^b f(x)\,dx
+=
+\lim_{t\to a^+}\int_t^b f(x)\,dx
+</md>
+      <p>provided the limit exists as a finite number.</p>
+      <p>If <m>f</m> is continuous on <m>[a,b)</m>, but has an infinite discontinuity at <m>b</m>, then</p>
+        <md>
+\int_a^b f(x)\,dx
+=
+\lim_{t\to b^-}\int_a^t f(x)\,dx.
+</md>
+  </note>
+
+  <p>If the infinite discontinuity occurs at an interior point <m>c</m>, split the integral:</p>
+
+  <md>
+\int_a^b f(x)\,dx
+=
+\int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
+</md>
+
+  <p>Both pieces must converge.  If either one diverges, the original integral diverges.</p>
+
+
+  <exercise xml:id="checkpoint-11-7-singularity">
+        <title>Why can a finite interval still be improper?</title>
+        <statement>
+          <p>
+            The integral <m>\int_0^1 x^{-1/2}\,dx</m> lives on a finite interval, but the integrand blows up at <m>0</m>. In your own words, why must we still approach the endpoint by a limit, and why can a tall spike still enclose finite area?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The original definite integral assumes a bounded integrand on a closed interval. A vertical asymptote is a second kind of improperness. Narrow spikes can have finite area even when they are infinitely tall.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-2">
+    <title>a singularity inside the interval</title>
+    <statement>
+  <p>Decide whether</p>
+
+  <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx</md>
+
+  <p>converges.</p>
+
+  <p>The integrand is singular at <m>x=0</m>.  Split there:</p>
+
+  <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx
+=
+\int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx
++
+\int_0^{1} \frac{1}{\sqrt{|x|}}\,dx.</md>
+
+  <p>On <m>(0,1]</m>,</p>
+
+  <md>\frac{1}{\sqrt{|x|}}=\frac1{\sqrt{x}},</md>
+
+  <p>so</p>
+
+  <md>\int_0^1 \frac{1}{\sqrt{|x|}}\,dx=2.</md>
+
+  <p>On <m>[-1,0)</m>, use the substitution <m>u=-x</m>.  Then <m>du=-dx</m>, and</p>
+
+  <md>\int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx
+=
+\int_1^0 \frac{1}{\sqrt{u}}(-du)
+=
+\int_0^1 \frac{1}{\sqrt{u}}\,du
+=
+2.</md>
+
+  <p>Both pieces converge, so the original integral converges and</p>
+
+  <md>
+\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx=4.
+</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-convergence-divergence-improper">
     <title>Convergence and divergence</title>
 
-    <p>The words <term>convergent</term> and <term>divergent</term> describe the limiting process, not the antiderivative.</p>
+  <p>The words <em>convergent</em> and <em>divergent</em> describe the limiting process, not the
+antiderivative.</p>
 
-    <p>An improper integral converges if the limiting accumulated amount approaches a finite number. It diverges if the limiting accumulated amount does not approach a finite number.</p>
+  <p>An improper integral converges if the limiting accumulated amount approaches a finite
+number.  It diverges if the limiting accumulated amount does not approach a finite
+number.</p>
 
-    <md>\text{convergent means finite accumulated amount.}</md>
-    <md>\text{divergent means no finite accumulated amount.}</md>
+  <md>
+\text{convergent means finite accumulated amount.}
+</md>
 
-    <p>The antiderivative may exist on every finite subinterval and the improper integral may still diverge.</p>
+  <md>
+\text{divergent means no finite accumulated amount.}
+</md>
 
-    <p>For example,</p>
-    <md>\int_1^t \frac1x\,dx=\ln t</md>
-    <p>exists for every finite <m>t\gt 1</m>. But</p>
-    <md>\lim_{t\to\infty}\ln t=\infty.</md>
-    <p>So</p>
-    <md>\int_1^\infty \frac1x\,dx</md>
-    <p>diverges.</p>
+  <p>The antiderivative may exist on every finite subinterval and the improper integral may
+still diverge.</p>
 
-    <example xml:id="ex-improper-exponential-decay">
-      <title>Exponential decay</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_0^\infty e^{-x}\,dx.</md>
-        <p>By definition,</p>
-        <md>\int_0^\infty e^{-x}\,dx = \lim_{t\to\infty}\int_0^t e^{-x}\,dx.</md>
-        <p>Now</p>
-        <md>\int_0^t e^{-x}\,dx = \left[-e^{-x}\right]_0^t = 1-e^{-t}.</md>
-        <p>As <m>t\to\infty</m>,</p>
-        <md>e^{-t}\to 0.</md>
-        <p>Therefore</p>
-        <md>\int_0^\infty e^{-x}\,dx=1.</md>
-        <p>Exponential decay wins easily against an infinite interval.</p>
-      </statement>
-    </example>
+  <p>For example,</p>
 
-    <example xml:id="ex-improper-mean-waiting-time">
-      <title>A mean waiting time</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_0^\infty x e^{-x}\,dx.</md>
-        <p>Stop at <m>t</m>:</p>
-        <md>\int_0^\infty x e^{-x}\,dx = \lim_{t\to\infty}\int_0^t x e^{-x}\,dx.</md>
-        <p>Use integration by parts on the finite integral. Let</p>
-        <md>u=x, \qquad dv=e^{-x}\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=-e^{-x}.</md>
-        <p>So</p>
-        <md>\int_0^t x e^{-x}\,dx = \left[-xe^{-x}\right]_0^t+\int_0^t e^{-x}\,dx.</md>
-        <p>This gives</p>
-        <md>\int_0^t x e^{-x}\,dx = -te^{-t}+1-e^{-t}.</md>
-        <p>Now let <m>t\to\infty</m>. We know</p>
-        <md>e^{-t}\to 0</md>
-        <p>and</p>
-        <md>te^{-t}\to 0.</md>
-        <p>Therefore</p>
-        <md>\int_0^\infty x e^{-x}\,dx=1.</md>
-        <p>This integral appears as an expected value for an exponential waiting-time model. The calculus statement is simple: the tail decays fast enough that the total weighted area is finite.</p>
-      </statement>
-    </example>
+  <md>\int_1^t \frac1x\,dx=\ln t</md>
+
+  <p>exists for every finite <m>t&gt;1</m>.  But</p>
+
+  <md>\lim_{t\to\infty}\ln t=\infty.</md>
+
+  <p>So</p>
+
+  <md>\int_1^\infty \frac1x\,dx</md>
+
+  <p>diverges.</p>
+
+
+  <exercise xml:id="checkpoint-11-7-converge-versus-antiderivative">
+        <title>Why can an antiderivative exist on every finite piece while the improper integral diverges?</title>
+        <statement>
+          <p>
+            For every finite <m>t&gt;1</m>, <m>\int_1^t(1/x)\,dx=\ln t</m> exists, but <m>\int_1^\infty(1/x)\,dx</m> diverges. In your own words, why do the words <em>convergent</em> and <em>divergent</em> describe the limiting accumulated amount, not the existence of an antiderivative?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Convergence means the running total approaches a finite number. An antiderivative on each compact subinterval is not the same as a finite total for the whole improper accumulation.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-3">
+    <title>exponential decay</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_0^\infty e^{-x}\,dx.</md>
+
+  <p>By definition,</p>
+
+  <md>\int_0^\infty e^{-x}\,dx
+=
+\lim_{t\to\infty}\int_0^t e^{-x}\,dx.</md>
+
+  <p>Now</p>
+
+  <md>\int_0^t e^{-x}\,dx
+=
+\left[-e^{-x}\right]_0^t
+=
+1-e^{-t}.</md>
+
+  <p>As <m>t\to\infty</m>,</p>
+
+  <md>e^{-t}\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int_0^\infty e^{-x}\,dx=1.
+</md>
+
+  <p>Exponential decay wins easily against an infinite interval.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-4">
+    <title>a mean waiting time</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_0^\infty x e^{-x}\,dx.</md>
+
+  <p>Stop at <m>t</m>:</p>
+
+  <md>\int_0^\infty x e^{-x}\,dx
+=
+\lim_{t\to\infty}\int_0^t x e^{-x}\,dx.</md>
+
+  <p>Use integration by parts on the finite integral.  Let</p>
+
+  <md>u=x,
+\qquad
+dv=e^{-x}\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=-e^{-x}.</md>
+
+  <p>So</p>
+
+  <md>\int_0^t x e^{-x}\,dx
+=
+\left[-xe^{-x}\right]_0^t+\int_0^t e^{-x}\,dx.</md>
+
+  <p>This gives</p>
+
+  <md>\int_0^t x e^{-x}\,dx
+=
+-te^{-t}+1-e^{-t}.</md>
+
+  <p>Now let <m>t\to\infty</m>.  We know</p>
+
+  <md>e^{-t}\to0</md>
+
+  <p>and</p>
+
+  <md>te^{-t}\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int_0^\infty x e^{-x}\,dx=1.
+</md>
+
+  <p>This integral appears as an expected value for an exponential waiting-time model.  The
+calculus statement is simple: the tail decays fast enough that the total weighted area is
+finite.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-comparison-tests-improper-integrals">
     <title>Comparison tests for improper integrals</title>
 
-    <p>Many improper integrals cannot be evaluated exactly. But convergence is often easier than exact value.</p>
+  <p>Many improper integrals cannot be evaluated exactly.  But convergence is often easier
+than exact value.</p>
 
-    <p>For example,</p>
-    <md>\int_1^\infty e^{-x^2}\,dx</md>
-    <p>has no elementary antiderivative. Still, it converges. For <m>x\ge 1</m>,</p>
-    <md>x^2\ge x,</md>
-    <p>so</p>
-    <md>e^{-x^2}\le e^{-x}.</md>
+  <p>For example,</p>
 
-    <p>Since</p>
-    <md>\int_1^\infty e^{-x}\,dx</md>
-    <p>converges, the smaller nonnegative function <m>e^{-x^2}</m> also has finite area.</p>
+  <md>\int_1^\infty e^{-x^2}\,dx</md>
 
-    <p>This is the comparison idea.</p>
+  <p>has no elementary antiderivative.  Still, it converges.  For <m>x\ge1</m>,</p>
 
-    <theorem xml:id="thm-direct-comparison-test-improper">
-      <title>Direct Comparison Test for improper integrals</title>
-      <statement>
-        <p>Suppose</p>
+  <md>x^2\ge x,</md>
+
+  <p>so</p>
+
+  <md>e^{-x^2}\le e^{-x}.</md>
+
+  <p>Since</p>
+
+  <md>\int_1^\infty e^{-x}\,dx</md>
+
+  <p>converges, the smaller nonnegative function <m>e^{-x^2}</m> also has finite area.</p>
+
+  <p>This is the comparison idea.</p>
+
+  <note xml:id="note-sec-11-7-improper-integrals-135">
+    <title>Direct Comparison Test for improper integrals</title>
+      <p>Suppose</p>
         <md>0\le f(x)\le g(x)</md>
-        <p>for all sufficiently large <m>x</m>.</p>
-        <p>If</p>
+      <p>for all sufficiently large <m>x</m>.</p>
+      <p>If</p>
         <md>\int_a^\infty g(x)\,dx</md>
-        <p>converges, then</p>
+      <p>converges, then</p>
         <md>\int_a^\infty f(x)\,dx</md>
-        <p>also converges.</p>
-        <p>If</p>
+      <p>also converges.</p>
+      <p>If</p>
         <md>0\le g(x)\le f(x)</md>
-        <p>for all sufficiently large <m>x</m>, and</p>
+      <p>for all sufficiently large <m>x</m>, and</p>
         <md>\int_a^\infty g(x)\,dx</md>
-        <p>diverges, then</p>
+      <p>diverges, then</p>
         <md>\int_a^\infty f(x)\,dx</md>
-        <p>also diverges.</p>
-      </statement>
-    </theorem>
+      <p>also diverges.</p>
+  </note>
 
-    <p>The phrase <q>for all sufficiently large <m>x</m></q> means that the comparison only needs to hold eventually. A finite beginning of the interval cannot decide whether an infinite tail has finite area.</p>
+  <p>The phrase “for all sufficiently large <m>x</m>” means that the comparison only needs to
+hold eventually.  A finite beginning of the interval cannot decide whether an infinite
+tail has finite area.</p>
 
-    <example xml:id="ex-comparison-convergence-without-antiderivative">
-      <title>Convergence without an antiderivative</title>
-      <statement>
-        <p>Show that</p>
-        <md>\int_1^\infty e^{-x^2}\,dx</md>
-        <p>converges.</p>
-        <p>For <m>x\ge 1</m>,</p>
-        <md>x^2\ge x.</md>
-        <p>Multiplying by <m>-1</m> reverses the inequality:</p>
-        <md>-x^2\le -x.</md>
-        <p>Since the exponential function is increasing,</p>
-        <md>e^{-x^2}\le e^{-x}.</md>
-        <p>Also,</p>
-        <md>0\le e^{-x^2}.</md>
-        <p>We know</p>
-        <md>\int_1^\infty e^{-x}\,dx=e^{-1},</md>
-        <p>so the comparison test gives</p>
-        <md>\int_1^\infty e^{-x^2}\,dx \text{ converges.}</md>
-        <p>We have proved convergence without finding an elementary antiderivative.</p>
-      </statement>
-    </example>
 
-    <example xml:id="ex-comparison-divergence">
-      <title>Divergence by comparison</title>
-      <statement>
-        <p>Show that</p>
-        <md>\int_1^\infty \frac{1+\cos^2 x}{x}\,dx</md>
-        <p>diverges.</p>
-        <p>Since</p>
-        <md>\cos^2 x\ge 0,</md>
-        <p>we have</p>
-        <md>1+\cos^2 x\ge 1.</md>
-        <p>Therefore</p>
-        <md>\frac{1+\cos^2 x}{x}\ge\frac1x</md>
-        <p>for <m>x\ge 1</m>.</p>
-        <p>But</p>
-        <md>\int_1^\infty \frac1x\,dx</md>
-        <p>diverges. The integrand is nonnegative and at least as large as a divergent tail. Therefore</p>
-        <md>\int_1^\infty \frac{1+\cos^2 x}{x}\,dx \text{ diverges.}</md>
-      </statement>
-    </example>
+  <exercise xml:id="checkpoint-11-7-comparison">
+        <title>Why can comparison decide convergence without finding a value?</title>
+        <statement>
+          <p>
+            The integral <m>\int_1^\infty e^{-x^2}\,dx</m> has no elementary antiderivative, yet it converges because <m>e^{-x^2}\le e^{-x}</m> for <m>x\ge1</m>. In your own words, why is a smaller nonnegative area finite when a larger comparison area is finite, and why are the <m>p</m>-integrals a useful comparison family?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If you already know a larger nonnegative tail has finite area, a smaller tail cannot have infinite area. The power <m>1/x^p</m> is a catalog of tails whose convergence is settled, so you can match an unknown tail to a known one.
+          </p>
+        </hint>
+      </exercise>
 
-    <p>Comparison needs nonnegative functions. If signs cancel, the situation is more delicate. The warning examples in the next section show why.</p>
+  <example xml:id="ex-sec-11-7-improper-integrals-5">
+    <title>convergence without an antiderivative</title>
+    <statement>
+  <p>Show that</p>
 
-    <theorem xml:id="thm-limit-comparison-test-improper">
-      <title>Limit Comparison Test for improper integrals</title>
-      <statement>
-        <p>Suppose <m>f(x)\gt 0</m> and <m>g(x)\gt 0</m> for all sufficiently large <m>x</m>. If</p>
+  <md>\int_1^\infty e^{-x^2}\,dx</md>
+
+  <p>converges.</p>
+
+  <p>For <m>x\ge1</m>,</p>
+
+  <md>x^2\ge x.</md>
+
+  <p>Multiplying by <m>-1</m> reverses the inequality:</p>
+
+  <md>-x^2\le -x.</md>
+
+  <p>Since the exponential function is increasing,</p>
+
+  <md>e^{-x^2}\le e^{-x}.</md>
+
+  <p>Also,</p>
+
+  <md>0\le e^{-x^2}.</md>
+
+  <p>We know</p>
+
+  <md>\int_1^\infty e^{-x}\,dx=e^{-1},</md>
+
+  <p>so the comparison test gives</p>
+
+  <md>
+\int_1^\infty e^{-x^2}\,dx
+\text{ converges.}
+</md>
+
+  <p>We have proved convergence without finding an elementary antiderivative.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-6">
+    <title>divergence by comparison</title>
+    <statement>
+  <p>Show that</p>
+
+  <md>\int_1^\infty \frac{1+\cos^2 x}{x}\,dx</md>
+
+  <p>diverges.</p>
+
+  <p>Since</p>
+
+  <md>\cos^2x\ge0,</md>
+
+  <p>we have</p>
+
+  <md>1+\cos^2x\ge1.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{1+\cos^2x}{x}\ge\frac1x</md>
+
+  <p>for <m>x\ge1</m>.</p>
+
+  <p>But</p>
+
+  <md>\int_1^\infty \frac1x\,dx</md>
+
+  <p>diverges.  The integrand is nonnegative and at least as large as a divergent tail.
+Therefore</p>
+
+  <md>
+\int_1^\infty \frac{1+\cos^2 x}{x}\,dx
+\text{ diverges.}
+</md>
+
+  <p>Comparison needs nonnegative functions.  If signs cancel, the situation is more delicate.
+The warning examples in the next section show why.</p>
+
+  <note xml:id="note-sec-11-7-improper-integrals-136">
+    <title>Limit Comparison Test for improper integrals</title>
+      <p>Suppose <m>f(x)&gt;0</m> and <m>g(x)&gt;0</m> for all sufficiently large <m>x</m>.  If</p>
         <md>\lim_{x\to\infty}\frac{f(x)}{g(x)}=L</md>
-        <p>where</p>
-        <md>0\lt L\lt \infty,</md>
-        <p>then</p>
+      <p>where</p>
+        <md>0&lt;L&lt;\infty,</md>
+      <p>then</p>
         <md>\int_a^\infty f(x)\,dx</md>
-        <p>and</p>
+      <p>and</p>
         <md>\int_a^\infty g(x)\,dx</md>
-        <p>either both converge or both diverge.</p>
-      </statement>
-    </theorem>
+      <p>either both converge or both diverge.</p>
+  </note>
 
-    <p>The reason is that, far out in the tail, <m>f</m> behaves like a constant multiple of <m>g</m>. A constant multiple changes the size of the area, but not whether the total area is finite.</p>
+  <p>The reason is that, far out in the tail, <m>f</m> behaves like a constant multiple of <m>g</m>.  A
+constant multiple changes the size of the area, but not whether the total area is finite.</p>
+    </statement>
+  </example>
 
-    <example xml:id="ex-limit-comparison-rational-tail">
-      <title>A rational tail</title>
-      <statement>
-        <p>Determine whether</p>
-        <md>\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx</md>
-        <p>converges or diverges.</p>
-        <p>For large <m>x</m>, the integrand behaves like</p>
-        <md>\frac{3x^2}{x^3}=\frac3x.</md>
-        <p>Use limit comparison with</p>
-        <md>g(x)=\frac1x.</md>
-        <p>Compute</p>
-        <md>\lim_{x\to\infty} \frac{\frac{3x^2+1}{x^3+5}}{\frac1x} = \lim_{x\to\infty} \frac{x(3x^2+1)}{x^3+5}.</md>
-        <p>The highest powers dominate:</p>
-        <md>\lim_{x\to\infty} \frac{3x^3+x}{x^3+5} = 3.</md>
-        <p>Since</p>
-        <md>0\lt 3\lt \infty</md>
-        <p>and</p>
-        <md>\int_1^\infty \frac1x\,dx</md>
-        <p>diverges, the given integral also diverges:</p>
-        <md>\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx \text{ diverges.}</md>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-11-7-improper-integrals-7">
+    <title>a rational tail</title>
+    <statement>
+  <p>Determine whether</p>
 
-    <example xml:id="ex-limit-comparison-convergent-rational-tail">
-      <title>A convergent rational tail</title>
-      <statement>
-        <p>Determine whether</p>
-        <md>\int_1^\infty \frac{2x+1}{x^3+4}\,dx</md>
-        <p>converges.</p>
-        <p>For large <m>x</m>,</p>
-        <md>\frac{2x+1}{x^3+4} \sim \frac{2x}{x^3} = \frac2{x^2}.</md>
-        <p>Use limit comparison with</p>
-        <md>g(x)=\frac1{x^2}.</md>
-        <p>Then</p>
-        <md>\lim_{x\to\infty} \frac{\frac{2x+1}{x^3+4}}{\frac1{x^2}} = \lim_{x\to\infty} \frac{x^2(2x+1)}{x^3+4} = 2.</md>
-        <p>Since</p>
-        <md>\int_1^\infty \frac1{x^2}\,dx</md>
-        <p>converges, the given integral converges:</p>
-        <md>\int_1^\infty \frac{2x+1}{x^3+4}\,dx \text{ converges.}</md>
-      </statement>
-    </example>
+  <md>\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx</md>
+
+  <p>converges or diverges.</p>
+
+  <p>For large <m>x</m>, the integrand behaves like</p>
+
+  <md>\frac{3x^2}{x^3}=\frac3x.</md>
+
+  <p>Use limit comparison with</p>
+
+  <md>g(x)=\frac1x.</md>
+
+  <p>Compute</p>
+
+  <md>\lim_{x\to\infty}
+\frac{\frac{3x^2+1}{x^3+5}}{\frac1x}
+=
+\lim_{x\to\infty}
+\frac{x(3x^2+1)}{x^3+5}.</md>
+
+  <p>The highest powers dominate:</p>
+
+  <md>\lim_{x\to\infty}
+\frac{3x^3+x}{x^3+5}
+=
+3.</md>
+
+  <p>Since</p>
+
+  <md>0&lt;3&lt;\infty</md>
+
+  <p>and</p>
+
+  <md>\int_1^\infty \frac1x\,dx</md>
+
+  <p>diverges, the given integral also diverges:</p>
+
+  <md>
+\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx
+\text{ diverges.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-8">
+    <title>a convergent rational tail</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\int_1^\infty \frac{2x+1}{x^3+4}\,dx</md>
+
+  <p>converges.</p>
+
+  <p>For large <m>x</m>,</p>
+
+  <md>\frac{2x+1}{x^3+4}
+\sim
+\frac{2x}{x^3}
+=
+\frac2{x^2}.</md>
+
+  <p>Use limit comparison with</p>
+
+  <md>g(x)=\frac1{x^2}.</md>
+
+  <p>Then</p>
+
+  <md>\lim_{x\to\infty}
+\frac{\frac{2x+1}{x^3+4}}{\frac1{x^2}}
+=
+\lim_{x\to\infty}
+\frac{x^2(2x+1)}{x^3+4}
+=
+2.</md>
+
+  <p>Since</p>
+
+  <md>\int_1^\infty \frac1{x^2}\,dx</md>
+
+  <p>converges, the given integral converges:</p>
+
+  <md>
+\int_1^\infty \frac{2x+1}{x^3+4}\,dx
+\text{ converges.}
+</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-p-integrals">
     <title>The <m>p</m>-integrals</title>
 
-    <p>The most useful comparison family is</p>
-    <md>\frac1{x^p}.</md>
+  <p>The most useful comparison family is</p>
 
-    <p>The power <m>p</m> decides whether the tail is thin enough.</p>
+  <md>\frac1{x^p}.</md>
 
-    <p>First consider the infinite interval:</p>
-    <md>\int_1^\infty \frac1{x^p}\,dx.</md>
+  <p>The power <m>p</m> decides whether the tail is thin enough.</p>
 
-    <p>If <m>p\neq 1</m>, then</p>
-    <md>\int_1^t x^{-p}\,dx = \left[\frac{x^{1-p}}{1-p}\right]_1^t = \frac{t^{1-p}-1}{1-p}.</md>
+  <p>First consider the infinite interval:</p>
 
-    <p>If <m>p\gt 1</m>, then <m>1-p\lt 0</m>, so</p>
-    <md>t^{1-p}\to 0 \qquad\text{as}\qquad t\to\infty.</md>
+  <md>\int_1^\infty \frac1{x^p}\,dx.</md>
 
-    <p>The integral converges, and</p>
-    <md>\int_1^\infty \frac1{x^p}\,dx = \frac1{p-1}.</md>
+  <p>If <m>p\neq1</m>, then</p>
 
-    <p>If <m>p\lt 1</m>, then <m>1-p\gt 0</m>, so</p>
-    <md>t^{1-p}\to\infty.</md>
-    <p>The integral diverges.</p>
+  <md>\int_1^t x^{-p}\,dx
+=
+\left[\frac{x^{1-p}}{1-p}\right]_1^t
+=
+\frac{t^{1-p}-1}{1-p}.</md>
 
-    <p>If <m>p=1</m>, then</p>
-    <md>\int_1^\infty \frac1x\,dx</md>
-    <p>diverges logarithmically.</p>
+  <p>If <m>p&gt;1</m>, then <m>1-p&lt;0</m>, so</p>
 
-    <p>Thus</p>
-    <md>\int_1^\infty \frac1{x^p}\,dx \text{ converges exactly when } p\gt 1.</md>
+  <md>t^{1-p}\to0
+\qquad\text{as}\qquad
+t\to\infty.</md>
 
-    <p>Now consider the endpoint singularity:</p>
-    <md>\int_0^1 \frac1{x^p}\,dx.</md>
+  <p>The integral converges, and</p>
 
-    <p>If <m>p\neq 1</m>, then</p>
-    <md>\int_t^1 x^{-p}\,dx = \left[\frac{x^{1-p}}{1-p}\right]_t^1 = \frac{1-t^{1-p}}{1-p}.</md>
+  <md>\int_1^\infty \frac1{x^p}\,dx
+=
+\frac1{p-1}.</md>
 
-    <p>If <m>p\lt 1</m>, then <m>1-p\gt 0</m>, so</p>
-    <md>t^{1-p}\to 0 \qquad\text{as}\qquad t\to 0^+.</md>
+  <p>If <m>p&lt;1</m>, then <m>1-p&gt;0</m>, so</p>
 
-    <p>The integral converges, and</p>
-    <md>\int_0^1 \frac1{x^p}\,dx = \frac1{1-p}.</md>
+  <md>t^{1-p}\to\infty.</md>
 
-    <p>If <m>p\gt 1</m>, then <m>1-p\lt 0</m>, so <m>t^{1-p}\to\infty</m>, and the integral diverges.</p>
+  <p>The integral diverges.</p>
 
-    <p>If <m>p=1</m>, then</p>
-    <md>\int_0^1 \frac1x\,dx</md>
-    <p>also diverges.</p>
+  <p>If <m>p=1</m>, then</p>
 
-    <p>Thus</p>
-    <md>\int_0^1 \frac1{x^p}\,dx \text{ converges exactly when } p\lt 1.</md>
+  <md>\int_1^\infty \frac1x\,dx</md>
 
-    <table xml:id="tab-p-integrals-summary">
-      <title>Convergence of <m>p</m>-integrals</title>
-      <tabular halign="center">
-        <row header="yes" bottom="medium">
-          <cell>Integral</cell>
-          <cell>Converges when</cell>
-          <cell>Diverges when</cell>
-        </row>
-        <row bottom="minor">
-          <cell><m>\displaystyle \int_1^\infty \frac1{x^p}\,dx</m></cell>
-          <cell><m>p\gt 1</m></cell>
-          <cell><m>p\le 1</m></cell>
-        </row>
-        <row>
-          <cell><m>\displaystyle \int_0^1 \frac1{x^p}\,dx</m></cell>
-          <cell><m>p\lt 1</m></cell>
-          <cell><m>p\ge 1</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <p>diverges logarithmically.</p>
 
-    <p>The two thresholds point in opposite directions because the danger is different.</p>
+  <p>Thus</p>
 
-    <p>On</p>
-    <md>[1,\infty),</md>
-    <p>the danger is the infinite length of the interval. We need the function to decay faster than <m>1/x</m>.</p>
+  <md>
+\int_1^\infty \frac1{x^p}\,dx
+\text{ converges exactly when } p&gt;1.
+</md>
 
-    <p>On</p>
-    <md>(0,1],</md>
-    <p>the danger is the blowup at <m>0</m>. We need the blowup to be milder than <m>1/x</m>.</p>
+  <p>Now consider the endpoint singularity:</p>
 
-    <example xml:id="ex-p-integral-three-halves">
-      <title>Determining convergence with <m>p=3/2</m></title>
-      <statement>
-        <p>Determine whether</p>
-        <md>\int_2^\infty \frac{1}{x\sqrt{x}}\,dx</md>
-        <p>converges.</p>
-        <p>Rewrite the integrand:</p>
-        <md>\frac{1}{x\sqrt{x}} = \frac1{x^{3/2}}.</md>
-        <p>This is a <m>p</m>-integral with</p>
-        <md>p=\frac32.</md>
-        <p>Since</p>
-        <md>\frac32\gt 1,</md>
-        <p>the integral converges.</p>
-      </statement>
-    </example>
+  <md>\int_0^1 \frac1{x^p}\,dx.</md>
 
-    <example xml:id="ex-p-integral-four-thirds">
-      <title>Determining convergence with <m>p=4/3</m></title>
-      <statement>
-        <p>Determine whether</p>
-        <md>\int_0^1 \frac{1}{x^{4/3}}\,dx</md>
-        <p>converges.</p>
-        <p>This is a <m>p</m>-integral near <m>0</m> with</p>
-        <md>p=\frac43.</md>
-        <p>Since</p>
-        <md>\frac43\ge 1,</md>
-        <p>the integral diverges.</p>
-      </statement>
-    </example>
+  <p>If <m>p\neq1</m>, then</p>
 
-    <example xml:id="ex-comparison-with-p-integral">
-      <title>Comparison with a <m>p</m>-integral</title>
-      <statement>
-        <p>Determine whether</p>
-        <md>\int_1^\infty \frac{dx}{x^2+\sqrt{x}}</md>
-        <p>converges.</p>
-        <p>For <m>x\ge 1</m>,</p>
-        <md>x^2+\sqrt{x}\ge x^2.</md>
-        <p>Therefore</p>
-        <md>0\le \frac{1}{x^2+\sqrt{x}}\le \frac1{x^2}.</md>
-        <p>Since</p>
-        <md>\int_1^\infty \frac1{x^2}\,dx</md>
-        <p>converges, the comparison test gives</p>
-        <md>\int_1^\infty \frac{dx}{x^2+\sqrt{x}} \text{ converges.}</md>
-        <p>The exact value is not needed. We only need enough information to know that the tail has finite accumulated area.</p>
-      </statement>
-    </example>
+  <md>\int_t^1 x^{-p}\,dx
+=
+\left[\frac{x^{1-p}}{1-p}\right]_t^1
+=
+\frac{1-t^{1-p}}{1-p}.</md>
 
-    <p>Improper integrals teach a useful discipline. Do not evaluate first and ask questions later. First ask where the integral is improper. Then replace the dangerous endpoint or discontinuity by a limit. Then decide whether the limit is finite.</p>
+  <p>If <m>p&lt;1</m>, then <m>1-p&gt;0</m>, so</p>
 
-    <p>The next section collects the mistakes this discipline prevents.</p>
+  <md>t^{1-p}\to0
+\qquad\text{as}\qquad
+t\to0^+.</md>
+
+  <p>The integral converges, and</p>
+
+  <md>\int_0^1 \frac1{x^p}\,dx
+=
+\frac1{1-p}.</md>
+
+  <p>If <m>p&gt;1</m>, then <m>1-p&lt;0</m>, so <m>t^{1-p}\to\infty</m>, and the integral diverges.</p>
+
+  <p>If <m>p=1</m>, then</p>
+
+  <md>\int_0^1 \frac1x\,dx</md>
+
+  <p>also diverges.</p>
+
+  <p>Thus</p>
+
+  <md>
+\int_0^1 \frac1{x^p}\,dx
+\text{ converges exactly when } p&lt;1.
+</md>
+
+  <table xml:id="tab-sec-11-7-improper-integrals-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>Integral</strong></cell>
+        <cell><strong>Converges when</strong></cell>
+        <cell><strong>Diverges when</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\displaystyle \int_1^\infty \frac1{x^p}\,dx</m></cell>
+        <cell><m>p&gt;1</m></cell>
+        <cell><m>p\le1</m></cell>
+      </row>
+      <row>
+        <cell>
+<m>\displaystyle \int_0^1 \frac1{x^p}\,dx</m></cell>
+        <cell><m>p&lt;1</m></cell>
+        <cell><m>p\ge1</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The two thresholds point in opposite directions because the danger is different.</p>
+
+  <p>On</p>
+
+  <md>[1,\infty),</md>
+
+  <p>the danger is the infinite length of the interval.  We need the function to decay faster
+than <m>1/x</m>.</p>
+
+  <p>On</p>
+
+  <md>(0,1],</md>
+
+  <p>the danger is the blowup at <m>0</m>.  We need the blowup to be milder than <m>1/x</m>.</p>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-9">
+    <title>Example</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\int_2^\infty \frac{1}{x\sqrt{x}}\,dx</md>
+
+  <p>converges.</p>
+
+  <p>Rewrite the integrand:</p>
+
+  <md>\frac{1}{x\sqrt{x}}
+=
+\frac1{x^{3/2}}.</md>
+
+  <p>This is a <m>p</m>-integral with</p>
+
+  <md>p=\frac32.</md>
+
+  <p>Since</p>
+
+  <md>\frac32&gt;1,</md>
+
+  <p>the integral converges.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-10">
+    <title>Example</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\int_0^1 \frac{1}{x^{4/3}}\,dx</md>
+
+  <p>converges.</p>
+
+  <p>This is a <m>p</m>-integral near <m>0</m> with</p>
+
+  <md>p=\frac43.</md>
+
+  <p>Since</p>
+
+  <md>\frac43\ge1,</md>
+
+  <p>the integral diverges.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-7-improper-integrals-11">
+    <title>comparison with a <m>p</m>-integral</title>
+    <statement>
+  <p>Determine whether</p>
+
+  <md>\int_1^\infty \frac{dx}{x^2+\sqrt{x}}</md>
+
+  <p>converges.</p>
+
+  <p>For <m>x\ge1</m>,</p>
+
+  <md>x^2+\sqrt{x}\ge x^2.</md>
+
+  <p>Therefore</p>
+
+  <md>0\le \frac{1}{x^2+\sqrt{x}}\le \frac1{x^2}.</md>
+
+  <p>Since</p>
+
+  <md>\int_1^\infty \frac1{x^2}\,dx</md>
+
+  <p>converges, the comparison test gives</p>
+
+  <md>
+\int_1^\infty \frac{dx}{x^2+\sqrt{x}}
+\text{ converges.}
+</md>
+
+  <p>The exact value is not needed.  We only need enough information to know that the
+tail has finite accumulated area.</p>
+
+  <p>Improper integrals teach a useful discipline.  Do not evaluate first and ask questions
+later.  First ask where the integral is improper.  Then replace the dangerous endpoint
+or discontinuity by a limit.  Then decide whether the limit is finite.</p>
+
+  <p>The next section collects the mistakes this discipline prevents.</p>
+    </statement>
+  </example>
   </subsection>
+
+
 
 </section>

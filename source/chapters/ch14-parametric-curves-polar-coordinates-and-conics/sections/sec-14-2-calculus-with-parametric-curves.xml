@@ -1,0 +1,827 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-2-calculus-with-parametric-curves">
+  <title>Calculus with parametric curves</title>
+
+  <p>A parametric curve gives two functions:</p>
+
+  <md>x=x(t),
+\qquad
+y=y(t).</md>
+
+  <p>The graph is drawn in the <m>xy</m>-plane, but the motion is controlled by <m>t</m>.</p>
+
+  <p>So a slope question must be translated.</p>
+
+  <md>\text{How fast does \(y\) change with respect to \(x\)?}</md>
+
+  <p>The parameter tells us two easier facts:</p>
+
+  <md>\text{how fast \(y\) changes with respect to \(t\),}</md>
+
+  <p>and</p>
+
+  <md>\text{how fast \(x\) changes with respect to \(t\).}</md>
+
+  <p>The slope <m>\dfrac{dy}{dx}</m> is the ratio of those two rates.</p>
+
+  <subsection xml:id="subsec-parametric-slope-formula">
+    <title>Slope <m>dy/dx</m> from <m>dx/dt</m> and <m>dy/dt</m></title>
+
+  <p>Return to the sideways parabola</p>
+
+  <md>x=t^2-1,
+\qquad
+y=t.</md>
+
+  <p>At <m>t=1</m>, the point is</p>
+
+  <md>(x,y)=(0,1).</md>
+
+  <p>The coordinate rates are</p>
+
+  <md>\frac{dx}{dt}=2t,
+\qquad
+\frac{dy}{dt}=1.</md>
+
+  <p>At <m>t=1</m>,</p>
+
+  <md>\frac{dx}{dt}=2,
+\qquad
+\frac{dy}{dt}=1.</md>
+
+  <p>This means that near <m>t=1</m>, a small increase in time produces about twice as much
+horizontal change as vertical change.  The tangent slope should be</p>
+
+  <md>\frac{\text{vertical change}}{\text{horizontal change}}
+=
+\frac{1}{2}.</md>
+
+  <p>That is exactly the ratio</p>
+
+  <md>\frac{dy/dt}{dx/dt}.</md>
+
+  <note xml:id="note-sec-14-2-calculus-with-parametric-curves-98">
+    <title>Parametric slope formula</title>
+      <p>Suppose <m>x(t)</m> and <m>y(t)</m> are differentiable near <m>t=t_0</m>, and</p>
+        <md>\frac{dx}{dt}(t_0)\neq0.</md>
+      <p>Then the slope of the parametric curve at <m>t=t_0</m> is</p>
+        <md>
+\frac{dy}{dx}
+=
+\frac{\dfrac{dy}{dt}}{\dfrac{dx}{dt}}
+</md>
+      <p>evaluated at <m>t=t_0</m>.</p>
+  </note>
+
+  <paragraphs>
+    <title>Why the formula is true</title>
+
+  <p>If <m>x</m> can be used as the input near <m>t=t_0</m>, then <m>y</m> changes with <m>t</m> through
+<m>x</m>.  The chain rule says</p>
+
+  <md>\frac{dy}{dt}
+=
+\frac{dy}{dx}\frac{dx}{dt}.</md>
+
+  <p>If</p>
+
+  <md>\frac{dx}{dt}\neq0,</md>
+
+  <p>we can divide:</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}.</md>
+
+  <p>The condition <m>\frac{dx}{dt}\neq0</m> matters.  If <m>x</m> is not changing at that instant,
+then a slope measured as vertical change divided by horizontal change may be infinite
+or may require more analysis.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-14-2-slope-as-ratio">
+        <title>Why is parametric slope the ratio of two time rates?</title>
+        <statement>
+          <p>
+            A graph asks how fast <m>y</m> changes with respect to <m>x</m>, but a parametric curve gives rates with respect to <m>t</m>. In your own words, why is <m>\dfrac{dy}{dx}=\dfrac{dy/dt}{dx/dt}</m> the natural translation, and why must <m>dx/dt\neq0</m> for that quotient to make sense?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Slope is vertical change over horizontal change. If <m>x</m> is not changing at that instant, the curve is not locally a graph over the <m>x</m>-axis.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-2">
+    <title>slope on a sideways parabola</title>
+    <statement>
+  <p>For</p>
+
+  <md>x=t^2-1,
+\qquad
+y=t,</md>
+
+  <p>we have</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}
+=
+\frac{1}{2t},
+\qquad
+t\neq0.</md>
+
+  <p>At <m>t=1</m>, the slope is</p>
+
+  <md>\frac12.</md>
+
+  <p>At <m>t=-1</m>, the slope is</p>
+
+  <md>-\frac12.</md>
+
+  <p>At <m>t=0</m>, the formula is not allowed because</p>
+
+  <md>\frac{dx}{dt}=0.</md>
+
+  <p>The point at <m>t=0</m> is</p>
+
+  <md>(-1,0),</md>
+
+  <p>the vertex of the sideways parabola.  The tangent there is vertical.</p>
+
+  <figure xml:id="fig-parametric-slope-sideways-parabola">
+    <caption>For <m>x=t^2-1,\;y=t</m>, the slope is <m>\dfrac{1}{2t}</m> when <m>t\neq0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.54\textwidth,
+    xmin=-1.4, xmax=3.5,
+    ymin=-2.3, ymax=2.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1,2,3},
+    ytick={-2,-1,0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2:2, samples=160] ({x^2-1},{x});
+
+% tangent at t=1: point (0,1), slope 1/2
+\addplot[thick, dashed, domain=-0.9:2.0, samples=2] {1 + 0.5*x};
+
+% vertical tangent at vertex
+\draw[thick, dotted] (axis cs:-1,-1.3) -- (axis cs:-1,1.3);
+
+\addplot[only marks, mark=*] coordinates {(0,1) (-1,0)};
+\node[anchor=south east] at (axis cs:0,1) {\(t=1\)};
+\node[anchor=east] at (axis cs:-1,0) {\(t=0\)};
+\node[anchor=west] at (axis cs:1.05,1.45) {slope \(1/2\)};
+\node[anchor=west] at (axis cs:-0.85,-1.05) {vertical tangent};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The parametric formula has recovered exactly what the geometry suggests.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-3">
+    <title>slope on the circle</title>
+    <statement>
+  <p>For</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,</md>
+
+  <p>we have</p>
+
+  <md>\frac{dx}{dt}=-\sin t,
+\qquad
+\frac{dy}{dt}=\cos t.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{\cos t}{-\sin t}
+=
+-\cot t,</md>
+
+  <p>as long as <m>\sin t\neq0</m>.</p>
+
+  <p>At <m>t=\pi/4</m>, the point is</p>
+
+  <md>\left(\frac{\sqrt2}{2},\frac{\sqrt2}{2}\right),</md>
+
+  <p>and the slope is</p>
+
+  <md>-\cot(\pi/4)=-1.</md>
+
+  <p>The tangent line slopes downward at <m>45^\circ</m>, as expected on the upper right part
+of the circle.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-horizontal-vertical-tangents-parametric">
+    <title>Horizontal and vertical tangents</title>
+
+  <p>The formula</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}</md>
+
+  <p>makes horizontal and vertical tangents easy to identify.</p>
+
+  <p>A horizontal tangent has slope <m>0</m>.  This happens when</p>
+
+  <md>\frac{dy}{dt}=0</md>
+
+  <p>while</p>
+
+  <md>\frac{dx}{dt}\neq0.</md>
+
+  <p>A vertical tangent has infinite slope.  This happens when</p>
+
+  <md>\frac{dx}{dt}=0</md>
+
+  <p>while</p>
+
+  <md>\frac{dy}{dt}\neq0.</md>
+
+  <note xml:id="note-sec-14-2-calculus-with-parametric-curves-99">
+    <title>Horizontal and vertical tangents for parametric curves</title>
+      <p>For a differentiable parametrization <m>x=x(t)</m>, <m>y=y(t)</m>:</p>
+        <md>
+\text{horizontal tangent: } \frac{dy}{dt}=0,\quad \frac{dx}{dt}\neq0;
+</md>
+        <md>
+\text{vertical tangent: } \frac{dx}{dt}=0,\quad \frac{dy}{dt}\neq0.
+</md>
+      <p>If both derivatives are <m>0</m>, the test does not decide the tangent.  More work is
+needed.</p>
+  </note>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-4">
+    <title>tangents on the unit circle</title>
+    <statement>
+  <p>For</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,</md>
+
+  <p>we have</p>
+
+  <md>x'(t)=-\sin t,
+\qquad
+y'(t)=\cos t.</md>
+
+  <p>Horizontal tangents occur when</p>
+
+  <md>y'(t)=\cos t=0,</md>
+
+  <p>so</p>
+
+  <md>t=\frac{\pi}{2},\quad \frac{3\pi}{2}.</md>
+
+  <p>At these times,</p>
+
+  <md>x'(t)=-\sin t\neq0.</md>
+
+  <p>The points are</p>
+
+  <md>(0,1)
+\qquad\text{and}\qquad
+(0,-1).</md>
+
+  <p>Vertical tangents occur when</p>
+
+  <md>x'(t)=-\sin t=0,</md>
+
+  <p>so</p>
+
+  <md>t=0,\quad \pi,\quad 2\pi.</md>
+
+  <p>At these times,</p>
+
+  <md>y'(t)=\cos t\neq0.</md>
+
+  <p>The corresponding points are</p>
+
+  <md>(1,0)
+\qquad\text{and}\qquad
+(-1,0).</md>
+
+  <figure xml:id="fig-circle-horizontal-vertical-tangents">
+    <caption>On the unit circle, <m>y'=0</m> gives horizontal tangents and <m>x'=0</m> gives vertical tangents.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.1, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.35,0) -- (1.45,0) node[right] {\(x\)};
+  \draw[-&gt;] (0,-1.35) -- (0,1.45) node[above] {\(y\)};
+
+  \draw[very thick] (0,0) circle (1);
+
+  % horizontal tangents
+  \draw[thick, dashed] (-0.75,1) -- (0.75,1);
+  \draw[thick, dashed] (-0.75,-1) -- (0.75,-1);
+
+  % vertical tangents
+  \draw[thick, dotted] (1,-0.75) -- (1,0.75);
+  \draw[thick, dotted] (-1,-0.75) -- (-1,0.75);
+
+  \fill (0,1) circle (1.6pt);
+  \fill (0,-1) circle (1.6pt);
+  \fill (1,0) circle (1.6pt);
+  \fill (-1,0) circle (1.6pt);
+
+  \node[above right] at (0,1) {horizontal};
+  \node[below right] at (0,-1) {horizontal};
+  \node[right] at (1,0.72) {vertical};
+  \node[left] at (-1,0.72) {vertical};
+
+  \node at (0,-1.62) {\(x=\cos t,\quad y=\sin t\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is a good example of the parametric method.  The circle is not a single graph
+<m>y=f(x)</m>, but the tangent slopes are still easy to find.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A warning when both derivatives vanish</title>
+
+  <p>The conditions above deliberately exclude the case</p>
+
+  <md>x'(t)=0
+\qquad\text{and}\qquad
+y'(t)=0.</md>
+
+  <p>At such a time, the moving point has zero speed.  The curve may still have a tangent,
+but the simple quotient gives</p>
+
+  <md>\frac{0}{0},</md>
+
+  <p>which tells us nothing.</p>
+
+  <p>For example, let</p>
+
+  <md>x=t^2,
+\qquad
+y=t^3.</md>
+
+  <p>At <m>t=0</m>,</p>
+
+  <md>x'(0)=0,
+\qquad
+y'(0)=0.</md>
+
+  <p>The slope formula is not legal at <m>t=0</m>.  For <m>t\neq0</m>,</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{3t^2}{2t}
+=
+\frac32t.</md>
+
+  <p>As <m>t\to0</m>, this slope approaches <m>0</m>.  The curve has a horizontal tangent at the
+cusp, but we had to find it by a limit, not by substituting into the formula.</p>
+
+  <note xml:id="note-sec-14-2-calculus-with-parametric-curves-100">
+    <title>Moral</title>
+      <p>When both <m>dx/dt</m> and <m>dy/dt</m> are zero, do not use the horizontal or vertical tangent
+test blindly.  Study the nearby motion.</p>
+  </note>
+
+  <p>We will meet this warning again when a curve stops, reverses, or forms a cusp.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-14-2-horizontal-vertical">
+        <title>How do you recognize horizontal and vertical tangents parametrically?</title>
+        <statement>
+          <p>
+            Horizontal tangents occur when <m>y'</m> is zero while <m>x'</m> is not; vertical tangents reverse those roles. In your own words, why do those tests match the geometry of a moving point, and why is a circle a good example of needing the parametric language?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the point moves only horizontally, the tangent is horizontal. A circle is not a single graph <m>y=f(x)</m>, but its coordinate rates still determine the tangent.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-parametric-concavity">
+    <title>Concavity</title>
+
+  <p>Concavity asks how the slope changes as <m>x</m> changes.</p>
+
+  <p>For an ordinary function <m>y=f(x)</m>, we write</p>
+
+  <md>\frac{d^2y}{dx^2}</md>
+
+  <p>for the derivative of <m>\frac{dy}{dx}</m> with respect to <m>x</m>.</p>
+
+  <p>For a parametric curve, <m>\frac{dy}{dx}</m> is first a function of <m>t</m>.  To differentiate it
+with respect to <m>x</m>, use the same idea as before:</p>
+
+  <md>\frac{d}{dx}
+=
+\frac{1}{dx/dt}\frac{d}{dt},</md>
+
+  <p>provided <m>dx/dt\neq0</m>.</p>
+
+  <p>Thus</p>
+
+  <md>
+\frac{d^2y}{dx^2}
+=
+\frac{\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)}{\dfrac{dx}{dt}}.
+</md>
+
+  <p>This formula says:</p>
+
+  <md>\text{rate of change with respect to \(x\)}
+=
+\frac{\text{rate of change with respect to \(t\)}}{\text{rate of change of \(x\) with respect to \(t\)}}.</md>
+
+  <p>It is the same slope idea one level higher.</p>
+
+
+  <exercise xml:id="checkpoint-14-2-both-derivatives-zero">
+        <title>What should you do when both coordinate derivatives vanish?</title>
+        <statement>
+          <p>
+            If <m>x'(t_0)=y'(t_0)=0</m>, the slope formula gives <m>0/0</m>. In your own words, why does that not automatically mean the curve has no tangent, and what extra look nearby is required?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Zero speed is a pause of the parametrization. The geometric tangent, if it exists, must be read from nearby slopes or by eliminating the parameter.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-6">
+    <title>concavity of the sideways parabola</title>
+    <statement>
+  <p>For</p>
+
+  <md>x=t^2-1,
+\qquad
+y=t,</md>
+
+  <p>we found</p>
+
+  <md>\frac{dy}{dx}=\frac{1}{2t},
+\qquad
+t\neq0.</md>
+
+  <p>Differentiate with respect to <m>t</m>:</p>
+
+  <md>\frac{d}{dt}\left(\frac{dy}{dx}\right)
+=
+\frac{d}{dt}\left(\frac{1}{2t}\right)
+=
+-\frac{1}{2t^2}.</md>
+
+  <p>Since</p>
+
+  <md>\frac{dx}{dt}=2t,</md>
+
+  <p>we get</p>
+
+  <md>\frac{d^2y}{dx^2}
+=
+\frac{-1/(2t^2)}{2t}
+=
+-\frac{1}{4t^3}.</md>
+
+  <p>For <m>t&gt;0</m>, this is negative.  The upper branch is concave down.</p>
+
+  <p>For <m>t&lt;0</m>, this is positive.  The lower branch is concave up.</p>
+
+  <p>That matches the picture of</p>
+
+  <md>x=y^2-1.</md>
+
+  <p>The upper branch can be written as</p>
+
+  <md>y=\sqrt{x+1},</md>
+
+  <p>which bends downward.  The lower branch can be written as</p>
+
+  <md>y=-\sqrt{x+1},</md>
+
+  <p>which bends upward.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-7">
+    <title>concavity of the upper semicircle</title>
+    <statement>
+  <p>Use</p>
+
+  <md>x=\cos t,
+\qquad
+y=\sin t,
+\qquad
+0&lt;t&lt;\pi.</md>
+
+  <p>This traces the upper semicircle.  We already found</p>
+
+  <md>\frac{dy}{dx}=-\cot t.</md>
+
+  <p>Differentiate with respect to <m>t</m>:</p>
+
+  <md>\frac{d}{dt}(-\cot t)=\csc^2 t.</md>
+
+  <p>Also,</p>
+
+  <md>\frac{dx}{dt}=-\sin t.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{d^2y}{dx^2}
+=
+\frac{\csc^2 t}{-\sin t}
+=
+-\frac{1}{\sin^3 t}.</md>
+
+  <p>On <m>0&lt;t&lt;\pi</m>,</p>
+
+  <md>\sin t&gt;0,</md>
+
+  <p>so</p>
+
+  <md>\frac{d^2y}{dx^2}&lt;0.</md>
+
+  <p>The upper semicircle is concave down everywhere.  This agrees with the graph</p>
+
+  <md>y=\sqrt{1-x^2}.</md>
+
+  <note xml:id="note-sec-14-2-calculus-with-parametric-curves-101">
+    <title>Concavity for parametric curves</title>
+      <p>To find concavity:</p>
+        <md>
+    <mrow>\begin{array}{ll}
+\text{1.} \amp \text{Compute } \dfrac{dy}{dx}=\dfrac{y'(t)}{x'(t)}.</mrow>
+    <mrow>
+\text{2.} \amp \text{Differentiate that expression with respect to \(t\).}</mrow>
+    <mrow>
+\text{3.} \amp \text{Divide by } \dfrac{dx}{dt}.
+\end{array}</mrow>
+  </md>
+      <p>The result is <m>\dfrac{d^2y}{dx^2}</m>, whenever the divisions make sense.</p>
+  </note>
+
+  <p>The phrase “whenever the divisions make sense” is not a minor detail.  Parametric
+curves can have vertical tangents, cusps, and pauses.  At such points, the algebra may
+need a separate geometric check.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-motion-plane-bridge-vectors">
+    <title>Motion in the plane as a bridge to vectors</title>
+
+  <p>Parametric equations are not only a way to draw curves.  They are also the natural
+language of plane motion.</p>
+
+  <p>If a particle has position</p>
+
+  <md>P(t)=(x(t),y(t)),</md>
+
+  <p>then its horizontal and vertical velocities are</p>
+
+  <md>x'(t)
+\qquad\text{and}\qquad
+y'(t).</md>
+
+  <p>We can package them as the pair</p>
+
+  <md>\langle x'(t),y'(t)\rangle.</md>
+
+  <p>This pair points in the direction of motion.  Its length is the speed:</p>
+
+  <md>\sqrt{(x'(t))^2+(y'(t))^2}.</md>
+
+  <p>The acceleration components are</p>
+
+  <md>x''(t)
+\qquad\text{and}\qquad
+y''(t),</md>
+
+  <p>so the acceleration pair is</p>
+
+  <md>\langle x''(t),y''(t)\rangle.</md>
+
+  <p>This is the beginning of vector calculus, but the idea is already familiar: each
+coordinate is an ordinary single-variable function of time.</p>
+
+
+  <exercise xml:id="checkpoint-14-2-motion-as-pairs">
+        <title>How does plane motion package calculus into pairs?</title>
+        <statement>
+          <p>
+            Position <m>(x(t),y(t))</m> has velocity components <m>x'</m> and <m>y'</m>. In your own words, why is that pair already a bridge to vectors, and what does its length measure?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each coordinate is an ordinary function of time. The pair points in the direction of motion; its length is the speed.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-14-2-calculus-with-parametric-curves-8">
+    <title>projectile motion</title>
+    <statement>
+  <p>Suppose a ball is launched from height <m>5</m> feet with horizontal velocity <m>80</m> ft/s
+and initial vertical velocity <m>60</m> ft/s.  Ignoring air resistance, its position can be
+modeled by</p>
+
+  <md>x(t)=80t,</md>
+
+  <md>y(t)=5+60t-16t^2,</md>
+
+  <p>where <m>t</m> is measured in seconds.</p>
+
+  <p>The coordinate velocities are</p>
+
+  <md>x'(t)=80,
+\qquad
+y'(t)=60-32t.</md>
+
+  <p>The horizontal velocity is constant.  The vertical velocity decreases because gravity pulls
+downward.</p>
+
+  <p>The acceleration components are</p>
+
+  <md>x''(t)=0,
+\qquad
+y''(t)=-32.</md>
+
+  <p>So the acceleration is</p>
+
+  <md>\langle 0,-32\rangle,</md>
+
+  <p>which points straight downward.</p>
+
+  <p>The slope of the trajectory is</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{60-32t}{80}
+=
+\frac34-\frac25t.</md>
+
+  <p>At <m>t=0</m>, the slope is</p>
+
+  <md>\frac34.</md>
+
+  <p>At the top of the flight, the vertical velocity is <m>0</m>:</p>
+
+  <md>60-32t=0,</md>
+
+  <p>so</p>
+
+  <md>t=\frac{15}{8}.</md>
+
+  <p>At that time,</p>
+
+  <md>\frac{dy}{dx}=0,</md>
+
+  <p>so the tangent is horizontal.</p>
+
+  <p>We can also eliminate <m>t</m>.  Since</p>
+
+  <md>x=80t,</md>
+
+  <p>we have</p>
+
+  <md>t=\frac{x}{80}.</md>
+
+  <p>Substitute into <m>y</m>:</p>
+
+  <md>y=5+60\left(\frac{x}{80}\right)-16\left(\frac{x}{80}\right)^2.</md>
+
+  <p>Simplify:</p>
+
+  <md>y=5+\frac34x-\frac{x^2}{400}.</md>
+
+  <p>The path is a parabola.  The parametrization tells how the ball moves along it.</p>
+
+  <figure xml:id="fig-parametric-projectile">
+    <caption>The equations <m>x=80t,\;y=5+60t-16t^2</m> give the path and the motion along it.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.46\textwidth,
+    xmin=0, xmax=315,
+    ymin=0, ymax=65,
+    axis lines=left,
+    xlabel={\(x\) (feet)},
+    ylabel={\(y\) (feet)},
+    xtick={0,80,160,240,300},
+    ytick={0,20,40,60},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:306.5, samples=200] {5 + 0.75*x - x^2/400};
+
+% top point: t=15/8, x=150, y=61.25
+\addplot[only marks, mark=*] coordinates {(0,5) (150,61.25)};
+
+% tangent at start slope 3/4
+\addplot[thick, dashed, domain=0:60, samples=2] {5 + 0.75*x};
+
+% horizontal tangent at top
+\draw[thick, dotted] (axis cs:105,61.25) -- (axis cs:195,61.25);
+
+% velocity arrows, drawn approximately
+\draw[-&gt;, thick] (axis cs:80,52.0) -- (axis cs:118,62.0);
+\node[anchor=west] at (axis cs:70,45) {velocity direction};
+
+\node[anchor=south] at (axis cs:150,61.25) {top};
+\node[anchor=west] at (axis cs:5,7) {launch};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example brings several ideas together.</p>
+
+  <p>The Cartesian equation</p>
+
+  <md>y=5+\frac34x-\frac{x^2}{400}</md>
+
+  <p>shows the shape of the path.</p>
+
+  <p>The parametric equations</p>
+
+  <md>x=80t,
+\qquad
+y=5+60t-16t^2</md>
+
+  <p>show the motion: where the ball is at each time, how fast it moves horizontally and
+vertically, when it reaches the top, and how gravity changes the vertical velocity.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-parametric-calculus-what-next">
+    <title>What comes next</title>
+
+  <p>The derivative questions have now been answered for parametric curves.</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}</md>
+
+  <p>gives tangent slopes, when <m>dx/dt\neq0</m>.</p>
+
+  <md>\frac{d^2y}{dx^2}
+=
+\frac{\dfrac{d}{dt}\left(\dfrac{dy}{dx}\right)}{dx/dt}</md>
+
+  <p>gives concavity, when the divisions are valid.</p>
+
+  <p>But a moving point also travels a distance.  Earlier, distance came from accumulated
+speed.  The same idea now applies in the plane.</p>
+
+  <p>If</p>
+
+  <md>\text{speed}
+=
+\sqrt{(x'(t))^2+(y'(t))^2},</md>
+
+  <p>then the length of a parametric curve should be an integral of this speed.</p>
+
+  <p>That is the next question:</p>
+
+  <md>
+\text{How much length is accumulated while the point traces the curve?}
+</md>
+  </subsection>
+
+
+
+</section>

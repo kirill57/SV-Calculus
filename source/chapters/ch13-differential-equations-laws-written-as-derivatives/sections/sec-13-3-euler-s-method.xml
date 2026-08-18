@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-3-euler-s-method">
+  <title>Euler’s method</title>
+
+  <p>A direction field tells us the slope a solution must have at each point.  If we cannot
+find a formula for the solution, we can still try to follow those slopes.</p>
+
+  <p>This is an old idea in new clothing.  The derivative gives a local linear approximation:</p>
+
+  <md>y(x+h)\approx y(x)+y'(x)h.</md>
+
+  <p>If the differential equation says</p>
+
+  <md>y'=F(x,y),</md>
+
+  <p>then at the point <m>(x,y)</m>, the slope is</p>
+
+  <md>F(x,y).</md>
+
+  <p>So one small step should look like</p>
+
+  <md>y(x+h)\approx y(x)+hF(x,y).</md>
+
+  <p>Euler’s method is this local linear approximation repeated again and again.</p>
+
+  <subsection xml:id="subsec-following-slope-field-step-by-step">
+    <title>Following the slope field step by step</title>
+
+  <p>Start with the initial value problem</p>
+
+  <md>y'=1-y,
+\qquad
+y(0)=0.</md>
+
+  <p>We already know the direction field.  Below the line <m>y=1</m>, slopes are positive, so
+solutions rise.  Above <m>y=1</m>, slopes are negative, so solutions fall.</p>
+
+  <p>Suppose we want an approximate value of <m>y(2)</m>, but we pretend for the moment that
+we do not know the exact formula for the solution.</p>
+
+  <p>Choose a step size</p>
+
+  <md>h=0.5.</md>
+
+  <p>At the starting point</p>
+
+  <md>(x_0,y_0)=(0,0),</md>
+
+  <p>the differential equation gives the slope</p>
+
+  <md>y'=1-y=1-0=1.</md>
+
+  <p>The local linear approximation says:</p>
+
+  <md>y(0.5)\approx y(0)+0.5(1)=0.5.</md>
+
+  <p>So our first approximate point is</p>
+
+  <md>(x_1,y_1)=(0.5,0.5).</md>
+
+  <p>Now repeat the same idea.  At <m>(0.5,0.5)</m>, the slope is</p>
+
+  <md>1-y_1=1-0.5=0.5.</md>
+
+  <p>Therefore</p>
+
+  <md>y_2=y_1+h(1-y_1)=0.5+0.5(0.5)=0.75.</md>
+
+  <p>So</p>
+
+  <md>(x_2,y_2)=(1,0.75).</md>
+
+  <p>Continue:</p>
+
+  <md>y_3=0.75+0.5(1-0.75)=0.875,</md>
+
+  <p>and</p>
+
+  <md>y_4=0.875+0.5(1-0.875)=0.9375.</md>
+
+  <p>Thus Euler’s method gives</p>
+
+  <md>
+y(2)\approx0.9375.
+</md>
+
+  <p>The computation is best seen in a table.</p>
+
+  <table xml:id="tab-sec-13-3-euler-s-method-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>step</strong></cell>
+        <cell><m>x_k</m></cell>
+        <cell><m>y_k</m></cell>
+        <cell>slope <m>1-y_k</m></cell>
+        <cell>next value <m>y_{k+1}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>0+0.5(1)=0.5</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>0.5+0.5(0.5)=0.75</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2</m></cell>
+        <cell><m>1.0</m></cell>
+        <cell><m>0.75</m></cell>
+        <cell><m>0.25</m></cell>
+        <cell><m>0.75+0.5(0.25)=0.875</m></cell>
+      </row>
+      <row>
+        <cell><m>3</m></cell>
+        <cell><m>1.5</m></cell>
+        <cell><m>0.875</m></cell>
+        <cell><m>0.125</m></cell>
+        <cell><m>0.875+0.5(0.125)=0.9375</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>Each row says:</p>
+
+  <md>\text{current height}+\text{step size}\cdot\text{current slope}
+=
+\text{next height}.</md>
+
+  <figure xml:id="fig-euler-y-prime-one-minus-y">
+    <caption>Euler’s method follows the slope field by taking one tangent-line step at a time.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.52\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=-0.1, ymax=1.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.25)}, anchor=south east}
+]
+% direction field for y' = 1-y
+% direction field for y' = 1-y
+\foreach \xx in {0,0.5,...,4} {
+  \foreach \yy in {0,0.25,...,2.25} {
+    \pgfmathsetmacro{\m}{1-\yy}
+    \pgfmathsetmacro{\len}{0.14}
+    \pgfmathsetmacro{\dx}{\len/sqrt(1+\m*\m)}
+    \pgfmathsetmacro{\dy}{\m*\dx}
+    
+    % Pre-calculate coordinates
+    \pgfmathsetmacro{\xOne}{\xx-\dx}
+    \pgfmathsetmacro{\yOne}{\yy-\dy}
+    \pgfmathsetmacro{\xTwo}{\xx+\dx}
+    \pgfmathsetmacro{\yTwo}{\yy+\dy}
+    
+    % \edef forces expansion of the variables into raw numbers immediately
+    \edef\temp{%
+      \noexpand\draw[gray!65] (axis cs:\xOne,\yOne) -- (axis cs:\xTwo,\yTwo);%
+    }
+    % Execute the expanded command, passing hard coordinates to the axis
+    \temp
+  }
+}
+
+% exact solution
+\addplot[very thick, domain=0:2.05, samples=150] {1-exp(-x)};
+\addlegendentry{exact \(y=1-e^{-x}\)}
+
+% Euler broken line
+\addplot[very thick, dashed, mark=*] coordinates {
+  (0,0) (0.5,0.5) (1,0.75) (1.5,0.875) (2,0.9375)
+};
+\addlegendentry{Euler, \(h=0.5\)}
+
+% equilibrium
+\addplot[thick, dotted, domain=0:2.05, samples=2] {1};
+\node[anchor=west] at (axis cs:0.08,1.04) {\(y=1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>In this example, we can compare with the exact solution.  The initial value problem</p>
+
+  <md>y'=1-y,
+\qquad
+y(0)=0</md>
+
+  <p>has solution</p>
+
+  <md>y=1-e^{-x}.</md>
+
+  <p>Therefore</p>
+
+  <md>y(2)=1-e^{-2}\approx0.8647.</md>
+
+  <p>Euler’s method with step size <m>h=0.5</m> gave</p>
+
+  <md>0.9375.</md>
+
+  <p>So it overestimates the true value.  The reason is visible in the picture: the solution is
+concave down while it rises toward <m>1</m>, so tangent-line steps tend to sit above the
+curve.</p>
+
+  <note xml:id="note-sec-13-3-euler-s-method-62">
+    <title>Euler’s method</title>
+      <p>For an initial value problem</p>
+        <md>y'=F(x,y),
+\qquad
+y(x_0)=y_0,</md>
+      <p>choose a step size <m>h</m>.  Define</p>
+        <md>x_{k+1}=x_k+h</md>
+      <p>and</p>
+        <md>
+y_{k+1}=y_k+hF(x_k,y_k).
+</md>
+      <p>The points</p>
+        <md>(x_0,y_0),\ (x_1,y_1),\ (x_2,y_2),\ldots</md>
+      <p>approximate points on the solution curve.</p>
+  </note>
+
+  <p>Euler’s method is simple because it uses only the slope at the beginning of each step.
+That simplicity is also its weakness.</p>
+
+  <exercise xml:id="checkpoint-13-3-follow-the-field">
+        <title>What local idea is Euler’s method repeating?</title>
+        <statement>
+          <p>
+            The derivative gives <m>y(x+h)\approx y(x)+y'(x)h</m>. In your own words, why does substituting the differential equation <m>y'=F(x,y)</m> turn that approximation into a step-by-step method, and why is using only the slope at the beginning of each step both a strength and a weakness?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The new value is the old value plus slope times step. The method is simple because it uses one slope; it is crude because that slope may change during the step.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-step-size-accumulated-error">
+    <title>Step size and accumulated error</title>
+
+  <p>Euler’s method makes a small error at each step.  Then it uses the approximate point
+from that step to compute the next slope.  So errors do not merely appear; they can
+accumulate.</p>
+
+  <p>For the same problem,</p>
+
+  <md>y'=1-y,
+\qquad
+y(0)=0,</md>
+
+  <p>we can approximate <m>y(2)</m> with several step sizes.</p>
+
+  <md>\text{exact value}=1-e^{-2}\approx0.864665.</md>
+
+  <table xml:id="tab-sec-13-3-euler-s-method-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>step size</strong></cell>
+        <cell><strong>number of steps</strong></cell>
+        <cell><strong>Euler approximation to <m>y(2)</m></strong></cell>
+        <cell><strong>absolute error</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>2</m></cell>
+        <cell><m>1.000000</m></cell>
+        <cell><m>0.135335</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0.5</m></cell>
+        <cell><m>4</m></cell>
+        <cell><m>0.937500</m></cell>
+        <cell><m>0.072835</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0.25</m></cell>
+        <cell><m>8</m></cell>
+        <cell><m>0.899887</m></cell>
+        <cell><m>0.035222</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0.1</m></cell>
+        <cell><m>20</m></cell>
+        <cell><m>0.878423</m></cell>
+        <cell><m>0.013759</m></cell>
+      </row>
+      <row>
+        <cell><m>0.05</m></cell>
+        <cell><m>40</m></cell>
+        <cell><m>0.871488</m></cell>
+        <cell><m>0.006823</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The smaller step sizes give better approximations here.  This is what we hope for:
+more, shorter tangent-line steps should trace the solution curve more faithfully.</p>
+
+  <p>But there is a cost.  Smaller steps require more computation.</p>
+
+  <md>h=0.5
+\quad\Longrightarrow\quad
+4\text{ steps to reach }x=2,</md>
+
+  <p>while</p>
+
+  <md>h=0.05
+\quad\Longrightarrow\quad
+40\text{ steps to reach }x=2.</md>
+
+  <p>The tradeoff is familiar from numerical integration:</p>
+
+  <md>\text{smaller step size}
+\quad\Longrightarrow\quad
+\text{usually smaller error, but more work}.</md>
+
+  <p>The word “usually” belongs in the sentence.  A numerical method is not magic.  If the
+step size is too large, the method may follow the wrong behavior.</p>
+
+  <paragraphs>
+    <title>A large-step warning</title>
+
+  <p>Consider</p>
+
+  <md>y'=-4y,
+\qquad
+y(0)=1.</md>
+
+  <p>The exact solution is</p>
+
+  <md>y=e^{-4x}.</md>
+
+  <p>It stays positive and decays toward <m>0</m>.</p>
+
+  <p>Euler’s method gives</p>
+
+  <md>y_{k+1}=y_k+h(-4y_k)=(1-4h)y_k.</md>
+
+  <p>If</p>
+
+  <md>h=1,</md>
+
+  <p>then</p>
+
+  <md>y_{k+1}=-3y_k.</md>
+
+  <p>The Euler values are</p>
+
+  <md>1,\ -3,\ 9,\ -27,\ldots</md>
+
+  <p>They alternate signs and grow in size.  That is the opposite of the true solution.</p>
+
+  <p>The differential equation describes stable decay.  The numerical method, with a large
+step, creates fake instability.</p>
+
+  <warning xml:id="warn-sec-13-3-euler-s-method-63">
+    <title>Numerical warning</title>
+      <p>A differential equation and a numerical method are different objects.  The equation may
+have one behavior, while a poor step size in the method can produce another.</p>
+  </warning>
+
+  <p>This does not make Euler’s method useless.  It makes it honest.  We should use it with
+step-size discipline and with checks against qualitative behavior.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-3-error-accumulates">
+        <title>Why can a large Euler step invent false behavior?</title>
+        <statement>
+          <p>
+            Smaller steps usually reduce error, but they are not magic. For <m>y'=-4y</m>, a large step can produce growing oscillations even though the true solution decays. In your own words, why is the numerical method a different object from the differential equation?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each Euler point is approximate, and the next slope is computed at that approximate point. A step that is too large can leave the qualitative story of the field.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-improved-euler-method">
+    <title>Improved Euler method</title>
+
+  <p>Euler’s method uses the slope at the beginning of the step.  But if the slope changes
+during the step, the beginning slope may be a poor representative of the whole interval.</p>
+
+  <p>A natural improvement is to use two slopes:</p>
+
+  <md>\text{beginning slope}
+\qquad\text{and}\qquad
+\text{estimated ending slope}.</md>
+
+  <p>Then average them.</p>
+
+  <p>Start at</p>
+
+  <md>(x_k,y_k).</md>
+
+  <p>Let</p>
+
+  <md>k_1=F(x_k,y_k)</md>
+
+  <p>be the beginning slope.  Euler’s ordinary prediction is</p>
+
+  <md>\widetilde y_{k+1}=y_k+hk_1.</md>
+
+  <p>This gives a predicted endpoint</p>
+
+  <md>(x_k+h,\widetilde y_{k+1}).</md>
+
+  <p>Now compute the slope there:</p>
+
+  <md>k_2=F(x_k+h,\widetilde y_{k+1}).</md>
+
+  <p>The improved Euler step uses the average slope:</p>
+
+  <md>
+y_{k+1}
+=
+y_k+\frac{h}{2}(k_1+k_2).
+</md>
+
+  <note xml:id="note-sec-13-3-euler-s-method-64">
+    <title>Improved Euler method</title>
+      <p>For</p>
+        <md>y'=F(x,y),
+\qquad
+y(x_0)=y_0,</md>
+      <p>set</p>
+        <md>k_1=F(x_k,y_k),</md>
+        <md>\widetilde y_{k+1}=y_k+hk_1,</md>
+        <md>k_2=F(x_k+h,\widetilde y_{k+1}),</md>
+      <p>and</p>
+        <md>
+y_{k+1}=y_k+\frac{h}{2}(k_1+k_2).
+</md>
+  </note>
+
+  <p>This method is also called Heun’s method.  It is not the most powerful numerical method
+for differential equations, but it fixes one clear defect of Euler’s method: it does not rely
+only on the starting slope.</p>
+
+
+  <exercise xml:id="checkpoint-13-3-improved-euler">
+        <title>What extra information does improved Euler use?</title>
+        <statement>
+          <p>
+            Improved Euler averages a beginning slope with an estimated ending slope. In your own words, why should that be a better representative of the whole step, and what computational price does the improvement pay?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If the slope changes during the interval, the starting slope alone is biased. Averaging uses two evaluations of <m>F</m> per step instead of one.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-13-3-euler-s-method-2">
+    <title>Example</title>
+    <statement>
+  <p>Use improved Euler with <m>h=0.5</m> for</p>
+
+  <md>y'=1-y,
+\qquad
+y(0)=0.</md>
+
+  <p>The computations are:</p>
+
+  <table xml:id="tab-sec-13-3-euler-s-method-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>step</strong></cell>
+        <cell><m>x_k</m></cell>
+        <cell><m>y_k</m></cell>
+        <cell><m>k_1</m></cell>
+        <cell><m>k_2</m></cell>
+        <cell><m>y_{k+1}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>0.375</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>0.5</m></cell>
+        <cell><m>0.375</m></cell>
+        <cell><m>0.625</m></cell>
+        <cell><m>0.3125</m></cell>
+        <cell><m>0.609375</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2</m></cell>
+        <cell><m>1.0</m></cell>
+        <cell><m>0.609375</m></cell>
+        <cell><m>0.390625</m></cell>
+        <cell><m>0.1953125</m></cell>
+        <cell><m>0.755859</m></cell>
+      </row>
+      <row>
+        <cell><m>3</m></cell>
+        <cell><m>1.5</m></cell>
+        <cell><m>0.755859</m></cell>
+        <cell><m>0.244141</m></cell>
+        <cell><m>0.122070</m></cell>
+        <cell><m>0.847412</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>So</p>
+
+  <md>y(2)\approx0.847412.</md>
+
+  <p>The exact value is</p>
+
+  <md>0.864665.</md>
+
+  <p>Euler’s method with the same step size gave</p>
+
+  <md>0.937500.</md>
+
+  <p>In this example, improved Euler is much closer.</p>
+
+  <p>The price is also clear.  Ordinary Euler evaluates <m>F</m> once per step.  Improved Euler
+evaluates <m>F</m> twice per step.  Better information usually costs more computation.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-numerical-solutions-approximate-functions">
+    <title>Numerical solutions as approximate functions</title>
+
+  <p>Euler’s method does not produce a formula like</p>
+
+  <md>y=1-e^{-x}.</md>
+
+  <p>It produces a list of points:</p>
+
+  <md>(x_0,y_0),\ (x_1,y_1),\ (x_2,y_2),\ldots.</md>
+
+  <p>If we connect those points by straight line segments, we get a piecewise linear
+approximation to the solution curve.  So Euler’s method approximates not only one
+number, but a whole function.</p>
+
+  <p>This distinction matters.</p>
+
+  <p>A numerical answer such as</p>
+
+  <md>y(2)\approx0.9375</md>
+
+  <p>is not complete unless we know how it was produced.  We should report:</p>
+
+  <md>\text{the method},
+\qquad
+\text{the step size},
+\qquad
+\text{the interval},
+\qquad
+\text{and any available error information}.</md>
+
+  <p>For example,</p>
+
+  <md>
+\text{Euler's method with \(h=0.5\) gives \(y(2)\approx0.9375\).}
+</md>
+
+  <p>That statement is honest.  It names the approximation.</p>
+
+  <note xml:id="note-sec-13-3-euler-s-method-65">
+    <title>What Euler’s method teaches</title>
+      <p>A differential equation gives local instructions.  Euler’s method turns those instructions
+into a path by repeating one simple idea:</p>
+        <md>\text{new value}=\text{old value}+\text{slope}\cdot\text{step}.</md>
+  </note>
+
+  <p>This is enough when no exact formula is available.  But sometimes the equation itself
+contains a hidden integral.  In those cases, we can do better than following short
+tangent steps.  We can solve the equation exactly.</p>
+
+  <p>The first such equations are separable.</p>
+
+  <exercise xml:id="checkpoint-13-3-approximate-function">
+        <title>Why is an Euler table an approximate function, not only a number?</title>
+        <statement>
+          <p>
+            Euler’s method produces a list of points rather than a formula such as <m>y=1-e^{-x}</m>. In your own words, why should a report of <m>y(2)\approx0.9375</m> name the method and the step size, and what object is being approximated besides a single value?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Connecting the points gives a piecewise linear path. The output is an approximate solution curve, so the method, step size, and interval belong in the answer.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

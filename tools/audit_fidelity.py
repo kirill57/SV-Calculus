@@ -12,7 +12,13 @@ latex_files = {
     8: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch08-integral-accumulation.tex',
     9: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch09-fundamental-theorem.tex',
     10: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch10-what-integrals-measure.tex',
-    11: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch11-techniques-integration.tex'
+    11: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch11-techniques-integration.tex',
+    12: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch12-numerical-integration.tex',
+    13: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch13-differential-equations.tex',
+    14: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch14-parametric-polar.tex',
+    15: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch15-sequences-series.tex',
+    16: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch16-power-series.tex',
+    17: 'Single_Variable_Calculus_Change__Accumulation__and_Approximation/chapters/ch17-complex-fourier.tex'
 }
 
 def clean_tex(text):
@@ -31,7 +37,7 @@ def clean_xml(text):
     return words
 
 def get_tex_sections(filepath):
-    with open(filepath) as f:
+    with open(filepath, encoding='utf-8', errors='ignore') as f:
         content = f.read()
     sections = re.split(r'\\section\{', content)
     sec_data = []
@@ -47,7 +53,7 @@ def get_tex_sections(filepath):
 def get_xml_words(filepath):
     if not os.path.exists(filepath):
         return 0
-    with open(filepath) as f:
+    with open(filepath, encoding='utf-8', errors='ignore') as f:
         content = f.read()
     return len(clean_xml(content))
 

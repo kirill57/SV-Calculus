@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-14-9-warning-examples">
+  <title>Warning examples</title>
+
+  <p>This chapter gave us three new languages for plane curves:</p>
+
+  <md>x=x(t),\quad y=y(t),</md>
+
+  <md>r=f(\theta),</md>
+
+  <p>and</p>
+
+  <md>z=re^{i\theta}.</md>
+
+  <p>Each language is powerful because it carries more information than a plain Cartesian
+equation.  It can tell direction, speed, repeated tracing, and rotation.</p>
+
+  <p>That extra information is useful.  It is also dangerous if we forget what the
+parameters are doing.</p>
+
+  <p>The safest habit is simple:</p>
+
+  <md>
+\text{Before using a formula, ask how the curve is being traced.}
+</md>
+
+  <subsection xml:id="subsec-parametrization-stops-curve-continues">
+    <title>A parametrization stops even when the curve continues</title>
+
+  <p>A moving point can pause without the geometric curve having a corner or endpoint.</p>
+
+  <p>Consider</p>
+
+  <md>x=t^3,
+\qquad
+y=t^6.</md>
+
+  <p>Eliminate the parameter.  Since</p>
+
+  <md>x=t^3,</md>
+
+  <p>we have</p>
+
+  <md>y=t^6=(t^3)^2=x^2.</md>
+
+  <p>So the geometric curve is the parabola</p>
+
+  <md>y=x^2.</md>
+
+  <p>As <m>t</m> increases through <m>0</m>, the point moves along the parabola through the
+origin.</p>
+
+  <p>But the velocity is</p>
+
+  <md>\frac{dx}{dt}=3t^2,
+\qquad
+\frac{dy}{dt}=6t^5.</md>
+
+  <p>At <m>t=0</m>,</p>
+
+  <md>\frac{dx}{dt}=0,
+\qquad
+\frac{dy}{dt}=0.</md>
+
+  <p>The point has zero speed at the origin.</p>
+
+  <p>The curve, however, is perfectly smooth there.  The parabola <m>y=x^2</m> has horizontal
+tangent at <m>(0,0)</m>.</p>
+
+  <p>For <m>t\neq0</m>, the parametric slope is</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{6t^5}{3t^2}
+=
+2t^3.</md>
+
+  <p>As <m>t\to0</m>,</p>
+
+  <md>2t^3\to0.</md>
+
+  <p>Thus the tangent slope at the origin is <m>0</m>, even though direct substitution into</p>
+
+  <md>\frac{dy/dt}{dx/dt}</md>
+
+  <p>would give the meaningless quotient</p>
+
+  <md>\frac00.</md>
+
+  <figure xml:id="fig-parametric-pause-smooth-parabola">
+    <caption>The parametrization <m>x=t^3,\;y=t^6</m> pauses at the origin, but the geometric curve is the smooth parabola <m>y=x^2</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.50\textwidth,
+    xmin=-1.4, xmax=1.4,
+    ymin=-0.2, ymax=1.8,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={0,1},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1.25:1.25, samples=200] {x^2};
+
+% horizontal tangent at origin
+\addplot[thick, dashed, domain=-0.75:0.75, samples=2] {0};
+
+% points and arrows along motion
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\draw[-&gt;, thick] (axis cs:-0.95,0.9025) -- (axis cs:-0.65,0.4225);
+\draw[-&gt;, thick] (axis cs:0.35,0.1225) -- (axis cs:0.70,0.49);
+
+\node[anchor=south east] at (axis cs:0,0) {\(t=0\)};
+\node[anchor=west] at (axis cs:0.42,1.2) {\(x=t^3,\;y=t^6\)};
+\node[anchor=west] at (axis cs:0.42,0.95) {same curve: \(y=x^2\)};
+\node[anchor=west] at (axis cs:0.42,0.70) {but speed \(=0\) at the origin};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is the first warning.</p>
+
+  <note xml:id="note-sec-14-9-warning-examples-50">
+    <title>A zero velocity may be a feature of the parametrization, not a feature of the curve</title>
+      <p>When</p>
+        <md>x'(t_0)=0
+\qquad\text{and}\qquad
+y'(t_0)=0,</md>
+      <p>the moving point stops at <m>t=t_0</m>.  The curve may still be smooth.  The tangent must be
+found by looking nearby, not by substituting into the slope quotient.</p>
+  </note>
+
+  <p>A parametrization is a schedule.  A bad or unusual schedule can pause on an otherwise
+ordinary road.</p>
+
+  <exercise xml:id="checkpoint-14-9-pause-not-corner">
+        <title>Why can a parametrization stop even when the curve continues?</title>
+        <statement>
+          <p>
+            If both coordinate derivatives vanish, the moving point has zero velocity. In your own words, why might that pause be a feature of the schedule rather than a corner of the geometric curve, and how should the tangent then be found?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Look nearby instead of substituting into the slope quotient. A traveler can rest on an otherwise smooth road.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-polar-curve-traced-twice-warning">
+    <title>A polar curve traced twice</title>
+
+  <p>Polar coordinates have another kind of trap.  The same point can have many polar
+names.</p>
+
+  <md>(r,\theta)=(r,\theta+2\pi)=(-r,\theta+\pi).</md>
+
+  <p>Because of this, a polar equation may trace a geometric curve more than once.</p>
+
+  <p>Consider</p>
+
+  <md>r=2\cos\theta.</md>
+
+  <p>We converted this earlier:</p>
+
+  <md>r^2=2r\cos\theta,</md>
+
+  <p>so</p>
+
+  <md>x^2+y^2=2x.</md>
+
+  <p>Completing the square,</p>
+
+  <md>(x-1)^2+y^2=1.</md>
+
+  <p>Thus the curve is the circle centered at <m>(1,0)</m> with radius <m>1</m>.</p>
+
+  <p>A once-around interval is</p>
+
+  <md>-\frac{\pi}{2}\le \theta\le \frac{\pi}{2},</md>
+
+  <p>because on that interval</p>
+
+  <md>\cos\theta\ge0.</md>
+
+  <p>But if we use</p>
+
+  <md>0\le\theta\le2\pi,</md>
+
+  <p>the circle is traced twice.  The second half is not a new region.  It is the same circle
+again, because <m>r</m> becomes negative and the points are plotted in the opposite
+direction.</p>
+
+  <figure xml:id="fig-polar-circle-traced-twice">
+    <caption>Using <m>0\le\theta\le2\pi</m> for <m>r=2\cos\theta</m> traces the same circle twice.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.68\textwidth,
+    height=0.52\textwidth,
+    xmin=-0.35, xmax=2.35,
+    ymin=-1.35, ymax=1.35,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    ytick={-1,0,1},
+    axis equal image,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% once-around trace
+\addplot[very thick, domain=-1.5707963:1.5707963, samples=220]
+    ({2*cos(deg(x))*cos(deg(x))},{2*cos(deg(x))*sin(deg(x))});
+
+% retracing interval, drawn dashed on top
+\addplot[thick, dashed, domain=1.5707963:4.712389, samples=220]
+    ({2*cos(deg(x))*cos(deg(x))},{2*cos(deg(x))*sin(deg(x))});
+
+\addplot[only marks, mark=*] coordinates {(0,0) (2,0) (1,0)};
+\node[anchor=south] at (axis cs:1,0) {center};
+\node[anchor=west] at (axis cs:1.35,0.85) {\(r=2\cos\theta\)};
+\node[anchor=west] at (axis cs:1.35,0.58) {dashed part retraces};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The area formula reveals the mistake.</p>
+
+  <p>If we blindly use <m>0\le\theta\le2\pi</m>, then</p>
+
+  <md>A=
+\frac12\int_0^{2\pi}(2\cos\theta)^2\,d\theta.</md>
+
+  <p>So</p>
+
+  <md>A
+=
+2\int_0^{2\pi}\cos^2\theta\,d\theta
+=
+2\pi.</md>
+
+  <p>But the circle has radius <m>1</m>, so its area is</p>
+
+  <md>\pi.</md>
+
+  <p>The integral doubled the area because the curve was traced twice.</p>
+
+  <p>Use a once-around interval instead:</p>
+
+  <md>A=
+\frac12\int_{-\pi/2}^{\pi/2}(2\cos\theta)^2\,d\theta.</md>
+
+  <p>Then</p>
+
+  <md>A=
+2\int_{-\pi/2}^{\pi/2}\cos^2\theta\,d\theta
+=
+2\cdot\frac{\pi}{2}
+=
+\pi.</md>
+
+  <warning xml:id="warn-sec-14-9-warning-examples-51">
+    <title>Polar warning</title>
+      <p>The formula</p>
+        <md>A=\frac12\int_\alpha^\beta r^2\,d\theta</md>
+      <p>counts how the polar curve is traced on the interval <m>[\alpha,\beta]</m>.</p>
+      <p>If the same region is swept twice, the integral counts it twice.</p>
+  </warning>
+
+  <p>The square <m>r^2</m> makes negative <m>r</m> look harmless algebraically.  But negative <m>r</m>
+can still change the tracing.</p>
+
+  <exercise xml:id="checkpoint-14-9-traced-twice">
+        <title>Why can a polar area integral count a region twice?</title>
+        <statement>
+          <p>
+            The circle <m>r=2\cos\theta</m> is traced twice on <m>[0,2\pi]</m>. In your own words, why does <m>\frac12\int r^2\,d\theta</m> then double the geometric area, and what question should you ask about the interval of <m>\theta</m> before integrating?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The formula counts how the polar curve is traced. Choose an interval that sweeps the region exactly once.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-tangent-formula-fails-both-derivatives-zero">
+    <title>A tangent formula fails when both derivatives vanish</title>
+
+  <p>The parametric slope formula is</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{dy/dt}{dx/dt}.</md>
+
+  <p>It works when</p>
+
+  <md>\frac{dx}{dt}\neq0.</md>
+
+  <p>For horizontal and vertical tangent tests, we used</p>
+
+  <md>\frac{dy}{dt}=0,\quad \frac{dx}{dt}\neq0</md>
+
+  <p>and</p>
+
+  <md>\frac{dx}{dt}=0,\quad \frac{dy}{dt}\neq0.</md>
+
+  <p>Both tests deliberately avoid the case</p>
+
+  <md>x'(t)=0
+\qquad\text{and}\qquad
+y'(t)=0.</md>
+
+  <p>Here is why.</p>
+
+  <p>At <m>t=0</m>, all three parametrizations below have</p>
+
+  <md>x'(0)=0,
+\qquad
+y'(0)=0.</md>
+
+  <p>But their tangent behavior is different.</p>
+
+  <md>P_1(t)=(t^2,t^3),</md>
+
+  <md>P_2(t)=(t^3,t^2),</md>
+
+  <md>P_3(t)=(t^2,t^2).</md>
+
+  <p>For <m>P_1</m>,</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{3t^2}{2t}
+=
+\frac32t
+\qquad (t\neq0).</md>
+
+  <p>As <m>t\to0</m>,</p>
+
+  <md>\frac32t\to0.</md>
+
+  <p>So <m>P_1</m> has a horizontal tangent at the cusp.</p>
+
+  <p>For <m>P_2</m>,</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{2t}{3t^2}
+=
+\frac{2}{3t}
+\qquad (t\neq0).</md>
+
+  <p>As <m>t\to0</m>, this becomes unbounded.  The tangent is vertical.</p>
+
+  <p>For <m>P_3</m>,</p>
+
+  <md>\frac{dy}{dx}
+=
+\frac{2t}{2t}
+=
+1
+\qquad (t\neq0).</md>
+
+  <p>The curve is the line</p>
+
+  <md>y=x</md>
+
+  <p>with <m>x\ge0</m>, traced in and out.  Its tangent slope is <m>1</m>.</p>
+
+  <p>The same direct substitution,</p>
+
+  <md>\frac00,</md>
+
+  <p>has hidden three different outcomes.</p>
+
+  <figure xml:id="fig-three-zero-velocity-tangent-outcomes">
+    <caption>At <m>t=0</m>, all three parametrizations have <m>x'(0)=y'(0)=0</m>, but their tangents are different.</caption>
+            <sidebyside widths="32% 32% 32%" valign="bottom">
+    <image xml:id="fig-three-zero-velocity-tangent-outcomes-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=\textwidth,
+    xmin=-0.15, xmax=1.15,
+    ymin=-1.15, ymax=1.15,
+    axis lines=middle,
+    xtick={0,1},
+    ytick={-1,0,1},
+    axis equal image,
+    title={\(P_1(t)=(t^2,t^3)\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1:1, samples=220] ({x^2},{x^3});
+\addplot[thick, dashed, domain=0:0.75, samples=2] {0};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[anchor=west] at (axis cs:0.15,0.2) {\(\text{horizontal}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-three-zero-velocity-tangent-outcomes-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=\textwidth,
+    xmin=-1.15, xmax=1.15,
+    ymin=-0.15, ymax=1.15,
+    axis lines=middle,
+    xtick={-1,0,1},
+    ytick={0,1},
+    axis equal image,
+    title={\(P_2(t)=(t^3,t^2)\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1:1, samples=220] ({x^3},{x^2});
+\draw[thick, dashed] (axis cs:0,0) -- (axis cs:0,0.8);
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[anchor=west] at (axis cs:0.12,0.55) {\(\text{vertical}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-three-zero-velocity-tangent-outcomes-panel-3">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=\textwidth,
+    xmin=-0.15, xmax=1.15,
+    ymin=-0.15, ymax=1.15,
+    axis lines=middle,
+    xtick={0,1},
+    ytick={0,1},
+    axis equal image,
+    title={\(P_3(t)=(t^2,t^2)\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-1:1, samples=220] ({x^2},{x^2});
+\addplot[thick, dashed, domain=0:0.85, samples=2] {x};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[anchor=west] at (axis cs:0.15,0.75) {\(\text{slope }1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <warning xml:id="warn-sec-14-9-warning-examples-52">
+    <title>The <m>0/0</m> tangent warning</title>
+      <p>When both coordinate derivatives vanish, the slope formula does not decide the
+tangent.</p>
+      <p>Look at the nearby slopes, eliminate the parameter if possible, or study the local
+geometry.</p>
+  </warning>
+
+  <p>The same warning applies to polar curves.  For</p>
+
+  <md>x=r(\theta)\cos\theta,
+\qquad
+y=r(\theta)\sin\theta,</md>
+
+  <p>if</p>
+
+  <md>\frac{dx}{d\theta}=0
+\qquad\text{and}\qquad
+\frac{dy}{d\theta}=0,</md>
+
+  <p>then the polar slope formula gives <m>0/0</m>.  A cusp, a smooth pause, a retracing, or a
+more complicated behavior may be hiding there.</p>
+
+  <exercise xml:id="checkpoint-14-9-zero-over-zero">
+        <title>Why does a <m>0/0</m> slope formula fail to decide the tangent?</title>
+        <statement>
+          <p>
+            The parametric slope formula is illegal when both derivatives vanish, and the same warning applies to polar curves. In your own words, what different geometric behaviors can hide behind that <m>0/0</m>, and what extra tools can distinguish them?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A cusp, a smooth pause, or a retracing may all produce vanishing derivatives. Nearby slopes, elimination of the parameter, or a local picture can tell them apart.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-main-cautions">
+    <title>The chapter’s main cautions</title>
+
+  <p>The formulas in this chapter are reliable when their hypotheses match the tracing.</p>
+
+  <table xml:id="tab-sec-14-9-warning-examples-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>situation</strong></cell>
+        <cell><strong>what to check</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Parametric slope</cell>
+        <cell>Is <m>dx/dt\neq0</m>? If both <m>dx/dt</m> and <m>dy/dt</m> vanish, study nearby motion.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Parametric length</cell>
+        <cell>Does the parametrization retrace the curve? The length integral counts distance traveled.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Parametric area</cell>
+        <cell>Is the curve traced once? What is the orientation?</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Polar area</cell>
+        <cell>What interval of <m>\theta</m> sweeps the region exactly once? Does <m>r</m> become negative?</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Polar intersections</cell>
+        <cell>Did the curves meet at the origin or with different polar names?</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Conic classification</cell>
+        <cell>First rewrite the denominator so the constant term is <m>1</m>, then read eccentricity.</cell>
+      </row>
+      <row>
+        <cell>
+Complex polar form</cell>
+        <cell>Remember that arguments are not unique: <m>\theta</m> and <m>\theta+2\pi k</m> describe the same direction.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>A formula is a tool, not a substitute for the picture.</p>
+
+  <exercise xml:id="checkpoint-14-9-ask-how-traced">
+        <title>What habit protects every formula in this chapter?</title>
+        <statement>
+          <p>
+            Parametric, polar, and complex languages all carry more information than a plain Cartesian equation. In your own words, why is <q>ask how the curve is being traced</q> the safest habit before using a length, area, or tangent formula?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Extra information about direction, speed, and repeated tracing is useful only if you remember that the formula follows the tracing, not just the set of points.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

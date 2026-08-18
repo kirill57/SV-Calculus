@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-2-infinite-series">
+  <title>Infinite series</title>
+
+  <p>A sequence is an infinite list.</p>
+
+  <p>A series is an infinite sum.</p>
+
+  <p>But an infinite sum cannot mean that we literally finish adding infinitely many numbers.
+There is no last step.  The only honest definition is through limits.</p>
+
+  <p>We add finitely many terms, watch the partial sums, and ask whether those partial sums
+approach a number.</p>
+
+  <md>
+\text{An infinite series is a limit of finite sums.}
+</md>
+
+  <subsection xml:id="subsec-partial-sums">
+    <title>Partial sums</title>
+
+  <p>Suppose we start with a sequence</p>
+
+  <md>a_1,\ a_2,\ a_3,\ldots.</md>
+
+  <p>The associated series is written</p>
+
+  <md>\sum_{k=1}^{\infty}a_k
+=
+a_1+a_2+a_3+\cdots.</md>
+
+  <p>The <m>n</m>-th partial sum is</p>
+
+  <md>S_n=a_1+a_2+\cdots+a_n.</md>
+
+  <p>In sigma notation,</p>
+
+  <md>S_n=\sum_{k=1}^{n}a_k.</md>
+
+  <p>So the infinite series produces a sequence of partial sums:</p>
+
+  <md>S_1,\ S_2,\ S_3,\ldots.</md>
+
+  <note xml:id="note-sec-15-2-infinite-series-96">
+    <title>Partial sums</title>
+      <p>Given a sequence <m>\{a_k\}</m>, define</p>
+        <md>S_n=\sum_{k=1}^{n}a_k.</md>
+      <p>The sequence <m>\{S_n\}</m> is called the sequence of <em>partial sums</em>.</p>
+  </note>
+
+  <p>The infinite series converges if the partial sums converge.</p>
+
+  <note xml:id="note-sec-15-2-infinite-series-97">
+    <title>Convergence of a series</title>
+      <p>The series</p>
+        <md>\sum_{k=1}^{\infty}a_k</md>
+      <p><em>converges</em> to <m>S</m> if its partial sums satisfy</p>
+        <md>S_n\to S.</md>
+      <p>In that case, we write</p>
+        <md>\sum_{k=1}^{\infty}a_k=S.</md>
+      <p>If the partial sums do not converge, the series <em>diverges</em>.</p>
+  </note>
+
+  <p>This definition is the key.  The series is not judged by the individual terms alone.  It is
+judged by the accumulated sums.</p>
+
+  <example xml:id="ex-sec-15-2-infinite-series-1">
+    <title>adding halves</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>\frac12+\frac14+\frac18+\frac1{16}+\cdots.</md>
+
+  <p>The partial sums are</p>
+
+  <md>S_1=\frac12,</md>
+
+  <md>S_2=\frac12+\frac14=\frac34,</md>
+
+  <md>S_3=\frac12+\frac14+\frac18=\frac78,</md>
+
+  <p>and</p>
+
+  <md>S_4=\frac{15}{16}.</md>
+
+  <p>The pattern is</p>
+
+  <md>S_n=1-\frac1{2^n}.</md>
+
+  <p>Since</p>
+
+  <md>\frac1{2^n}\to0,</md>
+
+  <p>we get</p>
+
+  <md>S_n\to1.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac12+\frac14+\frac18+\frac1{16}+\cdots=1.
+</md>
+
+  <figure xml:id="fig-partial-sums-halves">
+    <caption>The partial sums <m>S_n=\frac12+\frac14+\cdots+\frac1{2^n}</m> approach <m>1</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.34\textwidth,
+    xmin=0, xmax=6.5,
+    ymin=0, ymax=1.15,
+    axis lines=left,
+    xlabel={\(n\)},
+    ylabel={\(S_n\)},
+    xtick={1,2,3,4,5,6},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (1,0.5)
+    (2,0.75)
+    (3,0.875)
+    (4,0.9375)
+    (5,0.96875)
+    (6,0.984375)
+};
+\addplot[thick, dashed, domain=0:6.4, samples=2] {1};
+\node[anchor=west] at (axis cs:4.2,1.04) {limit \(1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The picture has the same structure as many earlier parts of calculus.  An infinite
+process is understood through a sequence of finite approximations.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-series-convergence-as-sequence-problem">
+    <title>Series convergence as a sequence problem</title>
+
+  <p>The definition of a series turns every convergence question into a sequence question.</p>
+
+  <md>\sum_{k=1}^{\infty}a_k
+\quad\text{converges}</md>
+
+  <p>means</p>
+
+  <md>S_n=a_1+a_2+\cdots+a_n
+\quad\text{converges}.</md>
+
+  <p>So when we test a series, we are really testing the behavior of its partial sums.</p>
+
+  <example xml:id="ex-sec-15-2-infinite-series-2">
+    <title>a divergent series</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>1+1+1+1+\cdots.</md>
+
+  <p>The partial sums are</p>
+
+  <md>S_1=1,
+\qquad
+S_2=2,
+\qquad
+S_3=3,
+\qquad
+S_n=n.</md>
+
+  <p>Since</p>
+
+  <md>S_n\to\infty,</md>
+
+  <p>the series diverges.</p>
+
+  <md>
+\sum_{k=1}^{\infty}1 \text{ diverges.}
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-2-infinite-series-3">
+    <title>partial sums can oscillate</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>1-1+1-1+1-1+\cdots.</md>
+
+  <p>The partial sums are</p>
+
+  <md>S_1=1,
+\qquad
+S_2=0,
+\qquad
+S_3=1,
+\qquad
+S_4=0.</md>
+
+  <p>So the partial sums are</p>
+
+  <md>1,\ 0,\ 1,\ 0,\ldots.</md>
+
+  <p>They do not approach a single number.  Therefore the series diverges.</p>
+
+  <md>
+1-1+1-1+\cdots \text{ diverges.}
+</md>
+
+  <p>This example is a useful warning.  Alternating signs may create cancellation, but
+cancellation alone does not guarantee convergence.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A language point</title>
+
+  <p>It is common to say “the series <m>\sum a_k</m> converges.”  Strictly speaking, the
+sequence of partial sums converges.</p>
+
+  <p>The shorter phrase is harmless once the definition is understood.</p>
+
+  <md>
+\text{A series converges exactly when its partial sums converge.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-15-2-series-as-sequence">
+        <title>Why is an infinite series a sequence problem in disguise?</title>
+        <statement>
+          <p>
+            An infinite series is declared convergent when its sequence of partial sums converges. In your own words, why is that the right definition, and why is it not enough for the individual terms <m>a_n</m> to go to zero?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Adding infinitely many numbers has to mean that the running totals settle. Terms going to zero is necessary but can still leave the running totals drifting without bound, as the harmonic series shows.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-geometric-series">
+    <title>Geometric series</title>
+
+  <p>The most important first example of a series is the geometric series.</p>
+
+  <p>A geometric series has a constant ratio from one term to the next:</p>
+
+  <md>a+ar+ar^2+ar^3+\cdots.</md>
+
+  <p>The number <m>a</m> is the first term, and <m>r</m> is the common ratio.</p>
+
+  <paragraphs>
+    <title>Seed example</title>
+
+  <p>The series</p>
+
+  <md>1+\frac12+\frac14+\frac18+\cdots</md>
+
+  <p>is geometric with</p>
+
+  <md>a=1,
+\qquad
+r=\frac12.</md>
+
+  <p>Its partial sums, starting with <m>k=0</m>, are</p>
+
+  <md>S_n=1+\frac12+\frac14+\cdots+\frac1{2^n}.</md>
+
+  <p>The formula is</p>
+
+  <md>S_n=2-\frac1{2^n}.</md>
+
+  <p>Therefore</p>
+
+  <md>S_n\to2.</md>
+
+  <p>So</p>
+
+  <md>
+1+\frac12+\frac14+\frac18+\cdots=2.
+</md>
+
+  <p>The same idea works for every geometric series.</p>
+
+  <note xml:id="note-sec-15-2-infinite-series-98">
+    <title>Finite geometric sum</title>
+      <p>If <m>r\neq1</m>, then</p>
+        <md>
+a+ar+ar^2+\cdots+ar^n
+=
+a\,\frac{1-r^{n+1}}{1-r}.
+</md>
+  </note>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Let</p>
+
+  <md>S_n=a+ar+ar^2+\cdots+ar^n.</md>
+
+  <p>Multiply by <m>r</m>:</p>
+
+  <md>rS_n=ar+ar^2+ar^3+\cdots+ar^{n+1}.</md>
+
+  <p>Subtract:</p>
+
+  <md>S_n-rS_n
+=
+a-ar^{n+1}.</md>
+
+  <p>So</p>
+
+  <md>(1-r)S_n=a(1-r^{n+1}).</md>
+
+  <p>Since <m>r\neq1</m>,</p>
+
+  <md>S_n=a\,\frac{1-r^{n+1}}{1-r}.</md>
+
+  <note xml:id="note-sec-15-2-infinite-series-99">
+    <title>Geometric series</title>
+      <p>The infinite geometric series</p>
+        <md>\sum_{k=0}^{\infty}ar^k
+=
+a+ar+ar^2+\cdots</md>
+      <p>converges if</p>
+        <md>|r|&lt;1.</md>
+      <p>In that case,</p>
+        <md>
+\sum_{k=0}^{\infty}ar^k=\frac{a}{1-r}.
+</md>
+  </note>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why</title>
+
+  <p>The partial sums are</p>
+
+  <md>S_n=a\,\frac{1-r^{n+1}}{1-r}.</md>
+
+  <p>If</p>
+
+  <md>|r|&lt;1,</md>
+
+  <p>then</p>
+
+  <md>r^{n+1}\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>S_n\to a\,\frac{1-0}{1-r}
+=
+\frac{a}{1-r}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why the condition <m>|r|&lt;1</m> matters</title>
+
+  <p>If <m>|r|&lt;1</m>, the powers</p>
+
+  <md>r^n</md>
+
+  <p>shrink to <m>0</m>.  The tail of the series becomes smaller and smaller.</p>
+
+  <p>If <m>r=1</m>, then</p>
+
+  <md>a+ar+ar^2+\cdots=a+a+a+\cdots,</md>
+
+  <p>which diverges unless <m>a=0</m>.</p>
+
+  <p>If <m>r=-1</m>, then</p>
+
+  <md>a+ar+ar^2+\cdots=a-a+a-a+\cdots,</md>
+
+  <p>and the partial sums oscillate.</p>
+
+  <p>If <m>|r|&gt;1</m>, then the terms do not even approach <m>0</m>.  The partial sums cannot
+settle.</p>
+
+  <md>
+\text{A nonzero geometric series converges exactly when \(|r|&lt;1\).}
+</md>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-15-2-geometric-ratio">
+        <title>Why does <m>|r|&lt;1</m> decide a geometric series?</title>
+        <statement>
+          <p>
+            A geometric series converges exactly when <m>|r|&lt;1</m> (unless the first term is zero). In your own words, why do the powers <m>r^n</m> have to shrink, and what goes wrong when <m>|r|=1</m> or <m>|r|&gt;1</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The finite-sum formula still has a leftover power <m>r^{n+1}</m>. That leftover vanishes only if the powers shrink. Otherwise the terms stay large, or the partial sums oscillate.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-2-infinite-series-9">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\sum_{k=0}^{\infty}3\left(\frac14\right)^k.</md>
+
+  <p>This is geometric with</p>
+
+  <md>a=3,
+\qquad
+r=\frac14.</md>
+
+  <p>Since</p>
+
+  <md>\left|\frac14\right|&lt;1,</md>
+
+  <p>the series converges, and</p>
+
+  <md>\sum_{k=0}^{\infty}3\left(\frac14\right)^k
+=
+\frac{3}{1-\frac14}
+=
+\frac{3}{\frac34}
+=
+4.</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A useful tail formula</title>
+
+  <p>If</p>
+
+  <md>|r|&lt;1,</md>
+
+  <p>then the part of the geometric series after the <m>n</m>-th term is</p>
+
+  <md>ar^{n+1}+ar^{n+2}+ar^{n+3}+\cdots.</md>
+
+  <p>This is another geometric series, with first term <m>ar^{n+1}</m> and ratio <m>r</m>.  Therefore</p>
+
+  <md>
+\sum_{k=n+1}^{\infty} ar^k
+=
+\frac{ar^{n+1}}{1-r}.
+</md>
+
+  <p>This formula is the first clean example of a <em>remainder</em> or <em>tail</em>.  It tells us
+exactly how much is left after a finite partial sum.</p>
+
+  <p>For example,</p>
+
+  <md>1+\frac12+\frac14+\cdots+\frac1{2^n}</md>
+
+  <p>misses the full sum <m>2</m> by</p>
+
+  <md>\frac{(1/2)^{n+1}}{1-\frac12}
+=
+\frac1{2^n}.</md>
+
+  <p>So the approximation improves by a factor of <m>2</m> each time we add one more term.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-15-2-infinite-series-11">
+    <title>a decimal as a series</title>
+    <statement>
+  <p>The decimal</p>
+
+  <md>0.999\ldots</md>
+
+  <p>means</p>
+
+  <md>\frac9{10}+\frac9{100}+\frac9{1000}+\cdots.</md>
+
+  <p>This is geometric with</p>
+
+  <md>a=\frac9{10},
+\qquad
+r=\frac1{10}.</md>
+
+  <p>Therefore</p>
+
+  <md>0.999\ldots
+=
+\frac{\frac9{10}}{1-\frac1{10}}
+=
+\frac{\frac9{10}}{\frac9{10}}
+=
+1.</md>
+
+  <p>This is not a trick.  The decimal is defined by the limit of its finite truncations:</p>
+
+  <md>0.9,\quad 0.99,\quad 0.999,\quad\ldots.</md>
+
+  <p>Those truncations form a sequence whose limit is <m>1</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-2-infinite-series-12">
+    <title>a bouncing ball</title>
+    <statement>
+  <p>A ball is dropped from a height of <m>10</m> feet.  Each bounce rises to <m>60\%</m> of the
+previous height.  How far does the ball travel before coming to rest?</p>
+
+  <p>The ball first falls</p>
+
+  <md>10</md>
+
+  <p>feet.</p>
+
+  <p>Then it rises</p>
+
+  <md>10(0.6)</md>
+
+  <p>feet and falls the same distance.  Then it rises</p>
+
+  <md>10(0.6)^2</md>
+
+  <p>feet and falls the same distance, and so on.</p>
+
+  <p>So the total distance is</p>
+
+  <md>10+2\left[10(0.6)+10(0.6)^2+10(0.6)^3+\cdots\right].</md>
+
+  <p>The bracketed series is geometric with first term</p>
+
+  <md>10(0.6)=6</md>
+
+  <p>and ratio</p>
+
+  <md>0.6.</md>
+
+  <p>Its sum is</p>
+
+  <md>\frac{6}{1-0.6}=\frac6{0.4}=15.</md>
+
+  <p>Therefore the total distance is</p>
+
+  <md>10+2(15)=40</md>
+
+  <p>feet.</p>
+
+  <p>The model contains infinitely many smaller and smaller bounces.  A geometric series
+gives their total distance.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-telescoping-series">
+    <title>Telescoping series</title>
+
+  <p>Some series converge because most terms cancel.</p>
+
+  <p>Consider</p>
+
+  <md>\sum_{k=1}^{\infty}\left(\frac1k-\frac1{k+1}\right).</md>
+
+  <p>The <m>n</m>-th partial sum is</p>
+
+  <md>S_n
+=
+\left(1-\frac12\right)
++
+\left(\frac12-\frac13\right)
++
+\left(\frac13-\frac14\right)
++\cdots+
+\left(\frac1n-\frac1{n+1}\right).</md>
+
+  <p>Everything in the middle cancels:</p>
+
+  <md>S_n=1-\frac1{n+1}.</md>
+
+  <p>Therefore</p>
+
+  <md>S_n\to1.</md>
+
+  <p>So</p>
+
+  <md>
+\sum_{k=1}^{\infty}\left(\frac1k-\frac1{k+1}\right)=1.
+</md>
+
+  <p>This is called a telescoping series because the sum collapses like a telescope.</p>
+
+  <note xml:id="note-sec-15-2-infinite-series-100">
+    <title>Telescoping strategy</title>
+      <p>To evaluate a telescoping series:</p>
+          <ol>
+      <li>
+        <p>Write the <m>n</m>-th partial sum.</p>
+      </li>
+      <li>
+        <p>Expand enough terms to see the cancellation.</p>
+      </li>
+      <li>
+        <p>Simplify <m>S_n</m>.</p>
+      </li>
+      <li>
+        <p>Take the limit as <m>n\to\infty</m>.</p>
+      </li>
+    </ol>
+  </note>
+
+
+  <exercise xml:id="checkpoint-15-2-telescoping-not-enough">
+        <title>Why is cancellation not enough for a telescoping series?</title>
+        <statement>
+          <p>
+            In a telescoping series, most terms cancel in the partial sums. In your own words, why is seeing that cancellation only the first step, and why can a series still diverge after a genuine collapse?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Cancellation produces a simplified formula for <m>S_n</m>. The series converges only if that simplified leftover still has a limit.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-15-2-infinite-series-13">
+    <title>partial fractions create telescoping</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k(k+1)}.</md>
+
+  <p>First decompose:</p>
+
+  <md>\frac1{k(k+1)}
+=
+\frac1k-\frac1{k+1}.</md>
+
+  <p>Therefore</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k(k+1)}
+=
+\sum_{k=1}^{\infty}\left(\frac1k-\frac1{k+1}\right).</md>
+
+  <p>From the previous calculation,</p>
+
+  <md>
+\sum_{k=1}^{\infty}\frac1{k(k+1)}=1.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-15-2-infinite-series-14">
+    <title>cancellation does not always mean convergence</title>
+    <statement>
+  <p>Consider</p>
+
+  <md>\sum_{k=1}^{\infty}\left(\sqrt{k+1}-\sqrt{k}\right).</md>
+
+  <p>The <m>n</m>-th partial sum is</p>
+
+  <md>S_n
+=
+(\sqrt2-\sqrt1)
++
+(\sqrt3-\sqrt2)
++
+(\sqrt4-\sqrt3)
++\cdots+
+(\sqrt{n+1}-\sqrt n).</md>
+
+  <p>The middle terms cancel, leaving</p>
+
+  <md>S_n=\sqrt{n+1}-1.</md>
+
+  <p>But</p>
+
+  <md>\sqrt{n+1}-1\to\infty.</md>
+
+  <p>Therefore the series diverges.</p>
+
+  <md>
+\sum_{k=1}^{\infty}\left(\sqrt{k+1}-\sqrt{k}\right)
+\text{ diverges.}
+</md>
+
+  <p>The cancellation was real, but the leftover endpoint still grew without bound.</p>
+
+  <warning xml:id="warn-sec-15-2-infinite-series-101">
+    <title>Warning</title>
+      <p>For a telescoping series, cancellation is only the first step.  The simplified partial sums
+must still have a limit.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-what-series-add-to-calculus">
+    <title>What series add to calculus</title>
+
+  <p>A finite sum is arithmetic.  An infinite series is calculus because it is a limit:</p>
+
+  <md>\sum_{k=1}^{\infty}a_k
+=
+\lim_{n\to\infty}\sum_{k=1}^{n}a_k.</md>
+
+  <p>The first examples were friendly because we could find exact formulas for the partial
+sums.</p>
+
+  <md>\text{geometric series}
+\quad\Longrightarrow\quad
+S_n=a\,\frac{1-r^{n+1}}{1-r},</md>
+
+  <md>\text{telescoping series}
+\quad\Longrightarrow\quad
+\text{massive cancellation}.</md>
+
+  <p>Most series will not be so generous.  We will not usually have a simple formula for
+<m>S_n</m>.  Instead, we will need tests that decide whether the partial sums converge
+without computing them exactly.</p>
+
+  <p>The first warning is close at hand.</p>
+
+  <p>For a series to converge, its terms must get small.  But small terms are not enough.</p>
+
+  <p>The next section begins with the series</p>
+
+  <md>1+\frac12+\frac13+\frac14+\cdots.</md>
+
+  <p>Its terms approach <m>0</m>.  The surprise is that the sum still diverges.</p>
+
+  <p>
+
+
+
+</p>
+
+  <exercise xml:id="checkpoint-15-2-series-as-calculus">
+        <title>Why is an infinite series calculus rather than arithmetic?</title>
+        <statement>
+          <p>
+            A finite sum is ordinary addition. An infinite series is defined by <m>\sum a_k=\lim S_n</m>. In your own words, why does that limit make infinite addition a calculus idea, and why will most later series need tests instead of exact formulas for <m>S_n</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Geometric and telescoping series are unusually generous: their partial sums simplify. A test is a way to decide whether the running totals settle without writing them in closed form.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

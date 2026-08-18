@@ -1,0 +1,740 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-7-second-order-equations-and-vibration">
+  <title>Second-order equations and vibration</title>
+
+  <p>The first-order equations in this chapter described quantities whose rates were governed
+by their current state or by an outside input.  But many physical laws do not begin with
+velocity.  They begin with acceleration.</p>
+
+  <p>A spring does not merely say where a mass is.  It pulls harder when the mass is farther
+from equilibrium.  Newton’s second law then connects that force to acceleration.</p>
+
+  <md>\text{force}
+\quad\Longrightarrow\quad
+\text{acceleration}
+\quad\Longrightarrow\quad
+\text{second derivative}.</md>
+
+  <p>That is why vibrating systems naturally lead to second-order differential equations.</p>
+
+  <subsection xml:id="subsec-simple-harmonic-motion">
+    <title>Simple harmonic motion</title>
+
+  <p>Imagine a mass attached to a spring on a frictionless table.  Pull the mass to the right,
+let go, and it moves back and forth.</p>
+
+  <p>Let</p>
+
+  <md>y(t)=\text{displacement from equilibrium at time }t.</md>
+
+  <p>So</p>
+
+  <md>y=0</md>
+
+  <p>means the mass is at its resting position.  Positive <m>y</m> means it is displaced to the
+right.  Negative <m>y</m> means it is displaced to the left.</p>
+
+  <p>A spring obeying Hooke’s law pulls back toward equilibrium:</p>
+
+  <md>F=-ky,
+\qquad k&gt;0.</md>
+
+  <p>The constant <m>k</m> measures the stiffness of the spring.  The minus sign is the important
+part.  If <m>y&gt;0</m>, the force is negative.  If <m>y&lt;0</m>, the force is positive.  The force always
+points back toward <m>0</m>.</p>
+
+  <p>Newton’s second law says</p>
+
+  <md>F=ma,</md>
+
+  <p>where</p>
+
+  <md>a=y''.</md>
+
+  <p>Therefore</p>
+
+  <md>my''=-ky.</md>
+
+  <p>Rearrange:</p>
+
+  <md>y''+\frac{k}{m}y=0.</md>
+
+  <p>It is customary to write</p>
+
+  <md>\omega^2=\frac{k}{m},</md>
+
+  <p>where</p>
+
+  <md>\omega&gt;0.</md>
+
+  <p>Then the spring equation becomes</p>
+
+  <md>
+y''+\omega^2 y=0.
+</md>
+
+  <p>This equation says:</p>
+
+  <md>
+\text{acceleration is proportional to displacement, but in the opposite direction.}
+</md>
+
+  <p>That is the mathematical heart of simple harmonic motion.</p>
+
+
+  <exercise xml:id="checkpoint-13-7-acceleration-as-law">
+        <title>Why do vibrating systems lead to second-order equations?</title>
+        <statement>
+          <p>
+            Hooke’s law gives a force <m>F=-ky</m>, and Newton’s second law converts force into acceleration. In your own words, why does that produce <m>y''+\omega^2 y=0</m>, and what sentence about acceleration and displacement is the heart of simple harmonic motion?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Acceleration is the second derivative. The restoring force points opposite the displacement, so acceleration is proportional to displacement but in the opposite direction.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-13-7-second-order-equations-and-vibration-1">
+    <title>Example</title>
+    <statement>
+  <p>Check that</p>
+
+  <md>y(t)=3\cos(2t)</md>
+
+  <p>solves</p>
+
+  <md>y''+4y=0.</md>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)=-6\sin(2t),</md>
+
+  <p>and</p>
+
+  <md>y''(t)=-12\cos(2t).</md>
+
+  <p>Now compute the left side:</p>
+
+  <md>y''+4y
+=
+-12\cos(2t)+4\bigl(3\cos(2t)\bigr)
+=
+0.</md>
+
+  <p>So</p>
+
+  <md>
+y(t)=3\cos(2t)
+</md>
+
+  <p>is a solution.</p>
+
+  <p>The initial position is</p>
+
+  <md>y(0)=3,</md>
+
+  <p>and the initial velocity is</p>
+
+  <md>y'(0)=0.</md>
+
+  <p>That matches the picture of a mass pulled <m>3</m> units from equilibrium and released
+from rest.</p>
+
+  <figure xml:id="fig-simple-harmonic-motion-cos">
+    <caption>Simple harmonic motion oscillates around the equilibrium <m>y=0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=7,
+    ymin=-3.6, ymax=3.6,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,1.5708,3.1416,4.7124,6.2832},
+    xticklabels={\(0\),\(\frac{\pi}{2}\),\(\pi\),\(\frac{3\pi}{2}\),\(2\pi\)},
+    ytick={-3,0,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:7, samples=300] {3*cos(deg(2*x))};
+\addplot[thick, dotted, domain=0:7, samples=2] {0};
+\node[anchor=south west] at (axis cs:0.15,3) {\(y=3\cos(2t)\)};
+\node[anchor=west] at (axis cs:3.35,0.35) {equilibrium};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The graph repeats.  The mass returns to the same position and velocity again and again.</p>
+
+  <p>The number <m>\omega</m> is called the angular frequency.  The period is</p>
+
+  <md>
+T=\frac{2\pi}{\omega}.
+</md>
+
+  <p>For <m>y=3\cos(2t)</m>, we have <m>\omega=2</m>, so</p>
+
+  <md>T=\frac{2\pi}{2}=\pi.</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-equation-ypp-omega2-y">
+    <title>The equation <m>y”+\omega^2y=0</m></title>
+
+  <p>The equation</p>
+
+  <md>y''+\omega^2y=0</md>
+
+  <p>is friendly because sine and cosine repeat under differentiation.</p>
+
+  <md>(\cos \omega t)'=-\omega\sin\omega t,</md>
+
+  <md>(\cos \omega t)''=-\omega^2\cos\omega t.</md>
+
+  <p>So</p>
+
+  <md>y=\cos\omega t</md>
+
+  <p>satisfies</p>
+
+  <md>y''+\omega^2y=0.</md>
+
+  <p>The same is true for</p>
+
+  <md>y=\sin\omega t,</md>
+
+  <p>because</p>
+
+  <md>(\sin \omega t)''=-\omega^2\sin\omega t.</md>
+
+  <p>Since the equation is linear, any linear combination is also a solution:</p>
+
+  <md>
+y(t)=C_1\cos(\omega t)+C_2\sin(\omega t).
+</md>
+
+  <p>This is the general solution.</p>
+
+  <note xml:id="note-sec-13-7-second-order-equations-and-vibration-101">
+    <title>Simple harmonic oscillator</title>
+      <p>The differential equation</p>
+        <md>
+y''+\omega^2y=0,
+\qquad \omega&gt;0,
+</md>
+      <p>has general solution</p>
+        <md>
+y(t)=C_1\cos(\omega t)+C_2\sin(\omega t).
+</md>
+  </note>
+
+  <p>The constants are determined by two initial conditions.  A second-order equation needs
+two starting values because motion needs both position and velocity.</p>
+
+  <p>Suppose</p>
+
+  <md>y(0)=y_0
+\qquad\text{and}\qquad
+y'(0)=v_0.</md>
+
+  <p>From</p>
+
+  <md>y(t)=C_1\cos(\omega t)+C_2\sin(\omega t),</md>
+
+  <p>we get</p>
+
+  <md>y(0)=C_1.</md>
+
+  <p>So</p>
+
+  <md>C_1=y_0.</md>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)=-\omega C_1\sin(\omega t)+\omega C_2\cos(\omega t).</md>
+
+  <p>Then</p>
+
+  <md>y'(0)=\omega C_2.</md>
+
+  <p>So</p>
+
+  <md>C_2=\frac{v_0}{\omega}.</md>
+
+  <p>Thus the solution of</p>
+
+  <md>y''+\omega^2y=0,
+\qquad
+y(0)=y_0,
+\qquad
+y'(0)=v_0</md>
+
+  <p>is</p>
+
+  <md>
+y(t)=y_0\cos(\omega t)+\frac{v_0}{\omega}\sin(\omega t).
+</md>
+
+  <example xml:id="ex-sec-13-7-second-order-equations-and-vibration-2">
+    <title>Example</title>
+    <statement>
+  <p>Solve</p>
+
+  <md>y''+9y=0,
+\qquad
+y(0)=2,
+\qquad
+y'(0)=6.</md>
+
+  <p>Here</p>
+
+  <md>\omega^2=9,
+\qquad
+\omega=3.</md>
+
+  <p>The solution is</p>
+
+  <md>y(t)=C_1\cos(3t)+C_2\sin(3t).</md>
+
+  <p>The initial position gives</p>
+
+  <md>C_1=2.</md>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)=-3C_1\sin(3t)+3C_2\cos(3t).</md>
+
+  <p>Then</p>
+
+  <md>y'(0)=3C_2.</md>
+
+  <p>Since <m>y'(0)=6</m>,</p>
+
+  <md>3C_2=6,</md>
+
+  <p>so</p>
+
+  <md>C_2=2.</md>
+
+  <p>Therefore</p>
+
+  <md>
+y(t)=2\cos(3t)+2\sin(3t).
+</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Energy check</title>
+
+  <p>The undamped spring keeps oscillating because no energy is lost.</p>
+
+  <p>For</p>
+
+  <md>my''+ky=0,</md>
+
+  <p>define the energy</p>
+
+  <md>E(t)=\frac12m\bigl(y'(t)\bigr)^2+\frac12k\bigl(y(t)\bigr)^2.</md>
+
+  <p>The first term is kinetic energy.  The second is spring potential energy.</p>
+
+  <p>Differentiate:</p>
+
+  <md>E'(t)
+=
+m y'y''+k yy'.</md>
+
+  <p>Factor out <m>y'</m>:</p>
+
+  <md>E'(t)=y'(my''+ky).</md>
+
+  <p>But the equation says</p>
+
+  <md>my''+ky=0.</md>
+
+  <p>Therefore</p>
+
+  <md>E'(t)=0.</md>
+
+  <p>So</p>
+
+  <md>
+E(t)\text{ is constant.}
+</md>
+
+  <p>The energy moves back and forth between motion and spring stretch.  It does not
+disappear.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-7-two-initial-conditions">
+        <title>Why does a second-order equation need two starting values?</title>
+        <statement>
+          <p>
+            The general solution <m>y=C_1\cos(\omega t)+C_2\sin(\omega t)</m> has two constants. In your own words, why is position alone not enough to determine the future of a spring, and what second piece of initial data is required?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Motion needs both where the mass is and how fast it is moving. A mass at equilibrium may stay there or pass through with high speed.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-damping">
+    <title>Damping</title>
+
+  <p>Real vibrations usually die down.  A guitar string grows quiet.  A shock absorber settles
+after a bump.  A swinging door stops swinging.</p>
+
+  <p>The missing ingredient is damping.</p>
+
+  <p>Damping is a force that opposes velocity.  A simple model is</p>
+
+  <md>F_{\text{damping}}=-c y',
+\qquad c&gt;0.</md>
+
+  <p>The spring force is still</p>
+
+  <md>F_{\text{spring}}=-ky.</md>
+
+  <p>Newton’s law gives</p>
+
+  <md>my''=-cy'-ky.</md>
+
+  <p>So</p>
+
+  <md>
+my''+cy'+ky=0.
+</md>
+
+  <p>This is a second-order linear differential equation with constant coefficients.  The new
+term</p>
+
+  <md>cy'</md>
+
+  <p>is responsible for energy loss.</p>
+
+  <note xml:id="note-sec-13-7-second-order-equations-and-vibration-102">
+    <title>Damped oscillator</title>
+      <p>A damped spring-mass system is modeled by</p>
+        <md>
+my''+cy'+ky=0,
+</md>
+      <p>where</p>
+        <md>m&gt;0,\qquad c&gt;0,\qquad k&gt;0.</md>
+      <p>The mass <m>m</m> resists acceleration, the damping coefficient <m>c</m> resists velocity, and
+the spring constant <m>k</m> resists displacement.</p>
+  </note>
+
+  <p>For light damping, the motion still oscillates, but the oscillations shrink.  One common
+form of such a solution is</p>
+
+  <md>y(t)=e^{-\beta t}\bigl(A\cos(\mu t)+B\sin(\mu t)\bigr),</md>
+
+  <p>where</p>
+
+  <md>\beta&gt;0.</md>
+
+  <p>The exponential factor</p>
+
+  <md>e^{-\beta t}</md>
+
+  <p>is the shrinking envelope.  The sine and cosine still oscillate, but their amplitude decays.</p>
+
+  <example xml:id="ex-sec-13-7-second-order-equations-and-vibration-4">
+    <title>Example</title>
+    <statement>
+  <p>Check that</p>
+
+  <md>y(t)=e^{-0.2t}\cos(2t)</md>
+
+  <p>solves</p>
+
+  <md>y''+0.4y'+4.04y=0.</md>
+
+  <p>First compute</p>
+
+  <md>y'(t)=e^{-0.2t}\bigl(-0.2\cos(2t)-2\sin(2t)\bigr).</md>
+
+  <p>Differentiate again:</p>
+
+  <md>y''(t)=e^{-0.2t}\bigl(-3.96\cos(2t)+0.8\sin(2t)\bigr).</md>
+
+  <p>Now substitute:</p>
+
+  <md>y''+0.4y'+4.04y</md>
+
+  <p>equals</p>
+
+  <md>e^{-0.2t}\bigl(-3.96\cos(2t)+0.8\sin(2t)\bigr)</md>
+
+  <md>+0.4e^{-0.2t}\bigl(-0.2\cos(2t)-2\sin(2t)\bigr)
++
+4.04e^{-0.2t}\cos(2t).</md>
+
+  <p>Collect the cosine terms:</p>
+
+  <md>-3.96-0.08+4.04=0.</md>
+
+  <p>Collect the sine terms:</p>
+
+  <md>0.8-0.8=0.</md>
+
+  <p>So the expression is <m>0</m>.  Therefore the function solves the damped oscillator
+equation.</p>
+
+  <figure xml:id="fig-damped-oscillation">
+    <caption>Damping multiplies the oscillation by a decaying envelope.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=18,
+    ymin=-1.2, ymax=1.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(y(t)\)},
+    xtick={0,5,10,15},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.98,0.97)}, anchor=north east}
+]
+\addplot[very thick, domain=0:18, samples=500] {exp(-0.2*x)*cos(deg(2*x))};
+\addlegendentry{\(e^{-0.2t}\cos(2t)\)}
+\addplot[thick, dashed, domain=0:18, samples=200] {exp(-0.2*x)};
+\addlegendentry{\(e^{-0.2t}\)}
+\addplot[thick, dashed, domain=0:18, samples=200] {-exp(-0.2*x)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The solution still crosses the equilibrium many times, but each swing is smaller than the
+previous one.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Energy with damping</title>
+
+  <p>For the damped equation</p>
+
+  <md>my''+cy'+ky=0,</md>
+
+  <p>use the same energy</p>
+
+  <md>E(t)=\frac12m(y')^2+\frac12ky^2.</md>
+
+  <p>Then</p>
+
+  <md>E'(t)=y'(my''+ky).</md>
+
+  <p>From the differential equation,</p>
+
+  <md>my''+ky=-cy'.</md>
+
+  <p>Therefore</p>
+
+  <md>E'(t)=y'(-cy')=-c(y')^2.</md>
+
+  <p>Since</p>
+
+  <md>c&gt;0,</md>
+
+  <p>we have</p>
+
+  <md>
+E'(t)\le0.
+</md>
+
+  <p>Energy decreases, except at instants when <m>y'=0</m>.  The damping term drains energy
+from the motion.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-7-damping-drains-energy">
+        <title>What does damping change in the energy story?</title>
+        <statement>
+          <p>
+            Without friction, energy moves back and forth between motion and spring stretch. With a damping term <m>-cy'</m>, oscillations typically shrink. In your own words, why does a force that opposes velocity drain energy, and what role does the decaying exponential envelope play?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Damping resists velocity, so it does negative work. The factor <m>e^{-\beta t}</m> shrinks the oscillating amplitude.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-driven-oscillation-resonance">
+    <title>Driven oscillation and resonance</title>
+
+  <p>A system can also be forced from outside.  A child on a swing is pushed.  A bridge is hit
+by periodic wind.  A guitar string is driven by a vibrating body.</p>
+
+  <p>The simplest driven oscillator has the form</p>
+
+  <md>
+y''+\omega^2y=A\cos(\gamma t).
+</md>
+
+  <p>The left side describes the natural oscillator.  The right side is an outside periodic force.</p>
+
+  <p>The number</p>
+
+  <md>\omega</md>
+
+  <p>is the natural angular frequency.  The number</p>
+
+  <md>\gamma</md>
+
+  <p>is the driving angular frequency.</p>
+
+  <p>If</p>
+
+  <md>\gamma\neq\omega,</md>
+
+  <p>try a particular solution of the form</p>
+
+  <md>y_p(t)=C\cos(\gamma t).</md>
+
+  <p>Then</p>
+
+  <md>y_p''(t)=-C\gamma^2\cos(\gamma t).</md>
+
+  <p>Substitute into the equation:</p>
+
+  <md>y_p''+\omega^2y_p
+=
+C(\omega^2-\gamma^2)\cos(\gamma t).</md>
+
+  <p>We want this to equal</p>
+
+  <md>A\cos(\gamma t).</md>
+
+  <p>So</p>
+
+  <md>C(\omega^2-\gamma^2)=A,</md>
+
+  <p>and therefore</p>
+
+  <md>
+C=\frac{A}{\omega^2-\gamma^2}.
+</md>
+
+  <p>Thus, when <m>\gamma\neq\omega</m>,</p>
+
+  <md>
+y_p(t)=\frac{A}{\omega^2-\gamma^2}\cos(\gamma t).
+</md>
+
+  <p>The denominator tells the story.  If the driving frequency <m>\gamma</m> is close to the
+natural frequency <m>\omega</m>, then</p>
+
+  <md>|\omega^2-\gamma^2|</md>
+
+  <p>is small, and the response amplitude can be large.</p>
+
+  <note xml:id="note-sec-13-7-second-order-equations-and-vibration-103">
+    <title>Resonance, first view</title>
+      <p>A system resonates when the driving frequency is close to the natural frequency.  The
+forcing then reinforces the natural motion instead of fighting it.</p>
+  </note>
+
+  <p>At exact resonance, the trial form above fails because the denominator becomes <m>0</m>.
+For</p>
+
+  <md>y''+\omega^2y=A\cos(\omega t),</md>
+
+  <p>one particular solution is</p>
+
+  <md>
+y_p(t)=\frac{A}{2\omega}t\sin(\omega t).
+</md>
+
+  <p>The factor <m>t</m> means that the amplitude grows with time in the ideal undamped model.</p>
+
+  <figure xml:id="fig-resonance-response">
+    <caption>In the undamped model <m>y”+\omega^2y=A\cos(\gamma t)</m>, the response grows large as <m>\gamma</m> approaches <m>\omega</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.5,
+    ymin=0, ymax=6.2,
+    axis lines=left,
+    xlabel={driving frequency \(\gamma\)},
+    ylabel={response size},
+    xtick={0,1,2,3},
+    ytick={0,2,4,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:1.88, samples=200] {1/(4-x^2)};
+\addplot[very thick, domain=2.12:3.45, samples=200] {1/(x^2-4)};
+\draw[dashed] (axis cs:2,0) -- (axis cs:2,6);
+\node[anchor=south] at (axis cs:2,6) {\(\gamma=\omega\)};
+\node[anchor=west] at (axis cs:2.15,4.4) {large response};
+\node[anchor=west] at (axis cs:0.3,0.65) {\(\omega=2,\ A=1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Real systems have damping, so the amplitude does not grow forever.  But the warning
+survives: forcing near the natural frequency can create a much larger response than
+forcing far from it.</p>
+
+  <warning xml:id="warn-sec-13-7-second-order-equations-and-vibration-104">
+    <title>Model warning</title>
+      <p>The equation</p>
+        <md>y''+\omega^2y=A\cos(\omega t)</md>
+      <p>predicts unbounded growth at resonance because it ignores damping and structural
+limits.  It is a warning model, not a complete physical description.</p>
+  </warning>
+
+  <p>Second-order equations already show that the state of a system may need more than one
+number.  A spring is not determined by position alone.  To know what happens next, we
+also need velocity.</p>
+
+  <p>That idea leads naturally to systems of differential equations.</p>
+
+  <exercise xml:id="checkpoint-13-7-resonance">
+        <title>What does it mean for a driven oscillator to resonate?</title>
+        <statement>
+          <p>
+            When the driving frequency is close to the natural frequency, the undamped response amplitude can become large. In your own words, why does that happen, and why is the unbounded-growth model a warning rather than a complete physical description?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Forcing then reinforces the natural motion instead of fighting it. Real systems have damping and structural limits, so amplitude does not grow forever.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

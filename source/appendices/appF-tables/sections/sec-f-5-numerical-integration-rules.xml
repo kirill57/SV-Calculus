@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-f-5-numerical-integration-rules">
+  <title>Numerical integration rules</title>
+
+  <p>Numerical integration approximates</p>
+
+  <md>I=\int_a^b f(x)\,dx</md>
+
+  <p>by replacing the graph with simple shapes.</p>
+
+  <p>Let</p>
+
+  <md>\Delta x=\frac{b-a}{n},
+\qquad
+x_j=a+j\Delta x,
+\qquad
+j=0,1,\ldots,n.</md>
+
+  <p>The midpoint of the <m>j</m>-th subinterval <m>[x_{j-1},x_j]</m> is</p>
+
+  <md>m_j=\frac{x_{j-1}+x_j}{2}.</md>
+
+  <subsection xml:id="appsubsec-numerical-rules-table">
+    <title>Rectangle, midpoint, trapezoidal, and Simpson rules</title>
+
+  <table xml:id="tab-sec-f-5-numerical-integration-rules-0">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>rule</strong></cell>
+        <cell><strong>formula</strong></cell>
+        <cell><strong>geometry</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Left rectangle rule</cell>
+        <cell><m>\displaystyle
+L_n=\Delta x\sum_{j=0}^{n-1} f(x_j)</m></cell>
+        <cell>Left endpoint rectangles</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Right rectangle rule</cell>
+        <cell><m>\displaystyle
+R_n=\Delta x\sum_{j=1}^{n} f(x_j)</m></cell>
+        <cell>Right endpoint rectangles</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Midpoint rule</cell>
+        <cell><m>\displaystyle
+M_n=\Delta x\sum_{j=1}^{n} f(m_j)</m></cell>
+        <cell>Midpoint rectangles</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Trapezoidal rule</cell>
+        <cell><m>\displaystyle
+T_n=
+\frac{\Delta x}{2}
+\left[
+f(x_0)+2\sum_{j=1}^{n-1}f(x_j)+f(x_n)
+\right]</m></cell>
+        <cell>Trapezoids</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Simpson’s rule</cell>
+        <cell>For even <m>n</m>,
+
+\[
+S_n=
+\frac{\Delta x}{3}
+\left[
+f(x_0)
++
+4\sum_{\substack{1\le j\le n-1</cell>
+      </row>
+      <row bottom="minor">
+        <cell>j\text{ odd}}} f(x_j)
++
+2\sum_{\substack{2\le j\le n-2</cell>
+      </row>
+      <row>
+        <cell>j\text{ even}}} f(x_j)
++
+f(x_n)
+\right].
+\]</cell>
+        <cell>Parabolic arcs</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <note xml:id="note-sec-f-5-numerical-integration-rules-9">
+    <title>Simpson’s rule requires even <m>n</m></title>
+      <p>The subintervals are paired, because each pair is approximated by a parabola.</p>
+  </note>
+  </subsection>
+
+  <subsection xml:id="appsubsec-numerical-error-bounds-table">
+    <title>Error bounds</title>
+
+  <p>The following bounds assume <m>f</m> has the required derivatives on <m>[a,b]</m>.</p>
+
+  <table xml:id="tab-sec-f-5-numerical-integration-rules-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>rule</strong></cell>
+        <cell><strong>hypothesis</strong></cell>
+        <cell><strong>error bound</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Left or right rectangle</cell>
+        <cell><m>\displaystyle |f’(x)|\le K</m> on <m>[a,b]</m></cell>
+        <cell><m>\displaystyle
+|I-L_n|\le \frac{K(b-a)^2}{2n},
+\qquad
+|I-R_n|\le \frac{K(b-a)^2}{2n}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Midpoint</cell>
+        <cell><m>\displaystyle |f”(x)|\le K</m> on <m>[a,b]</m></cell>
+        <cell><m>\displaystyle
+|I-M_n|\le \frac{K(b-a)^3}{24n^2}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Trapezoidal</cell>
+        <cell><m>\displaystyle |f”(x)|\le K</m> on <m>[a,b]</m></cell>
+        <cell><m>\displaystyle
+|I-T_n|\le \frac{K(b-a)^3}{12n^2}</m></cell>
+      </row>
+      <row>
+        <cell>Simpson</cell>
+        <cell><m>\displaystyle |f^{(4)}(x)|\le K</m> on <m>[a,b]</m>, and <m>n</m> is even</cell>
+        <cell><m>\displaystyle
+|I-S_n|\le \frac{K(b-a)^5}{180n^4}</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>These are worst-case guarantees.  The actual error may be much smaller.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-monotonicity-concavity-numerical-checks">
+    <title>Monotonicity and concavity checks</title>
+
+  <p>Before using a numerical value, a quick shape check can tell whether the approximation
+should overestimate or underestimate.</p>
+
+  <table xml:id="tab-sec-f-5-numerical-integration-rules-2">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>shape condition</strong></cell>
+        <cell><strong>consequence</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>f</m> increasing on <m>[a,b]</m></cell>
+        <cell><m>\displaystyle L_n\le \int_a^b f(x)\,dx\le R_n</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>f</m> decreasing on <m>[a,b]</m></cell>
+        <cell><m>\displaystyle R_n\le \int_a^b f(x)\,dx\le L_n</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>f</m> concave up on <m>[a,b]</m></cell>
+        <cell>The trapezoidal rule overestimates.</cell>
+      </row>
+      <row>
+        <cell><m>f</m> concave down on <m>[a,b]</m></cell>
+        <cell>The trapezoidal rule underestimates.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>For the midpoint rule, the concavity effect is opposite:</p>
+
+  <table xml:id="tab-sec-f-5-numerical-integration-rules-3">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>condition</strong></cell>
+        <cell><strong>midpoint rule behavior</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>concave up</cell>
+        <cell>midpoint rule underestimates</cell>
+      </row>
+      <row>
+        <cell>concave down</cell>
+        <cell>midpoint rule overestimates</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+  <subsection xml:id="appsubsec-choosing-numerical-rule">
+    <title>Choosing a numerical rule</title>
+
+  <table xml:id="tab-sec-f-5-numerical-integration-rules-4">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>situation</strong></cell>
+        <cell><strong>reasonable choice</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Only left-endpoint data are available</cell>
+        <cell>Left rectangle rule</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Only right-endpoint data are available</cell>
+        <cell>Right rectangle rule</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Midpoint data are available or easy to compute</cell>
+        <cell>Midpoint rule</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Endpoint data are available and graph is nearly linear on small intervals</cell>
+        <cell>Trapezoidal rule</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Function values are easy to compute and high accuracy is desired</cell>
+        <cell>Simpson’s rule</cell>
+      </row>
+      <row>
+        <cell>A guaranteed error tolerance is required</cell>
+        <cell>Use a rule with an error bound and choose <m>n</m> from the bound.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <note xml:id="note-sec-f-5-numerical-integration-rules-10">
+    <title>Final numerical habit</title>
+      <p>A decimal approximation should come with a reason to trust it:</p>
+        <md>\text{shape check, error bound, or convergence evidence.}</md>
+      <p>Best of all, use more than one.</p>
+  </note>
+  </subsection>
+
+</section>

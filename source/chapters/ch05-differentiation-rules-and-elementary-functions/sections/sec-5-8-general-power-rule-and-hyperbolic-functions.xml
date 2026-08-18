@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-general-power-rule-hyperbolic-functions">
+<section xml:id="sec-5-8-general-power-rule-and-hyperbolic-functions">
   <title>General power rule and hyperbolic functions</title>
 
   <p>The power rule first appeared for positive integer powers:</p>
+
   <md>\frac{d}{dx}x^n=nx^{n-1}.</md>
 
-  <p>Then negative powers came from the reciprocal rule, and fractional-looking powers appeared through roots. But the formula is larger than all of those cases.</p>
+  <p>Then negative powers came from the reciprocal rule, and fractional-looking powers appeared through roots.  But the formula is larger than all of those cases.</p>
 
   <p>It works for any real exponent, as long as the function is defined and differentiable.</p>
 
@@ -15,485 +16,807 @@
   <subsection xml:id="subsec-derivative-x-to-r">
     <title>The derivative of <m>x^r</m></title>
 
-    <p>Suppose</p>
-    <md>y=x^\pi, \qquad x\gt 0.</md>
+  <p>Suppose</p>
 
-    <p>This is not a polynomial. The exponent is not an integer. But logarithms turn powers into products.</p>
+  <md>y=x^\pi,
+\qquad x&gt;0.</md>
 
-    <p>Take natural logarithms:</p>
-    <md>\ln y=\ln(x^\pi).</md>
+  <p>This is not a polynomial.  The exponent is not an integer.  But logarithms turn powers into products.</p>
 
-    <p>Using the logarithm rule,</p>
-    <md>\ln y=\pi\ln x.</md>
+  <p>Take natural logarithms:</p>
 
-    <p>Differentiate both sides with respect to <m>x</m>. The left side uses the chain rule:</p>
-    <md>\frac{1}{y}\frac{dy}{dx}=\pi\frac{1}{x}.</md>
+  <md>\ln y=\ln(x^\pi).</md>
 
-    <p>So</p>
-    <md>\frac{dy}{dx}=y\frac{\pi}{x}.</md>
+  <p>Using the logarithm rule,</p>
 
-    <p>Since <m>y=x^\pi</m>, we get</p>
-    <md>\frac{dy}{dx}=x^\pi\frac{\pi}{x}.</md>
+  <md>\ln y=\pi\ln x.</md>
 
-    <p>Therefore</p>
-    <md>\frac{d}{dx}x^\pi=\pi x^{\pi-1}, \qquad x\gt 0.</md>
+  <p>Differentiate both sides with respect to <m>x</m>.  The left side uses the chain rule:</p>
 
-    <p>Nothing special about <m>\pi</m> was used. The same argument works for any real exponent.</p>
+  <md>\frac1y\frac{dy}{dx}=\pi\frac1x.</md>
 
-    <theorem xml:id="thm-general-power-rule">
-      <title>General Power Rule</title>
-      <statement>
-        <p>For any fixed real number <m>r</m>,</p>
-        <md>\frac{d}{dx}x^r=rx^{r-1}, \qquad x\gt 0.</md>
-        <p>When <m>x^r</m> is defined on a larger domain, the same formula holds at points where the derivative exists. The logarithmic proof above applies directly on <m>x\gt 0</m>.</p>
-      </statement>
-      <proof>
-        <p>Let <m>y=x^r</m>, <m>x\gt 0</m>. Take logarithms:</p>
-        <md>\ln y=r\ln x.</md>
-        <p>Differentiate both sides:</p>
-        <md>\frac{1}{y}y'=\frac{r}{x}.</md>
-        <p>Multiply by <m>y</m>:</p>
-        <md>y'=y\frac{r}{x}.</md>
-        <p>Since <m>y=x^r</m>, we have</p>
-        <md>y'=x^r\frac{r}{x}=rx^{r-1}.</md>
-        <p>Thus</p>
-        <md>\frac{d}{dx}x^r=rx^{r-1}.</md>
-      </proof>
-    </theorem>
+  <p>So</p>
 
-    <example xml:id="ex-power-sqrt-two">
-      <title>Differentiating <m>x^{\sqrt{2}}</m></title>
-      <statement>
-        <p>Differentiate</p>
-        <md>f(x)=x^{\sqrt{2}}, \qquad x\gt 0.</md>
-        <p>Using the general power rule,</p>
-        <md>f'(x)=\sqrt{2}\,x^{\sqrt{2}-1}.</md>
-      </statement>
-    </example>
+  <md>\frac{dy}{dx}=y\frac{\pi}{x}.</md>
 
-    <example xml:id="ex-chain-general-power">
-      <title>Chain rule with fractional power</title>
-      <statement>
-        <p>Differentiate</p>
-        <md>g(x)=(1+x^2)^{5/2}.</md>
-        <p>Let <m>u=1+x^2</m>. Then <m>g(x)=u^{5/2}</m>. By the general power rule and the chain rule,</p>
-        <md>g'(x)=\frac{5}{2}u^{3/2}u'.</md>
-        <p>Since <m>u'=2x</m>, we get</p>
-        <md>g'(x)=5x(1+x^2)^{3/2}.</md>
-      </statement>
-    </example>
+  <p>Since</p>
 
-    <example xml:id="ex-power-cube-root">
-      <title>Differentiating the cube root</title>
-      <statement>
-        <p>Differentiate</p>
-        <md>h(x)=\sqrt[3]{x}.</md>
-        <p>For <m>x\neq 0</m>,</p>
-        <md>h(x)=x^{1/3}.</md>
-        <p>So</p>
-        <md>h'(x)=\frac{1}{3}x^{-2/3}.</md>
-        <p>Thus</p>
-        <md>h'(x)=\frac{1}{3x^{2/3}}, \qquad x\neq 0.</md>
-        <p>At <m>x=0</m>, the function is defined, but the derivative is not finite. Indeed,</p>
-        <md>\frac{h(0+k)-h(0)}{k} = \frac{\sqrt[3]{k}}{k} = \frac{1}{k^{2/3}},</md>
-        <p>which becomes unbounded as <m>k\to 0</m>.</p>
-      </statement>
-    </example>
+  <md>y=x^\pi,</md>
 
-    <warning xml:id="warning-power-rule-at-zero">
-      <title>Warning at <m>x=0</m></title>
+  <p>we get</p>
+
+  <md>\frac{dy}{dx}=x^\pi\frac{\pi}{x}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac{d}{dx}x^\pi=\pi x^{\pi-1},
+\qquad x&gt;0.
+</md>
+
+  <p>Nothing special about <m>\pi</m> was used.  The same argument works for any real exponent.</p>
+
+  <note xml:id="note-sec-5-8-general-power-rule-and-hyperbolic-functions-112">
+    <title>General Power Rule</title>
+      <p>For any fixed real number <m>r</m>,</p>
+        <md>
+\frac{d}{dx}x^r=rx^{r-1},
+\qquad x&gt;0.
+</md>
+      <p>When <m>x^r</m> is defined on a larger domain, the same formula holds at points where the derivative exists.  The logarithmic proof above applies directly on <m>x&gt;0</m>.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Let</p>
+
+  <md>y=x^r,
+\qquad x&gt;0.</md>
+
+  <p>Take logarithms:</p>
+
+  <md>\ln y=r\ln x.</md>
+
+  <p>Differentiate both sides:</p>
+
+  <md>\frac1y y'=\frac r x.</md>
+
+  <p>Multiply by <m>y</m>:</p>
+
+  <md>y'=y\frac r x.</md>
+
+  <p>Since</p>
+
+  <md>y=x^r,</md>
+
+  <p>we have</p>
+
+  <md>y'=x^r\frac r x=rx^{r-1}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\frac{d}{dx}x^r=rx^{r-1}.
+</md>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-5-8-logs-prove-power">
+        <title>Why do logarithms prove the general power rule?</title>
+        <statement>
+          <p>
+            For <m>x&gt;0</m>, writing <m>\ln y=r\ln x</m> and differentiating produces <m>y'=rx^{r-1}</m> for any real exponent <m>r</m>. In your own words, why does this argument not need the exponent to be an integer, and why is the proof stated for <m>x&gt;0</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The logarithm turns a power into a constant times <m>\ln x</m>. Natural logarithms of real numbers need a positive input.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-2">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>f(x)=x^{\sqrt2},
+\qquad x&gt;0.</md>
+
+  <p>Using the general power rule,</p>
+
+  <md>
+f'(x)=\sqrt2\,x^{\sqrt2-1}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-3">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>g(x)=(1+x^2)^{5/2}.</md>
+
+  <p>Let</p>
+
+  <md>u=1+x^2.</md>
+
+  <p>Then</p>
+
+  <md>g(x)=u^{5/2}.</md>
+
+  <p>By the general power rule and the chain rule,</p>
+
+  <md>g'(x)=\frac52 u^{3/2}u'.</md>
+
+  <p>Since</p>
+
+  <md>u'=2x,</md>
+
+  <p>we get</p>
+
+  <md>
+g'(x)=5x(1+x^2)^{3/2}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-4">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>h(x)=\sqrt[3]{x}.</md>
+
+  <p>For <m>x\neq0</m>,</p>
+
+  <md>h(x)=x^{1/3}.</md>
+
+  <p>So</p>
+
+  <md>h'(x)=\frac13x^{-2/3}.</md>
+
+  <p>Thus</p>
+
+  <md>
+h'(x)=\frac1{3x^{2/3}},
+\qquad x\neq0.
+</md>
+
+  <p>At <m>x=0</m>, the function is defined, but the derivative is not finite.  Indeed,</p>
+
+  <md>\frac{h(0+k)-h(0)}{k}
+=
+\frac{\sqrt[3]{k}}{k}
+=
+\frac1{k^{2/3}},</md>
+
+  <p>which becomes unbounded as <m>k\to0</m>.</p>
+
+  <warning xml:id="warn-sec-5-8-general-power-rule-and-hyperbolic-functions-113">
+    <title>Warning at <m>x=0</m></title>
       <p>The formula</p>
-      <md>\frac{d}{dx}x^r=rx^{r-1}</md>
-      <p>does not automatically settle what happens at <m>x=0</m>. The function may be defined there while the derivative fails to exist, as with <m>x^{1/3}</m>. Always check the domain and the point.</p>
-    </warning>
+        <md>\frac{d}{dx}x^r=rx^{r-1}</md>
+      <p>does not automatically settle what happens at <m>x=0</m>.  The function may be defined there while the derivative fails to exist, as with <m>x^{1/3}</m>.  Always check the domain and the point.</p>
+  </warning>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-hyperbolic-sine-cosine">
     <title>Hyperbolic sine and cosine</title>
 
-    <p>The exponential function has two natural halves: an even half and an odd half.</p>
+  <p>The exponential function has two natural halves: an even half and an odd half.</p>
 
-    <p>The even half is</p>
-    <md>\cosh x=\frac{e^x+e^{-x}}{2}.</md>
+  <p>The even half is</p>
 
-    <p>The odd half is</p>
-    <md>\sinh x=\frac{e^x-e^{-x}}{2}.</md>
+  <md>\cosh x=\frac{e^x+e^{-x}}2.</md>
 
-    <p>These are called the <term>hyperbolic cosine</term> and <term>hyperbolic sine</term>.</p>
+  <p>The odd half is</p>
 
-    <p>The names look trigonometric, but the definitions are exponential. That makes their derivatives immediate.</p>
+  <md>\sinh x=\frac{e^x-e^{-x}}2.</md>
 
-    <p>Differentiate <m>\sinh x</m>:</p>
-    <md>\frac{d}{dx}\sinh x = \frac{d}{dx}\left(\frac{e^x-e^{-x}}{2}\right).</md>
+  <p>These are called the <em>hyperbolic cosine</em> and <em>hyperbolic sine</em>.</p>
 
-    <p>Since <m>\frac{d}{dx}e^{-x}=-e^{-x}</m>, we get</p>
-    <md>\frac{d}{dx}\sinh x = \frac{e^x+e^{-x}}{2}.</md>
+  <p>The names look trigonometric, but the definitions are exponential.  That makes their derivatives immediate.</p>
 
-    <p>Therefore</p>
-    <theorem xml:id="thm-derivative-sinh">
-      <title>Derivative of hyperbolic sine</title>
-      <statement>
-        <p><md>\frac{d}{dx}\sinh x=\cosh x.</md></p>
-      </statement>
-    </theorem>
+  <p>Differentiate <m>\sinh x</m>:</p>
 
-    <p>Now differentiate <m>\cosh x</m>:</p>
-    <md>\frac{d}{dx}\cosh x = \frac{d}{dx}\left(\frac{e^x+e^{-x}}{2}\right) = \frac{e^x-e^{-x}}{2}.</md>
+  <md>\frac{d}{dx}\sinh x
+=
+\frac{d}{dx}\left(\frac{e^x-e^{-x}}2\right).</md>
 
-    <p>Therefore</p>
-    <theorem xml:id="thm-derivative-cosh">
-      <title>Derivative of hyperbolic cosine</title>
-      <statement>
-        <p><md>\frac{d}{dx}\cosh x=\sinh x.</md></p>
-      </statement>
-    </theorem>
+  <p>Since</p>
 
-    <p>Compare this with sine and cosine:</p>
-    <md>(\sin x)'=\cos x, \qquad (\cos x)'=-\sin x.</md>
+  <md>\frac{d}{dx}e^{-x}=-e^{-x},</md>
 
-    <p>For hyperbolic functions, the minus sign disappears:</p>
-    <md>(\sinh x)'=\cosh x, \qquad (\cosh x)'=\sinh x.</md>
+  <p>we get</p>
 
-    <figure xml:id="fig-sinh-cosh-graphs">
-      <caption>The function <m>\cosh x</m> is even, while <m>\sinh x</m> is odd.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.50\textwidth,
-              xmin=-3, xmax=3,
-              ymin=-4, ymax=6,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={},
-              xtick={-3,-2,-1,0,1,2,3},
-              ytick={-4,-2,0,2,4,6},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
-          ]
-          \addplot[thick, domain=-3:3, samples=200] {cosh(x)};
-          \addlegendentry{\(\cosh x\)}
-          \addplot[thick, dashed, domain=-3:3, samples=200] {sinh(x)};
-          \addlegendentry{\(\sinh x\)}
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>\frac{d}{dx}\sinh x
+=
+\frac{e^x+e^{-x}}2.</md>
 
-    <p>These functions also recombine to give exponentials:</p>
-    <md>\cosh x+\sinh x=e^x,</md>
-    <p>because</p>
-    <md>\frac{e^x+e^{-x}}{2}+\frac{e^x-e^{-x}}{2}=e^x.</md>
+  <p>Therefore</p>
 
-    <p>Similarly,</p>
-    <md>\cosh x-\sinh x=e^{-x}.</md>
+  <md>
+\frac{d}{dx}\sinh x=\cosh x.
+</md>
 
-    <p>So hyperbolic functions are not new mysteries. They are a useful way to package exponentials symmetrically.</p>
+  <p>Now differentiate <m>\cosh x</m>:</p>
 
-    <example xml:id="ex-chain-cosh">
-      <title>Chain rule with hyperbolic cosine</title>
-      <statement>
-        <p>Differentiate</p>
-        <md>y=\cosh(3x^2).</md>
-        <p>Let <m>u=3x^2</m>. Then <m>y=\cosh u</m>. By the chain rule,</p>
-        <md>y'=\sinh u\cdot u'.</md>
-        <p>Since <m>u'=6x</m>, we get</p>
-        <md>y'=6x\sinh(3x^2).</md>
-      </statement>
-    </example>
+  <md>\frac{d}{dx}\cosh x
+=
+\frac{d}{dx}\left(\frac{e^x+e^{-x}}2\right)
+=
+\frac{e^x-e^{-x}}2.</md>
 
-    <example xml:id="ex-product-exp-cosh">
-      <title>Product rule with exponential and hyperbolic cosine</title>
-      <statement>
-        <p>Differentiate</p>
-        <md>y=e^x\cosh x.</md>
-        <p>Use the product rule:</p>
-        <md>y'=e^x\cosh x+e^x\sinh x.</md>
-        <p>Factor:</p>
-        <md>y'=e^x(\cosh x+\sinh x).</md>
-        <p>Since <m>\cosh x+\sinh x=e^x</m>, we get</p>
-        <md>y'=e^{2x}.</md>
-        <p>This also follows from rewriting the original function:</p>
-        <md>e^x\cosh x = e^x\frac{e^x+e^{-x}}{2} = \frac{e^{2x}+1}{2}.</md>
-        <p>Then</p>
-        <md>\frac{d}{dx}\left(\frac{e^{2x}+1}{2}\right)=e^{2x}.</md>
-      </statement>
-    </example>
+  <p>Therefore</p>
+
+  <md>
+\frac{d}{dx}\cosh x=\sinh x.
+</md>
+
+  <p>Compare this with sine and cosine:</p>
+
+  <md>(\sin x)'=\cos x,
+\qquad
+(\cos x)'=-\sin x.</md>
+
+  <p>For hyperbolic functions, the minus sign disappears:</p>
+
+  <md>(\sinh x)'=\cosh x,
+\qquad
+(\cosh x)'=\sinh x.</md>
+
+  <figure xml:id="fig-sinh-cosh-graphs">
+    <caption>The function <m>\cosh x</m> is even, while <m>\sinh x</m> is odd.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.50\textwidth,
+    xmin=-3, xmax=3,
+    ymin=-4, ymax=6,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={-4,-2,0,2,4,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[thick, domain=-3:3, samples=200] {cosh(x)};
+\addlegendentry{\(\cosh x\)}
+\addplot[thick, dashed, domain=-3:3, samples=200] {sinh(x)};
+\addlegendentry{\(\sinh x\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>These functions also recombine to give exponentials:</p>
+
+  <md>\cosh x+\sinh x=e^x,</md>
+
+  <p>because</p>
+
+  <md>\frac{e^x+e^{-x}}2+\frac{e^x-e^{-x}}2=e^x.</md>
+
+  <p>Similarly,</p>
+
+  <md>\cosh x-\sinh x=e^{-x}.</md>
+
+  <p>So hyperbolic functions are not new mysteries.  They are a useful way to package exponentials symmetrically.</p>
+
+
+  <exercise xml:id="checkpoint-5-8-no-minus-for-hyperbolic">
+        <title>Why is there no minus sign in the hyperbolic cosine derivative?</title>
+        <statement>
+          <p>
+            We have <m>(\sinh x)'=\cosh x</m> and <m>(\cosh x)'=\sinh x</m>, unlike the circular pair with a minus on cosine. In your own words, why does that happen from the exponential definitions, and why are hyperbolic functions not a new mystery?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Hyperbolic sine and cosine are even and odd combinations of <m>e^x</m> and <m>e^{-x}</m>. Differentiating those combinations never introduces the extra minus that a circular shift produces.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-5">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>y=\cosh(3x^2).</md>
+
+  <p>Let</p>
+
+  <md>u=3x^2.</md>
+
+  <p>Then</p>
+
+  <md>y=\cosh u.</md>
+
+  <p>By the chain rule,</p>
+
+  <md>y'=\sinh u\cdot u'.</md>
+
+  <p>Since</p>
+
+  <md>u'=6x,</md>
+
+  <p>we get</p>
+
+  <md>
+y'=6x\sinh(3x^2).
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-6">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>y=e^x\cosh x.</md>
+
+  <p>Use the product rule:</p>
+
+  <md>y'=e^x\cosh x+e^x\sinh x.</md>
+
+  <p>Factor:</p>
+
+  <md>y'=e^x(\cosh x+\sinh x).</md>
+
+  <p>Since</p>
+
+  <md>\cosh x+\sinh x=e^x,</md>
+
+  <p>we get</p>
+
+  <md>
+y'=e^{2x}.
+</md>
+
+  <p>This also follows from rewriting the original function:</p>
+
+  <md>e^x\cosh x
+=
+e^x\frac{e^x+e^{-x}}2
+=
+\frac{e^{2x}+1}{2}.</md>
+
+  <p>Then</p>
+
+  <md>\frac{d}{dx}\left(\frac{e^{2x}+1}{2}\right)=e^{2x}.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-hyperbolic-identities">
     <title>Hyperbolic identities</title>
 
-    <p>The ordinary trigonometric functions satisfy</p>
-    <md>\cos^2 x+\sin^2 x=1.</md>
+  <p>The ordinary trigonometric functions satisfy</p>
 
-    <p>The hyperbolic functions satisfy a similar identity, but with a minus sign:</p>
+  <md>\cos^2 x+\sin^2 x=1.</md>
 
-    <theorem xml:id="thm-fundamental-hyperbolic-identity">
-      <title>Fundamental hyperbolic identity</title>
-      <statement>
-        <p><md>\cosh^2 x-\sinh^2 x=1.</md></p>
-      </statement>
-      <proof>
-        <p>To prove it, use the definitions:</p>
-        <md>\cosh^2 x-\sinh^2 x = \left(\frac{e^x+e^{-x}}{2}\right)^2 - \left(\frac{e^x-e^{-x}}{2}\right)^2.</md>
-        <p>Use the difference of squares: <m>A^2-B^2=(A-B)(A+B)</m>. Here</p>
-        <md>A=\frac{e^x+e^{-x}}{2}, \qquad B=\frac{e^x-e^{-x}}{2}.</md>
-        <p>Then</p>
-        <md>A-B=e^{-x}, \qquad A+B=e^x.</md>
-        <p>Therefore</p>
-        <md>\cosh^2 x-\sinh^2 x=e^{-x}e^x=1.</md>
-      </proof>
-    </theorem>
+  <p>The hyperbolic functions satisfy a similar identity, but with a minus sign:</p>
 
-    <p>This identity explains the word <term>hyperbolic</term>. If</p>
-    <md>X=\cosh t, \qquad Y=\sinh t,</md>
-    <p>then</p>
-    <md>X^2-Y^2=1.</md>
+  <md>
+\cosh^2 x-\sinh^2 x=1.
+</md>
 
-    <p>So the point <m>(\cosh t,\sinh t)</m> lies on the right branch of the hyperbola <m>X^2-Y^2=1</m>.</p>
+  <p>To prove it, use the definitions:</p>
 
-    <figure xml:id="fig-hyperbola-cosh-sinh">
-      <caption>The parametrization <m>X=\cosh t</m>, <m>Y=\sinh t</m> lies on the hyperbola <m>X^2-Y^2=1</m>.</caption>
-      <image width="72%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.72\textwidth,
-              height=0.52\textwidth,
-              xmin=-3, xmax=3,
-              ymin=-2.5, ymax=2.5,
-              axis lines=middle,
-              xlabel={\(X\)},
-              ylabel={\(Y\)},
-              xtick={-2,-1,0,1,2},
-              ytick={-2,-1,0,1,2},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25}
-          ]
-          % right branch: X = cosh t, Y = sinh t
-          \addplot[thick, domain=-1.8:1.8, samples=200] ({cosh(x)},{sinh(x)});
-          % left branch
-          \addplot[thick, domain=-1.8:1.8, samples=200] ({-cosh(x)},{sinh(x)});
-          \addplot[only marks, mark=*] coordinates {(1.543,1.175)};
-          \node[anchor=west] at (axis cs:1.6,1.2) {\((\cosh t,\sinh t)\)};
-          \node[anchor=west] at (axis cs:1.1,-2.0) {\(X^2-Y^2=1\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>\cosh^2x-\sinh^2x
+=
+\left(\frac{e^x+e^{-x}}2\right)^2
+-
+\left(\frac{e^x-e^{-x}}2\right)^2.</md>
 
-    <p>This is parallel to the circular parametrization <m>X=\cos t</m>, <m>Y=\sin t</m>, which satisfies <m>X^2+Y^2=1</m>.</p>
+  <p>Use the difference of squares:</p>
 
-    <p>Circular functions live on the circle <m>X^2+Y^2=1</m>. Hyperbolic functions live on the hyperbola <m>X^2-Y^2=1</m>.</p>
+  <md>A^2-B^2=(A-B)(A+B).</md>
 
-    <p>The addition formulas also resemble the trigonometric ones:</p>
-    <md>\sinh(x+y)=\sinh x\cosh y+\cosh x\sinh y,</md>
-    <p>and</p>
-    <md>\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y.</md>
+  <p>Here</p>
 
-    <p>The signs are different from the circular formulas because the identity is <m>\cosh^2 x-\sinh^2 x=1</m> instead of <m>\cos^2 x+\sin^2 x=1</m>.</p>
+  <md>A=\frac{e^x+e^{-x}}2,
+\qquad
+B=\frac{e^x-e^{-x}}2.</md>
+
+  <p>Then</p>
+
+  <md>A-B=e^{-x},
+\qquad
+A+B=e^x.</md>
+
+  <p>Therefore</p>
+
+  <md>\cosh^2x-\sinh^2x=e^{-x}e^x=1.</md>
+
+  <p>This identity explains the word <em>hyperbolic</em>.  If</p>
+
+  <md>X=\cosh t,
+\qquad
+Y=\sinh t,</md>
+
+  <p>then</p>
+
+  <md>X^2-Y^2=1.</md>
+
+  <p>So the point</p>
+
+  <md>(\cosh t,\sinh t)</md>
+
+  <p>lies on the right branch of the hyperbola</p>
+
+  <md>X^2-Y^2=1.</md>
+
+  <figure xml:id="fig-hyperbola-cosh-sinh">
+    <caption>The parametrization <m>X=\cosh t</m>, <m>Y=\sinh t</m> lies on the hyperbola <m>X^2-Y^2=1</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.52\textwidth,
+    xmin=-3, xmax=3,
+    ymin=-2.5, ymax=2.5,
+    axis lines=middle,
+    xlabel={\(X\)},
+    ylabel={\(Y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-2,-1,0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25}
+]
+% right branch: X = cosh t, Y = sinh t
+\addplot[thick, domain=-1.8:1.8, samples=200] ({cosh(x)},{sinh(x)});
+% left branch
+\addplot[thick, domain=-1.8:1.8, samples=200] ({-cosh(x)},{sinh(x)});
+\addplot[only marks, mark=*] coordinates {(1.543,1.175)};
+\node[anchor=west] at (axis cs:1.6,1.2) {\((\cosh t,\sinh t)\)};
+\node[anchor=west] at (axis cs:1.1,-2.0) {\(X^2-Y^2=1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is parallel to the circular parametrization</p>
+
+  <md>X=\cos t,
+\qquad
+Y=\sin t,</md>
+
+  <p>which satisfies</p>
+
+  <md>X^2+Y^2=1.</md>
+
+  <p>Circular functions live on the circle</p>
+
+  <md>X^2+Y^2=1.</md>
+
+  <p>Hyperbolic functions live on the hyperbola</p>
+
+  <md>X^2-Y^2=1.</md>
+
+  <p>The addition formulas also resemble the trigonometric ones:</p>
+
+  <md>
+\sinh(x+y)=\sinh x\cosh y+\cosh x\sinh y,
+</md>
+
+  <p>and</p>
+
+  <md>
+\cosh(x+y)=\cosh x\cosh y+\sinh x\sinh y.
+</md>
+
+  <p>The signs are different from the circular formulas because the identity is</p>
+
+  <md>\cosh^2x-\sinh^2x=1</md>
+
+  <p>instead of</p>
+
+  <md>\cos^2x+\sin^2x=1.</md>
+
+  <exercise xml:id="checkpoint-5-8-hyperbola-not-circle">
+        <title>Why is the identity <m>\cosh^2x-\sinh^2x=1</m> a hyperbola rather than a circle?</title>
+        <statement>
+          <p>
+            The point <m>(\cosh t,\sinh t)</m> lies on <m>X^2-Y^2=1</m>, while <m>(\cos t,\sin t)</m> lies on <m>X^2+Y^2=1</m>. In your own words, why does that minus sign belong, and why does the same identity help explain a hanging cable?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Circular functions live on a circle; hyperbolic functions live on a hyperbola. The catenary check uses <m>1+\sinh^2u=\cosh^2u</m> to match a force-balance differential equation.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-hyperbolic-tangent">
     <title>Hyperbolic tangent and its derivative</title>
 
-    <p>Define</p>
-    <md>\tanh x=\frac{\sinh x}{\cosh x}.</md>
+  <p>Define</p>
 
-    <p>Using the quotient rule,</p>
-    <md>\frac{d}{dx}\tanh x = \frac{\cosh x(\cosh x)-\sinh x(\sinh x)}{\cosh^2 x}.</md>
+  <md>\tanh x=\frac{\sinh x}{\cosh x}.</md>
 
-    <p>The numerator is <m>\cosh^2 x-\sinh^2 x=1</m>. Therefore</p>
-    <md>\frac{d}{dx}\tanh x=\frac{1}{\cosh^2 x}.</md>
+  <p>Using the quotient rule,</p>
 
-    <p>We write</p>
-    <md>\operatorname{sech} x=\frac{1}{\cosh x}.</md>
+  <md>\frac{d}{dx}\tanh x
+=
+\frac{\cosh x(\cosh x)-\sinh x(\sinh x)}{\cosh^2x}.</md>
 
-    <p>So</p>
-    <theorem xml:id="thm-derivative-tanh">
-      <title>Derivative of hyperbolic tangent</title>
-      <statement>
-        <p><md>\frac{d}{dx}\tanh x=\operatorname{sech}^2 x.</md></p>
-      </statement>
-    </theorem>
+  <p>The numerator is</p>
 
-    <p>This looks like <m>\frac{d}{dx}\tan x=\sec^2 x</m>, and that is not an accident. The hyperbolic identities and trigonometric identities run in parallel, with small sign changes.</p>
+  <md>\cosh^2x-\sinh^2x=1.</md>
 
-    <example xml:id="ex-chain-tanh-ln">
-      <title>Chain rule with hyperbolic tangent</title>
-      <statement>
-        <p>Differentiate</p>
-        <md>y=\tanh(\ln x), \qquad x\gt 0.</md>
-        <p>Let <m>u=\ln x</m>. Then <m>y=\tanh u</m>. By the chain rule,</p>
-        <md>y'=\operatorname{sech}^2 u\cdot u'.</md>
-        <p>Since <m>u'=\frac{1}{x}</m>, we get</p>
-        <md>y'=\frac{\operatorname{sech}^2(\ln x)}{x}.</md>
-      </statement>
-    </example>
+  <p>Therefore</p>
+
+  <md>
+\frac{d}{dx}\tanh x=\frac1{\cosh^2x}.
+</md>
+
+  <p>We write</p>
+
+  <md>\operatorname{sech}x=\frac1{\cosh x}.</md>
+
+  <p>So</p>
+
+  <md>
+\frac{d}{dx}\tanh x=\operatorname{sech}^2x.
+</md>
+
+  <p>This looks like</p>
+
+  <md>\frac{d}{dx}\tan x=\sec^2x,</md>
+
+  <p>and that is not an accident.  The hyperbolic identities and trigonometric identities run in parallel, with small sign changes.</p>
+
+
+  <exercise xml:id="checkpoint-5-8-check-zero">
+        <title>Why does the power formula not automatically settle <m>x=0</m>?</title>
+        <statement>
+          <p>
+            The cube root is defined at <m>0</m>, but its difference quotient becomes unbounded there. In your own words, why must the point <m>x=0</m> be checked separately, even after the general power rule is known?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A formula on <m>x&gt;0</m> does not decide a two-sided derivative at the origin. The function may exist at <m>0</m> while no finite tangent slope exists.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-5-8-general-power-rule-and-hyperbolic-functions-7">
+    <title>Example</title>
+    <statement>
+  <p>Differentiate</p>
+
+  <md>y=\tanh(\ln x),
+\qquad x&gt;0.</md>
+
+  <p>Let</p>
+
+  <md>u=\ln x.</md>
+
+  <p>Then</p>
+
+  <md>y=\tanh u.</md>
+
+  <p>By the chain rule,</p>
+
+  <md>y'=\operatorname{sech}^2u\cdot u'.</md>
+
+  <p>Since</p>
+
+  <md>u'=\frac1x,</md>
+
+  <p>we get</p>
+
+  <md>
+y'=\frac{\operatorname{sech}^2(\ln x)}{x}.
+</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-hanging-cables-hyperbolic-functions">
     <title>Why hyperbolic functions appear in hanging cables</title>
 
-    <p>A hanging cable does not form a parabola. It forms a <term>catenary</term>, whose basic shape is</p>
-    <md>y=a\cosh\left(\frac{x}{a}\right).</md>
+  <p>A hanging cable does not form a parabola.  It forms a <em>catenary</em>, whose basic shape is</p>
 
-    <p>The full physics belongs later, but the main reason can already be checked with derivatives.</p>
+  <md>y=a\cosh\left(\frac{x}{a}\right).</md>
 
-    <p>Suppose a cable hangs under its own weight. Place the lowest point at the center. Let <m>s(x)</m> be the arc length of the cable from the lowest point to the point with horizontal coordinate <m>x</m>.</p>
+  <p>The full physics belongs later, but the main reason can already be checked with derivatives.</p>
 
-    <p>The slope of the cable is related to how much cable is hanging between the center and that point. A standard force-balance model leads to</p>
-    <md>y'=\frac{s}{a},</md>
-    <p>where <m>a\gt 0</m> is a constant depending on the horizontal tension and the weight per unit length.</p>
+  <p>Suppose a cable hangs under its own weight.  Place the lowest point at the center.  Let <m>s(x)</m> be the arc length of the cable from the lowest point to the point with horizontal coordinate <m>x</m>.</p>
 
-    <p>Differentiate both sides with respect to <m>x</m>:</p>
-    <md>y''=\frac{1}{a}\frac{ds}{dx}.</md>
+  <p>The slope of the cable is related to how much cable is hanging between the center and that point.  A standard force-balance model leads to</p>
 
-    <p>The derivative of arc length with respect to <m>x</m> is</p>
-    <md>\frac{ds}{dx}=\sqrt{1+(y')^2}.</md>
+  <md>y'=\frac{s}{a},</md>
 
-    <p>So the shape satisfies the differential equation</p>
-    <md>y''=\frac{1}{a}\sqrt{1+(y')^2}.</md>
+  <p>where <m>a&gt;0</m> is a constant depending on the horizontal tension and the weight per unit length.</p>
 
-    <p>Now check that <m>y=a\cosh\left(\frac{x}{a}\right)</m> solves it.</p>
+  <p>Differentiate both sides with respect to <m>x</m>:</p>
 
-    <p>First derivative:</p>
-    <md>y' = a\sinh\left(\frac{x}{a}\right)\cdot \frac{1}{a} = \sinh\left(\frac{x}{a}\right).</md>
+  <md>y''=\frac1a\frac{ds}{dx}.</md>
 
-    <p>Second derivative:</p>
-    <md>y'' = \cosh\left(\frac{x}{a}\right)\cdot\frac{1}{a} = \frac{1}{a}\cosh\left(\frac{x}{a}\right).</md>
+  <p>The derivative of arc length with respect to <m>x</m> is</p>
 
-    <p>The right side of the differential equation is</p>
-    <md>\frac{1}{a}\sqrt{1+(y')^2} = \frac{1}{a}\sqrt{1+\sinh^2\left(\frac{x}{a}\right)}.</md>
+  <md>\frac{ds}{dx}=\sqrt{1+(y')^2}.</md>
 
-    <p>Using <m>\cosh^2 u-\sinh^2 u=1</m>, we have</p>
-    <md>1+\sinh^2 u=\cosh^2 u.</md>
+  <p>So the shape satisfies the differential equation</p>
 
-    <p>Since <m>\cosh u\gt 0</m>,</p>
-    <md>\sqrt{1+\sinh^2 u}=\cosh u.</md>
+  <md>
+y''=\frac1a\sqrt{1+(y')^2}.
+</md>
 
-    <p>Therefore</p>
-    <md>\frac{1}{a}\sqrt{1+(y')^2} = \frac{1}{a}\cosh\left(\frac{x}{a}\right) = y''.</md>
+  <p>Now check that</p>
 
-    <p>So</p>
-    <md>y=a\cosh\left(\frac{x}{a}\right)</md>
-    <p>has exactly the derivative behavior required by the cable model.</p>
+  <md>y=a\cosh\left(\frac{x}{a}\right)</md>
 
-    <figure xml:id="fig-catenary-cosh">
-      <caption>Near the lowest point, a catenary resembles a parabola. Farther away, the hyperbolic cosine shape rises differently.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=-3, xmax=3,
-              ymin=0, ymax=5.2,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-3,-2,-1,0,1,2,3},
-              ytick={0,1,2,3,4,5},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
-          ]
-          \addplot[thick, domain=-2.7:2.7, samples=200] {cosh(x)};
-          \addlegendentry{\(y=\cosh x\)}
-          \addplot[thick, dashed, domain=-2.7:2.7, samples=200] {1+x^2/2};
-          \addlegendentry{\(y=1+\frac{x^2}{2}\)}
-          \addplot[only marks, mark=*, samples at={-2.2, 2.2}] {cosh(x)};
-          \node[anchor=south] at (axis cs:0,1) {lowest point};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>solves it.</p>
 
-    <p>This is a good preview of differential equations. A physical law can describe a curve by a relation among its derivatives. Solving the law means finding a function with exactly that derivative behavior.</p>
+  <p>First derivative:</p>
 
-    <p>Hyperbolic functions are useful because they are built from exponentials and have simple derivative cycles:</p>
-    <md>(\sinh x)'=\cosh x, \qquad (\cosh x)'=\sinh x.</md>
+  <md>y'
+=
+a\sinh\left(\frac{x}{a}\right)\cdot \frac1a
+=
+\sinh\left(\frac{x}{a}\right).</md>
 
-    <p>They are not just extra names. They package the functions that naturally solve some laws of growth, balance, and shape.</p>
+  <p>Second derivative:</p>
+
+  <md>y''
+=
+\cosh\left(\frac{x}{a}\right)\cdot\frac1a
+=
+\frac1a\cosh\left(\frac{x}{a}\right).</md>
+
+  <p>The right side of the differential equation is</p>
+
+  <md>\frac1a\sqrt{1+(y')^2}
+=
+\frac1a\sqrt{1+\sinh^2\left(\frac{x}{a}\right)}.</md>
+
+  <p>Using</p>
+
+  <md>\cosh^2 u-\sinh^2 u=1,</md>
+
+  <p>we have</p>
+
+  <md>1+\sinh^2u=\cosh^2u.</md>
+
+  <p>Since <m>\cosh u&gt;0</m>,</p>
+
+  <md>\sqrt{1+\sinh^2u}=\cosh u.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac1a\sqrt{1+(y')^2}
+=
+\frac1a\cosh\left(\frac{x}{a}\right)
+=
+y''.</md>
+
+  <p>So</p>
+
+  <md>
+y=a\cosh\left(\frac{x}{a}\right)
+</md>
+
+  <p>has exactly the derivative behavior required by the cable model.</p>
+
+  <figure xml:id="fig-catenary-cosh">
+    <caption>Near the lowest point, a catenary resembles a parabola.  Farther away, the hyperbolic cosine shape rises differently.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-3, xmax=3,
+    ymin=0, ymax=5.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={0,1,2,3,4,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[thick, domain=-2.7:2.7, samples=200] {cosh(x)};
+\addlegendentry{\(y=\cosh x\)}
+\addplot[thick, dashed, domain=-2.7:2.7, samples=200] {1+x^2/2};
+\addlegendentry{\(y=1+\frac{x^2}{2}\)}
+\addplot[only marks, mark=*, samples at={-2.2, 2.2}] {cosh(x)};
+\node[anchor=north] at (axis cs:0.7,0.88) {lowest point};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is a good preview of differential equations.  A physical law can describe a curve by a relation among its derivatives.  Solving the law means finding a function with exactly that derivative behavior.</p>
+
+  <p>Hyperbolic functions are useful because they are built from exponentials and have simple derivative cycles:</p>
+
+  <md>(\sinh x)'=\cosh x,
+\qquad
+(\cosh x)'=\sinh x.</md>
+
+  <p>They are not just extra names.  They package the functions that naturally solve some laws of growth, balance, and shape.</p>
   </subsection>
 
   <subsection xml:id="subsec-chapter-5-derivative-table-end">
     <title>The derivative table at the end of Chapter 5</title>
 
-    <p>Chapter 5 has built a large but organized table of derivatives:</p>
+  <p>Chapter 5 has built a large but organized table of derivatives:</p>
 
-    <table>
-      <title>Derivative table at the end of Chapter 5</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><term>function</term></cell>
-          <cell><term>derivative</term></cell>
-        </row>
-        <row>
-          <cell><m>x^r</m></cell>
-          <cell><m>rx^{r-1}</m></cell>
-        </row>
-        <row>
-          <cell><m>e^x</m></cell>
-          <cell><m>e^x</m></cell>
-        </row>
-        <row>
-          <cell><m>a^x</m></cell>
-          <cell><m>(\ln a)a^x</m></cell>
-        </row>
-        <row>
-          <cell><m>\ln x</m></cell>
-          <cell><m>\dfrac{1}{x}</m></cell>
-        </row>
-        <row>
-          <cell><m>\sin x</m></cell>
-          <cell><m>\cos x</m></cell>
-        </row>
-        <row>
-          <cell><m>\cos x</m></cell>
-          <cell><m>-\sin x</m></cell>
-        </row>
-        <row>
-          <cell><m>\tan x</m></cell>
-          <cell><m>\sec^2 x</m></cell>
-        </row>
-        <row>
-          <cell><m>\arcsin x</m></cell>
-          <cell><m>\dfrac{1}{\sqrt{1-x^2}}</m></cell>
-        </row>
-        <row>
-          <cell><m>\arctan x</m></cell>
-          <cell><m>\dfrac{1}{1+x^2}</m></cell>
-        </row>
-        <row>
-          <cell><m>\sinh x</m></cell>
-          <cell><m>\cosh x</m></cell>
-        </row>
-        <row>
-          <cell><m>\cosh x</m></cell>
-          <cell><m>\sinh x</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c}
+\text{function} \amp \text{derivative}</mrow>
+    <mrow>\hline
+x^r \amp rx^{r-1}</mrow>
+    <mrow>
+e^x \amp e^x</mrow>
+    <mrow>
+a^x \amp (\ln a)a^x</mrow>
+    <mrow>
+\ln x \amp \dfrac1x</mrow>
+    <mrow>
+\sin x \amp \cos x</mrow>
+    <mrow>
+\cos x \amp -\sin x</mrow>
+    <mrow>
+\tan x \amp \sec^2x</mrow>
+    <mrow>
+\arcsin x \amp \dfrac1{\sqrt{1-x^2}}</mrow>
+    <mrow>
+\arctan x \amp \dfrac1{1+x^2}</mrow>
+    <mrow>
+\sinh x \amp \cosh x</mrow>
+    <mrow>
+\cosh x \amp \sinh x
+\end{array}</mrow>
+  </md>
 
-    <p>The rules behind the table are just as important as the table itself:</p>
-    <md>\text{sum rule, product rule, quotient rule, chain rule, inverse rule.}</md>
+  <p>The rules behind the table are just as important as the table itself:</p>
 
-    <p>These rules let us differentiate complicated functions by reading how they are built.</p>
+  <md>\text{sum rule, product rule, quotient rule, chain rule, inverse rule.}</md>
 
-    <p>But derivatives are not only for computing more derivatives. They reveal the shape of a function.</p>
+  <p>These rules let us differentiate complicated functions by reading how they are built.</p>
 
-    <p>If <m>f'(x)\gt 0</m>, the function should be increasing. If <m>f'(x)\lt 0</m>, it should be decreasing. If <m>f'(x)=0</m>, something special may happen: a peak, a valley, or perhaps only a pause.</p>
+  <p>But derivatives are not only for computing more derivatives.  They reveal the shape of a function.</p>
 
-    <p>The next chapter asks how much of a graph can be understood from its derivative.</p>
+  <p>If</p>
+
+  <md>f'(x)&gt;0,</md>
+
+  <p>the function should be increasing.  If</p>
+
+  <md>f'(x)&lt;0,</md>
+
+  <p>it should be decreasing.  If</p>
+
+  <md>f'(x)=0,</md>
+
+  <p>something special may happen: a peak, a valley, or perhaps only a pause.</p>
+
+  <p>The next chapter asks how much of a graph can be understood from its derivative.</p>
   </subsection>
+
+
 
 </section>

@@ -4,348 +4,574 @@
   <title>Fundamental Theorem, Part I</title>
 
   <p>The previous section discovered the idea:</p>
-  <md>\frac{A(x+h)-A(x)}{h} = \text{average height of \(f\) near \(x\)}.</md>
 
-  <p>If <m>f</m> is continuous, then nearby heights of <m>f</m> are close to <m>f(x)</m>. So the average height over a tiny interval should approach <m>f(x)</m>.</p>
+  <md>\frac{A(x+h)-A(x)}{h}
+=
+\text{average height of \(f\) near \(x\)}.</md>
+
+  <p>If <m>f</m> is continuous, then nearby heights of <m>f</m> are close to <m>f(x)</m>.  So the average
+height over a tiny interval should approach <m>f(x)</m>.</p>
 
   <p>This is the first part of the Fundamental Theorem of Calculus.</p>
 
   <subsection xml:id="subsec-derivative-accumulation-function">
     <title>The derivative of an accumulation function</title>
 
-    <theorem xml:id="thm-ftc-part-1">
-      <title>Fundamental Theorem of Calculus, Part I</title>
-      <statement>
-        <p>Let <m>f</m> be continuous on an interval <m>I</m>, and fix a number <m>a\in I</m>. Define</p>
+  <theorem xml:id="thm-sec-9-2-fundamental-theorem-part-i-57">
+    <title>Fundamental Theorem of Calculus, Part I</title>
+    <statement>
+      <p>Let <m>f</m> be continuous on an interval <m>I</m>, and fix a number <m>a\in I</m>.  Define</p>
         <md>A(x)=\int_a^x f(t)\,dt.</md>
-        <p>Then <m>A</m> is differentiable at every interior point <m>x</m> of <m>I</m>, and</p>
-        <md>A'(x)=f(x).</md>
-      </statement>
-    </theorem>
+      <p>Then <m>A</m> is differentiable at every interior point <m>x</m> of <m>I</m>, and</p>
+        <md>
+A'(x)=f(x).
+</md>
+    </statement>
+  </theorem>
 
-    <p>In words:</p>
-    <note xml:id="note-ftc1-in-words">
-      <p>The derivative of accumulated <m>f</m> is <m>f</m> itself.</p>
-    </note>
+  <p>In words:</p>
 
-    <p>This theorem is the first precise statement that differentiation and integration undo each other.</p>
+  <md>
+\text{The derivative of accumulated \(f\) is \(f\) itself.}
+</md>
 
-    <p>It says:</p>
-    <md>\text{integrate first, then differentiate} \quad\Longrightarrow\quad \text{return to the original function.}</md>
+  <p>This theorem is the first precise statement that differentiation and integration undo each
+other.</p>
+
+  <p>It says:</p>
+
+  <md>\text{integrate first, then differentiate}
+\quad\Longrightarrow\quad
+\text{return to the original function.}</md>
+
+  <exercise xml:id="checkpoint-9-2-ftc-undo">
+        <title>Why does differentiating an integral recover the integrand?</title>
+        <statement>
+          <p>
+            The Fundamental Theorem says that if <m>A(x)=\int_a^x f(t)\,dt</m>, then <m>A'(x)=f(x)</m>. In your own words, why should accumulating <m>f</m> from a fixed starting point, then asking how fast that accumulation is changing, return <m>f</m> itself?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Think of <m>A(x)</m> as an odometer built from a velocity record <m>f</m>. How fast the odometer changes is the current velocity.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-continuity-needed-ftc1">
     <title>Continuity as the needed hypothesis</title>
 
-    <p>The word <em>continuous</em> is not decoration. It prevents a hidden jump inside the thin strip.</p>
+  <p>The word <em>continuous</em> is not decoration.  It prevents a hidden jump inside the
+thin strip.</p>
 
-    <p>Consider the step function</p>
-    <md>
-      f(t)=
-      \begin{cases}
-      0, \amp t\lt 0,\\
-      1, \amp t\ge 0.
-      \end{cases}
-    </md>
+  <p>Consider the step function</p>
 
-    <p>Define</p>
-    <md>A(x)=\int_0^x f(t)\,dt.</md>
+  <md>
+    <mrow>f(t)=
+\begin{cases}
+0, \amp t&lt;0,</mrow>
+    <mrow>1, \amp t\ge 0.
+\end{cases}</mrow>
+  </md>
 
-    <p>If <m>x\lt 0</m>, then <m>f(t)=0</m> on the interval from <m>x</m> to <m>0</m>, except possibly at the endpoint <m>0</m>, which does not affect the integral. Therefore</p>
-    <md>A(x)=0.</md>
+  <p>Define</p>
 
-    <p>If <m>x\gt 0</m>, then <m>f(t)=1</m> on <m>[0,x]</m>, so</p>
-    <md>A(x)=x.</md>
+  <md>A(x)=\int_0^x f(t)\,dt.</md>
 
-    <p>Also,</p>
-    <md>A(0)=0.</md>
+  <p>If <m>x&lt;0</m>, then <m>f(t)=0</m> on the interval from <m>x</m> to <m>0</m>, except possibly at the
+endpoint <m>0</m>, which does not affect the integral.  Therefore</p>
 
-    <p>Thus</p>
-    <md>
-      A(x)=
-      \begin{cases}
-      0, \amp x\le 0,\\
-      x, \amp x\gt 0.
-      \end{cases}
-    </md>
+  <md>A(x)=0.</md>
 
-    <p>The graph of <m>A</m> has a corner at <m>0</m>. Its left-hand slope is <m>0</m>, while its right-hand slope is <m>1</m>. So <m>A'(0)</m> does not exist.</p>
+  <p>If <m>x&gt;0</m>, then <m>f(t)=1</m> on <m>[0,x]</m>, so</p>
 
-    <figure xml:id="fig-ftc1-step-counterexample">
-      <caption>A jump in <m>f</m> can produce a corner in the accumulation function <m>A</m>.</caption>
-      <sidebyside widths="48% 48%">
-        <figure xml:id="fig-ftc1-jump-f">
-          <caption>Jump in <m>f</m></caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\linewidth,
-                  height=0.72\linewidth,
-                  xmin=-2, xmax=2,
-                  ymin=-0.25, ymax=1.4,
-                  axis lines=middle,
-                  xlabel={\(t\)},
-                  ylabel={\(f(t)\)},
-                  xtick={-1,0,1},
-                  ytick={0,1},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-                  title={jump in \(f\)}
-              ]
-              \addplot[very thick, domain=-2:-0.02, samples=2] {0};
-              \addplot[very thick, domain=0.02:2, samples=2] {1};
-              \addplot[only marks, mark=*, mark size=2pt] coordinates {(0,1)};
-              \addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-        <figure xml:id="fig-ftc1-corner-a">
-          <caption>Corner in <m>A</m></caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\linewidth,
-                  height=0.72\linewidth,
-                  xmin=-2, xmax=2,
-                  ymin=-0.25, ymax=2.2,
-                  axis lines=middle,
-                  xlabel={\(x\)},
-                  ylabel={\(A(x)\)},
-                  xtick={-1,0,1,2},
-                  ytick={0,1,2},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-                  title={corner in \(A\)}
-              ]
-              \addplot[very thick, domain=-2:0, samples=2] {0};
-              \addplot[very thick, domain=0:2, samples=2] {x};
-              \addplot[only marks, mark=*] coordinates {(0,0)};
-              \node[anchor=center] at (axis cs:0.65,1.35) {\(A(x)=x\)};
-              \node[anchor=east] at (axis cs:-0.1,0.2) {\(A(x)=0\)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </sidebyside>
-    </figure>
+  <md>A(x)=x.</md>
 
-    <p>The problem is exactly what the theorem avoids. Near <m>0</m>, the function <m>f</m> has no single nearby height. From the left it is <m>0</m>. From the right it is <m>1</m>. The average height over a shrinking interval depends on the side from which we approach.</p>
+  <p>Also,</p>
 
-    <p>Continuity gives one nearby height. That is why it appears in the theorem.</p>
+  <md>A(0)=0.</md>
 
-    <paragraphs>
-      <title>Moral</title>
+  <p>Thus</p>
+
+  <md>
+    <mrow>A(x)=
+\begin{cases}
+0, \amp x\le 0,</mrow>
+    <mrow>x, \amp x&gt;0.
+\end{cases}</mrow>
+  </md>
+
+  <p>The graph of <m>A</m> has a corner at <m>0</m>.  Its left-hand slope is <m>0</m>, while its right-hand
+slope is <m>1</m>.  So <m>A'(0)</m> does not exist.</p>
+
+  <figure xml:id="fig-ftc1-step-counterexample">
+    <caption>A jump in <m>f</m> can produce a corner in the accumulation function <m>A</m>.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-ftc1-step-counterexample-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.25, ymax=1.4,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(f(t)\)},
+    xtick={-1,0,1},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={jump in \(f\)}
+]
+\addplot[very thick, domain=-2:-0.02, samples=2] {0};
+\addplot[very thick, domain=0.02:2, samples=2] {1};
+\addplot[only marks, mark=*, mark size=2pt] coordinates {(0,1)};
+\addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-ftc1-step-counterexample-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.25, ymax=2.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(A(x)\)},
+    xtick={-1,0,1,2},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    title={corner in \(A\)}
+]
+\addplot[very thick, domain=-2:0, samples=2] {0};
+\addplot[very thick, domain=0:2, samples=2] {x};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[anchor=center] at (axis cs:0.65,1.35) {\(A(x)=x\)};
+\node[anchor=east] at (axis cs:-0.1,0.2) {\(A(x)=0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <p>The problem is exactly what the theorem avoids.  Near <m>0</m>, the function <m>f</m> has no
+single nearby height.  From the left it is <m>0</m>.  From the right it is <m>1</m>.  The average
+height over a shrinking interval depends on the side from which we approach.</p>
+
+  <p>Continuity gives one nearby height.  That is why it appears in the theorem.</p>
+
+  <note xml:id="note-sec-9-2-fundamental-theorem-part-i-58">
+    <title>Moral</title>
       <p>The conclusion</p>
-      <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x)</md>
-      <p>is guaranteed when <m>f</m> is continuous. At a jump, the accumulation function may have a corner.</p>
-    </paragraphs>
+        <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x)</md>
+      <p>is guaranteed when <m>f</m> is continuous.  At a jump, the accumulation function may have
+a corner.</p>
+  </note>
 
-    <p>Continuity is a safe hypothesis, not the weakest possible one. But it is the right hypothesis for a first version of the theorem because it matches the geometry exactly: short intervals around <m>x</m> have heights close to <m>f(x)</m>.</p>
+  <p>Continuity is a safe hypothesis, not the weakest possible one.  But it is the right
+hypothesis for a first version of the theorem because it matches the geometry exactly:
+short intervals around <m>x</m> have heights close to <m>f(x)</m>.</p>
+
+  <exercise xml:id="checkpoint-9-2-continuity">
+        <title>Why does Part I need continuity?</title>
+        <statement>
+          <p>
+            For the step function that jumps from <m>0</m> to <m>1</m> at <m>t=0</m>, the accumulation function has a corner, so <m>A'(0)</m> does not exist. In your own words, why does a jump in <m>f</m> prevent the average height of a shrinking strip from settling on a single nearby height?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Continuity gives one nearby height. From the left of a jump the nearby height is one number; from the right it is another.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-ftc1-geometric-proof-idea">
     <title>Geometric proof idea</title>
 
-    <p>The proof is almost contained in one picture.</p>
+  <p>The proof is almost contained in one picture.</p>
 
-    <p>Let</p>
-    <md>A(x)=\int_a^x f(t)\,dt.</md>
+  <p>Let</p>
 
-    <p>Then</p>
-    <md>A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.</md>
+  <md>A(x)=\int_a^x f(t)\,dt.</md>
 
-    <p>This is the signed area of a thin strip.</p>
+  <p>Then</p>
 
-    <p>If <m>f</m> is continuous at <m>x</m>, then for small <m>h</m>, all the heights <m>f(t)</m> in that strip are close to <m>f(x)</m>. The strip is squeezed between two rectangles whose heights are close to <m>f(x)</m>.</p>
+  <md>A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.</md>
 
-    <figure xml:id="fig-ftc1-squeeze-strip">
-      <caption>Continuity squeezes the average height of a thin strip toward <m>f(x)</m>.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=0, xmax=4.3,
-              ymin=0, ymax=4.8,
-              axis lines=left,
-              xlabel={\(t\)},
-              ylabel={\(y\)},
-              xtick={0,1.8,2.4,4},
-              xticklabels={\(a\),\(x\),\(x+h\),{}},
-              ytick={0,2.25,2.8,3.35},
-              yticklabels={\(0\),\(f(x)-\varepsilon\),\(f(x)\),\(f(x)+\varepsilon\)},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[very thick, domain=0.4:4.0, samples=150] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x};
-          \addplot[domain=1.8:2.4, samples=80, fill=gray!28, draw=none] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x} \closedcycle;
-          \draw[thick, dashed] (axis cs:1.8,2.25) rectangle (axis cs:2.4,3.35);
-          \draw[dotted, thick] (axis cs:1.8,2.8) -- (axis cs:2.4,2.8);
-          \draw[dashed] (axis cs:1.8,0) -- (axis cs:1.8,3.35);
-          \draw[dashed] (axis cs:2.4,0) -- (axis cs:2.4,3.35);
-          \node[anchor=west] at (axis cs:2.55,3.35) {upper nearby height};
-          \node[anchor=west] at (axis cs:2.55,2.25) {lower nearby height};
-          \node[anchor=west] at (axis cs:2.55,2.8) {current height \(f(x)\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>This is the signed area of a thin strip.</p>
 
-    <p>After dividing by the width <m>h</m>, the difference quotient is squeezed between heights close to <m>f(x)</m>. Therefore the difference quotient approaches <m>f(x)</m>.</p>
+  <p>If <m>f</m> is continuous at <m>x</m>, then for small <m>h</m>, all the heights <m>f(t)</m> in that strip are
+close to <m>f(x)</m>.  The strip is squeezed between two rectangles whose heights are close
+to <m>f(x)</m>.</p>
+
+  <figure xml:id="fig-ftc1-squeeze-strip">
+    <caption>Continuity squeezes the average height of a thin strip toward <m>f(x)</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=0, xmax=4.3,
+    ymin=0, ymax=4.8,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(y\)},
+    xtick={0,1.8,2.4,4},
+    xticklabels={\(a\),\(x\),\(x+h\),{}},
+    ytick={0,2.25,2.8,3.35},
+    yticklabels={\(0\),\(f(x)-\varepsilon\),\(f(x)\),\(f(x)+\varepsilon\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% curve
+\addplot[very thick, domain=0.4:4.0, samples=150] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x};
+% strip under curve
+\addplot[domain=1.8:2.4, samples=80, fill=gray!28, draw=none] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x} \closedcycle;
+% bounding rectangles over strip
+\draw[thick, dashed] (axis cs:1.8,2.25) rectangle (axis cs:2.4,3.35);
+\draw[dotted, thick] (axis cs:1.8,2.8) -- (axis cs:2.4,2.8);
+\draw[dashed] (axis cs:1.8,0) -- (axis cs:1.8,3.35);
+\draw[dashed] (axis cs:2.4,0) -- (axis cs:2.4,3.35);
+\node[anchor=west] at (axis cs:2.55,3.35) {upper nearby height};
+\node[anchor=west] at (axis cs:2.55,2.25) {lower nearby height};
+\node[anchor=west] at (axis cs:2.55,2.8) {current height \(f(x)\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>After dividing by the width <m>h</m>, the difference quotient is squeezed between heights
+close to <m>f(x)</m>.  Therefore the difference quotient approaches <m>f(x)</m>.</p>
+
+  <exercise xml:id="checkpoint-9-2-moving-endpoint">
+        <title>Why does a moving endpoint bring in the chain rule?</title>
+        <statement>
+          <p>
+            If <m>H(x)=\int_a^{g(x)} f(t)\,dt</m>, then <m>H'(x)=f(g(x))g'(x)</m>. In your own words, why is it not enough to plug the moving endpoint into <m>f</m>, and why does increasing a lower limit subtract area rather than add it?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The outside function is still an accumulation function. The chain rule asks how fast the endpoint itself is moving; orientation decides whether that motion adds or removes accumulated amount.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-proof-ftc1">
     <title>Proof of Part I</title>
 
-    <paragraphs>
-      <title>Proof</title>
-      <p>Fix an interior point <m>x\in I</m>. We want to show</p>
-      <md>A'(x)=f(x),</md>
-      <p>which means</p>
-      <md>\lim_{h\to 0}\frac{A(x+h)-A(x)}{h}=f(x).</md>
-      <p>First use additivity of the integral:</p>
-      <md>A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.</md>
-      <p>Therefore</p>
-      <md>\frac{A(x+h)-A(x)}{h} = \frac1h\int_x^{x+h} f(t)\,dt.</md>
-      <p>Subtract <m>f(x)</m>. Since</p>
-      <md>f(x)=\frac1h\int_x^{x+h} f(x)\,dt,</md>
-      <p>we get</p>
-      <md>\frac{A(x+h)-A(x)}{h}-f(x) = \frac1h\int_x^{x+h}\bigl(f(t)-f(x)\bigr)\,dt.</md>
-      <p>Now use continuity. Let <m>\varepsilon\gt 0</m>. Since <m>f</m> is continuous at <m>x</m>, there is a <m>\delta\gt 0</m> such that</p>
-      <md>|t-x|\lt \delta \quad\Longrightarrow\quad |f(t)-f(x)|\lt \varepsilon.</md>
-      <p>If <m>0\lt |h|\lt \delta</m>, then every <m>t</m> between <m>x</m> and <m>x+h</m> satisfies</p>
-      <md>|t-x|\lt \delta.</md>
-      <p>Thus</p>
-      <md>|f(t)-f(x)|\lt \varepsilon</md>
-      <p>throughout the small interval.</p>
-      <p>Using the order property of the integral,</p>
-      <md>\left| \int_x^{x+h}\bigl(f(t)-f(x)\bigr)\,dt \right| \le \varepsilon |h|.</md>
-      <p>Therefore</p>
-      <md>\left| \frac{A(x+h)-A(x)}{h}-f(x) \right| \le \frac{\varepsilon |h|}{|h|} = \varepsilon.</md>
-      <p>Since this can be done for every <m>\varepsilon\gt 0</m>,</p>
-      <md>\lim_{h\to 0} \frac{A(x+h)-A(x)}{h} = f(x).</md>
-      <p>So</p>
-      <md>A'(x)=f(x).</md>
-      <p>This proves the theorem.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Fix an interior point <m>x\in I</m>.  We want to show</p>
+
+  <md>A'(x)=f(x),</md>
+
+  <p>which means</p>
+
+  <md>\lim_{h\to0}\frac{A(x+h)-A(x)}{h}=f(x).</md>
+
+  <p>First use additivity of the integral:</p>
+
+  <md>A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{A(x+h)-A(x)}{h}
+=
+\frac1h\int_x^{x+h} f(t)\,dt.</md>
+
+  <p>Subtract <m>f(x)</m>.  Since</p>
+
+  <md>f(x)=\frac1h\int_x^{x+h} f(x)\,dt,</md>
+
+  <p>we get</p>
+
+  <md>\frac{A(x+h)-A(x)}{h}-f(x)
+=
+\frac1h\int_x^{x+h}\bigl(f(t)-f(x)\bigr)\,dt.</md>
+
+  <p>Now use continuity.  Let <m>\varepsilon&gt;0</m>.  Since <m>f</m> is continuous at <m>x</m>, there is a
+<m>\delta&gt;0</m> such that</p>
+
+  <md>|t-x|&lt;\delta
+\quad\Longrightarrow\quad
+|f(t)-f(x)|&lt;\varepsilon.</md>
+
+  <p>If <m>0&lt;|h|&lt;\delta</m>, then every <m>t</m> between <m>x</m> and <m>x+h</m> satisfies</p>
+
+  <md>|t-x|&lt;\delta.</md>
+
+  <p>Thus</p>
+
+  <md>|f(t)-f(x)|&lt;\varepsilon</md>
+
+  <p>throughout the small interval.</p>
+
+  <p>Using the order property of the integral,</p>
+
+  <md>\left|
+\int_x^{x+h}\bigl(f(t)-f(x)\bigr)\,dt
+\right|
+\le
+\varepsilon |h|.</md>
+
+  <p>Therefore</p>
+
+  <md>\left|
+\frac{A(x+h)-A(x)}{h}-f(x)
+\right|
+\le
+\frac{\varepsilon |h|}{|h|}
+=
+\varepsilon.</md>
+
+  <p>Since this can be done for every <m>\varepsilon&gt;0</m>,</p>
+
+  <md>\lim_{h\to0}
+\frac{A(x+h)-A(x)}{h}
+=
+f(x).</md>
+
+  <p>So</p>
+
+  <md>A'(x)=f(x).</md>
+
+  <p>This proves the theorem. <m>\square</m></p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-examples-variable-upper-limits">
     <title>Examples with variable upper limits</title>
 
-    <p>The theorem gives derivatives of functions that may be difficult, or even impossible, to write using elementary formulas.</p>
+  <p>The theorem gives derivatives of functions that may be difficult, or even impossible, to
+write using elementary formulas.</p>
 
-    <example xml:id="ex-accumulation-nonelementary-sqrt">
-      <title>An accumulation with no simple antiderivative</title>
-      <statement>
-        <p>Let</p>
-        <md>G(x)=\int_2^x \sqrt{1+t^4}\,dt.</md>
-        <p>The integrand</p>
-        <md>\sqrt{1+t^4}</md>
-        <p>is continuous for all real <m>t</m>. Therefore the Fundamental Theorem, Part I, gives</p>
-        <md>G'(x)=\sqrt{1+x^4}.</md>
-        <p>We did not have to evaluate the integral. We only had to recognize it as accumulated area with moving endpoint <m>x</m>.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-9-2-fundamental-theorem-part-i-2">
+    <title>an accumulation with no simple antiderivative</title>
+    <statement>
+  <p>Let</p>
 
-    <example xml:id="ex-ftc1-chain-rule-upper-endpoint">
-      <title>A moving endpoint inside another function</title>
-      <statement>
-        <p>Let</p>
-        <md>H(x)=\int_0^{x^2} \cos(t^3)\,dt.</md>
-        <p>The upper endpoint is not <m>x</m>. It is <m>x^2</m>. Define</p>
-        <md>A(u)=\int_0^u \cos(t^3)\,dt.</md>
-        <p>Then</p>
-        <md>H(x)=A(x^2).</md>
-        <p>By the Fundamental Theorem,</p>
-        <md>A'(u)=\cos(u^3).</md>
-        <p>Now use the chain rule:</p>
-        <md>H'(x)=A'(x^2)\cdot 2x.</md>
-        <p>Since</p>
-        <md>A'(x^2)=\cos\bigl((x^2)^3\bigr)=\cos(x^6),</md>
-        <p>we get</p>
-        <md>H'(x)=2x\cos(x^6).</md>
-        <p>The chain rule is still doing its old job. The outside function is an accumulation function.</p>
-      </statement>
-    </example>
+  <md>G(x)=\int_2^x \sqrt{1+t^4}\,dt.</md>
 
-    <example xml:id="ex-ftc1-moving-lower-limit">
-      <title>A moving lower limit</title>
-      <statement>
-        <p>Let</p>
-        <md>K(x)=\int_x^4 e^{-t^2}\,dt.</md>
-        <p>The variable <m>x</m> is in the lower limit. Rewrite the integral by reversing the direction:</p>
-        <md>K(x)=-\int_4^x e^{-t^2}\,dt.</md>
-        <p>Now the upper endpoint is <m>x</m>. The Fundamental Theorem gives</p>
-        <md>\frac{d}{dx}\int_4^x e^{-t^2}\,dt=e^{-x^2}.</md>
-        <p>Therefore</p>
-        <md>K'(x)=-e^{-x^2}.</md>
-        <p>The minus sign comes from orientation. Increasing the lower limit removes area from the interval of accumulation.</p>
-      </statement>
-    </example>
+  <p>The integrand</p>
 
-    <example xml:id="ex-ftc1-two-moving-limits">
-      <title>Two moving limits</title>
-      <statement>
-        <p>Let</p>
-        <md>P(x)=\int_{\sin x}^{x^2} (1+t^2)\,dt.</md>
-        <p>Split the integral at <m>0</m>:</p>
-        <md>P(x) = \int_0^{x^2}(1+t^2)\,dt - \int_0^{\sin x}(1+t^2)\,dt.</md>
-        <p>For the first term, define</p>
-        <md>A(u)=\int_0^u (1+t^2)\,dt.</md>
-        <p>Then</p>
-        <md>A'(u)=1+u^2,</md>
-        <p>so</p>
-        <md>\frac{d}{dx}A(x^2) = (1+(x^2)^2)\cdot 2x = 2x(1+x^4).</md>
-        <p>For the second term,</p>
-        <md>\frac{d}{dx}A(\sin x) = (1+\sin^2 x)\cos x.</md>
-        <p>Therefore</p>
-        <md>P'(x)=2x(1+x^4)-(1+\sin^2 x)\cos x.</md>
-        <p>This example contains the whole pattern:</p>
-        <md>\text{differentiate an accumulation function} \quad+\quad \text{use the chain rule for a moving endpoint}.</md>
-      </statement>
-    </example>
+  <md>\sqrt{1+t^4}</md>
+
+  <p>is continuous for all real <m>t</m>.  Therefore the Fundamental Theorem, Part I, gives</p>
+
+  <md>
+G'(x)=\sqrt{1+x^4}.
+</md>
+
+  <p>We did not have to evaluate the integral.  We only had to recognize it as accumulated
+area with moving endpoint <m>x</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-9-2-fundamental-theorem-part-i-3">
+    <title>a moving endpoint inside another function</title>
+    <statement>
+  <p>Let</p>
+
+  <md>H(x)=\int_0^{x^2} \cos(t^3)\,dt.</md>
+
+  <p>The upper endpoint is not <m>x</m>.  It is <m>x^2</m>.  Define</p>
+
+  <md>A(u)=\int_0^u \cos(t^3)\,dt.</md>
+
+  <p>Then</p>
+
+  <md>H(x)=A(x^2).</md>
+
+  <p>By the Fundamental Theorem,</p>
+
+  <md>A'(u)=\cos(u^3).</md>
+
+  <p>Now use the chain rule:</p>
+
+  <md>H'(x)=A'(x^2)\cdot 2x.</md>
+
+  <p>Since</p>
+
+  <md>A'(x^2)=\cos\bigl((x^2)^3\bigr)=\cos(x^6),</md>
+
+  <p>we get</p>
+
+  <md>
+H'(x)=2x\cos(x^6).
+</md>
+
+  <p>The chain rule is still doing its old job.  The outside function is an accumulation
+function.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-9-2-fundamental-theorem-part-i-4">
+    <title>a moving lower limit</title>
+    <statement>
+  <p>Let</p>
+
+  <md>K(x)=\int_x^4 e^{-t^2}\,dt.</md>
+
+  <p>The variable <m>x</m> is in the lower limit.  Rewrite the integral by reversing the direction:</p>
+
+  <md>K(x)=-\int_4^x e^{-t^2}\,dt.</md>
+
+  <p>Now the upper endpoint is <m>x</m>.  The Fundamental Theorem gives</p>
+
+  <md>\frac{d}{dx}\int_4^x e^{-t^2}\,dt=e^{-x^2}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+K'(x)=-e^{-x^2}.
+</md>
+
+  <p>The minus sign comes from orientation.  Increasing the lower limit removes area from
+the interval of accumulation.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-9-2-fundamental-theorem-part-i-5">
+    <title>two moving limits</title>
+    <statement>
+  <p>Let</p>
+
+  <md>P(x)=\int_{\sin x}^{x^2} (1+t^2)\,dt.</md>
+
+  <p>Split the integral at <m>0</m>:</p>
+
+  <md>P(x)
+=
+\int_0^{x^2}(1+t^2)\,dt
+-
+\int_0^{\sin x}(1+t^2)\,dt.</md>
+
+  <p>For the first term, define</p>
+
+  <md>A(u)=\int_0^u (1+t^2)\,dt.</md>
+
+  <p>Then</p>
+
+  <md>A'(u)=1+u^2,</md>
+
+  <p>so</p>
+
+  <md>\frac{d}{dx}A(x^2)
+=
+(1+(x^2)^2)\cdot 2x
+=
+2x(1+x^4).</md>
+
+  <p>For the second term,</p>
+
+  <md>\frac{d}{dx}A(\sin x)
+=
+(1+\sin^2 x)\cos x.</md>
+
+  <p>Therefore</p>
+
+  <md>
+P'(x)=2x(1+x^4)-(1+\sin^2 x)\cos x.
+</md>
+
+  <p>This example contains the whole pattern:</p>
+
+  <md>\text{differentiate an accumulation function}
+\quad+\quad
+\text{use the chain rule for a moving endpoint}.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-what-ftc1-gives-us">
     <title>What Part I gives us</title>
 
-    <p>Part I says that every continuous function <m>f</m> is the derivative of some function, namely</p>
-    <md>A(x)=\int_a^x f(t)\,dt.</md>
+  <p>Part I says that every continuous function <m>f</m> is the derivative of some function, namely</p>
 
-    <p>That is a remarkable statement.</p>
+  <md>A(x)=\int_a^x f(t)\,dt.</md>
 
-    <p>Before this theorem, an antiderivative was something we might hope to find by guessing. Now we know an antiderivative exists for every continuous function, even if no elementary formula can describe it.</p>
+  <p>That is a remarkable statement.</p>
 
-    <p>For example,</p>
-    <md>\sqrt{1+x^4}, \qquad e^{-x^2}, \qquad \cos(x^3)</md>
-    <p>all have antiderivatives in the accumulation-function sense:</p>
-    <md>\int_a^x \sqrt{1+t^4}\,dt, \qquad \int_a^x e^{-t^2}\,dt, \qquad \int_a^x \cos(t^3)\,dt.</md>
+  <p>Before this theorem, an antiderivative was something we might hope to find by guessing.
+Now we know an antiderivative exists for every continuous function, even if no elementary
+formula can describe it.</p>
 
-    <p>These may not simplify into familiar elementary expressions. They are still perfectly good functions.</p>
+  <p>For example,</p>
 
-    <note xml:id="note-new-kind-of-function">
-      <title>A new kind of function</title>
-      <p>An integral with a moving endpoint is not merely a way to compute area. It is a way to create functions whose derivatives are known.</p>
-    </note>
+  <md>\sqrt{1+x^4},
+\qquad
+e^{-x^2},
+\qquad
+\cos(x^3)</md>
 
-    <p>Part I answers one direction:</p>
-    <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x).</md>
+  <p>all have antiderivatives in the accumulation-function sense:</p>
 
-    <p>The next direction is even more useful for computation. If we already know a function <m>F</m> with</p>
-    <md>F'=f,</md>
-    <p>can we use <m>F</m> to compute</p>
-    <md>\int_a^b f(x)\,dx</md>
-    <p>without taking a limit of Riemann sums?</p>
+  <md>\int_a^x \sqrt{1+t^4}\,dt,
+\qquad
+\int_a^x e^{-t^2}\,dt,
+\qquad
+\int_a^x \cos(t^3)\,dt.</md>
 
-    <p>That question leads to Part II of the Fundamental Theorem.</p>
+  <p>These may not simplify into familiar elementary expressions.  They are still perfectly good
+functions.</p>
+
+  <note xml:id="note-sec-9-2-fundamental-theorem-part-i-59">
+    <title>A new kind of function</title>
+      <p>An integral with a moving endpoint is not merely a way to compute area.  It is a way to
+create functions whose derivatives are known.</p>
+  </note>
+
+  <p>Part I answers one direction:</p>
+
+  <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x).</md>
+
+  <p>The next direction is even more useful for computation.  If we already know a function
+<m>F</m> with</p>
+
+  <md>F'=f,</md>
+
+  <p>can we use <m>F</m> to compute</p>
+
+  <md>\int_a^b f(x)\,dx</md>
+
+  <p>without taking a limit of Riemann sums?</p>
+
+  <p>That question leads to Part II of the Fundamental Theorem.</p>
+
+  <exercise xml:id="checkpoint-9-2-existence">
+        <title>What kind of function does an accumulation create?</title>
+        <statement>
+          <p>
+            Part I says that every continuous <m>f</m> is the derivative of <m>A(x)=\int_a^x f(t)\,dt</m>, even when no elementary formula for <m>A</m> exists. In your own words, why is that still a perfectly good function, and why does this change what it means to <q>have an antiderivative</q>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            An antiderivative is a function whose derivative is <m>f</m>. Existence is a different question from writing a familiar closed-form expression.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

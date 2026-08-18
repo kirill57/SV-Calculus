@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-c-4-inverse-trigonometric-functions">
+  <title>Inverse trigonometric functions</title>
+
+  <p>An inverse function reverses input and output.  But sine and cosine repeat, so they do
+not have inverses on the whole real line.</p>
+
+  <p>For example,</p>
+
+  <md>\sin 0=0,
+\qquad
+\sin \pi=0,
+\qquad
+\sin(2\pi)=0.</md>
+
+  <p>If we tried to invert sine on all real numbers, the output <m>0</m> would have many possible
+inputs.  That is not a function.</p>
+
+  <p>The repair is familiar: restrict the domain before taking the inverse.</p>
+
+  <subsection xml:id="appsubsec-inverse-trig-restrictions-needed">
+    <title>Why restrictions are needed</title>
+
+  <p>A function has an inverse only when it is one-to-one on the domain we choose.</p>
+
+  <p>The sine function is one-to-one on</p>
+
+  <md>\left[-\frac{\pi}{2},\frac{\pi}{2}\right].</md>
+
+  <p>On that interval, it increases from <m>-1</m> to <m>1</m>.  So we define <m>\arcsin x</m> as the
+inverse of sine on this restricted interval.</p>
+
+  <note xml:id="note-sec-c-4-inverse-trigonometric-functions-43">
+    <title>Arcsine</title>
+      <p>For <m>-1\le x\le1</m>,</p>
+        <md>
+y=\arcsin x
+</md>
+      <p>means</p>
+        <md>
+\sin y=x
+\qquad\text{and}\qquad
+-\frac{\pi}{2}\le y\le\frac{\pi}{2}.
+</md>
+      <p>Thus <m>\arcsin x</m> is the angle in <m>\left[-\frac{\pi}{2},\frac{\pi}{2}\right]</m> whose
+sine is <m>x</m>.</p>
+  </note>
+
+  <p>The range condition is part of the definition.</p>
+
+  <p>For example,</p>
+
+  <md>\arcsin\left(\frac12\right)=\frac{\pi}{6},</md>
+
+  <p>not</p>
+
+  <md>\frac{5\pi}{6},</md>
+
+  <p>even though</p>
+
+  <md>\sin\left(\frac{5\pi}{6}\right)=\frac12.</md>
+
+  <p>The angle <m>\frac{5\pi}{6}</m> is not in the chosen range for arcsine.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-arcsin-arccos-arctan">
+    <title>Arcsine, arccosine, and arctangent</title>
+
+  <p>The three main inverse trigonometric functions are:</p>
+
+  <table xml:id="tab-sec-c-4-inverse-trigonometric-functions-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>function</strong></cell>
+        <cell><strong>meaning</strong></cell>
+        <cell><strong>domain</strong></cell>
+        <cell><strong>range</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>y=\arcsin x</m></cell>
+        <cell><m>\sin y=x</m></cell>
+        <cell><m>[-1,1]</m></cell>
+        <cell><m>\left[-\dfrac{\pi}{2},\dfrac{\pi}{2}\right]</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>y=\arccos x</m></cell>
+        <cell><m>\cos y=x</m></cell>
+        <cell><m>[-1,1]</m></cell>
+        <cell><m>[0,\pi]</m></cell>
+      </row>
+      <row>
+        <cell><m>y=\arctan x</m></cell>
+        <cell><m>\tan y=x</m></cell>
+        <cell><m>\mathbb R</m></cell>
+        <cell><m>\left(-\dfrac{\pi}{2},\dfrac{\pi}{2}\right)</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The ranges are chosen so that each restricted trigonometric function is one-to-one.</p>
+
+  <figure xml:id="fig-appendix-arcsin-graph">
+    <caption>The inverse sine reverses the restricted sine function on <m>[-\pi/2,\pi/2]</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.47\textwidth,
+    xmin=-4, xmax=4,
+    ymin=-1.8, ymax=1.8,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+    xticklabels={\(-\pi\),\(-\frac{\pi}{2}\),\(0\),\(\frac{\pi}{2}\),\(\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[very thick, domain=-1.5708:1.5708, samples=150] {sin(deg(x))};
+\addlegendentry{\(y=\sin x\) restricted}
+\addplot[very thick, dashed, domain=-1:1, samples=150] {rad(asin(x))};
+\addlegendentry{\(y=\arcsin x\)}
+\addplot[dotted, domain=-1.6:1.6, samples=2] {x};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <example xml:id="ex-sec-c-4-inverse-trigonometric-functions-1">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\arccos\left(-\frac12\right).</md>
+
+  <p>We need the angle <m>y</m> in</p>
+
+  <md>[0,\pi]</md>
+
+  <p>such that</p>
+
+  <md>\cos y=-\frac12.</md>
+
+  <p>That angle is</p>
+
+  <md>\frac{2\pi}{3}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\arccos\left(-\frac12\right)=\frac{2\pi}{3}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-c-4-inverse-trigonometric-functions-2">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\arctan(-1).</md>
+
+  <p>We need the angle <m>y</m> in</p>
+
+  <md>\left(-\frac{\pi}{2},\frac{\pi}{2}\right)</md>
+
+  <p>such that</p>
+
+  <md>\tan y=-1.</md>
+
+  <p>That angle is</p>
+
+  <md>-\frac{\pi}{4}.</md>
+
+  <p>So</p>
+
+  <md>
+\arctan(-1)=-\frac{\pi}{4}.
+</md>
+
+  <warning xml:id="warn-sec-c-4-inverse-trigonometric-functions-44">
+    <title>Notation warning</title>
+      <p>The notation</p>
+        <md>\sin^{-1}x</md>
+      <p>usually means</p>
+        <md>\arcsin x,</md>
+      <p>not</p>
+        <md>\frac1{\sin x}.</md>
+      <p>To avoid confusion, this book uses <m>\arcsin x</m>, <m>\arccos x</m>, and <m>\arctan x</m>.</p>
+  </warning>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-compositions-inverse-trig">
+    <title>Compositions with inverse trigonometric functions</title>
+
+  <p>The inverse identities work in two directions, but with domains and ranges attached.</p>
+
+  <p>For <m>-1\le x\le1</m>,</p>
+
+  <md>
+\sin(\arcsin x)=x.
+</md>
+
+  <p>For every <m>y</m> in</p>
+
+  <md>\left[-\frac{\pi}{2},\frac{\pi}{2}\right],</md>
+
+  <md>
+\arcsin(\sin y)=y.
+</md>
+
+  <p>The second identity is not true for every real <m>y</m>.  For example,</p>
+
+  <md>\arcsin(\sin \pi)=\arcsin(0)=0,</md>
+
+  <p>not <m>\pi</m>.</p>
+
+  <p>The inverse returns the angle in its chosen range.</p>
+
+  <example xml:id="ex-sec-c-4-inverse-trigonometric-functions-3">
+    <title>Example</title>
+    <statement>
+  <p>Simplify</p>
+
+  <md>\cos(\arcsin x),
+\qquad -1\le x\le1.</md>
+
+  <p>Let</p>
+
+  <md>\theta=\arcsin x.</md>
+
+  <p>Then</p>
+
+  <md>\sin\theta=x</md>
+
+  <p>and</p>
+
+  <md>-\frac{\pi}{2}\le \theta\le \frac{\pi}{2}.</md>
+
+  <p>On this interval,</p>
+
+  <md>\cos\theta\ge0.</md>
+
+  <p>Using</p>
+
+  <md>\sin^2\theta+\cos^2\theta=1,</md>
+
+  <p>we get</p>
+
+  <md>x^2+\cos^2\theta=1.</md>
+
+  <p>Thus</p>
+
+  <md>\cos^2\theta=1-x^2.</md>
+
+  <p>Since <m>\cos\theta\ge0</m>,</p>
+
+  <md>\cos\theta=\sqrt{1-x^2}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\cos(\arcsin x)=\sqrt{1-x^2}.
+</md>
+
+  <p>The positive square root is not optional.  It comes from the chosen range of arcsine.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-c-4-inverse-trigonometric-functions-4">
+    <title>Example</title>
+    <statement>
+  <p>Simplify</p>
+
+  <md>\sin(\arctan x).</md>
+
+  <p>Let</p>
+
+  <md>\theta=\arctan x.</md>
+
+  <p>Then</p>
+
+  <md>\tan\theta=x=\frac{x}{1}.</md>
+
+  <p>Use a right triangle with opposite side <m>x</m>, adjacent side <m>1</m>, and hypotenuse</p>
+
+  <md>\sqrt{x^2+1}.</md>
+
+  <p>Since <m>\arctan x</m> lies in</p>
+
+  <md>\left(-\frac{\pi}{2},\frac{\pi}{2}\right),</md>
+
+  <p>the adjacent side is positive, and this triangle represents the angle correctly.</p>
+
+  <p>Thus</p>
+
+  <md>\sin\theta=\frac{x}{\sqrt{x^2+1}}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\sin(\arctan x)=\frac{x}{\sqrt{x^2+1}}.
+</md>
+
+  <p>These triangle translations appear often in integration, especially in trigonometric
+substitution.</p>
+    </statement>
+  </example>
+  </subsection>
+
+</section>

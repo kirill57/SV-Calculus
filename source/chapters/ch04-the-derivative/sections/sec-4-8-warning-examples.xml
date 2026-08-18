@@ -1,303 +1,446 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-derivative-warning-examples">
+<section xml:id="sec-4-8-warning-examples">
   <title>Warning examples</title>
 
-  <p>Motion gives the derivative a natural meaning. It also shows why the derivative is a demanding idea. A position can be continuous and still have no velocity at one instant. A derivative can exist and still behave badly nearby. A graph can look harmless because the picture has missed the trouble.</p>
+  <p>Motion gives the derivative a natural meaning.  It also shows why the derivative is a demanding idea.  A position can be continuous and still have no velocity at one instant.  A derivative can exist and still behave badly nearby.  A graph can look harmless because the picture has missed the trouble.</p>
 
-  <p>These examples are not exceptions to the theory. They are the reason the definitions were made carefully.</p>
+  <p>These examples are not exceptions to the theory.  They are the reason the definitions were made carefully.</p>
 
   <subsection xml:id="subsec-continuous-no-derivative-one-point">
     <title>A continuous function with no derivative at one point</title>
 
-    <p>Imagine a particle moving along a line with position</p>
-    <md>s(t)=|t|.</md>
+  <p>Imagine a particle moving along a line with position</p>
 
-    <p>At <m>t=-2</m>, <m>s(-2)=2</m>.</p>
-    <p>At <m>t=-1</m>, <m>s(-1)=1</m>.</p>
-    <p>At <m>t=0</m>, <m>s(0)=0</m>.</p>
-    <p>Then after <m>t=0</m>, the particle moves away again:</p>
-    <md>s(1)=1, \qquad s(2)=2.</md>
+  <md>s(t)=|t|.</md>
 
-    <p>The position is continuous. The particle does not teleport. But at <m>t=0</m>, it reverses direction instantly.</p>
+  <p>At <m>t=-2</m>,</p>
 
-    <p>The derivative at <m>0</m>, if it existed, would be</p>
-    <md>s'(0) = \lim_{h\to 0}\frac{s(0+h)-s(0)}{h} = \lim_{h\to 0}\frac{|h|}{h}.</md>
+  <md>s(-2)=2.</md>
 
-    <p>For <m>h\gt 0</m>,</p>
-    <md>\frac{|h|}{h}=1.</md>
-    <p>For <m>h\lt 0</m>,</p>
-    <md>\frac{|h|}{h}=-1.</md>
+  <p>At <m>t=-1</m>,</p>
 
-    <p>So the right-hand limiting slope is <m>1</m>, while the left-hand limiting slope is <m>-1</m>.</p>
-    <p>There is no single limiting slope. Therefore</p>
-    <md>s'(0)</md>
-    <p>does not exist.</p>
+  <md>s(-1)=1.</md>
 
-    <figure xml:id="fig-absolute-value-motion-warning">
-      <caption>The function <m>s(t)=|t|</m> is continuous at <m>0</m>, but it has no derivative there.</caption>
-      <image width="70%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.70\textwidth,
-              height=0.45\textwidth,
-              xmin=-3, xmax=3,
-              ymin=-0.4, ymax=3.2,
-              axis lines=middle,
-              xlabel={\(t\)},
-              ylabel={\(s(t)\)},
-              xtick={-2,-1,0,1,2},
-              ytick={1,2,3},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-3:0, samples=2] {-x};
-          \addplot[thick, domain=0:3, samples=2] {x};
-          \addplot[only marks, mark=*] coordinates {(0,0)};
-          \addplot[very thick, dashed, domain=-1.7:0.05, samples=2] {-x};
-          \addplot[very thick, dotted, domain=-0.05:1.7, samples=2] {x};
-          \node[anchor=east] at (axis cs:-0.4,1.7) {slope \(-1\)};
-          \node[anchor=west] at (axis cs:0.4,1.7) {slope \(1\)};
-          \node[anchor=west] at (axis cs:0.3,0.35) {instant reversal};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>At <m>t=0</m>,</p>
 
-    <p>This example is the motion version of a corner. The particle has a position at every nearby time. The position changes without a break. But the direction of motion changes too abruptly for there to be one instantaneous velocity at <m>t=0</m>.</p>
+  <md>s(0)=0.</md>
 
-    <principle xml:id="principle-continuity-not-enough">
-      <title>Continuity is not enough</title>
-      <statement>
-        <p>Continuity controls nearby values:</p>
+  <p>Then after <m>t=0</m>, the particle moves away again:</p>
+
+  <md>s(1)=1,
+\qquad
+s(2)=2.</md>
+
+  <p>The position is continuous.  The particle does not teleport.  But at <m>t=0</m>, it reverses direction instantly.</p>
+
+  <p>The derivative at <m>0</m>, if it existed, would be</p>
+
+  <md>s'(0)
+=
+\lim_{h\to0}\frac{s(0+h)-s(0)}{h}
+=
+\lim_{h\to0}\frac{|h|}{h}.</md>
+
+  <p>For <m>h&gt;0</m>,</p>
+
+  <md>\frac{|h|}{h}=1.</md>
+
+  <p>For <m>h&lt;0</m>,</p>
+
+  <md>\frac{|h|}{h}=-1.</md>
+
+  <p>So the right-hand limiting slope is</p>
+
+  <md>1,</md>
+
+  <p>while the left-hand limiting slope is</p>
+
+  <md>-1.</md>
+
+  <p>There is no single limiting slope.  Therefore</p>
+
+  <md>s'(0)</md>
+
+  <p>does not exist.</p>
+
+  <figure xml:id="fig-absolute-value-motion-warning">
+    <caption>The function <m>s(t)=|t|</m> is continuous at <m>0</m>, but it has no derivative there.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.45\textwidth,
+    xmin=-3, xmax=3,
+    ymin=-0.4, ymax=3.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={\(s(t)\)},
+    xtick={-2,-1,0,1,2},
+    ytick={1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-3:0, samples=2] {-x};
+\addplot[thick, domain=0:3, samples=2] {x};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\addplot[very thick, dashed, domain=-1.7:0.05, samples=2] {-x};
+\addplot[very thick, dotted, domain=-0.05:1.7, samples=2] {x};
+\node[fill=white, inner sep=1pt, anchor=south east] at (axis cs:-0.7,2.05) {slope \(-1\)};
+\node[fill=white, inner sep=1pt, anchor=south west] at (axis cs:0.7,2.05) {slope \(1\)};
+\node[fill=white, inner sep=1pt, anchor=west] at (axis cs:0.85,0.55) {instant reversal};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example is the motion version of a corner.  The particle has a position at every nearby time.  The position changes without a break.  But the direction of motion changes too abruptly for there to be one instantaneous velocity at <m>t=0</m>.</p>
+
+  <note xml:id="note-sec-4-8-warning-examples-48">
+    <title>Continuity is not enough</title>
+      <p>Continuity controls nearby values:</p>
         <md>s(t)\to s(0).</md>
-        <p>Differentiability controls nearby slopes:</p>
+      <p>Differentiability controls nearby slopes:</p>
         <md>\frac{s(0+h)-s(0)}{h}.</md>
-        <p>The second condition is stronger.</p>
-      </statement>
-    </principle>
+      <p>The second condition is stronger.</p>
+  </note>
 
-    <p>There is a useful way to say the same thing with local linear approximation. If <m>s</m> were differentiable at <m>0</m>, then near <m>0</m> we would have</p>
-    <md>|h| \approx mh</md>
-    <p>for one fixed slope <m>m</m>. But for <m>h\gt 0</m>, this would require <m>m=1</m>, while for <m>h\lt 0</m>, it would require <m>m=-1</m>. One line cannot model both sides to first order.</p>
+  <p>There is a useful way to say the same thing with local linear approximation.  If <m>s</m> were differentiable at <m>0</m>, then near <m>0</m> we would have</p>
 
-    <p>The graph is unbroken, but it is not locally linear at the corner.</p>
+  <md>|h| \approx mh</md>
+
+  <p>for one fixed slope <m>m</m>.  But for <m>h&gt;0</m>, this would require <m>m=1</m>, while for <m>h&lt;0</m>, it would require <m>m=-1</m>.  One line cannot model both sides to first order.</p>
+
+  <p>The graph is unbroken, but it is not locally linear at the corner.</p>
+
+  <exercise xml:id="checkpoint-4-8-continuous-no-velocity">
+        <title>Why can a continuous position have no velocity at one instant?</title>
+        <statement>
+          <p>
+            The motion <m>s(t)=|t|</m> never jumps, but at <m>t=0</m> the particle reverses instantly. In your own words, why is continuity of position not enough for an instantaneous velocity, and why does one line fail as a local linear model there?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Continuity controls nearby values. Differentiability controls nearby slopes. A single slope cannot be both <m>1</m> and <m>-1</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-derivative-exists-not-continuous">
     <title>Optional: a derivative that exists but is not continuous</title>
 
-    <p>A first mental picture might say:</p>
-    <md>\text{if a derivative exists, then it should vary smoothly.}</md>
+  <p>A first mental picture might say:</p>
 
-    <p>That picture is too optimistic. A function can be differentiable at a point even though its derivative is not continuous there.</p>
+  <md>\text{if a derivative exists, then it should vary smoothly.}</md>
 
-    <p>The example is a little more advanced because it uses a sine function inside a rapidly oscillating expression. The only new idea is that oscillation can be hidden by a small factor.</p>
+  <p>That picture is too optimistic.  A function can be differentiable at a point even though its derivative is not continuous there.</p>
 
-    <p>Define</p>
-    <md>
-      f(x)=
-      \begin{cases}
-      x^2\sin\left(\dfrac{1}{x}\right), \amp x\neq 0,\\[8pt]
-      0, \amp x=0.
-      \end{cases}
-    </md>
+  <p>The example is a little more advanced because it uses a sine function inside a rapidly oscillating expression.  The only new idea is that oscillation can be hidden by a small factor.</p>
 
-    <p>First, <m>f</m> is continuous at <m>0</m>. Since</p>
-    <md>-1\le \sin\left(\frac{1}{x}\right)\le 1,</md>
-    <p>we have</p>
-    <md>-x^2\le x^2\sin\left(\frac{1}{x}\right)\le x^2.</md>
-    <p>As <m>x\to 0</m>, both <m>-x^2</m> and <m>x^2</m> approach <m>0</m>. So by squeezing,</p>
-    <md>\lim_{x\to 0}x^2\sin\left(\frac{1}{x}\right)=0=f(0).</md>
+  <p>Define</p>
 
-    <p>Now compute the derivative at <m>0</m> from the definition:</p>
-    <md>f'(0) = \lim_{h\to 0}\frac{f(h)-f(0)}{h}.</md>
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+x^2\sin\left(\dfrac1x\right), \amp x\neq0,\\
+0, \amp x=0.
+\end{cases}</mrow>
+  </md>
 
-    <p>For <m>h\neq 0</m>,</p>
-    <md>\frac{f(h)-f(0)}{h} = \frac{h^2\sin\left(\frac{1}{h}\right)}{h} = h\sin\left(\frac{1}{h}\right).</md>
+  <p>First, <m>f</m> is continuous at <m>0</m>.  Since</p>
 
-    <p>Again,</p>
-    <md>\left|h\sin\left(\frac{1}{h}\right)\right|\le |h|.</md>
-    <p>Therefore</p>
-    <md>\lim_{h\to 0}h\sin\left(\frac{1}{h}\right)=0.</md>
-    <p>So</p>
-    <md>f'(0)=0.</md>
+  <md>-1\le \sin\left(\frac1x\right)\le 1,</md>
 
-    <p>The derivative exists at <m>0</m>.</p>
+  <p>we have</p>
 
-    <p>But the derivative function is not continuous at <m>0</m>. Using derivative rules that will be proved in the next chapter, for <m>x\neq 0</m> one finds</p>
-    <md>f'(x) = 2x\sin\left(\frac{1}{x}\right) - \cos\left(\frac{1}{x}\right).</md>
+  <md>-x^2\le x^2\sin\left(\frac1x\right)\le x^2.</md>
 
-    <p>The first term approaches <m>0</m>, but the second term oscillates.</p>
+  <p>As <m>x\to0</m>, both <m>-x^2</m> and <m>x^2</m> approach <m>0</m>.  So by squeezing,</p>
 
-    <p>To see this clearly, take</p>
-    <md>x_n=\frac{1}{2\pi n}.</md>
-    <p>Then <m>x_n\to 0</m>, and</p>
-    <md>\cos\left(\frac{1}{x_n}\right) = \cos(2\pi n) = 1.</md>
-    <p>Also,</p>
-    <md>\sin\left(\frac{1}{x_n}\right) = \sin(2\pi n) = 0.</md>
-    <p>So</p>
-    <md>f'(x_n)=-1.</md>
+  <md>\lim_{x\to0}x^2\sin\left(\frac1x\right)=0=f(0).</md>
 
-    <p>Now take</p>
-    <md>y_n=\frac{1}{(2n+1)\pi}.</md>
-    <p>Then <m>y_n\to 0</m>, and</p>
-    <md>\cos\left(\frac{1}{y_n}\right) = \cos((2n+1)\pi) = -1.</md>
-    <p>Also,</p>
-    <md>\sin\left(\frac{1}{y_n}\right)=0.</md>
-    <p>So</p>
-    <md>f'(y_n)=1.</md>
+  <p>Now compute the derivative at <m>0</m> from the definition:</p>
 
-    <p>Thus as <m>x\to 0</m>, the derivative values get arbitrarily close to both <m>-1</m> and <m>1</m> along different sequences. Therefore</p>
-    <md>\lim_{x\to 0}f'(x)</md>
-    <p>does not exist.</p>
+  <md>f'(0)
+=
+\lim_{h\to0}\frac{f(h)-f(0)}{h}.</md>
 
-    <p>But <m>f'(0)=0</m>. So <m>f'</m> is not continuous at <m>0</m>.</p>
+  <p>For <m>h\neq0</m>,</p>
 
-    <principle xml:id="principle-differentiable-not-continuously-differentiable">
-      <title>Differentiable does not mean continuously differentiable</title>
-      <statement>
-        <p>A function may have a derivative at a point even though the derivative function behaves badly near that point.</p>
-      </statement>
-    </principle>
+  <md>\frac{f(h)-f(0)}{h}
+=
+\frac{h^2\sin\left(\frac1h\right)}{h}
+=
+h\sin\left(\frac1h\right).</md>
 
-    <p>This example separates two properties:</p>
-    <md>\text{\(f\) is differentiable}</md>
-    <p>and</p>
-    <md>\text{\(f'\) is continuous.}</md>
+  <p>Again,</p>
 
-    <p>The second property is stronger. Many functions in applications have continuous derivatives, and they are pleasant to work with. But the definition of derivative does not promise continuity of <m>f'</m>.</p>
+  <md>\left|h\sin\left(\frac1h\right)\right|\le |h|.</md>
+
+  <p>Therefore</p>
+
+  <md>\lim_{h\to0}h\sin\left(\frac1h\right)=0.</md>
+
+  <p>So</p>
+
+  <md>f'(0)=0.</md>
+
+  <p>The derivative exists at <m>0</m>.</p>
+
+  <p>But the derivative function is not continuous at <m>0</m>.  Using derivative rules that will be proved in the next chapter, for <m>x\neq0</m> one finds</p>
+
+  <md>f'(x)
+=
+2x\sin\left(\frac1x\right)
+-
+\cos\left(\frac1x\right).</md>
+
+  <p>The first term approaches <m>0</m>, but the second term oscillates.</p>
+
+  <p>To see this clearly, take</p>
+
+  <md>x_n=\frac{1}{2\pi n}.</md>
+
+  <p>Then <m>x_n\to0</m>, and</p>
+
+  <md>\cos\left(\frac1{x_n}\right)
+=
+\cos(2\pi n)
+=
+1.</md>
+
+  <p>Also,</p>
+
+  <md>\sin\left(\frac1{x_n}\right)
+=
+\sin(2\pi n)
+=
+0.</md>
+
+  <p>So</p>
+
+  <md>f'(x_n)=-1.</md>
+
+  <p>Now take</p>
+
+  <md>y_n=\frac{1}{(2n+1)\pi}.</md>
+
+  <p>Then <m>y_n\to0</m>, and</p>
+
+  <md>\cos\left(\frac1{y_n}\right)
+=
+\cos((2n+1)\pi)
+=
+-1.</md>
+
+  <p>Also,</p>
+
+  <md>\sin\left(\frac1{y_n}\right)=0.</md>
+
+  <p>So</p>
+
+  <md>f'(y_n)=1.</md>
+
+  <p>Thus as <m>x\to0</m>, the derivative values get arbitrarily close to both <m>-1</m> and <m>1</m> along different sequences.  Therefore</p>
+
+  <md>\lim_{x\to0}f'(x)</md>
+
+  <p>does not exist.</p>
+
+  <p>But</p>
+
+  <md>f'(0)=0.</md>
+
+  <p>So <m>f'</m> is not continuous at <m>0</m>.</p>
+
+  <note xml:id="note-sec-4-8-warning-examples-49">
+    <title>Differentiable does not mean continuously differentiable</title>
+      <p>A function may have a derivative at a point even though the derivative function behaves badly near that point.</p>
+  </note>
+
+  <p>This example separates two properties:</p>
+
+  <md>\text{\(f\) is differentiable}</md>
+
+  <p>and</p>
+
+  <md>\text{\(f'\) is continuous.}</md>
+
+  <p>The second property is stronger.  Many functions in applications have continuous derivatives, and they are pleasant to work with.  But the definition of derivative does not promise continuity of <m>f'</m>.</p>
+
+  <exercise xml:id="checkpoint-4-8-derivative-not-continuous">
+        <title>Why can a derivative exist and still fail to be continuous?</title>
+        <statement>
+          <p>
+            The squeezed oscillation <m>x^2\sin(1/x)</m> is differentiable at <m>0</m>, yet nearby derivative values do not settle to <m>f'(0)</m>. In your own words, why does the definition of derivative not promise that <m>f'</m> varies smoothly, and what stronger property is being separated from mere differentiability?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Differentiability at a point is a statement about one limit of difference quotients. Continuity of <m>f'</m> is a statement about the derivative function at nearby points.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-calculator-misses-corner">
     <title>A graphing calculator can miss a sharp corner</title>
 
-    <p>Graphs are useful, but a graph on a screen is not the function. A screen shows finitely many pixels. A calculator or computer often samples finitely many points and connects them. If the important feature lies between sampled points, the picture may miss it.</p>
+  <p>Graphs are useful, but a graph on a screen is not the function.  A screen shows finitely many pixels.  A calculator or computer often samples finitely many points and connects them.  If the important feature lies between sampled points, the picture may miss it.</p>
 
-    <p>Consider</p>
-    <md>K(x)=|x-0.03|.</md>
+  <p>Consider</p>
 
-    <p>This graph has a sharp corner at <m>x=0.03</m>. At that point, <m>K(0.03)=0</m>.</p>
+  <md>K(x)=|x-0.03|.</md>
 
-    <p>The derivative does not exist there, because the left-hand slope is <m>-1</m> and the right-hand slope is <m>1</m>.</p>
+  <p>This graph has a sharp corner at</p>
 
-    <p>Indeed, for <m>h\lt 0</m>,</p>
-    <md>\frac{K(0.03+h)-K(0.03)}{h} = \frac{|h|}{h} = -1,</md>
-    <p>while for <m>h\gt 0</m>,</p>
-    <md>\frac{K(0.03+h)-K(0.03)}{h} = \frac{|h|}{h} = 1.</md>
+  <md>x=0.03.</md>
 
-    <p>But suppose a graphing program samples only at</p>
-    <md>x=-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4.</md>
-    <p>Then it never samples the corner at <m>x=0.03</m>. The plotted points near the corner are <m>(0,0.03)</m> and <m>(0.1,0.07)</m>. Connecting those two points draws a line segment that hides the actual sharp turn.</p>
+  <p>At that point,</p>
 
-    <sidebyside widths="48% 48%" margins="auto">
-      <figure xml:id="fig-actual-graph-corner">
-        <caption>The actual graph.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.72\textwidth,
-                xmin=-0.42, xmax=0.42,
-                ymin=-0.02, ymax=0.45,
-                axis lines=left,
-                xlabel={\(x\)},
-                ylabel={\(K(x)\)},
-                xtick={-0.4,-0.2,0,0.03,0.2,0.4},
-                xticklabels={\(-0.4\),\(-0.2\),\(0\),\(0.03\),\(0.2\),\(0.4\)},
-                ytick={0,0.2,0.4},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[very thick, domain=-0.4:0.03, samples=2] {0.03-x};
-            \addplot[very thick, domain=0.03:0.4, samples=2] {x-0.03};
-            \addplot[only marks, mark=*] coordinates {(0.03,0)};
-            \draw[dashed] (axis cs:0.03,0) -- (axis cs:0.03,0.42);
-            \node[anchor=west] at (axis cs:0.055,0.08) {true corner};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <md>K(0.03)=0.</md>
 
-      <figure xml:id="fig-sampled-plot-corner">
-        <caption>A coarse sampled plot.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.72\textwidth,
-                xmin=-0.42, xmax=0.42,
-                ymin=-0.02, ymax=0.45,
-                axis lines=left,
-                xlabel={\(x\)},
-                ylabel={\(K(x)\)},
-                xtick={-0.4,-0.2,0,0.2,0.4},
-                ytick={0,0.2,0.4},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, dashed, mark=*] coordinates {
-                (-0.4,0.43)
-                (-0.3,0.33)
-                (-0.2,0.23)
-                (-0.1,0.13)
-                (0,0.03)
-                (0.1,0.07)
-                (0.2,0.17)
-                (0.3,0.27)
-                (0.4,0.37)
-            };
-            \node[anchor=west] at (axis cs:0.02,0.16) {corner missed};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <p>The derivative does not exist there, because the left-hand slope is <m>-1</m> and the right-hand slope is <m>1</m>.</p>
+
+  <p>Indeed, for <m>h&lt;0</m>,</p>
+
+  <md>\frac{K(0.03+h)-K(0.03)}{h}
+=
+\frac{|h|}{h}
+=
+-1,</md>
+
+  <p>while for <m>h&gt;0</m>,</p>
+
+  <md>\frac{K(0.03+h)-K(0.03)}{h}
+=
+\frac{|h|}{h}
+=
+1.</md>
+
+  <p>But suppose a graphing program samples only at</p>
+
+  <md>x=-0.4,-0.3,-0.2,-0.1,0,0.1,0.2,0.3,0.4.</md>
+
+  <p>Then it never samples the corner at <m>x=0.03</m>.  The plotted points near the corner are</p>
+
+  <md>(0,0.03)
+\qquad\text{and}\qquad
+(0.1,0.07).</md>
+
+  <p>Connecting those two points draws a line segment that hides the actual sharp turn.</p>
+
+  <figure xml:id="fig-calculator-misses-corner">
+    <caption>A finite plot can miss a nondifferentiable point if it is not sampled.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-calculator-misses-corner-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-0.42, xmax=0.42,
+    ymin=-0.02, ymax=0.45,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(K(x)\)},
+    xtick={-0.4,-0.2,0,0.03,0.2,0.4},
+    xticklabels={\(-0.4\),\(-0.2\),\(0\),\(0.03\),\(0.2\),\(0.4\)},
+    ytick={0,0.2,0.4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-0.4:0.03, samples=2] {0.03-x};
+\addplot[very thick, domain=0.03:0.4, samples=2] {x-0.03};
+\addplot[only marks, mark=*] coordinates {(0.03,0)};
+\draw[dashed] (axis cs:0.03,0) -- (axis cs:0.03,0.42);
+\node[anchor=west] at (axis cs:0.055,0.08) {true corner};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-calculator-misses-corner-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-0.42, xmax=0.42,
+    ymin=-0.02, ymax=0.45,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(K(x)\)},
+    xtick={-0.4,-0.2,0,0.2,0.4},
+    ytick={0,0.2,0.4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, dashed, mark=*] coordinates {
+    (-0.4,0.43)
+    (-0.3,0.33)
+    (-0.2,0.23)
+    (-0.1,0.13)
+    (0,0.03)
+    (0.1,0.07)
+    (0.2,0.17)
+    (0.3,0.27)
+    (0.4,0.37)
+};
+\node[anchor=west] at (axis cs:0.02,0.16) {corner missed};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
     </sidebyside>
+  </figure>
 
-    <p>The lesson is not that calculators are bad. The lesson is that a picture is evidence, not proof. A graph can suggest where to look. The derivative definition decides what is true.</p>
+  <p>The lesson is not that calculators are bad.  The lesson is that a picture is evidence, not proof.  A graph can suggest where to look.  The derivative definition decides what is true.</p>
 
-    <principle xml:id="principle-safe-test-differentiability">
-      <title>Safe test for differentiability</title>
-      <statement>
-        <p>To know whether <m>f'(a)</m> exists, examine</p>
-        <md>\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
-        <p>A graph may guide the eye, but the difference quotient tests the point.</p>
-      </statement>
-    </principle>
+  <note xml:id="note-sec-4-8-warning-examples-50">
+    <title>Safe test for differentiability</title>
+      <p>To know whether <m>f'(a)</m> exists, examine</p>
+        <md>\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
+      <p>A graph may guide the eye, but the difference quotient tests the point.</p>
+  </note>
 
-    <p>The warnings in this section protect the meaning of the derivative.</p>
+  <p>The warnings in this section protect the meaning of the derivative.</p>
 
-    <table>
-      <title>Lessons from warning examples</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="50%"/>
-        <col halign="left" width="50%"/>
-        <row header="yes">
-          <cell><term>what can happen</term></cell>
-          <cell><term>what it teaches</term></cell>
-        </row>
-        <row>
-          <cell>continuous but not differentiable</cell>
-          <cell>nearby values are not enough</cell>
-        </row>
-        <row>
-          <cell>derivative exists but is not continuous</cell>
-          <cell>a derivative can behave irregularly</cell>
-        </row>
-        <row>
-          <cell>calculator misses a corner</cell>
-          <cell>finite sampling is not proof</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>what can happen</strong> \amp <strong>what it teaches</strong></mrow>
+    <mrow>\hline
+\text{continuous but not differentiable} \amp \text{nearby values are not enough}</mrow>
+    <mrow>
+\text{derivative exists but is not continuous} \amp \text{a derivative can behave irregularly}</mrow>
+    <mrow>
+\text{calculator misses a corner} \amp \text{finite sampling is not proof}
+\end{array}</mrow>
+  </md>
 
-    <p>The derivative is now defined, interpreted, and tested. But computing every derivative from the limit definition is too slow. The next chapter builds a faster language: rules for differentiating sums, products, quotients, compositions, and the elementary functions.</p>
+  <p>The derivative is now defined, interpreted, and tested.  But computing every derivative from the limit definition is too slow.  The next chapter builds a faster language: rules for differentiating sums, products, quotients, compositions, and the elementary functions.</p>
+
+  <exercise xml:id="checkpoint-4-8-picture-is-not-proof">
+        <title>Why is a graphing calculator not a proof of differentiability?</title>
+        <statement>
+          <p>
+            A finite plot of <m>|x-0.03|</m> can miss the corner if that point is never sampled. In your own words, why can a picture hide a nondifferentiable point, and what test actually decides whether <m>f'(a)</m> exists?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A screen shows finitely many samples. The difference quotient examines the point itself, from both sides if needed.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

@@ -1,353 +1,635 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-first-derivative-formulas">
+<section xml:id="sec-4-6-first-derivative-formulas">
   <title>First derivative formulas</title>
 
   <p>The definition of the derivative is the source:</p>
-  <md>f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.</md>
 
-  <p>But using this limit from scratch every time would be slow. The first formulas come from simple functions: constants, the identity function, and powers of <m>x</m>. Then sums and constant multiples let us differentiate polynomials.</p>
+  <md>f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.</md>
+
+  <p>But using this limit from scratch every time would be slow.  The first formulas come from simple functions: constants, the identity function, and powers of <m>x</m>.  Then sums and constant multiples let us differentiate polynomials.</p>
 
   <subsection xml:id="subsec-constant-identity-functions">
     <title>Constant and identity functions</title>
 
-    <p>A constant function has no change. Its graph is horizontal.</p>
+  <p>A constant function has no change.  Its graph is horizontal.</p>
 
-    <p>Let <m>f(x)=c</m>, where <m>c</m> is a constant. Then</p>
-    <md>f(x+h)-f(x)=c-c=0.</md>
-    <p>So</p>
-    <md>f'(x) = \lim_{h\to 0}\frac{0}{h} = 0.</md>
-    <p>Therefore</p>
-    <md>\frac{d}{dx}(c)=0.</md>
+  <p>Let</p>
 
-    <p>This matches the graph: a horizontal line has slope <m>0</m>.</p>
+  <md>f(x)=c,</md>
 
-    <p>Now consider the identity function <m>f(x)=x</m>. Then</p>
-    <md>f(x+h)-f(x) = (x+h)-x = h.</md>
-    <p>So</p>
-    <md>f'(x) = \lim_{h\to 0}\frac{h}{h} = 1.</md>
-    <p>Therefore</p>
-    <md>\frac{d}{dx}(x)=1.</md>
+  <p>where <m>c</m> is a constant.  Then</p>
 
-    <p>This also matches the graph: the line <m>y=x</m> has slope <m>1</m>.</p>
+  <md>f(x+h)-f(x)=c-c=0.</md>
 
-    <table>
-      <title>Derivatives of constant and identity functions</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center" width="30%"/>
-        <col halign="center" width="40%"/>
-        <col halign="center" width="30%"/>
-        <row header="yes">
-          <cell><term>function</term></cell>
-          <cell><term>graph</term></cell>
-          <cell><term>derivative</term></cell>
-        </row>
-        <row>
-          <cell><m>f(x)=c</m></cell>
-          <cell>horizontal line</cell>
-          <cell><m>f'(x)=0</m></cell>
-        </row>
-        <row>
-          <cell><m>f(x)=x</m></cell>
-          <cell>line of slope <m>1</m></cell>
-          <cell><m>f'(x)=1</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <p>So</p>
 
-    <p>These are small formulas, but they anchor the rest.</p>
+  <md>f'(x)
+=
+\lim_{h\to0}\frac{0}{h}
+=
+0.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac{d}{dx}(c)=0.
+</md>
+
+  <p>This matches the graph: a horizontal line has slope <m>0</m>.</p>
+
+  <p>Now consider the identity function</p>
+
+  <md>f(x)=x.</md>
+
+  <p>Then</p>
+
+  <md>f(x+h)-f(x)
+=
+(x+h)-x
+=
+h.</md>
+
+  <p>So</p>
+
+  <md>f'(x)
+=
+\lim_{h\to0}\frac{h}{h}
+=
+1.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac{d}{dx}(x)=1.
+</md>
+
+  <p>This also matches the graph: the line <m>y=x</m> has slope <m>1</m>.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>function</strong> \amp <strong>graph</strong> \amp <strong>derivative</strong></mrow>
+    <mrow>\hline
+f(x)=c \amp \text{horizontal line} \amp f'(x)=0</mrow>
+    <mrow>
+f(x)=x \amp \text{line of slope }1 \amp f'(x)=1
+\end{array}</mrow>
+  </md>
+
+  <p>These are small formulas, but they anchor the rest.</p>
+
+  <exercise xml:id="checkpoint-4-6-constant-and-identity">
+        <title>Why do the constant and identity formulas match their graphs?</title>
+        <statement>
+          <p>
+            A constant function has derivative <m>0</m>, and the identity function <m>x</m> has derivative <m>1</m>. In your own words, why are those the only numbers that could appear, even before the limit calculation is written down?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A horizontal line has no change. The line <m>y=x</m> rises one output unit for each input unit.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-power-functions-positive-integers">
     <title>Power functions with positive integer powers</title>
 
-    <p>We have already computed a few power derivatives from the definition:</p>
-    <md>\frac{d}{dx}x^2=2x,</md>
-    <p>and</p>
-    <md>\frac{d}{dx}x^3=3x^2.</md>
+  <p>We have already computed a few power derivatives from the definition:</p>
 
-    <p>Let us compute one more to see the pattern clearly.</p>
+  <md>\frac{d}{dx}x^2=2x,</md>
 
-    <p>Let <m>f(x)=x^4</m>. Then</p>
-    <md>f'(x) = \lim_{h\to 0}\frac{(x+h)^4-x^4}{h}.</md>
+  <p>and</p>
 
-    <p>Expand: <m>(x+h)^4 = x^4+4x^3h+6x^2h^2+4xh^3+h^4</m>. So</p>
-    <md>\frac{(x+h)^4-x^4}{h} = \frac{4x^3h+6x^2h^2+4xh^3+h^4}{h}.</md>
+  <md>\frac{d}{dx}x^3=3x^2.</md>
 
-    <p>Since <m>h\neq 0</m>,</p>
-    <md>\frac{(x+h)^4-x^4}{h} = 4x^3+6x^2h+4xh^2+h^3.</md>
+  <p>Let us compute one more to see the pattern clearly.</p>
 
-    <p>Now let <m>h\to 0</m>:</p>
-    <md>f'(x)=4x^3.</md>
+  <p>Let</p>
 
-    <p>So</p>
-    <md>\frac{d}{dx}x^4=4x^3.</md>
+  <md>f(x)=x^4.</md>
 
-    <p>The pattern is hard to miss:</p>
+  <p>Then</p>
 
-    <table>
-      <title>Pattern of derivatives for integer powers</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center" width="50%"/>
-        <col halign="center" width="50%"/>
-        <row header="yes">
-          <cell><term>function</term></cell>
-          <cell><term>derivative</term></cell>
-        </row>
-        <row>
-          <cell><m>x</m></cell>
-          <cell><m>1</m></cell>
-        </row>
-        <row>
-          <cell><m>x^2</m></cell>
-          <cell><m>2x</m></cell>
-        </row>
-        <row>
-          <cell><m>x^3</m></cell>
-          <cell><m>3x^2</m></cell>
-        </row>
-        <row>
-          <cell><m>x^4</m></cell>
-          <cell><m>4x^3</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>f'(x)
+=
+\lim_{h\to0}\frac{(x+h)^4-x^4}{h}.</md>
 
-    <p>The exponent drops down as a coefficient, and then decreases by <m>1</m>.</p>
+  <p>Expand:</p>
 
-    <theorem xml:id="thm-power-rule-positive-integers">
-      <title>Power rule for positive integer powers</title>
-      <statement>
-        <p>If <m>n</m> is a positive integer, then</p>
-        <md>\frac{d}{dx}x^n=nx^{n-1}.</md>
-      </statement>
-      <proof>
-        <p>Let <m>f(x)=x^n</m>. We use the algebra identity</p>
-        <md>A^n-B^n=(A-B)\bigl(A^{n-1}+A^{n-2}B+\cdots+AB^{n-2}+B^{n-1}\bigr).</md>
-        <p>Take <m>A=x+h</m>, <m>B=x</m>. Then</p>
-        <md>(x+h)^n-x^n = h\bigl((x+h)^{n-1}+(x+h)^{n-2}x+\cdots+(x+h)x^{n-2}+x^{n-1}\bigr).</md>
-        <p>Therefore, for <m>h\neq 0</m>,</p>
-        <md>\frac{(x+h)^n-x^n}{h} = (x+h)^{n-1}+(x+h)^{n-2}x+\cdots+(x+h)x^{n-2}+x^{n-1}.</md>
-        <p>There are <m>n</m> terms on the right. As <m>h\to 0</m>, each term approaches <m>x^{n-1}</m>. Therefore the whole sum approaches</p>
-        <md>\underbrace{x^{n-1}+x^{n-1}+\cdots+x^{n-1}}_{n\text{ terms}} = nx^{n-1}.</md>
-        <p>Thus</p>
-        <md>\frac{d}{dx}x^n=nx^{n-1}.</md>
-        <p>This proves the rule for positive integer powers.</p>
-      </proof>
-    </theorem>
+  <md>(x+h)^4
+=
+x^4+4x^3h+6x^2h^2+4xh^3+h^4.</md>
 
-    <paragraphs xml:id="paragraphs-note-exponent-zero">
-      <title>A note about the exponent <m>0</m></title>
-      <p>The function <m>x^0=1</m> is constant. Its derivative is <m>0</m>. So constants already handle the case <m>n=0</m>. The power rule above was stated for positive integers because the expression <m>nx^{n-1}</m> with <m>n=0</m> would formally contain <m>x^{-1}</m>, even though the derivative is simply <m>0</m>.</p>
-      <p>Negative and fractional powers also have derivatives, but their proof will be cleaner after we develop more derivative rules.</p>
-    </paragraphs>
+  <p>So</p>
+
+  <md>\frac{(x+h)^4-x^4}{h}
+=
+\frac{4x^3h+6x^2h^2+4xh^3+h^4}{h}.</md>
+
+  <p>Since <m>h\neq0</m>,</p>
+
+  <md>\frac{(x+h)^4-x^4}{h}
+=
+4x^3+6x^2h+4xh^2+h^3.</md>
+
+  <p>Now let <m>h\to0</m>:</p>
+
+  <md>f'(x)=4x^3.</md>
+
+  <p>So</p>
+
+  <md>\frac{d}{dx}x^4=4x^3.</md>
+
+  <p>The pattern is hard to miss:</p>
+
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>function</strong> \amp <strong>derivative</strong></mrow>
+    <mrow>\hline
+x \amp 1</mrow>
+    <mrow>
+x^2 \amp 2x</mrow>
+    <mrow>
+x^3 \amp 3x^2</mrow>
+    <mrow>
+x^4 \amp 4x^3
+\end{array}</mrow>
+  </md>
+
+  <p>The exponent drops down as a coefficient, and then decreases by <m>1</m>.</p>
+
+  <note xml:id="note-sec-4-6-first-derivative-formulas-84">
+    <title>Power rule for positive integer powers</title>
+      <p>If <m>n</m> is a positive integer, then</p>
+        <md>
+\frac{d}{dx}x^n=nx^{n-1}.
+</md>
+  </note>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Let</p>
+
+  <md>f(x)=x^n.</md>
+
+  <p>We use the algebra identity</p>
+
+  <md>A^n-B^n=(A-B)\bigl(A^{n-1}+A^{n-2}B+\cdots+AB^{n-2}+B^{n-1}\bigr).</md>
+
+  <p>Take</p>
+
+  <md>A=x+h,
+\qquad
+B=x.</md>
+
+  <p>Then</p>
+
+  <md>(x+h)^n-x^n
+=
+h\bigl((x+h)^{n-1}+(x+h)^{n-2}x+\cdots+(x+h)x^{n-2}+x^{n-1}\bigr).</md>
+
+  <p>Therefore, for <m>h\neq0</m>,</p>
+
+  <md>\frac{(x+h)^n-x^n}{h}
+=
+(x+h)^{n-1}+(x+h)^{n-2}x+\cdots+(x+h)x^{n-2}+x^{n-1}.</md>
+
+  <p>There are <m>n</m> terms on the right.  As <m>h\to0</m>, each term approaches</p>
+
+  <md>x^{n-1}.</md>
+
+  <p>Therefore the whole sum approaches</p>
+
+  <md>\underbrace{x^{n-1}+x^{n-1}+\cdots+x^{n-1}}_{n\text{ terms}}
+=
+nx^{n-1}.</md>
+
+  <p>Thus</p>
+
+  <md>\frac{d}{dx}x^n=nx^{n-1}.</md>
+
+  <p>This proves the rule for positive integer powers.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A note about the exponent <m>0</m></title>
+
+  <p>The function</p>
+
+  <md>x^0=1</md>
+
+  <p>is constant.  Its derivative is <m>0</m>.  So constants already handle the case <m>n=0</m>.  The power rule above was stated for positive integers because the expression <m>nx^{n-1}</m> with <m>n=0</m> would formally contain <m>x^{-1}</m>, even though the derivative is simply <m>0</m>.</p>
+
+  <p>Negative and fractional powers also have derivatives, but their proof will be cleaner after we develop more derivative rules.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-6-power-rule-pattern">
+        <title>Why does the power rule drop the exponent as a coefficient?</title>
+        <statement>
+          <p>
+            For a positive integer <m>n</m>, the difference quotient of <m>x^n</m> becomes a sum of <m>n</m> terms, each approaching <m>x^{n-1}</m>. In your own words, why does that produce the formula <m>nx^{n-1}</m>, and why was the case <m>n=0</m> already handled by constants?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Count the terms after factoring out <m>h</m>. The expression <m>nx^{n-1}</m> with <m>n=0</m> would formally contain a negative power, even though the derivative of the constant <m>1</m> is simply <m>0</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-polynomial-example-first">
     <title>A polynomial example</title>
 
-    <p>A polynomial is built by adding constant multiples of powers of <m>x</m>. Before stating the general rule, compute one directly.</p>
+  <p>A polynomial is built by adding constant multiples of powers of <m>x</m>.  Before stating the general rule, compute one directly.</p>
 
-    <p>Let</p>
-    <md>p(x)=3x^2-5x+7.</md>
-    <p>Then</p>
-    <md>p(x+h) = 3(x+h)^2-5(x+h)+7.</md>
-    <p>So</p>
-    <md>p(x+h)-p(x) = 3\bigl((x+h)^2-x^2\bigr)-5h.</md>
-    <p>Since <m>(x+h)^2-x^2=2xh+h^2</m>, we get</p>
-    <md>p(x+h)-p(x) = 3(2xh+h^2)-5h = 6xh+3h^2-5h.</md>
-    <p>Divide by <m>h</m>:</p>
-    <md>\frac{p(x+h)-p(x)}{h} = 6x+3h-5.</md>
-    <p>Now let <m>h\to 0</m>:</p>
-    <md>p'(x)=6x-5.</md>
-    <p>So</p>
-    <md>\frac{d}{dx}(3x^2-5x+7)=6x-5.</md>
+  <p>Let</p>
 
-    <p>This calculation used three facts at once:</p>
-    <md>\frac{d}{dx}(3x^2)=3\cdot 2x,</md>
-    <md>\frac{d}{dx}(-5x)=-5\cdot 1,</md>
-    <p>and</p>
-    <md>\frac{d}{dx}(7)=0.</md>
+  <md>p(x)=3x^2-5x+7.</md>
 
-    <p>In other words, derivatives behave well with constant multiples and sums.</p>
+  <p>Then</p>
+
+  <md>p(x+h)
+=
+3(x+h)^2-5(x+h)+7.</md>
+
+  <p>So</p>
+
+  <md>p(x+h)-p(x)
+=
+3\bigl((x+h)^2-x^2\bigr)-5h.</md>
+
+  <p>Since</p>
+
+  <md>(x+h)^2-x^2=2xh+h^2,</md>
+
+  <p>we get</p>
+
+  <md>p(x+h)-p(x)
+=
+3(2xh+h^2)-5h
+=
+6xh+3h^2-5h.</md>
+
+  <p>Divide by <m>h</m>:</p>
+
+  <md>\frac{p(x+h)-p(x)}{h}
+=
+6x+3h-5.</md>
+
+  <p>Now let <m>h\to0</m>:</p>
+
+  <md>p'(x)=6x-5.</md>
+
+  <p>So</p>
+
+  <md>\frac{d}{dx}(3x^2-5x+7)=6x-5.</md>
+
+  <p>This calculation used three facts at once:</p>
+
+  <md>\frac{d}{dx}(3x^2)=3\cdot 2x,</md>
+
+  <md>\frac{d}{dx}(-5x)=-5\cdot 1,</md>
+
+  <p>and</p>
+
+  <md>\frac{d}{dx}(7)=0.</md>
+
+  <p>In other words, derivatives behave well with constant multiples and sums.</p>
   </subsection>
 
   <subsection xml:id="subsec-constant-multiple-sum-rules-first">
     <title>Constant multiples and sums</title>
 
-    <p>The polynomial example suggests two rules.</p>
+  <p>The polynomial example suggests two rules.</p>
 
-    <theorem xml:id="thm-constant-multiple-rule">
-      <title>Constant multiple rule</title>
-      <statement>
-        <p>If <m>f</m> is differentiable, and <m>c</m> is a constant, then</p>
-        <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).</md>
-      </statement>
-      <proof>
-        <p>By the definition of derivative,</p>
-        <md>\frac{d}{dx}\bigl(c f(x)\bigr) = \lim_{h\to 0}\frac{c f(x+h)-c f(x)}{h}.</md>
-        <p>Factor out <m>c</m>:</p>
-        <md>\lim_{h\to 0}c\frac{f(x+h)-f(x)}{h} = c\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.</md>
-        <p>Therefore</p>
-        <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).</md>
-      </proof>
-    </theorem>
+  <note xml:id="note-sec-4-6-first-derivative-formulas-85">
+    <title>Constant multiple rule</title>
+      <p>If <m>f</m> is differentiable, and <m>c</m> is a constant, then</p>
+        <md>
+\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).
+</md>
+  </note>
 
-    <theorem xml:id="thm-sum-rule">
-      <title>Sum and difference rules</title>
-      <statement>
-        <p>If <m>f</m> and <m>g</m> are differentiable, then</p>
-        <md>\frac{d}{dx}\bigl(f(x)+g(x)\bigr)=f'(x)+g'(x).</md>
-        <p>The same idea gives the difference rule:</p>
-        <md>\frac{d}{dx}\bigl(f(x)-g(x)\bigr)=f'(x)-g'(x).</md>
-      </statement>
-      <proof>
-        <p>Start with the difference quotient:</p>
-        <md>\frac{(f+g)(x+h)-(f+g)(x)}{h}.</md>
-        <p>This equals</p>
-        <md>\frac{f(x+h)+g(x+h)-f(x)-g(x)}{h}.</md>
-        <p>Regroup:</p>
-        <md>\frac{f(x+h)-f(x)}{h} + \frac{g(x+h)-g(x)}{h}.</md>
-        <p>Now take the limit:</p>
-        <md>(f+g)'(x)=f'(x)+g'(x).</md>
-        <p>The difference rule follows by applying the sum rule to <m>f+(-1)g</m>.</p>
-      </proof>
-    </theorem>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>By the definition of derivative,</p>
+
+  <md>\frac{d}{dx}\bigl(c f(x)\bigr)
+=
+\lim_{h\to0}\frac{c f(x+h)-c f(x)}{h}.</md>
+
+  <p>Factor out <m>c</m>:</p>
+
+  <md>\lim_{h\to0}c\frac{f(x+h)-f(x)}{h}
+=
+c\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x).</md>
+
+  <note xml:id="note-sec-4-6-first-derivative-formulas-86">
+    <title>Sum rule</title>
+      <p>If <m>f</m> and <m>g</m> are differentiable, then</p>
+        <md>
+\frac{d}{dx}\bigl(f(x)+g(x)\bigr)=f'(x)+g'(x).
+</md>
+      <p>The same idea gives the difference rule:</p>
+        <md>
+\frac{d}{dx}\bigl(f(x)-g(x)\bigr)=f'(x)-g'(x).
+</md>
+  </note>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Start with the difference quotient:</p>
+
+  <md>\frac{(f+g)(x+h)-(f+g)(x)}{h}.</md>
+
+  <p>This equals</p>
+
+  <md>\frac{f(x+h)+g(x+h)-f(x)-g(x)}{h}.</md>
+
+  <p>Regroup:</p>
+
+  <md>\frac{f(x+h)-f(x)}{h}
++
+\frac{g(x+h)-g(x)}{h}.</md>
+
+  <p>Now take the limit:</p>
+
+  <md>(f+g)'(x)=f'(x)+g'(x).</md>
+
+  <p>The difference rule follows by applying the sum rule to</p>
+
+  <md>f+(-1)g.</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-6-linearity-of-first-rules">
+        <title>Why do constant multiples and sums pass through the derivative?</title>
+        <statement>
+          <p>
+            Differentiating <m>3x^2-5x+7</m> term by term used three facts at once. In your own words, why may a constant factor be pulled out of a difference quotient, and why does the difference quotient of a sum split into a sum of difference quotients?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The definition of derivative is itself a limit of a quotient. Constants factor, and numerators add.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-polynomial-rule">
     <title>The polynomial rule</title>
 
-    <p>Now the derivative of any polynomial is immediate.</p>
+  <p>Now the derivative of any polynomial is immediate.</p>
 
-    <p>If</p>
-    <md>p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_2x^2+a_1x+a_0,</md>
-    <p>then</p>
-    <md>p'(x) = na_nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+2a_2x+a_1.</md>
+  <p>If</p>
 
-    <p>The constant term <m>a_0</m> disappears because constants have derivative <m>0</m>.</p>
+  <md>p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_2x^2+a_1x+a_0,</md>
 
-    <example xml:id="ex-differentiate-polynomial">
-      <title>Differentiating a polynomial</title>
-      <statement>
-        <p>Find the derivative of</p>
-        <md>p(x)=5x^6-2x^3+7x-11.</md>
-        <p>Use the power rule term by term:</p>
-        <md>p'(x) = 5\cdot 6x^5-2\cdot 3x^2+7.</md>
-        <p>So</p>
-        <md>p'(x)=30x^5-6x^2+7.</md>
-      </statement>
-    </example>
+  <p>then</p>
 
-    <example xml:id="ex-tangent-line-from-derivative-formula">
-      <title>A tangent line from a derivative formula</title>
-      <statement>
-        <p>Let <m>p(x)=x^4-3x^2+2</m>. Find the tangent line at <m>x=1</m>.</p>
-        <p>First compute the point: <m>p(1)=1-3+2=0</m>. So the graph point is <m>(1,0)</m>.</p>
-        <p>Now compute the derivative:</p>
-        <md>p'(x)=4x^3-6x.</md>
-        <p>At <m>x=1</m>,</p>
-        <md>p'(1)=4-6=-2.</md>
-        <p>The tangent line has slope <m>-2</m> and passes through <m>(1,0)</m>. Therefore</p>
-        <md>y-0=-2(x-1),</md>
-        <p>or</p>
-        <md>y=-2x+2.</md>
-      </statement>
-    </example>
+  <md>
+p'(x)
+=
+na_nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+2a_2x+a_1.
+</md>
 
-    <figure xml:id="fig-polynomial-tangent-first-formulas">
-      <caption>The derivative formula gives the tangent slope without returning to the limit definition.</caption>
-      <image width="72%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.72\textwidth,
-              height=0.48\textwidth,
-              xmin=-2.1, xmax=2.1,
-              ymin=-1.6, ymax=5.2,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-2,-1,0,1,2},
-              ytick={-1,0,1,2,4},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-2:2, samples=180] {x^4-3*x^2+2};
-          \addplot[very thick, domain=-0.4:1.8, samples=2] {-2*x+2};
-          \addplot[only marks, mark=*] coordinates {(1,0)};
-          \node[anchor=west] at (axis cs:1.05,0.15) {\((1,0)\)};
-          \node[anchor=west] at (axis cs:0.25,2.65) {\(p(x)=x^4-3x^2+2\)};
-          \node[anchor=west] at (axis cs:0.8,-0.9) {tangent slope \(-2\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The constant term <m>a_0</m> disappears because constants have derivative <m>0</m>.</p>
+
+  <example xml:id="ex-sec-4-6-first-derivative-formulas-5">
+    <title>Example</title>
+    <statement>
+  <p>Find the derivative of</p>
+
+  <md>p(x)=5x^6-2x^3+7x-11.</md>
+
+  <p>Use the power rule term by term:</p>
+
+  <md>p'(x)
+=
+5\cdot6x^5-2\cdot3x^2+7.</md>
+
+  <p>So</p>
+
+  <md>
+p'(x)=30x^5-6x^2+7.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-4-6-first-derivative-formulas-6">
+    <title>a tangent line from a derivative formula</title>
+    <statement>
+  <p>Let</p>
+
+  <md>p(x)=x^4-3x^2+2.</md>
+
+  <p>Find the tangent line at <m>x=1</m>.</p>
+
+  <p>First compute the point:</p>
+
+  <md>p(1)=1-3+2=0.</md>
+
+  <p>So the graph point is</p>
+
+  <md>(1,0).</md>
+
+  <p>Now compute the derivative:</p>
+
+  <md>p'(x)=4x^3-6x.</md>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>p'(1)=4-6=-2.</md>
+
+  <p>The tangent line has slope <m>-2</m> and passes through <m>(1,0)</m>.  Therefore</p>
+
+  <md>y-0=-2(x-1),</md>
+
+  <p>or</p>
+
+  <md>
+y=-2x+2.
+</md>
+
+  <figure xml:id="fig-polynomial-tangent-first-formulas">
+    <caption>The derivative formula gives the tangent slope without returning to the limit definition.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.48\textwidth,
+    xmin=-2.1, xmax=2.1,
+    ymin=-1.6, ymax=5.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-1,0,1,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:2, samples=180] {x^4-3*x^2+2};
+\addplot[very thick, domain=-0.4:1.8, samples=2] {-2*x+2};
+\addplot[only marks, mark=*] coordinates {(1,0)};
+\node[fill=white, inner sep=1pt, anchor=south west] at (axis cs:1.08,0.12) {\((1,0)\)};
+\node[fill=white, inner sep=1pt, anchor=south] at (axis cs:0.0,3.15) {\(p(x)=x^4-3x^2+2\)};
+\node[fill=white, inner sep=1pt, anchor=north] at (axis cs:0.35,-0.45) {tangent slope \(-2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-derivative-notation-formulas">
     <title>Derivative notation in formulas</title>
 
-    <p>A derivative formula gives a new function. For example,</p>
-    <md>\frac{d}{dx}x^3=3x^2</md>
-    <p>means that the derivative function of <m>f(x)=x^3</m> is <m>f'(x)=3x^2</m>.</p>
+  <p>A derivative formula gives a new function.  For example,</p>
 
-    <p>At a particular point, we substitute after differentiating. For instance,</p>
-    <md>\left.\frac{d}{dx}x^3\right|_{x=2} = 3(2)^2 = 12.</md>
+  <md>\frac{d}{dx}x^3=3x^2</md>
 
-    <p>So <m>\frac{d}{dx}x^3=3x^2</m> is a formula for all <m>x</m>, while <m>\left.\frac{d}{dx}x^3\right|_{x=2}=12</m> is one slope at one point.</p>
+  <p>means that the derivative function of</p>
 
-    <principle xml:id="principle-differentiate-first-evaluate">
-      <title>Differentiate first, then evaluate</title>
-      <statement>
-        <p>A formula like <m>p'(x)=30x^5-6x^2+7</m> describes slopes along the whole graph. A number like <m>p'(1)</m> is the slope at one point.</p>
-      </statement>
-    </principle>
+  <md>f(x)=x^3</md>
+
+  <p>is</p>
+
+  <md>f'(x)=3x^2.</md>
+
+  <p>At a particular point, we substitute after differentiating.  For instance,</p>
+
+  <md>\left.\frac{d}{dx}x^3\right|_{x=2}
+=
+3(2)^2
+=
+12.</md>
+
+  <p>So</p>
+
+  <md>\frac{d}{dx}x^3=3x^2</md>
+
+  <p>is a formula for all <m>x</m>, while</p>
+
+  <md>\left.\frac{d}{dx}x^3\right|_{x=2}=12</md>
+
+  <p>is one slope at one point.</p>
+
+  <note xml:id="note-sec-4-6-first-derivative-formulas-87">
+    <title>Differentiate first, then evaluate</title>
+      <p>A formula like</p>
+        <md>p'(x)=30x^5-6x^2+7</md>
+      <p>describes slopes along the whole graph.  A number like</p>
+        <md>p'(1)</md>
+      <p>is the slope at one point.</p>
+  </note>
+
+  <exercise xml:id="checkpoint-4-6-differentiate-then-evaluate">
+        <title>Why differentiate first and then evaluate?</title>
+        <statement>
+          <p>
+            A formula such as <m>p'(x)=30x^5-6x^2+7</m> describes slopes along the whole graph, while <m>p'(1)</m> is one slope at one point. In your own words, why must the function be differentiated before a particular input is substituted, and what do these first formulas still not cover?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Substituting first would freeze the graph at one height and destroy the rate information. Products, quotients, and compositions need later rules.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-first-derivative-formulas-summary">
     <title>What we have proved so far</title>
 
-    <p>The first derivative formulas are:</p>
-    <md>\frac{d}{dx}(c)=0,</md>
-    <md>\frac{d}{dx}(x)=1,</md>
-    <md>\frac{d}{dx}(x^n)=nx^{n-1} \qquad (n=1,2,3,\ldots),</md>
-    <md>\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x),</md>
-    <p>and</p>
-    <md>\frac{d}{dx}\bigl(f(x)+g(x)\bigr)=f'(x)+g'(x).</md>
+  <p>The first derivative formulas are:</p>
 
-    <p>These rules are enough to differentiate every polynomial.</p>
+  <md>
+\frac{d}{dx}(c)=0,
+</md>
 
-    <example xml:id="ex-differentiate-polynomial-second">
-      <title>Term-by-term polynomial differentiation</title>
-      <statement>
-        <p>For</p>
-        <md>q(x)=-4x^5+9x^2-\frac{1}{2}x+8,</md>
-        <p>we have</p>
-        <md>q'(x) = -20x^4+18x-\frac{1}{2}.</md>
-        <p>Each term is handled separately. The constant <m>8</m> contributes nothing to the derivative because it does not affect change.</p>
-      </statement>
-    </example>
+  <md>
+\frac{d}{dx}(x)=1,
+</md>
+
+  <md>
+\frac{d}{dx}(x^n)=nx^{n-1}
+\qquad(n=1,2,3,\ldots),
+</md>
+
+  <md>
+\frac{d}{dx}\bigl(c f(x)\bigr)=c f'(x),
+</md>
+
+  <p>and</p>
+
+  <md>
+\frac{d}{dx}\bigl(f(x)+g(x)\bigr)=f'(x)+g'(x).
+</md>
+
+  <p>These rules are enough to differentiate every polynomial.</p>
+
+  <example xml:id="ex-sec-4-6-first-derivative-formulas-7">
+    <title>Example</title>
+    <statement>
+  <p>For</p>
+
+  <md>q(x)=-4x^5+9x^2-\frac12x+8,</md>
+
+  <p>we have</p>
+
+  <md>q'(x)
+=
+-20x^4+18x-\frac12.</md>
+
+  <p>Each term is handled separately.  The constant <m>8</m> contributes nothing to the derivative because it does not affect change.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-first-formulas-do-not-cover">
     <title>What these formulas do not yet cover</title>
 
-    <p>The rules in this section are useful, but they are not enough for most functions.</p>
+  <p>The rules in this section are useful, but they are not enough for most functions.</p>
 
-    <p>They do not yet tell us how to differentiate</p>
-    <md>x^2\sin x,</md>
-    <p>or</p>
-    <md>\frac{x^2+1}{x-3},</md>
-    <p>or</p>
-    <md>\sqrt{1+x^2},</md>
-    <p>or</p>
-    <md>\sin(x^2).</md>
+  <p>They do not yet tell us how to differentiate</p>
 
-    <p>These functions are built not only by adding and scaling, but also by multiplying, dividing, and putting one function inside another.</p>
+  <md>x^2\sin x,</md>
 
-    <p>The next chapter develops the algebra of derivatives. The goal is not to memorize more rules for their own sake. The goal is to make the derivative practical while keeping its meaning: a local rate of change, a tangent slope, and the coefficient of the best linear approximation.</p>
+  <p>or</p>
+
+  <md>\frac{x^2+1}{x-3},</md>
+
+  <p>or</p>
+
+  <md>\sqrt{1+x^2},</md>
+
+  <p>or</p>
+
+  <md>\sin(x^2).</md>
+
+  <p>These functions are built not only by adding and scaling, but also by multiplying, dividing, and putting one function inside another.</p>
+
+  <p>The next chapter develops the algebra of derivatives.  The goal is not to memorize more rules for their own sake.  The goal is to make the derivative practical while keeping its meaning: a local rate of change, a tangent slope, and the coefficient of the best linear approximation.</p>
   </subsection>
+
+
 
 </section>

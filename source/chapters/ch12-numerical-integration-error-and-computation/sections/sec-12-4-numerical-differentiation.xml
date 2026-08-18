@@ -1,0 +1,656 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-4-numerical-differentiation">
+  <title>Numerical differentiation</title>
+
+  <p>Integration is forgiving.  It averages values over an interval.</p>
+
+  <p>Differentiation is less forgiving.  It subtracts nearby values and divides by a small
+number.</p>
+
+  <p>That difference matters.</p>
+
+  <p>If we know a formula for <m>f</m>, exact differentiation may be best.  But in experiments,
+we may only know values from a table.  A motion sensor records position.  A weather
+station records temperature.  A lab instrument records concentration.  We then ask:</p>
+
+  <md>
+\text{Can we estimate the instantaneous rate of change from sampled values?}
+</md>
+
+  <p>The answer is yes, but with a warning: smaller steps are not always better.</p>
+
+  <subsection xml:id="subsec-forward-backward-centered-differences">
+    <title>Forward, backward, and centered differences</title>
+
+  <p>The derivative at <m>a</m> is</p>
+
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
+
+  <p>If <m>h</m> is small but not zero, the quotient</p>
+
+  <md>\frac{f(a+h)-f(a)}{h}</md>
+
+  <p>is a natural approximation to <m>f'(a)</m>.  It uses the point <m>a</m> and a point to the right.
+This is called a <em>forward difference</em>.</p>
+
+  <p>There are three basic finite-difference formulas.</p>
+
+  <note xml:id="note-sec-12-4-numerical-differentiation-61">
+    <title>Finite-difference approximations to <m>f'(a)</m></title>
+      <p>For <m>h&gt;0</m>,</p>
+        <md>
+D_h^+f(a)=\frac{f(a+h)-f(a)}{h}
+</md>
+      <p>is the <em>forward difference</em>,</p>
+        <md>
+D_h^-f(a)=\frac{f(a)-f(a-h)}{h}
+</md>
+      <p>is the <em>backward difference</em>, and</p>
+        <md>
+D_h^0f(a)=\frac{f(a+h)-f(a-h)}{2h}
+</md>
+      <p>is the <em>centered difference</em>.</p>
+  </note>
+
+  <p>Geometrically, all three are slopes of secant lines.</p>
+
+  <p>The forward difference looks right.  The backward difference looks left.  The centered
+difference balances both sides.</p>
+
+  <figure xml:id="fig-finite-difference-secants">
+    <caption>Forward, backward, and centered differences approximate the tangent slope using nearby secant slopes.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-0.9, xmax=0.9,
+    ymin=0.25, ymax=2.3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-0.6,0,0.6},
+    xticklabels={\(a-h\),\(a\),\(a+h\)},
+    ytick=\empty,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-0.85:0.85, samples=150] {exp(x)};
+\addplot[thick, dashed] coordinates {(0,1) (0.6,1.82212)};
+\addplot[thick, dotted] coordinates {(-0.6,0.54881) (0,1)};
+\addplot[thick, dashdotted] coordinates {(-0.6,0.54881) (0.6,1.82212)};
+\addplot[thick, domain=-0.75:0.75, samples=2] {1+x};
+\addplot[only marks, mark=*] coordinates {(-0.6,0.54881) (0,1) (0.6,1.82212)};
+
+\node[anchor=west] at (axis cs:0.42,1.32) {forward};
+\node[anchor=east] at (axis cs:-0.38,0.78) {backward};
+\node[anchor=south] at (axis cs:0,1.52) {centered};
+\node[anchor=west] at (axis cs:-0.58,0.38) {tangent};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+
+  <exercise xml:id="checkpoint-12-4-three-differences">
+        <title>What are forward, backward, and centered differences measuring?</title>
+        <statement>
+          <p>
+            Each finite-difference formula is the slope of a secant. In your own words, what geometric distinction is there among looking right, looking left, and balancing both sides, and why does that distinction matter at the endpoint of a data table?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A centered difference needs a point on each side. At a left endpoint there is no data to the left, so a forward difference may be the only available estimate.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-4-numerical-differentiation-1">
+    <title>differentiating from values</title>
+    <statement>
+  <p>Estimate</p>
+
+  <md>\frac{d}{dx}e^x\Big|_{x=0}</md>
+
+  <p>using <m>h=0.1</m>.</p>
+
+  <p>The true derivative is</p>
+
+  <md>\left(e^x\right)'=e^x,</md>
+
+  <p>so</p>
+
+  <md>f'(0)=1.</md>
+
+  <p>Now compare the numerical approximations.</p>
+
+  <p>The forward difference is</p>
+
+  <md>D_{0.1}^+f(0)
+=
+\frac{e^{0.1}-e^0}{0.1}
+=
+\frac{1.105171-1}{0.1}
+=
+1.051709.</md>
+
+  <p>The backward difference is</p>
+
+  <md>D_{0.1}^-f(0)
+=
+\frac{e^0-e^{-0.1}}{0.1}
+=
+\frac{1-0.904837}{0.1}
+=
+0.951626.</md>
+
+  <p>The centered difference is</p>
+
+  <md>D_{0.1}^0f(0)
+=
+\frac{e^{0.1}-e^{-0.1}}{0.2}
+=
+\frac{1.105171-0.904837}{0.2}
+=
+1.001668.</md>
+
+  <table xml:id="tab-sec-12-4-numerical-differentiation-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>method</strong></cell>
+        <cell><strong>approximation</strong></cell>
+        <cell><strong>absolute error</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>forward difference</cell>
+        <cell><m>1.051709</m></cell>
+        <cell><m>0.051709</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>backward difference</cell>
+        <cell><m>0.951626</m></cell>
+        <cell><m>0.048374</m></cell>
+      </row>
+      <row>
+        <cell>centered difference</cell>
+        <cell><m>1.001668</m></cell>
+        <cell><m>0.001668</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The centered difference is much better here because the errors from the left and right
+partly cancel.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-truncation-error">
+    <title>Truncation error</title>
+
+  <p>A finite-difference formula replaces a limit by a finite step.  The error from doing that
+is called <em>truncation error</em>.</p>
+
+  <p>The word means: we stopped a limiting process early.</p>
+
+  <p>To see the size of the error, expand <m>f(a+h)</m> near <m>a</m>.  Taylor’s formula gives</p>
+
+  <md>f(a+h)
+=
+f(a)+f'(a)h+\frac12f''(a)h^2+\frac16f'''(a)h^3+\cdots.</md>
+
+  <p>For the forward difference,</p>
+
+  <md>\frac{f(a+h)-f(a)}{h}
+=
+f'(a)+\frac12f''(a)h+\frac16f'''(a)h^2+\cdots.</md>
+
+  <p>So</p>
+
+  <md>
+D_h^+f(a)=f'(a)+\frac12f''(a)h+\text{terms involving }h^2,h^3,\ldots
+</md>
+
+  <p>The leading error is usually proportional to <m>h</m>.</p>
+
+  <p>For the backward difference,</p>
+
+  <md>f(a-h)
+=
+f(a)-f'(a)h+\frac12f''(a)h^2-\frac16f'''(a)h^3+\cdots.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{f(a)-f(a-h)}{h}
+=
+f'(a)-\frac12f''(a)h+\frac16f'''(a)h^2-\cdots.</md>
+
+  <p>So</p>
+
+  <md>
+D_h^-f(a)=f'(a)-\frac12f''(a)h+\text{terms involving }h^2,h^3,\ldots
+</md>
+
+  <p>The forward and backward errors have opposite first-order terms.</p>
+
+  <p>Now subtract the Taylor expansions:</p>
+
+  <md>f(a+h)-f(a-h)
+=
+2f'(a)h+\frac13f'''(a)h^3+\cdots.</md>
+
+  <p>Divide by <m>2h</m>:</p>
+
+  <md>\frac{f(a+h)-f(a-h)}{2h}
+=
+f'(a)+\frac16f'''(a)h^2+\cdots.</md>
+
+  <p>Thus</p>
+
+  <md>
+D_h^0f(a)=f'(a)+\frac16f'''(a)h^2+\text{terms involving }h^4,h^6,\ldots
+</md>
+
+  <p>The leading error is usually proportional to <m>h^2</m>.</p>
+
+  <note xml:id="note-sec-12-4-numerical-differentiation-62">
+    <title>Truncation error pattern</title>
+      <p>For smooth functions,</p>
+        <md>D_h^+f(a)-f'(a)
+\quad\text{and}\quad
+D_h^-f(a)-f'(a)</md>
+      <p>are usually of size roughly proportional to <m>h</m>, while</p>
+        <md>D_h^0f(a)-f'(a)</md>
+      <p>is usually of size roughly proportional to <m>h^2</m>.</p>
+  </note>
+
+  <p>This explains why centered differences are often much better than one-sided differences
+when the same step size is used.</p>
+
+
+  <exercise xml:id="checkpoint-12-4-truncation-error">
+        <title>Why is a centered difference usually more accurate than a one-sided one?</title>
+        <statement>
+          <p>
+            Truncation error is the error from replacing a limit by a finite step. In your own words, why are forward and backward errors typically of size about <m>h</m>, while the centered error is typically of size about <m>h^2</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Taylor expansions show that the first-order error terms of the left and right secants have opposite signs and cancel in the centered quotient.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-4-numerical-differentiation-2">
+    <title>why the centered error is small</title>
+    <statement>
+  <p>For <m>f(x)=e^x</m>, all derivatives equal <m>e^x</m>.  At <m>a=0</m>,</p>
+
+  <md>f'(0)=f''(0)=f'''(0)=1.</md>
+
+  <p>The forward difference has leading error approximately</p>
+
+  <md>\frac12h.</md>
+
+  <p>With <m>h=0.1</m>, this predicts error near</p>
+
+  <md>0.05,</md>
+
+  <p>which matches the observed forward error</p>
+
+  <md>0.051709.</md>
+
+  <p>The centered difference has leading error approximately</p>
+
+  <md>\frac16h^2.</md>
+
+  <p>With <m>h=0.1</m>, this predicts error near</p>
+
+  <md>\frac{0.01}{6}=0.001667,</md>
+
+  <p>which matches the observed centered error</p>
+
+  <md>0.001668.</md>
+
+  <p>The Taylor expansion is not only a formal calculation.  It tells us how the error behaves.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-roundoff-error">
+    <title>Roundoff error</title>
+
+  <p>Truncation error suggests a simple strategy:</p>
+
+  <md>\text{make \(h\) smaller.}</md>
+
+  <p>But computation has another error source.</p>
+
+  <p>A computer does not usually store real numbers exactly.  It stores rounded
+approximations.  When two nearly equal rounded numbers are subtracted, the small
+difference may lose important digits.</p>
+
+  <p>That is exactly what finite differences do.</p>
+
+  <md>f(a+h)-f(a)</md>
+
+  <p>subtracts two nearby values.  When <m>h</m> is very small, these values are very close.</p>
+
+  <p>Suppose the computed values of <m>f(a+h)</m> and <m>f(a)</m> each have possible absolute
+error at most <m>\eta</m>.  Then the numerator</p>
+
+  <md>f(a+h)-f(a)</md>
+
+  <p>may have error as large as approximately</p>
+
+  <md>2\eta.</md>
+
+  <p>After dividing by <m>h</m>, the derivative approximation may have roundoff error as large
+as</p>
+
+  <md>\frac{2\eta}{h}.</md>
+
+  <p>So roundoff error grows as <m>h</m> shrinks.</p>
+
+  <md>
+\text{Small \(h\) reduces truncation error but can increase roundoff error.}
+</md>
+
+  <p>This is the central tension in numerical differentiation.</p>
+
+  <paragraphs>
+    <title>A typical floating-point experiment</title>
+
+  <p>Compute</p>
+
+  <md>\frac{e^h-1}{h}</md>
+
+  <p>as an approximation to <m>f'(0)</m> for <m>f(x)=e^x</m>.  The true value is <m>1</m>.</p>
+
+  <p>A typical double-precision computation may look like this:</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+h \amp \dfrac{e^h-1}{h} \amp \text{absolute error}</mrow>
+    <mrow>\hline
+10^{-1} \amp 1.0517091808 \amp 5.17\cdot10^{-2}</mrow>
+    <mrow>10^{-4} \amp 1.0000500017 \amp 5.00\cdot10^{-5}</mrow>
+    <mrow>10^{-8} \amp 0.9999999939 \amp 6.08\cdot10^{-9}</mrow>
+    <mrow>10^{-10} \amp 1.0000000827 \amp 8.27\cdot10^{-8}</mrow>
+    <mrow>10^{-12} \amp 1.0000889006 \amp 8.89\cdot10^{-5}
+\end{array}</mrow>
+  </md>
+
+  <p>At first the error decreases.  Then it increases.</p>
+
+  <p>The mathematical limit is still true:</p>
+
+  <md>\lim_{h\to0}\frac{e^h-1}{h}=1.</md>
+
+  <p>But the computer is not taking a mathematical limit.  It is doing arithmetic with rounded
+numbers.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-why-smaller-h-not-always-better">
+    <title>Why smaller <m>h</m> is not always better</title>
+
+  <p>There are two competing errors.</p>
+
+  <p>For a forward difference,</p>
+
+  <md>\text{truncation error}\approx C_1h,</md>
+
+  <p>while</p>
+
+  <md>\text{roundoff error}\approx \frac{C_2\eta}{h}.</md>
+
+  <p>So a rough total error model is</p>
+
+  <md>
+\text{total error}\approx C_1h+\frac{C_2\eta}{h}.
+</md>
+
+  <p>The first term decreases when <m>h</m> decreases.  The second term increases when <m>h</m>
+decreases.</p>
+
+  <p>There is usually a best middle range.</p>
+
+  <p>For a centered difference,</p>
+
+  <md>\text{truncation error}\approx C_1h^2,</md>
+
+  <p>while roundoff still behaves like</p>
+
+  <md>\frac{C_2\eta}{h}.</md>
+
+  <p>So centered differences often allow a smaller error before roundoff takes over, but they
+do not escape the problem entirely.</p>
+
+  <note xml:id="note-sec-12-4-numerical-differentiation-63">
+    <title>Practical lesson</title>
+      <p>For numerical derivatives, do not blindly make <m>h</m> extremely small.</p>
+      <p>Use a moderately small <m>h</m>, compare several step sizes, and prefer centered differences
+when the data allow them.</p>
+  </note>
+
+  <exercise xml:id="checkpoint-12-4-smaller-h-not-always-better">
+        <title>Why is smaller <m>h</m> not always better?</title>
+        <statement>
+          <p>
+            Making <m>h</m> smaller reduces truncation error, yet a computer experiment can show the error decreasing and then increasing. In your own words, what competing error is growing, and why is numerical differentiation more delicate than numerical integration?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Finite differences subtract nearby values and divide by a small number. Roundoff (or measurement noise) is magnified by division by <m>h</m>. Integration averages; differentiation magnifies.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-data-endpoints-one-sided-differences">
+    <title>Data, endpoints, and one-sided differences</title>
+
+  <p>Experimental data often come in a table.</p>
+
+  <md>
+    <mrow>\begin{array}{c|ccccc}
+t \amp 0 \amp 1 \amp 2 \amp 3 \amp 4</mrow>
+    <mrow>\hline
+s(t) \amp 0.0 \amp 1.8 \amp 7.9 \amp 18.2 \amp 32.1
+\end{array}</mrow>
+  </md>
+
+  <p>If <m>s(t)</m> is position, then finite differences estimate velocity.</p>
+
+  <p>At <m>t=2</m>, the centered difference with <m>h=1</m> is</p>
+
+  <md>\frac{s(3)-s(1)}{2}
+=
+\frac{18.2-1.8}{2}
+=
+8.2.</md>
+
+  <p>So the estimated velocity at <m>t=2</m> is</p>
+
+  <md>8.2</md>
+
+  <p>position units per time unit.</p>
+
+  <p>At the left endpoint <m>t=0</m>, a centered difference using <m>t=-1</m> is not available.  We
+may use a forward difference:</p>
+
+  <md>\frac{s(1)-s(0)}{1}
+=
+1.8.</md>
+
+  <p>At the right endpoint <m>t=4</m>, we may use a backward difference:</p>
+
+  <md>\frac{s(4)-s(3)}{1}
+=
+13.9.</md>
+
+  <table xml:id="tab-sec-12-4-numerical-differentiation-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>point</strong></cell>
+        <cell><strong>available estimate</strong></cell>
+        <cell><strong>reason</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>left endpoint</cell>
+        <cell>forward difference</cell>
+        <cell>no data to the left</cell>
+      </row>
+      <row bottom="minor">
+        <cell>interior point</cell>
+        <cell>centered difference</cell>
+        <cell>data on both sides</cell>
+      </row>
+      <row>
+        <cell>right endpoint</cell>
+        <cell>backward difference</cell>
+        <cell>no data to the right</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>This is common in applications.  The best formula is not only a matter of accuracy.
+It also depends on which measurements are available.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-difference-quotient-hide-corner">
+    <title>Warning example: a difference quotient may hide a corner</title>
+
+  <p>Numerical differentiation can produce a number even when the derivative does not
+exist.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=|x|.</md>
+
+  <p>At <m>x=0</m>, the graph has a corner.  The derivative does not exist.</p>
+
+  <p>The forward difference is</p>
+
+  <md>D_h^+f(0)=\frac{|h|-|0|}{h}=1</md>
+
+  <p>for <m>h&gt;0</m>.</p>
+
+  <p>The backward difference is</p>
+
+  <md>D_h^-f(0)=\frac{|0|-|-h|}{h}=-1.</md>
+
+  <p>The centered difference is</p>
+
+  <md>D_h^0f(0)=\frac{|h|-|-h|}{2h}=0.</md>
+
+  <p>So the three numerical formulas give</p>
+
+  <md>1,\qquad -1,\qquad 0.</md>
+
+  <p>None of these means that <m>f'(0)</m> exists.</p>
+
+  <figure xml:id="fig-centered-difference-absolute-value">
+    <caption>For <m>f(x)=|x|</m>, the centered difference at <m>0</m> equals <m>0</m>, but the derivative at <m>0</m> does not exist.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.68\textwidth,
+    height=0.42\textwidth,
+    xmin=-2.2, xmax=2.2,
+    ymin=-0.2, ymax=2.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2:0, samples=2] {-x};
+\addplot[very thick, domain=0:2, samples=2] {x};
+\addplot[thick, dashed] coordinates {(0,0) (1,1)};
+\addplot[thick, dotted] coordinates {(-1,1) (0,0)};
+\addplot[thick, dashdotted] coordinates {(-1,1) (1,1)};
+\addplot[only marks, mark=*] coordinates {(-1,1) (0,0) (1,1)};
+\node[anchor=west] at (axis cs:0.2,1.65) {\(y=|x|\)};
+\node[anchor=west] at (axis cs:0.25,0.35) {right slope \(1\)};
+\node[anchor=east] at (axis cs:-0.25,0.35) {left slope \(-1\)};
+\node[anchor=south] at (axis cs:0,1.05) {centered slope \(0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <warning xml:id="warn-sec-12-4-numerical-differentiation-64">
+    <title>Warning</title>
+      <p>A finite-difference formula can return a number even when the derivative does not
+exist.</p>
+      <p>Numerical evidence must be interpreted with the graph, the data, and the hypotheses
+in mind.</p>
+  </warning>
+
+  <p>This warning is especially important with noisy data.  If the measurements contain
+small errors, dividing by a small <m>h</m> can turn small measurement errors into large
+derivative errors.</p>
+
+  <p>Differentiation magnifies noise.  Integration averages noise.</p>
+
+  <p>That is one reason numerical differentiation is usually more delicate than numerical
+integration.</p>
+
+  <exercise xml:id="checkpoint-12-4-number-is-not-a-derivative">
+        <title>Why can a difference quotient return a number even when the derivative does not exist?</title>
+        <statement>
+          <p>
+            For <m>f(x)=|x|</m> at <m>x=0</m>, the three finite-difference formulas give <m>1</m>, <m>-1</m>, and <m>0</m>. In your own words, why none of those numbers means that <m>f'(0)</m> exists, and what extra evidence should accompany a numerical derivative?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A formula can compute a quotient even when left and right slopes disagree. Interpret the number with the graph, the data, and the hypotheses.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-numerical-differentiation-hook-newton-revisited">
+    <title>Where this points</title>
+
+  <p>Numerical integration and numerical differentiation both replace a limit by a finite
+calculation.  Each method has an error story.</p>
+
+  <p>For integration, smaller subintervals usually improve the approximation, and the error
+bounds can be very strong for smooth functions.</p>
+
+  <p>For differentiation, smaller steps reduce truncation error but may increase roundoff
+error.  The best computation is a compromise.</p>
+
+  <p>The next natural place where approximation, derivatives, and error meet is Newton’s
+method.  We already used Newton’s method to find roots.  Now we can ask sharper
+computational questions:</p>
+
+  <md>\text{When should the iteration stop?}</md>
+
+  <md>\text{How close is the current guess to the root?}</md>
+
+  <md>\text{What happens when the derivative is small or the root is repeated?}</md>
+
+  <p>Those questions bring Newton’s method back, this time as a numerical algorithm rather
+than only a tangent-line idea.</p>
+  </subsection>
+
+
+
+</section>

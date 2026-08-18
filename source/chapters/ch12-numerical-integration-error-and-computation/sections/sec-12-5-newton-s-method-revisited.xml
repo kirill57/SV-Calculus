@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-5-newton-s-method-revisited">
+  <title>Newton’s method revisited</title>
+
+  <p>Numerical differentiation taught us a useful warning: a formula can be mathematically
+correct and still be delicate in computation.  Newton’s method has the same personality.</p>
+
+  <p>Earlier, Newton’s method came from tangent lines.  To solve</p>
+
+  <md>f(x)=0,</md>
+
+  <p>we replaced the curve by its tangent line at a current guess <m>x_n</m>, then used the
+<m>x</m>-intercept of that tangent line as the next guess:</p>
+
+  <md>
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.
+</md>
+
+  <p>That formula is simple.  The computational questions are not.</p>
+
+  <md>\text{When should we stop?}</md>
+
+  <md>\text{How close is the current guess to the root?}</md>
+
+  <md>\text{What changes when the root is multiple?}</md>
+
+  <md>\text{What can go wrong if we iterate from a bad starting point?}</md>
+
+  <p>These are not side questions.  They are the questions that turn Newton’s method from a
+geometric idea into a numerical algorithm.</p>
+
+  <subsection xml:id="subsec-newton-stopping-criteria">
+    <title>Stopping criteria</title>
+
+  <p>A computer almost never lands on the exact root.  It produces a sequence</p>
+
+  <md>x_0,\ x_1,\ x_2,\ \ldots</md>
+
+  <p>and we must decide when the sequence is good enough.</p>
+
+  <p>There are two numbers we can easily monitor.</p>
+
+  <p>First, we can monitor the residual:</p>
+
+  <md>|f(x_n)|.</md>
+
+  <p>This tells us how close the function value is to <m>0</m>.</p>
+
+  <p>Second, we can monitor the step size:</p>
+
+  <md>|x_n-x_{n-1}|.</md>
+
+  <p>This tells us how much the iterates are still moving.</p>
+
+  <p>Both are useful.  Neither is perfect by itself.</p>
+
+  <example xml:id="ex-sec-12-5-newton-s-method-revisited-1">
+    <title>square root of <m>2</m></title>
+    <statement>
+  <p>To compute <m>\sqrt2</m>, solve</p>
+
+  <md>f(x)=x^2-2=0.</md>
+
+  <p>Newton’s method gives</p>
+
+  <md>x_{n+1}
+=
+x_n-\frac{x_n^2-2}{2x_n}
+=
+\frac12\left(x_n+\frac2{x_n}\right).</md>
+
+  <p>Start with</p>
+
+  <md>x_0=1.5.</md>
+
+  <p>The iterates are:</p>
+
+  <table xml:id="tab-sec-12-5-newton-s-method-revisited-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>n</m></cell>
+        <cell><m>x_n</m></cell>
+        <cell><m>|f(x_n)|</m></cell>
+        <cell><m>|x_n-x_{n-1}|</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0</m></cell>
+        <cell><m>1.500000000</m></cell>
+        <cell><m>2.500000\cdot10^{-1}</m></cell>
+        <cell>--</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>1.416666667</m></cell>
+        <cell><m>6.944444\cdot10^{-3}</m></cell>
+        <cell><m>8.333333\cdot10^{-2}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2</m></cell>
+        <cell><m>1.414215686</m></cell>
+        <cell><m>6.007305\cdot10^{-6}</m></cell>
+        <cell><m>2.450980\cdot10^{-3}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>3</m></cell>
+        <cell><m>1.414213562</m></cell>
+        <cell><m>4.510614\cdot10^{-12}</m></cell>
+        <cell><m>2.123900\cdot10^{-6}</m></cell>
+      </row>
+      <row>
+        <cell><m>4</m></cell>
+        <cell><m>1.414213562</m></cell>
+        <cell><m>4.440892\cdot10^{-16}</m></cell>
+        <cell><m>1.594946\cdot10^{-12}</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>By <m>n=3</m>, both the residual and the step size are tiny.  The sequence has stabilized
+for any ordinary decimal purpose.</p>
+
+  <note xml:id="note-sec-12-5-newton-s-method-revisited-70">
+    <title>A practical stopping rule</title>
+      <p>Choose tolerances <m>\varepsilon_{\text{res}}&gt;0</m> and <m>\varepsilon_{\text{step}}&gt;0</m>.  Stop when</p>
+        <md>|f(x_n)|&lt;\varepsilon_{\text{res}}</md>
+      <p>and</p>
+        <md>|x_n-x_{n-1}|&lt;\varepsilon_{\text{step}}.</md>
+      <p>Also choose a maximum number of iterations, so the method cannot run forever.</p>
+  </note>
+
+  <p>A typical algorithm therefore asks for three pieces of numerical judgment:</p>
+
+  <md>\text{residual tolerance},\qquad
+\text{step tolerance},\qquad
+\text{maximum number of iterations}.</md>
+
+  <p>The maximum iteration count is not mathematical decoration.  It protects us from
+cycles, divergence, and programming mistakes.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why residual alone can mislead</title>
+
+  <p>A small residual does not always mean a small error in <m>x</m>.  The reason is slope.</p>
+
+  <p>If the graph is very flat near the axis, then the function value can be small even when
+the input is not very close to the root.</p>
+
+  <p>For example, consider</p>
+
+  <md>f(x)=10^{-8}(x-10^6).</md>
+
+  <p>The root is</p>
+
+  <md>r=10^6.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>f(0)=-10^{-2}.</md>
+
+  <p>If a careless stopping rule accepts every residual less than <m>0.02</m>, then <m>x=0</m> would
+be accepted even though it is one million units away from the root.</p>
+
+  <p>The residual must be interpreted together with the scale of the function and the slope
+near the root.</p>
+
+  <md>
+\text{Small \(f(x_n)\) is strongest evidence when \(f'\) is not small near the root.}
+</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why step size alone can mislead</title>
+
+  <p>A small step size can also be misleading.  An iteration may stop moving because of
+roundoff error, because the derivative is badly scaled, or because the method is trapped
+near a point that is not a root.</p>
+
+  <p>So a step-size test should usually be paired with a residual test.  We want the iterates to
+stop moving <em>and</em> the function value to be close to zero.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-5-stopping-criteria">
+        <title>Why is neither residual nor step size enough by itself?</title>
+        <statement>
+          <p>
+            A Newton iteration can monitor <m>|f(x_n)|</m> and <m>|x_n-x_{n-1}|</m>. In your own words, why can a small residual occur far from a root, and why can a small step occur even when the current point is not a trustworthy root?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A flat graph can have a small function value far from the axis. An iteration can also stall from roundoff, a tiny derivative, or a trap that is not a root. Pair the two tests.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-newton-error-estimates">
+    <title>Error estimates</title>
+
+  <p>A residual is easy to compute.  The actual error</p>
+
+  <md>|x_n-r|</md>
+
+  <p>is usually not easy to compute, because the root <m>r</m> is the thing we are trying to find.</p>
+
+  <p>Still, we can sometimes bound the error.</p>
+
+  <p>Suppose <m>r</m> is a root, so</p>
+
+  <md>f(r)=0.</md>
+
+  <p>If <m>x_n</m> and <m>r</m> lie in an interval where</p>
+
+  <md>|f'(x)|\ge m&gt;0,</md>
+
+  <p>then the Mean Value Theorem gives</p>
+
+  <md>|f(x_n)-f(r)|=|f'(c)|\,|x_n-r|</md>
+
+  <p>for some <m>c</m> between <m>x_n</m> and <m>r</m>.  Since <m>f(r)=0</m>,</p>
+
+  <md>|f(x_n)|=|f'(c)|\,|x_n-r|.</md>
+
+  <p>Because <m>|f'(c)|\ge m</m>, we get</p>
+
+  <md>
+|x_n-r|\le \frac{|f(x_n)|}{m}.
+</md>
+
+  <p>This is an <em>a posteriori</em> error estimate: it uses information from the approximation
+we have already computed.</p>
+
+
+  <exercise xml:id="checkpoint-12-5-residual-error-bound">
+        <title>How can a residual bound the unknown error <m>|x_n-r|</m>?</title>
+        <statement>
+          <p>
+            The root <m>r</m> is what we are trying to find, so the true error is not directly available. In your own words, why does a lower bound on <m>|f'|</m> near the root convert a small residual into a bound on <m>|x_n-r|</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The Mean Value Theorem says <m>|f(x_n)|=|f'(c)|\,|x_n-r|</m>. If the slope cannot be too small, a small function value forces a small input error.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-5-newton-s-method-revisited-4">
+    <title>residual gives an error bound</title>
+    <statement>
+  <p>Suppose we use Newton’s method on</p>
+
+  <md>f(x)=x^2-2</md>
+
+  <p>and obtain</p>
+
+  <md>x_3=1.4142135623746899.</md>
+
+  <p>We know the positive root lies between <m>1</m> and <m>2</m>.  On this interval,</p>
+
+  <md>f'(x)=2x,</md>
+
+  <p>so</p>
+
+  <md>|f'(x)|\ge 2.</md>
+
+  <p>The residual is approximately</p>
+
+  <md>|f(x_3)|\approx 4.51\cdot10^{-12}.</md>
+
+  <p>Therefore</p>
+
+  <md>|x_3-\sqrt2|
+\le
+\frac{4.51\cdot10^{-12}}{2}
+=
+2.26\cdot10^{-12}.</md>
+
+  <p>So the approximation is guaranteed to be within about</p>
+
+  <md>2.26\cdot10^{-12}</md>
+
+  <p>of the true root.</p>
+
+  <p>This bound is not the same thing as the actual error.  It is a guarantee based on a lower
+bound for the derivative.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-newton-step-error-estimate">
+    <title>The Newton step as an error estimate</title>
+
+  <p>The Newton step is</p>
+
+  <md>s_n=x_{n+1}-x_n=-\frac{f(x_n)}{f'(x_n)}.</md>
+
+  <p>Near a simple root, the tangent line predicts that the root is approximately</p>
+
+  <md>x_n+s_n.</md>
+
+  <p>So</p>
+
+  <md>|s_n|</md>
+
+  <p>is often a rough estimate of the current error <m>|x_n-r|</m>.</p>
+
+  <p>This is why the step size is useful as a stopping test.  If the next tangent correction is
+tiny, then the current approximation is probably close to a root, provided the residual is
+also tiny and the derivative is not causing trouble.</p>
+
+  <p>But there is something even better near a simple root.</p>
+
+  <p>Earlier, Taylor’s formula gave the Newton error relation</p>
+
+  <md>x_{n+1}-r
+=
+\frac{f''(c_n)}{2f'(x_n)}(r-x_n)^2</md>
+
+  <p>for some point <m>c_n</m> between <m>x_n</m> and <m>r</m>.  So near a simple root,</p>
+
+  <md>
+|x_{n+1}-r|\approx C|x_n-r|^2.
+</md>
+
+  <p>This is <em>quadratic convergence</em>.</p>
+
+  <p>If the current error is about <m>10^{-3}</m>, the next error may be about <m>10^{-6}</m>.  If the
+current error is about <m>10^{-6}</m>, the next error may be about <m>10^{-12}</m>.</p>
+
+  <p>That is why Newton’s method can suddenly gain many digits.</p>
+
+  <note xml:id="note-sec-12-5-newton-s-method-revisited-71">
+    <title>Practical lesson</title>
+      <p>When Newton’s method is converging well to a simple root, the number of correct
+digits often roughly doubles from one step to the next.</p>
+      <p>When it is not converging well, no stopping rule should pretend that it is.</p>
+  </note>
+  </subsection>
+
+  <subsection xml:id="subsec-newton-multiple-roots-revisited">
+    <title>Multiple roots</title>
+
+  <p>Newton’s method is fastest near a <em>simple</em> root.  A simple root is a root <m>r</m> for
+which</p>
+
+  <md>f(r)=0
+\qquad\text{and}\qquad
+f'(r)\neq0.</md>
+
+  <p>If</p>
+
+  <md>f'(r)=0,</md>
+
+  <p>then the graph touches the axis more flatly.  Newton’s method may still converge, but
+the convergence often becomes much slower.</p>
+
+
+  <exercise xml:id="checkpoint-12-5-simple-versus-multiple">
+        <title>Why does a multiple root slow Newton’s method?</title>
+        <statement>
+          <p>
+            Near a simple root, Newton’s method often doubles the number of correct digits. Near a double root, the error may merely be cut in half each step. In your own words, what geometric difference between a simple crossing and a flat touch explains the change?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Quadratic convergence uses <m>f'(r)\neq0</m>. If the graph is tangent to the axis, the tangent-line correction becomes a weaker, linear process.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-5-newton-s-method-revisited-5">
+    <title>a double root</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=(x-1)^2.</md>
+
+  <p>The root is</p>
+
+  <md>r=1,</md>
+
+  <p>and it is a double root.  Since</p>
+
+  <md>f'(x)=2(x-1),</md>
+
+  <p>we have</p>
+
+  <md>f'(1)=0.</md>
+
+  <p>Newton’s method gives, for <m>x_n\neq1</m>,</p>
+
+  <md>x_{n+1}
+=
+x_n-\frac{(x_n-1)^2}{2(x_n-1)}.</md>
+
+  <p>Cancel one factor:</p>
+
+  <md>x_{n+1}
+=
+x_n-\frac{x_n-1}{2}.</md>
+
+  <p>So</p>
+
+  <md>
+x_{n+1}=\frac{x_n+1}{2}.
+</md>
+
+  <p>Starting from <m>x_0=2</m>, the iterates are:</p>
+
+  <table xml:id="tab-sec-12-5-newton-s-method-revisited-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>n</m></cell>
+        <cell><m>x_n</m></cell>
+        <cell><m>|x_n-1|</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>0</m></cell>
+        <cell><m>2.000000</m></cell>
+        <cell><m>1.000000</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>1</m></cell>
+        <cell><m>1.500000</m></cell>
+        <cell><m>0.500000</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>2</m></cell>
+        <cell><m>1.250000</m></cell>
+        <cell><m>0.250000</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>3</m></cell>
+        <cell><m>1.125000</m></cell>
+        <cell><m>0.125000</m></cell>
+      </row>
+      <row>
+        <cell><m>4</m></cell>
+        <cell><m>1.062500</m></cell>
+        <cell><m>0.062500</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The error is cut in half each time.  That is convergence, but it is not quadratic
+convergence.  It is only linear convergence.</p>
+
+  <figure xml:id="fig-newton-double-root">
+    <caption>At a double root, the graph is tangent to the <m>x</m>-axis.  Newton’s method still moves toward the root, but much more slowly.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.48\textwidth,
+    xmin=0.5, xmax=2.6,
+    ymin=-0.05, ymax=1.35,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,1.5,2},
+    ytick={0,0.25,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0.55:2.15, samples=150] {(x-1)^2};
+% tangent at x_0=2: y=1+2(x-2)=2x-3, meets the axis at x_1=1.5
+\addplot[thick, domain=1.5:2.15, samples=2] {2*x-3};
+% tangent at x_1=1.5: y=0.25+(x-1.5)=x-1.25, meets the axis at x_2=1.25
+\addplot[thick, domain=1.25:1.7, samples=2] {x-1.25};
+\addplot[only marks, mark=*] coordinates {(2,1) (1.5,0.25) (1,0)};
+\addplot[only marks, mark=o, thick] coordinates {(1.5,0) (1.25,0)};
+\node[anchor=west] at (axis cs:2,1) {\(x_0=2\)};
+\node[anchor=east] at (axis cs:1.5,0.5) {\(x_1=1.5\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The same pattern appears for higher multiplicity.  If</p>
+
+  <md>f(x)=(x-r)^m,</md>
+
+  <p>then</p>
+
+  <md>f'(x)=m(x-r)^{m-1}.</md>
+
+  <p>Newton’s method gives</p>
+
+  <md>x_{n+1}
+=
+x_n-\frac{(x_n-r)^m}{m(x_n-r)^{m-1}}
+=
+x_n-\frac{x_n-r}{m}.</md>
+
+  <p>Therefore</p>
+
+  <md>x_{n+1}-r
+=
+\left(1-\frac1m\right)(x_n-r).</md>
+
+  <p>So the error is multiplied by</p>
+
+  <md>1-\frac1m</md>
+
+  <p>each step.</p>
+
+  <p>For a double root, this factor is <m>1/2</m>.  For a triple root, it is <m>2/3</m>.  The larger the
+multiplicity, the slower the basic Newton iteration becomes.</p>
+
+  <warning xml:id="warn-sec-12-5-newton-s-method-revisited-72">
+    <title>Multiple-root warning</title>
+      <p>If Newton’s method converges only linearly, one possible reason is that the root is
+multiple.</p>
+      <p>Repeatedly small residuals with slow-moving iterates may indicate a flat crossing or
+a flat touch near the axis.</p>
+  </warning>
+
+  <p>If the multiplicity <m>m</m> is known, a modified Newton step can help:</p>
+
+  <md>
+x_{n+1}=x_n-m\frac{f(x_n)}{f'(x_n)}.
+</md>
+
+  <p>For</p>
+
+  <md>f(x)=(x-r)^m,</md>
+
+  <p>this modified method reaches the root in one step.  For more general functions with a
+root of multiplicity <m>m</m>, it can restore much faster convergence near the root.</p>
+
+  <p>But the multiplicity is not always known.  That is why observing the behavior of the
+iteration matters.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-first-glimpse-chaotic-iteration">
+    <title>A first glimpse of chaotic iteration</title>
+
+  <p>Newton’s method is an iteration:</p>
+
+  <md>x_{n+1}=N(x_n),</md>
+
+  <p>where</p>
+
+  <md>N(x)=x-\frac{f(x)}{f'(x)}.</md>
+
+  <p>So Newton’s method is not only a root-finding formula.  It is also a dynamical system:
+a rule that sends each point to a next point.</p>
+
+  <p>When the starting point is close to a simple root, the dynamics are friendly.  The root
+attracts nearby iterates.</p>
+
+  <p>Far from a root, the dynamics can be complicated.</p>
+
+
+  <exercise xml:id="checkpoint-12-5-iteration-can-misbehave">
+        <title>What can Newton’s method do far from a good root?</title>
+        <statement>
+          <p>
+            Near a simple root the iteration is friendly, but the same formula is a dynamical system. In your own words, what kinds of failure can occur from a bad starting point, and why should a safe workflow monitor iterates rather than trust the formula blindly?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The method can jump to another root, cycle, divide by zero, or behave unpredictably. Record residual and step size, and restart or switch methods if the residual does not drop.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-5-newton-s-method-revisited-6">
+    <title>asking for a real root that does not exist</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=x^2+1.</md>
+
+  <p>This function has no real root.  Still, Newton’s formula produces an iteration.</p>
+
+  <p>Since</p>
+
+  <md>f'(x)=2x,</md>
+
+  <p>we get</p>
+
+  <md>x_{n+1}
+=
+x_n-\frac{x_n^2+1}{2x_n}.</md>
+
+  <p>Simplify:</p>
+
+  <md>
+x_{n+1}
+=
+\frac12\left(x_n-\frac1{x_n}\right).
+</md>
+
+  <p>This formula is defined whenever <m>x_n\neq0</m>.</p>
+
+  <p>Start with</p>
+
+  <md>x_0=1.</md>
+
+  <p>Then</p>
+
+  <md>x_1=\frac12(1-1)=0.</md>
+
+  <p>The next step is impossible because the formula would require division by <m>0</m>.</p>
+
+  <p>Start instead with</p>
+
+  <md>x_0=1.01.</md>
+
+  <p>Then</p>
+
+  <md>x_1
+=
+\frac12\left(1.01-\frac1{1.01}\right)
+\approx 0.0099505.</md>
+
+  <p>Now the next step contains <m>1/x_1</m>, which is huge:</p>
+
+  <md>x_2
+\approx
+\frac12(0.0099505-100.4975)
+\approx -50.2438.</md>
+
+  <p>A tiny change from <m>1</m> to <m>1.01</m> has produced a very different next story.</p>
+
+  <figure xml:id="fig-newton-map-x2-plus-1">
+    <caption>Placeholder: this figure will be replaced by an interactive application for observing the chaotic dynamical system produced by Newton’s method for <m>x^2+1=0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+  \node[
+    draw,
+    rounded corners,
+    align=center,
+    inner sep=14pt,
+    text width=0.72\textwidth,
+    font=\small
+  ] {
+    Placeholder.\\[6pt]
+    Replace this figure with an interactive application\\
+    so the reader can observe the chaotic dynamical system\\
+    discussed in this example.
+  };
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example is not here because we need to solve <m>x^2+1=0</m> over the real numbers.
+We already know there is no real solution.</p>
+
+  <p>It is here because it shows something deeper: an iteration can have a simple rule and
+complicated behavior.</p>
+
+  <warning xml:id="warn-sec-12-5-newton-s-method-revisited-73">
+    <title>Computational warning</title>
+      <p>Newton’s method can be extremely fast near a good root.  Far from a good root, it can
+move to a different root, enter a cycle, become undefined, or behave unpredictably.</p>
+      <p>Always monitor the iterates.</p>
+  </warning>
+
+  <p>This warning does not make Newton’s method less valuable.  It makes it more honest.
+In serious computation, a fast method and a safety check belong together.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-safe-newton-workflow">
+    <title>A safe Newton workflow</title>
+
+  <p>When using Newton’s method as a numerical algorithm, follow a disciplined workflow.</p>
+
+    <ol>
+      <li>
+        <p>Choose a function <m>f</m> whose root solves the original problem.</p>
+      </li>
+      <li>
+        <p>Choose a starting value <m>x_0</m> from a graph, table, physical estimate, or bracket.</p>
+      </li>
+      <li>
+        <p>Compute</p>
+          <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}</md>
+        <p>only when <m>f'(x_n)\neq0</m>.</p>
+      </li>
+      <li>
+        <p>At each step, record <m>x_n</m>, <m>f(x_n)</m>, and <m>x_n-x_{n-1}</m>.</p>
+      </li>
+      <li>
+        <p>Stop only when the residual and step size are both small enough.</p>
+      </li>
+      <li>
+        <p>If the method leaves the physical domain, cycles, or fails to reduce the residual,
+restart with a better initial guess or use a safer method such as bisection.</p>
+      </li>
+    </ol>
+
+  <p>Newton’s method is a perfect example of this chapter’s theme.  Calculus gives the idea:
+follow the tangent line.  Computation adds the discipline: check whether the idea is
+working.</p>
+
+  <p>The same discipline belongs to numerical integration.  We have formulas, but formulas
+become understanding only when we test them.</p>
+  </subsection>
+
+
+
+</section>

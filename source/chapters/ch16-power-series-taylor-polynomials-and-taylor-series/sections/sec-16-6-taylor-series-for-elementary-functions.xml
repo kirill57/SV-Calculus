@@ -1,0 +1,881 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-6-taylor-series-for-elementary-functions">
+  <title>Taylor series for elementary functions</title>
+
+  <p>Taylor’s theorem says</p>
+
+  <md>f(x)=T_n(x)+R_n(x).</md>
+
+  <p>If the remainders satisfy</p>
+
+  <md>R_n(x)\to0</md>
+
+  <p>as <m>n\to\infty</m>, then the Taylor polynomials approach the function itself:</p>
+
+  <md>f(x)=\lim_{n\to\infty}T_n(x).</md>
+
+  <p>That limit is an infinite series.</p>
+
+  <note xml:id="note-sec-16-6-taylor-series-for-elementary-functions-114">
+    <title>Taylor series</title>
+      <p>If <m>f</m> has derivatives of all orders at <m>a</m>, its Taylor series centered at <m>a</m> is</p>
+        <md>
+\sum_{n=0}^{\infty}
+\frac{f^{(n)}(a)}{n!}(x-a)^n.
+</md>
+      <p>When <m>a=0</m>, this is called the Maclaurin series:</p>
+        <md>
+\sum_{n=0}^{\infty}
+\frac{f^{(n)}(0)}{n!}x^n.
+</md>
+  </note>
+
+  <p>There is a warning hidden in the definition.  The Taylor series is built from the
+derivatives of <m>f</m> at one point.  It may converge only for some <m>x</m>-values.  Even when
+it converges, it must still be checked that it converges to <m>f(x)</m>.</p>
+
+  <md>
+\text{A Taylor series equals the function only where the remainder tends to \(0\).}
+</md>
+
+  <p>For the elementary functions in this section, we will prove or recall why the equality
+is valid.</p>
+
+  <subsection xml:id="subsec-taylor-series-exp">
+    <title><m>e^x</m></title>
+
+  <p>The exponential function is the cleanest Taylor series because every derivative is the
+same:</p>
+
+  <md>\frac{d^n}{dx^n}e^x=e^x.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>e^0=1.</md>
+
+  <p>So</p>
+
+  <md>f^{(n)}(0)=1</md>
+
+  <p>for every <m>n</m>.  The Maclaurin series is therefore</p>
+
+  <md>
+e^x
+=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}
++\frac{x^4}{4!}+\cdots
+</md>
+
+  <p>or</p>
+
+  <md>
+e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}.
+</md>
+
+  <p>Now we justify the equality.</p>
+
+  <p>The degree <m>n</m> Maclaurin polynomial is</p>
+
+  <md>T_n(x)=\sum_{k=0}^{n}\frac{x^k}{k!}.</md>
+
+  <p>Taylor’s theorem gives</p>
+
+  <md>R_n(x)=\frac{e^c}{(n+1)!}x^{n+1}</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>x</m>.  For a fixed <m>x</m>, the value <m>e^c</m> is bounded.
+For example,</p>
+
+  <md>e^c\le e^{|x|}</md>
+
+  <p>for <m>c</m> between <m>0</m> and <m>x</m>.  Therefore</p>
+
+  <md>|R_n(x)|
+\le
+e^{|x|}\frac{|x|^{n+1}}{(n+1)!}.</md>
+
+  <p>The factor</p>
+
+  <md>\frac{|x|^{n+1}}{(n+1)!}</md>
+
+  <p>tends to <m>0</m>, because factorials eventually grow faster than any fixed power.  Thus</p>
+
+  <md>R_n(x)\to0</md>
+
+  <p>for every real <m>x</m>.</p>
+
+  <p>So the exponential series is valid for all real <m>x</m>:</p>
+
+  <md>
+e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!},
+\qquad -\infty&lt;x&lt;\infty.
+</md>
+
+
+  <exercise xml:id="checkpoint-16-6-remainder-to-zero">
+        <title>When does a Taylor series equal the function?</title>
+        <statement>
+          <p>
+            If <m>f</m> has derivatives of all orders at <m>a</m>, it has a Taylor series. In your own words, why is writing that series not the same as proving <m>f(x)</m> equals the series, and why is <m>R_n(x)\to 0</m> the missing bridge?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The series is built from derivative data at one point. The function equals the limit of its Taylor polynomials only where the leftovers vanish.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-1">
+    <title>estimating <m>e^{0.3}</m></title>
+    <statement>
+  <p>Use terms through <m>x^4</m>:</p>
+
+  <md>e^{0.3}
+\approx
+1+0.3+\frac{0.3^2}{2!}+\frac{0.3^3}{3!}+\frac{0.3^4}{4!}.</md>
+
+  <p>Compute:</p>
+
+  <md>1+0.3+0.045+0.0045+0.0003375
+=
+1.3498375.</md>
+
+  <p>The remainder after degree <m>4</m> is</p>
+
+  <md>R_4(0.3)=\frac{e^c}{5!}(0.3)^5</md>
+
+  <p>for some <m>c</m> between <m>0</m> and <m>0.3</m>.  Since <m>e^c&lt;2</m> on this interval,</p>
+
+  <md>|R_4(0.3)|&lt;\frac{2(0.3)^5}{120}.</md>
+
+  <p>Now</p>
+
+  <md>(0.3)^5=0.00243,</md>
+
+  <p>so</p>
+
+  <md>|R_4(0.3)|&lt;0.000041.</md>
+
+  <p>Thus</p>
+
+  <md>
+e^{0.3}\approx1.3498375
+</md>
+
+  <p>with error less than <m>0.000041</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-taylor-series-sin-cos">
+    <title><m>\sin x</m> and <m>\cos x</m></title>
+
+  <p>The derivatives of <m>\sin x</m> cycle:</p>
+
+  <md>\sin x,\quad \cos x,\quad -\sin x,\quad -\cos x,\quad \sin x,\ldots.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>\sin0=0,
+\qquad
+\cos0=1.</md>
+
+  <p>So the derivative values are</p>
+
+  <md>0,\ 1,\ 0,\ -1,\ 0,\ 1,\ 0,\ -1,\ldots.</md>
+
+  <p>Only odd powers appear:</p>
+
+  <md>
+\sin x
+=
+x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots
+</md>
+
+  <p>or</p>
+
+  <md>
+\sin x=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n+1}}{(2n+1)!}.
+</md>
+
+  <p>For <m>\cos x</m>, the derivative values at <m>0</m> are</p>
+
+  <md>1,\ 0,\ -1,\ 0,\ 1,\ 0,\ -1,\ldots.</md>
+
+  <p>Only even powers appear:</p>
+
+  <md>
+\cos x
+=
+1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}+\cdots
+</md>
+
+  <p>or</p>
+
+  <md>
+\cos x=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n}}{(2n)!}.
+</md>
+
+  <p>The equality is valid for all real <m>x</m>.  Here is why.  Every derivative of <m>\sin x</m> or
+<m>\cos x</m> is one of</p>
+
+  <md>\sin x,\quad \cos x,\quad -\sin x,\quad -\cos x.</md>
+
+  <p>All of these have absolute value at most <m>1</m>.  Taylor’s theorem gives</p>
+
+  <md>|R_n(x)|\le \frac{|x|^{n+1}}{(n+1)!}.</md>
+
+  <p>For each fixed <m>x</m>, this tends to <m>0</m>.  Therefore the Taylor series for sine and cosine
+converge to the functions for every real <m>x</m>.</p>
+
+  <md>
+\sin x=\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n+1}}{(2n+1)!},
+\qquad -\infty&lt;x&lt;\infty,
+</md>
+
+  <md>
+\cos x=\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n}}{(2n)!},
+\qquad -\infty&lt;x&lt;\infty.
+</md>
+
+  <figure xml:id="fig-sin-taylor-polynomials">
+    <caption>Taylor polynomials for <m>\sin x</m> are best near the center <m>0</m>, then improve outward as more terms are added.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=-4, xmax=4,
+    ymin=-1.6, ymax=1.6,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-3.1416,0,3.1416},
+    xticklabels={\(-\pi\),\(0\),\(\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small}
+]
+\addplot[very thick, domain=-4:4, samples=250] {sin(deg(x))};
+\addlegendentry{\(\sin x\)}
+
+\addplot[thick, dashed, domain=-4:4, samples=250] {x};
+\addlegendentry{\(x\)}
+
+\addplot[thick, dotted, domain=-4:4, samples=250] {x-x^3/6};
+\addlegendentry{\(x-\frac{x^3}{3!}\)}
+
+\addplot[thick, dashdotted, domain=-4:4, samples=250] {x-x^3/6+x^5/120};
+\addlegendentry{\(x-\frac{x^3}{3!}+\frac{x^5}{5!}\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+
+  <exercise xml:id="checkpoint-16-6-everywhere-versus-limited">
+        <title>Why do some elementary series live on the whole line and others do not?</title>
+        <statement>
+          <p>
+            The series for <m>e^x</m>, <m>\sin x</m>, and <m>\cos x</m> are valid for every real <m>x</m>, while <m>\ln(1+x)</m> and <m>\arctan x</m> are not. In your own words, why is that not a defect of the functions, and what is the series actually reporting?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Factorials in the denominator overpower any fixed power of <m>x</m>. Geometric-type series are limited by a radius coming from a nearby singularity or from the original geometric seed, even if the function itself is defined more widely.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-2">
+    <title>estimating <m>\sin(0.2)</m></title>
+    <statement>
+  <p>Use</p>
+
+  <md>\sin x\approx x-\frac{x^3}{3!}.</md>
+
+  <p>At <m>x=0.2</m>,</p>
+
+  <md>0.2-\frac{0.2^3}{6}
+=
+0.2-\frac{0.008}{6}
+=
+0.198666\ldots.</md>
+
+  <p>Because the sine series is alternating with decreasing term sizes for this input, the error
+is at most the first omitted term:</p>
+
+  <md>\frac{0.2^5}{5!}.</md>
+
+  <p>Since</p>
+
+  <md>0.2^5=0.00032,</md>
+
+  <p>we get</p>
+
+  <md>\frac{0.2^5}{120}
+=
+0.000002666\ldots.</md>
+
+  <p>Thus</p>
+
+  <md>
+\sin(0.2)\approx0.198666\ldots
+</md>
+
+  <p>with error less than <m>0.000003</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-taylor-series-ln-one-plus-x">
+    <title><m>\ln(1+x)</m></title>
+
+  <p>The logarithm series was already discovered by integrating the geometric series:</p>
+
+  <md>\frac1{1+x}=1-x+x^2-x^3+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>Integrating from <m>0</m> to <m>x</m> gave</p>
+
+  <md>\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+
+  <p>Now we see why these are the Taylor coefficients.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=\ln(1+x).</md>
+
+  <p>Then</p>
+
+  <md>f(0)=0.</md>
+
+  <p>Also,</p>
+
+  <md>f'(x)=\frac1{1+x},</md>
+
+  <md>f''(x)=-\frac1{(1+x)^2},</md>
+
+  <md>f'''(x)=\frac{2}{(1+x)^3}.</md>
+
+  <p>The pattern is</p>
+
+  <md>f^{(n)}(x)=
+(-1)^{n-1}\frac{(n-1)!}{(1+x)^n},
+\qquad n\ge1.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>f^{(n)}(0)=(-1)^{n-1}(n-1)!.</md>
+
+  <p>Therefore the coefficient of <m>x^n</m> is</p>
+
+  <md>\frac{f^{(n)}(0)}{n!}
+=
+\frac{(-1)^{n-1}(n-1)!}{n!}
+=
+\frac{(-1)^{n-1}}{n}.</md>
+
+  <p>So</p>
+
+  <md>
+\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots
+</md>
+
+  <p>or</p>
+
+  <md>
+\ln(1+x)=
+\sum_{n=1}^{\infty}
+(-1)^{n-1}\frac{x^n}{n}.
+</md>
+
+  <p>The interval of convergence is</p>
+
+  <md>(-1,1].</md>
+
+  <p>At <m>x=1</m>, this gives the important identity</p>
+
+  <md>
+\ln2=1-\frac12+\frac13-\frac14+\cdots.
+</md>
+
+  <p>At <m>x=-1</m>, the series becomes</p>
+
+  <md>-1-\frac12-\frac13-\frac14-\cdots,</md>
+
+  <p>which diverges.  This matches the function side: <m>\ln(1+x)</m> is not defined at
+<m>x=-1</m>.</p>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-3">
+    <title>estimating <m>\ln(1.2)</m></title>
+    <statement>
+  <p>Here</p>
+
+  <md>1.2=1+0.2,</md>
+
+  <p>so <m>x=0.2</m>.  Use four terms:</p>
+
+  <md>\ln(1.2)
+\approx
+0.2-\frac{0.2^2}{2}+\frac{0.2^3}{3}-\frac{0.2^4}{4}.</md>
+
+  <p>Compute:</p>
+
+  <md>0.2-0.02+\frac{0.008}{3}-\frac{0.0016}{4}
+=
+0.182266\ldots.</md>
+
+  <p>The first omitted term has size</p>
+
+  <md>\frac{0.2^5}{5}
+=
+\frac{0.00032}{5}
+=
+0.000064.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\ln(1.2)\approx0.182266\ldots
+</md>
+
+  <p>with error less than <m>0.000064</m>.</p>
+
+  <p>The logarithm series is most useful when <m>x</m> is close to <m>0</m>.  That means the number
+inside the logarithm,</p>
+
+  <md>1+x,</md>
+
+  <p>is close to <m>1</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-taylor-series-arctan">
+    <title><m>\arctan x</m></title>
+
+  <p>The inverse tangent also came from the geometric series.  Since</p>
+
+  <md>\frac{d}{dx}\arctan x=\frac1{1+x^2},</md>
+
+  <p>and</p>
+
+  <md>\frac1{1+x^2}
+=
+1-x^2+x^4-x^6+\cdots,
+\qquad |x|&lt;1,</md>
+
+  <p>integrating from <m>0</m> to <m>x</m> gave</p>
+
+  <md>\arctan x
+=
+x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
+
+  <p>Thus</p>
+
+  <md>
+\arctan x=
+\sum_{n=0}^{\infty}
+(-1)^n\frac{x^{2n+1}}{2n+1}.
+</md>
+
+  <p>The interval of convergence is</p>
+
+  <md>[-1,1].</md>
+
+  <p>At <m>x=1</m>,</p>
+
+  <md>\arctan 1=\frac{\pi}{4},</md>
+
+  <p>so</p>
+
+  <md>
+\frac{\pi}{4}
+=
+1-\frac13+\frac15-\frac17+\cdots.
+</md>
+
+  <p>This identity is beautiful, but slow.  The terms shrink like odd reciprocals.  As we saw
+earlier, using smaller inputs such as <m>1/2</m> and <m>1/3</m> makes the same series much
+faster.</p>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-4">
+    <title>estimating <m>\arctan(0.1)</m></title>
+    <statement>
+  <p>Use</p>
+
+  <md>\arctan x\approx x-\frac{x^3}{3}.</md>
+
+  <p>At <m>x=0.1</m>,</p>
+
+  <md>\arctan(0.1)
+\approx
+0.1-\frac{0.001}{3}
+=
+0.099666\ldots.</md>
+
+  <p>The first omitted term has size</p>
+
+  <md>\frac{0.1^5}{5}
+=
+0.000002.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\arctan(0.1)\approx0.099666\ldots
+</md>
+
+  <p>with error less than <m>0.000002</m>.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-binomial-series">
+    <title>Binomial series</title>
+
+  <p>The geometric series is one member of a larger family.</p>
+
+  <p>For a positive integer <m>m</m>, the binomial theorem says</p>
+
+  <md>(1+x)^m
+=
+\sum_{n=0}^{m}
+\binom{m}{n}x^n.</md>
+
+  <p>For example,</p>
+
+  <md>(1+x)^3=1+3x+3x^2+x^3.</md>
+
+  <p>But calculus allows the exponent to be any real number <m>p</m>, not only a nonnegative
+integer.  The price is that the polynomial usually becomes an infinite series.</p>
+
+  <p>First define the generalized binomial coefficients:</p>
+
+  <md>\binom{p}{0}=1,</md>
+
+  <p>and, for <m>n\ge1</m>,</p>
+
+  <md>
+\binom{p}{n}
+=
+\frac{p(p-1)(p-2)\cdots(p-n+1)}{n!}.
+</md>
+
+  <p>When <m>p</m> is a nonnegative integer, this agrees with the usual binomial coefficient,
+and the coefficients eventually become zero.</p>
+
+  <note xml:id="note-sec-16-6-taylor-series-for-elementary-functions-115">
+    <title>Binomial series</title>
+      <p>For any real number <m>p</m>,</p>
+        <md>
+(1+x)^p
+=
+\sum_{n=0}^{\infty}
+\binom{p}{n}x^n
+</md>
+      <p>for</p>
+        <md>|x|&lt;1.</md>
+      <p>If <m>p</m> is a nonnegative integer, the series terminates and becomes the ordinary
+binomial theorem.</p>
+  </note>
+
+  <p>Written out, the series is</p>
+
+  <md>
+(1+x)^p
+=
+1+px+\frac{p(p-1)}{2!}x^2
++\frac{p(p-1)(p-2)}{3!}x^3+\cdots.
+</md>
+
+  <paragraphs>
+    <title>Why this is a Taylor series</title>
+
+  <p>Let</p>
+
+  <md>f(x)=(1+x)^p.</md>
+
+  <p>Then</p>
+
+  <md>f'(x)=p(1+x)^{p-1},</md>
+
+  <md>f''(x)=p(p-1)(1+x)^{p-2},</md>
+
+  <p>and in general,</p>
+
+  <md>f^{(n)}(x)=p(p-1)\cdots(p-n+1)(1+x)^{p-n}.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>f^{(n)}(0)=p(p-1)\cdots(p-n+1).</md>
+
+  <p>So the Taylor coefficient is</p>
+
+  <md>\frac{f^{(n)}(0)}{n!}
+=
+\binom{p}{n}.</md>
+
+  <p>That gives the formal Taylor series.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why it converges to <m>(1+x)^p</m> for <m>|x|&lt;1</m></title>
+
+  <p>Let</p>
+
+  <md>B_p(x)=\sum_{n=0}^{\infty}\binom{p}{n}x^n.</md>
+
+  <p>The Ratio Test gives radius of convergence <m>1</m>, unless the series terminates.  Inside
+<m>|x|&lt;1</m>, power series can be differentiated term by term.</p>
+
+  <p>Differentiate <m>B_p</m> and multiply by <m>1+x</m>.  A coefficient check gives</p>
+
+  <md>(1+x)B_p'(x)=pB_p(x).</md>
+
+  <p>Also,</p>
+
+  <md>B_p(0)=1.</md>
+
+  <p>The function</p>
+
+  <md>F(x)=(1+x)^p</md>
+
+  <p>satisfies the same equation:</p>
+
+  <md>(1+x)F'(x)=pF(x),</md>
+
+  <p>and</p>
+
+  <md>F(0)=1.</md>
+
+  <p>Now compare them by forming</p>
+
+  <md>H(x)=\frac{B_p(x)}{(1+x)^p}.</md>
+
+  <p>On <m>-1&lt;x&lt;1</m>,</p>
+
+  <md>H'(x)=0.</md>
+
+  <p>So <m>H</m> is constant.  Since</p>
+
+  <md>H(0)=1,</md>
+
+  <p>we get</p>
+
+  <md>H(x)=1.</md>
+
+  <p>Therefore</p>
+
+  <md>B_p(x)=(1+x)^p</md>
+
+  <p>for <m>|x|&lt;1</m>.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-7">
+    <title>the square-root series</title>
+    <statement>
+  <p>Take</p>
+
+  <md>p=\frac12.</md>
+
+  <p>Then</p>
+
+  <md>(1+x)^{1/2}
+=
+1+\frac12x+\frac{\frac12(-\frac12)}{2!}x^2
++\frac{\frac12(-\frac12)(-\frac32)}{3!}x^3+\cdots.</md>
+
+  <p>So</p>
+
+  <md>
+\sqrt{1+x}
+=
+1+\frac{x}{2}-\frac{x^2}{8}+\frac{x^3}{16}
+-\frac{5x^4}{128}+\cdots,
+\qquad |x|&lt;1.
+</md>
+
+  <p>This explains the coefficients we found earlier from Taylor polynomials.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-6-taylor-series-for-elementary-functions-8">
+    <title>estimating <m>\sqrt{1.1}</m></title>
+    <statement>
+  <p>Here</p>
+
+  <md>1.1=1+0.1.</md>
+
+  <p>Use the terms through <m>x^4</m>:</p>
+
+  <md>\sqrt{1.1}
+\approx
+1+\frac{0.1}{2}-\frac{0.1^2}{8}
++\frac{0.1^3}{16}
+-\frac{5(0.1)^4}{128}.</md>
+
+  <p>Compute:</p>
+
+  <md>1+0.05-0.00125+0.0000625-0.00000390625
+=
+1.04880859375.</md>
+
+  <p>The next term has size</p>
+
+  <md>\frac{7}{256}(0.1)^5&lt;0.0000003.</md>
+
+  <p>So</p>
+
+  <md>
+\sqrt{1.1}\approx1.048808594
+</md>
+
+  <p>with error less than <m>0.0000003</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Recovering the geometric series</title>
+
+  <p>Take</p>
+
+  <md>p=-1.</md>
+
+  <p>Then</p>
+
+  <md>(1+x)^{-1}
+=
+1-x+x^2-x^3+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>This is the familiar series</p>
+
+  <md>\frac1{1+x}=1-x+x^2-x^3+\cdots.</md>
+
+  <p>Replacing <m>x</m> by <m>-x</m> gives</p>
+
+  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots.</md>
+
+  <p>So the geometric series is a binomial series with exponent <m>-1</m>.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-6-binomial-as-taylor">
+        <title>Why is the binomial series a Taylor series?</title>
+        <statement>
+          <p>
+            The binomial series for <m>(1+x)^p</m> comes from matching derivatives at <m>0</m>, and it recovers the geometric series when <m>p=-1</m>. In your own words, why does that make the geometric series part of the Taylor library rather than a rival construction, and why must <m>|x|&lt;1</m> still be respected?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The coefficients are exactly the Taylor coefficients of <m>(1+x)^p</m>. The radius is inherited from the same geometric limitation that already governed <m>1/(1-x)</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-common-taylor-series-table">
+    <title>A table of common Taylor series</title>
+
+  <p>The most common Maclaurin series are worth keeping together.</p>
+
+  <table xml:id="tab-sec-16-6-taylor-series-for-elementary-functions-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>function</strong></cell>
+        <cell><strong>Maclaurin series</strong></cell>
+        <cell><strong>where valid</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>e^x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}\frac{x^n}{n!}</m></cell>
+        <cell><m>(-\infty,\infty)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}</m></cell>
+        <cell><m>(-\infty,\infty)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\cos x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n}}{(2n)!}</m></cell>
+        <cell><m>(-\infty,\infty)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\dfrac1{1-x}</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}x^n</m></cell>
+        <cell><m>(-1,1)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\ln(1+x)</m></cell>
+        <cell><m>\displaystyle \sum_{n=1}^{\infty}(-1)^{n-1}\frac{x^n}{n}</m></cell>
+        <cell><m>(-1,1]</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\arctan x</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{2n+1}</m></cell>
+        <cell><m>[-1,1]</m></cell>
+      </row>
+      <row>
+        <cell><m>(1+x)^p</m></cell>
+        <cell><m>\displaystyle \sum_{n=0}^{\infty}\binom{p}{n}x^n</m></cell>
+        <cell><m>|x|&lt;1</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>For the binomial series, endpoints must be tested separately unless the series
+terminates.</p>
+
+  <note xml:id="note-sec-16-6-taylor-series-for-elementary-functions-116">
+    <title>How to use the table</title>
+      <p>A Taylor series is not only a memorized formula.  Each formula has three parts:</p>
+        <md>\text{function}
+\qquad
+\text{series}
+\qquad
+\text{interval where it is valid}.</md>
+      <p>Leaving out the interval is leaving out part of the mathematics.</p>
+  </note>
+
+  <p>We now have a library of infinite polynomial representations.  The next section turns
+that library into a tool for computation: estimating function values, evaluating limits,
+approximating integrals, and even solving differential equations by matching
+coefficients.</p>
+
+  <exercise xml:id="checkpoint-16-6-three-parts-of-a-formula">
+        <title>Why does a Taylor formula have three parts?</title>
+        <statement>
+          <p>
+            Each common series in the table is a function, a series, and an interval where the identity is valid. In your own words, why is leaving out the interval leaving out part of the mathematics?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            An equality of functions is a statement about a domain. Outside that domain the series may diverge, or it may converge to something else.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

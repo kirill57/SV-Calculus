@@ -1,398 +1,585 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-derivative-as-function">
+<section xml:id="sec-4-3-the-derivative-as-a-function">
   <title>The derivative as a function</title>
 
-  <p><xref ref="sec-instantaneous-rate-of-change"/> gave the derivative at one point. For example, <m>f(x)=x^2</m> has <m>f'(2)=4</m>.</p>
+  <p>Section <xref ref="sec-4-2-instantaneous-rate-of-change"/> gave the derivative at one point.  For example,</p>
 
-  <p>That number is the slope of one tangent line. But a curve has many points, and the slope usually changes from point to point. If the point moves, the derivative moves with it.</p>
+  <md>f(x)=x^2</md>
 
-  <p>So the derivative is not only a number. It is also a new function.</p>
+  <p>has</p>
+
+  <md>f'(2)=4.</md>
+
+  <p>That number is the slope of one tangent line.  But a curve has many points, and the slope usually changes from point to point.  If the point moves, the derivative moves with it.</p>
+
+  <p>So the derivative is not only a number.  It is also a new function.</p>
 
   <subsection xml:id="subsec-one-slope-to-many">
     <title>From one tangent slope to many</title>
 
-    <p>The calculation for <m>f(x)=x^2</m> at <m>x=2</m> did not really depend on the number <m>2</m>. Let us repeat it at a general point <m>a</m>.</p>
+  <p>The calculation for <m>f(x)=x^2</m> at <m>x=2</m> did not really depend on the number <m>2</m>.  Let us repeat it at a general point <m>a</m>.</p>
 
-    <p>Let <m>f(x)=x^2</m>. Then</p>
-    <md>f'(a) = \lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
+  <p>Let</p>
 
-    <p>Substitute the formula:</p>
-    <md>f'(a) = \lim_{h\to 0}\frac{(a+h)^2-a^2}{h}.</md>
+  <md>f(x)=x^2.</md>
 
-    <p>Expand: <m>(a+h)^2=a^2+2ah+h^2</m>. Therefore</p>
-    <md>\frac{(a+h)^2-a^2}{h} = \frac{2ah+h^2}{h}.</md>
+  <p>Then</p>
 
-    <p>Since <m>h\neq 0</m>,</p>
-    <md>\frac{2ah+h^2}{h}=2a+h.</md>
+  <md>f'(a)
+=
+\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
 
-    <p>Now take the limit:</p>
-    <md>f'(a)=\lim_{h\to 0}(2a+h)=2a.</md>
+  <p>Substitute the formula:</p>
 
-    <p>So the tangent slope at <m>x=a</m> is <m>2a</m>.</p>
+  <md>f'(a)
+=
+\lim_{h\to0}\frac{(a+h)^2-a^2}{h}.</md>
 
-    <p>If we let the input point be called <m>x</m>, we write</p>
-    <md>f'(x)=2x.</md>
+  <p>Expand:</p>
 
-    <p>This new function <m>f'</m> gives the slope of the graph of <m>f</m> at each point where the derivative exists.</p>
+  <md>(a+h)^2=a^2+2ah+h^2.</md>
 
-    <table>
-      <title>Heights and slopes for <m>f(x)=x^2</m></title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>x</m></cell>
-          <cell><m>-2</m></cell>
-          <cell><m>-1</m></cell>
-          <cell><m>0</m></cell>
-          <cell><m>1</m></cell>
-          <cell><m>2</m></cell>
-        </row>
-        <row>
-          <cell><m>f(x)=x^2</m></cell>
-          <cell><m>4</m></cell>
-          <cell><m>1</m></cell>
-          <cell><m>0</m></cell>
-          <cell><m>1</m></cell>
-          <cell><m>4</m></cell>
-        </row>
-        <row>
-          <cell><m>f'(x)=2x</m></cell>
-          <cell><m>-4</m></cell>
-          <cell><m>-2</m></cell>
-          <cell><m>0</m></cell>
-          <cell><m>2</m></cell>
-          <cell><m>4</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <p>Therefore</p>
 
-    <p>The original function <m>f(x)=x^2</m> gives heights. The derivative function <m>f'(x)=2x</m> gives slopes.</p>
+  <md>\frac{(a+h)^2-a^2}{h}
+=
+\frac{2ah+h^2}{h}.</md>
 
-    <sidebyside widths="48% 48%" margins="auto">
-      <figure xml:id="fig-parabola-heights-slopes">
-        <caption>The graph of <m>f</m> shows height.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.72\textwidth,
-                xmin=-2.4, xmax=2.4,
-                ymin=-1, ymax=5.3,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(f(x)\)},
-                xtick={-2,-1,0,1,2},
-                ytick={0,1,4},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-2.2:2.2, samples=120] {x^2};
+  <p>Since <m>h\neq0</m>,</p>
 
-            % Tangent lines
-            \addplot[thin, domain=-1.85:-0.25, samples=2] {-2*x-1};
-            \addplot[thin, domain=-0.9:0.9, samples=2] {0};
-            \addplot[thin, domain=0.75:2.15, samples=2] {3*x-2.25};
+  <md>\frac{2ah+h^2}{h}=2a+h.</md>
 
-            \addplot[only marks, mark=*] coordinates {(-1,1) (0,0) (1.5,2.25)};
-            \node[anchor=east] at (axis cs:-1.05,1.15) {slope \(-2\)};
-            \node[anchor=north] at (axis cs:0.55,0) {slope \(0\)};
-            \node[anchor=west] at (axis cs:0.4,2.45) {slope \(3\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <p>Now take the limit:</p>
 
-      <figure xml:id="fig-derivative-linear-graph">
-        <caption>The graph of <m>f'</m> shows tangent slope.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.72\textwidth,
-                xmin=-2.4, xmax=2.4,
-                ymin=-5, ymax=5,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(f'(x)\)},
-                xtick={-2,-1,0,1,2},
-                ytick={-4,-2,0,2,4},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[very thick, domain=-2.2:2.2, samples=2] {2*x};
-            \node[anchor=west] at (axis cs:0.85,1.6) {\(f'(x)=2x\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <md>f'(a)=\lim_{h\to0}(2a+h)=2a.</md>
+
+  <p>So the tangent slope at <m>x=a</m> is</p>
+
+  <md>2a.</md>
+
+  <p>If we let the input point be called <m>x</m>, we write</p>
+
+  <md>f'(x)=2x.</md>
+
+  <p>This new function <m>f'</m> gives the slope of the graph of <m>f</m> at each point where the derivative exists.</p>
+
+  <md>
+    <mrow>\begin{array}{c|ccccc}
+x \amp -2 \amp -1 \amp 0 \amp 1 \amp 2</mrow>
+    <mrow>\hline
+f(x)=x^2 \amp 4 \amp 1 \amp 0 \amp 1 \amp 4</mrow>
+    <mrow>f'(x)=2x \amp -4 \amp -2 \amp 0 \amp 2 \amp 4
+\end{array}</mrow>
+  </md>
+
+  <p>The original function <m>f(x)=x^2</m> gives heights.  The derivative function <m>f'(x)=2x</m> gives slopes.</p>
+
+  <figure xml:id="fig-parabola-and-derivative">
+    <caption>The graph of <m>f</m> shows height.  The graph of <m>f'</m> shows tangent slope.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-parabola-and-derivative-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-2.4, xmax=2.4,
+    ymin=-1, ymax=5.3,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(f(x)\)},
+    xtick={-2,-1,0,1,2},
+    ytick={0,1,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2.2:2.2, samples=120] {x^2};
+
+% Tangent lines
+\addplot[thin, domain=-1.85:-0.25, samples=2] {-2*x-1};
+\addplot[thin, domain=-0.9:0.9, samples=2] {0};
+\addplot[thin, domain=0.75:2.15, samples=2] {3*x-2.25};
+
+\addplot[only marks, mark=*] coordinates {(-1,1) (0,0) (1.5,2.25)};
+\node[anchor=east] at (axis cs:-1.05,1.15) {slope \(-2\)};
+\node[anchor=north] at (axis cs:0.55,0) {slope \(0\)};
+\node[anchor=west] at (axis cs:0.4,2.45) {slope \(3\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-parabola-and-derivative-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=-2.4, xmax=2.4,
+    ymin=-5, ymax=5,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(f'(x)\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-4,-2,0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2.2:2.2, samples=2] {2*x};
+\node[anchor=west] at (axis cs:0.85,1.6) {\(f'(x)=2x\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
     </sidebyside>
+  </figure>
 
-    <definition xml:id="def-derivative-function">
-      <title>Derivative function</title>
-      <statement>
-        <p>The derivative function of <m>f</m> is</p>
-        <md>f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h},</md>
-        <p>defined at every <m>x</m> where this limit exists.</p>
-      </statement>
-    </definition>
+  <note xml:id="note-sec-4-3-the-derivative-as-a-function-60">
+    <title>Derivative function</title>
+      <p>The derivative function of <m>f</m> is</p>
+        <md>
+f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h},
+</md>
+      <p>defined at every <m>x</m> where this limit exists.</p>
+  </note>
 
-    <p>The domain of <m>f'</m> may be smaller than the domain of <m>f</m>. For example, <m>f(x)=|x|</m> is defined for every real number <m>x</m>. But at <m>x=0</m>, <m>\lim_{h\to 0}\frac{|h|}{h}</m> does not exist, because the left and right limiting slopes disagree. For <m>x\lt 0</m>, the graph is the line <m>y=-x</m>, so the slope is <m>-1</m>. For <m>x\gt 0</m>, the graph is the line <m>y=x</m>, so the slope is <m>1</m>. Thus</p>
-    <md>
-      f'(x)=
-      \begin{cases}
-      -1, \amp x\lt 0,\\
-      1, \amp x\gt 0,
-      \end{cases}
-    </md>
-    <p>and <m>f'(0)</m> does not exist.</p>
+  <p>The domain of <m>f'</m> may be smaller than the domain of <m>f</m>.  For example,</p>
 
-    <p>A derivative function records where slopes exist. It also records where they fail to exist.</p>
+  <md>f(x)=|x|</md>
 
-    <example xml:id="ex-derivative-function-x-cubed">
-      <title>The derivative function of <m>x^3</m></title>
-      <statement>
-        <p>Let <m>f(x)=x^3</m>. Then</p>
-        <md>f'(x) = \lim_{h\to 0}\frac{(x+h)^3-x^3}{h}.</md>
-        <p>Expand: <m>(x+h)^3=x^3+3x^2h+3xh^2+h^3</m>. So</p>
-        <md>\frac{(x+h)^3-x^3}{h} = \frac{3x^2h+3xh^2+h^3}{h}.</md>
-        <p>Since <m>h\neq 0</m>,</p>
-        <md>\frac{3x^2h+3xh^2+h^3}{h} = 3x^2+3xh+h^2.</md>
-        <p>Therefore</p>
-        <md>f'(x) = \lim_{h\to 0}(3x^2+3xh+h^2) = 3x^2.</md>
-        <p>So</p>
-        <md>\frac{d}{dx}x^3=3x^2.</md>
-        <p>At <m>x=0</m>, this derivative is <m>0</m>, so the tangent line to <m>y=x^3</m> at the origin is horizontal. But the graph crosses the tangent line there. Again, the derivative is about limiting slope, not about merely touching.</p>
-      </statement>
-    </example>
+  <p>is defined for every real number <m>x</m>.  But at <m>x=0</m>,</p>
+
+  <md>\lim_{h\to0}\frac{|h|}{h}</md>
+
+  <p>does not exist, because the left and right limiting slopes disagree.  For <m>x&lt;0</m>, the graph is the line <m>y=-x</m>, so the slope is <m>-1</m>.  For <m>x&gt;0</m>, the graph is the line <m>y=x</m>, so the slope is <m>1</m>.  Thus</p>
+
+  <md>
+    <mrow>f'(x)=
+\begin{cases}
+-1, \amp x&lt;0,</mrow>
+    <mrow>1, \amp x&gt;0,
+\end{cases}</mrow>
+  </md>
+
+  <p>and <m>f'(0)</m> does not exist.</p>
+
+  <p>A derivative function records where slopes exist.  It also records where they fail to exist.</p>
+
+
+  <exercise xml:id="checkpoint-4-3-smaller-domain">
+        <title>Why may the domain of <m>f'</m> be smaller than the domain of <m>f</m>?</title>
+        <statement>
+          <p>
+            The function <m>f(x)=|x|</m> is defined for every real <m>x</m>, but <m>f'(0)</m> does not exist. In your own words, why can a derivative function omit points that the original function includes?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            <m>f'</m> is defined only where the limiting slope exists. Existence of a height is a weaker demand than existence of a single nearby slope.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-4-3-the-derivative-as-a-function-1">
+    <title>the derivative function of <m>x^3</m></title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=x^3.</md>
+
+  <p>Then</p>
+
+  <md>f'(x)
+=
+\lim_{h\to0}\frac{(x+h)^3-x^3}{h}.</md>
+
+  <p>Expand:</p>
+
+  <md>(x+h)^3=x^3+3x^2h+3xh^2+h^3.</md>
+
+  <p>So</p>
+
+  <md>\frac{(x+h)^3-x^3}{h}
+=
+\frac{3x^2h+3xh^2+h^3}{h}.</md>
+
+  <p>Since <m>h\neq0</m>,</p>
+
+  <md>\frac{3x^2h+3xh^2+h^3}{h}
+=
+3x^2+3xh+h^2.</md>
+
+  <p>Therefore</p>
+
+  <md>f'(x)
+=
+\lim_{h\to0}(3x^2+3xh+h^2)
+=
+3x^2.</md>
+
+  <p>So</p>
+
+  <md>\frac{d}{dx}x^3=3x^2.</md>
+
+  <p>At <m>x=0</m>, this derivative is <m>0</m>, so the tangent line to <m>y=x^3</m> at the origin is horizontal.  But the graph crosses the tangent line there.  Again, the derivative is about limiting slope, not about merely touching.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-derivative-notations">
     <title>Notations for the derivative</title>
 
-    <p>The derivative is important enough to have several notations. Each notation emphasizes a different part of the same idea.</p>
+  <p>The derivative is important enough to have several notations.  Each notation emphasizes a different part of the same idea.</p>
 
-    <p>If <m>y=f(x)</m>, then the following notations all refer to the derivative:</p>
+  <p>If</p>
 
-    <table>
-      <title>Common notations for the derivative</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center" width="30%"/>
-        <col halign="left" width="70%"/>
-        <row header="yes">
-          <cell><term>notation</term></cell>
-          <cell><term>meaning</term></cell>
-        </row>
-        <row>
-          <cell><m>f'(x)</m></cell>
-          <cell>the derivative function of <m>f</m></cell>
-        </row>
-        <row>
-          <cell><m>\dfrac{dy}{dx}</m></cell>
-          <cell>the rate of change of <m>y</m> with respect to <m>x</m></cell>
-        </row>
-        <row>
-          <cell><m>\dfrac{d}{dx}f(x)</m></cell>
-          <cell>the result of differentiating <m>f(x)</m> with respect to <m>x</m></cell>
-        </row>
-        <row>
-          <cell><m>D_x f(x)</m></cell>
-          <cell>another compact notation for the same operation</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>y=f(x),</md>
 
-    <p>For example, if <m>y=x^2</m>, then <m>f'(x)=2x</m>, and we may also write</p>
-    <md>\frac{dy}{dx}=2x, \qquad \frac{d}{dx}(x^2)=2x, \qquad D_x(x^2)=2x.</md>
+  <p>then the following notations all refer to the derivative:</p>
 
-    <p>At a particular point <m>x=a</m>, we write</p>
-    <md>\left.\frac{dy}{dx}\right|_{x=a}=f'(a).</md>
-    <p>For instance, if <m>y=x^2</m>, then <m>\left.\frac{dy}{dx}\right|_{x=3}=6</m>. That means the tangent slope at <m>x=3</m> is <m>6</m>.</p>
+  <md>
+    <mrow>\begin{array}{c|l}
+<strong>notation</strong> \amp <strong>meaning</strong></mrow>
+    <mrow>\hline
+f'(x) \amp \text{the derivative function of }f</mrow>
+    <mrow>
+\dfrac{dy}{dx} \amp \text{the rate of change of }y\text{ with respect to }x</mrow>
+    <mrow>
+\dfrac{d}{dx}f(x) \amp \text{the result of differentiating }f(x)\text{ with respect to }x</mrow>
+    <mrow>
+D_x f(x) \amp \text{another compact notation for the same operation}
+\end{array}</mrow>
+  </md>
 
-    <paragraphs xml:id="paragraphs-leibniz-units">
-      <title>Leibniz notation remembers the units</title>
-      <p>If <m>s(t)</m> is position in meters and <m>t</m> is time in seconds, then <m>\frac{ds}{dt}</m> has units meters/seconds. So</p>
-      <md>v(t)=s'(t)=\frac{ds}{dt}</md>
-      <p>is velocity.</p>
+  <p>For example, if</p>
 
-      <p>If <m>T(t)</m> is temperature in degrees Celsius and <m>t</m> is time in minutes, then <m>\frac{dT}{dt}</m> has units <m>^\circ\text{C}/\text{minute}</m>. So <m>\dfrac{dT}{dt}</m> measures how quickly the temperature is changing.</p>
-    </paragraphs>
+  <md>y=x^2,</md>
 
-    <principle xml:id="principle-caution-dy-dx">
-      <title>A caution about <m>\frac{dy}{dx}</m></title>
-      <statement>
-        <p>The notation <m>\frac{dy}{dx}</m> comes from the quotient <m>\frac{\Delta y}{\Delta x}</m>. At this stage, it means a limit of such quotients. It is not introduced as an ordinary fraction of two real numbers.</p>
-        <p>In the next section, <m>dx</m> and <m>dy</m> will acquire a useful meaning through linear approximation.</p>
-      </statement>
-    </principle>
+  <p>then</p>
+
+  <md>f'(x)=2x,</md>
+
+  <p>and we may also write</p>
+
+  <md>\frac{dy}{dx}=2x,</md>
+
+  <p>or</p>
+
+  <md>\frac{d}{dx}(x^2)=2x,</md>
+
+  <p>or</p>
+
+  <md>D_x(x^2)=2x.</md>
+
+  <p>At a particular point <m>x=a</m>, we write</p>
+
+  <md>\left.\frac{dy}{dx}\right|_{x=a}=f'(a).</md>
+
+  <p>For instance, if <m>y=x^2</m>, then</p>
+
+  <md>\left.\frac{dy}{dx}\right|_{x=3}=6.</md>
+
+  <p>That means the tangent slope at <m>x=3</m> is <m>6</m>.</p>
+
+  <paragraphs>
+    <title>Leibniz notation remembers the units</title>
+
+  <p>If <m>s(t)</m> is position in meters and <m>t</m> is time in seconds, then</p>
+
+  <md>\frac{ds}{dt}</md>
+
+  <p>has units</p>
+
+  <md>\frac{\text{meters}}{\text{seconds}}.</md>
+
+  <p>So</p>
+
+  <md>v(t)=s'(t)=\frac{ds}{dt}</md>
+
+  <p>is velocity.</p>
+
+  <p>If <m>T(t)</m> is temperature in degrees Celsius and <m>t</m> is time in minutes, then</p>
+
+  <md>\frac{dT}{dt}</md>
+
+  <p>has units</p>
+
+  <md>\frac{^\circ\text{C}}{\text{minute}}.</md>
+
+  <p>So <m>\dfrac{dT}{dt}</m> measures how quickly the temperature is changing.</p>
+
+  <warning xml:id="warn-sec-4-3-the-derivative-as-a-function-61">
+    <title>A caution about <m>\dfrac{dy}{dx}</m></title>
+      <p>The notation</p>
+        <md>\frac{dy}{dx}</md>
+      <p>comes from the quotient</p>
+        <md>\frac{\Delta y}{\Delta x}.</md>
+      <p>At this stage, it means a limit of such quotients.  It is not introduced as an ordinary fraction of two real numbers.</p>
+      <p>In the next section, <m>dx</m> and <m>dy</m> will acquire a useful meaning through linear approximation.</p>
+  </warning>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-3-derivative-is-a-function">
+        <title>Why is the derivative a function and not only a number?</title>
+        <statement>
+          <p>
+            At one point, <m>f'(a)</m> is a tangent slope. If the point is allowed to move, we write <m>f'(x)</m>. In your own words, what new object is this, and how does its graph differ in meaning from the graph of <m>f</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The original graph records height. The derivative graph records slope at each <m>x</m> where the limit exists.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-reading-derivative-from-function-graph">
     <title>Reading <m>f'</m> from the graph of <m>f</m></title>
 
-    <p>The graph of <m>f</m> contains the graph of <m>f'</m> in hidden form. At each <m>x</m>, the value <m>f'(x)</m> is the slope of the tangent line to the graph of <m>f</m>.</p>
+  <p>The graph of <m>f</m> contains the graph of <m>f'</m> in hidden form.  At each <m>x</m>, the value <m>f'(x)</m> is the slope of the tangent line to the graph of <m>f</m>.</p>
 
-    <p>This gives several visual rules.</p>
+  <p>This gives several visual rules.</p>
 
-    <table>
-      <title>Geometric features of <m>f</m> and their meaning for <m>f'</m></title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="50%"/>
-        <col halign="left" width="50%"/>
-        <row header="yes">
-          <cell><term>feature of <m>f</m></term></cell>
-          <cell><term>meaning for <m>f'</m></term></cell>
-        </row>
-        <row>
-          <cell><m>f</m> is rising</cell>
-          <cell><m>f'(x)\gt 0</m></cell>
-        </row>
-        <row>
-          <cell><m>f</m> is falling</cell>
-          <cell><m>f'(x)\lt 0</m></cell>
-        </row>
-        <row>
-          <cell><m>f</m> has a horizontal tangent</cell>
-          <cell><m>f'(x)=0</m></cell>
-        </row>
-        <row>
-          <cell><m>f</m> is steep</cell>
-          <cell><m>|f'(x)|</m> is large</cell>
-        </row>
-        <row>
-          <cell><m>f</m> has a sharp corner</cell>
-          <cell><m>f'(x)</m> may not exist</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>feature of </strong>f \amp <strong>meaning for </strong>f'</mrow>
+    <mrow>\hline
+f\text{ is rising} \amp f'(x)&gt;0</mrow>
+    <mrow>
+f\text{ is falling} \amp f'(x)&lt;0</mrow>
+    <mrow>
+f\text{ has a horizontal tangent} \amp f'(x)=0</mrow>
+    <mrow>
+f\text{ is steep} \amp |f'(x)|\text{ is large}</mrow>
+    <mrow>
+f\text{ has a sharp corner} \amp f'(x)\text{ may not exist}
+\end{array}</mrow>
+  </md>
 
-    <example xml:id="ex-graph-cubic-derivative">
-      <title>Cubic function and its derivative</title>
-      <statement>
-        <p>Let <m>f(x)=x^3-3x</m>. We compute <m>f'(x)</m> from the definition. The difference quotient is</p>
-        <md>\frac{f(x+h)-f(x)}{h} = \frac{(x+h)^3-3(x+h)-(x^3-3x)}{h}.</md>
-        <p>Simplify the numerator:</p>
-        <md>(x+h)^3-3(x+h)-(x^3-3x) = 3x^2h+3xh^2+h^3-3h.</md>
-        <p>So</p>
-        <md>\frac{f(x+h)-f(x)}{h} = 3x^2+3xh+h^2-3.</md>
-        <p>Taking the limit gives</p>
-        <md>f'(x)=3x^2-3.</md>
-        <p>The derivative graph is a graph of slopes.</p>
 
-        <sidebyside widths="48% 48%" margins="auto">
-          <figure xml:id="fig-cubic-function-slopes">
-            <caption>The graph of <m>f(x)=x^3-3x</m>.</caption>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                \begin{axis}[
-                    width=\textwidth,
-                    height=0.75\textwidth,
-                    xmin=-2.25, xmax=2.25,
-                    ymin=-4, ymax=4,
-                    axis lines=middle,
-                    xlabel={\(x\)},
-                    ylabel={\(f(x)\)},
-                    xtick={-2,-1,0,1,2},
-                    ytick={-2,0,2},
-                    grid=both,
-                    grid style={line width=.1pt, draw=gray!25},
-                ]
-                \addplot[thick, domain=-2.1:2.1, samples=160] {x^3-3*x};
-                \addplot[only marks, mark=*] coordinates {(-1,2) (1,-2) (0,0)};
-                \addplot[thin, domain=-1.55:-0.45, samples=2] {2};
-                \addplot[thin, domain=0.45:1.55, samples=2] {-2};
-                \addplot[thin, domain=-0.55:0.55, samples=2] {-3*x};
-                \node[anchor=south] at (axis cs:-1,2.1) {slope \(0\)};
-                \node[anchor=north] at (axis cs:1,-2.1) {slope \(0\)};
-                \node[anchor=west] at (axis cs:-0.05,0.5) {slope \(-3\)};
-                \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </figure>
+  <exercise xml:id="checkpoint-4-3-reading-slopes">
+        <title>How does the graph of <m>f</m> hide the graph of <m>f'</m>?</title>
+        <statement>
+          <p>
+            Rising, falling, a horizontal tangent, and a sharp corner each have a meaning for <m>f'</m>. In your own words, how would you read those features from the graph of <m>f</m>, and why does the graph of <m>f'</m> not show the height of <m>f</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            At each <m>x</m>, the value of <m>f'</m> is a slope, not a height. Sign, size, and existence of that slope are what the original graph can reveal.
+          </p>
+        </hint>
+      </exercise>
 
-          <figure xml:id="fig-cubic-derivative-parabola">
-            <caption>The derivative graph <m>f'(x)=3x^2-3</m>.</caption>
-            <image>
-              <latex-image>
-                \begin{tikzpicture}
-                \begin{axis}[
-                    width=\textwidth,
-                    height=0.75\textwidth,
-                    xmin=-2.25, xmax=2.25,
-                    ymin=-4, ymax=10,
-                    axis lines=middle,
-                    xlabel={\(x\)},
-                    ylabel={\(f'(x)\)},
-                    xtick={-2,-1,0,1,2},
-                    ytick={-3,0,3,9},
-                    grid=both,
-                    grid style={line width=.1pt, draw=gray!25},
-                ]
-                \addplot[very thick, domain=-2.1:2.1, samples=160] {3*x^2-3};
-                \addplot[only marks, mark=*] coordinates {(-1,0) (1,0) (0,-3)};
-                \node[anchor=west] at (axis cs:-0.5,5) {\(f'(x)=3x^2-3\)};
-                \end{axis}
-                \end{tikzpicture}
-              </latex-image>
-            </image>
-          </figure>
-        </sidebyside>
+  <example xml:id="ex-sec-4-3-the-derivative-as-a-function-3">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
 
-        <p>The original graph has horizontal tangents at <m>x=-1</m> and <m>x=1</m>. The derivative graph has zeros there: <m>f'(-1)=0</m>, <m>f'(1)=0</m>.</p>
-        <p>At <m>x=0</m>, the original graph is falling with slope <m>-3</m>. The derivative graph has value <m>f'(0)=-3</m>.</p>
-        <p>The derivative graph does not show the height of <m>f</m>. It shows how the height is changing.</p>
-      </statement>
-    </example>
+  <md>f(x)=x^3-3x.</md>
+
+  <p>We compute <m>f'(x)</m> from the definition.  The difference quotient is</p>
+
+  <md>\frac{f(x+h)-f(x)}{h}
+=
+\frac{(x+h)^3-3(x+h)-(x^3-3x)}{h}.</md>
+
+  <p>Simplify the numerator:</p>
+
+  <md>(x+h)^3-3(x+h)-(x^3-3x)
+=
+3x^2h+3xh^2+h^3-3h.</md>
+
+  <p>So</p>
+
+  <md>\frac{f(x+h)-f(x)}{h}
+=
+3x^2+3xh+h^2-3.</md>
+
+  <p>Taking the limit gives</p>
+
+  <md>f'(x)=3x^2-3.</md>
+
+  <p>The derivative graph is a graph of slopes.</p>
+
+  <figure xml:id="fig-cubic-and-derivative">
+    <caption>The derivative graph records the slopes of the original graph.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-cubic-and-derivative-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.75\textwidth,
+    xmin=-2.25, xmax=2.25,
+    ymin=-4, ymax=4,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(f(x)\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-2,0,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2.1:2.1, samples=160] {x^3-3*x};
+\addplot[only marks, mark=*] coordinates {(-1,2) (1,-2) (0,0)};
+\addplot[thin, domain=-1.55:-0.45, samples=2] {2};
+\addplot[thin, domain=0.45:1.55, samples=2] {-2};
+\addplot[thin, domain=-0.55:0.55, samples=2] {-3*x};
+\node[anchor=south] at (axis cs:-1,2.1) {slope \(0\)};
+\node[anchor=north] at (axis cs:1,-2.1) {slope \(0\)};
+\node[anchor=west] at (axis cs:-0.05,0.5) {slope \(-3\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-cubic-and-derivative-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.75\textwidth,
+    xmin=-2.25, xmax=2.25,
+    ymin=-4, ymax=10,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(f'(x)\)},
+    xtick={-2,-1,0,1,2},
+    ytick={-3,0,3,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-2.1:2.1, samples=160] {3*x^2-3};
+\addplot[only marks, mark=*] coordinates {(-1,0) (1,0) (0,-3)};
+\node[anchor=west] at (axis cs:-0.5,5) {\(f'(x)=3x^2-3\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <p>The original graph has horizontal tangents at <m>x=-1</m> and <m>x=1</m>.  The derivative graph has zeros there:</p>
+
+  <md>f'(-1)=0,
+\qquad
+f'(1)=0.</md>
+
+  <p>At <m>x=0</m>, the original graph is falling with slope <m>-3</m>.  The derivative graph has value</p>
+
+  <md>f'(0)=-3.</md>
+
+  <p>The derivative graph does not show the height of <m>f</m>.  It shows how the height is changing.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-reading-function-from-derivative-graph">
     <title>Reading <m>f</m> from the graph of <m>f'</m></title>
 
-    <p>The derivative graph also gives information in the opposite direction.</p>
+  <p>The derivative graph also gives information in the opposite direction.</p>
 
-    <p>If <m>f'(x)\gt 0</m>, then the tangent slopes are positive, so <m>f</m> is rising.</p>
-    <p>If <m>f'(x)\lt 0</m>, then the tangent slopes are negative, so <m>f</m> is falling.</p>
-    <p>If <m>f'(x)=0</m>, then the graph of <m>f</m> has a horizontal tangent.</p>
+  <p>If <m>f'(x)&gt;0</m>, then the tangent slopes are positive, so <m>f</m> is rising.</p>
 
-    <p>For the example <m>f'(x)=3x^2-3</m>, we have <m>3x^2-3\gt 0</m> when <m>x\lt -1</m> or <m>x\gt 1</m>. So the graph of <m>f</m> is rising on those intervals.</p>
-    <p>We also have <m>3x^2-3\lt 0</m> when <m>-1\lt x\lt 1</m>. So the graph of <m>f</m> is falling there.</p>
+  <p>If <m>f'(x)&lt;0</m>, then the tangent slopes are negative, so <m>f</m> is falling.</p>
 
-    <p>Thus the derivative graph tells the shape story:</p>
-    <md>\text{rising} \quad \longrightarrow \quad \text{falling} \quad \longrightarrow \quad \text{rising}.</md>
+  <p>If <m>f'(x)=0</m>, then the graph of <m>f</m> has a horizontal tangent.</p>
 
-    <p>This is why derivatives help us understand graphs. A derivative is local information, but when we collect it point by point, it begins to describe the whole curve.</p>
+  <p>For the example</p>
 
-    <paragraphs xml:id="paragraphs-derivative-forgets-constants">
-      <title>What <m>f'</m> does not tell by itself</title>
-      <p>The derivative does not remember vertical shifts.</p>
-      <p>Let <m>f(x)=x^2</m> and <m>g(x)=x^2+5</m>.</p>
-      <p>For <m>f</m>, <m>f'(x)=2x</m>. For <m>g</m>,</p>
-      <md>g'(x) = \lim_{h\to 0}\frac{(x+h)^2+5-(x^2+5)}{h} = \lim_{h\to 0}\frac{(x+h)^2-x^2}{h} = 2x.</md>
-      <p>So <m>f'(x)=g'(x)</m>, even though <m>g(x)=f(x)+5</m>.</p>
-      <p>The two graphs have the same slopes at corresponding <m>x</m>-values, but one graph is <m>5</m> units higher.</p>
+  <md>f'(x)=3x^2-3,</md>
 
-      <principle xml:id="principle-derivative-forgets-constants">
-        <title>The derivative forgets constants</title>
+  <p>we have</p>
+
+  <md>3x^2-3&gt;0</md>
+
+  <p>when</p>
+
+  <md>x&lt;-1
+\qquad\text{or}\qquad
+x&gt;1.</md>
+
+  <p>So the graph of <m>f</m> is rising on those intervals.</p>
+
+  <p>We also have</p>
+
+  <md>3x^2-3&lt;0</md>
+
+  <p>when</p>
+
+  <md>-1&lt;x&lt;1.</md>
+
+  <p>So the graph of <m>f</m> is falling there.</p>
+
+  <p>Thus the derivative graph tells the shape story:</p>
+
+  <md>\text{rising} \quad \longrightarrow \quad \text{falling} \quad \longrightarrow \quad \text{rising}.</md>
+
+  <p>This is why derivatives help us understand graphs.  A derivative is local information, but when we collect it point by point, it begins to describe the whole curve.</p>
+
+  <paragraphs>
+    <title>What <m>f'</m> does not tell by itself</title>
+
+  <p>The derivative does not remember vertical shifts.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=x^2
+\qquad\text{and}\qquad
+g(x)=x^2+5.</md>
+
+  <p>For <m>f</m>,</p>
+
+  <md>f'(x)=2x.</md>
+
+  <p>For <m>g</m>,</p>
+
+  <md>g'(x)
+=
+\lim_{h\to0}\frac{(x+h)^2+5-(x^2+5)}{h}
+=
+\lim_{h\to0}\frac{(x+h)^2-x^2}{h}
+=
+2x.</md>
+
+  <p>So</p>
+
+  <md>f'(x)=g'(x),</md>
+
+  <p>even though</p>
+
+  <md>g(x)=f(x)+5.</md>
+
+  <p>The two graphs have the same slopes at corresponding <m>x</m>-values, but one graph is <m>5</m> units higher.</p>
+
+  <note xml:id="note-sec-4-3-the-derivative-as-a-function-62">
+    <title>The derivative forgets constants</title>
+      <p>A derivative records change.  Adding a constant changes height, but not slope.</p>
+  </note>
+
+  <p>This points toward the second half of calculus.  If we know all the slopes <m>f'(x)</m>, how much of <m>f</m> can we recover?  We will eventually need a starting value and a way to accumulate slope information.</p>
+
+  <p>Before that larger question, we use the derivative for a more local purpose: near one point, a curve can be replaced by a line.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-3-forgets-constants">
+        <title>Why does the derivative forget vertical shifts?</title>
         <statement>
-          <p>A derivative records change. Adding a constant changes height, but not slope.</p>
+          <p>
+            The functions <m>x^2</m> and <m>x^2+5</m> have the same derivative. In your own words, why must that happen, and what information about <m>f</m> is therefore missing from <m>f'</m> alone?
+          </p>
         </statement>
-      </principle>
+        <hint>
+          <p>
+            Adding a constant changes height, not slope. Recovering a function from its slopes will later need a starting value.
+          </p>
+        </hint>
+      </exercise>
 
-      <p>This points toward the second half of calculus. If we know all the slopes <m>f'(x)</m>, how much of <m>f</m> can we recover? We will eventually need a starting value and a way to accumulate slope information.</p>
-
-      <p>Before that larger question, we use the derivative for a more local purpose: near one point, a curve can be replaced by a line.</p>
-    </paragraphs>
   </subsection>
+
+
 
 </section>

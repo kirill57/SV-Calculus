@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-6-3-rolle-s-theorem-and-the-mean-value-theorem">
-  <title>Rolle's Theorem and the Mean Value Theorem</title>
+  <title>Rolle’s Theorem and the Mean Value Theorem</title>
 
-  <p><xref ref="sec-local-absolute-extrema"/> gave us two tools.</p>
+  <p>Section <xref ref="sec-6-2-local-and-absolute-extrema"/> gave us two tools.</p>
 
-  <p>First, a continuous function on a closed interval reaches its absolute maximum and minimum. Second, a differentiable local extremum at an interior point must have derivative <m>0</m>.</p>
+  <p>First, a continuous function on a closed interval reaches its absolute maximum and
+minimum.  Second, a differentiable local extremum at an interior point must have
+derivative <m>0</m>.</p>
 
   <p>Those two facts now combine into a theorem about motion.</p>
 
-  <p>Suppose a car is at mile marker <m>10</m> at noon and mile marker <m>160</m> at <m>3{:}00</m>. Its average velocity is</p>
+  <p>Suppose a car is at mile marker <m>10</m> at noon and mile marker <m>160</m> at
+<m>3{:}00</m>.  Its average velocity is</p>
+
   <md>\frac{160-10}{3-0}=50</md>
+
   <p>miles per hour.</p>
 
-  <p>The car may have driven slowly at first and quickly later. It may have stopped for a short time. But if its position changed continuously, and if its velocity existed during the trip, then at some instant the speedometer must have read</p>
+  <p>The car may have driven slowly at first and quickly later.  It may have stopped for
+a short time.  But if its position changed continuously, and if its velocity existed
+during the trip, then at some instant the speedometer must have read</p>
+
   <md>50\text{ miles per hour}.</md>
 
   <p>That is the meaning of the Mean Value Theorem.</p>
@@ -21,412 +29,694 @@
   <subsection xml:id="subsec-road-trip-average-velocity">
     <title>A road trip with average velocity</title>
 
-    <p>Let <m>s(t)</m> be the position of the car, measured in miles, <m>t</m> hours after noon. The average velocity from <m>t=a</m> to <m>t=b</m> is</p>
-    <md>\frac{s(b)-s(a)}{b-a}.</md>
+  <p>Let <m>s(t)</m> be the position of the car, measured in miles, <m>t</m> hours after noon.
+The average velocity from <m>t=a</m> to <m>t=b</m> is</p>
 
-    <p>The instantaneous velocity is</p>
-    <md>s'(t).</md>
+  <md>\frac{s(b)-s(a)}{b-a}.</md>
 
-    <p>The claim is that, under the right hypotheses, some instantaneous velocity equals the average velocity:</p>
-    <md>s'(c)=\frac{s(b)-s(a)}{b-a}</md>
-    <p>for some time <m>c</m> between <m>a</m> and <m>b</m>.</p>
+  <p>The instantaneous velocity is</p>
 
-    <p>Geometrically, the average velocity is the slope of a secant line. The instantaneous velocity is the slope of a tangent line. So the claim becomes:</p>
-    <blockquote>
-      <p>some tangent line is parallel to the secant line.</p>
-    </blockquote>
+  <md>s'(t).</md>
 
-    <figure xml:id="fig-mvt-parabola">
-      <caption>For <m>f(x)=x^2</m> on <m>[1,3]</m>, the secant slope is <m>4</m>. The tangent slope at <m>x=2</m> is also <m>4</m>.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.50\textwidth,
-              xmin=0.6, xmax=3.4,
-              ymin=0, ymax=10,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(f(x)\)},
-              xtick={1,2,3},
-              ytick={1,4,9},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-              legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
-          ]
-          \addplot[thick, domain=0.7:3.25, samples=200] {x^2};
-          \addlegendentry{\(f(x)=x^2\)}
+  <p>The claim is that, under the right hypotheses, some instantaneous velocity equals the
+average velocity:</p>
 
-          % secant line through (1,1) and (3,9): y=4x-3
-          \addplot[thick, dashed, domain=0.85:3.15, samples=2] {4*x-3};
-          \addlegendentry{secant slope \(4\)}
+  <md>s'(c)=\frac{s(b)-s(a)}{b-a}</md>
 
-          % tangent at x=2: y=4x-4
-          \addplot[thick, dotted, domain=1.25:3.05, samples=2] {4*x-4};
-          \addlegendentry{tangent slope \(4\)}
+  <p>for some time <m>c</m> between <m>a</m> and <m>b</m>.</p>
 
-          \addplot[only marks, mark=*] coordinates {(1,1) (2,4) (3,9)};
-          \node[anchor=east] at (axis cs:1,1.1) {\((1,1)\)};
-          \node[anchor=west] at (axis cs:3,9) {\((3,9)\)};
-          \node[anchor=south] at (axis cs:2,4) {\(c=2\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>Geometrically, the average velocity is the slope of a secant line.  The instantaneous
+velocity is the slope of a tangent line.  So the claim becomes:</p>
 
-    <p>For the function in <xref ref="fig-mvt-parabola"/>,</p>
-    <md>f(x)=x^2, \qquad 1\le x\le 3.</md>
+  <md>\text{some tangent line is parallel to the secant line.}</md>
 
-    <p>The average rate of change is</p>
-    <md>\frac{f(3)-f(1)}{3-1} = \frac{9-1}{2} = 4.</md>
+  <figure xml:id="fig-mvt-parabola">
+    <caption>For <m>f(x)=x^2</m> on <m>[1,3]</m>, the secant slope is <m>4</m>.  The tangent slope at <m>x=2</m> is also <m>4</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=0.6, xmax=3.4,
+    ymin=0, ymax=10,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(f(x)\)},
+    xtick={1,2,3},
+    ytick={1,4,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, fill=none, at={(0.5,-0.20)}, anchor=north, legend columns=1, font=\small}
+]
+\addplot[thick, domain=0.7:3.25, samples=200] {x^2};
+\addlegendentry{\(f(x)=x^2\)}
 
-    <p>Since <m>f'(x)=2x</m>, we solve</p>
-    <md>2c=4</md>
-    <p>and get</p>
-    <md>c=2.</md>
+% secant line through (1,1) and (3,9): y=4x-3
+\addplot[thick, dashed, domain=0.85:3.15, samples=2] {4*x-3};
+\addlegendentry{secant slope \(4\)}
 
-    <p>So the tangent at <m>x=2</m> is parallel to the secant line from <m>x=1</m> to <m>x=3</m>.</p>
+% tangent at x=2: y=4x-4
+\addplot[thick, dotted, domain=1.25:3.05, samples=2] {4*x-4};
+\addlegendentry{tangent slope \(4\)}
 
-    <p>Before proving the full theorem, we prove its flat special case.</p>
+\addplot[only marks, mark=*] coordinates {(1,1) (2,4) (3,9)};
+\node[anchor=east] at (axis cs:1,1.1) {\((1,1)\)};
+\node[anchor=west] at (axis cs:3,9) {\((3,9)\)};
+\node[fill=white, inner sep=1pt, anchor=west] at (axis cs:2.15,3.45) {\(c=2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>For the function in Figure <xref ref="fig-mvt-parabola"/>,</p>
+
+  <md>f(x)=x^2,
+\qquad 1\le x\le 3.</md>
+
+  <p>The average rate of change is</p>
+
+  <md>\frac{f(3)-f(1)}{3-1}
+=
+\frac{9-1}{2}
+=
+4.</md>
+
+  <p>Since</p>
+
+  <md>f'(x)=2x,</md>
+
+  <p>we solve</p>
+
+  <md>2c=4</md>
+
+  <p>and get</p>
+
+  <md>c=2.</md>
+
+  <p>So the tangent at <m>x=2</m> is parallel to the secant line from <m>x=1</m> to <m>x=3</m>.</p>
+
+  <p>Before proving the full theorem, we prove its flat special case.</p>
+
+  <exercise xml:id="checkpoint-6-3-average-equals-instant">
+        <title>Why must some instantaneous rate equal the average rate?</title>
+        <statement>
+          <p>
+            The Mean Value Theorem says that, under the right hypotheses, some tangent slope equals the secant slope. In your own words, why is that a statement about motion as well as about graphs, and what would it mean for a speedometer during a trip whose average velocity is known?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Average velocity is a net change divided by elapsed time. The theorem claims that this average is actually attained at some instant, provided the trip is continuous and differentiable.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-rolles-theorem">
-    <title>Rolle's Theorem</title>
+    <title>Rolle’s Theorem</title>
 
-    <p>Suppose a graph starts and ends at the same height. If it is smooth in between, then somewhere in between it must have a horizontal tangent.</p>
+  <p>Suppose a graph starts and ends at the same height.  If it is smooth in between,
+then somewhere in between it must have a horizontal tangent.</p>
 
-    <p>For example, let</p>
-    <md>f(x)=x^2-4x+3</md>
-    <p>on <m>[1,3]</m>. Then</p>
-    <md>f(1)=0, \qquad f(3)=0.</md>
+  <p>For example, let</p>
 
-    <p>The derivative is</p>
-    <md>f'(x)=2x-4.</md>
+  <md>f(x)=x^2-4x+3</md>
 
-    <p>So</p>
-    <md>f'(2)=0.</md>
+  <p>on <m>[1,3]</m>.  Then</p>
 
-    <p>The graph starts at height <m>0</m>, ends at height <m>0</m>, and turns at <m>x=2</m>.</p>
+  <md>f(1)=0,
+\qquad
+f(3)=0.</md>
 
-    <figure xml:id="fig-rolles-theorem-example">
-      <caption>Rolle's Theorem says that equal endpoint heights force at least one horizontal tangent inside.</caption>
-      <image width="72%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.72\textwidth,
-              height=0.46\textwidth,
-              xmin=0.5, xmax=3.5,
-              ymin=-1.5, ymax=1.1,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={},
-              xtick={1,2,3},
-              ytick={-1,0,1},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25}
-          ]
-          \addplot[thick, domain=0.65:3.35, samples=200] {x^2-4*x+3};
-          \addplot[thick, dashed, domain=1.35:2.65, samples=2] {-1};
-          \addplot[only marks, mark=*] coordinates {(1,0) (2,-1) (3,0)};
-          \node[anchor=south] at (axis cs:1,0) {\(f(1)=0\)};
-          \node[anchor=south] at (axis cs:3,0) {\(f(3)=0\)};
-          \node[anchor=north] at (axis cs:2,-1) {\(f'(2)=0\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>The derivative is</p>
 
-    <theorem xml:id="thm-rolles-theorem">
-      <title>Rolle's Theorem</title>
-      <statement>
-        <p>Suppose <m>f</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>. If</p>
+  <md>f'(x)=2x-4.</md>
+
+  <p>So</p>
+
+  <md>f'(2)=0.</md>
+
+  <p>The graph starts at height <m>0</m>, ends at height <m>0</m>, and turns at <m>x=2</m>.</p>
+
+  <figure xml:id="fig-rolles-theorem-example">
+    <caption>Rolle’s Theorem says that equal endpoint heights force at least one horizontal tangent inside.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.46\textwidth,
+    xmin=0.5, xmax=3.5,
+    ymin=-1.5, ymax=1.1,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={1,2,3},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25}
+]
+\addplot[thick, domain=0.65:3.35, samples=200] {x^2-4*x+3};
+\addplot[thick, dashed, domain=1.35:2.65, samples=2] {-1};
+\addplot[only marks, mark=*] coordinates {(1,0) (2,-1) (3,0)};
+\node[anchor=south] at (axis cs:1,0) {\(f(1)=0\)};
+\node[anchor=south] at (axis cs:3,0) {\(f(3)=0\)};
+\node[anchor=west] at (axis cs:2.72,-1.0) {\(f'(2)=0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <theorem xml:id="thm-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-80">
+    <title>Rolle’s Theorem</title>
+    <statement>
+      <p>Suppose <m>f</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>.  If</p>
         <md>f(a)=f(b),</md>
-        <p>then there is at least one number <m>c</m> in <m>(a,b)</m> such that</p>
+      <p>then there is at least one number <m>c</m> in <m>(a,b)</m> such that</p>
         <md>f'(c)=0.</md>
-      </statement>
-      <proof>
-        <p>Because <m>f</m> is continuous on the closed interval <m>[a,b]</m>, the Extreme Value Theorem says that <m>f</m> reaches an absolute maximum and an absolute minimum on <m>[a,b]</m>.</p>
-        <p>If <m>f</m> is constant on <m>[a,b]</m>, then</p>
-        <md>f'(c)=0</md>
-        <p>for every <m>c\in(a,b)</m>, and we are done.</p>
-        <p>Now suppose <m>f</m> is not constant. Since</p>
-        <md>f(a)=f(b),</md>
-        <p>the absolute maximum or the absolute minimum must occur at an interior point. Call that point <m>c</m>.</p>
-        <p>At this interior point, <m>f</m> has a local extremum. Since <m>f</m> is differentiable at <m>c</m>, Fermat's theorem gives</p>
-        <md>f'(c)=0.</md>
-        <p>This proves Rolle's Theorem.</p>
-      </proof>
-    </theorem>
+    </statement>
+  </theorem>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Because <m>f</m> is continuous on the closed interval <m>[a,b]</m>, the Extreme Value
+Theorem says that <m>f</m> reaches an absolute maximum and an absolute minimum on
+<m>[a,b]</m>.</p>
+
+  <p>If <m>f</m> is constant on <m>[a,b]</m>, then</p>
+
+  <md>f'(c)=0</md>
+
+  <p>for every <m>c\in(a,b)</m>, and we are done.</p>
+
+  <p>Now suppose <m>f</m> is not constant.  Since</p>
+
+  <md>f(a)=f(b),</md>
+
+  <p>the absolute maximum or the absolute minimum must occur at an interior point.  Call
+that point <m>c</m>.</p>
+
+  <p>At this interior point, <m>f</m> has a local extremum.  Since <m>f</m> is differentiable at
+<m>c</m>, Fermat’s theorem gives</p>
+
+  <md>f'(c)=0.</md>
+
+  <p>This proves Rolle’s Theorem.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-rolle-hypotheses-matter">
-    <title>Why Rolle's hypotheses matter</title>
+    <title>Why Rolle’s hypotheses matter</title>
 
-    <p>Each hypothesis prevents a different kind of escape.</p>
+  <p>Each hypothesis prevents a different kind of escape.</p>
 
-    <paragraphs xml:id="para-rolle-continuity-warning">
-      <title>Continuity warning</title>
-      <p>Define</p>
-      <md>
-        f(x)=
-        \begin{cases}
-        x, \amp 0\le x\lt 1,\\
-        0, \amp x=1.
-        \end{cases}
-      </md>
-      <p>on <m>[0,1]</m>. Then</p>
-      <md>f(0)=0, \qquad f(1)=0.</md>
-      <p>The function is differentiable on <m>(0,1)</m>, and</p>
-      <md>f'(x)=1</md>
-      <p>there. There is no point <m>c\in(0,1)</m> with <m>f'(c)=0</m>.</p>
-      <p>The problem is that <m>f</m> is not continuous on <m>[0,1]</m>. The graph climbs toward <m>1</m>, then jumps down at the endpoint.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Continuity warning</title>
 
-    <paragraphs xml:id="para-rolle-differentiability-warning">
-      <title>Differentiability warning</title>
-      <p>Let</p>
-      <md>f(x)=|x|</md>
-      <p>on <m>[-1,1]</m>. Then</p>
-      <md>f(-1)=1, \qquad f(1)=1.</md>
-      <p>The function is continuous, but it is not differentiable at <m>0</m>. On the left,</p>
-      <md>f'(x)=-1,</md>
-      <p>and on the right,</p>
-      <md>f'(x)=1.</md>
-      <p>There is no interior point where the derivative exists and equals <m>0</m>. The graph turns at a corner instead of a horizontal tangent.</p>
-    </paragraphs>
+  <p>Define</p>
 
-    <paragraphs xml:id="para-rolle-endpoint-height-warning">
-      <title>Endpoint-height warning</title>
-      <p>Let</p>
-      <md>f(x)=x</md>
-      <p>on <m>[0,1]</m>. This function is continuous and differentiable, but</p>
-      <md>f(0)\neq f(1).</md>
-      <p>There is no reason to expect a horizontal tangent. Indeed,</p>
-      <md>f'(x)=1</md>
-      <p>everywhere.</p>
-    </paragraphs>
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+x, \amp 0\le x&lt;1,</mrow>
+    <mrow>0, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>on <m>[0,1]</m>.  Then</p>
+
+  <md>f(0)=0,
+\qquad
+f(1)=0.</md>
+
+  <p>The function is differentiable on <m>(0,1)</m>, and</p>
+
+  <md>f'(x)=1</md>
+
+  <p>there.  There is no point <m>c\in(0,1)</m> with <m>f'(c)=0</m>.</p>
+
+  <p>The problem is that <m>f</m> is not continuous on <m>[0,1]</m>.  The graph climbs toward
+<m>1</m>, then jumps down at the endpoint.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Differentiability warning</title>
+
+  <p>Let</p>
+
+  <md>f(x)=|x|</md>
+
+  <p>on <m>[-1,1]</m>.  Then</p>
+
+  <md>f(-1)=1,
+\qquad
+f(1)=1.</md>
+
+  <p>The function is continuous, but it is not differentiable at <m>0</m>.  On the left,</p>
+
+  <md>f'(x)=-1,</md>
+
+  <p>and on the right,</p>
+
+  <md>f'(x)=1.</md>
+
+  <p>There is no interior point where the derivative exists and equals <m>0</m>.  The graph
+turns at a corner instead of a horizontal tangent.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Endpoint-height warning</title>
+
+  <p>Let</p>
+
+  <md>f(x)=x</md>
+
+  <p>on <m>[0,1]</m>.  This function is continuous and differentiable, but</p>
+
+  <md>f(0)\neq f(1).</md>
+
+  <p>There is no reason to expect a horizontal tangent.  Indeed,</p>
+
+  <md>f'(x)=1</md>
+
+  <p>everywhere.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-mean-value-theorem">
     <title>The Mean Value Theorem</title>
 
-    <p>Rolle's Theorem handles the flat case, when the endpoint heights are equal. The Mean Value Theorem handles every secant line.</p>
+  <p>Rolle’s Theorem handles the flat case, when the endpoint heights are equal.  The
+Mean Value Theorem handles every secant line.</p>
 
-    <theorem xml:id="thm-mean-value-theorem">
-      <title>Mean Value Theorem</title>
-      <statement>
-        <p>Suppose <m>f</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>. Then there is at least one number <m>c</m> in <m>(a,b)</m> such that</p>
-        <md>f'(c)=\frac{f(b)-f(a)}{b-a}.</md>
-      </statement>
-      <proof>
-        <p>Let</p>
-        <md>m=\frac{f(b)-f(a)}{b-a}.</md>
-        <p>This is the slope of the secant line through <m>(a,f(a))</m> and <m>(b,f(b))</m>.</p>
-        <p>The equation of that secant line is</p>
-        <md>L(x)=f(a)+m(x-a).</md>
-        <p>Now measure the vertical difference between the graph and the secant line:</p>
-        <md>F(x)=f(x)-L(x).</md>
-        <p>At the left endpoint,</p>
-        <md>F(a)=f(a)-L(a)=f(a)-f(a)=0.</md>
-        <p>At the right endpoint,</p>
-        <md>L(b)=f(a)+m(b-a) = f(a)+\frac{f(b)-f(a)}{b-a}(b-a) = f(b),</md>
-        <p>so</p>
-        <md>F(b)=f(b)-L(b)=0.</md>
-        <p>Thus</p>
-        <md>F(a)=F(b).</md>
-        <p>The function <m>F</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>, because <m>f</m> and <m>L</m> have those properties. Rolle's Theorem applies to <m>F</m>. Therefore there is some <m>c\in(a,b)</m> such that</p>
-        <md>F'(c)=0.</md>
-        <p>But</p>
-        <md>F'(x)=f'(x)-L'(x)=f'(x)-m.</md>
-        <p>So</p>
-        <md>0=F'(c)=f'(c)-m.</md>
-        <p>Therefore</p>
-        <md>f'(c)=m=\frac{f(b)-f(a)}{b-a}.</md>
-        <p>This proves the Mean Value Theorem.</p>
-      </proof>
-    </theorem>
+  <theorem xml:id="thm-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-81">
+    <title>Mean Value Theorem</title>
+    <statement>
+      <p>Suppose <m>f</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>.  Then there is
+at least one number <m>c</m> in <m>(a,b)</m> such that</p>
+        <md>
+f'(c)=\frac{f(b)-f(a)}{b-a}.
+</md>
+    </statement>
+  </theorem>
 
-    <p>The conclusion can also be written as</p>
-    <md>f(b)-f(a)=f'(c)(b-a).</md>
+  <p>The conclusion can also be written as</p>
 
-    <p>This says:</p>
-    <blockquote>
-      <p>total change <m>=</m> instantaneous rate at some hidden point <m>\cdot</m> input change.</p>
-    </blockquote>
+  <md>f(b)-f(a)=f'(c)(b-a).</md>
 
-    <p>The point <m>c</m> may be hard to find. The theorem promises that it exists.</p>
+  <p>This says:</p>
 
-    <example xml:id="ex-mvt-sqrt">
-      <title>Finding the Mean Value Theorem point</title>
-      <statement>
-        <p>Let</p>
-        <md>f(x)=\sqrt{x}</md>
-        <p>on <m>[1,4]</m>. The average rate of change is</p>
-        <md>\frac{f(4)-f(1)}{4-1} = \frac{2-1}{3} = \frac13.</md>
-        <p>Since</p>
-        <md>f'(x)=\frac1{2\sqrt{x}},</md>
-        <p>the Mean Value Theorem says that some <m>c\in(1,4)</m> satisfies</p>
-        <md>\frac1{2\sqrt{c}}=\frac13.</md>
-        <p>Solving,</p>
-        <md>2\sqrt{c}=3, \qquad \sqrt{c}=\frac32, \qquad c=\frac94.</md>
-        <p>So at <m>x=\frac94</m>, the tangent slope equals the secant slope from <m>x=1</m> to <m>x=4</m>.</p>
-      </statement>
-    </example>
+  <md>\text{total change}
+=
+\text{instantaneous rate at some hidden point}
+\cdot
+\text{input change}.</md>
+
+  <p>The point <m>c</m> may be hard to find.  The theorem promises that it exists.</p>
+
+  <example xml:id="ex-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-5">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=\sqrt{x}</md>
+
+  <p>on <m>[1,4]</m>.  The average rate of change is</p>
+
+  <md>\frac{f(4)-f(1)}{4-1}
+=
+\frac{2-1}{3}
+=
+\frac13.</md>
+
+  <p>Since</p>
+
+  <md>f'(x)=\frac1{2\sqrt{x}},</md>
+
+  <p>the Mean Value Theorem says that some <m>c\in(1,4)</m> satisfies</p>
+
+  <md>\frac1{2\sqrt{c}}=\frac13.</md>
+
+  <p>Solving,</p>
+
+  <md>2\sqrt{c}=3,
+\qquad
+\sqrt{c}=\frac32,
+\qquad
+c=\frac94.</md>
+
+  <p>So at <m>x=\frac94</m>, the tangent slope equals the secant slope from <m>x=1</m> to
+<m>x=4</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Proof of the Mean Value Theorem</title>
+
+  <p>Let</p>
+
+  <md>m=\frac{f(b)-f(a)}{b-a}.</md>
+
+  <p>This is the slope of the secant line through <m>(a,f(a))</m> and <m>(b,f(b))</m>.</p>
+
+  <p>The equation of that secant line is</p>
+
+  <md>L(x)=f(a)+m(x-a).</md>
+
+  <p>Now measure the vertical difference between the graph and the secant line:</p>
+
+  <md>F(x)=f(x)-L(x).</md>
+
+  <p>At the left endpoint,</p>
+
+  <md>F(a)=f(a)-L(a)=f(a)-f(a)=0.</md>
+
+  <p>At the right endpoint,</p>
+
+  <md>L(b)=f(a)+m(b-a)
+=
+f(a)+\frac{f(b)-f(a)}{b-a}(b-a)
+=
+f(b),</md>
+
+  <p>so</p>
+
+  <md>F(b)=f(b)-L(b)=0.</md>
+
+  <p>Thus</p>
+
+  <md>F(a)=F(b).</md>
+
+  <p>The function <m>F</m> is continuous on <m>[a,b]</m> and differentiable on <m>(a,b)</m>, because
+<m>f</m> and <m>L</m> have those properties.  Rolle’s Theorem applies to <m>F</m>.  Therefore
+there is some <m>c\in(a,b)</m> such that</p>
+
+  <md>F'(c)=0.</md>
+
+  <p>But</p>
+
+  <md>F'(x)=f'(x)-L'(x)=f'(x)-m.</md>
+
+  <p>So</p>
+
+  <md>0=F'(c)=f'(c)-m.</md>
+
+  <p>Therefore</p>
+
+  <md>f'(c)=m=\frac{f(b)-f(a)}{b-a}.</md>
+
+  <p>This proves the Mean Value Theorem.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-mvt-hypotheses-matter">
     <title>Why the Mean Value Theorem hypotheses matter</title>
 
-    <p>The Mean Value Theorem has the same hypotheses as Rolle's Theorem, and for the same reasons.</p>
+  <p>The Mean Value Theorem has the same hypotheses as Rolle’s Theorem, and for the
+same reasons.</p>
 
-    <paragraphs xml:id="para-mvt-continuity-warning">
-      <title>Continuity warning</title>
-      <p>Define</p>
-      <md>
-        f(x)=
-        \begin{cases}
-        x, \amp 0\le x\lt 1,\\
-        0, \amp x=1.
-        \end{cases}
-      </md>
-      <p>on <m>[0,1]</m>. Then</p>
-      <md>\frac{f(1)-f(0)}{1-0}=0.</md>
-      <p>But on the open interval <m>(0,1)</m>,</p>
-      <md>f'(x)=1.</md>
-      <p>There is no point <m>c\in(0,1)</m> where</p>
-      <md>f'(c)=0.</md>
-      <p>The Mean Value Theorem fails because the function is not continuous on the closed interval.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Continuity warning</title>
 
-    <paragraphs xml:id="para-mvt-differentiability-warning">
-      <title>Differentiability warning</title>
-      <p>Let</p>
-      <md>f(x)=|x|</md>
-      <p>on <m>[-1,1]</m>. The average rate of change is</p>
-      <md>\frac{f(1)-f(-1)}{1-(-1)} = \frac{1-1}{2} = 0.</md>
-      <p>But <m>f'(x)=-1</m> for <m>x\lt 0</m>, <m>f'(x)=1</m> for <m>x\gt 0</m>, and <m>f'(0)</m> does not exist. There is no point where the derivative exists and equals <m>0</m>.</p>
-      <p>The graph has a corner. The theorem requires differentiability on the whole open interval.</p>
-    </paragraphs>
+  <p>Define</p>
+
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+x, \amp 0\le x&lt;1,</mrow>
+    <mrow>0, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>on <m>[0,1]</m>.  Then</p>
+
+  <md>\frac{f(1)-f(0)}{1-0}=0.</md>
+
+  <p>But on the open interval <m>(0,1)</m>,</p>
+
+  <md>f'(x)=1.</md>
+
+  <p>There is no point <m>c\in(0,1)</m> where</p>
+
+  <md>f'(c)=0.</md>
+
+  <p>The Mean Value Theorem fails because the function is not continuous on the closed
+interval.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Differentiability warning</title>
+
+  <p>Let</p>
+
+  <md>f(x)=|x|</md>
+
+  <p>on <m>[-1,1]</m>.  The average rate of change is</p>
+
+  <md>\frac{f(1)-f(-1)}{1-(-1)}
+=
+\frac{1-1}{2}
+=
+0.</md>
+
+  <p>But <m>f'(x)=-1</m> for <m>x&lt;0</m>, <m>f'(x)=1</m> for <m>x&gt;0</m>, and <m>f'(0)</m> does not exist.
+There is no point where the derivative exists and equals <m>0</m>.</p>
+
+  <p>The graph has a corner.  The theorem requires differentiability on the whole open
+interval.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-6-3-hypotheses-matter">
+        <title>Why do the hypotheses of Rolle’s Theorem and the Mean Value Theorem matter?</title>
+        <statement>
+          <p>
+            Continuity on the closed interval, differentiability on the open interval, and (for Rolle) equal endpoint heights each prevent a different escape. In your own words, why can a jump, a corner, or unequal endpoint heights keep a graph from having the tangent the theorem promises?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A jump can skip the needed height, a corner can turn without a horizontal tangent, and a steadily rising graph has no reason to flatten if it starts and ends at different heights.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-mvt-consequences">
     <title>Consequences of the Mean Value Theorem</title>
 
-    <p>The Mean Value Theorem turns information about derivatives into information about functions. That is why it is so useful.</p>
+  <p>The Mean Value Theorem turns information about derivatives into information about
+functions.  That is why it is so useful.</p>
 
-    <theorem xml:id="thm-constant-derivative">
-      <title>Constant derivative theorem</title>
-      <statement>
-        <p>If <m>f'(x)=0</m> for every <m>x</m> in an interval <m>I</m>, then <m>f</m> is constant on <m>I</m>.</p>
-      </statement>
-      <proof>
-        <p>Choose any two numbers <m>x_1\lt x_2</m> in <m>I</m>. On the interval <m>[x_1,x_2]</m>, the Mean Value Theorem gives some <m>c\in(x_1,x_2)</m> such that</p>
-        <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=f'(c).</md>
-        <p>But <m>f'(c)=0</m>, so</p>
-        <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=0.</md>
-        <p>Since <m>x_2-x_1\neq 0</m>, this gives</p>
-        <md>f(x_2)-f(x_1)=0,</md>
-        <p>or</p>
-        <md>f(x_2)=f(x_1).</md>
-        <p>Any two values of the function are equal. So <m>f</m> is constant on <m>I</m>.</p>
-      </proof>
-    </theorem>
+  <theorem xml:id="thm-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-82">
+    <title>Constant derivative theorem</title>
+    <statement>
+      <p>If <m>f'(x)=0</m> for every <m>x</m> in an interval <m>I</m>, then <m>f</m> is constant on <m>I</m>.</p>
+    </statement>
+  </theorem>
 
-    <theorem xml:id="thm-equal-derivatives">
-      <title>Equal derivatives theorem</title>
-      <statement>
-        <p>If</p>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Choose any two numbers <m>x_1&lt;x_2</m> in <m>I</m>.  On the interval <m>[x_1,x_2]</m>, the
+Mean Value Theorem gives some <m>c\in(x_1,x_2)</m> such that</p>
+
+  <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=f'(c).</md>
+
+  <p>But <m>f'(c)=0</m>, so</p>
+
+  <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=0.</md>
+
+  <p>Since <m>x_2-x_1\neq0</m>, this gives</p>
+
+  <md>f(x_2)-f(x_1)=0,</md>
+
+  <p>or</p>
+
+  <md>f(x_2)=f(x_1).</md>
+
+  <p>Any two values of the function are equal.  So <m>f</m> is constant on <m>I</m>.</p>
+
+  <theorem xml:id="thm-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-83">
+    <title>Equal derivatives theorem</title>
+    <statement>
+      <p>If</p>
         <md>f'(x)=g'(x)</md>
-        <p>for every <m>x</m> in an interval <m>I</m>, then <m>f</m> and <m>g</m> differ by a constant on <m>I</m>. That is,</p>
+      <p>for every <m>x</m> in an interval <m>I</m>, then <m>f</m> and <m>g</m> differ by a constant on <m>I</m>.
+That is,</p>
         <md>f(x)=g(x)+C</md>
-        <p>for some constant <m>C</m>.</p>
-      </statement>
-      <proof>
-        <p>Let</p>
-        <md>h(x)=f(x)-g(x).</md>
-        <p>Then</p>
-        <md>h'(x)=f'(x)-g'(x)=0.</md>
-        <p>By the constant derivative theorem, <m>h</m> is constant on <m>I</m>. So</p>
-        <md>f(x)-g(x)=C,</md>
-        <p>which means</p>
-        <md>f(x)=g(x)+C.</md>
-      </proof>
-    </theorem>
+      <p>for some constant <m>C</m>.</p>
+    </statement>
+  </theorem>
+  </paragraphs>
 
-    <p>This result will become important when we reverse differentiation. If two functions have the same derivative, they are not completely different. They differ only by a vertical shift.</p>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Let</p>
+
+  <md>h(x)=f(x)-g(x).</md>
+
+  <p>Then</p>
+
+  <md>h'(x)=f'(x)-g'(x)=0.</md>
+
+  <p>By the constant derivative theorem, <m>h</m> is constant on <m>I</m>.  So</p>
+
+  <md>f(x)-g(x)=C,</md>
+
+  <p>which means</p>
+
+  <md>f(x)=g(x)+C.</md>
+
+  <p>This result will become important when we reverse differentiation.  If two functions
+have the same derivative, they are not completely different.  They differ only by a
+vertical shift.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-6-3-zero-derivative-constant">
+        <title>Why does a zero derivative on an interval force a constant function?</title>
+        <statement>
+          <p>
+            If <m>f'(x)=0</m> everywhere on an interval, then <m>f</m> is constant there. In your own words, why does the Mean Value Theorem turn that local information into a global conclusion, and why do two functions with the same derivative differ only by a constant?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Between any two inputs, some instantaneous rate equals the average rate. If every instantaneous rate is zero, the net change between those inputs must be zero.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-first-derivative-sign-rule-proof">
     <title>The first derivative sign rule, proved</title>
 
-    <p><xref ref="subsec-first-derivative-sign-rule" text="title"/> used the first derivative sign rule. Now we can prove it.</p>
+  <p>Section <xref ref="subsec-first-derivative-sign-rule" text="title"/> used the first derivative sign rule.
+Now we can prove it.</p>
 
-    <theorem xml:id="thm-first-derivative-sign-rule-proof">
-      <title>First derivative sign rule</title>
-      <statement>
-        <p>Suppose <m>f</m> is continuous on an interval <m>I</m> and differentiable at the interior points of <m>I</m>.</p>
-        <p>If</p>
-        <md>f'(x)\gt 0</md>
-        <p>throughout the interior of <m>I</m>, then <m>f</m> is increasing on <m>I</m>.</p>
-        <p>If</p>
-        <md>f'(x)\lt 0</md>
-        <p>throughout the interior of <m>I</m>, then <m>f</m> is decreasing on <m>I</m>.</p>
-      </statement>
-      <proof>
-        <p>Choose two numbers <m>x_1\lt x_2</m> in <m>I</m>. By the Mean Value Theorem, there is a number <m>c\in(x_1,x_2)</m> such that</p>
-        <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=f'(c).</md>
-        <p>If <m>f'(x)\gt 0</m> throughout the interval, then</p>
-        <md>f'(c)\gt 0.</md>
-        <p>Since</p>
-        <md>x_2-x_1\gt 0,</md>
-        <p>we get</p>
-        <md>f(x_2)-f(x_1)\gt 0.</md>
-        <p>Thus</p>
-        <md>f(x_2)\gt f(x_1).</md>
-        <p>So <m>f</m> is increasing.</p>
-        <p>The decreasing case is the same argument with <m>f'(c)\lt 0</m>, which gives</p>
-        <md>f(x_2)-f(x_1)\lt 0.</md>
-        <p>Thus</p>
-        <md>f(x_2)\lt f(x_1),</md>
-        <p>so <m>f</m> is decreasing.</p>
-      </proof>
-    </theorem>
+  <note xml:id="note-sec-6-3-rolle-s-theorem-and-the-mean-value-theorem-84">
+    <title>First derivative sign rule</title>
+      <p>Suppose <m>f</m> is continuous on an interval <m>I</m> and differentiable at the interior
+points of <m>I</m>.</p>
+      <p>If</p>
+        <md>f'(x)&gt;0</md>
+      <p>throughout the interior of <m>I</m>, then <m>f</m> is increasing on <m>I</m>.</p>
+      <p>If</p>
+        <md>f'(x)&lt;0</md>
+      <p>throughout the interior of <m>I</m>, then <m>f</m> is decreasing on <m>I</m>.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Choose two numbers <m>x_1&lt;x_2</m> in <m>I</m>.  By the Mean Value Theorem, there is a
+number <m>c\in(x_1,x_2)</m> such that</p>
+
+  <md>\frac{f(x_2)-f(x_1)}{x_2-x_1}=f'(c).</md>
+
+  <p>If <m>f'(x)&gt;0</m> throughout the interval, then</p>
+
+  <md>f'(c)&gt;0.</md>
+
+  <p>Since</p>
+
+  <md>x_2-x_1&gt;0,</md>
+
+  <p>we get</p>
+
+  <md>f(x_2)-f(x_1)&gt;0.</md>
+
+  <p>Thus</p>
+
+  <md>f(x_2)&gt;f(x_1).</md>
+
+  <p>So <m>f</m> is increasing.</p>
+
+  <p>The decreasing case is the same argument with <m>f'(c)&lt;0</m>, which gives</p>
+
+  <md>f(x_2)-f(x_1)&lt;0.</md>
+
+  <p>Thus</p>
+
+  <md>f(x_2)&lt;f(x_1),</md>
+
+  <p>so <m>f</m> is decreasing.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-6-3-mvt-proves-sign-rule">
+        <title>Why does the Mean Value Theorem prove the first derivative sign rule?</title>
+        <statement>
+          <p>
+            A positive derivative at one point is local information. Increasing on a whole interval is a comparison of values. In your own words, how does the Mean Value Theorem turn a sign of <m>f'</m> throughout an interval into the inequality <m>f(x_2)&gt;f(x_1)</m> whenever <m>x_1&lt;x_2</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Write the difference <m>f(x_2)-f(x_1)</m> as <m>f'(c)(x_2-x_1)</m>. The second factor is positive; the first factor keeps a constant sign.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-mvt-derivative-bound">
     <title>A useful bound from derivatives</title>
 
-    <p>The Mean Value Theorem also turns a bound on the derivative into a bound on total change.</p>
+  <p>The Mean Value Theorem also turns a bound on the derivative into a bound on total
+change.</p>
 
-    <p>Suppose</p>
-    <md>|f'(x)|\le M</md>
-    <p>for all <m>x\in[a,b]</m>. Then the Mean Value Theorem gives</p>
-    <md>f(b)-f(a)=f'(c)(b-a)</md>
-    <p>for some <m>c\in(a,b)</m>. Taking absolute values,</p>
-    <md>|f(b)-f(a)| = |f'(c)|\,|b-a| \le M|b-a|.</md>
+  <p>Suppose</p>
 
-    <p>So</p>
-    <md>|f(b)-f(a)|\le M|b-a|.</md>
+  <md>|f'(x)|\le M</md>
 
-    <p>This says that if the derivative is never large, then the function cannot change too fast. A bound on local change controls global change.</p>
+  <p>for all <m>x\in[a,b]</m>.  Then the Mean Value Theorem gives</p>
 
-    <p>That idea will return when we estimate errors.</p>
+  <md>f(b)-f(a)=f'(c)(b-a)</md>
+
+  <p>for some <m>c\in(a,b)</m>.  Taking absolute values,</p>
+
+  <md>|f(b)-f(a)|
+=
+|f'(c)|\,|b-a|
+\le
+M|b-a|.</md>
+
+  <p>So</p>
+
+  <md>
+|f(b)-f(a)|\le M|b-a|.
+</md>
+
+  <p>This says that if the derivative is never large, then the function cannot change too
+fast.  A bound on local change controls global change.</p>
+
+  <p>That idea will return when we estimate errors.</p>
   </subsection>
 
   <subsection xml:id="subsec-mvt-hook-concavity">
     <title>Where this points</title>
 
-    <p>The Mean Value Theorem explains why the sign of <m>f'</m> controls increasing and decreasing behavior. It also explains why a zero derivative on an interval forces a function to be constant.</p>
+  <p>The Mean Value Theorem explains why the sign of <m>f'</m> controls increasing and
+decreasing behavior.  It also explains why a zero derivative on an interval forces a
+function to be constant.</p>
 
-    <p>But there is more shape left to read.</p>
+  <p>But there is more shape left to read.</p>
 
-    <p>Two graphs can both be increasing and still look very different. One can rise faster and faster. Another can rise more and more slowly. The first derivative tells us whether the graph rises or falls. The next question asks whether the first derivative itself is increasing or decreasing.</p>
+  <p>Two graphs can both be increasing and still look very different.  One can rise faster
+and faster.  Another can rise more and more slowly.  The first derivative tells us
+whether the graph rises or falls.  The next question asks whether the first derivative
+itself is increasing or decreasing.</p>
 
-    <p>That is the second derivative.</p>
+  <p>That is the second derivative.</p>
   </subsection>
+
+
 
 </section>

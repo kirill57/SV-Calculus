@@ -1,396 +1,662 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-derivative-review-and-discovery">
+<section xml:id="sec-4-9-chapter-review-and-discovery-problems">
   <title>Chapter review and discovery problems</title>
 
   <p>The chapter began with a familiar quotient:</p>
+
   <md>\frac{f(b)-f(a)}{b-a}.</md>
 
-  <p>That quotient measured average change. By shrinking the interval, we found a new number:</p>
-  <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
+  <p>That quotient measured average change.  By shrinking the interval, we found a new number:</p>
 
-  <p>The same number appeared in several forms. It was an instantaneous rate, a tangent slope, the coefficient in the best linear approximation, and velocity when the function was position.</p>
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
 
-  <table>
-    <title>Core derivative concepts and formulas</title>
-    <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-      <col halign="left" width="40%"/>
-      <col halign="left" width="60%"/>
-      <row header="yes">
-        <cell><term>idea</term></cell>
-        <cell><term>formula</term></cell>
-      </row>
-      <row>
-        <cell>average rate of change</cell>
-        <cell><m>\dfrac{f(b)-f(a)}{b-a}</m></cell>
-      </row>
-      <row>
-        <cell>derivative at <m>a</m></cell>
-        <cell><m>f'(a)=\displaystyle\lim_{h\to 0}\dfrac{f(a+h)-f(a)}{h}</m></cell>
-      </row>
-      <row>
-        <cell>tangent line at <m>a</m></cell>
-        <cell><m>y-f(a)=f'(a)(x-a)</m></cell>
-      </row>
-      <row>
-        <cell>local linear approximation</cell>
-        <cell><m>f(a+h)\approx f(a)+f'(a)h</m></cell>
-      </row>
-      <row>
-        <cell>differential approximation</cell>
-        <cell><m>dy=f'(x)\,dx</m></cell>
-      </row>
-      <row>
-        <cell>motion</cell>
-        <cell><m>v(t)=s'(t),\qquad a(t)=v'(t)=s''(t)</m></cell>
-      </row>
-    </tabular>
-  </table>
+  <p>The same number appeared in several forms.  It was an instantaneous rate, a tangent slope, the coefficient in the best linear approximation, and velocity when the function was position.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>idea</strong> \amp <strong>formula</strong></mrow>
+    <mrow>\hline
+\text{average rate of change} \amp
+\dfrac{f(b)-f(a)}{b-a}</mrow>
+    <mrow>
+\text{derivative at }a \amp
+f'(a)=\displaystyle\lim_{h\to0}\dfrac{f(a+h)-f(a)}{h}</mrow>
+    <mrow>
+\text{tangent line at }a \amp
+y-f(a)=f'(a)(x-a)</mrow>
+    <mrow>
+\text{local linear approximation} \amp
+f(a+h)\approx f(a)+f'(a)h</mrow>
+    <mrow>
+\text{differential approximation} \amp
+dy=f'(x)\,dx</mrow>
+    <mrow>
+\text{motion} \amp
+v(t)=s'(t),\qquad a(t)=v'(t)=s''(t)
+\end{array}</mrow>
+  </md>
 
   <figure xml:id="fig-chapter4-derivative-map">
     <caption>The derivative is one idea with several connected meanings.</caption>
-    <image width="70%">
+    <image width="75%">
       <latex-image>
-        \begin{tikzpicture}[every node/.style={font=\small}]
-          \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (avg) at (0,0)
-          {average rate\\ \(\dfrac{f(b)-f(a)}{b-a}\)};
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (avg) at (0,0)
+  {average rate\\ \(\dfrac{f(b)-f(a)}{b-a}\)};
 
-          \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (lim) at (5,0)
-          {limit of rates\\ \(f'(a)\)};
+  \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (lim) at (5,0)
+  {limit of rates\\ \(f'(a)\)};
 
-          \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (tan) at (0,-2.0)
-          {tangent slope\\ at one point};
+  \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (tan) at (0,-2.0)
+  {tangent slope\\ at one point};
 
-          \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (lin) at (5,-2.0)
-          {local line\\ \(f(a+h)\approx f(a)+f'(a)h\)};
+  \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (lin) at (5,-2.0)
+  {local line\\ \(f(a+h)\approx f(a)+f'(a)h\)};
 
-          \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (motion) at (2.5,-4.0)
-          {motion\\ \(v=s'\), \(a=v'\)};
+  \node[draw, rounded corners, align=center, minimum width=3.2cm, minimum height=0.85cm] (motion) at (2.5,-4.0)
+  {motion\\ \(v=s'\), \(a=v'\)};
 
-          \draw[-&gt;, thick] (avg) -- (lim);
-          \draw[-&gt;, thick] (lim) -- (tan);
-          \draw[-&gt;, thick] (tan) -- (lin);
-          \draw[-&gt;, thick] (lin) -- (motion);
-          \draw[-&gt;, thick] (motion) -- (avg);
-        \end{tikzpicture}
+  \draw[-&gt;, thick] (avg) -- (lim);
+  \draw[-&gt;, thick] (lim) -- (tan);
+  \draw[-&gt;, thick] (tan) -- (lin);
+  \draw[-&gt;, thick] (lin) -- (motion);
+  \draw[-&gt;, thick] (motion) -- (avg);
+\end{tikzpicture}
       </latex-image>
     </image>
   </figure>
 
-  <p>The problems below are meant to make those meanings fluent. Some ask for calculations. Some ask for explanations. Some ask for judgment. Calculus needs all three.</p>
+  <p>The problems below are meant to make those meanings fluent.  Some ask for calculations.  Some ask for explanations.  Some ask for judgment.  Calculus needs all three.</p>
 
   <subsection xml:id="subsec-skills-derivative-from-definition">
     <title>Skills: derivative from definition</title>
 
-    <p>Use the definition</p>
-    <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}</md>
-    <p>unless the problem explicitly says otherwise. Show the algebra that removes the factor <m>h</m> before taking the limit.</p>
+  <p>Use the definition</p>
 
-    <paragraphs xml:id="paragraphs-derivatives-at-a-point">
-      <title>Derivatives at a point</title>
-      <p>Find <m>f'(a)</m>.</p>
-      <ol>
-        <li><p><m>f(x)=x^2</m>, <m>a=-1</m>.</p></li>
-        <li><p><m>f(x)=x^2</m>, <m>a=5</m>.</p></li>
-        <li><p><m>f(x)=x^3</m>, <m>a=1</m>.</p></li>
-        <li><p><m>f(x)=x^3</m>, <m>a=-2</m>.</p></li>
-        <li><p><m>f(x)=5x-7</m>, <m>a=4</m>.</p></li>
-        <li><p><m>f(x)=3x^2-2x+1</m>, <m>a=2</m>.</p></li>
-        <li><p><m>f(x)=\frac{1}{x}</m>, <m>a=2</m>.</p></li>
-        <li><p><m>f(x)=\frac{1}{x+1}</m>, <m>a=0</m>.</p></li>
-        <li><p><m>f(x)=\sqrt{x}</m>, <m>a=9</m>.</p></li>
-        <li><p><m>f(x)=\sqrt{x}</m>, <m>a=4</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</md>
 
-    <paragraphs xml:id="paragraphs-derivative-functions-exercises">
-      <title>Derivative functions</title>
-      <p>Use the definition to find <m>f'(x)</m>. State where your formula is valid.</p>
-      <ol start="11">
-        <li><p><m>f(x)=x^2+3x</m>.</p></li>
-        <li><p><m>f(x)=x^3-4x</m>.</p></li>
-        <li><p><m>f(x)=2x^2-5x+8</m>.</p></li>
-        <li><p><m>f(x)=\frac{1}{x}</m>.</p></li>
-        <li><p><m>f(x)=\sqrt{x}</m>.</p></li>
-        <li><p><m>f(x)=\frac{1}{x-2}</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <p>unless the problem explicitly says otherwise.  Show the algebra that removes the factor <m>h</m> before taking the limit.</p>
 
-    <paragraphs xml:id="paragraphs-using-first-derivative-formulas">
-      <title>Using the first derivative formulas</title>
-      <p>Differentiate.</p>
-      <ol start="17">
-        <li><p><m>p(x)=4x^5-3x^2+7x-9</m>.</p></li>
-        <li><p><m>q(x)=-2x^6+5x^3-\frac{1}{2}x+10</m>.</p></li>
-        <li><p><m>r(x)=x^4-4x^3+6x^2-4x+1</m>.</p></li>
-        <li><p><m>s(x)=7</m>.</p></li>
-        <li><p><m>m(x)=3x^2+2x+1</m>. Find <m>m'(0)</m>, <m>m'(1)</m>, <m>m'(-1)</m>.</p></li>
-        <li><p><m>P(x)=x^4-2x^2</m>. Find all <m>x</m>-values where the tangent line is horizontal.</p></li>
-      </ol>
-    </paragraphs>
+  <paragraphs>
+    <title>Derivatives at a point</title>
 
-    <paragraphs xml:id="paragraphs-tangent-lines-exercises">
-      <title>Tangent lines</title>
-      <p>Find the equation of the tangent line at the given point.</p>
-      <ol start="23">
-        <li><p><m>f(x)=x^2</m>, <m>x=3</m>.</p></li>
-        <li><p><m>f(x)=x^3</m>, <m>x=2</m>.</p></li>
-        <li><p><m>f(x)=3x^2-5x+1</m>, <m>x=1</m>.</p></li>
-        <li><p><m>f(x)=\frac{1}{x}</m>, <m>x=1</m>.</p></li>
-        <li><p><m>f(x)=\sqrt{x}</m>, <m>x=4</m>.</p></li>
-        <li><p>For <m>p(x)=x^4-3x^2+2</m>, find the tangent line at <m>x=-1</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <p>Find <m>f'(a)</m>.</p>
 
-    <paragraphs xml:id="paragraphs-linear-approx-exercises">
-      <title>Local linear approximation</title>
-      <p>Use <m>f(a+h)\approx f(a)+f'(a)h</m>.</p>
-      <ol start="29">
-        <li><p>Use <m>f(x)=x^2</m> at <m>a=5</m> to estimate <m>(5.03)^2</m>. Then compute the exact value and the error.</p></li>
-        <li><p>Use <m>f(x)=\sqrt{x}</m> at <m>a=9</m> to estimate <m>\sqrt{9.2}</m>.</p></li>
-        <li><p>Use <m>f(x)=1/x</m> at <m>a=2</m> to estimate <m>\frac{1}{2.01}</m>.</p></li>
-        <li><p>Let <m>f(x)=x^3</m>. Use the linearization at <m>a=2</m> to estimate <m>(2.02)^3</m>. Then compare with the exact value.</p></li>
-        <li><p>Let <m>A(r)=\pi r^2</m>. Use differentials to estimate the change in area when the radius changes from <m>10\text{ cm}</m> to <m>10.1\text{ cm}</m>.</p></li>
-        <li><p>Let <m>V(x)=x^3</m>. Use differentials to estimate the change in volume of a cube when the side length changes from <m>4\text{ cm}</m> to <m>4.05\text{ cm}</m>.</p></li>
-      </ol>
-    </paragraphs>
+    <ol>
+      <li>
+          <md>f(x)=x^2,\qquad a=-1.</md>
+      </li>
+      <li>
+          <md>f(x)=x^2,\qquad a=5.</md>
+      </li>
+      <li>
+          <md>f(x)=x^3,\qquad a=1.</md>
+      </li>
+      <li>
+          <md>f(x)=x^3,\qquad a=-2.</md>
+      </li>
+      <li>
+          <md>f(x)=5x-7,\qquad a=4.</md>
+      </li>
+      <li>
+          <md>f(x)=3x^2-2x+1,\qquad a=2.</md>
+      </li>
+      <li>
+          <md>f(x)=\frac1x,\qquad a=2.</md>
+      </li>
+      <li>
+          <md>f(x)=\frac1{x+1},\qquad a=0.</md>
+      </li>
+      <li>
+          <md>f(x)=\sqrt{x},\qquad a=9.</md>
+      </li>
+      <li>
+          <md>f(x)=\sqrt{x},\qquad a=4.</md>
+      </li>
+    </ol>
+  </paragraphs>
 
-    <paragraphs xml:id="paragraphs-differentiability-continuity-exercises">
-      <title>Differentiability and continuity</title>
-      <p>Decide whether the derivative exists at the indicated point. Explain using the difference quotient or one-sided slopes.</p>
-      <ol start="35">
-        <li><p><m>f(x)=|x|</m>, <m>a=0</m>.</p></li>
-        <li><p><m>f(x)=|x-3|</m>, <m>a=3</m>.</p></li>
-        <li><p><m>f(x)=\begin{cases} x, \amp x\lt 1,\\ 2x-1, \amp x\ge 1, \end{cases} \quad a=1</m>.</p></li>
-        <li><p><m>f(x)=\begin{cases} x^2, \amp x\lt 0,\\ x, \amp x\ge 0, \end{cases} \quad a=0</m>.</p></li>
-        <li><p><m>f(x)=\sqrt[3]{x}</m>, <m>a=0</m>.</p></li>
-        <li><p><m>f(x)=|x|^{2/3}</m>, <m>a=0</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <paragraphs>
+    <title>Derivative functions</title>
 
-    <paragraphs xml:id="paragraphs-motion-exercises">
-      <title>Motion</title>
-      <p>Let <m>s(t)</m> be position in meters after <m>t</m> seconds.</p>
-      <ol start="41">
-        <li><p>If <m>s(t)=t^2+3t</m>, find <m>v(t)</m> and <m>a(t)</m>. Find the velocity and acceleration at <m>t=2</m>.</p></li>
-        <li><p>If <m>s(t)=10+6t-t^2</m>, find the time when the object is momentarily stopped.</p></li>
-        <li><p>If <m>s(t)=t^2-4t</m>, <m>0\le t\le 4</m>, find the displacement, total distance traveled, average velocity, and average speed on the interval <m>[0,4]</m>.</p></li>
-        <li><p>A ball is thrown upward with height <m>y(t)=80t-16t^2</m> feet after <m>t</m> seconds. Find the velocity, acceleration, time of maximum height, maximum height, and time when the ball returns to the ground.</p></li>
-        <li><p>A stone is dropped from a height of <m>144</m> feet. Its height is <m>y(t)=144-16t^2</m>. Find its velocity at impact.</p></li>
-        <li><p>Suppose <m>s(t)=t^3-6t^2+9t</m>. Find <m>v(t)</m>. Determine when the particle is moving in the positive direction and when it is moving in the negative direction.</p></li>
-      </ol>
-    </paragraphs>
+  <p>Use the definition to find <m>f'(x)</m>.  State where your formula is valid.</p>
+
+    <ol>
+      <li>
+          <md>f(x)=x^2+3x.</md>
+      </li>
+      <li>
+          <md>f(x)=x^3-4x.</md>
+      </li>
+      <li>
+          <md>f(x)=2x^2-5x+8.</md>
+      </li>
+      <li>
+          <md>f(x)=\frac1x.</md>
+      </li>
+      <li>
+          <md>f(x)=\sqrt{x}.</md>
+      </li>
+      <li>
+          <md>f(x)=\frac{1}{x-2}.</md>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Using the first derivative formulas</title>
+
+  <p>Differentiate.</p>
+
+    <ol>
+      <li>
+          <md>p(x)=4x^5-3x^2+7x-9.</md>
+      </li>
+      <li>
+          <md>q(x)=-2x^6+5x^3-\frac12x+10.</md>
+      </li>
+      <li>
+          <md>r(x)=x^4-4x^3+6x^2-4x+1.</md>
+      </li>
+      <li>
+          <md>s(x)=7.</md>
+      </li>
+      <li>
+          <md>m(x)=3x^2+2x+1.</md>
+        <p>Find</p>
+          <md>m'(0),\qquad m'(1),\qquad m'(-1).</md>
+      </li>
+      <li>
+          <md>P(x)=x^4-2x^2.</md>
+        <p>Find all <m>x</m>-values where the tangent line is horizontal.</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Tangent lines</title>
+
+  <p>Find the equation of the tangent line at the given point.</p>
+
+    <ol>
+      <li>
+          <md>f(x)=x^2,\qquad x=3.</md>
+      </li>
+      <li>
+          <md>f(x)=x^3,\qquad x=2.</md>
+      </li>
+      <li>
+          <md>f(x)=3x^2-5x+1,\qquad x=1.</md>
+      </li>
+      <li>
+          <md>f(x)=\frac1x,\qquad x=1.</md>
+      </li>
+      <li>
+          <md>f(x)=\sqrt{x},\qquad x=4.</md>
+      </li>
+      <li>
+        <p>For</p>
+          <md>p(x)=x^4-3x^2+2,</md>
+        <p>find the tangent line at <m>x=-1</m>.</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Local linear approximation</title>
+
+  <p>Use</p>
+
+  <md>f(a+h)\approx f(a)+f'(a)h.</md>
+
+    <ol>
+      <li>
+        <p>Use <m>f(x)=x^2</m> at <m>a=5</m> to estimate</p>
+          <md>(5.03)^2.</md>
+        <p>Then compute the exact value and the error.</p>
+      </li>
+      <li>
+        <p>Use <m>f(x)=\sqrt{x}</m> at <m>a=9</m> to estimate</p>
+          <md>\sqrt{9.2}.</md>
+      </li>
+      <li>
+        <p>Use <m>f(x)=1/x</m> at <m>a=2</m> to estimate</p>
+          <md>\frac1{2.01}.</md>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>f(x)=x^3.</md>
+        <p>Use the linearization at <m>a=2</m> to estimate</p>
+          <md>(2.02)^3.</md>
+        <p>Then compare with the exact value.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>A(r)=\pi r^2.</md>
+        <p>Use differentials to estimate the change in area when the radius changes from <m>10</m> cm to <m>10.1</m> cm.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>V(x)=x^3.</md>
+        <p>Use differentials to estimate the change in volume of a cube when the side length changes from <m>4</m> cm to <m>4.05</m> cm.</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Differentiability and continuity</title>
+
+  <p>Decide whether the derivative exists at the indicated point.  Explain using the difference quotient or one-sided slopes.</p>
+
+    <ol>
+      <li>
+          <md>f(x)=|x|,\qquad a=0.</md>
+      </li>
+      <li>
+          <md>f(x)=|x-3|,\qquad a=3.</md>
+      </li>
+      <li>
+          <md>
+    <mrow>f(x)=
+\begin{cases}
+x, \amp x&lt;1,</mrow>
+    <mrow>2x-1, \amp x\ge1,
+\end{cases}
+\qquad a=1.</mrow>
+  </md>
+      </li>
+      <li>
+          <md>
+    <mrow>f(x)=
+\begin{cases}
+x^2, \amp x&lt;0,</mrow>
+    <mrow>x, \amp x\ge0,
+\end{cases}
+\qquad a=0.</mrow>
+  </md>
+      </li>
+      <li>
+          <md>f(x)=\sqrt[3]{x},\qquad a=0.</md>
+      </li>
+      <li>
+          <md>f(x)=|x|^{2/3},\qquad a=0.</md>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Motion</title>
+
+  <p>Let <m>s(t)</m> be position in meters after <m>t</m> seconds.</p>
+
+    <ol>
+      <li>
+        <p>If</p>
+          <md>s(t)=t^2+3t,</md>
+        <p>find <m>v(t)</m> and <m>a(t)</m>.  Find the velocity and acceleration at <m>t=2</m>.</p>
+      </li>
+      <li>
+        <p>If</p>
+          <md>s(t)=10+6t-t^2,</md>
+        <p>find the time when the object is momentarily stopped.</p>
+      </li>
+      <li>
+        <p>If</p>
+          <md>s(t)=t^2-4t,
+\qquad 0\le t\le4,</md>
+        <p>find the displacement, total distance traveled, average velocity, and average speed on the interval <m>[0,4]</m>.</p>
+      </li>
+      <li>
+        <p>A ball is thrown upward with height</p>
+          <md>y(t)=80t-16t^2</md>
+        <p>feet after <m>t</m> seconds.  Find the velocity, acceleration, time of maximum height, maximum height, and time when the ball returns to the ground.</p>
+      </li>
+      <li>
+        <p>A stone is dropped from a height of <m>144</m> feet.  Its height is</p>
+          <md>y(t)=144-16t^2.</md>
+        <p>Find its velocity at impact.</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>s(t)=t^3-6t^2+9t.</md>
+        <p>Find <m>v(t)</m>.  Determine when the particle is moving in the positive direction and when it is moving in the negative direction.</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-9-one-idea-several-meanings">
+        <title>Why is the derivative one idea with several meanings?</title>
+        <statement>
+          <p>
+            The same number <m>f'(a)</m> is an instantaneous rate, a tangent slope, a linearization coefficient, and a velocity when the function is position. In your own words, why are those not four different inventions, and what shared limiting process ties them together?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each meaning starts from an average comparison and shrinks the interval. The limit of those averages is the derivative.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-concept-check-tangent-secant">
     <title>Concept check: tangent line versus secant line</title>
 
-    <p>Answer in complete sentences where appropriate.</p>
+  <p>Answer in complete sentences where appropriate.</p>
 
     <ol>
-      <li><p>What is the difference between a secant line and a tangent line?</p></li>
-      <li><p>Why does the difference quotient <m>\frac{f(a+h)-f(a)}{h}</m> require <m>h\neq 0</m>?</p></li>
-      <li><p>Why can the limit of the difference quotient still exist even though the quotient itself is not defined at <m>h=0</m>?</p></li>
-      <li><p>A tangent line is sometimes described as a line that <q>just touches</q> a curve. Why is this description unreliable?</p></li>
-      <li><p>Give an example of a tangent line that crosses the curve at the point of tangency.</p></li>
-      <li><p>What does the statement <m>f'(3)=7</m> mean geometrically?</p></li>
-      <li><p>What does the statement <m>s'(3)=7</m> mean if <m>s(t)</m> is measured in meters and <m>t</m> is measured in seconds?</p></li>
-      <li><p>Suppose <m>f'(a)=0</m>. Must <m>f</m> have a local maximum or local minimum at <m>a</m>? Give an example.</p></li>
-      <li><p>Suppose <m>f</m> is differentiable at <m>a</m>. What must be true about <m>f</m> at <m>a</m>?</p></li>
-      <li><p>Suppose <m>f</m> is continuous at <m>a</m>. Must <m>f</m> be differentiable at <m>a</m>? Give an example.</p></li>
-      <li><p>Why is the derivative best understood as a local idea?</p></li>
-      <li><p>Explain the meaning of <m>f(a+h)=f(a)+f'(a)h+E(h)</m>, <m>\frac{E(h)}{h}\to 0</m>.</p></li>
-      <li><p>What is the difference between <m>\Delta y</m> and <m>dy</m>?</p></li>
-      <li><p>In the approximation <m>\Delta y\approx dy=f'(x)\,dx</m>, which quantity is exact and which quantity is linearized?</p></li>
-      <li><p>If <m>f'(a)</m> is large in magnitude, what does that say about the sensitivity of <m>f</m> near <m>a</m>?</p></li>
-      <li><p>In one-dimensional motion, why is speed equal to <m>|v(t)|</m> rather than <m>v(t)</m>?</p></li>
-      <li><p>Can an object have velocity <m>0</m> and nonzero acceleration at the same instant? Give an example.</p></li>
-      <li><p>A particle has <m>v(t)\lt 0</m> and <m>a(t)\lt 0</m>. Is it speeding up or slowing down? Explain.</p></li>
-      <li><p>A particle has <m>v(t)\gt 0</m> and <m>a(t)\lt 0</m>. Is it speeding up or slowing down? Explain.</p></li>
-      <li><p>Why can a graphing calculator miss a nondifferentiable point?</p></li>
+      <li>
+        <p>What is the difference between a secant line and a tangent line?</p>
+      </li>
+      <li>
+        <p>Why does the difference quotient</p>
+          <md>\frac{f(a+h)-f(a)}{h}</md>
+        <p>require <m>h\neq0</m>?</p>
+      </li>
+      <li>
+        <p>Why can the limit of the difference quotient still exist even though the quotient itself is not defined at <m>h=0</m>?</p>
+      </li>
+      <li>
+        <p>A tangent line is sometimes described as a line that “just touches” a curve.  Why is this description unreliable?</p>
+      </li>
+      <li>
+        <p>Give an example of a tangent line that crosses the curve at the point of tangency.</p>
+      </li>
+      <li>
+        <p>What does the statement</p>
+          <md>f'(3)=7</md>
+        <p>mean geometrically?</p>
+      </li>
+      <li>
+        <p>What does the statement</p>
+          <md>s'(3)=7</md>
+        <p>mean if <m>s(t)</m> is measured in meters and <m>t</m> is measured in seconds?</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>f'(a)=0.</md>
+        <p>Must <m>f</m> have a local maximum or local minimum at <m>a</m>?  Give an example.</p>
+      </li>
+      <li>
+        <p>Suppose <m>f</m> is differentiable at <m>a</m>.  What must be true about <m>f</m> at <m>a</m>?</p>
+      </li>
+      <li>
+        <p>Suppose <m>f</m> is continuous at <m>a</m>.  Must <m>f</m> be differentiable at <m>a</m>?  Give an example.</p>
+      </li>
+      <li>
+        <p>Why is the derivative best understood as a local idea?</p>
+      </li>
+      <li>
+        <p>Explain the meaning of</p>
+          <md>f(a+h)=f(a)+f'(a)h+E(h),
+\qquad
+\frac{E(h)}{h}\to0.</md>
+      </li>
+      <li>
+        <p>What is the difference between <m>\Delta y</m> and <m>dy</m>?</p>
+      </li>
+      <li>
+        <p>In the approximation</p>
+          <md>\Delta y\approx dy=f'(x)\,dx,</md>
+        <p>which quantity is exact and which quantity is linearized?</p>
+      </li>
+      <li>
+        <p>If <m>f'(a)</m> is large in magnitude, what does that say about the sensitivity of <m>f</m> near <m>a</m>?</p>
+      </li>
+      <li>
+        <p>In one-dimensional motion, why is speed equal to <m>|v(t)|</m> rather than <m>v(t)</m>?</p>
+      </li>
+      <li>
+        <p>Can an object have velocity <m>0</m> and nonzero acceleration at the same instant?  Give an example.</p>
+      </li>
+      <li>
+        <p>A particle has <m>v(t)&lt;0</m> and <m>a(t)&lt;0</m>.  Is it speeding up or slowing down?  Explain.</p>
+      </li>
+      <li>
+        <p>A particle has <m>v(t)&gt;0</m> and <m>a(t)&lt;0</m>.  Is it speeding up or slowing down?  Explain.</p>
+      </li>
+      <li>
+        <p>Why can a graphing calculator miss a nondifferentiable point?</p>
+      </li>
     </ol>
+
+  <exercise xml:id="checkpoint-4-9-local-and-stronger-than-continuous">
+        <title>Why is the derivative both local and stronger than continuity?</title>
+        <statement>
+          <p>
+            Differentiability at <m>a</m> is about nearby slopes, and it forces continuity at <m>a</m>. In your own words, why is the derivative a local idea, and why can a continuous graph still fail to have a tangent slope?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The difference quotient only looks near one input. Nearby heights can agree while nearby slopes do not.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-project-noisy-position-data">
     <title>Project: estimating velocity from noisy position data</title>
 
-    <p>A motion sensor records position once every half-second. The object moves along a straight track. The sensor is good, but not perfect. Its readings contain small measurement errors.</p>
+  <p>A motion sensor records position once every half-second.  The object moves along a straight track.  The sensor is good, but not perfect.  Its readings contain small measurement errors.</p>
 
-    <table>
-      <title>Noisy position sensor data</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>t\text{ (seconds)}</m></cell>
-          <cell><m>0</m></cell>
-          <cell><m>0.5</m></cell>
-          <cell><m>1.0</m></cell>
-          <cell><m>1.5</m></cell>
-          <cell><m>2.0</m></cell>
-          <cell><m>2.5</m></cell>
-          <cell><m>3.0</m></cell>
-          <cell><m>3.5</m></cell>
-          <cell><m>4.0</m></cell>
-        </row>
-        <row>
-          <cell><m>s(t)\text{ (meters)}</m></cell>
-          <cell><m>0.03</m></cell>
-          <cell><m>1.18</m></cell>
-          <cell><m>3.08</m></cell>
-          <cell><m>5.17</m></cell>
-          <cell><m>8.04</m></cell>
-          <cell><m>11.19</m></cell>
-          <cell><m>15.06</m></cell>
-          <cell><m>19.18</m></cell>
-          <cell><m>24.05</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|ccccccccc}
+t\text{ (seconds)} \amp 0 \amp 0.5 \amp 1.0 \amp 1.5 \amp 2.0 \amp 2.5 \amp 3.0 \amp 3.5 \amp 4.0</mrow>
+    <mrow>\hline
+s(t)\text{ (meters)} \amp 0.03 \amp 1.18 \amp 3.08 \amp 5.17 \amp 8.04 \amp 11.19 \amp 15.06 \amp 19.18 \amp 24.05
+\end{array}</mrow>
+  </md>
 
-    <figure xml:id="fig-noisy-position-data">
-      <caption>Noisy position data still suggest a smooth motion, but slopes estimated from nearby points can vary.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=-0.2, xmax=4.2,
-              ymin=-1, ymax=26,
-              axis lines=left,
-              xlabel={\(t\) (seconds)},
-              ylabel={\(s(t)\) (meters)},
-              xtick={0,0.5,1,1.5,2,2.5,3,3.5,4},
-              ytick={0,5,10,15,20,25},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[only marks, mark=*] coordinates {
-              (0,0.03)
-              (0.5,1.18)
-              (1,3.08)
-              (1.5,5.17)
-              (2,8.04)
-              (2.5,11.19)
-              (3,15.06)
-              (3.5,19.18)
-              (4,24.05)
-          };
-          \addplot[thick, domain=0:4, samples=80] {x^2+2*x};
-          \node[anchor=west] at (axis cs:2.35,10) {smooth trend};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <figure xml:id="fig-noisy-position-data">
+    <caption>Noisy position data still suggest a smooth motion, but slopes estimated from nearby points can vary.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-0.2, xmax=4.2,
+    ymin=-1, ymax=26,
+    axis lines=left,
+    xlabel={\(t\) (seconds)},
+    ylabel={\(s(t)\) (meters)},
+    xtick={0,0.5,1,1.5,2,2.5,3,3.5,4},
+    ytick={0,5,10,15,20,25},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,0.03)
+    (0.5,1.18)
+    (1,3.08)
+    (1.5,5.17)
+    (2,8.04)
+    (2.5,11.19)
+    (3,15.06)
+    (3.5,19.18)
+    (4,24.05)
+};
+\addplot[thick, domain=0:4, samples=80] {x^2+2*x};
+\node[anchor=west] at (axis cs:2.35,10) {smooth trend};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>The goal is to estimate the velocity at <m>t=2</m>.</p>
+  <p>The goal is to estimate the velocity at <m>t=2</m>.</p>
 
-    <paragraphs xml:id="paragraphs-noisy-step-1">
-      <title>Step 1: one-sided estimates</title>
-      <p>Use the forward difference</p>
-      <md>\frac{s(2.5)-s(2)}{0.5}</md>
-      <p>and the backward difference</p>
-      <md>\frac{s(2)-s(1.5)}{0.5}.</md>
-      <p>Compute both estimates. Are they equal? Should they be?</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Step 1: one-sided estimates</title>
 
-    <paragraphs xml:id="paragraphs-noisy-step-2">
-      <title>Step 2: a centered estimate</title>
-      <p>Use the centered difference</p>
-      <md>\frac{s(2.5)-s(1.5)}{1.0}.</md>
-      <p>This uses points on both sides of <m>t=2</m>. Compare it with the two one-sided estimates.</p>
-    </paragraphs>
+  <p>Use the forward difference</p>
 
-    <paragraphs xml:id="paragraphs-noisy-step-3">
-      <title>Step 3: a wider centered estimate</title>
-      <p>Use</p>
-      <md>\frac{s(3.0)-s(1.0)}{2.0}.</md>
-      <p>This uses data farther away from <m>t=2</m>. Compare this estimate with the centered estimate from Step 2.</p>
-    </paragraphs>
+  <md>\frac{s(2.5)-s(2)}{0.5}</md>
 
-    <paragraphs xml:id="paragraphs-noisy-step-4">
-      <title>Step 4: repeat at other times</title>
-      <p>Estimate the velocity at <m>t=1</m> and <m>t=3</m> using centered differences.</p>
-      <p>For <m>t=1</m>, use</p>
-      <md>\frac{s(1.5)-s(0.5)}{1.0}.</md>
-      <p>For <m>t=3</m>, use</p>
-      <md>\frac{s(3.5)-s(2.5)}{1.0}.</md>
-    </paragraphs>
+  <p>and the backward difference</p>
 
-    <paragraphs xml:id="paragraphs-noisy-step-5">
-      <title>Step 5: compare with a smooth model</title>
-      <p>The data were produced from a smooth motion close to</p>
-      <md>s_{\text{true}}(t)=t^2+2t,</md>
-      <p>with small measurement errors added.</p>
-      <p>For the smooth model,</p>
-      <md>v_{\text{true}}(t)=s_{\text{true}}'(t)=2t+2.</md>
-      <p>Compute</p>
-      <md>v_{\text{true}}(1),\qquad v_{\text{true}}(2),\qquad v_{\text{true}}(3).</md>
-      <p>Compare these true velocities with your estimates from the noisy data.</p>
-    </paragraphs>
+  <md>\frac{s(2)-s(1.5)}{0.5}.</md>
 
-    <paragraphs xml:id="paragraphs-noisy-step-6">
-      <title>Step 6: the main question</title>
-      <p>A smaller time interval usually gives a better derivative estimate when the data are exact. But if the measurements are noisy, a very small interval can make the noise more visible because we divide by a small number.</p>
-      <p>Explain this tension in your own words:</p>
-      <md>\text{small interval captures local behavior,}</md>
-      <p>but</p>
-      <md>\text{small interval can amplify measurement error.}</md>
-    </paragraphs>
+  <p>Compute both estimates.  Are they equal?  Should they be?</p>
+  </paragraphs>
 
-    <paragraphs xml:id="paragraphs-noisy-computing-extension">
-      <title>Optional computing extension</title>
-      <p>Use a graphing tool or spreadsheet.</p>
-      <ol>
-        <li><p>Plot the data points.</p></li>
-        <li><p>Plot the smooth curve <m>s(t)=t^2+2t</m> on the same axes.</p></li>
-        <li><p>Compute forward, backward, and centered difference estimates at every time where the required neighboring data are available.</p></li>
-        <li><p>Make a second plot showing the estimated velocities.</p></li>
-        <li><p>Compare the velocity estimates with the line <m>v(t)=2t+2</m>.</p></li>
-      </ol>
-      <p>This project is a small version of a real problem. Scientists often measure position and want velocity. But measured data are not exact, so the derivative must be estimated with care.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Step 2: a centered estimate</title>
+
+  <p>Use the centered difference</p>
+
+  <md>\frac{s(2.5)-s(1.5)}{1.0}.</md>
+
+  <p>This uses points on both sides of <m>t=2</m>.  Compare it with the two one-sided estimates.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 3: a wider centered estimate</title>
+
+  <p>Use</p>
+
+  <md>\frac{s(3.0)-s(1.0)}{2.0}.</md>
+
+  <p>This uses data farther away from <m>t=2</m>.  Compare this estimate with the centered estimate from Step 2.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 4: repeat at other times</title>
+
+  <p>Estimate the velocity at <m>t=1</m> and <m>t=3</m> using centered differences.</p>
+
+  <p>For <m>t=1</m>, use</p>
+
+  <md>\frac{s(1.5)-s(0.5)}{1.0}.</md>
+
+  <p>For <m>t=3</m>, use</p>
+
+  <md>\frac{s(3.5)-s(2.5)}{1.0}.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 5: compare with a smooth model</title>
+
+  <p>The data were produced from a smooth motion close to</p>
+
+  <md>s_{\text{true}}(t)=t^2+2t,</md>
+
+  <p>with small measurement errors added.</p>
+
+  <p>For the smooth model,</p>
+
+  <md>v_{\text{true}}(t)=s_{\text{true}}'(t)=2t+2.</md>
+
+  <p>Compute</p>
+
+  <md>v_{\text{true}}(1),\qquad v_{\text{true}}(2),\qquad v_{\text{true}}(3).</md>
+
+  <p>Compare these true velocities with your estimates from the noisy data.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Step 6: the main question</title>
+
+  <p>A smaller time interval usually gives a better derivative estimate when the data are exact.  But if the measurements are noisy, a very small interval can make the noise more visible because we divide by a small number.</p>
+
+  <p>Explain this tension in your own words:</p>
+
+  <md>\text{small interval captures local behavior,}</md>
+
+  <p>but</p>
+
+  <md>\text{small interval can amplify measurement error.}</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Optional computing extension</title>
+
+  <p>Use a graphing tool or spreadsheet.</p>
+
+    <ol>
+      <li>
+        <p>Plot the data points.</p>
+      </li>
+      <li>
+        <p>Plot the smooth curve</p>
+          <md>s(t)=t^2+2t</md>
+        <p>on the same axes.</p>
+      </li>
+      <li>
+        <p>Compute forward, backward, and centered difference estimates at every time where the required neighboring data are available.</p>
+      </li>
+      <li>
+        <p>Make a second plot showing the estimated velocities.</p>
+      </li>
+      <li>
+        <p>Compare the velocity estimates with the line</p>
+          <md>v(t)=2t+2.</md>
+      </li>
+    </ol>
+
+  <p>This project is a small version of a real problem.  Scientists often measure position and want velocity.  But measured data are not exact, so the derivative must be estimated with care.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-hook-definition-not-enough">
     <title>Hook: why the definition is not enough</title>
 
-    <p>The derivative definition is the source of everything in this chapter:</p>
-    <md>f'(x)=\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}.</md>
+  <p>The derivative definition is the source of everything in this chapter:</p>
 
-    <p>It tells us what the derivative means. It proves the first formulas. It catches corners, cusps, and jumps. It explains velocity, tangent slope, and local linear approximation.</p>
+  <md>f'(x)=\lim_{h\to0}\frac{f(x+h)-f(x)}{h}.</md>
 
-    <p>But it is too slow to use from scratch every time.</p>
+  <p>It tells us what the derivative means.  It proves the first formulas.  It catches corners, cusps, and jumps.  It explains velocity, tangent slope, and local linear approximation.</p>
 
-    <p>For example, consider</p>
-    <md>F(x)=(x^2+1)(x^3-5).</md>
+  <p>But it is too slow to use from scratch every time.</p>
 
-    <p>With the tools of this chapter, we could expand first:</p>
-    <md>F(x)=x^5+x^3-5x^2-5.</md>
+  <p>For example, consider</p>
 
-    <p>Then we can differentiate term by term:</p>
-    <md>F'(x)=5x^4+3x^2-10x.</md>
+  <md>F(x)=(x^2+1)(x^3-5).</md>
 
-    <p>That works here because the product is a polynomial. But expansion is not always possible or pleasant. What about</p>
-    <md>x^2\sqrt{x+1},</md>
-    <p>or</p>
-    <md>\frac{x^3+1}{x^2-4},</md>
-    <p>or, later,</p>
-    <md>\sin(x^2)?</md>
+  <p>With the tools of this chapter, we could expand first:</p>
 
-    <p>These functions are built from simpler pieces by multiplying, dividing, and composing. Their derivatives should be built from the derivatives of those pieces.</p>
+  <md>F(x)=x^5+x^3-5x^2-5.</md>
 
-    <p>The next chapter turns the definition into a working language. The goal is not to replace meaning with rules. The goal is to make the meaning fast enough to use.</p>
+  <p>Then we can differentiate term by term:</p>
+
+  <md>F'(x)=5x^4+3x^2-10x.</md>
+
+  <p>That works here because the product is a polynomial.  But expansion is not always possible or pleasant.  What about</p>
+
+  <md>x^2\sqrt{x+1},</md>
+
+  <p>or</p>
+
+  <md>\frac{x^3+1}{x^2-4},</md>
+
+  <p>or, later,</p>
+
+  <md>\sin(x^2)?</md>
+
+  <p>These functions are built from simpler pieces by multiplying, dividing, and composing.  Their derivatives should be built from the derivatives of those pieces.</p>
+
+  <p>The next chapter turns the definition into a working language.  The goal is not to replace meaning with rules.  The goal is to make the meaning fast enough to use.</p>
+
+  <exercise xml:id="checkpoint-4-9-definition-not-enough">
+        <title>Why is the definition the source, but not enough by itself?</title>
+        <statement>
+          <p>
+            The limit definition tells what the derivative means and catches corners, yet it is too slow for everyday products, quotients, and compositions. In your own words, why must the next chapter keep the meaning while building a faster language?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Expanding a product into a polynomial is not always possible. The derivative of a built function should be built from the derivatives of the pieces.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

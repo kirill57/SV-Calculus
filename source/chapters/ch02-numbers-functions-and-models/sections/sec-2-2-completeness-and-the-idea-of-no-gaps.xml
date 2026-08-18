@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-completeness-no-gaps">
+<section xml:id="sec-2-2-completeness-and-the-idea-of-no-gaps">
   <title>Completeness and the idea of no gaps</title>
 
   <p>The last section used the real line as if every point on it had a number. That is a stronger promise than it may first appear.</p>
@@ -11,284 +11,516 @@
 
   <p>Still, fractions alone leave gaps. Geometry finds one of those gaps in a unit square.</p>
 
-  <note xml:id="note-first-reading-completeness">
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-54">
     <title>First-reading note</title>
-    <p>This section explains why the real numbers, not only rational numbers, are the right setting for calculus. You may read the proof details lightly on a first pass. The main idea is simple: calculus needs an unbroken number line because limits can point to numbers that no finite decimal or fraction exactly equals.</p>
+      <p>This section explains why the real numbers, not only rational numbers, are the right setting for calculus. You may read the proof details lightly on a first pass. The main idea is simple: calculus needs an unbroken number line because limits can point to numbers that no finite decimal or fraction exactly equals.</p>
   </note>
 
   <subsection xml:id="subsec-rational-missing-sqrt">
     <title>Rational numbers and the missing square root</title>
 
-    <p>Draw a square whose sides have length <m>1</m>. Its diagonal has length <m>d</m>. By the Pythagorean theorem,</p>
+  <p>Draw a square whose sides have length <m>1</m>. Its diagonal has length <m>d</m>. By the Pythagorean theorem,</p>
 
-    <md>d^2=1^2+1^2=2.</md>
+  <md>d^2=1^2+1^2=2.</md>
 
-    <p>So the diagonal length should be a number whose square is <m>2</m>. We call it <m>\sqrt{2}</m>.</p>
+  <p>So the diagonal length should be a number whose square is <m>2</m>. We call it <m>\sqrt2</m>.</p>
 
-    <figure xml:id="fig-unit-square-sqrt2">
-      <caption>The diagonal of a unit square has length <m>\sqrt{2}</m>, the number whose square is <m>2</m>.</caption>
-      <image>
-        <latex-image>
-          \begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
-            \draw[thick] (0,0) rectangle (2,2);
-            \draw[very thick] (0,0) -- (2,2);
-            \node[left] at (0,1) {\(1\)};
-            \node[below] at (1,0) {\(1\)};
-            \node[below] at (1,1) {\(\sqrt2\)};
-            \draw (0.22,0) -- (0.22,0.22) -- (0,0.22);
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <figure xml:id="fig-unit-square-sqrt2">
+    <caption>The diagonal of a unit square has length <m>\sqrt2</m>, the number whose square is <m>2</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
+  \draw[thick] (0,0) rectangle (2,2);
+  \draw[very thick] (0,0) -- (2,2);
+  \node[left] at (0,1) {\(1\)};
+  \node[below] at (1,0) {\(1\)};
+  \node at (1.55,0.52) {\(\sqrt2\)};
+  \draw (0.22,0) -- (0.22,0.22) -- (0,0.22);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>Decimal approximations quickly trap this number:</p>
+  <p>Decimal approximations quickly trap this number:</p>
 
-    <md>1.4^2=1.96\lt 2, \qquad 1.5^2=2.25\gt 2,</md>
+  <md>1.4^2=1.96&lt;2,
+\qquad
+1.5^2=2.25&gt;2,</md>
 
-    <p>so</p>
+  <p>so</p>
 
-    <md>1.4\lt \sqrt{2}\lt 1.5.</md>
+  <md>1.4&lt;\sqrt2&lt;1.5.</md>
 
-    <p>A sharper trap is</p>
+  <p>A sharper trap is</p>
 
-    <md>1.41^2=1.9881\lt 2, \qquad 1.42^2=2.0164\gt 2,</md>
+  <md>1.41^2=1.9881&lt;2,
+\qquad
+1.42^2=2.0164&gt;2,</md>
 
-    <p>so</p>
+  <p>so</p>
 
-    <md>1.41\lt \sqrt{2}\lt 1.42.</md>
+  <md>1.41&lt;\sqrt2&lt;1.42.</md>
 
-    <p>Sharper still,</p>
+  <p>Sharper still,</p>
 
-    <md>1.414^2=1.999396\lt 2, \qquad 1.415^2=2.002225\gt 2,</md>
+  <md>1.414^2=1.999396&lt;2,
+\qquad
+1.415^2=2.002225&gt;2,</md>
 
-    <p>so</p>
+  <p>so</p>
 
-    <md>1.414\lt \sqrt{2}\lt 1.415.</md>
+  <md>1.414&lt;\sqrt2&lt;1.415.</md>
 
-    <p>All these decimals are rational numbers. But the number they are closing in on is not rational.</p>
+  <p>All these decimals are rational numbers. But the number they are closing in on is not rational.</p>
 
-    <paragraphs xml:id="par-proof-sqrt2-irrational">
-      <title>Optional proof that <m>\sqrt{2}</m> is not rational</title>
-      <p>Suppose, for contradiction, that</p>
-      <md>\sqrt{2}=\frac{p}{q},</md>
-      <p>where <m>p</m> and <m>q</m> are integers with no common factor and <m>q\neq 0</m>. Squaring both sides gives</p>
-      <md>2=\frac{p^2}{q^2}, \qquad \text{so} \qquad p^2=2q^2.</md>
-      <p>Thus <m>p^2</m> is even. Therefore <m>p</m> is even. Write <m>p=2k</m>. Then <m>p^2=4k^2</m>. Substitute into <m>p^2=2q^2</m>:</p>
-      <md>4k^2=2q^2, \qquad \text{so} \qquad q^2=2k^2.</md>
-      <p>Thus <m>q^2</m> is even, so <m>q</m> is even.</p>
-      <p>We have shown that both <m>p</m> and <m>q</m> are even. That contradicts the assumption that <m>p</m> and <m>q</m> had no common factor. Therefore <m>\sqrt{2}</m> is not rational.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Optional proof that <m>\sqrt2</m> is not rational</title>
 
-    <remark xml:id="rmk-fractions-moral">
-      <title>Moral</title>
+  <p>Suppose, for contradiction, that</p>
+
+  <md>\sqrt2=\frac{p}{q},</md>
+
+  <p>where <m>p</m> and <m>q</m> are integers with no common factor and <m>q\neq 0</m>. Squaring both sides gives</p>
+
+  <md>2=\frac{p^2}{q^2},</md>
+
+  <p>so</p>
+
+  <md>p^2=2q^2.</md>
+
+  <p>Thus <m>p^2</m> is even. Therefore <m>p</m> is even. Write</p>
+
+  <md>p=2k.</md>
+
+  <p>Then</p>
+
+  <md>p^2=4k^2.</md>
+
+  <p>Substitute into <m>p^2=2q^2</m>:</p>
+
+  <md>4k^2=2q^2,</md>
+
+  <p>so</p>
+
+  <md>q^2=2k^2.</md>
+
+  <p>Thus <m>q^2</m> is even, so <m>q</m> is even.</p>
+
+  <p>We have shown that both <m>p</m> and <m>q</m> are even. That contradicts the assumption that <m>p</m> and <m>q</m> had no common factor.</p>
+
+  <p>Therefore <m>\sqrt2</m> is not rational.</p>
+
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-55">
+    <title>Moral</title>
       <p>Fractions can approximate the diagonal of a unit square as closely as we want, but no fraction equals it.</p>
-    </remark>
+  </note>
 
-    <p>This is the first warning that <q>many numbers</q> is not the same as <q>no gaps.</q></p>
+  <p>This is the first warning that “many numbers” is not the same as “no gaps.”</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-2-2-many-numbers-not-no-gaps">
+        <title>Why is <q>many numbers</q> not the same as <q>no gaps</q>?</title>
+        <statement>
+          <p>
+            Between any two fractions there is another fraction, yet the diagonal of a unit square still points to a missing rational number. In your own words, what does it mean that fractions can approximate <m>\sqrt2</m> as closely as we want, and why does that still leave a gap?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Approaching a number is not the same as being that number. Ask whether the destination itself has to be a fraction.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-nested-intervals">
     <title>Nested intervals</title>
 
-    <p>The decimal approximations to <m>\sqrt{2}</m> give a sequence of smaller and smaller intervals:</p>
+  <p>The decimal approximations to <m>\sqrt2</m> give a sequence of smaller and smaller intervals:</p>
 
-    <md>
-      <mrow>[1.4,1.5],</mrow>
-      <mrow>[1.41,1.42],</mrow>
-      <mrow>[1.414,1.415],</mrow>
-    </md>
+  <md>[1.4,1.5],</md>
 
-    <p>and so on. Each interval contains the next, and the lengths shrink: <m>0.1, 0.01, 0.001, \dots</m></p>
+  <md>[1.41,1.42],</md>
 
-    <figure xml:id="fig-nested-intervals-sqrt2">
-      <caption>Nested intervals trap one number. For the real line, that trapped point exists. For the rational numbers alone, this example traps a missing point.</caption>
-      <image>
-        <latex-image>
-          \begin{tikzpicture}[every node/.style={font=\small}]
-            \draw[-&gt;, thick] (0,0) -- (8.5,0);
-            \node[right] at (8.5,0) {number line};
+  <md>[1.414,1.415],</md>
 
-            \draw[dashed] (4.4,2.9) -- (4.4,-0.35);
-            \node[below] at (4.4,-0.35) {\(\sqrt2\)};
+  <p>and so on. Each interval contains the next, and the lengths shrink:</p>
 
-            \draw[very thick] (1.0,2.4) -- (7.5,2.4);
-            \draw[fill=black] (1.0,2.4) circle (2pt);
-            \draw[fill=black] (7.5,2.4) circle (2pt);
-            \node[left] at (1.0,2.4) {\(1.4\)};
-            \node[right] at (7.5,2.4) {\(1.5\)};
-            \node at (4.25,2.75) {\([1.4,1.5]\)};
+  <md>0.1,\quad 0.01,\quad 0.001,\quad \ldots</md>
 
-            \draw[very thick] (3.0,1.55) -- (5.9,1.55);
-            \draw[fill=black] (3.0,1.55) circle (2pt);
-            \draw[fill=black] (5.9,1.55) circle (2pt);
-            \node[left] at (3.0,1.55) {\(1.41\)};
-            \node[right] at (5.9,1.55) {\(1.42\)};
-            \node at (4.45,1.9) {\([1.41,1.42]\)};
+  <figure xml:id="fig-nested-intervals-sqrt2">
+    <caption>Nested intervals trap one number. For the real line, that trapped point exists. For the rational numbers alone, this example traps a missing point.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \draw[-&gt;, thick] (0,0) -- (8.5,0);
+  \node[right] at (8.5,0) {number line};
 
-            \draw[very thick] (4.05,0.75) -- (4.75,0.75);
-            \draw[fill=black] (4.05,0.75) circle (2pt);
-            \draw[fill=black] (4.75,0.75) circle (2pt);
-            \node[left] at (4.05,0.75) {\(1.414\)};
-            \node[right] at (4.75,0.75) {\(1.415\)};
-            \node at (4.4,1.08) {\([1.414,1.415]\)};
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  \draw[dashed] (4.4,2.9) -- (4.4,-0.35);
+  \node[below] at (4.4,-0.35) {\(\sqrt2\)};
 
-    <p>This picture leads to a principle.</p>
+  \draw[very thick] (1.0,2.4) -- (7.5,2.4);
+  \draw[fill=black] (1.0,2.4) circle (2pt);
+  \draw[fill=black] (7.5,2.4) circle (2pt);
+  \node[left] at (1.0,2.4) {\(1.4\)};
+  \node[right] at (7.5,2.4) {\(1.5\)};
+  \node[fill=white, inner sep=1pt] at (2.2,2.75) {\([1.4,1.5]\)};
 
-    <principle xml:id="principle-nested-intervals">
-      <title>Nested Interval Principle</title>
-      <statement>
-        <p>Suppose</p>
+  \draw[very thick] (3.0,1.55) -- (5.9,1.55);
+  \draw[fill=black] (3.0,1.55) circle (2pt);
+  \draw[fill=black] (5.9,1.55) circle (2pt);
+  \node[left] at (3.0,1.55) {\(1.41\)};
+  \node[right] at (5.9,1.55) {\(1.42\)};
+  \node[fill=white, inner sep=1pt] at (2.55,1.9) {\([1.41,1.42]\)};
+
+  \draw[very thick] (4.05,0.75) -- (4.75,0.75);
+  \draw[fill=black] (4.05,0.75) circle (2pt);
+  \draw[fill=black] (4.75,0.75) circle (2pt);
+  \node[left] at (4.05,0.75) {\(1.414\)};
+  \node[right] at (4.75,0.75) {\(1.415\)};
+  \node[fill=white, inner sep=1pt, anchor=east] at (4.15,1.08) {\([1.414,1.415]\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This picture leads to a principle.</p>
+
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-56">
+    <title>Nested Interval Principle</title>
+      <p>Suppose</p>
         <md>I_1 \supset I_2 \supset I_3 \supset \cdots</md>
-        <p>is a nested sequence of closed intervals <m>I_n=[a_n,b_n]</m>, and the lengths <m>b_n-a_n</m> become arbitrarily small. Then there is exactly one real number that lies in every interval <m>I_n</m>.</p>
-      </statement>
-    </principle>
+      <p>is a nested sequence of closed intervals</p>
+        <md>I_n=[a_n,b_n],</md>
+      <p>and the lengths</p>
+        <md>b_n-a_n</md>
+      <p>become arbitrarily small. Then there is exactly one real number that lies in every interval <m>I_n</m>.</p>
+  </note>
 
-    <p>For the intervals above, that one real number is <m>\sqrt{2}</m>.</p>
+  <p>For the intervals above, that one real number is <m>\sqrt2</m>.</p>
 
-    <paragraphs xml:id="par-idea-proof-nested-intervals">
-      <title>Idea of the proof</title>
-      <p>The left endpoints <m>a_1, a_2, a_3, \dots</m> move to the right or stay fixed. The right endpoints <m>b_1, b_2, b_3, \dots</m> move to the left or stay fixed. Since every left endpoint is still to the left of every right endpoint, the left endpoints are bounded above.</p>
-      <p>The real numbers have a least upper bound for the left endpoints. Call it <m>L</m>. Then <m>L</m> lies in every closed interval. If two different numbers <m>x\lt y</m> lay in every interval, then every interval would have length at least <m>y-x</m>. But the interval lengths become arbitrarily small. Therefore there can be only one such number.</p>
-      <p>This proof depends on the fact that the left endpoints have a least upper bound. That fact is one form of completeness (absence of holes) of real numbers.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Idea of the proof</title>
 
-    <paragraphs xml:id="par-rational-failure">
-      <title>What goes wrong with rational numbers</title>
-      <p>Take the same nested intervals, but allow only rational numbers. Each interval contains many rational numbers. Their lengths shrink toward <m>0</m>. But the only real number common to all of them is <m>\sqrt{2}</m>, and <m>\sqrt{2}</m> is not rational.</p>
-      <p>So inside the rational numbers alone, these nested rational intervals have no rational point in common. That is a gap.</p>
-    </paragraphs>
+  <p>The left endpoints</p>
+
+  <md>a_1,a_2,a_3,\ldots</md>
+
+  <p>move to the right or stay fixed. The right endpoints</p>
+
+  <md>b_1,b_2,b_3,\ldots</md>
+
+  <p>move to the left or stay fixed. Since every left endpoint is still to the left of every right endpoint, the left endpoints are bounded above.</p>
+
+  <p>The real numbers have a least upper bound for the left endpoints. Call it <m>L</m>. Then <m>L</m> lies in every closed interval. If two different numbers <m>x&lt;y</m> lay in every interval, then every interval would have length at least <m>y-x</m>. But the interval lengths become arbitrarily small. Therefore there can be only one such number.</p>
+
+  <p>This proof depends on the fact that the left endpoints have a least upper bound. That fact is one form of completeness (absence of holes) of real numbers.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>What goes wrong with rational numbers</title>
+
+  <p>Take the same nested intervals, but allow only rational numbers. Each interval contains many rational numbers. Their lengths shrink toward <m>0</m>. But the only real number common to all of them is <m>\sqrt2</m>, and <m>\sqrt2</m> is not rational.</p>
+
+  <p>So inside the rational numbers alone, these nested rational intervals have no rational point in common.</p>
+
+  <p>That is a gap.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-2-2-nested-intervals">
+        <title>What do nested intervals trap?</title>
+        <statement>
+          <p>
+            The decimal approximations to <m>\sqrt2</m> produce nested closed intervals whose lengths shrink toward <m>0</m>. In your own words, what does the Nested Interval Principle promise on the real line, and why does the same picture fail if we allow only rational numbers?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each interval contains the next, and the lengths become arbitrarily small. The question is whether a common point is guaranteed to exist inside the number system you are using.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-least-upper-bound">
     <title>Least upper bound property</title>
 
-    <p>Completeness can be stated in several equivalent ways. The most useful form for proofs is the least upper bound property. First we need two definitions.</p>
+  <p>Completeness can be stated in several equivalent ways. The most useful form for proofs is the least upper bound property.</p>
 
-    <definition xml:id="def-upper-bound">
-      <title>Upper bound</title>
-      <statement>
-        <p>Let <m>S</m> be a set of real numbers. A number <m>M</m> is an <em>upper bound</em> for <m>S</m> if <m>x\le M</m> for every <m>x\in S</m>.</p>
-      </statement>
-    </definition>
+  <p>First we need two definitions.</p>
 
-    <definition xml:id="def-least-upper-bound">
-      <title>Least upper bound (Supremum)</title>
-      <statement>
-        <p>A number <m>L</m> is the <em>least upper bound</em> of <m>S</m> if <m>L</m> is an upper bound for <m>S</m>, and no smaller number is an upper bound for <m>S</m>.</p>
-        <p>The least upper bound is also called the <em>supremum</em> of <m>S</m>, written <m>\sup S</m>.</p>
-      </statement>
-    </definition>
+  <definition xml:id="def-sec-2-2-completeness-and-the-idea-of-no-gaps-57">
+    <title>Definition</title>
+    <statement>
+      <p>Let <m>S</m> be a set of real numbers. A number <m>M</m> is an <em>upper bound</em> for <m>S</m> if</p>
+        <md>x\le M</md>
+      <p>for every <m>x\in S</m>.</p>
+    </statement>
+  </definition>
 
-    <example xml:id="ex-sup-open-interval">
-      <title>Supremum of an open interval</title>
-      <statement>
-        <p>Let <m>S=(0,1)</m>. Then <m>1</m> is an upper bound for <m>S</m>, because every number in <m>(0,1)</m> is less than <m>1</m>.</p>
-        <p>So is <m>2</m>. So is <m>100</m>. But <m>1</m> is the least upper bound: <m>\sup(0,1)=1</m>.</p>
-        <p>Notice that <m>1</m> is not in the set <m>(0,1)</m>. A set does not need to contain its least upper bound.</p>
-      </statement>
-    </example>
+  <definition xml:id="def-sec-2-2-completeness-and-the-idea-of-no-gaps-58">
+    <title>Definition</title>
+    <statement>
+      <p>A number <m>L</m> is the <em>least upper bound</em> of <m>S</m> if</p>
+        <md>L</md>
+      <p>is an upper bound for <m>S</m>, and no smaller number is an upper bound for <m>S</m>.</p>
+      <p>The least upper bound is also called the <em>supremum</em> of <m>S</m>, written</p>
+        <md>\sup S.</md>
+    </statement>
+  </definition>
 
-    <example xml:id="ex-sup-closed-interval">
-      <title>Supremum of a closed interval</title>
-      <statement>
-        <p>Let <m>S=[0,1]</m>. Again, <m>\sup[0,1]=1</m>.</p>
-        <p>This time the set does contain its least upper bound. In this case, <m>1</m> is also the maximum of the set.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-2-2-completeness-and-the-idea-of-no-gaps-4">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
 
-    <remark xml:id="rmk-max-vs-sup">
-      <title>Maximum versus least upper bound</title>
+  <md>S=(0,1).</md>
+
+  <p>Then <m>1</m> is an upper bound for <m>S</m>, because every number in <m>(0,1)</m> is less than <m>1</m>.</p>
+
+  <p>So is <m>2</m>. So is <m>100</m>. But <m>1</m> is the least upper bound:</p>
+
+  <md>\sup(0,1)=1.</md>
+
+  <p>Notice that <m>1</m> is not in the set <m>(0,1)</m>. A set does not need to contain its least upper bound.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-2-2-completeness-and-the-idea-of-no-gaps-5">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>S=[0,1].</md>
+
+  <p>Again,</p>
+
+  <md>\sup[0,1]=1.</md>
+
+  <p>This time the set does contain its least upper bound. In this case, <m>1</m> is also the maximum of the set.</p>
+
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-59">
+    <title>Maximum versus least upper bound</title>
       <p>A maximum must belong to the set.</p>
       <p>A least upper bound may or may not belong to the set.</p>
-    </remark>
+  </note>
 
-    <principle xml:id="principle-completeness">
-      <title>Completeness Property of the Real Numbers</title>
-      <statement>
-        <p>Every nonempty set of real numbers that is bounded above has a least upper bound.</p>
-      </statement>
-    </principle>
+  <p>Now we can state the completeness property.</p>
 
-    <p>This property is what fills the gaps. It is not true for the rational numbers.</p>
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-60">
+    <title>Completeness Property of the Real Numbers</title>
+      <p>Every nonempty set of real numbers that is bounded above has a least upper bound.</p>
+  </note>
 
-    <paragraphs xml:id="par-rational-counterexample">
-      <title>The rational counterexample</title>
-      <p>Let</p>
-      <md>A_{\mathbb{Q}}=\{q\in\mathbb{Q}:q\gt 0 \text{ and } q^2\lt 2\}.</md>
-      <p>This is a nonempty set of rational numbers. For example, <m>1\in A_{\mathbb{Q}}</m>. It is bounded above. For example, <m>2</m> is an upper bound.</p>
-      <p>But <m>A_{\mathbb{Q}}</m>, viewed only inside the rational numbers, has no least upper bound. The boundary should be <m>\sqrt{2}</m>, but <m>\sqrt{2}\notin\mathbb{Q}</m>.</p>
-      <p>The rational line has a hole exactly where the least upper bound should be.</p>
-    </paragraphs>
+  <p>This property is what fills the gaps. It is not true for the rational numbers.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>The rational counterexample</title>
+
+  <p>Let</p>
+
+  <md>A_{\mathbb Q}=\{q\in\mathbb Q:q&gt;0 \text{ and } q^2&lt;2\}.</md>
+
+  <p>This is a nonempty set of rational numbers. For example,</p>
+
+  <md>1\in A_{\mathbb Q}.</md>
+
+  <p>It is bounded above. For example, <m>2</m> is an upper bound.</p>
+
+  <p>But <m>A_{\mathbb Q}</m>, viewed only inside the rational numbers, has no least upper bound. The boundary should be <m>\sqrt2</m>, but <m>\sqrt2\notin\mathbb Q</m>.</p>
+
+  <p>The rational line has a hole exactly where the least upper bound should be.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-2-2-maximum-versus-supremum">
+        <title>How is a least upper bound different from a maximum?</title>
+        <statement>
+          <p>
+            The open interval <m>(0,1)</m> has least upper bound <m>1</m>, even though <m>1</m> is not in the set. In your own words, what is a least upper bound, and why can a set fail to contain the number that caps it from above?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A maximum must belong to the set. A least upper bound is the smallest ceiling, whether or not the set reaches that ceiling.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-completeness-creates-sqrt2">
-    <title>Completeness creates <m>\sqrt{2}</m></title>
+    <title>Completeness creates <m>\sqrt2</m></title>
 
-    <p>The completeness property does more than describe <m>\sqrt{2}</m>. It guarantees that such a number exists.</p>
+  <p>The completeness property does more than describe <m>\sqrt2</m>. It guarantees that such a number exists.</p>
 
-    <paragraphs xml:id="par-proof-completeness-creates-sqrt2">
-      <title>Optional proof</title>
-      <p>Let</p>
-      <md>A=\{x\in\mathbb{R}:x\ge 0 \text{ and } x^2\lt 2\}.</md>
-      <p>The set <m>A</m> is nonempty because <m>1\in A</m>. It is bounded above because no number <m>x\ge 2</m> can satisfy <m>x^2\lt 2</m>.</p>
-      <p>By completeness, <m>A</m> has a least upper bound. Call it <m>\alpha</m>:</p>
-      <md>\alpha=\sup A.</md>
-      <p>We will show that <m>\alpha^2=2</m>. There are three possibilities: <m>\alpha^2\lt 2</m>, <m>\alpha^2=2</m>, or <m>\alpha^2\gt 2</m>. We rule out the first and third.</p>
-      <p>Suppose first that <m>\alpha^2\lt 2</m>. Choose a positive number <m>\eta</m> so small that</p>
-      <md>\eta\lt 1 \qquad\text{and}\qquad \eta\lt \frac{2-\alpha^2}{2\alpha+1}.</md>
-      <p>Then</p>
-      <md>(\alpha+\eta)^2 = \alpha^2+2\alpha\eta+\eta^2.</md>
-      <p>Since <m>0\lt \eta\lt 1</m>, we have <m>\eta^2\lt \eta</m>, so</p>
-      <md>(\alpha+\eta)^2 \lt \alpha^2+(2\alpha+1)\eta \lt 2.</md>
-      <p>Thus <m>\alpha+\eta\in A</m>. But <m>\alpha+\eta\gt \alpha</m>, contradicting that <m>\alpha</m> is an upper bound for <m>A</m>. Therefore <m>\alpha^2\lt 2</m> is impossible.</p>
-      <p>Now suppose that <m>\alpha^2\gt 2</m>. Choose a positive number <m>\eta</m> so small that</p>
-      <md>\eta\lt \alpha \qquad\text{and}\qquad \eta\lt \frac{\alpha^2-2}{2\alpha}.</md>
-      <p>Then <m>\alpha-\eta\gt 0</m>, and</p>
-      <md>(\alpha-\eta)^2 = \alpha^2-2\alpha\eta+\eta^2 \gt \alpha^2-2\alpha\eta \gt 2.</md>
-      <p>If <m>x\ge \alpha-\eta</m>, then <m>x^2\ge(\alpha-\eta)^2\gt 2</m>, so <m>x\notin A</m>. Therefore every <m>x\in A</m> satisfies <m>x\lt \alpha-\eta</m>.</p>
-      <p>This means that <m>\alpha-\eta</m> is an upper bound for <m>A</m>, smaller than <m>\alpha</m>. That contradicts the fact that <m>\alpha</m> is the least upper bound. Therefore <m>\alpha^2\gt 2</m> is impossible.</p>
-      <p>The only remaining possibility is <m>\alpha^2=2</m>. So the real number <m>\alpha</m> is the number whose square is <m>2</m>. We call it <m>\sqrt{2}</m>.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Optional proof</title>
 
-    <remark xml:id="rmk-completeness-meaning">
-      <title>What the proof showed</title>
-      <p>The existence of <m>\sqrt{2}</m> is not a decimal accident. It follows from the no-gaps property of the real numbers.</p>
-    </remark>
+  <p>Let</p>
+
+  <md>A=\{x\in\mathbb R:x\ge 0 \text{ and } x^2&lt;2\}.</md>
+
+  <p>The set <m>A</m> is nonempty because <m>1\in A</m>. It is bounded above because no number <m>x\ge 2</m> can satisfy <m>x^2&lt;2</m>.</p>
+
+  <p>By completeness, <m>A</m> has a least upper bound. Call it <m>\alpha</m>:</p>
+
+  <md>\alpha=\sup A.</md>
+
+  <p>We will show that</p>
+
+  <md>\alpha^2=2.</md>
+
+  <p>There are three possibilities:</p>
+
+  <md>\alpha^2&lt;2,\qquad \alpha^2=2,\qquad \alpha^2&gt;2.</md>
+
+  <p>We rule out the first and third.</p>
+
+  <p>Suppose first that</p>
+
+  <md>\alpha^2&lt;2.</md>
+
+  <p>Choose a positive number <m>\eta</m> so small that</p>
+
+  <md>\eta&lt;1
+\qquad\text{and}\qquad
+\eta&lt;\frac{2-\alpha^2}{2\alpha+1}.</md>
+
+  <p>Then</p>
+
+  <md>(\alpha+\eta)^2
+=
+\alpha^2+2\alpha\eta+\eta^2.</md>
+
+  <p>Since <m>0&lt;\eta&lt;1</m>, we have <m>\eta^2&lt;\eta</m>, so</p>
+
+  <md>(\alpha+\eta)^2
+&lt;
+\alpha^2+(2\alpha+1)\eta
+&lt;
+2.</md>
+
+  <p>Thus <m>\alpha+\eta\in A</m>. But <m>\alpha+\eta&gt;\alpha</m>, contradicting that <m>\alpha</m> is an upper bound for <m>A</m>.</p>
+
+  <p>Therefore <m>\alpha^2&lt;2</m> is impossible.</p>
+
+  <p>Now suppose that</p>
+
+  <md>\alpha^2&gt;2.</md>
+
+  <p>Choose a positive number <m>\eta</m> so small that</p>
+
+  <md>\eta&lt;\alpha
+\qquad\text{and}\qquad
+\eta&lt;\frac{\alpha^2-2}{2\alpha}.</md>
+
+  <p>Then <m>\alpha-\eta&gt;0</m>, and</p>
+
+  <md>(\alpha-\eta)^2
+=
+\alpha^2-2\alpha\eta+\eta^2
+&gt;
+\alpha^2-2\alpha\eta
+&gt;
+2.</md>
+
+  <p>If <m>x\ge \alpha-\eta</m>, then</p>
+
+  <md>x^2\ge(\alpha-\eta)^2&gt;2,</md>
+
+  <p>so <m>x\notin A</m>. Therefore every <m>x\in A</m> satisfies</p>
+
+  <md>x&lt;\alpha-\eta.</md>
+
+  <p>This means that <m>\alpha-\eta</m> is an upper bound for <m>A</m>, smaller than <m>\alpha</m>. That contradicts the fact that <m>\alpha</m> is the least upper bound.</p>
+
+  <p>Therefore <m>\alpha^2&gt;2</m> is impossible.</p>
+
+  <p>The only remaining possibility is</p>
+
+  <md>\alpha^2=2.</md>
+
+  <p>So the real number <m>\alpha</m> is the number whose square is <m>2</m>. We call it</p>
+
+  <md>\sqrt2.</md>
+
+  <note xml:id="note-sec-2-2-completeness-and-the-idea-of-no-gaps-61">
+    <title>What the proof showed</title>
+      <p>The existence of <m>\sqrt2</m> is not a decimal accident. It follows from the no-gaps property of the real numbers.</p>
+  </note>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-why-calculus-needs-reals">
     <title>Why calculus needs the real numbers</title>
 
-    <p>Calculus builds exact numbers from limiting processes.</p>
+  <p>Calculus builds exact numbers from limiting processes.</p>
 
-    <p>A tangent slope is approached by slopes of secant lines. An area is approached by sums of thin rectangles. A root can be trapped by bisection inside smaller and smaller intervals. An infinite decimal is approached by its finite decimal truncations.</p>
+  <p>A tangent slope is approached by slopes of secant lines. An area is approached by sums of thin rectangles. A root can be trapped by bisection inside smaller and smaller intervals. An infinite decimal is approached by its finite decimal truncations.</p>
 
-    <p>Each step in such a process may use rational numbers. But the number approached may be irrational.</p>
+  <p>Each step in such a process may use rational numbers. But the number approached may be irrational.</p>
 
-    <p>The rational numbers are excellent for computation. They are not complete enough for calculus.</p>
+  <p>The rational numbers are excellent for computation. They are not complete enough for calculus.</p>
 
-    <example xml:id="ex-bisection-sqrt2">
-      <title>Bisection finds a missing rational point</title>
-      <statement>
-        <p>Consider the equation</p>
-        <md>x^2=2.</md>
-        <p>Start with the interval <m>[1,2]</m>. Since <m>1^2\lt 2\lt 2^2</m>, the solution, if it exists, should lie between <m>1</m> and <m>2</m>.</p>
-        <p>Bisect the interval. Since <m>1.5^2=2.25\gt 2</m>, the solution lies in <m>[1,1.5]</m>.</p>
-        <p>Bisect again. Since <m>1.25^2=1.5625\lt 2</m>, the solution lies in <m>[1.25,1.5]</m>.</p>
-        <p>Continuing forever gives nested intervals whose lengths shrink to <m>0</m>. The real number trapped by this process is <m>\sqrt{2}</m>. If we allowed only rational numbers, the process would point to a hole.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-2-2-completeness-and-the-idea-of-no-gaps-8">
+    <title>bisection finds a missing rational point</title>
+    <statement>
+  <p>Consider the equation</p>
 
-    <paragraphs xml:id="par-calculus-lesson-completeness">
-      <title>The calculus lesson</title>
-      <p>A limiting process is a promise that approximations have a destination. Completeness says that, for the real line, the destination exists.</p>
-      <p>We will not mention completeness every time we take a limit. But it is quietly underneath the whole subject. It is what lets the language of <q>as close as we want</q> point to an actual number.</p>
-      <p>The real line gives us numbers and distances. The next step is to let one number determine another. A temperature depends on time. A position depends on time. An error depends on a step size <m>h</m>. Those dependencies are called functions.</p>
-    </paragraphs>
+  <md>x^2=2.</md>
+
+  <p>Start with the interval <m>[1,2]</m>. Since</p>
+
+  <md>1^2&lt;2&lt;2^2,</md>
+
+  <p>the solution, if it exists, should lie between <m>1</m> and <m>2</m>.</p>
+
+  <p>Bisect the interval. Since</p>
+
+  <md>1.5^2=2.25&gt;2,</md>
+
+  <p>the solution lies in <m>[1,1.5]</m>.</p>
+
+  <p>Bisect again. Since</p>
+
+  <md>1.25^2=1.5625&lt;2,</md>
+
+  <p>the solution lies in <m>[1.25,1.5]</m>.</p>
+
+  <p>Continuing forever gives nested intervals whose lengths shrink to <m>0</m>. The real number trapped by this process is <m>\sqrt2</m>. If we allowed only rational numbers, the process would point to a hole.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>The calculus lesson</title>
+
+  <p>A limiting process is a promise that approximations have a destination. Completeness says that, for the real line, the destination exists.</p>
+
+  <p>We will not mention completeness every time we take a limit. But it is quietly underneath the whole subject. It is what lets the language of “as close as we want” point to an actual number.</p>
+
+  <p>The real line gives us numbers and distances. The next step is to let one number determine another. A temperature depends on time. A position depends on time. An error depends on a step size <m>h</m>. Those dependencies are called functions.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-2-2-why-calculus-needs-reals">
+        <title>Why does a limiting process need an unbroken number line?</title>
+        <statement>
+          <p>
+            A tangent slope, an area, a bisection root, and an infinite decimal are all approached by approximations. In your own words, what promise is a limiting process making, and why is completeness the property that lets that destination be an actual real number?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each step of the process may use rational numbers. Completeness is about whether the number being approached is allowed to exist even when it is not rational.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

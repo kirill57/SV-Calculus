@@ -6,14 +6,14 @@
 - Local MVC reference root: Not mounted in container (documented in resolve_paths.sh)
 
 ## Current stage
-- Phase: Phase 1 (Full Section Conversion with 100% Verbatim Fidelity)
+- Phase: Phase 2 (All 17 Chapters Converted with 100% Verbatim Fidelity)
 - Fidelity Rule: Under NO circumstances may original LaTeX text, derivations, remarks, examples, or narrative be changed, omitted, summarized, or condensed without explicit maintainer directive.
 - Fidelity Audit Tool: `tools/audit_fidelity.py` tracks word-for-word retention against LaTeX source.
 - Audit Findings:
-  - Chapter 1 (§1.1–§1.7): 100% Verbatim.
-  - Chapter 2 (§2.1–§2.7, §2.9): Verbatim. §2.8 needs re-conversion to restore omitted text.
-  - Chapter 3 (§3.1): Verbatim. §3.2–§3.9 need full re-conversion to restore all omitted text.
-  - Chapter 4 (§4.1–§4.9): Needs full verbatim conversion.
+  - Chapters 1–17 (all 148 sections + 17 chapter wrappers): 100% Verbatim and Valid XML.
+  - Zero duplicate XML IDs across entire project (`tools/check_duplicate_ids.py`).
+  - Web build generation tested and verified.
 
-## Next exact action
-Re-convert §2.8 and §3.2 onwards with 100% complete verbatim text fidelity.
+## Next steps
+- Complete conversion of remaining Appendices A–F and frontmatter/backmatter if requested.
+- Continuous visual QA across all chapter pages.

@@ -1,465 +1,750 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-one-sided-infinite-limits">
+<section xml:id="sec-3-3-one-sided-limits-and-infinite-behavior">
   <title>One-sided limits and infinite behavior</title>
 
-  <p>Section <xref ref="sec-calculating-limits"/> gave us tools for limits that settle down to a finite number. But limits can fail, or change character, in several different ways.</p>
+  <p>Section <xref ref="sec-3-2-calculating-limits"/> gave us tools for limits that settle down to a finite number.  But limits can fail, or change character, in several different ways.</p>
 
-  <p>A graph can approach one value from the left and another from the right. A function can grow without bound near a point. Or the input itself can move farther and farther away, so that we ask what happens at the far ends of the graph.</p>
+  <p>A graph can approach one value from the left and another from the right.  A function can grow without bound near a point.  Or the input itself can move farther and farther away, so that we ask what happens at the far ends of the graph.</p>
 
-  <p>These are not rare exceptions. They are some of the most important behaviors calculus has to name.</p>
+  <p>These are not rare exceptions.  They are some of the most important behaviors calculus has to name.</p>
 
   <subsection xml:id="subsec-left-right-limits">
     <title>Left-hand and right-hand limits</title>
 
-    <p>When we write</p>
-    <md>x\to a,</md>
-    <p>we usually mean that <m>x</m> approaches <m>a</m> from both sides. But sometimes the two sides tell different stories.</p>
+  <p>When we write</p>
 
-    <p>Consider the function</p>
-    <md>
-      f(x)=
-      \begin{cases}
-      x+1, \amp x\lt 2,\\
-      5, \amp x=2,\\
-      4-x, \amp x\gt 2.
-      \end{cases}
-    </md>
+  <md>x\to a,</md>
 
-    <p>As <m>x</m> approaches <m>2</m> from the left, the values of <m>f(x)</m> follow the line <m>y=x+1</m>. So they approach</p>
-    <md>2+1=3.</md>
+  <p>we usually mean that <m>x</m> approaches <m>a</m> from both sides.  But sometimes the two sides tell different stories.</p>
 
-    <p>As <m>x</m> approaches <m>2</m> from the right, the values of <m>f(x)</m> follow the line <m>y=4-x</m>. So they approach</p>
-    <md>4-2=2.</md>
+  <p>Consider the function</p>
 
-    <p>The value at the point is <m>f(2)=5</m>, but the value at the point is not what decides the nearby limit.</p>
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+x+1, \amp x&lt;2,</mrow>
+    <mrow>5, \amp x=2,</mrow>
+    <mrow>4-x, \amp x&gt;2.
+\end{cases}</mrow>
+  </md>
 
-    <figure xml:id="fig-one-sided-different-limits">
-      <caption>The left and right sides approach different values. Therefore the two-sided limit does not exist.</caption>
-      <image width="68%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.68\textwidth,
-              height=0.46\textwidth,
-              xmin=-0.5, xmax=4.2,
-              ymin=0, ymax=6,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={2},
-              ytick={2,3,5},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-0.2:2, samples=2] {x+1};
-          \addplot[thick, domain=2:4, samples=2] {4-x};
-          \addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(2,3) (2,2)};
-          \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(2,5)};
-          \node[anchor=west] at (axis cs:2.08,3.15) {left target \(3\)};
-          \node[anchor=west] at (axis cs:2.08,2.15) {right target \(2\)};
-          \node[anchor=west] at (axis cs:2.08,5.05) {actual value \(f(2)\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>As <m>x</m> approaches <m>2</m> from the left, the values of <m>f(x)</m> follow the line</p>
 
-    <p>We write</p>
-    <md>\lim_{x\to 2^-}f(x)=3.</md>
-    <p>The symbol <m>x\to 2^-</m> means that <m>x</m> approaches <m>2</m> from values less than <m>2</m>. This is called the <term>left-hand limit</term>.</p>
+  <md>y=x+1.</md>
 
-    <p>We write</p>
-    <md>\lim_{x\to 2^+}f(x)=2.</md>
-    <p>The symbol <m>x\to 2^+</m> means that <m>x</m> approaches <m>2</m> from values greater than <m>2</m>. This is called the <term>right-hand limit</term>.</p>
+  <p>So they approach</p>
 
-    <definition xml:id="def-one-sided-limits">
-      <title>One-sided limits</title>
-      <statement>
-        <p><m>\lim_{x\to a^-}f(x)=L</m> means that <m>f(x)</m> approaches <m>L</m> as <m>x</m> approaches <m>a</m> from the left.</p>
-        <p><m>\lim_{x\to a^+}f(x)=L</m> means that <m>f(x)</m> approaches <m>L</m> as <m>x</m> approaches <m>a</m> from the right.</p>
-      </statement>
-    </definition>
+  <md>2+1=3.</md>
 
-    <p>The two-sided limit exists only when the two one-sided limits agree.</p>
+  <p>As <m>x</m> approaches <m>2</m> from the right, the values of <m>f(x)</m> follow the line</p>
 
-    <theorem xml:id="thm-two-sided-limit-test">
-      <title>Two-sided limit test</title>
-      <statement>
-        <p>For a function defined near both sides of <m>a</m>,</p>
+  <md>y=4-x.</md>
+
+  <p>So they approach</p>
+
+  <md>4-2=2.</md>
+
+  <p>The value at the point is</p>
+
+  <md>f(2)=5,</md>
+
+  <p>but the value at the point is not what decides the nearby limit.</p>
+
+  <figure xml:id="fig-one-sided-different-limits">
+    <caption>The left and right sides approach different values.  Therefore the two-sided limit does not exist.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.68\textwidth,
+    height=0.46\textwidth,
+    xmin=-0.5, xmax=4.2,
+    ymin=0, ymax=6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={2},
+    ytick={2,3,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-0.2:2, samples=2] {x+1};
+\addplot[thick, domain=2:4, samples=2] {4-x};
+\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(2,3) (2,2)};
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(2,5)};
+\node[anchor=west] at (axis cs:2.08,3.15) {left target \(3\)};
+\node[anchor=west] at (axis cs:2.08,2.15) {right target \(2\)};
+\node[anchor=west] at (axis cs:2.08,5.05) {actual value \(f(2)\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>We write</p>
+
+  <md>\lim_{x\to2^-}f(x)=3.</md>
+
+  <p>The symbol <m>x\to2^-</m> means that <m>x</m> approaches <m>2</m> from values less than <m>2</m>.  This is called the <em>left-hand limit</em>.</p>
+
+  <p>We write</p>
+
+  <md>\lim_{x\to2^+}f(x)=2.</md>
+
+  <p>The symbol <m>x\to2^+</m> means that <m>x</m> approaches <m>2</m> from values greater than <m>2</m>.  This is called the <em>right-hand limit</em>.</p>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-92">
+    <title>One-sided limits</title>
+        <md>\lim_{x\to a^-}f(x)=L</md>
+      <p>means that <m>f(x)</m> approaches <m>L</m> as <m>x</m> approaches <m>a</m> from the left.</p>
+        <md>\lim_{x\to a^+}f(x)=L</md>
+      <p>means that <m>f(x)</m> approaches <m>L</m> as <m>x</m> approaches <m>a</m> from the right.</p>
+  </note>
+
+  <p>The two-sided limit exists only when the two one-sided limits agree.</p>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-93">
+    <title>Two-sided limit test</title>
+      <p>For a function defined near both sides of <m>a</m>,</p>
         <md>\lim_{x\to a}f(x)=L</md>
-        <p>if and only if</p>
-        <md>\lim_{x\to a^-}f(x)=L \qquad\text{and}\qquad \lim_{x\to a^+}f(x)=L.</md>
-      </statement>
-    </theorem>
+      <p>if and only if</p>
+        <md>\lim_{x\to a^-}f(x)=L
+\qquad\text{and}\qquad
+\lim_{x\to a^+}f(x)=L.</md>
+  </note>
 
-    <p>In the example above, <m>\lim_{x\to 2^-}f(x)=3</m> and <m>\lim_{x\to 2^+}f(x)=2</m>. Since <m>3\neq 2</m>, the two-sided limit does not exist:</p>
-    <md>\lim_{x\to 2}f(x)\quad\text{does not exist.}</md>
+  <p>In the example above,</p>
 
-    <example xml:id="ex-removable-hole-one-sided">
-      <title>A removable hole has matching one-sided limits</title>
-      <statement>
-        <p>Let <m>g(x)=\frac{x^2-1}{x-1}</m>, <m>x\neq 1</m>. For <m>x\neq 1</m>, <m>g(x)=x+1</m>. Therefore</p>
-        <md>\lim_{x\to 1^-}g(x)=2 \qquad\text{and}\qquad \lim_{x\to 1^+}g(x)=2.</md>
-        <p>The two one-sided limits agree, so</p>
-        <md>\lim_{x\to 1}g(x)=2.</md>
-        <p>A missing value does not destroy a limit. A jump usually does.</p>
-      </statement>
-    </example>
+  <md>\lim_{x\to2^-}f(x)=3,
+\qquad
+\lim_{x\to2^+}f(x)=2.</md>
 
-    <example xml:id="ex-signum-jump">
-      <title>Absolute value divided by <m>x</m></title>
-      <statement>
-        <p>For <m>J(x)=\frac{|x|}{x}</m>, <m>x\neq 0</m>, we have</p>
-        <md>J(x)=-1\quad\text{if }x\lt 0,</md>
-        <p>and</p>
-        <md>J(x)=1\quad\text{if }x\gt 0.</md>
-        <p>Thus</p>
-        <md>\lim_{x\to 0^-}\frac{|x|}{x}=-1, \qquad \lim_{x\to 0^+}\frac{|x|}{x}=1.</md>
-        <p>The two-sided limit does not exist.</p>
-        <p>A two-sided limit needs one common target.</p>
-      </statement>
-    </example>
+  <p>Since</p>
+
+  <md>3\neq2,</md>
+
+  <p>the two-sided limit does not exist:</p>
+
+  <md>\lim_{x\to2}f(x)\quad\text{does not exist.}</md>
+
+
+  <exercise xml:id="checkpoint-3-3-two-sided-needs-agreement">
+        <title>Why can one-sided limits exist when the two-sided limit does not?</title>
+        <statement>
+          <p>
+            A two-sided limit exists only when the left-hand and right-hand limits agree. In your own words, what is each one-sided limit watching, and why does a jump give two targets instead of one?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The left-hand limit only uses inputs less than <m>a</m>. The right-hand limit only uses inputs greater than <m>a</m>. A two-sided claim has to satisfy both stories at once.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-3-3-one-sided-limits-and-infinite-behavior-1">
+    <title>a removable hole has matching one-sided limits</title>
+    <statement>
+  <p>Let</p>
+
+  <md>g(x)=\frac{x^2-1}{x-1},
+\qquad x\neq1.</md>
+
+  <p>For <m>x\neq1</m>,</p>
+
+  <md>g(x)=x+1.</md>
+
+  <p>Therefore</p>
+
+  <md>\lim_{x\to1^-}g(x)=2
+\qquad\text{and}\qquad
+\lim_{x\to1^+}g(x)=2.</md>
+
+  <p>The two one-sided limits agree, so</p>
+
+  <md>\lim_{x\to1}g(x)=2.</md>
+
+  <p>A missing value does not destroy a limit.  A jump usually does.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-3-3-one-sided-limits-and-infinite-behavior-2">
+    <title>absolute value divided by <m>x</m></title>
+    <statement>
+  <p>For</p>
+
+  <md>J(x)=\frac{|x|}{x},
+\qquad x\neq0,</md>
+
+  <p>we have</p>
+
+  <md>J(x)=-1\quad\text{if }x&lt;0,</md>
+
+  <p>and</p>
+
+  <md>J(x)=1\quad\text{if }x&gt;0.</md>
+
+  <p>Thus</p>
+
+  <md>\lim_{x\to0^-}\frac{|x|}{x}=-1,
+\qquad
+\lim_{x\to0^+}\frac{|x|}{x}=1.</md>
+
+  <p>The two-sided limit does not exist.</p>
+
+  <md>\text{A two-sided limit needs one common target.}</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-infinite-limits-vertical-asymptotes">
     <title>Infinite limits and vertical asymptotes</title>
 
-    <p>A limit can fail in a different way. The left and right sides might agree in direction, but the values might not settle near any finite number.</p>
+  <p>A limit can fail in a different way.  The left and right sides might agree in direction, but the values might not settle near any finite number.</p>
 
-    <p>Consider</p>
-    <md>f(x)=\frac{1}{(x-2)^2}.</md>
-    <p>As <m>x</m> gets close to <m>2</m>, the denominator <m>(x-2)^2</m> gets close to <m>0</m>, but it remains positive. Dividing <m>1</m> by a very small positive number gives a very large positive number.</p>
+  <p>Consider</p>
 
-    <table>
-      <title>Values of <m>\frac{1}{(x-2)^2}</m> near <m>x=2</m></title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>x</m></cell>
-          <cell><m>1.9</m></cell>
-          <cell><m>1.99</m></cell>
-          <cell><m>1.999</m></cell>
-          <cell><m>2.001</m></cell>
-          <cell><m>2.01</m></cell>
-          <cell><m>2.1</m></cell>
-        </row>
-        <row>
-          <cell><m>\frac{1}{(x-2)^2}</m></cell>
-          <cell><m>100</m></cell>
-          <cell><m>10{,}000</m></cell>
-          <cell><m>1{,}000{,}000</m></cell>
-          <cell><m>1{,}000{,}000</m></cell>
-          <cell><m>10{,}000</m></cell>
-          <cell><m>100</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>f(x)=\frac{1}{(x-2)^2}.</md>
 
-    <p>The values do not approach a finite number. They grow beyond any fixed bound.</p>
+  <p>As <m>x</m> gets close to <m>2</m>, the denominator</p>
 
-    <p>We write</p>
-    <md>\lim_{x\to 2}\frac{1}{(x-2)^2}=\infty.</md>
+  <md>(x-2)^2</md>
 
-    <p>This notation needs careful reading. The symbol <m>\infty</m> is not a real number. So this is not a finite limit. It is a way of saying that the function grows without bound.</p>
+  <p>gets close to <m>0</m>, but it remains positive.  Dividing <m>1</m> by a very small positive number gives a very large positive number.</p>
 
-    <definition xml:id="def-infinite-limit">
-      <title>Infinite limit, informally</title>
-      <statement>
-        <p>We write</p>
+  <md>
+    <mrow>\begin{array}{c|cccccc}
+x \amp 1.9 \amp 1.99 \amp 1.999 \amp 2.001 \amp 2.01 \amp 2.1</mrow>
+    <mrow>\hline
+\dfrac{1}{(x-2)^2} \amp 100 \amp 10{,}000 \amp 1{,}000{,}000
+\amp 1{,}000{,}000 \amp 10{,}000 \amp 100
+\end{array}</mrow>
+  </md>
+
+  <p>The values do not approach a finite number.  They grow beyond any fixed bound.</p>
+
+  <p>We write</p>
+
+  <md>\lim_{x\to2}\frac{1}{(x-2)^2}=\infty.</md>
+
+  <p>This notation needs careful reading.  The symbol <m>\infty</m> is not a real number.  So this is not a finite limit.  It is a way of saying that the function grows without bound.</p>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-94">
+    <title>Infinite limit, informally</title>
+      <p>We write</p>
         <md>\lim_{x\to a}f(x)=\infty</md>
-        <p>if <m>f(x)</m> can be made larger than any chosen positive number by taking <m>x</m> sufficiently close to <m>a</m>, with <m>x\neq a</m>.</p>
-        <p>Similarly,</p>
-        <md>\lim_{x\to a}f(x)=-\infty</md>
-        <p>means that <m>f(x)</m> becomes negative with arbitrarily large magnitude.</p>
-      </statement>
-    </definition>
+      <p>if <m>f(x)</m> can be made larger than any chosen positive number by taking <m>x</m> sufficiently close to <m>a</m>, with <m>x\neq a</m>.</p>
+  </note>
 
-    <p><em>The sign matters.</em> Now consider</p>
-    <md>g(x)=\frac{1}{x-2}.</md>
-    <p>If <m>x\gt 2</m>, then <m>x-2\gt 0</m>, so <m>g(x)\gt 0</m>. As <m>x\to 2^+</m>, the denominator is a small positive number, so <m>g(x)\to\infty</m>.</p>
-    <p>If <m>x\lt 2</m>, then <m>x-2\lt 0</m>, so <m>g(x)\lt 0</m>. As <m>x\to 2^-</m>, the denominator is a small negative number, so <m>g(x)\to-\infty</m>.</p>
-    <p>Thus</p>
-    <md>\lim_{x\to 2^-}\frac{1}{x-2}=-\infty, \qquad \lim_{x\to 2^+}\frac{1}{x-2}=\infty.</md>
+  <p>Similarly,</p>
 
-    <figure xml:id="fig-one-over-x-minus-two">
-      <caption>The graph of <m>1/(x-2)</m> falls without bound from the left and rises without bound from the right.</caption>
-      <image width="72%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.72\textwidth,
-              height=0.48\textwidth,
-              xmin=0.4, xmax=3.6,
-              ymin=-8, ymax=8,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1,2,3},
-              ytick={-6,-3,3,6},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=0.55:1.86, samples=160] {1/(x-2)};
-          \addplot[thick, domain=2.14:3.45, samples=160] {1/(x-2)};
-          \draw[dashed, thick] (axis cs:2,-8) -- (axis cs:2,8);
-          \node[anchor=west] at (axis cs:2.08,6.2) {\(x=2\)};
-          \node[anchor=east] at (axis cs:1.72,-5.4) {\(x\to2^-\)};
-          \node[anchor=west] at (axis cs:2.25,5.4) {\(x\to2^+\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>\lim_{x\to a}f(x)=-\infty</md>
 
-    <p>The vertical line <m>x=2</m> is called a <term>vertical asymptote</term>.</p>
+  <p>means that <m>f(x)</m> becomes negative with arbitrarily large magnitude.</p>
 
-    <definition xml:id="def-vertical-asymptote">
-      <title>Vertical asymptote</title>
-      <statement>
-        <p>The line <m>x=a</m> is a <term>vertical asymptote</term> of the graph of <m>f</m> if at least one of the one-sided limits <m>\lim_{x\to a^-}f(x)</m> or <m>\lim_{x\to a^+}f(x)</m> is <m>\infty</m> or <m>-\infty</m>.</p>
-      </statement>
-    </definition>
+  <paragraphs>
+    <title>The sign matters</title>
 
-    <p>A vertical asymptote often appears when a denominator approaches <m>0</m> and no cancellation removes the problem.</p>
+  <p>Now consider</p>
 
-    <example xml:id="ex-cancellation-vs-asymptote">
-      <title>Cancellation versus asymptote</title>
-      <statement>
-        <p>Compare</p>
-        <md>\frac{x^2-1}{x-1} \qquad\text{and}\qquad \frac{x+1}{x-1}.</md>
-        <p>For the first expression, <m>x^2-1=(x-1)(x+1)</m>, so the factor <m>x-1</m> cancels for <m>x\neq 1</m>. The graph has a hole, and</p>
-        <md>\lim_{x\to 1}\frac{x^2-1}{x-1}=2.</md>
-        <p>For the second expression, <m>\frac{x+1}{x-1}</m>, there is no cancellation. As <m>x\to 1</m>, the numerator approaches <m>2</m>, while the denominator approaches <m>0</m>. The function grows without bound in magnitude.</p>
-        <p>From the right, <m>x-1\gt 0</m>, so</p>
-        <md>\lim_{x\to 1^+}\frac{x+1}{x-1}=\infty.</md>
-        <p>From the left, <m>x-1\lt 0</m>, so</p>
-        <md>\lim_{x\to 1^-}\frac{x+1}{x-1}=-\infty.</md>
-        <p>Thus <m>x=1</m> is a vertical asymptote.</p>
-        <p><m>\frac{0}{0}</m> may hide a hole; <m>\frac{\text{nonzero}}{0}</m> usually signals an asymptote. This is not a replacement for thought. It is a warning about what to check.</p>
-      </statement>
-    </example>
+  <md>g(x)=\frac{1}{x-2}.</md>
+
+  <p>If <m>x&gt;2</m>, then <m>x-2&gt;0</m>, so</p>
+
+  <md>g(x)&gt;0.</md>
+
+  <p>As <m>x\to2^+</m>, the denominator is a small positive number, so</p>
+
+  <md>g(x)\to\infty.</md>
+
+  <p>If <m>x&lt;2</m>, then <m>x-2&lt;0</m>, so</p>
+
+  <md>g(x)&lt;0.</md>
+
+  <p>As <m>x\to2^-</m>, the denominator is a small negative number, so</p>
+
+  <md>g(x)\to-\infty.</md>
+
+  <p>Thus</p>
+
+  <md>\lim_{x\to2^-}\frac1{x-2}=-\infty,
+\qquad
+\lim_{x\to2^+}\frac1{x-2}=\infty.</md>
+
+  <figure xml:id="fig-one-over-x-minus-two">
+    <caption>The graph of <m>1/(x-2)</m> falls without bound from the left and rises without bound from the right.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.48\textwidth,
+    xmin=0.4, xmax=3.6,
+    ymin=-8, ymax=8,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,2,3},
+    ytick={-6,-3,3,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=0.55:1.86, samples=160] {1/(x-2)};
+\addplot[thick, domain=2.14:3.45, samples=160] {1/(x-2)};
+\draw[dashed, thick] (axis cs:2,-8) -- (axis cs:2,8);
+\node[anchor=west] at (axis cs:2.12,7.35) {\(x=2\)};
+\node[anchor=east] at (axis cs:1.72,-5.4) {\(x\to2^-\)};
+\node[anchor=west] at (axis cs:2.55,3.6) {\(x\to2^+\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The vertical line</p>
+
+  <md>x=2</md>
+
+  <p>is called a <em>vertical asymptote</em>.</p>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-95">
+    <title>Vertical asymptote</title>
+      <p>The line <m>x=a</m> is a vertical asymptote of the graph of <m>f</m> if at least one of the one-sided limits</p>
+        <md>\lim_{x\to a^-}f(x),
+\qquad
+\lim_{x\to a^+}f(x)</md>
+      <p>is <m>\infty</m> or <m>-\infty</m>.</p>
+  </note>
+
+  <p>A vertical asymptote often appears when a denominator approaches <m>0</m> and no cancellation removes the problem.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-3-3-infinity-is-not-a-number">
+        <title>What does an infinite limit claim, and what does it refuse to claim?</title>
+        <statement>
+          <p>
+            The notation <m>\lim_{x\to a}f(x)=\infty</m> says that <m>f(x)</m> can be made larger than any chosen positive number by taking <m>x</m> sufficiently close to <m>a</m>. In your own words, why is this not a finite limit, and why does the sign of a one-sided infinite limit still matter?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Infinity is a direction of unbounded growth, not a real-number target. From one side the values may shoot up; from the other they may shoot down. Those are different stories.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-3-3-one-sided-limits-and-infinite-behavior-4">
+    <title>cancellation versus asymptote</title>
+    <statement>
+  <p>Compare</p>
+
+  <md>\frac{x^2-1}{x-1}</md>
+
+  <p>and</p>
+
+  <md>\frac{x+1}{x-1}.</md>
+
+  <p>For the first expression,</p>
+
+  <md>x^2-1=(x-1)(x+1),</md>
+
+  <p>so the factor <m>x-1</m> cancels for <m>x\neq1</m>.  The graph has a hole, and</p>
+
+  <md>\lim_{x\to1}\frac{x^2-1}{x-1}=2.</md>
+
+  <p>For the second expression,</p>
+
+  <md>\frac{x+1}{x-1},</md>
+
+  <p>there is no cancellation.  As <m>x\to1</m>, the numerator approaches <m>2</m>, while the denominator approaches <m>0</m>.  The function grows without bound in magnitude.</p>
+
+  <p>From the right,</p>
+
+  <md>x-1&gt;0,</md>
+
+  <p>so</p>
+
+  <md>\lim_{x\to1^+}\frac{x+1}{x-1}=\infty.</md>
+
+  <p>From the left,</p>
+
+  <md>x-1&lt;0,</md>
+
+  <p>so</p>
+
+  <md>\lim_{x\to1^-}\frac{x+1}{x-1}=-\infty.</md>
+
+  <p>Thus <m>x=1</m> is a vertical asymptote.</p>
+
+  <md>\frac00\text{ may hide a hole.}
+\qquad
+\frac{\text{nonzero}}0\text{ usually signals an asymptote.}</md>
+
+  <p>This is not a replacement for thought.  It is a warning about what to check.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-limits-at-infinity">
     <title>Limits at infinity</title>
 
-    <p>So far, the input <m>x</m> has approached a finite number. But many questions ask what happens after a long time, far from the starting point, or for very large input.</p>
+  <p>So far, the input <m>x</m> has approached a finite number.  But many questions ask what happens after a long time, far from the starting point, or for very large input.</p>
 
-    <p>For example, suppose the temperature of a cup of coffee in a room is modeled by</p>
-    <md>T(t)=70+\frac{90}{t+1}, \qquad t\ge 0,</md>
-    <p>where <m>T(t)</m> is measured in degrees Fahrenheit and <m>t</m> is measured in hours.</p>
+  <p>For example, suppose the temperature of a cup of coffee in a room is modeled by</p>
 
-    <p>At the start,</p>
-    <md>T(0)=70+90=160.</md>
-    <p>As <m>t</m> grows, the fraction <m>\frac{90}{t+1}</m> gets smaller. The temperature approaches <m>70</m>, the room temperature.</p>
+  <md>T(t)=70+\frac{90}{t+1},
+\qquad t\ge0,</md>
 
-    <p>We write</p>
-    <md>\lim_{t\to\infty}\left(70+\frac{90}{t+1}\right)=70.</md>
+  <p>where <m>T(t)</m> is measured in degrees Fahrenheit and <m>t</m> is measured in hours.</p>
 
-    <p>The notation <m>t\to\infty</m> does not mean that <m>t</m> approaches a number called infinity. It means that <m>t</m> grows without bound.</p>
+  <p>At the start,</p>
 
-    <definition xml:id="def-limit-at-infinity">
-      <title>Limit at infinity, informally</title>
-      <statement>
-        <p>We write <m>\lim_{x\to\infty}f(x)=L</m> if <m>f(x)</m> approaches <m>L</m> as <m>x</m> becomes arbitrarily large.</p>
-        <p>We write <m>\lim_{x\to-\infty}f(x)=L</m> if <m>f(x)</m> approaches <m>L</m> as <m>x</m> becomes negative with arbitrarily large magnitude.</p>
-      </statement>
-    </definition>
+  <md>T(0)=70+90=160.</md>
 
-    <p>The basic limit behind many examples is</p>
-    <md>\lim_{x\to\infty}\frac{1}{x}=0, \qquad \lim_{x\to-\infty}\frac{1}{x}=0.</md>
-    <p>More generally, for any positive integer <m>n</m>,</p>
-    <md>\lim_{x\to\infty}\frac{1}{x^n}=0, \qquad \lim_{x\to-\infty}\frac{1}{x^n}=0.</md>
+  <p>As <m>t</m> grows, the fraction</p>
 
-    <example xml:id="ex-rational-function-at-infinity">
-      <title>Rational function at infinity</title>
-      <statement>
-        <p>Find</p>
-        <md>\lim_{x\to\infty}\frac{3x^2-x+1}{x^2+4}.</md>
-      </statement>
-      <solution>
-        <p>The highest power of <m>x</m> in the numerator and denominator is <m>x^2</m>. Divide every term by <m>x^2</m>:</p>
-        <md>\frac{3x^2-x+1}{x^2+4} = \frac{3-\frac{1}{x}+\frac{1}{x^2}}{1+\frac{4}{x^2}}.</md>
-        <p>As <m>x\to\infty</m>, <m>\frac{1}{x}\to 0</m> and <m>\frac{1}{x^2}\to 0</m>. Therefore</p>
-        <md>\lim_{x\to\infty}\frac{3x^2-x+1}{x^2+4} = \frac{3-0+0}{1+0} = 3.</md>
-        <p>The same limit holds as <m>x\to-\infty</m>:</p>
-        <md>\lim_{x\to-\infty}\frac{3x^2-x+1}{x^2+4}=3.</md>
-        <p>The largest powers control the far-away behavior.</p>
-      </solution>
-    </example>
+  <md>\frac{90}{t+1}</md>
 
-    <p><em>A quick guide for rational functions.</em> For a rational function <m>R(x)=\frac{p(x)}{q(x)}</m>, the behavior as <m>x\to\infty</m> is controlled by the leading terms of <m>p</m> and <m>q</m>.</p>
+  <p>gets smaller.  The temperature approaches <m>70</m>, the room temperature.</p>
 
-    <table>
-      <title>Asymptotic behavior of rational functions</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>degrees</term></cell>
-          <cell><term>example</term></cell>
-          <cell><term>behavior as <m>x\to\infty</m></term></cell>
-        </row>
-        <row>
-          <cell><m>\deg p \lt \deg q</m></cell>
-          <cell><m>\frac{x+1}{x^2+4}</m></cell>
-          <cell><m>0</m></cell>
-        </row>
-        <row>
-          <cell><m>\deg p = \deg q</m></cell>
-          <cell><m>\frac{3x^2-x+1}{x^2+4}</m></cell>
-          <cell><m>\frac{\text{leading coefficient of }p}{\text{leading coefficient of }q}=3</m></cell>
-        </row>
-        <row>
-          <cell><m>\deg p \gt \deg q</m></cell>
-          <cell><m>\frac{x^2+1}{x}</m></cell>
-          <cell>does not approach a finite number</cell>
-        </row>
-      </tabular>
-    </table>
+  <p>We write</p>
 
-    <p>When the numerator has larger degree, the function may grow like a polynomial. Sometimes it grows close to a line. That leads to slant asymptotes.</p>
+  <md>\lim_{t\to\infty}\left(70+\frac{90}{t+1}\right)=70.</md>
+
+  <p>The notation <m>t\to\infty</m> does not mean that <m>t</m> approaches a number called infinity.  It means that <m>t</m> grows without bound.</p>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-96">
+    <title>Limit at infinity, informally</title>
+      <p>We write</p>
+        <md>\lim_{x\to\infty}f(x)=L</md>
+      <p>if <m>f(x)</m> approaches <m>L</m> as <m>x</m> becomes arbitrarily large.</p>
+      <p>We write</p>
+        <md>\lim_{x\to-\infty}f(x)=L</md>
+      <p>if <m>f(x)</m> approaches <m>L</m> as <m>x</m> becomes negative with arbitrarily large magnitude.</p>
+  </note>
+
+  <p>The basic limit behind many examples is</p>
+
+  <md>\lim_{x\to\infty}\frac1x=0,
+\qquad
+\lim_{x\to-\infty}\frac1x=0.</md>
+
+  <p>More generally, for any positive integer <m>n</m>,</p>
+
+  <md>\lim_{x\to\infty}\frac1{x^n}=0,
+\qquad
+\lim_{x\to-\infty}\frac1{x^n}=0.</md>
+
+  <example xml:id="ex-sec-3-3-one-sided-limits-and-infinite-behavior-5">
+    <title>rational function at infinity</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\lim_{x\to\infty}\frac{3x^2-x+1}{x^2+4}.</md>
+
+  <p>The highest power of <m>x</m> in the numerator and denominator is <m>x^2</m>.  Divide every term by <m>x^2</m>:</p>
+
+  <md>\frac{3x^2-x+1}{x^2+4}
+=
+\frac{3-\frac1x+\frac1{x^2}}{1+\frac4{x^2}}.</md>
+
+  <p>As <m>x\to\infty</m>,</p>
+
+  <md>\frac1x\to0
+\qquad\text{and}\qquad
+\frac1{x^2}\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>\lim_{x\to\infty}\frac{3x^2-x+1}{x^2+4}
+=
+\frac{3-0+0}{1+0}
+=
+3.</md>
+
+  <p>The same limit holds as <m>x\to-\infty</m>:</p>
+
+  <md>\lim_{x\to-\infty}\frac{3x^2-x+1}{x^2+4}=3.</md>
+
+  <p>The largest powers control the far-away behavior.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A quick guide for rational functions</title>
+
+  <p>For a rational function</p>
+
+  <md>R(x)=\frac{p(x)}{q(x)},</md>
+
+  <p>the behavior as <m>x\to\infty</m> is controlled by the leading terms of <m>p</m> and <m>q</m>.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>degrees</strong> \amp <strong>example</strong> \amp <strong>behavior as </strong>x\to\infty</mrow>
+    <mrow>\hline
+\deg p&lt;\deg q
+\amp
+\dfrac{x+1}{x^2+4}
+\amp
+0</mrow>
+    <mrow>
+\deg p=\deg q
+\amp
+\dfrac{3x^2-x+1}{x^2+4}
+\amp
+\dfrac{\text{leading coefficient of }p}{\text{leading coefficient of }q}=3</mrow>
+    <mrow>
+\deg p&gt;\deg q
+\amp
+\dfrac{x^2+1}{x}
+\amp
+\text{does not approach a finite number}
+\end{array}</mrow>
+  </md>
+
+  <p>When the numerator has larger degree, the function may grow like a polynomial.  Sometimes it grows close to a line.  That leads to slant asymptotes.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-3-3-limits-at-infinity">
+        <title>What does <m>x\to\infty</m> mean if infinity is not a number?</title>
+        <statement>
+          <p>
+            In the coffee model <m>T(t)=70+\frac{90}{t+1}</m>, the temperature approaches room temperature as time grows. In your own words, what does <m>t\to\infty</m> mean, and why is a horizontal asymptote a statement about the far end of a graph rather than a value the function must reach?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The input grows without bound; it does not approach a point called infinity. An asymptote is a line the graph approaches. The function may never equal that height at any finite input.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-horizontal-slant-asymptotes">
     <title>Horizontal and slant asymptotes</title>
 
-    <p>A horizontal asymptote describes the far end of a graph.</p>
+  <p>A horizontal asymptote describes the far end of a graph.</p>
 
-    <definition xml:id="def-horizontal-asymptote">
-      <title>Horizontal asymptote</title>
-      <statement>
-        <p>If <m>\lim_{x\to\infty}f(x)=L</m> or <m>\lim_{x\to-\infty}f(x)=L</m>, then the line <m>y=L</m> is a <term>horizontal asymptote</term> of the graph of <m>f</m> on that end.</p>
-      </statement>
-    </definition>
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-97">
+    <title>Horizontal asymptote</title>
+      <p>If</p>
+        <md>\lim_{x\to\infty}f(x)=L</md>
+      <p>or</p>
+        <md>\lim_{x\to-\infty}f(x)=L,</md>
+      <p>then the line</p>
+        <md>y=L</md>
+      <p>is a horizontal asymptote of the graph of <m>f</m> on that end.</p>
+  </note>
 
-    <p>For the coffee model <m>T(t)=70+\frac{90}{t+1}</m>, we have <m>\lim_{t\to\infty}T(t)=70</m>. So the graph has horizontal asymptote <m>T=70</m>. That asymptote has a physical meaning: it is the room temperature.</p>
+  <p>For the coffee model</p>
 
-    <example xml:id="ex-two-horizontal-asymptotes">
-      <title>Different ends can have different horizontal asymptotes</title>
-      <statement>
-        <p>Consider <m>f(x)=\frac{x}{\sqrt{x^2+1}}</m>.</p>
-        <p>For <m>x\gt 0</m>, <m>\sqrt{x^2+1}=x\sqrt{1+\frac{1}{x^2}}</m>, so</p>
-        <md>f(x)=\frac{1}{\sqrt{1+\frac{1}{x^2}}}.</md>
-        <p>Thus</p>
-        <md>\lim_{x\to\infty}\frac{x}{\sqrt{x^2+1}}=1.</md>
-        <p>For <m>x\lt 0</m>, <m>\sqrt{x^2+1}=|x|\sqrt{1+\frac{1}{x^2}}=(-x)\sqrt{1+\frac{1}{x^2}}</m>. So</p>
-        <md>f(x)=-\frac{1}{\sqrt{1+\frac{1}{x^2}}},</md>
-        <p>and therefore</p>
-        <md>\lim_{x\to-\infty}\frac{x}{\sqrt{x^2+1}}=-1.</md>
-        <p>This graph has two different horizontal asymptotes: <m>y=1</m> as <m>x\to\infty</m>, and <m>y=-1</m> as <m>x\to-\infty</m>.</p>
-      </statement>
-    </example>
+  <md>T(t)=70+\frac{90}{t+1},</md>
 
-    <example xml:id="ex-slant-asymptote-rational">
-      <title>Slant asymptotes</title>
-      <statement>
-        <p>Some graphs do not approach a horizontal line. Instead, they approach a tilted line.</p>
-        <p>Consider</p>
-        <md>f(x)=\frac{x^2+1}{x-1}.</md>
-        <p>Polynomial division gives <m>x^2+1=(x-1)(x+1)+2</m>. Therefore</p>
-        <md>\frac{x^2+1}{x-1} = x+1+\frac{2}{x-1}.</md>
-        <p>As <m>x\to\infty</m>, <m>\frac{2}{x-1}\to 0</m>. So <m>f(x)-(x+1)\to 0</m>. The graph of <m>f</m> approaches the line <m>y=x+1</m>. That line is a <term>slant asymptote</term>.</p>
+  <p>we have</p>
 
-        <figure xml:id="fig-slant-asymptote">
-          <caption>The graph of <m>\frac{x^2+1}{x-1}</m> has a vertical asymptote <m>x=1</m> and a slant asymptote <m>y=x+1</m>.</caption>
-          <image width="76%">
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=0.76\textwidth,
-                  height=0.50\textwidth,
-                  xmin=-5, xmax=6,
-                  ymin=-7, ymax=9,
-                  axis lines=middle,
-                  xlabel={\(x\)},
-                  ylabel={\(y\)},
-                  xtick={-4,-2,0,1,2,4,6},
-                  ytick={-6,-3,0,3,6,9},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \addplot[thick, domain=-5:0.75, samples=160] {(x^2+1)/(x-1)};
-              \addplot[thick, domain=1.25:6, samples=160] {(x^2+1)/(x-1)};
-              \addplot[dashed, domain=-5:6, samples=2] {x+1};
-              \draw[dotted, thick] (axis cs:1,-7) -- (axis cs:1,9);
-              \node[anchor=west] at (axis cs:3.2,5.1) {\(y=x+1\)};
-              \node[anchor=west] at (axis cs:1.1,7.2) {\(x=1\)};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </statement>
-    </example>
+  <md>\lim_{t\to\infty}T(t)=70.</md>
 
-    <definition xml:id="def-slant-asymptote">
-      <title>Slant asymptote</title>
-      <statement>
-        <p>The line <m>y=mx+b</m>, <m>m\neq 0</m>, is a <term>slant asymptote</term> of <m>f</m> as <m>x\to\infty</m> if</p>
+  <p>So the graph has horizontal asymptote</p>
+
+  <md>T=70.</md>
+
+  <p>That asymptote has a physical meaning: it is the room temperature.</p>
+
+  <paragraphs>
+    <title>Different ends can have different horizontal asymptotes</title>
+
+  <p>Consider</p>
+
+  <md>f(x)=\frac{x}{\sqrt{x^2+1}}.</md>
+
+  <p>For <m>x&gt;0</m>,</p>
+
+  <md>\sqrt{x^2+1}
+=
+x\sqrt{1+\frac1{x^2}},</md>
+
+  <p>so</p>
+
+  <md>f(x)=\frac{1}{\sqrt{1+\frac1{x^2}}}.</md>
+
+  <p>Thus</p>
+
+  <md>\lim_{x\to\infty}\frac{x}{\sqrt{x^2+1}}=1.</md>
+
+  <p>For <m>x&lt;0</m>,</p>
+
+  <md>\sqrt{x^2+1}
+=
+|x|\sqrt{1+\frac1{x^2}}
+=
+(-x)\sqrt{1+\frac1{x^2}}.</md>
+
+  <p>So</p>
+
+  <md>f(x)=
+-\frac{1}{\sqrt{1+\frac1{x^2}}},</md>
+
+  <p>and therefore</p>
+
+  <md>\lim_{x\to-\infty}\frac{x}{\sqrt{x^2+1}}=-1.</md>
+
+  <p>This graph has two different horizontal asymptotes:</p>
+
+  <md>y=1
+\quad\text{as }x\to\infty,</md>
+
+  <p>and</p>
+
+  <md>y=-1
+\quad\text{as }x\to-\infty.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Slant asymptotes</title>
+
+  <p>Some graphs do not approach a horizontal line.  Instead, they approach a tilted line.</p>
+
+  <p>Consider</p>
+
+  <md>f(x)=\frac{x^2+1}{x-1}.</md>
+
+  <p>Polynomial division gives</p>
+
+  <md>x^2+1=(x-1)(x+1)+2.</md>
+
+  <p>Therefore</p>
+
+  <md>\frac{x^2+1}{x-1}
+=
+x+1+\frac{2}{x-1}.</md>
+
+  <p>As <m>x\to\infty</m>,</p>
+
+  <md>\frac{2}{x-1}\to0.</md>
+
+  <p>So</p>
+
+  <md>f(x)-(x+1)\to0.</md>
+
+  <p>The graph of <m>f</m> approaches the line</p>
+
+  <md>y=x+1.</md>
+
+  <p>That line is a <em>slant asymptote</em>.</p>
+
+  <figure xml:id="fig-slant-asymptote">
+    <caption>The graph of <m>\dfrac{x^2+1}{x-1}</m> has a vertical asymptote <m>x=1</m> and a slant asymptote <m>y=x+1</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.76\textwidth,
+    height=0.50\textwidth,
+    xmin=-5, xmax=6,
+    ymin=-7, ymax=9,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-4,-2,0,1,2,4,6},
+    ytick={-6,-3,0,3,6,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-5:0.75, samples=160] {(x^2+1)/(x-1)};
+\addplot[thick, domain=1.25:6, samples=160] {(x^2+1)/(x-1)};
+\addplot[dashed, domain=-5:6, samples=2] {x+1};
+\draw[dotted, thick] (axis cs:1,-7) -- (axis cs:1,9);
+\node[anchor=west] at (axis cs:3.2,5.1) {\(y=x+1\)};
+\node[anchor=west] at (axis cs:1.1,7.2) {\(x=1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-3-3-one-sided-limits-and-infinite-behavior-98">
+    <title>Slant asymptote</title>
+      <p>The line</p>
+        <md>y=mx+b,
+\qquad m\neq0,</md>
+      <p>is a slant asymptote of <m>f</m> as <m>x\to\infty</m> if</p>
         <md>\lim_{x\to\infty}\bigl(f(x)-(mx+b)\bigr)=0.</md>
-        <p>The same definition applies as <m>x\to-\infty</m>.</p>
-      </statement>
-    </definition>
+      <p>The same definition applies as <m>x\to-\infty</m>.</p>
+  </note>
 
-    <p>The important quantity is not the ratio of <m>f(x)</m> to the line. It is the vertical difference: <m>f(x)-(mx+b)</m>. If that difference approaches <m>0</m>, the graph approaches the line.</p>
+  <p>The important quantity is not the ratio of <m>f(x)</m> to the line.  It is the vertical difference:</p>
+
+  <md>f(x)-(mx+b).</md>
+
+  <p>If that difference approaches <m>0</m>, the graph approaches the line.</p>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-map-new-limit-behaviors">
     <title>A map of the new behaviors</title>
 
-    <p>The word <q>limit</q> now covers several related ideas.</p>
+  <p>The word “limit” now covers several related ideas.</p>
 
-    <table>
-      <title>Map of limit behaviors</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="left"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><term>notation</term></cell>
-          <cell><term>input behavior</term></cell>
-          <cell><term>output behavior</term></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to a}f(x)=L</m></cell>
-          <cell><m>x</m> approaches <m>a</m> from both sides</cell>
-          <cell><m>f(x)</m> approaches finite <m>L</m></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to a^-}f(x)=L</m></cell>
-          <cell><m>x</m> approaches <m>a</m> from the left</cell>
-          <cell><m>f(x)</m> approaches finite <m>L</m></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to a^+}f(x)=L</m></cell>
-          <cell><m>x</m> approaches <m>a</m> from the right</cell>
-          <cell><m>f(x)</m> approaches finite <m>L</m></cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to a}f(x)=\infty</m></cell>
-          <cell><m>x</m> approaches <m>a</m></cell>
-          <cell><m>f(x)</m> grows without bound</cell>
-        </row>
-        <row>
-          <cell><m>\lim_{x\to\infty}f(x)=L</m></cell>
-          <cell><m>x</m> grows without bound</cell>
-          <cell><m>f(x)</m> approaches finite <m>L</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>notation</strong> \amp <strong>input behavior</strong> \amp <strong>output behavior</strong></mrow>
+    <mrow>\hline
+\displaystyle \lim_{x\to a}f(x)=L
+\amp
+x\text{ approaches }a\text{ from both sides}
+\amp
+f(x)\text{ approaches finite }L</mrow>
+    <mrow>
+\displaystyle \lim_{x\to a^-}f(x)=L
+\amp
+x\text{ approaches }a\text{ from the left}
+\amp
+f(x)\text{ approaches finite }L</mrow>
+    <mrow>
+\displaystyle \lim_{x\to a^+}f(x)=L
+\amp
+x\text{ approaches }a\text{ from the right}
+\amp
+f(x)\text{ approaches finite }L</mrow>
+    <mrow>
+\displaystyle \lim_{x\to a}f(x)=\infty
+\amp
+x\text{ approaches }a
+\amp
+f(x)\text{ grows without bound}</mrow>
+    <mrow>
+\displaystyle \lim_{x\to\infty}f(x)=L
+\amp
+x\text{ grows without bound}
+\amp
+f(x)\text{ approaches finite }L
+\end{array}</mrow>
+  </md>
 
-    <p>These ideas help us describe graphs accurately. But the word <q>approaches</q> is still informal. The next section turns it into a test that does not depend on the drawing or the table.</p>
+  <p>These ideas help us describe graphs accurately.  But the word “approaches” is still informal.  The next section turns it into a test that does not depend on the drawing or the table.</p>
 
-    <p>The test is based on a challenge: make the output error smaller than any tolerance I name.</p>
+  <p>The test is based on a challenge: make the output error smaller than any tolerance I name.</p>
+
+  <exercise xml:id="checkpoint-3-3-hole-versus-vertical-asymptote">
+        <title>How do you tell a hole from a vertical asymptote?</title>
+        <statement>
+          <p>
+            Cancellation can turn a forbidden input into a hole, while a denominator approaching zero without cancellation can produce a vertical asymptote. In your own words, what nearby output behavior distinguishes those two pictures?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Near a hole, the values settle toward a finite height with one point missing. Near a vertical asymptote, the values refuse to settle and instead grow without bound.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

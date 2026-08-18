@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-e-4-simple-python-experiments-for-calculus">
+  <title>Simple Python experiments for calculus</title>
+
+  <p>A short program can make a calculus idea visible.</p>
+
+  <p>The goal is not to turn this book into a programming course.  The goal is to give a
+few readable experiments that show what the mathematics is doing.</p>
+
+  <p>The examples below use plain Python.  Some use the built-in \texttt{math} module.
+Plotting examples appear in the next section.</p>
+
+  <subsection xml:id="appsubsec-python-difference-quotients">
+    <title>Experiment 1: difference quotients</title>
+
+  <p>The derivative</p>
+
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</md>
+
+  <p>comes from shrinking <m>h</m>.  A short program lets us watch the quotient change.</p>
+
+  <p>For</p>
+
+  <md>f(x)=x^2,</md>
+
+  <p>the derivative at <m>a=2</m> is</p>
+
+  <md>f'(2)=4.</md>
+
+  <pre>
+def f(x):
+    return x**2
+
+a = 2.0
+
+for h in [1, 0.1, 0.01, 0.001, 0.0001]:
+    quotient = (f(a + h) - f(a)) / h
+    print(h, quotient)
+  </pre>
+
+  <p>The output should approach</p>
+
+  <md>4.</md>
+
+  <p>For this particular function,</p>
+
+  <md>\frac{(2+h)^2-2^2}{h}=4+h,</md>
+
+  <p>so the output is exactly</p>
+
+  <md>5,\quad 4.1,\quad 4.01,\quad 4.001,\quad 4.0001</md>
+
+  <p>apart from floating-point representation.</p>
+
+  <note xml:id="note-sec-e-4-simple-python-experiments-for-calculus-36">
+    <title>Experiment habit</title>
+      <p>Before running code, predict what should happen mathematically.</p>
+      <p>After running code, compare the output with the prediction.</p>
+  </note>
+  </subsection>
+
+  <subsection xml:id="appsubsec-python-bisection">
+    <title>Experiment 2: bisection for a root</title>
+
+  <p>Bolzano’s Theorem says that if a continuous function changes sign on an interval, then
+there is a root inside.  Bisection turns that theorem into an algorithm.</p>
+
+  <p>Find a root of</p>
+
+  <md>f(x)=x^3-x-1</md>
+
+  <p>in</p>
+
+  <md>[1,2].</md>
+
+  <md>f(1)=-1,
+\qquad
+f(2)=5.</md>
+
+  <p>So there is at least one root in <m>(1,2)</m>.</p>
+
+  <pre>
+def f(x):
+    return x**3 - x - 1
+
+left = 1.0
+right = 2.0
+
+for step in range(20):
+    mid = (left + right) / 2
+    if f(left) * f(mid) &lt;= 0:
+        right = mid
+    else:
+        left = mid
+
+    print(step + 1, left, right, (left + right) / 2)
+  </pre>
+
+  <p>Each step cuts the interval length in half.  After <m>N</m> bisections, the interval length is</p>
+
+  <md>\frac{2-1}{2^N}=\frac1{2^N}.</md>
+
+  <p>The midpoint error is at most</p>
+
+  <md>\frac1{2^{N+1}}.</md>
+
+  <p>The code is not only producing decimals.  It is carrying out the proof idea from
+Bolzano’s Theorem.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-python-midpoint-rule">
+    <title>Experiment 3: midpoint rule for an integral</title>
+
+  <p>The integral</p>
+
+  <md>\pi=4\int_0^1 \frac{1}{1+x^2}\,dx</md>
+
+  <p>gives a way to approximate <m>\pi</m>.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=\frac{4}{1+x^2}.</md>
+
+  <p>The midpoint rule with <m>n</m> equal subintervals is</p>
+
+  <md>M_n=\Delta x\sum_{k=1}^n f\left(a+\left(k-\frac12\right)\Delta x\right),</md>
+
+  <p>where</p>
+
+  <md>\Delta x=\frac{b-a}{n}.</md>
+
+  <pre>
+def f(x):
+    return 4 / (1 + x**2)
+
+def midpoint_rule(a, b, n):
+    dx = (b - a) / n
+    total = 0.0
+    for k in range(1, n + 1):
+        midpoint = a + (k - 0.5) * dx
+        total += f(midpoint)
+    return total * dx
+
+for n in [4, 8, 16, 32, 64, 128]:
+    print(n, midpoint_rule(0, 1, n))
+  </pre>
+
+  <p>The outputs should approach</p>
+
+  <md>\pi.</md>
+
+  <p>A useful extension is to print the error:</p>
+
+  <md>|M_n-\pi|.</md>
+
+  <p>In Python, after importing the math module, the number <m>\pi</m> is available as
+\texttt{math.pi}.</p>
+
+  <pre>
+import math
+
+for n in [4, 8, 16, 32, 64, 128]:
+    approx = midpoint_rule(0, 1, n)
+    error = abs(approx - math.pi)
+    print(n, approx, error)
+  </pre>
+
+  <p>This experiment connects three chapters:</p>
+
+  <md>\text{definite integrals},
+\qquad
+\text{numerical approximation},
+\qquad
+\text{error}.</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-python-euler-method">
+    <title>Experiment 4: Euler’s method</title>
+
+  <p>Euler’s method follows a differential equation one tangent step at a time.</p>
+
+  <p>For the initial value problem</p>
+
+  <md>y'=1-y,
+\qquad
+y(0)=0,</md>
+
+  <p>the exact solution is</p>
+
+  <md>y(t)=1-e^{-t}.</md>
+
+  <p>Euler’s method with step size <m>h</m> uses</p>
+
+  <md>y_{n+1}=y_n+h(1-y_n).</md>
+
+  <pre>
+def euler(h, steps):
+    t = 0.0
+    y = 0.0
+    for n in range(steps):
+        y = y + h * (1 - y)
+        t = t + h
+    return t, y
+
+for h in [0.5, 0.25, 0.1, 0.05]:
+    steps = int(2 / h)
+    t, y = euler(h, steps)
+    print(h, t, y)
+  </pre>
+
+  <p>The values approximate the solution at</p>
+
+  <md>t=2.</md>
+
+  <p>The exact value is</p>
+
+  <md>1-e^{-2}.</md>
+
+  <p>A program can compare them:</p>
+
+  <pre>
+import math
+
+exact = 1 - math.exp(-2)
+
+for h in [0.5, 0.25, 0.1, 0.05]:
+    steps = int(2 / h)
+    t, y = euler(h, steps)
+    print(h, y, abs(y - exact))
+  </pre>
+
+  <p>Smaller step sizes usually improve the approximation, but at the cost of more steps.
+The same tradeoff appeared in numerical integration.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-python-newtons-method">
+    <title>Experiment 5: Newton’s method</title>
+
+  <p>Newton’s method uses tangent lines to find roots.</p>
+
+  <p>For</p>
+
+  <md>f(x)=x^3-x-1,</md>
+
+  <p>we have</p>
+
+  <md>f'(x)=3x^2-1.</md>
+
+  <p>Newton’s iteration is</p>
+
+  <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.</md>
+
+  <pre>
+def f(x):
+    return x**3 - x - 1
+
+def fp(x):
+    return 3*x**2 - 1
+
+x = 1.5
+
+for n in range(8):
+    residual = f(x)
+    print(n, x, residual)
+    x = x - f(x) / fp(x)
+  </pre>
+
+  <p>The output should show <m>x_n</m> approaching the real root near</p>
+
+  <md>1.3247.</md>
+
+  <p>A safer version checks whether the derivative is too close to zero:</p>
+
+  <pre>
+def newton_step(x):
+    derivative = fp(x)
+    if abs(derivative) &lt; 1e-12:
+        raise ValueError("Derivative too small for a safe Newton step.")
+    return x - f(x) / derivative
+  </pre>
+
+  <p>Newton’s method is fast when it works.  Bisection is slower but safer when a sign
+change is known.  A good computational habit is to know which kind of method you are
+using.</p>
+
+  <table xml:id="tab-sec-e-4-simple-python-experiments-for-calculus-0">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>method</strong></cell>
+        <cell><strong>strength</strong></cell>
+        <cell><strong>weakness</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Bisection</cell>
+        <cell>reliable with a sign change</cell>
+        <cell>slower convergence</cell>
+      </row>
+      <row>
+        <cell>Newton</cell>
+        <cell>often very fast</cell>
+        <cell>can fail with bad starting points or small derivatives</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+</section>

@@ -3,15 +3,20 @@
 <section xml:id="sec-8-1-distance-from-velocity">
   <title>Distance from velocity</title>
 
-  <p>A derivative tells how fast a quantity is changing. To recover the quantity itself, we must add up many small changes.</p>
+  <p>A derivative tells how fast a quantity is changing.  To recover the quantity itself, we
+must add up many small changes.</p>
 
-  <p>If <m>s(t)</m> is position and <m>v(t)=s'(t)</m> is velocity, then for a short time interval of length <m>\Delta t</m>,</p>
+  <p>If <m>s(t)</m> is position and <m>v(t)=s'(t)</m> is velocity, then for a short time interval of
+length <m>\Delta t</m>,</p>
+
   <md>\Delta s \approx v(t)\Delta t.</md>
 
-  <p>This is the local linear idea in reverse. The derivative says</p>
+  <p>This is the local linear idea in reverse.  The derivative says</p>
+
   <md>s(t+\Delta t)\approx s(t)+v(t)\Delta t.</md>
 
   <p>So the small position change is approximately</p>
+
   <md>v(t)\Delta t.</md>
 
   <p>The integral begins by adding many expressions of this kind.</p>
@@ -19,405 +24,532 @@
   <subsection xml:id="subsec-constant-velocity-revisited">
     <title>Constant velocity revisited</title>
 
-    <p>Suppose a car moves at a constant velocity</p>
-    <md>v(t)=60</md>
-    <p>miles per hour from <m>t=0</m> to <m>t=3</m>. Then its displacement is</p>
-    <md>60\cdot 3=180</md>
-    <p>miles.</p>
+  <p>Suppose a car moves at a constant velocity</p>
 
-    <p>There is no calculus hidden here. It is only</p>
-    <md>\text{distance}=\text{velocity}\cdot\text{time}.</md>
+  <md>v(t)=60</md>
 
-    <p>But the graph already contains the key idea. The velocity graph is horizontal. The region under it from <m>0</m> to <m>3</m> is a rectangle with height <m>60</m> and width <m>3</m>.</p>
-    <md>\text{rectangle area}=60\cdot 3=180.</md>
+  <p>miles per hour from <m>t=0</m> to <m>t=3</m>.  Then its displacement is</p>
 
-    <p>The units also agree:</p>
-    <md>\frac{\text{miles}}{\text{hour}}\cdot \text{hour}=\text{miles}.</md>
+  <md>60\cdot 3=180</md>
 
-    <figure xml:id="fig-constant-velocity-area">
-      <caption>For constant velocity, displacement is the area of a rectangle under the velocity graph.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.45\textwidth,
-              xmin=0, xmax=3.4,
-              ymin=0, ymax=75,
-              axis lines=left,
-              xlabel={\(t\) (hours)},
-              ylabel={\(v(t)\) (miles/hour)},
-              xtick={0,1,2,3},
-              ytick={0,60},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:3,60);
-          \addplot[very thick, domain=0:3, samples=2] {60};
-          \node at (axis cs:1.5,30) {\(\text{area}=60\cdot3\)};
-          \node[anchor=west] at (axis cs:3.05,60) {\(v=60\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>miles.</p>
 
-    <p>If the same constant velocity lasts from <m>t=a</m> to <m>t=b</m>, then the displacement is</p>
-    <md>60(b-a).</md>
+  <p>There is no calculus hidden here.  It is only</p>
 
-    <p>More generally, if</p>
-    <md>v(t)=v_0</md>
-    <p>on the interval <m>[a,b]</m>, then</p>
-    <md>\text{displacement}=v_0(b-a).</md>
+  <md>\text{distance}=\text{velocity}\cdot\text{time}.</md>
 
-    <p>If the initial position is <m>s(a)</m>, then</p>
-    <md>s(b)=s(a)+v_0(b-a).</md>
+  <p>But the graph already contains the key idea.  The velocity graph is horizontal.  The
+region under it from <m>0</m> to <m>3</m> is a rectangle with height <m>60</m> and width <m>3</m>.</p>
 
-    <p>This is the simplest accumulation formula.</p>
+  <md>\text{rectangle area}=60\cdot 3=180.</md>
 
-    <example xml:id="ex-constant-velocity-train">
-      <title>Train position with constant velocity</title>
-      <statement>
-        <p>A train is already <m>12</m> miles from a station at noon. It moves away from the station at <m>50</m> miles per hour until <m>2{:}30</m> p.m. What is its position then?</p>
-        <p>The time elapsed is</p>
-        <md>2.5\text{ hours}.</md>
-        <p>The displacement is</p>
-        <md>50(2.5)=125</md>
-        <p>miles. Since the train started <m>12</m> miles from the station,</p>
-        <md>s(2.5)=12+125=137.</md>
-        <p>So the train is <m>137</m> miles from the station at <m>2{:}30</m> p.m.</p>
-        <p>The starting value <m>12</m> is not produced by the velocity. The velocity produces the change. Accumulation adds that change to the starting value.</p>
-      </statement>
-    </example>
+  <p>The units also agree:</p>
+
+  <md>\frac{\text{miles}}{\text{hour}}\cdot \text{hour}=\text{miles}.</md>
+
+  <figure xml:id="fig-constant-velocity-area">
+    <caption>For constant velocity, displacement is the area of a rectangle under the velocity graph.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=3.4,
+    ymin=0, ymax=75,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,1,2,3},
+    ytick={0,60},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15, draw=gray!60] (axis cs:0,0) rectangle (axis cs:3,60);
+\addplot[very thick, domain=0:3, samples=2] {60};
+\node at (axis cs:1.5,30) {\(\text{area}=60\cdot3\)};
+\node[anchor=west] at (axis cs:3.05,60) {\(v=60\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>If the same constant velocity lasts from <m>t=a</m> to <m>t=b</m>, then the displacement is</p>
+
+  <md>60(b-a).</md>
+
+  <p>More generally, if</p>
+
+  <md>v(t)=v_0</md>
+
+  <p>on the interval <m>[a,b]</m>, then</p>
+
+  <md>
+\text{displacement}=v_0(b-a).
+</md>
+
+  <p>If the initial position is <m>s(a)</m>, then</p>
+
+  <md>
+s(b)=s(a)+v_0(b-a).
+</md>
+
+  <p>This is the simplest accumulation formula.</p>
+
+
+  <exercise xml:id="checkpoint-8-1-rectangle-as-displacement">
+        <title>Why is constant-velocity displacement the area of a rectangle?</title>
+        <statement>
+          <p>
+            If velocity is constantly <m>60</m> miles per hour for <m>3</m> hours, the displacement is <m>180</m> miles, which is also the area of a rectangle of height <m>60</m> and width <m>3</m>. In your own words, why do the units already force that product to be a distance, and why is the same idea waiting inside a velocity graph?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Distance equals velocity times time when velocity is constant. On the graph, height times width is the same product.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-8-1-distance-from-velocity-1">
+    <title>Example</title>
+    <statement>
+  <p>A train is already <m>12</m> miles from a station at noon.  It moves away from the station
+at <m>50</m> miles per hour until <m>2{:}30</m> p.m.  What is its position then?</p>
+
+  <p>The time elapsed is</p>
+
+  <md>2.5\text{ hours}.</md>
+
+  <p>The displacement is</p>
+
+  <md>50(2.5)=125</md>
+
+  <p>miles.  Since the train started <m>12</m> miles from the station,</p>
+
+  <md>s(2.5)=12+125=137.</md>
+
+  <p>So the train is <m>137</m> miles from the station at <m>2{:}30</m> p.m.</p>
+
+  <p>The starting value <m>12</m> is not produced by the velocity.  The velocity produces the
+change.  Accumulation adds that change to the starting value.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-piecewise-constant-velocity">
     <title>Piecewise constant velocity</title>
 
-    <p>Real velocity is rarely constant for a whole trip. The next simplest case is <em>piecewise constant</em> velocity: constant for a while, then another constant, then another.</p>
+  <p>Real velocity is rarely constant for a whole trip.  The next simplest case is
+<em>piecewise constant</em> velocity: constant for a while, then another constant, then
+another.</p>
 
-    <p>Suppose a cart moves with the following velocity.</p>
-    <md>
-      v(t)=
-      \begin{cases}
-      30, \amp 0\le t\lt 1,\\
-      50, \amp 1\le t\lt 3,\\
-      20, \amp 3\le t\le 4,
-      \end{cases}
-    </md>
-    <p>where time is measured in hours and velocity in miles per hour.</p>
+  <p>Suppose a cart moves with the following velocity.</p>
 
-    <p>During the first hour, the cart travels</p>
-    <md>30\cdot 1=30</md>
-    <p>miles.</p>
+  <md>
+    <mrow>v(t)=
+\begin{cases}
+30, \amp 0\le t&lt;1,</mrow>
+    <mrow>50, \amp 1\le t&lt;3,</mrow>
+    <mrow>20, \amp 3\le t\le 4,
+\end{cases}</mrow>
+  </md>
 
-    <p>During the next two hours, it travels</p>
-    <md>50\cdot 2=100</md>
-    <p>miles.</p>
+  <p>where time is measured in hours and velocity in miles per hour.</p>
 
-    <p>During the last hour, it travels</p>
-    <md>20\cdot 1=20</md>
-    <p>miles.</p>
+  <p>During the first hour, the cart travels</p>
 
-    <p>So the total displacement is</p>
-    <md>30+100+20=150</md>
-    <p>miles.</p>
+  <md>30\cdot1=30</md>
 
-    <p>The graph tells the same story. The area under the velocity graph is the sum of three rectangle areas.</p>
+  <p>miles.</p>
 
-    <figure xml:id="fig-piecewise-constant-velocity">
-      <caption>For piecewise constant velocity, displacement is a sum of rectangle areas.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.48\textwidth,
-              xmin=0, xmax=4.3,
-              ymin=0, ymax=60,
-              axis lines=left,
-              xlabel={\(t\) (hours)},
-              ylabel={\(v(t)\) (miles/hour)},
-              xtick={0,1,2,3,4},
-              ytick={0,20,30,50},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \draw[fill=gray!12, draw=gray!60] (axis cs:0,0) rectangle (axis cs:1,30);
-          \draw[fill=gray!22, draw=gray!60] (axis cs:1,0) rectangle (axis cs:3,50);
-          \draw[fill=gray!12, draw=gray!60] (axis cs:3,0) rectangle (axis cs:4,20);
+  <p>During the next two hours, it travels</p>
 
-          \addplot[very thick] coordinates {(0,30) (1,30)};
-          \addplot[very thick] coordinates {(1,50) (3,50)};
-          \addplot[very thick] coordinates {(3,20) (4,20)};
+  <md>50\cdot2=100</md>
 
-          \node at (axis cs:0.5,15) {\(30\cdot1\)};
-          \node at (axis cs:2,25) {\(50\cdot2\)};
-          \node at (axis cs:3.5,10) {\(20\cdot1\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>miles.</p>
 
-    <p>This is already the basic structure of integration:</p>
-    <md>\text{total change} = \text{first small change} + \text{second small change} + \cdots.</md>
+  <p>During the last hour, it travels</p>
 
-    <p>For piecewise constant velocity, the small changes are exact. On each interval,</p>
-    <md>\text{change in position} = \text{velocity on that interval}\cdot\text{length of that interval}.</md>
+  <md>20\cdot1=20</md>
 
-    <example xml:id="ex-piecewise-velocity-cyclist">
-      <title>Cyclist displacement</title>
-      <statement>
-        <p>A cyclist's velocity is</p>
-        <md>
-          v(t)=
-          \begin{cases}
-          12, \amp 0\le t\lt 0.5,\\
-          18, \amp 0.5\le t\lt 1.5,\\
-          10, \amp 1.5\le t\le 2,
-          \end{cases}
-        </md>
-        <p>where <m>t</m> is measured in hours and <m>v</m> in miles per hour. Find the displacement from <m>t=0</m> to <m>t=2</m>.</p>
-        <p>The three time intervals have lengths</p>
-        <md>0.5,\qquad 1,\qquad 0.5.</md>
-        <p>So the displacement is</p>
-        <md>12(0.5)+18(1)+10(0.5)=6+18+5=29.</md>
-        <p>The cyclist travels <m>29</m> miles.</p>
-      </statement>
-    </example>
+  <p>miles.</p>
+
+  <p>So the total displacement is</p>
+
+  <md>30+100+20=150</md>
+
+  <p>miles.</p>
+
+  <p>The graph tells the same story.  The area under the velocity graph is the sum of three
+rectangle areas.</p>
+
+  <figure xml:id="fig-piecewise-constant-velocity">
+    <caption>For piecewise constant velocity, displacement is a sum of rectangle areas.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=4.3,
+    ymin=0, ymax=60,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,1,2,3,4},
+    ytick={0,20,30,50},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!12, draw=gray!60] (axis cs:0,0) rectangle (axis cs:1,30);
+\draw[fill=gray!22, draw=gray!60] (axis cs:1,0) rectangle (axis cs:3,50);
+\draw[fill=gray!12, draw=gray!60] (axis cs:3,0) rectangle (axis cs:4,20);
+
+\addplot[very thick] coordinates {(0,30) (1,30)};
+\addplot[very thick] coordinates {(1,50) (3,50)};
+\addplot[very thick] coordinates {(3,20) (4,20)};
+
+\node at (axis cs:0.5,15) {\(30\cdot1\)};
+\node at (axis cs:2,25) {\(50\cdot2\)};
+\node at (axis cs:3.5,10) {\(20\cdot1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is already the basic structure of integration:</p>
+
+  <md>\text{total change}
+=
+\text{first small change}
++
+\text{second small change}
++
+\cdots.</md>
+
+  <p>For piecewise constant velocity, the small changes are exact.  On each interval,</p>
+
+  <md>\text{change in position}
+=
+\text{velocity on that interval}\cdot\text{length of that interval}.</md>
+
+  <example xml:id="ex-sec-8-1-distance-from-velocity-2">
+    <title>Example</title>
+    <statement>
+  <p>A cyclist’s velocity is</p>
+
+  <md>
+    <mrow>v(t)=
+\begin{cases}
+12, \amp 0\le t&lt;0.5,</mrow>
+    <mrow>18, \amp 0.5\le t&lt;1.5,</mrow>
+    <mrow>10, \amp 1.5\le t\le 2,
+\end{cases}</mrow>
+  </md>
+
+  <p>where <m>t</m> is measured in hours and <m>v</m> in miles per hour.  Find the displacement
+from <m>t=0</m> to <m>t=2</m>.</p>
+
+  <p>The three time intervals have lengths</p>
+
+  <md>0.5,\qquad 1,\qquad 0.5.</md>
+
+  <p>So the displacement is</p>
+
+  <md>12(0.5)+18(1)+10(0.5)=6+18+5=29.</md>
+
+  <p>The cyclist travels <m>29</m> miles.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-estimating-distance-from-sampled-speeds">
     <title>Estimating distance from sampled speeds</title>
 
-    <p>In practice, we often do not know a velocity formula. We may only have speedometer readings at certain times.</p>
+  <p>In practice, we often do not know a velocity formula.  We may only have speedometer
+readings at certain times.</p>
 
-    <p>Suppose a car's velocity is sampled every half hour.</p>
+  <p>Suppose a car’s velocity is sampled every half hour.</p>
 
-    <table>
-      <title>Sampled car velocity over two hours</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>t\text{ (hours)}</m></cell>
-          <cell>0</cell>
-          <cell>0.5</cell>
-          <cell>1.0</cell>
-          <cell>1.5</cell>
-          <cell>2.0</cell>
-        </row>
-        <row>
-          <cell><m>v(t)\text{ (miles/hour)}</m></cell>
-          <cell>20</cell>
-          <cell>28</cell>
-          <cell>34</cell>
-          <cell>38</cell>
-          <cell>40</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|ccccc}
+t\text{ (hours)} \amp 0 \amp 0.5 \amp 1.0 \amp 1.5 \amp 2.0</mrow>
+    <mrow>\hline
+v(t)\text{ (miles/hour)} \amp 20 \amp 28 \amp 34 \amp 38 \amp 40
+\end{array}</mrow>
+  </md>
 
-    <p>How far did the car travel in the two hours?</p>
+  <p>How far did the car travel in the two hours?</p>
 
-    <p>The table does not tell us exactly what happened between readings. But we can estimate.</p>
+  <p>The table does not tell us exactly what happened between readings.  But we can
+estimate.</p>
 
-    <p>If we use the velocity at the beginning of each half-hour interval, we get</p>
-    <md>0.5(20)+0.5(28)+0.5(34)+0.5(38).</md>
-    <p>Thus</p>
-    <md>\text{left estimate} = 0.5(20+28+34+38) = 60</md>
-    <p>miles.</p>
+  <p>If we use the velocity at the beginning of each half-hour interval, we get</p>
 
-    <p>If we use the velocity at the end of each half-hour interval, we get</p>
-    <md>0.5(28)+0.5(34)+0.5(38)+0.5(40).</md>
-    <p>Thus</p>
-    <md>\text{right estimate} = 0.5(28+34+38+40) = 70</md>
-    <p>miles.</p>
+  <md>0.5(20)+0.5(28)+0.5(34)+0.5(38).</md>
 
-    <p>The two estimates are different because the velocity is changing. If the velocity was increasing throughout the trip, the left estimate is too small and the right estimate is too large.</p>
+  <p>Thus</p>
 
-    <note xml:id="note-principle-rectangular-estimation">
-      <title>The principle of rectangular estimation</title>
-      <p>On a short interval, pretend the velocity is constant. Then</p>
-      <md>\text{small displacement}\approx \text{sampled velocity}\cdot \text{time width}.</md>
+  <md>\text{left estimate}
+=
+0.5(20+28+34+38)
+=
+60</md>
+
+  <p>miles.</p>
+
+  <p>If we use the velocity at the end of each half-hour interval, we get</p>
+
+  <md>0.5(28)+0.5(34)+0.5(38)+0.5(40).</md>
+
+  <p>Thus</p>
+
+  <md>\text{right estimate}
+=
+0.5(28+34+38+40)
+=
+70</md>
+
+  <p>miles.</p>
+
+  <p>The two estimates are different because the velocity is changing.  If the velocity was
+increasing throughout the trip, the left estimate is too small and the right estimate is
+too large.</p>
+
+  <note xml:id="note-sec-8-1-distance-from-velocity-50">
+    <title>The principle of rectangular estimation</title>
+      <p>On a short interval, pretend the velocity is constant.  Then</p>
+        <md>\text{small displacement}\approx \text{sampled velocity}\cdot \text{time width}.</md>
       <p>Add the small displacements.</p>
-    </note>
+  </note>
 
-    <p>If we also know midpoint speeds, we can often do better. Suppose the readings at the midpoints of the four half-hour intervals are</p>
+  <p>If we also know midpoint speeds, we can often do better.  Suppose the readings at the
+midpoints of the four half-hour intervals are</p>
 
-    <table>
-      <title>Sampled midpoint velocities</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <col halign="center"/>
-        <row header="yes">
-          <cell><m>t\text{ (hours)}</m></cell>
-          <cell>0.25</cell>
-          <cell>0.75</cell>
-          <cell>1.25</cell>
-          <cell>1.75</cell>
-        </row>
-        <row>
-          <cell><m>v(t)\text{ (miles/hour)}</m></cell>
-          <cell>24</cell>
-          <cell>31</cell>
-          <cell>36</cell>
-          <cell>39</cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|cccc}
+t\text{ (hours)} \amp 0.25 \amp 0.75 \amp 1.25 \amp 1.75</mrow>
+    <mrow>\hline
+v(t)\text{ (miles/hour)} \amp 24 \amp 31 \amp 36 \amp 39
+\end{array}</mrow>
+  </md>
 
-    <p>Then the midpoint estimate is</p>
-    <md>0.5(24+31+36+39)=65</md>
-    <p>miles.</p>
+  <p>Then the midpoint estimate is</p>
 
-    <p>The estimates</p>
-    <md>60,\qquad 65,\qquad 70</md>
-    <p>are not three different truths. They are three attempts to recover one accumulated distance from incomplete velocity information.</p>
+  <md>0.5(24+31+36+39)=65</md>
 
-    <p>Smaller time intervals usually give better estimates. If we sample every minute instead of every half hour, each rectangle covers less time, so the assumption <q>velocity is nearly constant here</q> becomes more trustworthy.</p>
+  <p>miles.</p>
 
-    <figure xml:id="fig-sampled-velocity-rectangles">
-      <caption>A sampled velocity table leads naturally to rectangular distance estimates.</caption>
-      <image width="82%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.82\textwidth,
-              height=0.6\textwidth,
-              xmin=0, xmax=2.05,
-              ymin=0, ymax=45,
-              axis lines=left,
-              xlabel={\(t\) (hours)},
-              ylabel={\(v(t)\) (miles/hour)},
-              xtick={0,0.5,1,1.5,2},
-              ytick={0,20,28,34,38,40},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          % left rectangles
-          \draw[fill=gray!12, draw=gray!55] (axis cs:0,0) rectangle (axis cs:0.5,20);
-          \draw[fill=gray!12, draw=gray!55] (axis cs:0.5,0) rectangle (axis cs:1,28);
-          \draw[fill=gray!12, draw=gray!55] (axis cs:1,0) rectangle (axis cs:1.5,34);
-          \draw[fill=gray!12, draw=gray!55] (axis cs:1.5,0) rectangle (axis cs:2,38);
+  <p>The estimates</p>
 
-          % a smooth suggested velocity curve
-          \addplot[very thick, domain=0:2, samples=100] {-4*x^2 + 18*x + 20};
+  <md>60,\qquad 65,\qquad 70</md>
 
-          % measured points
-          \addplot[only marks, mark=*] coordinates {(0,20) (0.5,28) (1,34) (1.5,38) (2,40)};
+  <p>are not three different truths.  They are three attempts to recover one accumulated
+distance from incomplete velocity information.</p>
 
-          \node[anchor=west] at (axis cs:0.1,42) {left rectangles from sampled velocities};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>Smaller time intervals usually give better estimates.  If we sample every minute
+instead of every half hour, each rectangle covers less time, so the assumption
+“velocity is nearly constant here” becomes more trustworthy.</p>
 
-    <p>This is the practical heart of the integral. We do not need a perfect formula at the start. We need a way to add many small rate-times-width contributions.</p>
+  <figure xml:id="fig-sampled-velocity-rectangles">
+    <caption>A sampled velocity table leads naturally to rectangular distance estimates.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.6\textwidth,
+    xmin=0, xmax=2.05,
+    ymin=0, ymax=45,
+    axis lines=left,
+    xlabel={\(t\) (hours)},
+    ylabel={\(v(t)\) (miles/hour)},
+    xtick={0,0.5,1,1.5,2},
+    ytick={0,20,28,34,38,40},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% left rectangles
+\draw[fill=gray!12, draw=gray!55] (axis cs:0,0) rectangle (axis cs:0.5,20);
+\draw[fill=gray!12, draw=gray!55] (axis cs:0.5,0) rectangle (axis cs:1,28);
+\draw[fill=gray!12, draw=gray!55] (axis cs:1,0) rectangle (axis cs:1.5,34);
+\draw[fill=gray!12, draw=gray!55] (axis cs:1.5,0) rectangle (axis cs:2,38);
+
+% a smooth suggested velocity curve
+\addplot[very thick, domain=0:2, samples=100] {-4*x^2 + 18*x + 20};
+
+% measured points
+\addplot[only marks, mark=*] coordinates {(0,20) (0.5,28) (1,34) (1.5,38) (2,40)};
+
+\node[anchor=west] at (axis cs:0.1,42) {left rectangles from sampled velocities};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is the practical heart of the integral.  We do not need a perfect formula at the
+start.  We need a way to add many small rate-times-width contributions.</p>
+
+  <exercise xml:id="checkpoint-8-1-rectangular-estimation">
+        <title>Why do we pretend velocity is constant on short intervals?</title>
+        <statement>
+          <p>
+            When velocity changes, we sample it, build rectangles, and add. In your own words, why is each product <q>sampled velocity times time width</q> a piece of displacement, and why do shorter intervals usually make the estimate more trustworthy?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            On a short piece, the assumption that velocity hardly changes becomes more reasonable. Accumulation is the act of adding those local stories.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-signed-displacement-total-distance">
     <title>Signed displacement versus total distance</title>
 
-    <p>Velocity has a sign. Positive velocity means motion in the positive direction. Negative velocity means motion in the negative direction.</p>
+  <p>Velocity has a sign.  Positive velocity means motion in the positive direction.
+Negative velocity means motion in the negative direction.</p>
 
-    <p>That creates two different questions.</p>
+  <p>That creates two different questions.</p>
 
-    <md>\text{What is the net change in position?}</md>
-    <md>\text{How much distance was actually traveled?}</md>
+  <md>\text{What is the net change in position?}</md>
 
-    <p>The first question asks for <em>signed displacement</em>. The second asks for <em>total distance traveled</em>.</p>
+  <md>\text{How much distance was actually traveled?}</md>
 
-    <example xml:id="ex-signed-vs-total-distance">
-      <title>Signed displacement versus total distance</title>
-      <statement>
-        <p>A particle moves along a line with velocity</p>
-        <md>
-          v(t)=
-          \begin{cases}
-          4, \amp 0\le t\lt 3,\\
-          -2, \amp 3\le t\le 8,
-          \end{cases}
-        </md>
-        <p>where <m>t</m> is measured in seconds and <m>v(t)</m> in feet per second.</p>
-        <p>From <m>0</m> to <m>3</m>, the particle moves</p>
-        <md>4\cdot 3=12</md>
-        <p>feet in the positive direction.</p>
-        <p>From <m>3</m> to <m>8</m>, the particle moves</p>
-        <md>(-2)\cdot 5=-10</md>
-        <p>feet in the negative direction.</p>
-        <p>So the signed displacement is</p>
-        <md>12+(-10)=2</md>
-        <p>feet.</p>
-        <p>The particle ends <m>2</m> feet to the right of where it started.</p>
-        <p>But the total distance traveled is</p>
-        <md>12+10=22</md>
-        <p>feet.</p>
-        <p>The particle traveled <m>12</m> feet one way and <m>10</m> feet back.</p>
+  <p>The first question asks for <em>signed displacement</em>.  The second asks for
+<em>total distance traveled</em>.</p>
 
-        <figure xml:id="fig-signed-velocity-area">
-          <caption>Area above the time axis counts positive. Area below the time axis counts negative for displacement.</caption>
-          <image width="82%">
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=0.82\textwidth,
-                  height=0.6\textwidth,
-                  xmin=0, xmax=9.0,
-                  ymin=-3, ymax=5,
-                  axis lines=middle,
-                  xlabel={\(t\) (seconds)},
-                  ylabel={\(v(t)\) (feet/second)},
-                  xtick={0,3,8},
-                  ytick={-2,0,4},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \draw[fill=gray!18, draw=gray!60, opacity=0.5] (axis cs:0,0) rectangle (axis cs:3,4);
-              \draw[fill=gray!35, draw=gray!60, opacity=0.5] (axis cs:3,0) rectangle (axis cs:8,-2);
 
-              \addplot[very thick] coordinates {(0,4) (3,4)};
-              \addplot[very thick] coordinates {(3,-2) (8,-2)};
+  <exercise xml:id="checkpoint-8-1-signed-versus-total">
+        <title>Why are signed displacement and total distance different questions?</title>
+        <statement>
+          <p>
+            Positive velocity and negative velocity contribute with opposite signs to net change of position, but total distance traveled adds the sizes of the pieces. In your own words, why can a trip end near its starting point after covering a large distance, and which accumulation uses <m>|v(t)|</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Displacement accumulates velocity, including backward motion as negative. Distance traveled accumulates speed, so cancellation is removed.
+          </p>
+        </hint>
+      </exercise>
 
-              \node at (axis cs:1.5,2) {\(+12\)};
-              \node at (axis cs:5.5,-1) {\(-10\)};
-              \node[anchor=west] at (axis cs:0.2,4.25) {positive displacement};
-              \node[anchor=west] at (axis cs:3.2,-2.5) {negative displacement};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
+  <example xml:id="ex-sec-8-1-distance-from-velocity-3">
+    <title>Example</title>
+    <statement>
+  <p>A particle moves along a line with velocity</p>
 
-        <p>For piecewise constant velocity,</p>
-        <md>\text{signed displacement} = v_1\Delta t_1+v_2\Delta t_2+\cdots+v_n\Delta t_n.</md>
-        <p>The total distance traveled is</p>
-        <md>\text{total distance} = |v_1|\Delta t_1+|v_2|\Delta t_2+\cdots+|v_n|\Delta t_n.</md>
-        <p>The absolute values remove the signs because distance traveled does not cancel.</p>
-      </statement>
-    </example>
+  <md>
+    <mrow>v(t)=
+\begin{cases}
+4, \amp 0\le t&lt;3,</mrow>
+    <mrow>-2, \amp 3\le t\le 8,
+\end{cases}</mrow>
+  </md>
 
-    <note xml:id="note-two-accumulations-velocity">
-      <title>Two accumulations from velocity</title>
+  <p>where <m>t</m> is measured in seconds and <m>v(t)</m> in feet per second.</p>
+
+  <p>From <m>0</m> to <m>3</m>, the particle moves</p>
+
+  <md>4\cdot3=12</md>
+
+  <p>feet in the positive direction.</p>
+
+  <p>From <m>3</m> to <m>8</m>, the particle moves</p>
+
+  <md>(-2)\cdot5=-10</md>
+
+  <p>feet in the negative direction.</p>
+
+  <p>So the signed displacement is</p>
+
+  <md>12+(-10)=2</md>
+
+  <p>feet.</p>
+
+  <p>The particle ends <m>2</m> feet to the right of where it started.</p>
+
+  <p>But the total distance traveled is</p>
+
+  <md>12+10=22</md>
+
+  <p>feet.</p>
+
+  <p>The particle traveled <m>12</m> feet one way and <m>10</m> feet back.</p>
+
+  <figure xml:id="fig-signed-velocity-area">
+    <caption>Area above the time axis counts positive.  Area below the time axis counts negative for displacement.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.6\textwidth,
+    xmin=0, xmax=9.0,
+    ymin=-3, ymax=5,
+    axis lines=middle,
+    xlabel={\(t\) (seconds)},
+    ylabel={\(v(t)\) (feet/second)},
+    xtick={0,3,8},
+    ytick={-2,0,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!18, draw=gray!60, opacity=0.5] (axis cs:0,0) rectangle (axis cs:3,4);
+\draw[fill=gray!35, draw=gray!60, opacity=0.5] (axis cs:3,0) rectangle (axis cs:8,-2);
+
+\addplot[very thick] coordinates {(0,4) (3,4)};
+\addplot[very thick] coordinates {(3,-2) (8,-2)};
+
+\node at (axis cs:1.5,2) {\(+12\)};
+\node at (axis cs:5.5,-1) {\(-10\)};
+\node[anchor=west] at (axis cs:0.2,4.25) {positive displacement};
+\node[anchor=west] at (axis cs:3.2,-2.5) {negative displacement};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>For piecewise constant velocity,</p>
+
+  <md>\text{signed displacement}
+=
+v_1\Delta t_1+v_2\Delta t_2+\cdots+v_n\Delta t_n.</md>
+
+  <p>The total distance traveled is</p>
+
+  <md>\text{total distance}
+=
+|v_1|\Delta t_1+|v_2|\Delta t_2+\cdots+|v_n|\Delta t_n.</md>
+
+  <p>The absolute values remove the signs because distance traveled does not cancel.</p>
+
+  <note xml:id="note-sec-8-1-distance-from-velocity-51">
+    <title>Two accumulations from velocity</title>
       <p>Signed displacement accumulates velocity:</p>
-      <md>\text{displacement}=\text{positive contributions}+\text{negative contributions}.</md>
+        <md>\text{displacement}=\text{positive contributions}+\text{negative contributions}.</md>
       <p>Total distance accumulates speed:</p>
-      <md>\text{distance traveled}=\text{accumulation of } |v(t)|.</md>
-    </note>
+        <md>\text{distance traveled}=\text{accumulation of } |v(t)|.</md>
+  </note>
 
-    <p>The picture suggests a new geometric language. Positive velocity gives area above the axis. Negative velocity gives area below the axis. For displacement, area below the axis counts negatively.</p>
+  <p>The picture suggests a new geometric language.  Positive velocity gives area above
+the axis.  Negative velocity gives area below the axis.  For displacement, area below
+the axis counts negatively.</p>
 
-    <p>So the next problem is geometric:</p>
-    <md>\text{How do we measure area under a curved graph?}</md>
+  <p>So the next problem is geometric:</p>
+
+  <md>\text{How do we measure area under a curved graph?}</md>
+    </statement>
+  </example>
   </subsection>
+
+
 
 </section>

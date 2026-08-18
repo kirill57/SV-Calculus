@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-6-least-action-and-the-shape-of-a-path">
+  <title>Least action and the shape of a path</title>
+
+  <p>Optimization began with numbers.  We chose a radius, a price, a time, or a point and
+made a function as large or as small as possible.</p>
+
+  <p>But a path is not one number.  A path is a whole function.</p>
+
+  <p>A bead sliding along a wire chooses a curve.  Light traveling through different media
+chooses a path.  A planet moving under gravity traces an orbit.  The question is no
+longer</p>
+
+  <md>\text{Which number is best?}</md>
+
+  <p>but</p>
+
+  <md>
+\text{Which function is best?}
+</md>
+
+  <p>That question leads beyond ordinary single-variable calculus.  Still, the first idea is
+visible with tools we already know: derivatives, integrals, and integration by parts.</p>
+
+  <subsection xml:id="subsec-optimization-numbers-to-functions">
+    <title>From optimization of numbers to optimization of functions</title>
+
+  <p>A usual optimization problem starts with a function such as</p>
+
+  <md>A(r)=\pi r^2</md>
+
+  <p>or</p>
+
+  <md>P(x)=\text{profit at price }x.</md>
+
+  <p>The input is a number.  We find a best number by solving</p>
+
+  <md>A'(r)=0
+\qquad\text{or}\qquad
+P'(x)=0,</md>
+
+  <p>then checking the result.</p>
+
+  <p>A path problem is different.  The input is a function.</p>
+
+  <p>For example, a curve from <m>(a,A)</m> to <m>(b,B)</m> might be written as</p>
+
+  <md>y=y(x),
+\qquad
+a\le x\le b,</md>
+
+  <p>with endpoint conditions</p>
+
+  <md>y(a)=A,
+\qquad
+y(b)=B.</md>
+
+  <p>The length of that curve is</p>
+
+  <md>\mathcal{L}[y]
+=
+\int_a^b \sqrt{1+\bigl(y'(x)\bigr)^2}\,dx.</md>
+
+  <p>The square brackets remind us that <m>\mathcal{L}</m> eats a whole function <m>y</m>, not just
+one number.  Such an object is called a <em>functional</em>.</p>
+
+  <note xml:id="note-sec-17-6-least-action-and-the-shape-of-a-path-70">
+    <title>Functional</title>
+      <p>A <em>functional</em> is a rule that assigns a number to a function.</p>
+      <p>For example,</p>
+        <md>\mathcal{L}[y]
+=
+\int_a^b \sqrt{1+\bigl(y'(x)\bigr)^2}\,dx</md>
+      <p>assigns to a path <m>y(x)</m> its arc length.</p>
+  </note>
+
+  <p>To test whether a function is best, we wiggle it slightly.</p>
+
+  <p>Let <m>\eta(x)</m> be a small “wiggle” function satisfying</p>
+
+  <md>\eta(a)=0,
+\qquad
+\eta(b)=0.</md>
+
+  <p>These conditions keep the endpoints fixed.  For a small number <m>\varepsilon</m>, form the
+nearby path</p>
+
+  <md>y_\varepsilon(x)=y(x)+\varepsilon\eta(x).</md>
+
+  <p>If <m>y</m> is the best path, then changing <m>\varepsilon</m> away from <m>0</m> should not improve
+the value, at least to first order.  So we expect</p>
+
+  <md>\left.\frac{d}{d\varepsilon}\mathcal{L}[y+\varepsilon\eta]\right|_{\varepsilon=0}=0</md>
+
+  <p>for every allowed wiggle <m>\eta</m>.</p>
+
+  <figure xml:id="fig-path-variation">
+    <caption>To optimize a path, we compare it with nearby paths that keep the endpoints fixed.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.80\textwidth,
+    height=0.44\textwidth,
+    xmin=-0.2, xmax=4.2,
+    ymin=-0.1, ymax=1.55,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,4},
+    xticklabels={\(a\),\(b\)},
+    ytick=\empty,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:4, samples=200] {0.12*(x-2)^2+0.25};
+\addplot[thick, dashed, domain=0:4, samples=200] {0.12*(x-2)^2+0.25+0.22*sin(45*x)};
+\addplot[only marks, mark=*] coordinates {(0,0.73) (4,0.73)};
+\node[anchor=south] at (axis cs:2.0,0.28) {\(y(x)\)};
+\node[anchor=south] at (axis cs:2.55,0.95) {\(y(x)+\varepsilon\eta(x)\)};
+\node[anchor=north east] at (axis cs:0,0.73) {fixed};
+\node[anchor=north west] at (axis cs:4,0.73) {fixed};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is the function-level analogue of the condition</p>
+
+  <md>f'(c)=0</md>
+
+  <p>from ordinary optimization.</p>
+
+  <p>The derivative is now taken with respect to the wiggle size <m>\varepsilon</m>.  The unknown
+object is the whole path <m>y</m>.</p>
+
+  <exercise xml:id="checkpoint-17-6-functional-eats-a-function">
+        <title>Why is optimizing a path different from optimizing a number?</title>
+        <statement>
+          <p>
+            Ordinary optimization chooses a number that makes a function extreme. A path problem chooses a whole function. In your own words, why is arc length a functional rather than an ordinary function, and why does testing a path require wiggling it?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The input is now a curve, and the output is one number such as length or time. A nearby competitor is the original path plus a small wiggle that keeps the endpoints fixed.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-brachistochrone-story">
+    <title>The brachistochrone story</title>
+
+  <p>One of the most famous path problems asks for the fastest slide.</p>
+
+  <p>Place a bead at a point <m>A</m>.  Let it slide without friction under gravity to a lower
+point <m>B</m>.  We may choose the shape of the wire connecting <m>A</m> to <m>B</m>.</p>
+
+  <p>Which wire gives the shortest travel time?</p>
+
+  <p>The shortest path is a straight line.  But the fastest path is not a straight line.  A path
+that drops steeply at first lets the bead gain speed quickly, and that speed can help
+later.</p>
+
+  <p>This is the <em>brachistochrone problem</em>.  The word comes from Greek roots meaning
+“shortest time.”</p>
+
+  <p>Let <m>y</m> measure vertical distance downward from the starting height.  Then <m>y&gt;0</m>
+means the bead has fallen.  If the bead starts from rest, conservation of energy gives</p>
+
+  <md>\frac12mv^2=mgy.</md>
+
+  <p>So the speed is</p>
+
+  <md>v=\sqrt{2gy}.</md>
+
+  <p>A small piece of arc length is</p>
+
+  <md>ds=\sqrt{1+(y')^2}\,dx.</md>
+
+  <p>Since</p>
+
+  <md>\text{time}=\frac{\text{distance}}{\text{speed}},</md>
+
+  <p>the small time is</p>
+
+  <md>dT=\frac{ds}{v}
+=
+\frac{\sqrt{1+(y')^2}}{\sqrt{2gy}}\,dx.</md>
+
+  <p>Thus the total travel time is the functional</p>
+
+  <md>
+T[y]
+=
+\int_a^b
+\frac{\sqrt{1+(y')^2}}{\sqrt{2gy}}\,dx.
+</md>
+
+  <p>The problem is to find the function <m>y(x)</m> that makes this integral as small as possible,
+with fixed endpoints.</p>
+
+  <p>That is not an ordinary optimization problem.  The input is the whole curve.</p>
+
+  <p>The answer is beautiful: the fastest curve is an arc of a <em>cycloid</em>, the curve traced
+by a point on the rim of a rolling circle.</p>
+
+  <p>One convenient cycloid parametrization is</p>
+
+  <md>x=r(\theta-\sin\theta),
+\qquad
+y=r(1-\cos\theta),</md>
+
+  <p>where <m>y</m> is measured downward.</p>
+
+  <figure xml:id="fig-brachistochrone-cycloid">
+    <caption>The brachistochrone is not the shortest path.  It is the path of shortest time.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
+  \def\PI{3.14159}
+
+  % axes: y downward
+  \draw[-&gt;, thick] (-0.2,0) -- (5.2,0) node[right] {\(x\)};
+  \draw[-&gt;, thick] (0,0.2) -- (0,-2.55) node[below] {\(y\) downward};
+
+  % straight line
+  \draw[thick, dashed] (0,0) -- (\PI,-2);
+
+  % cycloid r=1, theta 0 to 180
+  \draw[very thick, domain=0:180, samples=200, smooth, variable=\t]
+    plot ({(\t/180)*\PI - sin(\t)}, {-(1-cos(\t))});
+
+  % endpoints
+  \fill (0,0) circle (2pt);
+  \fill (\PI,-2) circle (2pt);
+
+  \node[above left] at (0,0) {\(A\)};
+  \node[right] at (\PI,-2) {\(B\)};
+
+  \node[above right] at (1.45,-0.93) {cycloid};
+  \node[below right] at (1.4,-1.2) {straight line};
+
+  % direction arrow on cycloid
+  \draw[-&gt;, thick] (0.72,-1.13) -- (0.95,-1.30);
+
+  \node[anchor=west, align=left] at (3.45,-2.0) {The fastest path\\drops quickly at first.};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>For the special cycloid</p>
+
+  <md>x=\theta-\sin\theta,
+\qquad
+y=1-\cos\theta,
+\qquad
+0\le \theta\le \pi,</md>
+
+  <p>the endpoint is</p>
+
+  <md>B=(\pi,2).</md>
+
+  <p>Along this cycloid,</p>
+
+  <md>\frac{ds}{d\theta}=2\sin\frac{\theta}{2},</md>
+
+  <p>and</p>
+
+  <md>\sqrt{2gy}
+=
+\sqrt{2g(1-\cos\theta)}
+=
+2\sqrt{g}\sin\frac{\theta}{2}.</md>
+
+  <p>Therefore</p>
+
+  <md>dT=\frac{ds}{v}
+=
+\frac{2\sin(\theta/2)\,d\theta}
+{2\sqrt{g}\sin(\theta/2)}
+=
+\frac{1}{\sqrt g}\,d\theta.</md>
+
+  <p>So the cycloid travel time from <m>\theta=0</m> to <m>\theta=\pi</m> is</p>
+
+  <md>
+T_{\text{cycloid}}=\frac{\pi}{\sqrt g}.
+</md>
+
+  <p>The straight line from <m>(0,0)</m> to <m>(\pi,2)</m> has equation</p>
+
+  <md>y=\frac{2}{\pi}x.</md>
+
+  <p>Its travel time works out to</p>
+
+  <md>
+T_{\text{line}}
+=
+\frac{\pi}{\sqrt g}\sqrt{1+\frac{4}{\pi^2}}.
+</md>
+
+  <p>Since</p>
+
+  <md>\sqrt{1+\frac{4}{\pi^2}}&gt;1,</md>
+
+  <p>we have</p>
+
+  <md>T_{\text{line}}&gt;T_{\text{cycloid}}.</md>
+
+  <p>The straight line is shorter, but slower.</p>
+
+  <note xml:id="note-sec-17-6-least-action-and-the-shape-of-a-path-71">
+    <title>Lesson of the brachistochrone</title>
+      <p>The best path depends on what is being optimized.</p>
+      <p>Shortest distance and shortest time are different questions.</p>
+  </note>
+
+  <p>The full proof that the cycloid is the fastest curve belongs to the calculus of variations.
+But the setup already shows the new kind of calculus: an integral depends on a path, and
+we seek the path that makes the integral extreme.</p>
+
+  <exercise xml:id="checkpoint-17-6-shortest-versus-fastest">
+        <title>Why is the fastest path not the shortest path?</title>
+        <statement>
+          <p>
+            The brachistochrone is a cycloid, not a straight line. In your own words, why can dropping steeply at first produce a shorter travel time even though the path is longer, and what does that say about the quantity being optimized?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Time is distance over speed, and speed is gained by falling. A path that gathers speed early can win on time while losing on length. The best path depends on what the integral is measuring.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-gentle-first-variation-calculation">
+    <title>A gentle first variation calculation</title>
+
+  <p>The brachistochrone is famous but technically demanding.  The easiest variational
+problem is the shortest path between two points.</p>
+
+  <p>We know the answer geometrically: the shortest path is a straight line.  Let us see how
+calculus finds that answer.</p>
+
+  <p>Let <m>y(x)</m> be a path from <m>(a,A)</m> to <m>(b,B)</m>.  Its length is</p>
+
+  <md>\mathcal{L}[y]
+=
+\int_a^b \sqrt{1+\bigl(y'(x)\bigr)^2}\,dx.</md>
+
+  <p>Let <m>\eta(x)</m> be any smooth wiggle with</p>
+
+  <md>\eta(a)=0,
+\qquad
+\eta(b)=0.</md>
+
+  <p>Consider nearby paths</p>
+
+  <md>y_\varepsilon(x)=y(x)+\varepsilon\eta(x).</md>
+
+  <p>Their lengths are</p>
+
+  <md>\mathcal{L}(\varepsilon)
+=
+\int_a^b
+\sqrt{1+\bigl(y'(x)+\varepsilon\eta'(x)\bigr)^2}
+\,dx.</md>
+
+  <p>If <m>y</m> is a shortest path, then <m>\varepsilon=0</m> should be a minimum of
+<m>\mathcal{L}(\varepsilon)</m>.  Therefore</p>
+
+  <md>\mathcal{L}'(0)=0.</md>
+
+  <p>Differentiate with respect to <m>\varepsilon</m>:</p>
+
+  <md>\mathcal{L}'(\varepsilon)
+=
+\int_a^b
+\frac{\bigl(y'+\varepsilon\eta'\bigr)\eta'}
+{\sqrt{1+\bigl(y'+\varepsilon\eta'\bigr)^2}}
+\,dx.</md>
+
+  <p>Set <m>\varepsilon=0</m>:</p>
+
+  <md>\mathcal{L}'(0)
+=
+\int_a^b
+\frac{y'\eta'}{\sqrt{1+(y')^2}}
+\,dx.</md>
+
+  <p>For a shortest path, this must be zero for every allowed wiggle <m>\eta</m>:</p>
+
+  <md>\int_a^b
+\frac{y'\eta'}{\sqrt{1+(y')^2}}
+\,dx=0.</md>
+
+  <p>Now use integration by parts.  Let</p>
+
+  <md>u=\frac{y'}{\sqrt{1+(y')^2}},
+\qquad
+dv=\eta'\,dx.</md>
+
+  <p>Then</p>
+
+  <md>v=\eta.</md>
+
+  <p>So</p>
+
+  <md>\int_a^b
+\frac{y'\eta'}{\sqrt{1+(y')^2}}
+\,dx
+=
+\left[
+\frac{y'}{\sqrt{1+(y')^2}}\eta
+\right]_a^b
+-
+\int_a^b
+\frac{d}{dx}
+\left(
+\frac{y'}{\sqrt{1+(y')^2}}
+\right)
+\eta\,dx.</md>
+
+  <p>The boundary term vanishes because</p>
+
+  <md>\eta(a)=\eta(b)=0.</md>
+
+  <p>Therefore</p>
+
+  <md>\mathcal{L}'(0)
+=
+-
+\int_a^b
+\frac{d}{dx}
+\left(
+\frac{y'}{\sqrt{1+(y')^2}}
+\right)
+\eta\,dx.</md>
+
+  <p>For this to be zero for every allowed wiggle <m>\eta</m>, the coefficient of <m>\eta</m> must be
+zero:</p>
+
+  <md>\frac{d}{dx}
+\left(
+\frac{y'}{\sqrt{1+(y')^2}}
+\right)
+=0.</md>
+
+  <p>Thus</p>
+
+  <md>\frac{y'}{\sqrt{1+(y')^2}}</md>
+
+  <p>is constant.  This forces <m>y'</m> itself to be constant.  Therefore</p>
+
+  <md>y'=m</md>
+
+  <p>for some constant <m>m</m>, and hence</p>
+
+  <md>
+y=mx+c.
+</md>
+
+  <p>The shortest path is a straight line.</p>
+
+  <note xml:id="note-sec-17-6-least-action-and-the-shape-of-a-path-72">
+    <title>What the calculation did</title>
+      <p>We did not vary a number.  We varied a whole path:</p>
+        <md>y\quad\longrightarrow\quad y+\varepsilon\eta.</md>
+      <p>Then we required the first-order change to vanish for every endpoint-fixed wiggle
+<m>\eta</m>.</p>
+  </note>
+
+  <p>The boundary condition on <m>\eta</m> matters.  If the endpoints were not fixed, the
+boundary term from integration by parts would not disappear.  Once again, boundary
+terms carry real information.</p>
+
+  <exercise xml:id="checkpoint-17-6-first-variation">
+        <title>Why is a first variation the analogue of a derivative being zero?</title>
+        <statement>
+          <p>
+            If a path is shortest, every allowed wiggle should give a critical value at wiggle size zero. In your own words, why does <m>\mathcal{L}'(0)=0</m> for every endpoint-fixing wiggle play the role of <m>f'(c)=0</m>, and why do the boundary terms from integration by parts disappear?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The unknown is the whole path, so the test must work against every small deformation. Fixed endpoints force the wiggle to vanish at the ends, which kills the boundary term and leaves an interior condition on the path.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-why-variation-beyond-single-variable">
+    <title>Why this is beyond ordinary single-variable calculus</title>
+
+  <p>A functional often has the form</p>
+
+  <md>\mathcal{J}[y]
+=
+\int_a^b L(x,y,y')\,dx.</md>
+
+  <p>The function <m>L</m> is called a <em>Lagrangian</em>.  It tells how the path and its slope
+contribute to the accumulated quantity.</p>
+
+  <p>The first variation calculation leads to the Euler--Lagrange equation:</p>
+
+  <md>
+\frac{\partial L}{\partial y}
+-
+\frac{d}{dx}
+\left(
+\frac{\partial L}{\partial y'}
+\right)
+=0.
+</md>
+
+  <p>This formula belongs to the calculus of variations.  It is a cousin of the ordinary
+condition</p>
+
+  <md>f'(c)=0,</md>
+
+  <p>but it applies when the unknown is a function.</p>
+
+  <p>For the shortest path problem,</p>
+
+  <md>L(x,y,y')=\sqrt{1+(y')^2}.</md>
+
+  <p>Since <m>L</m> does not depend directly on <m>y</m>,</p>
+
+  <md>\frac{\partial L}{\partial y}=0.</md>
+
+  <p>The Euler--Lagrange equation becomes</p>
+
+  <md>\frac{d}{dx}
+\left(
+\frac{y'}{\sqrt{1+(y')^2}}
+\right)
+=0,</md>
+
+  <p>the equation we found by hand.</p>
+
+  <paragraphs>
+    <title>Least action</title>
+
+  <p>Physics uses the same idea in time.</p>
+
+  <p>Suppose a particle moves along a line, with position <m>x(t)</m>.  Its kinetic energy is</p>
+
+  <md>\frac12m(x')^2,</md>
+
+  <p>and its potential energy is</p>
+
+  <md>V(x).</md>
+
+  <p>Define the action</p>
+
+  <md>
+\mathcal{S}[x]
+=
+\int_{t_0}^{t_1}
+\left(
+\frac12m(x')^2-V(x)
+\right)
+dt.
+</md>
+
+  <p>The principle of least action says, historically, that the physical path makes this
+quantity “least.”  The more accurate statement is that the physical path makes the
+first variation of the action equal to zero.  It makes the action <em>stationary</em>.</p>
+
+  <p>Let</p>
+
+  <md>x_\varepsilon(t)=x(t)+\varepsilon\eta(t),</md>
+
+  <p>where the wiggle fixes the endpoints:</p>
+
+  <md>\eta(t_0)=\eta(t_1)=0.</md>
+
+  <p>Differentiate the action with respect to <m>\varepsilon</m> at <m>\varepsilon=0</m>:</p>
+
+  <md>\left.\frac{d}{d\varepsilon}\mathcal{S}[x+\varepsilon\eta]\right|_{\varepsilon=0}
+=
+\int_{t_0}^{t_1}
+\left(
+m x'\eta' - V'(x)\eta
+\right)
+dt.</md>
+
+  <p>Use integration by parts on the first term:</p>
+
+  <md>\int_{t_0}^{t_1}m x'\eta'\,dt
+=
+\left[mx'\eta\right]_{t_0}^{t_1}
+-
+\int_{t_0}^{t_1}m x''\eta\,dt.</md>
+
+  <p>The boundary term vanishes because the endpoints are fixed.  Therefore</p>
+
+  <md>\left.\frac{d}{d\varepsilon}\mathcal{S}[x+\varepsilon\eta]\right|_{\varepsilon=0}
+=
+-
+\int_{t_0}^{t_1}
+\bigl(mx''+V'(x)\bigr)\eta\,dt.</md>
+
+  <p>For this to be zero for every allowed wiggle <m>\eta</m>, we need</p>
+
+  <md>mx''+V'(x)=0.</md>
+
+  <p>So</p>
+
+  <md>
+mx''=-V'(x).
+</md>
+
+  <p>That is Newton’s second law for a force</p>
+
+  <md>F(x)=-V'(x).</md>
+
+  <p>A law of motion has emerged from an optimization principle.</p>
+
+  <note xml:id="note-sec-17-6-least-action-and-the-shape-of-a-path-73">
+    <title>Stationary does not always mean minimum</title>
+      <p>The historical phrase is “least action,” but the safest calculus statement is</p>
+        <md>\text{the first variation is zero.}</md>
+      <p>This is like ordinary calculus: <m>f'(c)=0</m> may indicate a minimum, a maximum, or
+neither.  More work is needed to decide which.</p>
+  </note>
+
+  <p>This is why the subject goes beyond the ordinary single-variable course.  We need to
+make sense of spaces of functions, allowed variations, endpoint conditions, existence of
+minimizers, and the difference between minimum and stationary.</p>
+
+  <p>But the seed is already here:</p>
+
+  <md>
+\text{differentiate an accumulated quantity, watch the boundary terms, and set the first variation to zero.}
+</md>
+
+  <p>That sentence connects much of the road ahead.  In multivariable calculus, the
+boundary of an interval becomes the boundary of a region.  Flux through endpoints
+becomes flux through curves and surfaces.  The Fundamental Theorem becomes
+Green’s theorem, the Divergence Theorem, and Stokes’ theorem.</p>
+
+  <p>The book began with distance and velocity.  It ends by pointing to the same pattern in
+larger geometry:</p>
+
+  <md>
+\text{change inside is measured by derivatives and boundaries.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-6-least-action">
+        <title>Why does least action live beyond single-variable calculus?</title>
+        <statement>
+          <p>
+            The Euler--Lagrange equation is a cousin of <m>f'(c)=0</m>, but the unknown is a function. In your own words, why is that beyond ordinary single-variable optimization, and how does the action integral turn a particle’s kinetic-minus-potential story into a path problem?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            You are no longer choosing one number; you are choosing a motion <m>x(t)</m>. Stationary action is the condition that this motion not change the integral to first order under wiggles, which recovers the laws of mechanics as a variational statement.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

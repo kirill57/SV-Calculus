@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-8-systems-and-interaction-models">
+  <title>Systems and interaction models</title>
+
+  <p>A first-order equation such as</p>
+
+  <md>y'=f(y)</md>
+
+  <p>uses one number to describe the current state.  A spring needs two numbers: position and
+velocity.  Two interacting populations need two numbers: one for each population.</p>
+
+  <p>When the state has several components, one differential equation becomes a system.</p>
+
+  <md>\text{one changing quantity}
+\quad\Longrightarrow\quad
+\text{one differential equation},</md>
+
+  <md>\text{several changing quantities}
+\quad\Longrightarrow\quad
+\text{several linked differential equations}.</md>
+
+  <subsection xml:id="subsec-two-populations">
+    <title>Two populations</title>
+
+  <p>A single population model may look like</p>
+
+  <md>P'=rP.</md>
+
+  <p>That can describe a species living alone with plentiful resources.  But species do not
+usually live alone.  They compete, cooperate, eat, flee, and depend on one another.</p>
+
+  <p>Let</p>
+
+  <md>R(t)=\text{number of rabbits at time }t,</md>
+
+  <p>and</p>
+
+  <md>W(t)=\text{number of wolves at time }t.</md>
+
+  <p>The rabbits are prey.  The wolves are predators.</p>
+
+  <p>If there were no wolves, the rabbits might grow approximately exponentially:</p>
+
+  <md>R'=0.8R.</md>
+
+  <p>If there were no rabbits, the wolves might decline:</p>
+
+  <md>W'=-0.6W.</md>
+
+  <p>But when both are present, they meet.  The number of encounters should increase when
+there are more rabbits and also when there are more wolves.  A simple model makes the
+encounter term proportional to</p>
+
+  <md>RW.</md>
+
+  <p>Predation decreases the rabbit population and increases the wolf population.  One model
+is</p>
+
+  <md>
+    <mrow>R'\amp=0.8R-0.02RW,</mrow>
+    <mrow>W'\amp=-0.6W+0.01RW.</mrow>
+  </md>
+
+  <p>The first equation says that rabbits reproduce, but are eaten.  The second says that wolves
+decline without food, but benefit from encounters with rabbits.</p>
+
+  <p>This is not one equation.  It is a system.</p>
+
+  <note xml:id="note-sec-13-8-systems-and-interaction-models-67">
+    <title>System of differential equations</title>
+      <p>A <em>system of differential equations</em> is a set of differential equations for several
+unknown functions.</p>
+      <p>A solution of</p>
+        <md>
+    <mrow>R'\amp=F(R,W),</mrow>
+    <mrow>W'\amp=G(R,W)</mrow>
+  </md>
+      <p>is a pair of functions</p>
+        <md>R(t),\qquad W(t)</md>
+      <p>that satisfies both equations on the same time interval.</p>
+  </note>
+
+  <p>The equations are coupled.  The derivative <m>R'</m> depends on <m>W</m>, and the derivative
+<m>W'</m> depends on <m>R</m>.  We cannot solve one equation first and then the other.  The two
+populations move together.</p>
+
+  <paragraphs>
+    <title>Equilibria</title>
+
+  <p>An equilibrium occurs when both derivatives are zero:</p>
+
+  <md>R'=0
+\qquad\text{and}\qquad
+W'=0.</md>
+
+  <p>For the model</p>
+
+  <md>R'=0.8R-0.02RW=R(0.8-0.02W),</md>
+
+  <p>so</p>
+
+  <md>R'=0</md>
+
+  <p>when</p>
+
+  <md>R=0
+\qquad\text{or}\qquad
+W=40.</md>
+
+  <p>Also,</p>
+
+  <md>W'=-0.6W+0.01RW=W(-0.6+0.01R),</md>
+
+  <p>so</p>
+
+  <md>W'=0</md>
+
+  <p>when</p>
+
+  <md>W=0
+\qquad\text{or}\qquad
+R=60.</md>
+
+  <p>Thus there are two biologically meaningful equilibria:</p>
+
+  <md>(R,W)=(0,0)</md>
+
+  <p>and</p>
+
+  <md>(R,W)=(60,40).</md>
+
+  <p>The equilibrium</p>
+
+  <md>(0,0)</md>
+
+  <p>means no rabbits and no wolves.  The equilibrium</p>
+
+  <md>(60,40)</md>
+
+  <p>means the two populations balance each other in the model.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-8-coupled-equations">
+        <title>Why do two interacting populations require a system?</title>
+        <statement>
+          <p>
+            A single equation <m>P'=rP</m> uses one number as the state. Rabbits and wolves need two. In your own words, why are the equations coupled, and why can you not solve one population first and then the other?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each derivative depends on both unknowns. The two populations move together, so a solution is a pair of functions on the same time interval.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-predator-prey-picture">
+    <title>Predator-prey equations as a picture</title>
+
+  <p>For one autonomous equation,</p>
+
+  <md>y'=f(y),</md>
+
+  <p>a phase line summarized the motion.  For two autonomous equations,</p>
+
+  <md>
+    <mrow>R'\amp=F(R,W),</mrow>
+    <mrow>W'\amp=G(R,W),</mrow>
+  </md>
+
+  <p>the state is a point in the <m>(R,W)</m>-plane.  The differential equation assigns a velocity
+vector to each point:</p>
+
+  <md>(R,W)
+\quad\longmapsto\quad
+(R',W').</md>
+
+  <p>So the phase line becomes a phase plane.</p>
+
+  <p>For the predator-prey model,</p>
+
+  <md>
+    <mrow>R'\amp=R(0.8-0.02W),</mrow>
+    <mrow>W'\amp=W(-0.6+0.01R),</mrow>
+  </md>
+
+  <p>the lines</p>
+
+  <md>W=40</md>
+
+  <p>and</p>
+
+  <md>R=60</md>
+
+  <p>divide the plane into four regions.</p>
+
+  <p>If</p>
+
+  <md>W&lt;40,</md>
+
+  <p>then</p>
+
+  <md>R'&gt;0.</md>
+
+  <p>If</p>
+
+  <md>W&gt;40,</md>
+
+  <p>then</p>
+
+  <md>R'&lt;0.</md>
+
+  <p>If</p>
+
+  <md>R&lt;60,</md>
+
+  <p>then</p>
+
+  <md>W'&lt;0.</md>
+
+  <p>If</p>
+
+  <md>R&gt;60,</md>
+
+  <p>then</p>
+
+  <md>W'&gt;0.</md>
+
+  <p>The signs give the direction of motion.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c|c|c}
+<strong>region</strong> \amp <strong>sign of \(R'\)</strong> \amp <strong>sign of \(W'\)</strong> \amp <strong>motion</strong></mrow>
+    <mrow>\hline
+R&lt;60,\ W&lt;40 \amp + \amp - \amp \text{right and down}</mrow>
+    <mrow>R&gt;60,\ W&lt;40 \amp + \amp + \amp \text{right and up}</mrow>
+    <mrow>R&gt;60,\ W&gt;40 \amp - \amp + \amp \text{left and up}</mrow>
+    <mrow>R&lt;60,\ W&gt;40 \amp - \amp - \amp \text{left and down}
+\end{array}</mrow>
+  </md>
+
+  <figure xml:id="fig-predator-prey-phase-plane">
+    <caption>A predator-prey system is read in the phase plane.  The point <m>(R(t),W(t))</m> moves according to the vector <m>(R',W')</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.56\textwidth,
+    xmin=0, xmax=120,
+    ymin=0, ymax=85,
+    axis lines=left,
+    xlabel={rabbits \(R\)},
+    ylabel={wolves \(W\)},
+    xtick={0,60,120},
+    ytick={0,40,80},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% nullclines
+\addplot[thick, dashed, domain=0:120, samples=2] {40};
+\draw[thick, dashed] (axis cs:60,0) -- (axis cs:60,85);
+
+\node[anchor=south west] at (axis cs:63,40) {equilibrium \((60,40)\)};
+\addplot[only marks, mark=*] coordinates {(60,40)};
+
+% approximate closed orbit
+\addplot[very thick, domain=0:360, samples=240]
+  ({60+35*cos(x)}, {40+22*sin(x)});
+
+% direction arrows
+\draw[-&gt;, thick] (axis cs:25,20) -- (axis cs:38,12);
+\draw[-&gt;, thick] (axis cs:90,20) -- (axis cs:104,31);
+\draw[-&gt;, thick] (axis cs:95,65) -- (axis cs:80,75);
+\draw[-&gt;, thick] (axis cs:25,65) -- (axis cs:12,54);
+
+\node[anchor=west] at (axis cs:63,7) {\(R=60\)};
+\node[anchor=west] at (axis cs:5,42) {\(W=40\)};
+\node[anchor=west] at (axis cs:72,18) {prey abundant};
+\node[anchor=west] at (axis cs:72,12) {predators rise};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The picture suggests a cycle.</p>
+
+  <p>When wolves are few, rabbits increase.  Then the abundance of rabbits lets wolves
+increase.  More wolves reduce the rabbits.  With fewer rabbits, wolves decline.  Then the
+rabbits can recover.</p>
+
+  <p>The equations do not describe one population rising or falling by itself.  They describe
+a moving point in the plane.</p>
+
+  <paragraphs>
+    <title>A numerical glimpse</title>
+
+  <p>Suppose</p>
+
+  <md>R(0)=80,
+\qquad
+W(0)=20.</md>
+
+  <p>Then</p>
+
+  <md>R'(0)=80(0.8-0.02(20))=80(0.4)=32,</md>
+
+  <p>and</p>
+
+  <md>W'(0)=20(-0.6+0.01(80))=20(0.2)=4.</md>
+
+  <p>So at the starting point,</p>
+
+  <md>(R',W')=(32,4).</md>
+
+  <p>Both populations are increasing, but rabbits are increasing faster.  In the phase plane,
+the point initially moves mostly to the right and slightly upward.</p>
+
+  <p>At a different point, say</p>
+
+  <md>R=30,\qquad W=70,</md>
+
+  <p>we get</p>
+
+  <md>R'=30(0.8-0.02(70))=30(-0.6)=-18,</md>
+
+  <p>and</p>
+
+  <md>W'=70(-0.6+0.01(30))=70(-0.3)=-21.</md>
+
+  <p>Both populations are decreasing.  The point moves left and down.</p>
+
+  <p>This is the system version of a direction field.  Instead of little line segments with a
+slope, we draw little arrows with two components.</p>
+
+  <note xml:id="note-sec-13-8-systems-and-interaction-models-68">
+    <title>Phase plane</title>
+      <p>For a system</p>
+        <md>
+    <mrow>x'\amp=F(x,y),</mrow>
+    <mrow>y'\amp=G(x,y),</mrow>
+  </md>
+      <p>the <em>phase plane</em> is the <m>(x,y)</m>-plane together with direction arrows</p>
+        <md>(F(x,y),G(x,y)).</md>
+      <p>A solution traces a curve in this plane as time passes.</p>
+  </note>
+
+  <p>The phase plane does not usually give exact formulas for <m>R(t)</m> and <m>W(t)</m>.  It gives
+the shape of the interaction.</p>
+
+  <p>That is often the first thing we need.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-8-phase-plane">
+        <title>What does a phase plane show that a pair of time graphs does not?</title>
+        <statement>
+          <p>
+            For a system, the state is a point <m>(x,y)</m>, and the right-hand side supplies an arrow at each point. In your own words, why is a solution a moving point in that plane, and what information is missing from the phase-plane picture?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Time is the parameter that traces the curve; it need not appear as an axis. The picture shows the shape of the interaction more than exact formulas for <m>x(t)</m> and <m>y(t)</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-systems-lead-to-multivariable-calculus">
+    <title>Why systems lead naturally to multivariable calculus</title>
+
+  <p>A system changes the meaning of state.</p>
+
+  <p>For one equation,</p>
+
+  <md>y'=f(y),</md>
+
+  <p>the state is one number:</p>
+
+  <md>y.</md>
+
+  <p>For two equations,</p>
+
+  <md>
+    <mrow>x'\amp=F(x,y),</mrow>
+    <mrow>y'\amp=G(x,y),</mrow>
+  </md>
+
+  <p>the state is a point:</p>
+
+  <md>(x,y).</md>
+
+  <p>The right side is not a function of one variable.  It is built from functions of two
+variables:</p>
+
+  <md>F(x,y)
+\qquad\text{and}\qquad
+G(x,y).</md>
+
+  <p>That is the doorway to multivariable calculus.</p>
+
+  <p>Even a second-order equation has this structure hiding inside it.  Consider</p>
+
+  <md>y''+\omega^2y=0.</md>
+
+  <p>Let</p>
+
+  <md>v=y'.</md>
+
+  <p>Then</p>
+
+  <md>y'=v.</md>
+
+  <p>Also, from the differential equation,</p>
+
+  <md>v'=y''=-\omega^2y.</md>
+
+  <p>So the second-order equation is equivalent to the first-order system</p>
+
+  <md>
+    <mrow>y'\amp=v,</mrow>
+    <mrow>v'\amp=-\omega^2y.</mrow>
+  </md>
+
+  <p>The state is now</p>
+
+  <md>(y,v),</md>
+
+  <p>position and velocity together.</p>
+
+  <p>For <m>\omega=1</m>, the system is</p>
+
+  <md>
+    <mrow>y'\amp=v,</mrow>
+    <mrow>v'\amp=-y.</mrow>
+  </md>
+
+  <p>The curves in the <m>(y,v)</m>-plane are circles, because the quantity</p>
+
+  <md>y^2+v^2</md>
+
+  <p>stays constant.  Indeed,</p>
+
+  <md>\frac{d}{dt}(y^2+v^2)=2yy'+2vv'.</md>
+
+  <p>Substitute</p>
+
+  <md>y'=v,
+\qquad
+v'=-y:</md>
+
+  <md>2y v+2v(-y)=0.</md>
+
+  <p>So</p>
+
+  <md>y^2+v^2=\text{constant}.</md>
+
+  <p>The oscillator moves around closed curves in the position-velocity plane.</p>
+
+  <figure xml:id="fig-oscillator-phase-plane">
+    <caption>The simple oscillator becomes a first-order system in the position-velocity plane.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.62\textwidth,
+    height=0.62\textwidth,
+    xmin=-3.2, xmax=3.2,
+    ymin=-3.2, ymax=3.2,
+    axis lines=middle,
+    xlabel={position \(y\)},
+    ylabel={velocity \(v\)},
+    xtick={-3,-2,-1,0,1,2,3},
+    ytick={-3,-2,-1,0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% vector field for y'=v, v'=-y
+\foreach \xx in {-3,-2,-1,0,1,2,3} {
+  \foreach \yy in {-3,-2,-1,0,1,2,3} {
+    \pgfmathsetmacro{\vx}{\yy}
+    \pgfmathsetmacro{\vy}{-\xx}
+    \pgfmathsetmacro{\s}{sqrt(\vx*\vx+\vy*\vy)}
+    \ifdim \s pt &gt; 0pt
+      \pgfmathsetmacro{\dx}{0.22*\vx/\s}
+      \pgfmathsetmacro{\dy}{0.22*\vy/\s}
+      
+      % Pre-calculate target coordinates
+      \pgfmathsetmacro{\xTwo}{\xx+\dx}
+      \pgfmathsetmacro{\yTwo}{\yy+\dy}
+      
+      % Expand variables into hard numbers before plotting
+      \edef\temp{%
+        \noexpand\draw[gray!65,-&gt;] (axis cs:\xx,\yy) -- (axis cs:\xTwo,\yTwo);%
+      }
+      % Execute the expanded command
+      \temp
+    \fi
+  }
+}
+\addplot[very thick, domain=0:360, samples=240] ({2*cos(x)}, {2*sin(x)});
+\addplot[very thick, dashed, domain=0:360, samples=240] ({1.2*cos(x)}, {1.2*sin(x)});
+\node[anchor=west] at (axis cs:1.6,1.6) {\(y^2+v^2=\text{constant}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is a different kind of graph from <m>y(t)</m> versus <m>t</m>.  It does not show time on an
+axis.  It shows the state of the system.  Time is the parameter that traces the curve.</p>
+
+  <note xml:id="note-sec-13-8-systems-and-interaction-models-69">
+    <title>The bridge</title>
+      <p>A solution of a system is a moving point:</p>
+        <md>t\longmapsto (x(t),y(t)).</md>
+      <p>So differential equations lead naturally to parametrized curves, vector fields, and
+functions of several variables.</p>
+  </note>
+
+  <p>This is where single-variable calculus begins to lean toward the next subject.  The
+derivative of one function was enough for motion on a line.  Motion in a plane needs two
+coordinate functions.  Interactions need functions of several variables.  The geometry of
+change begins to expand.</p>
+
+  <p>Before leaving differential equations, we should collect the warnings that protect the
+methods we have used: solutions can be lost by division, numerical methods can invent
+false behavior, and the same differential equation can describe many different histories
+until an initial condition chooses one.</p>
+
+  <exercise xml:id="checkpoint-13-8-bridge-to-multivariable">
+        <title>Why do systems lead naturally to multivariable calculus?</title>
+        <statement>
+          <p>
+            Even the oscillator <m>y''+\omega^2 y=0</m> can be rewritten as a first-order system for <m>(y,v)</m>. In your own words, why does that change the meaning of state from one number to a point, and what new kind of function then appears on the right-hand side?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The right-hand side is built from functions of several variables. Parametrized curves and vector fields are the geometry of that moving point.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

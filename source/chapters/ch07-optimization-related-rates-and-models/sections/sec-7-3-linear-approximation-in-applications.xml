@@ -3,17 +3,24 @@
 <section xml:id="sec-7-3-linear-approximation-in-applications">
   <title>Linear approximation in applications</title>
 
-  <p>Optimization asked for the best choice. Related rates asked how fast quantities change together.</p>
+  <p>Optimization asked for the best choice.  Related rates asked how fast quantities
+change together.</p>
 
   <p>Measurements ask a quieter question.</p>
-  <p>If the input is a little wrong, how wrong is the output?</p>
 
-  <p>A radius may be measured only to the nearest millimeter. An angle may be off by one degree. A price model may be only an approximation. Calculus gives a first answer through the tangent line.</p>
+  <md>\text{If the input is a little wrong, how wrong is the output?}</md>
+
+  <p>A radius may be measured only to the nearest millimeter.  An angle may be off by
+one degree.  A price model may be only an approximation.  Calculus gives a first
+answer through the tangent line.</p>
 
   <p>Recall the local linear approximation:</p>
+
   <md>f(a+\Delta x)\approx f(a)+f'(a)\Delta x.</md>
 
-  <p>The derivative is the multiplier that turns a small input change into a small output change.</p>
+  <p>The derivative is the multiplier that turns a small input change into a small output
+change.</p>
+
   <md>\Delta y\approx f'(a)\Delta x.</md>
 
   <p>That is the practical meaning of the derivative in this section.</p>
@@ -21,387 +28,670 @@
   <subsection xml:id="subsec-estimating-hard-numbers-quickly">
     <title>Estimating hard numbers quickly</title>
 
-    <p>Some numbers are hard to compute exactly, but close to numbers we know well.</p>
+  <p>Some numbers are hard to compute exactly, but close to numbers we know well.</p>
 
-    <p>For example, <m>\sqrt{26}</m> is close to <m>\sqrt{25}</m>. Since</p>
-    <md>\sqrt{25}=5,</md>
-    <p>we can use the tangent line to</p>
-    <md>f(x)=\sqrt{x}</md>
-    <p>at</p>
-    <md>x=25.</md>
+  <p>For example, <m>\sqrt{26}</m> is close to <m>\sqrt{25}</m>.  Since</p>
 
-    <p>The derivative is</p>
-    <md>f'(x)=\frac{1}{2\sqrt{x}}.</md>
+  <md>\sqrt{25}=5,</md>
 
-    <p>So</p>
-    <md>f'(25)=\frac{1}{2\cdot 5}=\frac{1}{10}.</md>
+  <p>we can use the tangent line to</p>
 
-    <p>The linear approximation at <m>x=25</m> is</p>
-    <md>L(x)=f(25)+f'(25)(x-25).</md>
+  <md>f(x)=\sqrt{x}</md>
 
-    <p>Thus</p>
-    <md>L(x)=5+\frac{1}{10}(x-25).</md>
+  <p>at</p>
 
-    <p>For <m>x=26</m>,</p>
-    <md>\sqrt{26}=f(26)\approx L(26) = 5+\frac{1}{10} = 5.1.</md>
+  <md>x=25.</md>
 
-    <p>So</p>
-    <md>\sqrt{26}\approx 5.1.</md>
+  <p>The derivative is</p>
 
-    <p>This is close. In fact,</p>
-    <md>5.1^2=26.01,</md>
-    <p>so <m>5.1</m> is slightly larger than <m>\sqrt{26}</m>.</p>
+  <md>f'(x)=\frac{1}{2\sqrt{x}}.</md>
 
-    <figure xml:id="fig-linear-approx-sqrt26">
-      <caption>Near <m>x=25</m>, the tangent line to <m>y=\sqrt{x}</m> gives a quick estimate of <m>\sqrt{x}</m>.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.46\textwidth,
-              xmin=20, xmax=30,
-              ymin=4.4, ymax=5.6,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={25,26},
-              ytick={5,5.1},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=20:30, samples=150] {sqrt(x)};
-          \addplot[very thick, domain=20:30, samples=2] {5+(x-25)/10};
-          \addplot[only marks, mark=*] coordinates {(25,5)};
-          \addplot[only marks, mark=o, thick] coordinates {(26,5.1)};
-          \draw[dashed] (axis cs:26,0) -- (axis cs:26,5.1);
-          \node[anchor=south east] at (axis cs:25,5) {\((25,5)\)};
-          \node[anchor=west] at (axis cs:26,5.05) {\(L(26)=5.1\)};
-          \node[anchor=west] at (axis cs:26,5.38) {tangent line};
-          \node[anchor=west] at (axis cs:21,4.58) {\(y=\sqrt{x}\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>So</p>
 
-    <p>The general name for this tangent-line function is the <em>linearization</em>.</p>
+  <md>f'(25)=\frac{1}{2\cdot5}=\frac{1}{10}.</md>
 
-    <definition xml:id="def-linearization-applications">
-      <title>Linearization</title>
-      <statement>
-        <p>If <m>f</m> is differentiable at <m>a</m>, then the linearization of <m>f</m> at <m>a</m> is</p>
-        <md>L(x)=f(a)+f'(a)(x-a).</md>
-        <p>For <m>x</m> close to <m>a</m>,</p>
+  <p>The linear approximation at <m>x=25</m> is</p>
+
+  <md>L(x)=f(25)+f'(25)(x-25).</md>
+
+  <p>Thus</p>
+
+  <md>L(x)=5+\frac{1}{10}(x-25).</md>
+
+  <p>For <m>x=26</m>,</p>
+
+  <md>\sqrt{26}=f(26)\approx L(26)
+=
+5+\frac{1}{10}
+=
+5.1.</md>
+
+  <p>So</p>
+
+  <md>\sqrt{26}\approx 5.1.</md>
+
+  <p>This is close.  In fact,</p>
+
+  <md>5.1^2=26.01,</md>
+
+  <p>so <m>5.1</m> is slightly larger than <m>\sqrt{26}</m>.</p>
+
+  <figure xml:id="fig-linear-approx-sqrt26">
+    <caption>Near <m>x=25</m>, the tangent line to <m>y=\sqrt{x}</m> gives a quick estimate of <m>\sqrt{x}</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.46\textwidth,
+    xmin=20, xmax=30,
+    ymin=4.4, ymax=5.6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={25,26},
+    ytick={5,5.1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=20:30, samples=150] {sqrt(x)};
+\addplot[very thick, domain=20:30, samples=2] {5+(x-25)/10};
+\addplot[only marks, mark=*] coordinates {(25,5)};
+\addplot[only marks, mark=o, thick] coordinates {(26,5.1)};
+\draw[dashed] (axis cs:26,0) -- (axis cs:26,5.1);
+\node[anchor=west] at (axis cs:25,5) {\((25,5)\)};
+\node[anchor=west] at (axis cs:26,5.1) {\(L(26)=5.1\)};
+\node[anchor=west] at (axis cs:26,5.38) {tangent line};
+\node[anchor=west] at (axis cs:21,4.58) {\(y=\sqrt{x}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The general name for this tangent-line function is the <em>linearization</em>.</p>
+
+  <note xml:id="note-sec-7-3-linear-approximation-in-applications-89">
+    <title>Linearization</title>
+      <p>If <m>f</m> is differentiable at <m>a</m>, then the linearization of <m>f</m> at <m>a</m> is</p>
+        <md>
+L(x)=f(a)+f'(a)(x-a).
+</md>
+      <p>For <m>x</m> close to <m>a</m>,</p>
         <md>f(x)\approx L(x).</md>
-      </statement>
-    </definition>
+  </note>
 
-    <p>The word <q>close</q> matters. A tangent line is a local model. It is meant for nearby inputs.</p>
+  <p>The word “close” matters.  A tangent line is a local model.  It is meant for nearby
+inputs.</p>
 
-    <example xml:id="ex-linear-approx-cube-root">
-      <title>Estimating a cube root</title>
-      <statement>
-        <p>Use linear approximation to estimate</p>
-        <md>\sqrt[3]{65}.</md>
-        <p>Let</p>
-        <md>f(x)=\sqrt[3]{x}=x^{1/3}.</md>
-        <p>The number <m>65</m> is close to <m>64</m>, and</p>
-        <md>\sqrt[3]{64}=4.</md>
-        <p>So take <m>a=64</m>.</p>
-        <p>The derivative is</p>
-        <md>f'(x)=\frac13x^{-2/3}.</md>
-        <p>At <m>x=64</m>,</p>
-        <md>f'(64)=\frac13\cdot\frac{1}{64^{2/3}}.</md>
-        <p>Since</p>
-        <md>64^{1/3}=4,</md>
-        <p>we have</p>
-        <md>64^{2/3}=4^2=16.</md>
-        <p>Therefore</p>
-        <md>f'(64)=\frac{1}{48}.</md>
-        <p>The linearization is</p>
-        <md>L(x)=4+\frac{1}{48}(x-64).</md>
-        <p>For <m>x=65</m>,</p>
-        <md>\sqrt[3]{65}\approx 4+\frac{1}{48} = \frac{193}{48} \approx 4.0208.</md>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-7-3-linear-approximation-in-applications-1">
+    <title>Example</title>
+    <statement>
+  <p>Use linear approximation to estimate</p>
 
-    <paragraphs xml:id="para-warning-going-too-far">
-      <title>A warning about going too far</title>
-      <p>Linear approximation is local. For</p>
-      <md>f(x)=\frac{1}{1-x},</md>
-      <p>the linearization at <m>x=0</m> is</p>
-      <md>L(x)=1+x.</md>
-      <p>At <m>x=0.05</m>,</p>
-      <md>f(0.05)=\frac{1}{0.95}\approx 1.0526,</md>
-      <p>while</p>
-      <md>L(0.05)=1.05.</md>
-      <p>That is useful.</p>
-      <p>At <m>x=0.9</m>,</p>
-      <md>f(0.9)=10,</md>
-      <p>but</p>
-      <md>L(0.9)=1.9.</md>
-      <p>That is not useful. The tangent line knew the function near <m>0</m>, not near the vertical asymptote at <m>x=1</m>.</p>
+  <md>\sqrt[3]{65}.</md>
 
-      <note xml:id="note-local-means-local">
-        <title>Local means local</title>
-        <p>A tangent line is a good model only while the graph has not had time to bend much.</p>
-      </note>
-    </paragraphs>
+  <p>Let</p>
+
+  <md>f(x)=\sqrt[3]{x}=x^{1/3}.</md>
+
+  <p>The number <m>65</m> is close to <m>64</m>, and</p>
+
+  <md>\sqrt[3]{64}=4.</md>
+
+  <p>So take</p>
+
+  <md>a=64.</md>
+
+  <p>The derivative is</p>
+
+  <md>f'(x)=\frac13x^{-2/3}.</md>
+
+  <p>At <m>x=64</m>,</p>
+
+  <md>f'(64)=\frac13\cdot\frac{1}{64^{2/3}}.</md>
+
+  <p>Since</p>
+
+  <md>64^{1/3}=4,</md>
+
+  <p>we have</p>
+
+  <md>64^{2/3}=4^2=16.</md>
+
+  <p>Therefore</p>
+
+  <md>f'(64)=\frac{1}{48}.</md>
+
+  <p>The linearization is</p>
+
+  <md>L(x)=4+\frac{1}{48}(x-64).</md>
+
+  <p>For <m>x=65</m>,</p>
+
+  <md>\sqrt[3]{65}\approx 4+\frac{1}{48}
+=
+\frac{193}{48}
+\approx 4.0208.</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A warning about going too far</title>
+
+  <p>Linear approximation is local.  For</p>
+
+  <md>f(x)=\frac{1}{1-x},</md>
+
+  <p>the linearization at <m>x=0</m> is</p>
+
+  <md>L(x)=1+x.</md>
+
+  <p>At <m>x=0.05</m>,</p>
+
+  <md>f(0.05)=\frac{1}{0.95}\approx 1.0526,</md>
+
+  <p>while</p>
+
+  <md>L(0.05)=1.05.</md>
+
+  <p>That is useful.</p>
+
+  <p>At <m>x=0.9</m>,</p>
+
+  <md>f(0.9)=10,</md>
+
+  <p>but</p>
+
+  <md>L(0.9)=1.9.</md>
+
+  <p>That is not useful.  The tangent line knew the function near <m>0</m>, not near the
+vertical asymptote at <m>x=1</m>.</p>
+
+  <note xml:id="note-sec-7-3-linear-approximation-in-applications-90">
+    <title>Local means local</title>
+      <p>A tangent line is a good model only while the graph has not had time to bend much.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-7-3-local-means-local">
+        <title>Why does <q>local</q> mean the tangent line is only a nearby model?</title>
+        <statement>
+          <p>
+            A linearization can estimate a nearby hard number quickly, but going too far from the known point makes the estimate worse. In your own words, why does the quality of the approximation depend on remaining close to the expansion point?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A tangent line is a good model only while the graph has not had time to bend much.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-error-propagation">
     <title>Error propagation</title>
 
-    <p>Suppose an input <m>x</m> is measured with a small error. Write the measured change as</p>
-    <md>\Delta x.</md>
+  <p>Suppose an input <m>x</m> is measured with a small error.  Write the measured change as</p>
 
-    <p>If</p>
-    <md>y=f(x),</md>
-    <p>then the exact output change is</p>
-    <md>\Delta y=f(x+\Delta x)-f(x).</md>
+  <md>\Delta x.</md>
 
-    <p>The derivative gives the approximation</p>
-    <md>\Delta y\approx f'(x)\Delta x.</md>
+  <p>If</p>
 
-    <p>This is often written using differentials:</p>
-    <md>dy=f'(x)\,dx.</md>
+  <md>y=f(x),</md>
 
-    <p>When we use the differential to estimate an actual small change, we set</p>
-    <md>dx=\Delta x</md>
-    <p>and then use</p>
-    <md>\Delta y\approx dy.</md>
+  <p>then the exact output change is</p>
 
-    <paragraphs xml:id="para-example-sphere-error">
-      <title>Example: error in the volume of a sphere</title>
-      <p>A spherical ball has radius measured as</p>
-      <md>r=3.00\text{ cm},</md>
-      <p>with possible measurement error</p>
-      <md>|dr|\le 0.02\text{ cm}.</md>
-      <p>Estimate the possible error in the computed volume.</p>
-      <p>The volume of a sphere is</p>
-      <md>V=\frac43\pi r^3.</md>
-      <p>Differentiate:</p>
-      <md>dV=4\pi r^2\,dr.</md>
-      <p>At <m>r=3</m>, we get</p>
-      <md>dV=4\pi(3)^2\,dr=36\pi\,dr.</md>
-      <p>Since</p>
-      <md>|dr|\le 0.02,</md>
-      <p>the maximum estimated volume error is</p>
-      <md>|dV| \le 36\pi(0.02) = 0.72\pi.</md>
-      <p>So</p>
-      <md>|dV|\lesssim 0.72\pi\approx 2.26\text{ cm}^3.</md>
-      <p>The symbol <m>\lesssim</m> means <q>approximately less than or equal to.</q> This is an estimated error bound, not an exact one.</p>
+  <md>\Delta y=f(x+\Delta x)-f(x).</md>
 
-      <figure xml:id="fig-sphere-shell-differential">
-        <caption>For a sphere, <m>dV=4\pi r^2\,dr</m>: surface area times a small change in radius.</caption>
-        <image width="50%">
-          <latex-image>
-            \begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
-              % Cross-section circles
-              \draw[fill=gray!10, thick] (0,0) circle (1.6);
-              \draw[thick] (0,0) circle (1.9);
+  <p>The derivative gives the approximation</p>
 
-              % Radius and dr
-              \draw[-&gt;, thick] (0,0) -- (1.6,0);
-              \node[below] at (0.8,0) {\(r\)};
+  <md>\Delta y\approx f'(x)\Delta x.</md>
 
-              \draw[&lt;-&gt;, thick] (1.6,0.05) -- (1.89,0.05);
-              \node[above] at (1.725,0.05) {\(dr\)};
+  <p>This is often written using differentials:</p>
 
-              % Center
-              \fill (0,0) circle (1.5pt);
+  <md>dy=f'(x)\,dx.</md>
 
-              \node at (0,-2.35) {a thin shell has volume approximately \(4\pi r^2\,dr\)};
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <p>When we use the differential to estimate an actual small change, we set</p>
 
-      <p>This formula also has a geometric meaning. Increasing the radius by a small amount <m>dr</m> adds a thin shell. Its volume is approximately</p>
-      <md>\text{surface area}\times\text{thickness} = 4\pi r^2\,dr.</md>
-      <p>That is exactly the differential <m>dV</m>.</p>
-    </paragraphs>
+  <md>dx=\Delta x</md>
 
-    <paragraphs xml:id="para-absolute-error-form">
-      <title>Absolute error form</title>
-      <p>If <m>x</m> has maximum possible error</p>
-      <md>|\Delta x|\le E_x,</md>
-      <p>then the output error is estimated by</p>
-      <md>|\Delta y|\approx |f'(x)|\,|\Delta x|.</md>
-      <p>So a practical estimate is</p>
-      <md>|\Delta y|\lesssim |f'(x)|E_x.</md>
-      <p>The derivative acts as an error multiplier.</p>
-    </paragraphs>
+  <p>and then use</p>
+
+  <md>
+\Delta y\approx dy.
+</md>
+
+  <example xml:id="ex-sec-7-3-linear-approximation-in-applications-3">
+    <title>error in the volume of a sphere</title>
+    <statement>
+  <p>A spherical ball has radius measured as</p>
+
+  <md>r=3.00\text{ cm},</md>
+
+  <p>with possible measurement error</p>
+
+  <md>|dr|\le 0.02\text{ cm}.</md>
+
+  <p>Estimate the possible error in the computed volume.</p>
+
+  <p>The volume of a sphere is</p>
+
+  <md>V=\frac43\pi r^3.</md>
+
+  <p>Differentiate:</p>
+
+  <md>dV=4\pi r^2\,dr.</md>
+
+  <p>At</p>
+
+  <md>r=3,</md>
+
+  <p>we get</p>
+
+  <md>dV=4\pi(3)^2\,dr=36\pi\,dr.</md>
+
+  <p>Since</p>
+
+  <md>|dr|\le0.02,</md>
+
+  <p>the maximum estimated volume error is</p>
+
+  <md>|dV|
+\le
+36\pi(0.02)
+=
+0.72\pi.</md>
+
+  <p>So</p>
+
+  <md>
+|dV|\lesssim 0.72\pi\approx 2.26\text{ cm}^3.
+</md>
+
+  <p>The symbol <m>\lesssim</m> means “approximately less than or equal to.”  This is an
+estimated error bound, not an exact one.</p>
+
+  <figure xml:id="fig-sphere-shell-differential">
+    <caption>For a sphere, <m>dV=4\pi r^2\,dr</m>: surface area times a small change in radius.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=1.15, every node/.style={font=\small}]
+  % Cross-section circles
+  \draw[fill=gray!10, thick] (0,0) circle (1.6);
+  \draw[thick] (0,0) circle (1.9);
+
+  % Radius and dr
+  \draw[-&gt;, thick] (0,0) -- (1.6,0);
+  \node[below] at (0.8,0) {\(r\)};
+
+  \draw[&lt;-&gt;, thick] (1.6,0.05) -- (1.89,0.05);
+  \node[above] at (1.725,0.05) {\(dr\)};
+
+  % Center
+  \fill (0,0) circle (1.5pt);
+
+  \node at (0,-2.35) {a thin shell has volume approximately \(4\pi r^2\,dr\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This formula also has a geometric meaning.  Increasing the radius by a small amount
+<m>dr</m> adds a thin shell.  Its volume is approximately</p>
+
+  <md>\text{surface area}\times\text{thickness}
+=
+4\pi r^2\,dr.</md>
+
+  <p>That is exactly the differential <m>dV</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Absolute error form</title>
+
+  <p>If <m>x</m> has maximum possible error</p>
+
+  <md>|\Delta x|\le E_x,</md>
+
+  <p>then the output error is estimated by</p>
+
+  <md>
+|\Delta y|\approx |f'(x)|\,|\Delta x|.
+</md>
+
+  <p>So a practical estimate is</p>
+
+  <md>
+|\Delta y|\lesssim |f'(x)|E_x.
+</md>
+
+  <p>The derivative acts as an error multiplier.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-7-3-derivative-as-multiplier">
+        <title>Why is the derivative the multiplier of a small input change?</title>
+        <statement>
+          <p>
+            Local linear approximation says <m>\Delta y\approx f'(a)\Delta x</m>. In your own words, why does that make <m>f'(a)</m> a converter from a small input error into a small output error, and why is this the practical meaning of the derivative in measurement?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The tangent line is the first model of how output responds to input. Differentials are the same idea written as <m>dy=f'(x)\,dx</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-relative-percentage-error">
     <title>Relative and percentage error</title>
 
-    <p>Absolute error tells the size of the error in the units of the quantity. Relative error compares the error to the size of the quantity itself.</p>
+  <p>Absolute error tells the size of the error in the units of the quantity.  Relative error
+compares the error to the size of the quantity itself.</p>
 
-    <p>If <m>y\neq 0</m>, then</p>
-    <md>\text{relative error} = \frac{|\Delta y|}{|y|}.</md>
+  <p>If <m>y\neq0</m>, then</p>
 
-    <p>The percentage error is</p>
-    <md>\text{percentage error} = \frac{|\Delta y|}{|y|}\cdot 100\%.</md>
+  <md>\text{relative error}
+=
+\frac{|\Delta y|}{|y|}.</md>
 
-    <p>For estimates, we use differentials:</p>
-    <md>\frac{|\Delta y|}{|y|} \approx \frac{|dy|}{|y|}.</md>
+  <p>The percentage error is</p>
 
-    <paragraphs xml:id="para-example-disk-error">
-      <title>Example: error in the area of a disk</title>
-      <p>A circular disk has measured radius</p>
-      <md>r=24\text{ cm},</md>
-      <p>with possible measurement error</p>
-      <md>|dr|\le 0.2\text{ cm}.</md>
-      <p>The area is</p>
-      <md>A=\pi r^2.</md>
-      <p>So</p>
-      <md>dA=2\pi r\,dr.</md>
-      <p>At <m>r=24</m>,</p>
-      <md>|dA| \le 2\pi(24)(0.2) = 9.6\pi.</md>
-      <p>Thus the maximum estimated area error is</p>
-      <md>|dA|\lesssim 9.6\pi\approx 30.2\text{ cm}^2.</md>
-      <p>Now compute relative error:</p>
-      <md>\frac{|dA|}{A} = \frac{|2\pi r\,dr|}{\pi r^2} = 2\frac{|dr|}{r}.</md>
-      <p>Substitute the values:</p>
-      <md>\frac{|dA|}{A} \lesssim 2\frac{0.2}{24} = \frac{0.4}{24} = \frac{1}{60}.</md>
-      <p>As a percentage,</p>
-      <md>\frac{1}{60}\cdot 100\% \approx 1.67\%.</md>
-      <p>So the radius error of about</p>
-      <md>\frac{0.2}{24}\cdot 100\%\approx 0.83\%</md>
-      <p>produces an area error of about</p>
-      <md>1.67\%.</md>
-      <p>The percentage error doubled because area depends on the square of radius.</p>
-    </paragraphs>
+  <md>\text{percentage error}
+=
+\frac{|\Delta y|}{|y|}\cdot100\%.</md>
 
-    <paragraphs xml:id="para-power-laws-relative-error">
-      <title>Power laws</title>
-      <p>Suppose</p>
-      <md>y=Cx^n,</md>
-      <p>where <m>C</m> and <m>n</m> are constants. Then</p>
-      <md>dy=nCx^{n-1}\,dx.</md>
-      <p>Divide by <m>y=Cx^n</m>:</p>
-      <md>\frac{dy}{y} = \frac{nCx^{n-1}\,dx}{Cx^n} = n\frac{dx}{x}.</md>
-      <p>So</p>
-      <md>\frac{dy}{y}\approx n\frac{dx}{x}.</md>
-      <p>For a power law, the relative output error is approximately <m>n</m> times the relative input error.</p>
+  <p>For estimates, we use differentials:</p>
 
-      <table>
-        <title>Relative error rules for power laws</title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="center"/>
-          <col halign="center"/>
-          <row header="yes">
-            <cell><term>quantity</term></cell>
-            <cell><term>relative error rule</term></cell>
-          </row>
-          <row>
-            <cell><m>A=\pi r^2</m></cell>
-            <cell><m>\dfrac{dA}{A}=2\dfrac{dr}{r}</m></cell>
-          </row>
-          <row>
-            <cell><m>V=\dfrac43\pi r^3</m></cell>
-            <cell><m>\dfrac{dV}{V}=3\dfrac{dr}{r}</m></cell>
-          </row>
-          <row>
-            <cell><m>y=Cx^n</m></cell>
-            <cell><m>\dfrac{dy}{y}=n\dfrac{dx}{x}</m></cell>
-          </row>
-        </tabular>
-      </table>
+  <md>\frac{|\Delta y|}{|y|}
+\approx
+\frac{|dy|}{|y|}.</md>
 
-      <p>This is why small measurement errors can grow when a formula contains powers.</p>
-    </paragraphs>
+  <example xml:id="ex-sec-7-3-linear-approximation-in-applications-5">
+    <title>error in the area of a disk</title>
+    <statement>
+  <p>A circular disk has measured radius</p>
+
+  <md>r=24\text{ cm},</md>
+
+  <p>with possible measurement error</p>
+
+  <md>|dr|\le0.2\text{ cm}.</md>
+
+  <p>The area is</p>
+
+  <md>A=\pi r^2.</md>
+
+  <p>So</p>
+
+  <md>dA=2\pi r\,dr.</md>
+
+  <p>At <m>r=24</m>,</p>
+
+  <md>|dA|
+\le
+2\pi(24)(0.2)
+=
+9.6\pi.</md>
+
+  <p>Thus the maximum estimated area error is</p>
+
+  <md>
+|dA|\lesssim 9.6\pi\approx30.2\text{ cm}^2.
+</md>
+
+  <p>Now compute relative error:</p>
+
+  <md>\frac{|dA|}{A}
+=
+\frac{|2\pi r\,dr|}{\pi r^2}
+=
+2\frac{|dr|}{r}.</md>
+
+  <p>Substitute the values:</p>
+
+  <md>\frac{|dA|}{A}
+\lesssim
+2\frac{0.2}{24}
+=
+\frac{0.4}{24}
+=
+\frac{1}{60}.</md>
+
+  <p>As a percentage,</p>
+
+  <md>\frac{1}{60}\cdot100\%
+\approx
+1.67\%.</md>
+
+  <p>So the radius error of about</p>
+
+  <md>\frac{0.2}{24}\cdot100\%\approx0.83\%</md>
+
+  <p>produces an area error of about</p>
+
+  <md>1.67\%.</md>
+
+  <p>The percentage error doubled because area depends on the square of radius.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Power laws</title>
+
+  <p>Suppose</p>
+
+  <md>y=Cx^n,</md>
+
+  <p>where <m>C</m> and <m>n</m> are constants.  Then</p>
+
+  <md>dy=nCx^{n-1}\,dx.</md>
+
+  <p>Divide by</p>
+
+  <md>y=Cx^n:</md>
+
+  <md>\frac{dy}{y}
+=
+\frac{nCx^{n-1}\,dx}{Cx^n}
+=
+n\frac{dx}{x}.</md>
+
+  <p>So</p>
+
+  <md>
+\frac{dy}{y}\approx n\frac{dx}{x}.
+</md>
+
+  <p>For a power law, the relative output error is approximately <m>n</m> times the relative
+input error.</p>
+
+  <md>
+    <mrow>\begin{array}{c|c}
+<strong>quantity</strong> \amp <strong>relative error rule</strong></mrow>
+    <mrow>\hline
+A=\pi r^2 \amp \dfrac{dA}{A}=2\dfrac{dr}{r}</mrow>
+    <mrow>
+V=\dfrac43\pi r^3 \amp \dfrac{dV}{V}=3\dfrac{dr}{r}</mrow>
+    <mrow>
+y=Cx^n \amp \dfrac{dy}{y}=n\dfrac{dx}{x}
+\end{array}</mrow>
+  </md>
+
+  <p>This is why small measurement errors can grow when a formula contains powers.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-7-3-relative-versus-absolute-error">
+        <title>Why is relative error a different question from absolute error?</title>
+        <statement>
+          <p>
+            Absolute error keeps the units of the quantity. Relative error compares the error to the size of the quantity itself. In your own words, why can a small absolute error still be a large relative error, or the reverse, and why do power laws make relative error especially readable?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            An error of one centimeter is huge for a bacterium and tiny for a planet. For <m>y=cx^n</m>, relative error in <m>y</m> is about <m>|n|</m> times relative error in <m>x</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-sensitivity-in-measurement">
     <title>Sensitivity in measurement</title>
 
-    <p>The derivative measures sensitivity.</p>
+  <p>The derivative measures sensitivity.</p>
 
-    <p>If</p>
-    <md>y=f(x),</md>
-    <p>then</p>
-    <md>f'(x)</md>
-    <p>has units</p>
-    <md>\frac{\text{output units}}{\text{input units}}.</md>
+  <p>If</p>
 
-    <p>A large value of <m>|f'(x)|</m> means that a small input error can create a large output error. A small value of <m>|f'(x)|</m> means the output is less sensitive to input error.</p>
+  <md>y=f(x),</md>
 
-    <paragraphs xml:id="para-example-measuring-height-angle">
-      <title>Example: measuring height using an angle</title>
-      <p>A surveyor stands</p>
-      <md>100\text{ m}</md>
-      <p>from the base of a tower. The angle of elevation to the top is <m>\theta</m>. The height <m>H</m> of the tower is modeled by</p>
-      <md>H=100\tan\theta.</md>
-      <p>Differentiate:</p>
-      <md>dH=100\sec^2\theta\,d\theta.</md>
-      <p>The derivative formula for <m>\tan\theta</m> assumes that <m>\theta</m> is measured in radians. A one-degree error is</p>
-      <md>1^\circ=\frac{\pi}{180}</md>
-      <p>radians.</p>
-      <p>If</p>
-      <md>\theta=45^\circ,</md>
-      <p>then</p>
-      <md>\sec^2(45^\circ)=2.</md>
-      <p>So a one-degree measurement error gives</p>
-      <md>|dH| \approx 100(2)\frac{\pi}{180} \approx 3.49\text{ m}.</md>
-      <p>If</p>
-      <md>\theta=80^\circ,</md>
-      <p>then</p>
-      <md>\sec^2(80^\circ)\approx 33.2.</md>
-      <p>The same one-degree error gives</p>
-      <md>|dH| \approx 100(33.2)\frac{\pi}{180} \approx 57.9\text{ m}.</md>
-      <p>The distance error is the same. The angle error is the same. The sensitivity is not the same. Near a vertical angle, the tangent function changes very quickly.</p>
+  <p>then</p>
 
-      <figure xml:id="fig-angle-height-sensitivity">
-        <caption>The model <m>H=100\tan\theta</m> becomes very sensitive when <m>\theta</m> is large.</caption>
-        <image width="65%">
-          <latex-image>
-            \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
-              % Ground and tower
-              \draw[thick] (0,0) -- (7,0);
-              \draw[very thick] (6,0) -- (6,4);
+  <md>f'(x)</md>
 
-              % Line of sight
-              \draw[thick] (0,0) -- (6,4);
+  <p>has units</p>
 
-              % Labels
-              \draw[&lt;-&gt;] (0,-0.55) -- (6,-0.55);
-              \node[below] at (3,-0.55) {\(100\text{ m}\)};
+  <md>\frac{\text{output units}}{\text{input units}}.</md>
 
-              \draw[&lt;-&gt;] (6.45,0) -- (6.45,4);
-              \node[right] at (6.45,2) {\(H\)};
+  <p>A large value of <m>|f'(x)|</m> means that a small input error can create a large output
+error.  A small value of <m>|f'(x)|</m> means the output is less sensitive to input error.</p>
 
-              \draw (0.95,0) arc[start angle=0,end angle=33.69,radius=0.95];
-              \node at (1.25,0.35) {\(\theta\)};
 
-              \fill (0,0) circle (2pt);
-              \node[below left] at (0,0) {surveyor};
+  <exercise xml:id="checkpoint-7-3-sensitivity">
+        <title>Why does a large <m>|f'|</m> mean high sensitivity?</title>
+        <statement>
+          <p>
+            The derivative has units of output per input. In your own words, why does a steep graph turn a small measurement error into a large output error, and why might a surveyor’s angle error matter more at some elevations than at others?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Sensitivity is <m>|f'(x)|</m>. Where the function is steep, the output is more easily disturbed by input error.
+          </p>
+        </hint>
+      </exercise>
 
-              \node[above] at (6,4) {top};
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <example xml:id="ex-sec-7-3-linear-approximation-in-applications-7">
+    <title>measuring height using an angle</title>
+    <statement>
+  <p>A surveyor stands</p>
 
-      <note xml:id="note-sensitivity-summary">
-        <title>Sensitivity</title>
-        <p>For <m>y=f(x)</m>, the size of <m>|f'(x)|</m> tells how strongly errors in <m>x</m> are amplified into errors in <m>y</m>.</p>
-      </note>
-    </paragraphs>
+  <md>100\text{ m}</md>
 
-    <p>Linear approximation gives us three related calculations:</p>
-    <md>
-      \text{estimate output change} \amp:\amp \Delta y\approx f'(x)\Delta x, \\
-      \text{estimate input change} \amp:\amp \Delta x\approx \dfrac{\Delta y}{f'(x)}, \\
-      \text{estimate sensitivity} \amp:\amp \left|\dfrac{\Delta y}{\Delta x}\right|\approx |f'(x)|.
-    </md>
+  <p>from the base of a tower.  The angle of elevation to the top is <m>\theta</m>.  The height
+<m>H</m> of the tower is modeled by</p>
 
-    <p>So far we have mostly used the first and third. The second one is about to become a method for solving equations.</p>
+  <md>H=100\tan\theta.</md>
 
-    <p>If <m>f(x)</m> is not zero, how far should we move <m>x</m> so that <m>f(x)</m> becomes zero? The tangent line gives the first guess. Repeating that guess gives Newton's method.</p>
+  <p>Differentiate:</p>
+
+  <md>dH=100\sec^2\theta\,d\theta.</md>
+
+  <p>The derivative formula for <m>\tan\theta</m> assumes that <m>\theta</m> is measured in radians.
+A one-degree error is</p>
+
+  <md>1^\circ=\frac{\pi}{180}</md>
+
+  <p>radians.</p>
+
+  <p>If</p>
+
+  <md>\theta=45^\circ,</md>
+
+  <p>then</p>
+
+  <md>\sec^2(45^\circ)=2.</md>
+
+  <p>So a one-degree measurement error gives</p>
+
+  <md>|dH|
+\approx
+100(2)\frac{\pi}{180}
+\approx
+3.49\text{ m}.</md>
+
+  <p>If</p>
+
+  <md>\theta=80^\circ,</md>
+
+  <p>then</p>
+
+  <md>\sec^2(80^\circ)\approx33.2.</md>
+
+  <p>The same one-degree error gives</p>
+
+  <md>|dH|
+\approx
+100(33.2)\frac{\pi}{180}
+\approx
+57.9\text{ m}.</md>
+
+  <p>The distance error is the same.  The angle error is the same.  The sensitivity is not
+the same.  Near a vertical angle, the tangent function changes very quickly.</p>
+
+  <figure xml:id="fig-angle-height-sensitivity">
+    <caption>The model <m>H=100\tan\theta</m> becomes very sensitive when <m>\theta</m> is large.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
+  % Ground and tower
+  \draw[thick] (0,0) -- (7,0);
+  \draw[very thick] (6,0) -- (6,4);
+
+  % Line of sight
+  \draw[thick] (0,0) -- (6,4);
+
+  % Labels
+  \draw[&lt;-&gt;] (0,-0.55) -- (6,-0.55);
+  \node[below] at (3,-0.55) {\(100\text{ m}\)};
+
+  \draw[&lt;-&gt;] (6.45,0) -- (6.45,4);
+  \node[right] at (6.45,2) {\(H\)};
+
+  \draw (0.95,0) arc[start angle=0,end angle=33.69,radius=0.95];
+  \node at (1.25,0.35) {\(\theta\)};
+
+  \fill (0,0) circle (2pt);
+  \node[below left] at (0,0) {surveyor};
+
+  \node[above] at (6,4) {top};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <note xml:id="note-sec-7-3-linear-approximation-in-applications-91">
+    <title>Sensitivity</title>
+      <p>For <m>y=f(x)</m>, the size of <m>|f'(x)|</m> tells how strongly errors in <m>x</m> are amplified
+into errors in <m>y</m>.</p>
+  </note>
+
+  <p>Linear approximation gives us three related calculations:</p>
+
+  <md>
+    <mrow>\begin{array}{ccl}
+\text{estimate output change} \amp:\amp \Delta y\approx f'(x)\Delta x,</mrow>
+    <mrow>
+\text{estimate input change} \amp:\amp \Delta x\approx \dfrac{\Delta y}{f'(x)},</mrow>
+    <mrow>
+\text{estimate sensitivity} \amp:\amp \left|\dfrac{\Delta y}{\Delta x}\right|\approx |f'(x)|.
+\end{array}</mrow>
+  </md>
+
+  <p>So far we have mostly used the first and third.  The second one is about to become a
+method for solving equations.</p>
+
+  <p>If <m>f(x)</m> is not zero, how far should we move <m>x</m> so that <m>f(x)</m> becomes zero?
+The tangent line gives the first guess.  Repeating that guess gives Newton’s method.</p>
+    </statement>
+  </example>
   </subsection>
+
+
 
 </section>

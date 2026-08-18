@@ -1,36 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-dashboard">
+<section xml:id="sec-1-1-the-dashboard-speedometer-and-odometer">
   <title>The dashboard: speedometer and odometer</title>
 
   <p>Look at two instruments on a car dashboard.</p>
 
-  <p>The <term>odometer</term> records distance. It tells how many miles the car has accumulated.</p>
+  <p>The <em>odometer</em> records distance. It tells how many miles the car has accumulated.</p>
 
-  <p>The <term>speedometer</term> records speed. It tells how fast the odometer reading is changing.</p>
+  <p>The <em>speedometer</em> records speed. It tells how fast the odometer reading is changing.</p>
 
   <p>For the moment, imagine that the car moves only forward along a straight road. Then speed and velocity agree. Later, when the car can reverse direction, we will need signed velocity.</p>
 
   <figure xml:id="fig-dashboard">
     <caption>The odometer records accumulated distance. The speedometer records how fast that distance is changing.</caption>
-    <image width="70%">
+    <image width="75%">
       <latex-image>
-        \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
-          % Speedometer
-          \draw[thick] (0,0) circle (1.35);
-          \foreach \ang/\lab in {210/0,180/20,150/40,120/60,90/80,60/100,30/120} {
-             \draw[thick] ({1.15*cos(\ang)},{1.15*sin(\ang)})
-               -- ({1.32*cos(\ang)},{1.32*sin(\ang)});
-             \node at ({0.86*cos(\ang)},{0.86*sin(\ang)}) {\lab};
-          }
-          \draw[very thick,-&gt;] (0,0) -- ({1.02*cos(120)},{1.02*sin(120)});
-          \node at (0,-1.75) {speedometer: \(v(t)=60\) miles/hour};
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+  % Speedometer: numbers sit outside the dial so the needle does not cover them.
+  \draw[thick] (0,0) circle (1.35);
+  \foreach \ang/\lab in {210/0,180/20,150/40,120/60,90/80,60/100,30/120} {
+     \draw[thick] ({1.15*cos(\ang)},{1.15*sin(\ang)})
+       -- ({1.32*cos(\ang)},{1.32*sin(\ang)});
+     \node at ({1.62*cos(\ang)},{1.62*sin(\ang)}) {\lab};
+  }
+  \draw[very thick,-&gt;] (0,0) -- ({1.02*cos(120)},{1.02*sin(120)});
+  \node at (0,-2.2) {speedometer: \(v(t)=60\) miles/hour};
 
-          % Odometer
-          \draw[rounded corners,thick] (3.0,-0.45) rectangle (6.0,0.45);
-          \node[font=\ttfamily\large] at (4.5,0) {018246.3};
-          \node at (4.5,-1.05) {odometer: \(d(t)\) miles};
-        \end{tikzpicture}
+  % Odometer
+  \draw[rounded corners,thick] (3.6,-0.45) rectangle (6.6,0.45);
+  \node[font=\ttfamily\large] at (5.1,0) {018246.3};
+  \node at (5.1,-1.2) {odometer: \(d(t)\) miles};
+\end{tikzpicture}
       </latex-image>
     </image>
   </figure>
@@ -45,196 +45,290 @@
 
   <p>denote the velocity at time <m>t</m>, measured in miles per hour.</p>
 
-  <p>The notation <m>d(t)</m> means: the distance depends on the time. When the input is a time <m>t</m>, the output is a distance <m>d(t)</m>. We will soon give this kind of rule a name: a <term>function</term>. For now, the notation lets us keep track of the trip.</p>
+  <p>The notation <m>d(t)</m> means: the distance depends on the time. When the input is a time <m>t</m>, the output is a distance <m>d(t)</m>. We will soon give this kind of rule a name: a <em>function</em>. For now, the notation lets us keep track of the trip.</p>
 
-  <subsection xml:id="subsec-distance-as-accumulated-motion">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-distance-as-accumulated-motion">
     <title>Distance as accumulated motion</title>
 
-    <p>Suppose the odometer reads <m>18{,}246.3</m> miles at <m>9{:}00</m> and <m>18{,}346.3</m> miles at <m>11{:}00</m>. During those two hours, the car has accumulated</p>
+  <p>Suppose the odometer reads <m>18{,}246.3</m> miles at <m>9{:}00</m> and <m>18{,}346.3</m> miles at <m>11{:}00</m>. During those two hours, the car has accumulated</p>
 
-    <md>18{,}346.3-18{,}246.3=100</md>
+  <md>18{,}346.3-18{,}246.3=100</md>
 
-    <p>miles.</p>
+  <p>miles.</p>
 
-    <p>The odometer does not say how the car traveled those <m>100</m> miles. The driver might have gone steadily. Or slowly at first and quickly later. The odometer remembers the total effect, not the moment-by-moment history.</p>
+  <p>The odometer does not say how the car traveled those <m>100</m> miles. The driver might have gone steadily. Or slowly at first and quickly later. The odometer remembers the total effect, not the moment-by-moment history.</p>
 
-    <p>If we reset the trip odometer at the start, then <m>d(0)=0</m>. After <m>2</m> hours in this example,</p>
+  <p>If we reset the trip odometer at the start, then <m>d(0)=0</m>. After <m>2</m> hours in this example,</p>
 
-    <md>d(2)=100.</md>
+  <md>d(2)=100.</md>
 
-    <p>The distance function <m>d(t)</m> is a memory of the trip.</p>
+  <p>The distance function <m>d(t)</m> is a memory of the trip.</p>
+
+  <exercise xml:id="checkpoint-1-1-distance-as-memory">
+        <title>What does an odometer remember?</title>
+        <statement>
+          <p>
+            Two trips can produce the same odometer change even if one is steady and the other is stop-and-go. In your own words, what information does a distance function <m>d(t)</m> remember, and what information does it throw away?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Think of <m>d(t)</m> as a running total. A total can be the same even when the path that produced it was not.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-velocity-as-changing-distance">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-velocity-as-changing-distance">
     <title>Velocity as changing distance</title>
 
-    <p>Velocity measures how fast distance changes.</p>
+  <p>Velocity measures how fast distance changes.</p>
 
-    <p>If the car travels <m>100</m> miles in <m>2</m> hours, then its <em>average velocity</em> over that time is</p>
+  <p>If the car travels <m>100</m> miles in <m>2</m> hours, then its <em>average velocity</em> over that time is</p>
 
-    <md>
-      \frac{\text{change in distance}}{\text{change in time}}
-      =
-      \frac{100\text{ miles}}{2\text{ hours}}
-      =
-      50\text{ miles/hour}.
-    </md>
+  <md>\frac{\text{change in distance}}{\text{change in time}}
+=
+\frac{100\text{ miles}}{2\text{ hours}}
+=
+50\text{ miles/hour}.</md>
 
-    <p>Using <m>d(t)</m>, this is</p>
+  <p>Using <m>d(t)</m>, this is</p>
 
-    <md>\frac{d(2)-d(0)}{2-0}.</md>
+  <md>\frac{d(2)-d(0)}{2-0}.</md>
 
-    <p>This number is an average over an interval. It does not say that the car was moving at exactly <m>50</m> miles per hour at every instant. It only says that the total change, spread evenly over two hours, would be <m>50</m> miles per hour.</p>
+  <p>This number is an average over an interval. It does not say that the car was moving at exactly <m>50</m> miles per hour at every instant. It only says that the total change, spread evenly over two hours, would be <m>50</m> miles per hour.</p>
 
-    <p>A speedometer asks a sharper question:</p>
+  <p>A speedometer asks a sharper question:</p>
 
-    <md>\text{How fast is the distance changing right now?}</md>
+  <md>\text{How fast is the distance changing right now?}</md>
 
-    <p>That word <q>right now</q> is where calculus enters.</p>
+  <p>That word “right now” is where calculus enters.</p>
+
+  <exercise xml:id="checkpoint-1-1-average-versus-instant">
+        <title>What does an average velocity hide?</title>
+        <statement>
+          <p>
+            If a car travels <m>100</m> miles in <m>2</m> hours, the average velocity is <m>50</m> miles per hour. In your own words, why is that number not yet a speedometer reading, and what extra question does the word <q>right now</q> add?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            An average spreads a total change over a whole interval. A speedometer asks about one instant inside that interval.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-units-already-tell-the-story">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-units-already-tell-the-story">
     <title>Units already tell the story</title>
 
-    <p>The units point to the mathematics.</p>
+  <p>The units point to the mathematics.</p>
 
-    <md>d(t) \quad \text{has units of miles},</md>
+  <md>d(t) \quad \text{has units of miles},</md>
 
-    <p>while</p>
+  <p>while</p>
 
-    <md>v(t) \quad \text{has units of miles/hour}.</md>
+  <md>v(t) \quad \text{has units of miles/hour}.</md>
 
-    <p>So velocity must be built from distance divided by time. That is why ratios like</p>
+  <p>So velocity must be built from distance divided by time. That is why ratios like</p>
 
-    <md>\frac{d(b)-d(a)}{b-a}</md>
+  <md>\frac{d(b)-d(a)}{b-a}</md>
 
-    <p>will appear again and again.</p>
+  <p>will appear again and again.</p>
 
-    <p>The numerator measures change in distance. The denominator measures change in time. Their quotient measures change per unit time.</p>
+  <p>The numerator measures change in distance. The denominator measures change in time. Their quotient measures change per unit time.</p>
 
-    <table xml:id="tab-dashboard-units">
-      <title>Variables and units.</title>
-      <tabular>
-        <row header="yes" bottom="medium">
-          <cell>symbol</cell>
-          <cell>meaning</cell>
-          <cell>units</cell>
-        </row>
-        <row>
-          <cell><m>t</m></cell>
-          <cell>time after the start</cell>
-          <cell>hours</cell>
-        </row>
-        <row>
-          <cell><m>d(t)</m></cell>
-          <cell>distance traveled after <m>t</m> hours</cell>
-          <cell>miles</cell>
-        </row>
-        <row>
-          <cell><m>v(t)</m></cell>
-          <cell>velocity at time <m>t</m></cell>
-          <cell>miles/hour</cell>
-        </row>
-      </tabular>
-    </table>
+  <table xml:id="tab-sec-1-1-the-dashboard-speedometer-and-odometer-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>symbol</strong></cell>
+        <cell><strong>meaning</strong></cell>
+        <cell><strong>units</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>t</m></cell>
+        <cell>time after the start</cell>
+        <cell>hours</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>d(t)</m></cell>
+        <cell>distance traveled after <m>t</m> hours</cell>
+        <cell>miles</cell>
+      </row>
+      <row>
+        <cell><m>v(t)</m></cell>
+        <cell>velocity at time <m>t</m></cell>
+        <cell>miles/hour</cell>
+      </row>
+    </tabular>
+  </table>
 
-    <p>A good formula respects units. For example,</p>
+  <p>A good formula respects units. For example,</p>
 
-    <md>\text{miles/hour}\cdot \text{hours}=\text{miles}.</md>
+  <md>\text{miles/hour}\cdot \text{hours}=\text{miles}.</md>
 
-    <p>So multiplying velocity by time should produce a distance. This is exactly what happens when velocity is constant.</p>
+  <p>So multiplying velocity by time should produce a distance. This is exactly what happens when velocity is constant.</p>
+
+  <exercise xml:id="checkpoint-1-1-units-as-instructions">
+        <title>What do the units already tell you to do?</title>
+        <statement>
+          <p>
+            Distance is measured in miles and velocity in miles per hour. In your own words, why do those units force velocity to be a ratio of a change in distance to a change in time, and why does multiplying velocity by time return a distance?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Treat units as instructions: division by hours makes a rate; multiplication by hours undoes that division.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-the-first-question-distance-to-velocity">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-the-first-question-distance-to-velocity">
     <title>The first question: distance to velocity</title>
 
-    <p>Suppose we know the whole odometer record <m>d(t)</m>. Can we recover the velocity <m>v(t)</m>?</p>
+  <p>Suppose we know the whole odometer record <m>d(t)</m>. Can we recover the velocity <m>v(t)</m>?</p>
 
-    <p>For a long interval, we can compute only an average velocity. For example,</p>
+  <p>For a long interval, we can compute only an average velocity. For example,</p>
 
-    <md>\frac{d(2)-d(0)}{2}</md>
+  <md>\frac{d(2)-d(0)}{2}</md>
 
-    <p>is the average velocity from time <m>0</m> to time <m>2</m>.</p>
+  <p>is the average velocity from time <m>0</m> to time <m>2</m>.</p>
 
-    <p>To know the velocity near <m>t=2</m>, we should look closer:</p>
+  <p>To know the velocity near <m>t=2</m>, we should look closer:</p>
 
-    <md>\frac{d(2.1)-d(2)}{2.1-2}, \qquad \frac{d(2.01)-d(2)}{2.01-2}, \qquad \frac{d(2.001)-d(2)}{2.001-2}.</md>
+  <md>\frac{d(2.1)-d(2)}{2.1-2},
+\qquad
+\frac{d(2.01)-d(2)}{2.01-2},
+\qquad
+\frac{d(2.001)-d(2)}{2.001-2}.</md>
 
-    <p>These fractions measure average velocity over shorter and shorter intervals beginning at <m>t=2</m>. If the numbers settle toward one value, that value should be the velocity at the instant <m>t=2</m>.</p>
+  <p>These fractions measure average velocity over shorter and shorter intervals beginning at <m>t=2</m>. If the numbers settle toward one value, that value should be the velocity at the instant <m>t=2</m>.</p>
 
-    <p>This is the first great problem of calculus:</p>
+  <p>This is the first great problem of calculus:</p>
 
-    <md>\boxed{\text{From distance, find velocity.}}</md>
+  <md>\text{From distance, find velocity.}</md>
 
-    <p>Geometrically, this will become the problem of finding the slope of a tangent line.</p>
+  <p>Geometrically, this will become the problem of finding the slope of a tangent line.</p>
+
+  <exercise xml:id="checkpoint-1-1-distance-to-velocity">
+        <title>How can a whole distance record produce a velocity at one instant?</title>
+        <statement>
+          <p>
+            Starting from a known function <m>d(t)</m>, we look at fractions such as <m>\frac{d(2.001)-d(2)}{2.001-2}</m>. In your own words, what are those fractions measuring, and why should shorter and shorter time intervals be better clues to the velocity at <m>t=2</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each fraction is still an average, just over a smaller window. Ask what that window is trying to collapse onto.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-the-second-question-velocity-to-distance">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-the-second-question-velocity-to-distance">
     <title>The second question: velocity to distance</title>
 
-    <p>Now reverse the question.</p>
+  <p>Now reverse the question.</p>
 
-    <p>Suppose we know the whole speedometer record <m>v(t)</m>. Can we recover the distance <m>d(t)</m>?</p>
+  <p>Suppose we know the whole speedometer record <m>v(t)</m>. Can we recover the distance <m>d(t)</m>?</p>
 
-    <p>If the velocity is <m>60</m> miles/hour for <m>2</m> hours, then the car travels</p>
+  <p>If the velocity is <m>60</m> miles/hour for <m>2</m> hours, then the car travels</p>
 
-    <md>60\cdot 2=120</md>
+  <md>60\cdot 2=120</md>
 
-    <p>miles.</p>
+  <p>miles.</p>
 
-    <p>If the velocity changes, we can break the trip into smaller pieces. Suppose a car travels</p>
+  <p>If the velocity changes, we can break the trip into smaller pieces. Suppose a car travels</p>
 
-    <md>40\text{ miles/hour for } \frac{1}{2}\text{ hour}</md>
+  <md>40\text{ miles/hour for } \frac12\text{ hour}</md>
 
-    <p>and then</p>
+  <p>and then</p>
 
-    <md>60\text{ miles/hour for } \frac{1}{2}\text{ hour}.</md>
+  <md>60\text{ miles/hour for } \frac12\text{ hour}.</md>
 
-    <p>The distance traveled is</p>
+  <p>The distance traveled is</p>
 
-    <md>40\cdot \frac{1}{2} + 60\cdot \frac{1}{2} = 20+30 = 50</md>
+  <md>40\cdot \frac12 + 60\cdot \frac12
+=
+20+30
+=
+50</md>
 
-    <p>miles.</p>
+  <p>miles.</p>
 
-    <p>Each product</p>
+  <p>Each product</p>
 
-    <md>\text{velocity}\cdot \text{time}</md>
+  <md>\text{velocity}\cdot \text{time}</md>
 
-    <p>gives distance for a small piece of the trip. Adding those pieces gives total distance.</p>
+  <p>gives distance for a small piece of the trip. Adding those pieces gives total distance.</p>
 
-    <p>This is the second great problem of calculus:</p>
+  <p>This is the second great problem of calculus:</p>
 
-    <md>\boxed{\text{From velocity, find distance.}}</md>
+  <md>\text{From velocity, find distance.}</md>
 
-    <p>Geometrically, this will become the problem of finding area under a graph.</p>
+  <p>Geometrically, this will become the problem of finding area under a graph.</p>
+
+  <exercise xml:id="checkpoint-1-1-velocity-to-distance">
+        <title>How can a velocity record rebuild distance?</title>
+        <statement>
+          <p>
+            If velocity is not constant, we break a trip into pieces and add products of the form <q>velocity times time.</q> In your own words, why does each such product give a piece of distance, and why does adding the pieces reconstruct the odometer change?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            On a short piece where velocity hardly changes, the constant-velocity rule is a good local story. Accumulation is the act of adding those local stories.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-the-two-questions-together">
+  <subsection xml:id="subsec-sec-1-1-the-dashboard-speedometer-and-odometer-the-two-questions-together">
     <title>The two questions together</title>
 
-    <p>The two questions are opposite in spirit.</p>
+  <p>The two questions are opposite in spirit.</p>
 
-    <md>
-      \begin{array}{ccl}
-      \text{distance} \amp \longrightarrow \amp \text{velocity} \\
-      d(t) \amp \longrightarrow \amp v(t)
-      \end{array}
-    </md>
+  <md>
+    <mrow>\begin{array}{ccl}
+\text{distance} \amp \longrightarrow \amp \text{velocity}</mrow>
+    <mrow>d(t) \amp \longrightarrow \amp v(t)
+\end{array}</mrow>
+  </md>
 
-    <p>means: measure the instantaneous rate of change.</p>
+  <p>means: measure the instantaneous rate of change.</p>
 
-    <md>
-      \begin{array}{ccl}
-      \text{velocity} \amp \longrightarrow \amp \text{distance} \\
-      v(t) \amp \longrightarrow \amp d(t)
-      \end{array}
-    </md>
+  <md>
+    <mrow>\begin{array}{ccl}
+\text{velocity} \amp \longrightarrow \amp \text{distance}</mrow>
+    <mrow>v(t) \amp \longrightarrow \amp d(t)
+\end{array}</mrow>
+  </md>
 
-    <p>means: accumulate many small changes.</p>
+  <p>means: accumulate many small changes.</p>
 
-    <p>The first process will be called <term>differentiation</term>. The second will be called <term>integration</term>. The deepest early theorem in calculus will say that these two processes undo each other.</p>
+  <p>The first process will be called <em>differentiation</em>. The second will be called <em>integration</em>. The deepest early theorem in calculus will say that these two processes undo each other.</p>
 
-    <p>For now, we test the story in the simplest case: constant velocity.</p>
+  <exercise xml:id="checkpoint-1-1-two-questions-inverse">
+    <title>Why are the two dashboard questions inverses?</title>
+    <statement>
+      <p>
+        One question goes from distance to velocity; the other goes from velocity to distance. In your own words, why should these two processes undo each other, and what would go wrong in the story if they did not?
+      </p>
+    </statement>
+    <hint>
+      <p>
+        If you accumulate a rate of change, you should recover the original change. If you measure how fast an accumulated quantity is changing, you should recover the original rate.
+      </p>
+    </hint>
+  </exercise>
+
+  <p>For now, we test the story in the simplest case: constant velocity.</p>
   </subsection>
 
 </section>

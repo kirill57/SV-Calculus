@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-5-conservation-laws-in-one-dimension">
+  <title>Conservation laws in one dimension</title>
+
+  <p>The last section rewrote the Fundamental Theorem as a boundary theorem:</p>
+
+  <md>\int_{[a,b]} dF=\int_{\partial[a,b]}F.</md>
+
+  <p>The interval contributes its two endpoints.  The inside contributes a derivative.  The
+same boundary idea explains one of the most important patterns in science:</p>
+
+  <md>
+\text{what is inside changes because something crosses the boundary or is created inside.}
+</md>
+
+  <p>That sentence is a conservation law.</p>
+
+  <subsection xml:id="subsec-density-and-flux-on-line">
+    <title>Density and flux on a line</title>
+
+  <p>Imagine a straight road.  Cars move along it.  At position <m>x</m> and time <m>t</m>, let</p>
+
+  <md>\rho(x,t)=\text{traffic density}</md>
+
+  <p>measured in</p>
+
+  <md>\text{cars per mile}.</md>
+
+  <p>The symbol <m>\rho</m> is the Greek letter rho.  It is commonly used for density.</p>
+
+  <p>Density tells how much stuff is present per unit length.  It does not yet say how fast
+the stuff is moving.</p>
+
+  <p>For motion we need another quantity.  Let</p>
+
+  <md>q(x,t)=\text{traffic flux}</md>
+
+  <p>measured in</p>
+
+  <md>\text{cars per hour}.</md>
+
+  <p>The flux <m>q(x,t)</m> means the rate at which cars cross the point <m>x</m>, counted positive
+when they cross to the right.</p>
+
+  <table xml:id="tab-sec-17-5-conservation-laws-in-one-dimension-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>quantity</strong></cell>
+        <cell><strong>meaning</strong></cell>
+        <cell><strong>units</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\rho(x,t)</m></cell>
+        <cell>density at position <m>x</m> and time <m>t</m></cell>
+        <cell>cars/mile</cell>
+      </row>
+      <row>
+        <cell><m>q(x,t)</m></cell>
+        <cell>flux through position <m>x</m> at time <m>t</m></cell>
+        <cell>cars/hour</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>These two quantities are related, but they are not the same.  A crowded traffic jam
+can have high density and small flux.  A road with fewer cars moving quickly can have
+smaller density and larger flux.</p>
+
+  <figure xml:id="fig-density-flux-on-line">
+    <caption>In one dimension, an interval has two boundary points.  Flux through those boundary points changes what is inside.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
+  % road
+  \draw[-&gt;, thick] (-0.5,0) -- (8.2,0) node[right] {road};
+
+  % interval
+  \draw[very thick] (1.3,0) -- (6.5,0);
+  \draw[thick] (1.3,0.18) -- (1.3,-0.18);
+  \draw[thick] (6.5,0.18) -- (6.5,-0.18);
+
+  \node[below] at (1.3,-0.18) {\(a\)};
+  \node[below] at (6.5,-0.18) {\(b\)};
+  \node[below] at (3.9,-0.45) {interval \([a,b]\)};
+
+  % cars as small rectangles
+  \foreach \x/\y in {1.75/0.22,2.15/-0.22,2.6/0.22,3.1/-0.22,3.65/0.22,4.15/-0.22,4.75/0.22,5.2/-0.22,5.75/0.22,6.15/-0.22} {
+    \draw[fill=gray!20, thick] (\x-0.13,\y-0.07) rectangle (\x+0.13,\y+0.07);
+  }
+
+  % flux arrows
+  \draw[very thick,-&gt;] (0.35,0.85) -- (1.25,0.85);
+  \node[above] at (0.8,0.85) {\(q(a,t)\) enters};
+
+  \draw[very thick,-&gt;] (6.55,0.85) -- (7.45,0.85);
+  \node[above] at (7.0,0.85) {\(q(b,t)\) leaves};
+
+  \node at (3.9,1.25) {amount inside \(=\displaystyle\int_a^b \rho(x,t)\,dx\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The total number of cars in the road segment <m>[a,b]</m> at time <m>t</m> is</p>
+
+  <md>
+N(t)=\int_a^b \rho(x,t)\,dx.
+</md>
+
+  <p>This is an accumulation of density over length:</p>
+
+  <md>\frac{\text{cars}}{\text{mile}}\cdot \text{mile}=\text{cars}.</md>
+
+  <p>So the integral turns density into total amount.</p>
+
+  <exercise xml:id="checkpoint-17-5-density-is-not-flux">
+        <title>Why are density and flux different quantities?</title>
+        <statement>
+          <p>
+            Density <m>\rho</m> measures how much is present per unit length. Flux <m>q</m> measures how fast stuff crosses a point. In your own words, why can a traffic jam have high density and small flux, and why do you need both quantities to write a conservation law?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Being crowded is not the same as moving. Conservation tracks how the amount inside changes, which requires both how much is there and how much is crossing the ends.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-accumulation-inside-interval">
+    <title>Accumulation inside an interval</title>
+
+  <p>Suppose no cars appear or disappear inside the interval <m>[a,b]</m>.  There are no
+parking lots, no ramps, and no accidents removing cars from the road.  Then the
+only way the number of cars inside can change is through the two endpoints.</p>
+
+  <p>Cars can enter through the left endpoint <m>a</m>.  The rate of entry is</p>
+
+  <md>q(a,t).</md>
+
+  <p>Cars can leave through the right endpoint <m>b</m>.  The rate of leaving is</p>
+
+  <md>q(b,t).</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac{dN}{dt}=q(a,t)-q(b,t).
+</md>
+
+  <p>Since</p>
+
+  <md>N(t)=\int_a^b \rho(x,t)\,dx,</md>
+
+  <p>we can write this as</p>
+
+  <md>
+\frac{d}{dt}\int_a^b \rho(x,t)\,dx
+=
+q(a,t)-q(b,t).
+</md>
+
+  <p>This is a one-dimensional conservation law.</p>
+
+  <note xml:id="note-sec-17-5-conservation-laws-in-one-dimension-60">
+    <title>Conservation law on an interval</title>
+      <p>If <m>\rho(x,t)</m> is the density of a conserved quantity and <m>q(x,t)</m> is the flux to the
+right, then, with no sources or sinks inside <m>[a,b]</m>,</p>
+        <md>
+\frac{d}{dt}\int_a^b \rho(x,t)\,dx
+=
+q(a,t)-q(b,t).
+</md>
+      <p>In words:</p>
+        <md>
+\text{rate of change inside}=\text{inflow at left}-\text{outflow at right}.
+</md>
+  </note>
+
+  <p>The signs contain the orientation.  Positive flux points to the right.  At the left
+endpoint, rightward flux enters the interval.  At the right endpoint, rightward flux
+leaves the interval.</p>
+
+  <example xml:id="ex-sec-17-5-conservation-laws-in-one-dimension-1">
+    <title>Example</title>
+    <statement>
+  <p>Suppose cars enter a road segment through <m>a</m> at</p>
+
+  <md>q(a,t)=1200</md>
+
+  <p>cars/hour and leave through <m>b</m> at</p>
+
+  <md>q(b,t)=950</md>
+
+  <p>cars/hour.  Then</p>
+
+  <md>\frac{dN}{dt}=1200-950=250.</md>
+
+  <p>So the number of cars in the segment is increasing at</p>
+
+  <md>250\text{ cars/hour}.</md>
+
+  <p>Traffic is accumulating inside.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-17-5-conservation-laws-in-one-dimension-2">
+    <title>Example</title>
+    <statement>
+  <p>Suppose instead</p>
+
+  <md>q(a,t)=700,
+\qquad
+q(b,t)=1000.</md>
+
+  <p>Then</p>
+
+  <md>\frac{dN}{dt}=700-1000=-300.</md>
+
+  <p>The number of cars in the segment is decreasing at</p>
+
+  <md>300\text{ cars/hour}.</md>
+
+  <p>More cars leave than enter.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Sign warning</title>
+
+  <p>Flux can be negative.  Negative flux means motion to the left.</p>
+
+  <p>If</p>
+
+  <md>q(a,t)=-100</md>
+
+  <p>at the left endpoint, then cars are crossing <m>a</m> to the left.  They are leaving the
+interval through the left endpoint.  The formula still works:</p>
+
+  <md>\frac{dN}{dt}=q(a,t)-q(b,t).</md>
+
+  <p>The negative value of <m>q(a,t)</m> correctly decreases <m>N(t)</m>.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-5-inflow-minus-outflow">
+        <title>Why is the rate of change inside equal to inflow minus outflow?</title>
+        <statement>
+          <p>
+            With no sources or sinks, <m>\frac{d}{dt}\int_a^b \rho\,dx=q(a,t)-q(b,t)</m>. In your own words, why do the signs match the orientation of the interval, and why is this the same boundary idea as the Fundamental Theorem?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Positive flux points to the right, so it enters at the left endpoint and leaves at the right. The interior changes because of what happens on the signed boundary.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-what-crosses-boundary">
+    <title>What crosses the boundary changes what is inside</title>
+
+  <p>The conservation law can be written with the outward boundary in mind.</p>
+
+  <p>The interval <m>[a,b]</m> has two outward directions:</p>
+
+  <md>\text{left endpoint }a: \text{ outward direction is left},</md>
+
+  <md>\text{right endpoint }b: \text{ outward direction is right}.</md>
+
+  <p>Since <m>q</m> is positive to the right, the outward flux is</p>
+
+  <md>-q(a,t)</md>
+
+  <p>at the left endpoint and</p>
+
+  <md>q(b,t)</md>
+
+  <p>at the right endpoint.</p>
+
+  <p>So the total outward flux is</p>
+
+  <md>q(b,t)-q(a,t).</md>
+
+  <p>The amount inside decreases when outward flux is positive:</p>
+
+  <md>\frac{d}{dt}\int_a^b \rho(x,t)\,dx
+=
+-\bigl(q(b,t)-q(a,t)\bigr).</md>
+
+  <p>This is the same formula as before:</p>
+
+  <md>-\bigl(q(b,t)-q(a,t)\bigr)=q(a,t)-q(b,t).</md>
+
+  <p>The boundary form is useful because it generalizes.</p>
+
+  <md>
+\text{change inside}=-\text{net outward flow through the boundary}.
+</md>
+
+  <paragraphs>
+    <title>Sources and sinks</title>
+
+  <p>The formula above assumes that nothing is created or destroyed inside the interval.
+That assumption matters.</p>
+
+  <p>Suppose cars can enter through an on-ramp inside <m>[a,b]</m>.  Let</p>
+
+  <md>s(x,t)=\text{source rate density}</md>
+
+  <p>measured in</p>
+
+  <md>\text{cars per mile per hour}.</md>
+
+  <p>Then the total rate of creation inside the interval is</p>
+
+  <md>\int_a^b s(x,t)\,dx.</md>
+
+  <p>The conservation law becomes</p>
+
+  <md>
+\frac{d}{dt}\int_a^b \rho(x,t)\,dx
+=
+q(a,t)-q(b,t)+\int_a^b s(x,t)\,dx.
+</md>
+
+  <p>If <m>s&gt;0</m>, cars are being added.  If <m>s&lt;0</m>, cars are being removed.</p>
+
+  <warning xml:id="warn-sec-17-5-conservation-laws-in-one-dimension-61">
+    <title>Warning</title>
+      <p>Boundary flux alone explains the change inside only when there are no sources or
+sinks inside the interval.</p>
+      <p>If material is created or destroyed inside, the source term must be included.</p>
+  </warning>
+
+  <p>This is the same kind of honesty we used throughout calculus.  A theorem’s
+hypotheses are not decoration.  They say exactly what the formula is allowed to
+ignore.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-17-5-sources-are-hypotheses">
+        <title>Why must sources and sinks be named separately?</title>
+        <statement>
+          <p>
+            Boundary flux alone explains the change inside only when nothing is created or destroyed in the interval. In your own words, why is that hypothesis part of the conservation law, and how does a source term restore honesty when cars appear from an on-ramp?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A theorem cannot ignore what it has not been told about. If material is created inside, the accounting must include an interior integral of the source rate.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-preview-divergence-multivariable">
+    <title>Preview of divergence in multivariable calculus</title>
+
+  <p>The conservation law on every interval contains a local law.</p>
+
+  <p>Start with the no-source case:</p>
+
+  <md>\frac{d}{dt}\int_a^b \rho(x,t)\,dx
+=
+q(a,t)-q(b,t).</md>
+
+  <p>If <m>\rho</m> and <m>q</m> are smooth enough, we may read the left side as</p>
+
+  <md>\int_a^b \frac{\partial \rho}{\partial t}(x,t)\,dx.</md>
+
+  <p>The notation</p>
+
+  <md>\frac{\partial \rho}{\partial t}</md>
+
+  <p>means: differentiate <m>\rho(x,t)</m> with respect to <m>t</m>, while holding <m>x</m> fixed.  This
+is multivariable notation, but the idea is familiar.</p>
+
+  <p>The right side can be rewritten using the Fundamental Theorem:</p>
+
+  <md>q(a,t)-q(b,t)
+=
+-\bigl(q(b,t)-q(a,t)\bigr)
+=
+-\int_a^b \frac{\partial q}{\partial x}(x,t)\,dx.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_a^b \frac{\partial \rho}{\partial t}(x,t)\,dx
+=
+-\int_a^b \frac{\partial q}{\partial x}(x,t)\,dx.</md>
+
+  <p>Bring everything to one side:</p>
+
+  <md>\int_a^b
+\left(
+\frac{\partial \rho}{\partial t}
++
+\frac{\partial q}{\partial x}
+\right)
+dx=0.</md>
+
+  <p>If this holds for every interval <m>[a,b]</m>, then the integrand must be zero:</p>
+
+  <md>
+\frac{\partial \rho}{\partial t}
++
+\frac{\partial q}{\partial x}
+=
+0.
+</md>
+
+  <p>This is the local form of conservation in one dimension.</p>
+
+  <note xml:id="note-sec-17-5-conservation-laws-in-one-dimension-62">
+    <title>One-dimensional conservation law, local form</title>
+      <p>With no sources or sinks,</p>
+        <md>
+\rho_t+q_x=0.
+</md>
+      <p>With source term <m>s</m>,</p>
+        <md>
+\rho_t+q_x=s.
+</md>
+  </note>
+
+  <p>Here</p>
+
+  <md>\rho_t=\frac{\partial \rho}{\partial t},
+\qquad
+q_x=\frac{\partial q}{\partial x}.</md>
+
+  <p>What does <m>q_x</m> mean physically?</p>
+
+  <p>Look at a tiny interval from <m>x</m> to <m>x+\Delta x</m>.  The flux entering from the left is
+approximately</p>
+
+  <md>q(x,t),</md>
+
+  <p>and the flux leaving to the right is approximately</p>
+
+  <md>q(x+\Delta x,t).</md>
+
+  <p>The net outward flux is</p>
+
+  <md>q(x+\Delta x,t)-q(x,t).</md>
+
+  <p>Divide by the length <m>\Delta x</m>:</p>
+
+  <md>\frac{q(x+\Delta x,t)-q(x,t)}{\Delta x}.</md>
+
+  <p>As <m>\Delta x\to0</m>, this approaches</p>
+
+  <md>q_x(x,t).</md>
+
+  <p>So <m>q_x</m> measures local net outward flow per unit length.</p>
+
+  <p>If</p>
+
+  <md>q_x&gt;0,</md>
+
+  <p>more is leaving a tiny interval than entering it, so density tends to decrease.  If</p>
+
+  <md>q_x&lt;0,</md>
+
+  <p>more is entering than leaving, so density tends to increase.</p>
+
+  <figure xml:id="fig-flux-derivative-divergence-1d">
+    <caption>When <m>q</m> increases with <m>x</m>, the outgoing flux from a small interval exceeds the incoming flux.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.80\textwidth,
+    height=0.42\textwidth,
+    xmin=0, xmax=5.2,
+    ymin=0, ymax=5.6,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(q(x)\)},
+    xtick={1.4,2.4},
+    xticklabels={\(x\),\(x+\Delta x\)},
+    ytick={0,2,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0.4:4.8, samples=100] {1.2+0.55*x+0.08*x^2};
+\draw[dashed] (axis cs:1.4,0) -- (axis cs:1.4,2.1268);
+\draw[dashed] (axis cs:2.4,0) -- (axis cs:2.4,2.9808);
+\draw[&lt;-&gt;, thick] (axis cs:1.4,0.55) -- (axis cs:2.4,0.55);
+\node[anchor=north] at (axis cs:1.9,0.55) {\(\Delta x\)};
+\node[anchor=west] at (axis cs:2.55,3.05) {\(q(x+\Delta x)&gt;q(x)\)};
+\node[anchor=west] at (axis cs:2.55,2.55) {more leaves than enters};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>In multivariable calculus, the flux becomes a vector field.  Instead of moving only left
+or right, material can flow in many directions.  The derivative <m>q_x</m> becomes
+<em>divergence</em>:</p>
+
+  <md>\nabla\cdot \mathbf{q}.</md>
+
+  <p>The conservation law becomes</p>
+
+  <md>
+\rho_t+\nabla\cdot\mathbf{q}=s.
+</md>
+
+  <p>The idea is the same as the one-dimensional version:</p>
+
+  <md>
+\text{local change in density}
++
+\text{local net outward flow}
+=
+\text{local creation}.
+</md>
+
+  <p>This is why the boundary viewpoint matters.  The Fundamental Theorem, flux through
+endpoints, conservation laws, and divergence are not separate tricks.  They are stages
+of one story:</p>
+
+  <md>\text{inside} \quad \longleftrightarrow \quad \text{boundary}.</md>
+
+  <p>There is one final bridge.  Calculus has optimized numbers: shortest distance, largest
+area, greatest profit.  But physics and geometry often ask for the best <em>path</em>.  That
+means optimizing a whole function.</p>
+
+  <exercise xml:id="checkpoint-17-5-local-divergence">
+        <title>Why does an interval law become a local law?</title>
+        <statement>
+          <p>
+            If the conservation identity holds on every interval, the integrand <m>\rho_t+q_x</m> must vanish. In your own words, why does that local equation deserve the name divergence, and what does it say about how interior change is produced by nearby flux imbalance?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            An integral that vanishes on every interval forces the integrand to be zero. The term <m>q_x</m> measures how flux is increasing as you move along the line, which is the one-dimensional divergence.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

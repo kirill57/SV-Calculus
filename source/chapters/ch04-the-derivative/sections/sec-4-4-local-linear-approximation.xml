@@ -1,312 +1,641 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-local-linear-approximation">
+<section xml:id="sec-4-4-local-linear-approximation">
   <title>Local linear approximation</title>
 
-  <p>The derivative function records many slopes. At a single point, the derivative does something even more practical: it gives the best linear model of the function near that point.</p>
+  <p>The derivative function records many slopes.  At a single point, the derivative does something even more practical: it gives the best linear model of the function near that point.</p>
 
-  <p>A curved graph may be difficult. A line is simple. Calculus lets us replace a curve by a line, as long as we stay close enough to the point of tangency.</p>
+  <p>A curved graph may be difficult.  A line is simple.  Calculus lets us replace a curve by a line, as long as we stay close enough to the point of tangency.</p>
 
   <subsection xml:id="subsec-tangent-line-local-model">
     <title>The tangent line as a local model</title>
 
-    <p>Suppose we want to estimate <m>\sqrt{4.1}</m> without a calculator.</p>
+  <p>Suppose we want to estimate</p>
 
-    <p>The nearby value <m>\sqrt{4}=2</m> is easy. The question is how much <m>\sqrt{x}</m> changes when <m>x</m> moves from <m>4</m> to <m>4.1</m>.</p>
+  <md>\sqrt{4.1}</md>
 
-    <p>Let <m>f(x)=\sqrt{x}</m>. We need the derivative at <m>x=4</m>. By definition,</p>
-    <md>f'(4) = \lim_{h\to 0}\frac{\sqrt{4+h}-2}{h}.</md>
+  <p>without a calculator.</p>
 
-    <p>Multiply numerator and denominator by the conjugate:</p>
-    <md>\frac{\sqrt{4+h}-2}{h} \cdot \frac{\sqrt{4+h}+2}{\sqrt{4+h}+2} = \frac{(4+h)-4}{h(\sqrt{4+h}+2)}.</md>
+  <p>The nearby value</p>
 
-    <p>So, for <m>h\neq 0</m>,</p>
-    <md>\frac{\sqrt{4+h}-2}{h} = \frac{1}{\sqrt{4+h}+2}.</md>
+  <md>\sqrt4=2</md>
 
-    <p>Taking the limit gives</p>
-    <md>f'(4)=\frac{1}{2+2}=\frac{1}{4}.</md>
+  <p>is easy.  The question is how much <m>\sqrt{x}</m> changes when <m>x</m> moves from <m>4</m> to <m>4.1</m>.</p>
 
-    <p>Thus near <m>x=4</m>, the graph of <m>y=\sqrt{x}</m> has tangent slope <m>\frac{1}{4}</m>. The tangent line at <m>(4,2)</m> is</p>
-    <md>y-2=\frac{1}{4}(x-4).</md>
+  <p>Let</p>
 
-    <p>So</p>
-    <md>L(x)=2+\frac{1}{4}(x-4).</md>
+  <md>f(x)=\sqrt{x}.</md>
 
-    <p>This line is the local linear model of <m>\sqrt{x}</m> near <m>x=4</m>.</p>
+  <p>We need the derivative at <m>x=4</m>.  By definition,</p>
 
-    <p>Now plug in <m>x=4.1</m>:</p>
-    <md>\sqrt{4.1} \approx L(4.1) = 2+\frac{1}{4}(0.1) = 2+0.025 = 2.025.</md>
+  <md>f'(4)
+=
+\lim_{h\to0}\frac{\sqrt{4+h}-2}{h}.</md>
 
-    <p>A calculator gives <m>\sqrt{4.1}\approx 2.024845\ldots</m>, so the tangent-line estimate is very close.</p>
+  <p>Multiply numerator and denominator by the conjugate:</p>
 
-    <figure xml:id="fig-sqrt-local-linear">
-      <caption>Near <m>x=4</m>, the tangent line gives a simple model for <m>\sqrt{x}</m>.</caption>
-      <image width="78%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=1, xmax=7,
-              ymin=1, ymax=3,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1,4.1,7},
-              xticklabels={\(1\),\(4.1\),\(7\)},
-              ytick={2.025},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=1:7, samples=160] {sqrt(x)};
-          \addplot[very thick, domain=2.2:6.2, samples=2] {2 + 0.25*(x-4)};
-          \addplot[only marks, mark=*] coordinates {(4,2) (4.1,2.0248457)};
-          \draw[dashed] (axis cs:4.1,0) -- (axis cs:4.1,2.0248457);
-          \node[anchor=south east] at (axis cs:4,2) {\((4,2)\)};
-          \node[anchor=west] at (axis cs:4.2,1.95) {tangent line};
-          \node[anchor=west] at (axis cs:5.0,2.18) {\(y=\sqrt{x}\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>\frac{\sqrt{4+h}-2}{h}
+\cdot
+\frac{\sqrt{4+h}+2}{\sqrt{4+h}+2}
+=
+\frac{(4+h)-4}{h(\sqrt{4+h}+2)}.</md>
 
-    <p>The tangent line does not equal the curve except at the point of tangency. But near that point, the line and the curve are close.</p>
+  <p>So, for <m>h\neq0</m>,</p>
+
+  <md>\frac{\sqrt{4+h}-2}{h}
+=
+\frac{1}{\sqrt{4+h}+2}.</md>
+
+  <p>Taking the limit gives</p>
+
+  <md>f'(4)=\frac{1}{2+2}=\frac14.</md>
+
+  <p>Thus near <m>x=4</m>, the graph of <m>y=\sqrt{x}</m> has tangent slope <m>\frac14</m>.  The tangent line at <m>(4,2)</m> is</p>
+
+  <md>y-2=\frac14(x-4).</md>
+
+  <p>So</p>
+
+  <md>L(x)=2+\frac14(x-4).</md>
+
+  <p>This line is the local linear model of <m>\sqrt{x}</m> near <m>x=4</m>.</p>
+
+  <p>Now plug in <m>x=4.1</m>:</p>
+
+  <md>\sqrt{4.1}
+\approx
+L(4.1)
+=
+2+\frac14(0.1)
+=
+2+0.025
+=
+2.025.</md>
+
+  <p>A calculator gives</p>
+
+  <md>\sqrt{4.1}\approx2.024845\ldots,</md>
+
+  <p>so the tangent-line estimate is very close.</p>
+
+  <figure xml:id="fig-sqrt-local-linear">
+    <caption>Near <m>x=4</m>, the tangent line gives a simple model for <m>\sqrt{x}</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=1, xmax=7,
+    ymin=1, ymax=3,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1,4.1,7},
+    xticklabels={\(1\),\(4.1\),\(7\)},
+    ytick={2.025},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=1:7, samples=160] {sqrt(x)};
+\addplot[very thick, domain=2.2:6.2, samples=2] {2 + 0.25*(x-4)};
+\addplot[only marks, mark=*] coordinates {(4,2) (4.1,2.0248457)};
+\draw[dashed] (axis cs:4.1,0) -- (axis cs:4.1,2.0248457);
+\node[anchor=south east] at (axis cs:4,2) {\((4,2)\)};
+\node[anchor=west] at (axis cs:4.2,1.95) {tangent line};
+\node[anchor=west] at (axis cs:5.0,2.18) {\(y=\sqrt{x}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The tangent line does not equal the curve except at the point of tangency.  But near that point, the line and the curve are close.</p>
+
+  <exercise xml:id="checkpoint-4-4-tangent-as-local-model">
+        <title>Why can a tangent line replace a curve nearby?</title>
+        <statement>
+          <p>
+            Near a point of tangency, calculus lets us replace a curved graph by a line. In your own words, why is that replacement useful, and why does it fail if we wander too far from the point?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A line is simple, and differentiability says the curve and its tangent stay close under enough magnification. Distance from the point of tangency is what the approximation depends on.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-local-linear-formula">
     <title>The formula <m>f(a+h)\approx f(a)+f'(a)h</m></title>
 
-    <p>The square-root example has a general form.</p>
+  <p>The square-root example has a general form.</p>
 
-    <p>Suppose <m>f</m> is differentiable at <m>a</m>. The tangent line at <m>(a,f(a))</m> has slope <m>f'(a)</m>. Its equation is</p>
-    <md>y-f(a)=f'(a)(x-a).</md>
+  <p>Suppose <m>f</m> is differentiable at <m>a</m>.  The tangent line at <m>(a,f(a))</m> has slope <m>f'(a)</m>.  Its equation is</p>
 
-    <p>So the tangent-line function is</p>
-    <md>L_a(x)=f(a)+f'(a)(x-a).</md>
+  <md>y-f(a)=f'(a)(x-a).</md>
 
-    <p>This function is called the <term>linearization</term> of <m>f</m> at <m>a</m>.</p>
+  <p>So the tangent-line function is</p>
 
-    <definition xml:id="def-linearization">
-      <title>Linearization</title>
-      <statement>
-        <p>If <m>f</m> is differentiable at <m>a</m>, then the linearization of <m>f</m> at <m>a</m> is</p>
-        <md>L_a(x)=f(a)+f'(a)(x-a).</md>
-        <p>For <m>x</m> close to <m>a</m>,</p>
-        <md>f(x)\approx f(a)+f'(a)(x-a).</md>
-      </statement>
-    </definition>
+  <md>L_a(x)=f(a)+f'(a)(x-a).</md>
 
-    <p>It is often cleaner to write <m>x=a+h</m>. Then <m>h=x-a</m>, and the approximation becomes</p>
-    <md>f(a+h)\approx f(a)+f'(a)h.</md>
+  <p>This function is called the <em>linearization</em> of <m>f</m> at <m>a</m>.</p>
 
-    <p>This is the derivative in its most useful form:</p>
-    <md>\text{new value} \approx \text{old value} + \text{slope}\cdot\text{small change}.</md>
+  <note xml:id="note-sec-4-4-local-linear-approximation-88">
+    <title>Linearization</title>
+      <p>If <m>f</m> is differentiable at <m>a</m>, then the linearization of <m>f</m> at <m>a</m> is</p>
+        <md>
+L_a(x)=f(a)+f'(a)(x-a).
+</md>
+      <p>For <m>x</m> close to <m>a</m>,</p>
+        <md>
+f(x)\approx f(a)+f'(a)(x-a).
+</md>
+  </note>
 
-    <example xml:id="ex-linear-approx-parabola">
-      <title>Approximating <m>(3.02)^2</m></title>
-      <statement>
-        <p>Let <m>f(x)=x^2</m>. At <m>a=3</m>, <m>f(3)=9</m> and <m>f'(3)=6</m>. So near <m>x=3</m>,</p>
-        <md>f(3+h)\approx 9+6h.</md>
-        <p>If <m>h=0.02</m>, then</p>
-        <md>(3.02)^2=f(3.02)\approx 9+6(0.02)=9.12.</md>
-        <p>The exact value is <m>(3.02)^2=9.1204</m>. The tangent-line estimate misses by only <m>0.0004</m>.</p>
-        <p>The reason is visible from the algebra:</p>
-        <md>(3+h)^2=9+6h+h^2.</md>
-        <p>The linear approximation keeps the terms <m>9+6h</m> and drops the small term <m>h^2</m>. When <m>h</m> is small, <m>h^2</m> is much smaller.</p>
-      </statement>
-    </example>
+  <p>It is often cleaner to write</p>
+
+  <md>x=a+h.</md>
+
+  <p>Then <m>h=x-a</m>, and the approximation becomes</p>
+
+  <md>
+f(a+h)\approx f(a)+f'(a)h.
+</md>
+
+  <p>This is the derivative in its most useful form:</p>
+
+  <md>\text{new value} \approx \text{old value} + \text{slope}\cdot\text{small change}.</md>
+
+
+  <exercise xml:id="checkpoint-4-4-new-plus-slope-times-change">
+        <title>Why is <m>f(a+h)\approx f(a)+f'(a)h</m> the derivative in useful form?</title>
+        <statement>
+          <p>
+            The linearization says that a new value is approximately the old value plus slope times a small change. In your own words, why is this the same idea as the derivative, and what does the formula keep versus drop?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The difference quotient being close to <m>f'(a)</m> is the same statement after multiplying by <m>h</m>. For <m>x^2</m>, the dropped term is the much smaller <m>h^2</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-4-4-local-linear-approximation-1">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=x^2.</md>
+
+  <p>At <m>a=3</m>,</p>
+
+  <md>f(3)=9</md>
+
+  <p>and</p>
+
+  <md>f'(3)=6.</md>
+
+  <p>So near <m>x=3</m>,</p>
+
+  <md>f(3+h)\approx 9+6h.</md>
+
+  <p>If <m>h=0.02</m>, then</p>
+
+  <md>(3.02)^2=f(3.02)\approx 9+6(0.02)=9.12.</md>
+
+  <p>The exact value is</p>
+
+  <md>(3.02)^2=9.1204.</md>
+
+  <p>The tangent-line estimate misses by only</p>
+
+  <md>0.0004.</md>
+
+  <p>The reason is visible from the algebra:</p>
+
+  <md>(3+h)^2=9+6h+h^2.</md>
+
+  <p>The linear approximation keeps the terms</p>
+
+  <md>9+6h</md>
+
+  <p>and drops the small term</p>
+
+  <md>h^2.</md>
+
+  <p>When <m>h</m> is small, <m>h^2</m> is much smaller.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-differentiability-local-linearity">
     <title>Why differentiability means local linearity</title>
 
-    <p>The derivative began as a limit of slopes:</p>
-    <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
-    <p>This says that, for small <m>h</m>, <m>\frac{f(a+h)-f(a)}{h}</m> is close to <m>f'(a)</m>. Multiplying by <m>h</m>, we get the approximation</p>
-    <md>f(a+h)-f(a)\approx f'(a)h.</md>
-    <p>So</p>
-    <md>f(a+h)\approx f(a)+f'(a)h.</md>
+  <p>The derivative began as a limit of slopes:</p>
 
-    <p>There is a precise version.</p>
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
 
-    <theorem xml:id="thm-differentiability-local-linearity">
-      <title>Differentiability as local linearity</title>
-      <statement>
-        <p>If <m>f</m> is differentiable at <m>a</m>, then</p>
+  <p>This says that, for small <m>h</m>,</p>
+
+  <md>\frac{f(a+h)-f(a)}{h}</md>
+
+  <p>is close to <m>f'(a)</m>.  Multiplying by <m>h</m>, we get the approximation</p>
+
+  <md>f(a+h)-f(a)\approx f'(a)h.</md>
+
+  <p>So</p>
+
+  <md>f(a+h)\approx f(a)+f'(a)h.</md>
+
+  <p>There is a precise version.</p>
+
+  <note xml:id="note-sec-4-4-local-linear-approximation-89">
+    <title>Differentiability as local linearity</title>
+      <p>If <m>f</m> is differentiable at <m>a</m>, then</p>
         <md>f(a+h)=f(a)+f'(a)h+E(h),</md>
-        <p>where the error <m>E(h)</m> satisfies</p>
-        <md>\lim_{h\to 0}\frac{E(h)}{h}=0.</md>
-        <p>Equivalently,</p>
-        <md>\frac{|E(h)|}{|h|}\to 0.</md>
-        <p>So the error is small compared with the size of the input change.</p>
-      </statement>
-      <proof>
-        <p>Define <m>E(h)=f(a+h)-f(a)-f'(a)h</m>. Then, for <m>h\neq 0</m>,</p>
-        <md>\frac{E(h)}{h} = \frac{f(a+h)-f(a)}{h}-f'(a).</md>
-        <p>Since <m>\frac{f(a+h)-f(a)}{h}\to f'(a)</m>, we have</p>
-        <md>\frac{E(h)}{h}\to 0.</md>
-        <p>That is exactly the claim.</p>
-      </proof>
-    </theorem>
+      <p>where the error <m>E(h)</m> satisfies</p>
+        <md>\lim_{h\to0}\frac{E(h)}{h}=0.</md>
+      <p>Equivalently,</p>
+        <md>\frac{|E(h)|}{|h|}\to0.</md>
+      <p>So the error is small compared with the size of the input change.</p>
+  </note>
 
-    <paragraphs xml:id="paragraphs-why-derivative-hypothesis-matters">
-      <title>Why the derivative hypothesis matters</title>
-      <p>The function <m>f(x)=|x|</m> has no derivative at <m>0</m>. There is no single line that gives a first-order model of <m>|x|</m> at the origin.</p>
-      <p>Suppose we try a line through the origin, <m>L(h)=mh</m>. The error would be <m>E(h)=|h|-mh</m>.</p>
-      <p>For <m>h\gt 0</m>, <m>\frac{E(h)}{h}=1-m</m>.</p>
-      <p>For <m>h\lt 0</m>, <m>\frac{E(h)}{h}=-1-m</m>.</p>
-      <p>For both one-sided errors to approach <m>0</m>, we would need <m>1-m=0</m> and <m>-1-m=0</m> at the same time. Impossible.</p>
-      <p>So <m>|x|</m> has no local linear approximation at <m>0</m> with error small compared to <m>h</m>. This is the algebraic meaning of the corner.</p>
-    </paragraphs>
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Define</p>
+
+  <md>E(h)=f(a+h)-f(a)-f'(a)h.</md>
+
+  <p>Then, for <m>h\neq0</m>,</p>
+
+  <md>\frac{E(h)}{h}
+=
+\frac{f(a+h)-f(a)}{h}-f'(a).</md>
+
+  <p>Since</p>
+
+  <md>\frac{f(a+h)-f(a)}{h}\to f'(a),</md>
+
+  <p>we have</p>
+
+  <md>\frac{E(h)}{h}\to0.</md>
+
+  <p>That is exactly the claim.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Why the derivative hypothesis matters</title>
+
+  <p>The function</p>
+
+  <md>f(x)=|x|</md>
+
+  <p>has no derivative at <m>0</m>.  There is no single line that gives a first-order model of <m>|x|</m> at the origin.</p>
+
+  <p>Suppose we try a line through the origin,</p>
+
+  <md>L(h)=mh.</md>
+
+  <p>The error would be</p>
+
+  <md>E(h)=|h|-mh.</md>
+
+  <p>For <m>h&gt;0</m>,</p>
+
+  <md>\frac{E(h)}{h}=1-m.</md>
+
+  <p>For <m>h&lt;0</m>,</p>
+
+  <md>\frac{E(h)}{h}=-1-m.</md>
+
+  <p>For both one-sided errors to approach <m>0</m>, we would need</p>
+
+  <md>1-m=0</md>
+
+  <p>and</p>
+
+  <md>-1-m=0.</md>
+
+  <p>That would require</p>
+
+  <md>m=1
+\qquad\text{and}\qquad
+m=-1</md>
+
+  <p>at the same time.  Impossible.</p>
+
+  <p>So <m>|x|</m> has no local linear approximation at <m>0</m> with error small compared to <m>h</m>.  This is the algebraic meaning of the corner.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-4-error-small-compared-to-h">
+        <title>Why does differentiability mean the error is small compared with <m>h</m>?</title>
+        <statement>
+          <p>
+            If <m>f</m> is differentiable at <m>a</m>, then <m>f(a+h)=f(a)+f'(a)h+E(h)</m> with <m>E(h)/h\to 0</m>. In your own words, why is that stronger than merely saying the error goes to <m>0</m>, and why does <m>|x|</m> fail this test at the origin?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The error must shrink faster than the input step. A corner would require two different first-order slopes at once.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-differentials">
     <title>Differentials</title>
 
-    <p>The notation <m>\frac{dy}{dx}</m> suggests small changes in <m>x</m> and <m>y</m>. Linear approximation lets us give that suggestion a precise first meaning.</p>
+  <p>The notation <m>\dfrac{dy}{dx}</m> suggests small changes in <m>x</m> and <m>y</m>.  Linear approximation lets us give that suggestion a precise first meaning.</p>
 
-    <p>Let <m>y=f(x)</m>. Suppose the input changes by a small amount <m>\Delta x</m>. Then the exact change in output is</p>
-    <md>\Delta y=f(x+\Delta x)-f(x).</md>
+  <p>Let</p>
 
-    <p>The derivative gives the tangent-line estimate</p>
-    <md>\Delta y\approx f'(x)\Delta x.</md>
+  <md>y=f(x).</md>
 
-    <p>We now introduce differential notation: <m>dx=\Delta x</m>, and</p>
-    <md>dy=f'(x)\,dx.</md>
+  <p>Suppose the input changes by a small amount</p>
 
-    <p>Here <m>dy</m> is not the exact change in <m>y</m>. It is the change predicted by the tangent line.</p>
-    <md>\Delta y=\text{exact change}, \qquad dy=\text{linear approximation to the change}.</md>
+  <md>\Delta x.</md>
 
-    <figure xml:id="fig-dy-vs-delta-y">
-      <caption>The differential <m>dy</m> is the tangent-line change. The actual change is <m>\Delta y</m>.</caption>
-      <image width="74%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.74\textwidth,
-              height=0.50\textwidth,
-              xmin=0.7, xmax=2.5,
-              ymin=1.2, ymax=5.2,
-              axis lines=left,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={1.5,2.1},
-              xticklabels={\(x\),\(x+dx\)},
-              ytick={2.25,4.05,4.41},
-              yticklabels={\(f(x)\),\(f(x)+dy\),\(f(x+dx)\)},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=0.8:2.35, samples=120] {x^2};
-          \addplot[very thick, domain=1.0:2.35, samples=2] {3*x-2.25};
+  <p>Then the exact change in output is</p>
 
-          \addplot[only marks, mark=*] coordinates {(1.5,2.25) (2.1,4.41)};
-          \addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(2.1,4.05)};
+  <md>\Delta y=f(x+\Delta x)-f(x).</md>
 
-          \draw[&lt;-&gt;] (axis cs:1.5,2.05) -- (axis cs:2.1,2.05);
-          \node[anchor=north] at (axis cs:1.8,2.03) {\(dx\)};
+  <p>The derivative gives the tangent-line estimate</p>
 
-          \draw[&lt;-&gt;] (axis cs:2.1,2.25) -- (axis cs:2.1,4.05);
-          \node[anchor=east] at (axis cs:2.1,3.15) {\(dy\)};
+  <md>\Delta y\approx f'(x)\Delta x.</md>
 
-          \draw[&lt;-&gt;, dashed] (axis cs:2.1,2.25) -- (axis cs:2.1,4.41);
-          \draw[decorate, decoration={brace, mirror, amplitude=5pt}] 
-              (axis cs:2.1,2.25) -- (axis cs:2.1,4.41) 
-              node[midway, right=6pt] {\(\Delta y\)};
+  <p>We now introduce differential notation:</p>
 
-          \node[anchor=west] at (axis cs:1.2,2.7) {tangent line};
-          \node[anchor=west] at (axis cs:1.05,4.5) {curve};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>dx=\Delta x,</md>
 
-    <example xml:id="ex-differential-parabola">
-      <title>Differential calculations on a parabola</title>
-      <statement>
-        <p>Let <m>y=x^2</m>. Then <m>\frac{dy}{dx}=2x</m>, so</p>
-        <md>dy=2x\,dx.</md>
-        <p>At <m>x=3</m>, if <m>dx=0.02</m>, then</p>
-        <md>dy=2(3)(0.02)=0.12.</md>
-        <p>The exact change is</p>
-        <md>\Delta y=(3.02)^2-3^2=9.1204-9=0.1204.</md>
-        <p>So the differential estimate is close: <m>dy=0.12</m>, <m>\Delta y=0.1204</m>.</p>
-        <p>If instead <m>dx=-0.02</m>, then</p>
-        <md>dy=2(3)(-0.02)=-0.12.</md>
-        <p>The exact change is</p>
-        <md>\Delta y=(2.98)^2-9=8.8804-9=-0.1196.</md>
-        <p>The sign matters. A positive <m>dx</m> moves to the right. A negative <m>dx</m> moves to the left. The differential notation remembers the direction of the small step.</p>
-      </statement>
-    </example>
+  <p>and</p>
 
-    <principle xml:id="principle-differential-approximation">
-      <title>Differential approximation</title>
-      <statement>
-        <p>For small <m>dx</m>,</p>
-        <md>\Delta y\approx dy=f'(x)\,dx.</md>
-        <p>This is the same idea as <m>f(x+dx)\approx f(x)+f'(x)\,dx</m>.</p>
-      </statement>
-    </principle>
+  <md>
+dy=f'(x)\,dx.
+</md>
+
+  <p>Here <m>dy</m> is not the exact change in <m>y</m>.  It is the change predicted by the tangent line.</p>
+
+  <md>
+\Delta y=\text{exact change},
+\qquad
+dy=\text{linear approximation to the change}.
+</md>
+
+  <figure xml:id="fig-dy-vs-delta-y">
+    <caption>The differential <m>dy</m> is the tangent-line change.  The actual change is <m>\Delta y</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.74\textwidth,
+    height=0.50\textwidth,
+    xmin=0.7, xmax=2.5,
+    ymin=1.2, ymax=5.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={1.5,2.1},
+    xticklabels={\(x\),\(x+dx\)},
+    ytick={2.25,4.05,4.41},
+    yticklabels={\(f(x)\),\(f(x)+dy\),\(f(x+dx)\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=0.8:2.35, samples=120] {x^2};
+\addplot[very thick, domain=1.0:2.35, samples=2] {3*x-2.25};
+
+\addplot[only marks, mark=*] coordinates {(1.5,2.25) (2.1,4.41)};
+\addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(2.1,4.05)};
+
+\draw[&lt;-&gt;] (axis cs:1.5,2.05) -- (axis cs:2.1,2.05);
+\node[anchor=north] at (axis cs:1.8,2.03) {\(dx\)};
+
+\draw[&lt;-&gt;] (axis cs:2.1,2.25) -- (axis cs:2.1,4.05);
+\node[anchor=east] at (axis cs:2.1,3.15) {\(dy\)};
+
+\draw[&lt;-&gt;, dashed] (axis cs:2.1,2.25) -- (axis cs:2.1,4.41);
+\draw[decorate, decoration={brace, mirror, amplitude=5pt}] 
+    (axis cs:2.1,2.25) -- (axis cs:2.1,4.41) 
+    node[midway, right=6pt] {\(\Delta y\)};
+
+\node[anchor=west] at (axis cs:1.2,2.7) {tangent line};
+\node[anchor=west] at (axis cs:1.05,4.5) {curve};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+
+  <exercise xml:id="checkpoint-4-4-dy-versus-delta-y">
+        <title>Why is <m>dy</m> not the same as <m>\Delta y</m>?</title>
+        <statement>
+          <p>
+            The differential <m>dy=f'(x)\,dx</m> is the change predicted by the tangent line, while <m>\Delta y</m> is the exact change along the curve. In your own words, why do those two quantities differ, and why does a large <m>|f'(x)|</m> make a small input error dangerous?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            One quantity follows the line; the other follows the curve. The derivative is the local conversion factor from input change to output change.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-4-4-local-linear-approximation-4">
+    <title>Example</title>
+    <statement>
+  <p>Let</p>
+
+  <md>y=x^2.</md>
+
+  <p>Then</p>
+
+  <md>\frac{dy}{dx}=2x,</md>
+
+  <p>so</p>
+
+  <md>dy=2x\,dx.</md>
+
+  <p>At <m>x=3</m>, if</p>
+
+  <md>dx=0.02,</md>
+
+  <p>then</p>
+
+  <md>dy=2(3)(0.02)=0.12.</md>
+
+  <p>The exact change is</p>
+
+  <md>\Delta y=(3.02)^2-3^2=9.1204-9=0.1204.</md>
+
+  <p>So the differential estimate is close:</p>
+
+  <md>dy=0.12,
+\qquad
+\Delta y=0.1204.</md>
+
+  <p>If instead</p>
+
+  <md>dx=-0.02,</md>
+
+  <p>then</p>
+
+  <md>dy=2(3)(-0.02)=-0.12.</md>
+
+  <p>The exact change is</p>
+
+  <md>\Delta y=(2.98)^2-9=8.8804-9=-0.1196.</md>
+
+  <p>The sign matters.  A positive <m>dx</m> moves to the right.  A negative <m>dx</m> moves to the left.  The differential notation remembers the direction of the small step.</p>
+
+  <note xml:id="note-sec-4-4-local-linear-approximation-90">
+    <title>Differential approximation</title>
+      <p>For small <m>dx</m>,</p>
+        <md>
+\Delta y\approx dy=f'(x)\,dx.
+</md>
+      <p>This is the same idea as</p>
+        <md>f(x+dx)\approx f(x)+f'(x)\,dx.</md>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-sensitivity-propagated-error">
     <title>Sensitivity and propagated error</title>
 
-    <p>A derivative measures sensitivity. If <m>x</m> has a small error <m>dx</m>, then the resulting error in <m>y=f(x)</m> is approximately</p>
-    <md>dy=f'(x)\,dx.</md>
-    <p>The larger <m>|f'(x)|</m> is, the more sensitive the output is to small input changes.</p>
+  <p>A derivative measures sensitivity.  If <m>x</m> has a small error <m>dx</m>, then the resulting error in <m>y=f(x)</m> is approximately</p>
 
-    <example xml:id="ex-propagated-error-circle-area">
-      <title>Measuring the area of a circle</title>
-      <statement>
-        <p>The area of a circle of radius <m>r</m> is <m>A(r)=\pi r^2</m>. Since the derivative of <m>r^2</m> is <m>2r</m>,</p>
-        <md>A'(r)=2\pi r.</md>
-        <p>Therefore</p>
-        <md>dA=2\pi r\,dr.</md>
-        <p>Suppose the radius is measured as <m>r=10\text{ cm}</m>, with possible error <m>|dr|\le 0.05\text{ cm}</m>. Then the approximate area error is bounded by</p>
-        <md>|dA|\approx 2\pi(10)(0.05)=\pi.</md>
-        <p>So the area is uncertain by about <m>\pi\text{ cm}^2</m>.</p>
-        <p>The relative error is also easy to estimate:</p>
-        <md>\frac{dA}{A} = \frac{2\pi r\,dr}{\pi r^2} = 2\frac{dr}{r}.</md>
-        <p>With <m>r=10</m> and <m>|dr|\le 0.05</m>,</p>
-        <md>\left|\frac{dA}{A}\right| \approx 2\frac{0.05}{10} = 0.01.</md>
-        <p>So the radius error of about <m>0.5\%</m> produces an area error of about <m>1\%</m>.</p>
-      </statement>
-    </example>
+  <md>dy=f'(x)\,dx.</md>
 
-    <example xml:id="ex-sensitivity-near-zero-reciprocal">
-      <title>Sensitivity near division by zero</title>
-      <statement>
-        <p>Let <m>R(x)=\frac{1}{x}</m>. For <m>x\neq 0</m>,</p>
-        <md>R'(x) = \lim_{h\to 0}\frac{\frac{1}{x+h}-\frac{1}{x}}{h}.</md>
-        <p>Simplify:</p>
-        <md>\frac{\frac{1}{x+h}-\frac{1}{x}}{h} = \frac{\frac{x-(x+h)}{x(x+h)}}{h} = \frac{-h}{h\,x(x+h)}.</md>
-        <p>Since <m>h\neq 0</m>,</p>
-        <md>\frac{-h}{h\,x(x+h)} = -\frac{1}{x(x+h)}.</md>
-        <p>Taking the limit gives</p>
-        <md>R'(x)=-\frac{1}{x^2}.</md>
-        <p>Near <m>x=0</m>, this derivative is large in magnitude. For example, at <m>x=0.01</m>, we have</p>
-        <md>R'(0.01)=-\frac{1}{(0.01)^2}=-10000.</md>
-        <p>A tiny input change <m>dx=0.0001</m> produces the approximate output change</p>
-        <md>dR\approx -10000(0.0001)=-1.</md>
-        <p>So near <m>0</m>, the reciprocal function is extremely sensitive. This is the same warning we saw in limits: small denominators can make small input errors become large output errors.</p>
-      </statement>
-    </example>
+  <p>The larger <m>|f'(x)|</m> is, the more sensitive the output is to small input changes.</p>
 
-    <principle xml:id="principle-sensitivity-rule">
-      <title>Sensitivity rule</title>
-      <statement>
-        <p>For small input changes,</p>
-        <md>\text{output change}\approx f'(x)\cdot \text{input change}.</md>
-        <p>The derivative is the local conversion factor from input error to output error.</p>
-      </statement>
-    </principle>
+  <example xml:id="ex-sec-4-4-local-linear-approximation-5">
+    <title>measuring the area of a circle</title>
+    <statement>
+  <p>The area of a circle of radius <m>r</m> is</p>
 
-    <p>Local linear approximation is one of the main reasons derivatives matter. A differentiable function may be curved, but under enough magnification it behaves like a line.</p>
+  <md>A(r)=\pi r^2.</md>
 
-    <p>That raises the next question. If a function has a derivative at a point, what does that force the original function to do near that point? In particular, can a differentiable function jump? The answer is no, and the reason is hidden inside the same local linear formula.</p>
+  <p>Since the derivative of <m>r^2</m> is <m>2r</m>,</p>
+
+  <md>A'(r)=2\pi r.</md>
+
+  <p>Therefore</p>
+
+  <md>dA=2\pi r\,dr.</md>
+
+  <p>Suppose the radius is measured as</p>
+
+  <md>r=10\text{ cm},</md>
+
+  <p>with possible error</p>
+
+  <md>|dr|\le0.05\text{ cm}.</md>
+
+  <p>Then the approximate area error is bounded by</p>
+
+  <md>|dA|
+\approx
+2\pi(10)(0.05)
+=
+\pi.</md>
+
+  <p>So the area is uncertain by about</p>
+
+  <md>\pi\text{ cm}^2.</md>
+
+  <p>The relative error is also easy to estimate:</p>
+
+  <md>\frac{dA}{A}
+=
+\frac{2\pi r\,dr}{\pi r^2}
+=
+2\frac{dr}{r}.</md>
+
+  <p>With <m>r=10</m> and <m>|dr|\le0.05</m>,</p>
+
+  <md>\left|\frac{dA}{A}\right|
+\approx
+2\frac{0.05}{10}
+=
+0.01.</md>
+
+  <p>So the radius error of about <m>0.5\%</m> produces an area error of about <m>1\%</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-4-4-local-linear-approximation-6">
+    <title>sensitivity near division by zero</title>
+    <statement>
+  <p>Let</p>
+
+  <md>R(x)=\frac1x.</md>
+
+  <p>For <m>x\neq0</m>,</p>
+
+  <md>R'(x)
+=
+\lim_{h\to0}\frac{\frac1{x+h}-\frac1x}{h}.</md>
+
+  <p>Simplify:</p>
+
+  <md>\frac{\frac1{x+h}-\frac1x}{h}
+=
+\frac{\frac{x-(x+h)}{x(x+h)}}{h}
+=
+\frac{-h}{h\,x(x+h)}.</md>
+
+  <p>Since <m>h\neq0</m>,</p>
+
+  <md>\frac{-h}{h\,x(x+h)}
+=
+-\frac{1}{x(x+h)}.</md>
+
+  <p>Taking the limit gives</p>
+
+  <md>R'(x)=-\frac1{x^2}.</md>
+
+  <p>Near <m>x=0</m>, this derivative is large in magnitude.  For example, at</p>
+
+  <md>x=0.01,</md>
+
+  <p>we have</p>
+
+  <md>R'(0.01)=-\frac{1}{(0.01)^2}=-10000.</md>
+
+  <p>A tiny input change</p>
+
+  <md>dx=0.0001</md>
+
+  <p>produces the approximate output change</p>
+
+  <md>dR\approx -10000(0.0001)=-1.</md>
+
+  <p>So near <m>0</m>, the reciprocal function is extremely sensitive.  This is the same warning we saw in limits: small denominators can make small input errors become large output errors.</p>
+
+  <note xml:id="note-sec-4-4-local-linear-approximation-91">
+    <title>Sensitivity rule</title>
+      <p>For small input changes,</p>
+        <md>
+\text{output change}\approx f'(x)\cdot \text{input change}.
+</md>
+      <p>The derivative is the local conversion factor from input error to output error.</p>
+  </note>
+
+  <p>Local linear approximation is one of the main reasons derivatives matter.  A differentiable function may be curved, but under enough magnification it behaves like a line.</p>
+
+  <p>That raises the next question.  If a function has a derivative at a point, what does that force the original function to do near that point?  In particular, can a differentiable function jump?  The answer is no, and the reason is hidden inside the same local linear formula.</p>
+    </statement>
+  </example>
   </subsection>
+
+
 
 </section>

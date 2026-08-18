@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-15-8-warning-examples">
+  <title>Warning examples</title>
+
+  <p>Series tests are not recipes to apply by reflex.  Each test has hypotheses, and those
+hypotheses are part of the mathematics.</p>
+
+  <p>This section collects the main warnings before we leave numerical series.</p>
+
+  <md>
+\text{A series test used without its hypotheses is not a test.}
+</md>
+
+  <subsection xml:id="subsec-warning-terms-zero-series-diverges">
+    <title>Terms tend to zero, but the series diverges</title>
+
+  <p>The most common mistake is to think that</p>
+
+  <md>a_k\to0</md>
+
+  <p>is enough to make</p>
+
+  <md>\sum_{k=1}^{\infty}a_k</md>
+
+  <p>converge.</p>
+
+  <p>It is not.</p>
+
+  <p>The harmonic series is the permanent counterexample:</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1k
+=
+1+\frac12+\frac13+\frac14+\cdots.</md>
+
+  <p>The terms satisfy</p>
+
+  <md>\frac1k\to0.</md>
+
+  <p>But the series diverges.</p>
+
+  <p>Recall the doubled-block proof:</p>
+
+  <md>1
++\frac12
++\left(\frac13+\frac14\right)
++\left(\frac15+\frac16+\frac17+\frac18\right)
++\cdots.</md>
+
+  <p>Each doubled block contributes at least</p>
+
+  <md>\frac12.</md>
+
+  <p>So the partial sums grow beyond every bound.</p>
+
+  <md>
+a_k\to0 \text{ is necessary for convergence, but not sufficient.}
+</md>
+
+  <p>The term test is only a divergence test:</p>
+
+  <md>
+a_k\not\to0
+\quad\Longrightarrow\quad
+\sum a_k \text{ diverges.}
+</md>
+
+  <p>It has no converse.</p>
+
+  <exercise xml:id="checkpoint-15-8-term-test-trap">
+        <title>Why is <q>terms go to zero, so the series converges</q> never a proof?</title>
+        <statement>
+          <p>
+            The harmonic series is the permanent counterexample to treating <m>a_k\to 0</m> as a convergence test. In your own words, why is the term test only a one-way implication, and what mistake does that warning keep you from making?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Necessary is not sufficient. The term test can prove divergence when terms stay large; it cannot prove convergence when they become small.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-warning-ratio-test-no-information">
+    <title>The Ratio Test can give no information</title>
+
+  <p>The Ratio Test says to compute</p>
+
+  <md>L=
+\lim_{k\to\infty}\left|\frac{a_{k+1}}{a_k}\right|.</md>
+
+  <p>If</p>
+
+  <md>L&lt;1,</md>
+
+  <p>we get absolute convergence.  If</p>
+
+  <md>L&gt;1,</md>
+
+  <p>we get divergence.  If</p>
+
+  <md>L=1,</md>
+
+  <p>we get no information.</p>
+
+  <p>That last case is not a minor technicality.  It really means no information.</p>
+
+  <p>Compare two series.</p>
+
+  <p>First, the harmonic series:</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1k.</md>
+
+  <p>Here</p>
+
+  <md>a_k=\frac1k,</md>
+
+  <p>so</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac{1}{k+1}\cdot k
+=
+\frac{k}{k+1}
+\to1.</md>
+
+  <p>The Ratio Test gives</p>
+
+  <md>L=1.</md>
+
+  <p>The series diverges, but the Ratio Test does not tell us that.</p>
+
+  <p>Now consider</p>
+
+  <md>\sum_{k=1}^{\infty}\frac1{k^2}.</md>
+
+  <p>Here</p>
+
+  <md>a_k=\frac1{k^2},</md>
+
+  <p>so</p>
+
+  <md>\left|\frac{a_{k+1}}{a_k}\right|
+=
+\frac{1}{(k+1)^2}\cdot k^2
+=
+\left(\frac{k}{k+1}\right)^2
+\to1.</md>
+
+  <p>Again the Ratio Test gives</p>
+
+  <md>L=1.</md>
+
+  <p>This series converges.</p>
+
+  <p>So the same ratio-test result,</p>
+
+  <md>L=1,</md>
+
+  <p>occurs for one divergent series and one convergent series.</p>
+
+  <md>
+\text{When the Ratio Test gives \(L=1\), switch tests.}
+</md>
+
+  <p>For rational expressions in <m>k</m>, comparison with a <m>p</m>-series is usually a better
+choice than the Ratio Test.</p>
+
+  <exercise xml:id="checkpoint-15-8-ratio-silent">
+        <title>Why can the Ratio Test stay silent on both sides?</title>
+        <statement>
+          <p>
+            The Ratio Test can return <m>L=1</m> for a divergent series and also for a convergent one. In your own words, why is <q>no information</q> a genuine third conclusion rather than a failure to compute, and what should replace the Ratio Test in that case?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A limit of <m>1</m> means the terms are not eventually geometric. Comparison, the Integral Test, or a <m>p</m>-series argument is then the right tool.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-warning-integral-test-hypotheses">
+    <title>The Integral Test requires its hypotheses</title>
+
+  <p>The Integral Test requires a function <m>f</m> that is</p>
+
+  <md>\text{continuous, positive, and decreasing}</md>
+
+  <p>on a tail interval such as <m>[1,\infty)</m>, with</p>
+
+  <md>a_k=f(k).</md>
+
+  <p>The proof compares positive rectangle areas with positive curved areas.  If the function
+is not positive and decreasing, the geometric comparison may collapse.</p>
+
+  <p>Here is a sharp warning.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=-\sin^2(\pi x).</md>
+
+  <p>This function is continuous and nonpositive.  At every positive integer <m>k</m>,</p>
+
+  <md>f(k)=-\sin^2(\pi k)=0.</md>
+
+  <p>So the series formed by sampling <m>f</m> at the positive integers is</p>
+
+  <md>\sum_{k=1}^{\infty}f(k)
+=
+0+0+0+\cdots,</md>
+
+  <p>which converges to <m>0</m>.</p>
+
+  <p>But the improper integral diverges to <m>-\infty</m>:</p>
+
+  <md>\int_1^b -\sin^2(\pi x)\,dx
+=
+-\int_1^b \sin^2(\pi x)\,dx.</md>
+
+  <p>Using</p>
+
+  <md>\sin^2(\pi x)=\frac{1-\cos(2\pi x)}{2},</md>
+
+  <p>we get</p>
+
+  <md>\int_1^b -\sin^2(\pi x)\,dx
+=
+-\frac{b-1}{2}
++
+\frac{\sin(2\pi b)}{4\pi}.</md>
+
+  <p>As</p>
+
+  <md>b\to\infty,</md>
+
+  <p>the term</p>
+
+  <md>-\frac{b-1}{2}</md>
+
+  <p>goes to <m>-\infty</m>, while</p>
+
+  <md>\frac{\sin(2\pi b)}{4\pi}</md>
+
+  <p>stays bounded.  Therefore</p>
+
+  <md>\int_1^\infty -\sin^2(\pi x)\,dx</md>
+
+  <p>diverges.</p>
+
+  <p>So we have</p>
+
+  <md>\sum_{k=1}^{\infty}f(k) \text{ converges}</md>
+
+  <p>but</p>
+
+  <md>\int_1^\infty f(x)\,dx \text{ diverges}.</md>
+
+  <md>
+\text{Sampling a function at integers and integrating it over an interval are not automatically equivalent.}
+</md>
+
+  <p>The Integral Test works only because positivity and monotonicity let rectangles control
+area.</p>
+
+  <exercise xml:id="checkpoint-15-8-hypotheses-are-the-test">
+        <title>Why is a series test without its hypotheses not a test?</title>
+        <statement>
+          <p>
+            The Integral Test needs a continuous, positive, decreasing function. The Alternating Series Test needs decreasing term sizes tending to zero. In your own words, why are those hypotheses part of the mathematics rather than extra paperwork?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each proof uses the hypotheses as a mechanism: rectangles sit above or below a curve, or bounces shrink. If the mechanism is missing, the conclusion is unearned.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-warning-alternating-test-decreasing">
+    <title>The Alternating Series Test requires decreasing term sizes</title>
+
+  <p>The Alternating Series Test says that</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}b_k</md>
+
+  <p>converges if</p>
+
+  <md>b_k\ge0,
+\qquad
+b_{k+1}\le b_k,
+\qquad
+b_k\to0.</md>
+
+  <p>The condition</p>
+
+  <md>b_k\to0</md>
+
+  <p>alone is not enough.  The decreasing condition organizes the cancellation.</p>
+
+  <p>Here is a counterexample.</p>
+
+  <p>Define</p>
+
+  <md>b_{2m-1}=\frac1m,
+\qquad
+b_{2m}=\frac1{m^2},
+\qquad
+m=1,2,3,\ldots.</md>
+
+  <p>Then</p>
+
+  <md>b_k\to0.</md>
+
+  <p>But the sequence <m>\{b_k\}</m> is not decreasing.  For instance,</p>
+
+  <md>b_4=\frac14,
+\qquad
+b_5=\frac13,</md>
+
+  <p>so</p>
+
+  <md>b_5&gt;b_4.</md>
+
+  <p>Now form the alternating series</p>
+
+  <md>\sum_{k=1}^{\infty}(-1)^{k-1}b_k.</md>
+
+  <p>Group the terms in pairs:</p>
+
+  <md>(b_1-b_2)+(b_3-b_4)+(b_5-b_6)+\cdots.</md>
+
+  <p>Using the definition of <m>b_k</m>, this becomes</p>
+
+  <md>\left(1-1\right)
++
+\left(\frac12-\frac14\right)
++
+\left(\frac13-\frac19\right)
++
+\left(\frac14-\frac1{16}\right)
++\cdots.</md>
+
+  <p>The <m>m</m>-th pair is</p>
+
+  <md>\frac1m-\frac1{m^2}.</md>
+
+  <p>For <m>m\ge2</m>,</p>
+
+  <md>\frac1m-\frac1{m^2}
+=
+\frac{m-1}{m^2}
+\ge
+\frac1{2m}.</md>
+
+  <p>Therefore the paired partial sums dominate</p>
+
+  <md>\sum_{m=2}^{\infty}\frac1{2m},</md>
+
+  <p>which diverges.</p>
+
+  <p>So the original alternating series diverges, even though</p>
+
+  <md>b_k\to0.</md>
+
+  <md>
+\text{Alternating signs plus terms tending to zero are not enough.}
+</md>
+
+  <p>The term sizes must decrease, at least eventually, for the Alternating Series Test to
+apply.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-series-final-checklist">
+    <title>The final checklist</title>
+
+  <p>Before deciding that a series converges or diverges, check the exact reason.</p>
+
+  <table xml:id="tab-sec-15-8-warning-examples-0">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>claim</strong></cell>
+        <cell><strong>what must be true</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sum a_k</m> converges by the term test</cell>
+        <cell>never; the term test proves only divergence</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\sum a_k</m> diverges by the term test</cell>
+        <cell><m>a_k\not\to0</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\sum a_k</m> converges by comparison</cell>
+        <cell>terms are eventually nonnegative and bounded by a convergent series</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\sum a_k</m> diverges by comparison</cell>
+        <cell>terms are eventually at least a divergent positive series</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Integral Test applies</cell>
+        <cell><m>f</m> is continuous, positive, decreasing, and <m>a_k=f(k)</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Alternating Series Test applies</cell>
+        <cell>term sizes are nonnegative, decreasing, and tend to <m>0</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Ratio or Root Test decides</cell>
+        <cell>the limit is less than <m>1</m> or greater than <m>1</m></cell>
+      </row>
+      <row>
+        <cell>
+absolute convergence holds</cell>
+        <cell><m>\sum |a_k|</m> converges</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The point is not to memorize a list of traps.  The point is to keep the meaning visible.</p>
+
+  <p>A series is an accumulated limit:</p>
+
+  <md>\sum_{k=1}^{\infty}a_k
+=
+\lim_{n\to\infty}
+(a_1+a_2+\cdots+a_n).</md>
+
+  <p>Every test is a way to control that limit.</p>
+
+  <p>In the next chapter, the terms of the series will contain a variable:</p>
+
+  <md>a_0+a_1x+a_2x^2+a_3x^3+\cdots.</md>
+
+  <p>Then an infinite sum becomes a function.  That is where series stop being only numbers
+and become a new way to represent <m>e^x</m>, <m>\sin x</m>, <m>\cos x</m>, and many functions
+whose antiderivatives cannot be written in elementary form.</p>
+
+  <exercise xml:id="checkpoint-15-8-tests-control-partial-sums">
+        <title>What are all series tests really controlling?</title>
+        <statement>
+          <p>
+            Every series is a limit of partial sums. In your own words, why is every convergence test a way to control that limit, and how does that viewpoint keep the checklist from becoming a list of disconnected tricks?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Comparison bounds running totals, the Integral Test compares them with area, alternating tests trap them in a shrinking gap, and ratio or root tests compare them with geometric tails. The object is always <m>S_n</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

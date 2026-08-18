@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-2-midpoint-and-trapezoidal-rules">
+  <title>Midpoint and trapezoidal rules</title>
+
+  <p>A rectangle is the simplest approximation to area.  But there is more than one sensible
+rectangle, and a rectangle is not the only simple shape.</p>
+
+  <p>On a short interval <m>[a,b]</m>, the graph may not be exactly straight, but it may be close to
+straight.  This suggests two improvements over the roughest left and right rectangle
+rules:</p>
+
+  <md>\text{use the value at the midpoint}</md>
+
+  <p>or</p>
+
+  <md>\text{connect the endpoint values by a straight line}.</md>
+
+  <p>These ideas give the midpoint rule and the trapezoidal rule.</p>
+
+  <subsection xml:id="subsec-geometry-midpoint-rule">
+    <title>Geometry of the midpoint rule</title>
+
+  <p>On a single interval <m>[a,b]</m>, the midpoint is</p>
+
+  <md>m=\frac{a+b}{2}.</md>
+
+  <p>The midpoint rule approximates the integral by a rectangle whose height is the function
+value at the midpoint:</p>
+
+  <md>
+\int_a^b f(x)\,dx\approx (b-a)f\left(\frac{a+b}{2}\right).
+</md>
+
+  <p>The area of the rectangle is</p>
+
+  <md>\text{width}\cdot\text{midpoint height}.</md>
+
+  <figure xml:id="fig-midpoint-single-interval">
+    <caption>The midpoint rule uses one rectangle whose height is taken at the midpoint.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=0, ymax=3.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0.3,1.1,1.9},
+    xticklabels={\(a\),\(m\),\(b\)},
+    ytick=\empty,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!18, draw=gray!60]
+  (axis cs:0.3,0) rectangle (axis cs:1.9,{1+0.35*1.1+0.45*1.1^2});
+\addplot[very thick, domain=0.3:1.9, samples=120] {1+0.35*x+0.45*x^2};
+\addplot[only marks, mark=*] coordinates {(1.1,{1+0.35*1.1+0.45*1.1^2})};
+\draw[dashed] (axis cs:1.1,0) -- (axis cs:1.1,{1+0.35*1.1+0.45*1.1^2});
+\node[anchor=west] at (axis cs:1.18,2.05) {\(f(m)\)};
+\node at (axis cs:1.1,0.65) {midpoint rectangle};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Why use the midpoint instead of an endpoint?  The midpoint balances the interval.  If the
+function is increasing, a left rectangle underestimates and a right rectangle overestimates.
+The midpoint often cancels part of those errors.</p>
+
+  <p>For a line, the cancellation is perfect.</p>
+
+
+  <exercise xml:id="checkpoint-12-2-midpoint-geometry">
+        <title>Why is a midpoint rectangle often better than a left or right one?</title>
+        <statement>
+          <p>
+            On one interval, the midpoint rule uses height <m>f\bigl((a+b)/2\bigr)</m>. In your own words, why does that choice often cancel part of the error of endpoint rectangles, and why is the rule exact for every line?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If a function is increasing, a left rectangle underestimates and a right rectangle overestimates. The midpoint height of a line is exactly its average height.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-2-midpoint-and-trapezoidal-rules-1">
+    <title>midpoint rule is exact for a line</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=2x+1</md>
+
+  <p>on <m>[0,4]</m>.  The exact integral is</p>
+
+  <md>\int_0^4 (2x+1)\,dx
+=
+\left(x^2+x\right)\Big|_0^4
+=
+20.</md>
+
+  <p>The midpoint is</p>
+
+  <md>m=2.</md>
+
+  <p>The midpoint rectangle gives</p>
+
+  <md>(4-0)f(2)=4(5)=20.</md>
+
+  <p>So the midpoint rule gives the exact answer.</p>
+
+  <p>This happens for every linear function on every interval.  The midpoint height of a line
+is exactly the average height of the line.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-geometry-trapezoidal-rule">
+    <title>Geometry of the trapezoidal rule</title>
+
+  <p>The trapezoidal rule uses both endpoint values.  It connects</p>
+
+  <md>(a,f(a))
+\qquad\text{and}\qquad
+(b,f(b))</md>
+
+  <p>by a straight line, then takes the area under that line.</p>
+
+  <p>The resulting shape is a trapezoid with parallel vertical sides of heights <m>f(a)</m> and
+<m>f(b)</m>, and width <m>b-a</m>.  Its area is</p>
+
+  <md>\text{width}\cdot\text{average of the two heights}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\int_a^b f(x)\,dx\approx
+\frac{b-a}{2}\bigl(f(a)+f(b)\bigr).
+</md>
+
+  <figure xml:id="fig-trapezoid-single-interval">
+    <caption>The trapezoidal rule replaces the graph by the secant line over the interval.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.70\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=2.2,
+    ymin=0, ymax=3.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0.3,1.9},
+    xticklabels={\(a\),\(b\)},
+    ytick=\empty,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[fill=gray!18, draw=gray!60] coordinates {
+  (0.3,0)
+  (0.3,{1+0.35*0.3+0.45*0.3^2})
+  (1.9,{1+0.35*1.9+0.45*1.9^2})
+  (1.9,0)
+  (0.3,0)
+};
+\addplot[very thick, domain=0.3:1.9, samples=120] {1+0.35*x+0.45*x^2};
+\addplot[thick, dashed] coordinates {
+  (0.3,{1+0.35*0.3+0.45*0.3^2})
+  (1.9,{1+0.35*1.9+0.45*1.9^2})
+};
+\addplot[only marks, mark=*] coordinates {
+  (0.3,{1+0.35*0.3+0.45*0.3^2})
+  (1.9,{1+0.35*1.9+0.45*1.9^2})
+};
+\node at (axis cs:1.1,0.70) {trapezoid};
+\node[anchor=west] at (axis cs:1.05,2.6) {secant line};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The trapezoidal rule is also exact for a line, because the secant line is the graph itself.</p>
+
+  <exercise xml:id="checkpoint-12-2-trapezoid-geometry">
+        <title>What geometric object is the trapezoidal rule using?</title>
+        <statement>
+          <p>
+            The trapezoidal rule connects <m>(a,f(a))</m> to <m>(b,f(b))</m> by a secant line. In your own words, why is the resulting area the width times the average of the two heights, and why is that exact when the graph itself is a line?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A trapezoid with parallel vertical sides of heights <m>f(a)</m> and <m>f(b)</m> has area <m>(b-a)\cdot\frac{f(a)+f(b)}{2}</m>. For a line, the secant is the graph.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-composite-midpoint-trapezoidal-rules">
+    <title>Composite rules</title>
+
+  <p>One wide rectangle or one wide trapezoid is usually too crude.  The remedy is to divide
+the interval into smaller pieces and apply the rule on each piece.</p>
+
+  <p>Divide <m>[a,b]</m> into <m>n</m> equal subintervals.  Let</p>
+
+  <md>\Delta x=\frac{b-a}{n},</md>
+
+  <p>and define the grid points</p>
+
+  <md>x_0=a,\qquad x_1=a+\Delta x,\qquad x_2=a+2\Delta x,\qquad \ldots,\qquad x_n=b.</md>
+
+  <p>The midpoint of the <m>i</m>th subinterval <m>[x_{i-1},x_i]</m> is</p>
+
+  <md>\overline{x}_i=\frac{x_{i-1}+x_i}{2}.</md>
+
+  <note xml:id="note-sec-12-2-midpoint-and-trapezoidal-rules-77">
+    <title>Composite midpoint rule</title>
+        <md>
+M_n=\Delta x\sum_{i=1}^n f(\overline{x}_i).
+</md>
+      <p>Here <m>M_n</m> approximates</p>
+        <md>\int_a^b f(x)\,dx.</md>
+  </note>
+
+  <p>The trapezoidal rule gives one trapezoid on each subinterval.  The endpoint values inside
+the interval are used twice, once from the left trapezoid and once from the right
+trapezoid.  That is why the interior values receive full weight, while the two outer
+endpoint values receive half weight.</p>
+
+  <note xml:id="note-sec-12-2-midpoint-and-trapezoidal-rules-78">
+    <title>Composite trapezoidal rule</title>
+        <md>
+T_n=
+\Delta x\left[
+\frac12 f(x_0)+f(x_1)+f(x_2)+\cdots+f(x_{n-1})+\frac12 f(x_n)
+\right].
+</md>
+      <p>Here <m>T_n</m> approximates</p>
+        <md>\int_a^b f(x)\,dx.</md>
+  </note>
+
+  <figure xml:id="fig-composite-midpoint-exp">
+    <caption>The composite midpoint rule adds midpoint rectangles over smaller subintervals.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=1.1,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.25,0.5,0.75,1},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% midpoint rectangles for exp(-x^2) on [0,1], n=4
+\pgfplotsinvokeforeach{0,1,2,3}{
+  \pgfmathsetmacro{\left}{0.25*#1}
+  \pgfmathsetmacro{\right}{0.25*(#1+1)}
+  \pgfmathsetmacro{\mid}{0.25*(#1+0.5)}
+  \pgfmathsetmacro{\height}{exp(-\mid*\mid)}
+  \draw[fill=gray!14, draw=gray!55]
+    (axis cs:\left,0) rectangle (axis cs:\right,\height);
+}
+\addplot[very thick, domain=0:1, samples=150] {exp(-x^2)};
+\node[anchor=west] at (axis cs:0.42,0.92) {\(y=e^{-x^2}\)};
+\node[anchor=west] at (axis cs:0.42,0.22) {four midpoint rectangles};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+  </subsection>
+
+  <subsection xml:id="subsec-example-approx-e-minus-x-squared">
+    <title>Example: approximating a non-elementary integral</title>
+
+  <p>Approximate</p>
+
+  <md>I=\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>using <m>n=4</m> subintervals.</p>
+
+  <p>Here</p>
+
+  <md>\Delta x=\frac{1-0}{4}=\frac14.</md>
+
+  <p>The grid points are</p>
+
+  <md>0,\quad 0.25,\quad 0.50,\quad 0.75,\quad 1.00.</md>
+
+  <p>The midpoint values are taken at</p>
+
+  <md>0.125,\quad 0.375,\quad 0.625,\quad 0.875.</md>
+
+  <p>The needed function values are:</p>
+
+  <table xml:id="tab-sec-12-2-midpoint-and-trapezoidal-rules-4">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>subinterval</strong></cell>
+        <cell><m>\overline{x}_i</m></cell>
+        <cell><m>f(\overline{x}_i)</m></cell>
+        <cell><strong>endpoint values for trapezoids</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>[0,0.25]</m></cell>
+        <cell><m>0.125</m></cell>
+        <cell><m>0.984496</m></cell>
+        <cell><m>f(0)=1.000000,\ f(0.25)=0.939413</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>[0.25,0.50]</m></cell>
+        <cell><m>0.375</m></cell>
+        <cell><m>0.868815</m></cell>
+        <cell><m>f(0.25)=0.939413,\ f(0.50)=0.778801</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>[0.50,0.75]</m></cell>
+        <cell><m>0.625</m></cell>
+        <cell><m>0.676634</m></cell>
+        <cell><m>f(0.50)=0.778801,\ f(0.75)=0.569783</m></cell>
+      </row>
+      <row>
+        <cell><m>[0.75,1.00]</m></cell>
+        <cell><m>0.875</m></cell>
+        <cell><m>0.465043</m></cell>
+        <cell><m>f(0.75)=0.569783,\ f(1)=0.367879</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The midpoint approximation is</p>
+
+  <md>M_4
+=
+\frac14
+\left(
+0.984496+0.868815+0.676634+0.465043
+\right).</md>
+
+  <p>So</p>
+
+  <md>
+M_4\approx 0.748747.
+</md>
+
+  <p>The trapezoidal approximation is</p>
+
+  <md>T_4
+=
+\frac14
+\left[
+\frac12(1.000000)
++0.939413+0.778801+0.569783
++\frac12(0.367879)
+\right].</md>
+
+  <p>Thus</p>
+
+  <md>
+T_4\approx 0.742984.
+</md>
+
+  <p>A more accurate value is</p>
+
+  <md>I\approx 0.746824.</md>
+
+  <p>So in this example, with <m>n=4</m>,</p>
+
+  <md>T_4&lt;I&lt;M_4.</md>
+
+  <p>This straddling is useful, but it is not guaranteed for every function.  To understand when
+an approximation is above or below the true value, we need to look at concavity.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-error-patterns-from-concavity">
+    <title>Error patterns from concavity</title>
+
+  <p>The trapezoidal rule replaces the graph by a secant line.  The midpoint rule replaces the
+graph by a horizontal line at the midpoint height.</p>
+
+  <p>Concavity tells us which approximation lies above or below the true area.</p>
+
+  <p>If</p>
+
+  <md>f''(x)&gt;0</md>
+
+  <p>on an interval, the graph is concave up.  It bends upward.  The secant line lies above the
+graph, so the trapezoid overestimates the integral.</p>
+
+  <p>For the same concave-up graph, the midpoint rectangle underestimates the integral.  The
+curve spends more area above the midpoint height than below it.</p>
+
+  <example xml:id="ex-sec-12-2-midpoint-and-trapezoidal-rules-2">
+    <title>concave up</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=x^2</md>
+
+  <p>on <m>[0,1]</m>.  The exact value is</p>
+
+  <md>I=\int_0^1 x^2\,dx=\frac13.</md>
+
+  <p>With one trapezoid,</p>
+
+  <md>T_1=\frac12(f(0)+f(1))=\frac12.</md>
+
+  <p>With one midpoint rectangle,</p>
+
+  <md>M_1=f\left(\frac12\right)=\frac14.</md>
+
+  <p>So</p>
+
+  <md>M_1&lt;I&lt;T_1.</md>
+
+  <p>The graph is concave up, and the error signs match the picture.</p>
+
+  <p>If</p>
+
+  <md>f''(x)&lt;0</md>
+
+  <p>on an interval, the graph is concave down.  The pattern reverses:</p>
+
+  <md>T_n&lt;I&lt;M_n</md>
+
+  <p>when the concavity stays down on the whole interval.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-12-2-midpoint-and-trapezoidal-rules-3">
+    <title>concave down</title>
+    <statement>
+  <p>Let</p>
+
+  <md>f(x)=1-x^2</md>
+
+  <p>on <m>[0,1]</m>.  Then</p>
+
+  <md>I=\int_0^1 (1-x^2)\,dx=\frac23.</md>
+
+  <p>With one trapezoid,</p>
+
+  <md>T_1=\frac12(f(0)+f(1))=\frac12.</md>
+
+  <p>With one midpoint rectangle,</p>
+
+  <md>M_1=f\left(\frac12\right)=\frac34.</md>
+
+  <p>Thus</p>
+
+  <md>T_1&lt;I&lt;M_1.</md>
+
+  <figure xml:id="fig-trapezoid-concavity-error">
+    <caption>For concave-up graphs, trapezoids lie above the curve.  For concave-down graphs, trapezoids lie below.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-trapezoid-concavity-error-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=1.1,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,1},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[fill=gray!16, draw=gray!60] coordinates {(0,0) (0,0) (1,1) (1,0) (0,0)};
+\addplot[very thick, domain=0:1, samples=120] {x^2};
+\addplot[thick, dashed] coordinates {(0,0) (1,1)};
+\node[anchor=west] at (axis cs:0.12,0.82) {concave up};
+\node[anchor=west] at (axis cs:0.12,0.66) {trapezoid over};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-trapezoid-concavity-error-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=0, ymax=1.1,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={},
+    xtick={0,1},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[fill=gray!16, draw=gray!60] coordinates {(0,0) (0,1) (1,0) (1,0) (0,0)};
+\addplot[very thick, domain=0:1, samples=120] {1-x^2};
+\addplot[thick, dashed] coordinates {(0,1) (1,0)};
+\node[anchor=west] at (axis cs:0.12,0.30) {concave down};
+\node[anchor=west] at (axis cs:0.12,0.16) {trapezoid under};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <note xml:id="note-sec-12-2-midpoint-and-trapezoidal-rules-79">
+    <title>Concavity error pattern</title>
+      <p>Assume <m>f</m> is twice differentiable and the concavity does not change on <m>[a,b]</m>.</p>
+        <table xml:id="tab-sec-12-2-midpoint-and-trapezoidal-rules-5">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>shape</strong></cell>
+        <cell><strong>trapezoidal rule</strong></cell>
+        <cell><strong>midpoint rule</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>f”&gt;0</m>, concave up</cell>
+        <cell>overestimates</cell>
+        <cell>underestimates</cell>
+      </row>
+      <row>
+        <cell>
+<m>f”&lt;0</m>, concave down</cell>
+        <cell>underestimates</cell>
+        <cell>overestimates</cell>
+      </row>
+    </tabular>
+  </table>
+  </note>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Warning: changing concavity</title>
+
+  <p>If the function changes concavity on the interval, these simple over-under rules may not
+apply to the whole interval.</p>
+
+  <p>For example,</p>
+
+  <md>f(x)=e^{-x^2}</md>
+
+  <p>has</p>
+
+  <md>f''(x)=(4x^2-2)e^{-x^2}.</md>
+
+  <p>This changes sign at</p>
+
+  <md>x=\frac{1}{\sqrt2}.</md>
+
+  <p>So on <m>[0,1]</m>, the graph is concave down at first and concave up later.  We should not
+expect one global concavity picture to explain all of the error.</p>
+
+  <p>In that case, use error bounds.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-2-concavity-error">
+        <title>How does concavity decide overestimate versus underestimate?</title>
+        <statement>
+          <p>
+            Suppose <m>f''</m> does not change sign on <m>[a,b]</m>. In your own words, why does a concave-up graph make the trapezoidal rule overestimate and the midpoint rule underestimate, and why can that pattern fail if concavity changes?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A secant lies above a concave-up graph. The midpoint rectangle sits at a height that, for the same shape, leaves more area above it than below. Changing concavity mixes the two pictures.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-midpoint-trapezoid-error-bounds">
+    <title>Error bounds</title>
+
+  <p>An error pattern tells us the direction of the error.  An error bound tells us how large the
+error can be.</p>
+
+  <p>The size of the error is controlled by curvature.  If the graph is nearly linear on each
+small interval, the midpoint and trapezoidal rules are accurate.  The second derivative
+measures how far the graph is from being linear.</p>
+
+  <note xml:id="note-sec-12-2-midpoint-and-trapezoidal-rules-80">
+    <title>Error bounds for the composite midpoint and trapezoidal rules</title>
+      <p>Suppose <m>f”</m> is continuous on <m>[a,b]</m>, and suppose</p>
+        <md>|f''(x)|\le K</md>
+      <p>for all <m>x\in[a,b]</m>.</p>
+      <p>Let</p>
+        <md>I=\int_a^b f(x)\,dx.</md>
+      <p>If <m>M_n</m> is the composite midpoint approximation using <m>n</m> equal subintervals, then</p>
+        <md>
+|I-M_n|\le \frac{K(b-a)^3}{24n^2}.
+</md>
+      <p>If <m>T_n</m> is the composite trapezoidal approximation using <m>n</m> equal subintervals, then</p>
+        <md>
+|I-T_n|\le \frac{K(b-a)^3}{12n^2}.
+</md>
+  </note>
+
+  <p>The important feature is the factor</p>
+
+  <md>\frac{1}{n^2}.</md>
+
+  <p>Doubling the number of subintervals usually divides these error bounds by about <m>4</m>.</p>
+
+  <p>The midpoint bound is half the trapezoidal bound when the same <m>K</m>, <m>a</m>, <m>b</m>, and
+<m>n</m> are used.  This does not mean the midpoint rule is always exactly twice as accurate,
+but it explains why midpoint approximations often perform very well.</p>
+
+  <paragraphs>
+    <title>Idea of the proof</title>
+
+  <p>On one short subinterval of width <m>\Delta x</m>, Taylor’s theorem says that the failure of
+the graph to be linear is controlled by <m>f”</m>.  The one-interval trapezoid error is at most</p>
+
+  <md>\frac{K(\Delta x)^3}{12},</md>
+
+  <p>and the one-interval midpoint error is at most</p>
+
+  <md>\frac{K(\Delta x)^3}{24}.</md>
+
+  <p>There are <m>n</m> subintervals, and</p>
+
+  <md>\Delta x=\frac{b-a}{n}.</md>
+
+  <p>Adding the one-interval bounds gives</p>
+
+  <md>n\cdot \frac{K(\Delta x)^3}{12}
+=
+n\cdot \frac{K}{12}\left(\frac{b-a}{n}\right)^3
+=
+\frac{K(b-a)^3}{12n^2}</md>
+
+  <p>for the trapezoidal rule.  The midpoint calculation is the same, with <m>24</m> in place of
+<m>12</m>.</p>
+
+  <p>The constants come from integrating the quadratic error term in Taylor’s formula.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-12-2-midpoint-and-trapezoidal-rules-6">
+    <title>how many subintervals are enough?</title>
+    <statement>
+  <p>Use the midpoint rule to approximate</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>with error less than</p>
+
+  <md>0.0005.</md>
+
+  <p>For</p>
+
+  <md>f(x)=e^{-x^2},</md>
+
+  <p>we computed</p>
+
+  <md>f''(x)=(4x^2-2)e^{-x^2}.</md>
+
+  <p>On <m>[0,1]</m>, a simple bound is</p>
+
+  <md>|f''(x)|\le 2.</md>
+
+  <p>So we may take</p>
+
+  <md>K=2.</md>
+
+  <p>The midpoint error bound gives</p>
+
+  <md>|I-M_n|
+\le
+\frac{K(b-a)^3}{24n^2}
+=
+\frac{2(1)^3}{24n^2}
+=
+\frac{1}{12n^2}.</md>
+
+  <p>We want</p>
+
+  <md>\frac{1}{12n^2}&lt;0.0005.</md>
+
+  <p>This is equivalent to</p>
+
+  <md>12n^2&gt;2000,</md>
+
+  <p>so</p>
+
+  <md>n^2&gt;\frac{2000}{12}\approx 166.67.</md>
+
+  <p>Thus</p>
+
+  <md>n&gt;12.91.</md>
+
+  <p>Therefore</p>
+
+  <md>
+n=13
+</md>
+
+  <p>subintervals are enough to guarantee midpoint error less than <m>0.0005</m>.</p>
+
+  <p>The actual error may be smaller.  The bound is a guarantee, not a prediction of the exact
+error.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why the hypotheses matter</title>
+
+  <p>The error bounds above assume that <m>f”</m> is continuous and bounded on <m>[a,b]</m>.  If
+that fails, the formulas may not apply.</p>
+
+  <p>For example,</p>
+
+  <md>f(x)=\sqrt{x}</md>
+
+  <p>is continuous on <m>[0,1]</m>, and the integral</p>
+
+  <md>\int_0^1 \sqrt{x}\,dx</md>
+
+  <p>exists.  But</p>
+
+  <md>f''(x)=-\frac{1}{4x^{3/2}}</md>
+
+  <p>for <m>x&gt;0</m>, and this becomes unbounded as <m>x\to0^+</m>.</p>
+
+  <p>The midpoint and trapezoidal rules can still be used to approximate the integral, but the
+standard <m>K</m>-bound above cannot be used on <m>[0,1]</m>, because there is no finite number
+<m>K</m> with</p>
+
+  <md>|f''(x)|\le K</md>
+
+  <p>on the whole interval.</p>
+
+  <warning xml:id="warn-sec-12-2-midpoint-and-trapezoidal-rules-81">
+    <title>Warning</title>
+      <p>A numerical rule may still produce numbers when its error-bound hypotheses fail.</p>
+      <p>The formula for the guarantee is what fails, not necessarily the approximation itself.</p>
+  </warning>
+
+  <p>This warning matters in applications.  Before using an error bound, check the interval,
+the continuity of the derivatives, and whether the integral is proper.</p>
+
+  <p>The midpoint and trapezoidal rules approximate a curve by flat or straight pieces.  The
+next rule asks a natural question:</p>
+
+  <md>
+\text{What if we approximate the graph by a parabola instead?}
+</md>
+
+  <p>That idea leads to Simpson’s Rule.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-2-error-bound-hypotheses">
+        <title>What does an error bound guarantee, and when does the formula fail?</title>
+        <statement>
+          <p>
+            The midpoint and trapezoidal bounds shrink like <m>1/n^2</m> and are controlled by a bound on <m>|f''|</m>. In your own words, why is a bound not a prediction of the exact error, and why can the rules still be used on <m>\int_0^1\sqrt{x}\,dx</m> even though those particular bounds do not apply?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Curvature measures how far the graph is from linear. If <m>f''</m> is unbounded, the guarantee fails. The approximation itself may still produce useful numbers.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

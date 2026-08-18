@@ -4,484 +4,897 @@
   <title>Strategy for integration</title>
 
   <p>We now have several methods:</p>
+
   <md>\text{substitution, integration by parts, trigonometric identities,}</md>
+
   <md>\text{trigonometric substitution, and partial fractions.}</md>
 
-  <p>Each method is useful. None is universal. The hard part is no longer only carrying out a technique. The hard part is recognizing which technique the integral is asking for.</p>
+  <p>Each method is useful.  None is universal.  The hard part is no longer only carrying out
+a technique.  The hard part is recognizing which technique the integral is asking for.</p>
 
-  <p>That recognition is not magic. It comes from looking for structure.</p>
+  <p>That recognition is not magic.  It comes from looking for structure.</p>
 
-  <md>\text{An integration technique is a response to the shape of the integrand.}</md>
+  <md>
+\text{An integration technique is a response to the shape of the integrand.}
+</md>
 
   <subsection xml:id="subsec-recognizing-integrand-structure">
     <title>Recognizing the structure of an integrand</title>
 
-    <p>A derivative rule leaves a fingerprint.</p>
+  <p>A derivative rule leaves a fingerprint.</p>
 
-    <p>The chain rule often leaves a function and its derivative:</p>
-    <md>2x\cos(x^2).</md>
+  <p>The chain rule often leaves a function and its derivative:</p>
 
-    <p>The product rule often leaves a product where one factor becomes simpler when differentiated:</p>
-    <md>x e^x, \qquad x\ln x, \qquad x\cos x.</md>
+  <md>2x\cos(x^2).</md>
 
-    <p>Trigonometric identities appear when powers of sine, cosine, tangent, or secant are mixed:</p>
-    <md>\sin^5x\cos^2x, \qquad \tan^3x\sec^4x.</md>
+  <p>The product rule often leaves a product where one factor becomes simpler when
+differentiated:</p>
 
-    <p>Right-triangle identities appear when a square root has one of the forms</p>
-    <md>\sqrt{a^2-x^2}, \qquad \sqrt{a^2+x^2}, \qquad \sqrt{x^2-a^2}.</md>
+  <md>x e^x,
+\qquad
+x\ln x,
+\qquad
+x\cos x.</md>
 
-    <p>Partial fractions appear when the integrand is a rational function:</p>
-    <md>\frac{P(x)}{Q(x)}.</md>
+  <p>Trigonometric identities appear when powers of sine, cosine, tangent, or secant are
+mixed:</p>
 
-    <p>The first question is therefore not <q>What formula do I remember?</q> It is:</p>
-    <md>\text{What structure do I see?}</md>
+  <md>\sin^5x\cos^2x,
+\qquad
+\tan^3x\sec^4x.</md>
 
-    <table xml:id="tab-integrand-structure-guide">
-      <title>Structure and first ideas for integration</title>
-      <tabular halign="left">
-        <col width="45%"/>
-        <col width="55%"/>
-        <row header="yes" bottom="medium">
-          <cell>What the integrand looks like</cell>
-          <cell>Likely first idea</cell>
-        </row>
-        <row bottom="minor">
-          <cell>A function together with something close to its derivative</cell>
-          <cell>Try substitution.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>A product where one factor simplifies when differentiated</cell>
-          <cell>Try integration by parts.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Powers of trigonometric functions</cell>
-          <cell>Use trigonometric identities, then substitution.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>A square root like <m>a^2-x^2</m>, <m>a^2+x^2</m>, or <m>x^2-a^2</m></cell>
-          <cell>Try trigonometric substitution.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>A quotient of polynomials</cell>
-          <cell>Use polynomial division if needed, then partial fractions.</cell>
-        </row>
-        <row>
-          <cell>A complicated expression that becomes simpler after expansion, factoring, or rationalizing</cell>
-          <cell>Do algebra before choosing a calculus method.</cell>
-        </row>
-      </tabular>
-    </table>
+  <p>Right-triangle identities appear when a square root has one of the forms</p>
 
-    <p>This table is a guide, not a law. Many integrals can be solved in more than one way. The best method is usually the one that reveals the structure most clearly.</p>
+  <md>\sqrt{a^2-x^2},
+\qquad
+\sqrt{a^2+x^2},
+\qquad
+\sqrt{x^2-a^2}.</md>
 
-    <example xml:id="ex-fingerprint-chain-rule">
-      <title>A chain rule fingerprint</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \frac{2x}{1+x^2}\,dx.</md>
-        <p>The denominator is</p>
-        <md>1+x^2,</md>
-        <p>and its derivative is</p>
-        <md>2x.</md>
-        <p>That derivative appears in the numerator. This suggests substitution:</p>
-        <md>u=1+x^2, \qquad du=2x\,dx.</md>
-        <p>Then</p>
-        <md>\int \frac{2x}{1+x^2}\,dx = \int \frac{du}{u} = \ln|u|+C.</md>
-        <p>So</p>
-        <md>\int \frac{2x}{1+x^2}\,dx = \ln(1+x^2)+C.</md>
-        <p>The absolute value is not needed in the final expression because</p>
-        <md>1+x^2\gt 0</md>
-        <p>for all real <m>x</m>.</p>
-      </statement>
-    </example>
+  <p>Partial fractions appear when the integrand is a rational function:</p>
 
-    <example xml:id="ex-fingerprint-product-rule">
-      <title>A product rule fingerprint</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x e^x\,dx.</md>
-        <p>There is no inside function whose derivative appears. But the integrand is a product, and the factor <m>x</m> becomes simpler when differentiated. So use integration by parts:</p>
-        <md>u=x, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=e^x.</md>
-        <p>Thus</p>
-        <md>\int x e^x\,dx = xe^x-\int e^x\,dx.</md>
-        <p>Therefore</p>
-        <md>\int x e^x\,dx = xe^x-e^x+C.</md>
-      </statement>
-    </example>
+  <md>\frac{P(x)}{Q(x)}.</md>
 
-    <example xml:id="ex-fingerprint-rational-function">
-      <title>A rational function fingerprint</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \frac{x+5}{x^2-x-6}\,dx.</md>
-        <p>The integrand is a rational function. Factor the denominator:</p>
-        <md>x^2-x-6=(x-3)(x+2).</md>
-        <p>Use partial fractions:</p>
-        <md>\frac{x+5}{(x-3)(x+2)} = \frac{A}{x-3}+\frac{B}{x+2}.</md>
-        <p>Multiply by <m>(x-3)(x+2)</m>:</p>
-        <md>x+5=A(x+2)+B(x-3).</md>
-        <p>Set <m>x=3</m>:</p>
-        <md>8=5A, \qquad A=\frac85.</md>
-        <p>Set <m>x=-2</m>:</p>
-        <md>3=-5B, \qquad B=-\frac35.</md>
-        <p>So</p>
-        <md>\frac{x+5}{x^2-x-6} = \frac{8}{5}\frac{1}{x-3} - \frac{3}{5}\frac{1}{x+2}.</md>
-        <p>Therefore</p>
-        <md>\int \frac{x+5}{x^2-x-6}\,dx = \frac85\ln|x-3|-\frac35\ln|x+2|+C.</md>
-        <p>The structure chose the method.</p>
-      </statement>
-    </example>
+  <p>The first question is therefore not “What formula do I remember?”  It is:</p>
+
+  <md>
+\text{What structure do I see?}
+</md>
+
+  <table xml:id="tab-sec-11-5-strategy-for-integration-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>What the integrand looks like</strong></cell>
+        <cell><strong>Likely first idea</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>A function together with something close to its derivative</cell>
+        <cell>Try substitution.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+A product where one factor simplifies when differentiated</cell>
+        <cell>Try integration by parts.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Powers of trigonometric functions</cell>
+        <cell>Use trigonometric identities, then substitution.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+A square root like <m>a^2-x^2</m>, <m>a^2+x^2</m>, or <m>x^2-a^2</m></cell>
+        <cell>Try trigonometric substitution.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+A quotient of polynomials</cell>
+        <cell>Use polynomial division if needed, then partial fractions.</cell>
+      </row>
+      <row>
+        <cell>
+A complicated expression that becomes simpler after expansion, factoring, or rationalizing</cell>
+        <cell>Do algebra before choosing a calculus method.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>This table is a guide, not a law.  Many integrals can be solved in more than one way.
+The best method is usually the one that reveals the structure most clearly.</p>
+
+
+  <exercise xml:id="checkpoint-11-5-structure">
+        <title>Why is a technique a response to the shape of the integrand?</title>
+        <statement>
+          <p>
+            A derivative rule leaves a fingerprint: a chain-rule pair, a product that simplifies when differentiated, a Pythagorean square root, a rational function. In your own words, why is the first question <q>what structure do I see?</q> rather than <q>what formula do I remember?</q>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each method undoes a specific kind of differentiation. Matching the method to the fingerprint is recognition, not a search through a bag of tricks.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-1">
+    <title>a chain rule fingerprint</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int \frac{2x}{1+x^2}\,dx.</md>
+
+  <p>The denominator is</p>
+
+  <md>1+x^2,</md>
+
+  <p>and its derivative is</p>
+
+  <md>2x.</md>
+
+  <p>That derivative appears in the numerator.  This suggests substitution:</p>
+
+  <md>u=1+x^2,
+\qquad
+du=2x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>\int \frac{2x}{1+x^2}\,dx
+=
+\int \frac{du}{u}
+=
+\ln|u|+C.</md>
+
+  <p>So</p>
+
+  <md>
+\int \frac{2x}{1+x^2}\,dx
+=
+\ln(1+x^2)+C.
+</md>
+
+  <p>The absolute value is not needed in the final expression because</p>
+
+  <md>1+x^2&gt;0</md>
+
+  <p>for all real <m>x</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-2">
+    <title>a product rule fingerprint</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x e^x\,dx.</md>
+
+  <p>There is no inside function whose derivative appears.  But the integrand is a product,
+and the factor <m>x</m> becomes simpler when differentiated.  So use integration by parts:</p>
+
+  <md>u=x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=e^x.</md>
+
+  <p>Thus</p>
+
+  <md>\int x e^x\,dx
+=
+xe^x-\int e^x\,dx.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int x e^x\,dx=xe^x-e^x+C.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-3">
+    <title>a rational function fingerprint</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int \frac{x+5}{x^2-x-6}\,dx.</md>
+
+  <p>The integrand is a rational function.  Factor the denominator:</p>
+
+  <md>x^2-x-6=(x-3)(x+2).</md>
+
+  <p>Use partial fractions:</p>
+
+  <md>\frac{x+5}{(x-3)(x+2)}
+=
+\frac{A}{x-3}+\frac{B}{x+2}.</md>
+
+  <p>Multiply by <m>(x-3)(x+2)</m>:</p>
+
+  <md>x+5=A(x+2)+B(x-3).</md>
+
+  <p>Set <m>x=3</m>:</p>
+
+  <md>8=5A,
+\qquad
+A=\frac85.</md>
+
+  <p>Set <m>x=-2</m>:</p>
+
+  <md>3=-5B,
+\qquad
+B=-\frac35.</md>
+
+  <p>So</p>
+
+  <md>\frac{x+5}{x^2-x-6}
+=
+\frac{8}{5}\frac{1}{x-3}
+-
+\frac{3}{5}\frac{1}{x+2}.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int \frac{x+5}{x^2-x-6}\,dx
+=
+\frac85\ln|x-3|-\frac35\ln|x+2|+C.
+</md>
+
+  <p>The structure chose the method.</p>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-substitution-first-or-parts-first">
     <title>Substitution first or parts first?</title>
 
-    <p>Some integrals look like products but are really substitution problems. Others look like they might have an inside function, but integration by parts is better.</p>
+  <p>Some integrals look like products but are really substitution problems.  Others look like
+they might have an inside function, but integration by parts is better.</p>
 
-    <p>A useful test is this:</p>
-    <md>\text{Before using parts, check whether substitution removes the whole problem.}</md>
+  <p>A useful test is this:</p>
 
-    <p>Integration by parts creates a new integral. Substitution often turns the integral directly into a known form. So substitution is usually the first thing to test.</p>
+  <md>
+\text{Before using parts, check whether substitution removes the whole problem.}
+</md>
 
-    <example xml:id="ex-product-really-substitution">
-      <title>A product that is really substitution</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x e^{x^2}\,dx.</md>
-        <p>The integrand is a product, but the exponent has inside function</p>
-        <md>x^2,</md>
-        <p>whose derivative is</p>
-        <md>2x.</md>
-        <p>So substitution is the natural choice:</p>
-        <md>u=x^2, \qquad du=2x\,dx.</md>
-        <p>Then</p>
-        <md>x\,dx=\frac12\,du.</md>
-        <p>Therefore</p>
-        <md>\int x e^{x^2}\,dx = \frac12\int e^u\,du = \frac12 e^u+C.</md>
-        <p>So</p>
-        <md>\int x e^{x^2}\,dx = \frac12 e^{x^2}+C.</md>
-        <p>Trying integration by parts would make this worse. The product is not the main structure. The inside function <m>x^2</m> is.</p>
-      </statement>
-    </example>
+  <p>Integration by parts creates a new integral.  Substitution often turns the integral directly
+into a known form.  So substitution is usually the first thing to test.</p>
 
-    <example xml:id="ex-product-really-needs-parts">
-      <title>A product that really needs parts</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x e^x\,dx.</md>
-        <p>Here the exponent is just <m>x</m>. Its derivative is <m>1</m>, not a missing factor that simplifies the integral. Substitution does not help.</p>
-        <p>But <m>x</m> becomes simpler when differentiated, and <m>e^x</m> is easy to integrate. So integration by parts gives</p>
-        <md>\int x e^x\,dx = xe^x-e^x+C.</md>
-        <p>The two examples are close in appearance:</p>
-        <md>\int x e^{x^2}\,dx \qquad\text{and}\qquad \int x e^x\,dx.</md>
-        <p>But their structures are different. The first is a chain rule problem. The second is a product rule problem.</p>
-      </statement>
-    </example>
 
-    <example xml:id="ex-logarithms-often-want-parts">
-      <title>Logarithms often want parts</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x\ln x\,dx, \qquad x\gt 0.</md>
-        <p>There is no helpful substitution. The factor <m>\ln x</m> becomes simpler when differentiated:</p>
-        <md>\frac{d}{dx}\ln x=\frac1x.</md>
-        <p>Choose</p>
-        <md>u=\ln x, \qquad dv=x\,dx.</md>
-        <p>Then</p>
-        <md>du=\frac1x\,dx, \qquad v=\frac{x^2}{2}.</md>
-        <p>Integration by parts gives</p>
-        <md>\int x\ln x\,dx = \frac{x^2}{2}\ln x-\int \frac{x^2}{2}\cdot \frac1x\,dx.</md>
-        <p>So</p>
-        <md>\int x\ln x\,dx = \frac{x^2}{2}\ln x-\frac12\int x\,dx.</md>
-        <p>Therefore</p>
-        <md>\int x\ln x\,dx = \frac{x^2}{2}\ln x-\frac{x^2}{4}+C.</md>
-        <p>A logarithm is often a good choice for <m>u</m>, because it simplifies under differentiation.</p>
-      </statement>
-    </example>
+  <exercise xml:id="checkpoint-11-5-sub-before-parts">
+        <title>Why test substitution before integration by parts?</title>
+        <statement>
+          <p>
+            The product <m>x e^{x^2}</m> looks like a candidate for parts, but substitution removes the whole problem. In your own words, why is substitution usually the first thing to test, and what is the difference between a product that is really a chain rule and a product that really needs parts?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Substitution often turns the integral directly into a known form. Parts always creates a new integral. Check whether the inside function’s derivative is already present.
+          </p>
+        </hint>
+      </exercise>
 
-    <note xml:id="note-substitution-or-parts-test">
-      <title>Substitution or parts?</title>
+  <example xml:id="ex-sec-11-5-strategy-for-integration-4">
+    <title>a product that is really substitution</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x e^{x^2}\,dx.</md>
+
+  <p>The integrand is a product, but the exponent has inside function</p>
+
+  <md>x^2,</md>
+
+  <p>whose derivative is</p>
+
+  <md>2x.</md>
+
+  <p>So substitution is the natural choice:</p>
+
+  <md>u=x^2,
+\qquad
+du=2x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>x\,dx=\frac12\,du.</md>
+
+  <p>Therefore</p>
+
+  <md>\int x e^{x^2}\,dx
+=
+\frac12\int e^u\,du
+=
+\frac12 e^u+C.</md>
+
+  <p>So</p>
+
+  <md>
+\int x e^{x^2}\,dx
+=
+\frac12 e^{x^2}+C.
+</md>
+
+  <p>Trying integration by parts would make this worse.  The product is not the main
+structure.  The inside function <m>x^2</m> is.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-5">
+    <title>a product that really needs parts</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x e^x\,dx.</md>
+
+  <p>Here the exponent is just <m>x</m>.  Its derivative is <m>1</m>, not a missing factor that simplifies
+the integral.  Substitution does not help.</p>
+
+  <p>But <m>x</m> becomes simpler when differentiated, and <m>e^x</m> is easy to integrate.  So
+integration by parts gives</p>
+
+  <md>\int x e^x\,dx=xe^x-e^x+C.</md>
+
+  <p>The two examples are close in appearance:</p>
+
+  <md>\int x e^{x^2}\,dx
+\qquad\text{and}\qquad
+\int x e^x\,dx.</md>
+
+  <p>But their structures are different.  The first is a chain rule problem.  The second is a
+product rule problem.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-6">
+    <title>logarithms often want parts</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x\ln x\,dx,
+\qquad x&gt;0.</md>
+
+  <p>There is no helpful substitution.  The factor <m>\ln x</m> becomes simpler when
+differentiated:</p>
+
+  <md>\frac{d}{dx}\ln x=\frac1x.</md>
+
+  <p>Choose</p>
+
+  <md>u=\ln x,
+\qquad
+dv=x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=\frac1x\,dx,
+\qquad
+v=\frac{x^2}{2}.</md>
+
+  <p>Integration by parts gives</p>
+
+  <md>\int x\ln x\,dx
+=
+\frac{x^2}{2}\ln x-\int \frac{x^2}{2}\cdot \frac1x\,dx.</md>
+
+  <p>So</p>
+
+  <md>\int x\ln x\,dx
+=
+\frac{x^2}{2}\ln x-\frac12\int x\,dx.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int x\ln x\,dx
+=
+\frac{x^2}{2}\ln x-\frac{x^2}{4}+C.
+</md>
+
+  <p>A logarithm is often a good choice for <m>u</m>, because it simplifies under
+differentiation.</p>
+
+  <note xml:id="note-sec-11-5-strategy-for-integration-104">
+    <title>Substitution or parts?</title>
       <p>Substitution asks:</p>
-      <md>\text{Is there an inside function whose derivative is present?}</md>
+        <md>\text{Is there an inside function whose derivative is present?}</md>
       <p>Integration by parts asks:</p>
-      <md>\text{Can I differentiate one factor and make it simpler, while integrating the other factor?}</md>
-      <p>When both seem possible, try substitution first. If it does not simplify the integral, look for parts.</p>
-    </note>
+        <md>\text{Can I differentiate one factor and make it simpler, while integrating the other factor?}</md>
+      <p>When both seem possible, try substitution first.  If it does not simplify the integral,
+look for parts.</p>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-algebraic-simplification-before-integration">
     <title>Algebraic simplification</title>
 
-    <p>Sometimes the right technique is hidden behind algebra. Before reaching for a new calculus method, simplify the integrand.</p>
+  <p>Sometimes the right technique is hidden behind algebra.  Before reaching for a new
+calculus method, simplify the integrand.</p>
 
-    <p>Algebra can reveal substitution, partial fractions, cancellation, or a known form.</p>
+  <p>Algebra can reveal substitution, partial fractions, cancellation, or a known form.</p>
 
-    <example xml:id="ex-algebra-divide-before-integrating">
-      <title>Divide before integrating</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \frac{x^2-1}{x-1}\,dx.</md>
-        <p>The expression looks rational, but the numerator factors:</p>
-        <md>x^2-1=(x-1)(x+1).</md>
-        <p>For <m>x\neq 1</m>,</p>
-        <md>\frac{x^2-1}{x-1}=x+1.</md>
-        <p>Therefore</p>
-        <md>\int \frac{x^2-1}{x-1}\,dx = \int (x+1)\,dx.</md>
-        <p>So</p>
-        <md>\int \frac{x^2-1}{x-1}\,dx = \frac{x^2}{2}+x+C, \qquad x\neq 1.</md>
-        <p>The original integrand is not defined at <m>x=1</m>. An indefinite integral is always understood on an interval in the domain, such as <m>(-\infty,1)</m> or <m>(1,\infty)</m>.</p>
-      </statement>
-    </example>
 
-    <example xml:id="ex-algebra-shift-before-expanding">
-      <title>Shift before expanding</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x\sqrt{x+1}\,dx.</md>
-        <p>This could tempt us toward integration by parts. But the square root suggests the substitution</p>
-        <md>u=x+1.</md>
-        <p>Then</p>
-        <md>x=u-1, \qquad dx=du.</md>
-        <p>The integral becomes</p>
-        <md>\int (u-1)\sqrt{u}\,du.</md>
-        <p>Now simplify:</p>
-        <md>(u-1)\sqrt{u}=u^{3/2}-u^{1/2}.</md>
-        <p>So</p>
-        <md>\int (u^{3/2}-u^{1/2})\,du = \frac{2}{5}u^{5/2}-\frac{2}{3}u^{3/2}+C.</md>
-        <p>Return to <m>x</m>:</p>
-        <md>\int x\sqrt{x+1}\,dx = \frac{2}{5}(x+1)^{5/2} - \frac{2}{3}(x+1)^{3/2} + C.</md>
-        <p>The substitution did not immediately give a basic antiderivative. It gave an algebraic expression we could simplify.</p>
-      </statement>
-    </example>
+  <exercise xml:id="checkpoint-11-5-algebra">
+        <title>Why can algebra be the real technique?</title>
+        <statement>
+          <p>
+            Dividing, canceling, completing the square, or expanding can reveal a simple integrand that was hiding. In your own words, why should you simplify before reaching for a new calculus method, and what does that say about where the difficulty often lives?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Many hard-looking integrals are easy after a rewrite. The calculus step is then a basic formula; the work was algebraic recognition.
+          </p>
+        </hint>
+      </exercise>
 
-    <example xml:id="ex-algebra-rationalizing-reveals-simple-form">
-      <title>Rationalizing can reveal a simple form</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \frac{dx}{\sqrt{x+1}+\sqrt{x}}.</md>
-        <p>At first this does not match any standard pattern. Multiply numerator and denominator by the conjugate:</p>
-        <md>\frac{1}{\sqrt{x+1}+\sqrt{x}} \cdot \frac{\sqrt{x+1}-\sqrt{x}}{\sqrt{x+1}-\sqrt{x}}.</md>
-        <p>The denominator becomes</p>
-        <md>(x+1)-x=1.</md>
-        <p>So</p>
-        <md>\frac{1}{\sqrt{x+1}+\sqrt{x}} = \sqrt{x+1}-\sqrt{x}.</md>
-        <p>Therefore</p>
-        <md>\int \frac{dx}{\sqrt{x+1}+\sqrt{x}} = \int \bigl(\sqrt{x+1}-\sqrt{x}\bigr)\,dx.</md>
-        <p>Now integrate term by term:</p>
-        <md>\int \sqrt{x+1}\,dx = \frac23(x+1)^{3/2},</md>
-        <p>and</p>
-        <md>\int \sqrt{x}\,dx = \frac23x^{3/2}.</md>
-        <p>Thus</p>
-        <md>\int \frac{dx}{\sqrt{x+1}+\sqrt{x}} = \frac23(x+1)^{3/2} - \frac23x^{3/2} + C.</md>
-        <p>The calculus was easy after the algebra.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-11-5-strategy-for-integration-7">
+    <title>divide before integrating</title>
+    <statement>
+  <p>Find</p>
 
-    <note xml:id="note-algebra-before-technique">
-      <title>Algebra before technique</title>
+  <md>\int \frac{x^2-1}{x-1}\,dx.</md>
+
+  <p>The expression looks rational, but the numerator factors:</p>
+
+  <md>x^2-1=(x-1)(x+1).</md>
+
+  <p>For <m>x\neq1</m>,</p>
+
+  <md>\frac{x^2-1}{x-1}=x+1.</md>
+
+  <p>Therefore</p>
+
+  <md>\int \frac{x^2-1}{x-1}\,dx
+=
+\int (x+1)\,dx.</md>
+
+  <p>So</p>
+
+  <md>
+\int \frac{x^2-1}{x-1}\,dx
+=
+\frac{x^2}{2}+x+C,
+\qquad x\neq1.
+</md>
+
+  <p>The original integrand is not defined at <m>x=1</m>.  An indefinite integral is always
+understood on an interval in the domain, such as <m>(-\infty,1)</m> or <m>(1,\infty)</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-8">
+    <title>shift before expanding</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x\sqrt{x+1}\,dx.</md>
+
+  <p>This could tempt us toward integration by parts.  But the square root suggests the
+substitution</p>
+
+  <md>u=x+1.</md>
+
+  <p>Then</p>
+
+  <md>x=u-1,
+\qquad
+dx=du.</md>
+
+  <p>The integral becomes</p>
+
+  <md>\int (u-1)\sqrt{u}\,du.</md>
+
+  <p>Now simplify:</p>
+
+  <md>(u-1)\sqrt{u}=u^{3/2}-u^{1/2}.</md>
+
+  <p>So</p>
+
+  <md>\int (u^{3/2}-u^{1/2})\,du
+=
+\frac{2}{5}u^{5/2}-\frac{2}{3}u^{3/2}+C.</md>
+
+  <p>Return to <m>x</m>:</p>
+
+  <md>
+\int x\sqrt{x+1}\,dx
+=
+\frac{2}{5}(x+1)^{5/2}
+-
+\frac{2}{3}(x+1)^{3/2}
++C.
+</md>
+
+  <p>The substitution did not immediately give a basic antiderivative.  It gave an algebraic
+expression we could simplify.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-9">
+    <title>rationalizing can reveal a simple form</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int \frac{dx}{\sqrt{x+1}+\sqrt{x}}.</md>
+
+  <p>At first this does not match any standard pattern.  Multiply numerator and denominator
+by the conjugate:</p>
+
+  <md>\frac{1}{\sqrt{x+1}+\sqrt{x}}
+\cdot
+\frac{\sqrt{x+1}-\sqrt{x}}{\sqrt{x+1}-\sqrt{x}}.</md>
+
+  <p>The denominator becomes</p>
+
+  <md>(x+1)-x=1.</md>
+
+  <p>So</p>
+
+  <md>\frac{1}{\sqrt{x+1}+\sqrt{x}}
+=
+\sqrt{x+1}-\sqrt{x}.</md>
+
+  <p>Therefore</p>
+
+  <md>\int \frac{dx}{\sqrt{x+1}+\sqrt{x}}
+=
+\int \bigl(\sqrt{x+1}-\sqrt{x}\bigr)\,dx.</md>
+
+  <p>Now integrate term by term:</p>
+
+  <md>\int \sqrt{x+1}\,dx
+=
+\frac23(x+1)^{3/2},</md>
+
+  <p>and</p>
+
+  <md>\int \sqrt{x}\,dx
+=
+\frac23x^{3/2}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\int \frac{dx}{\sqrt{x+1}+\sqrt{x}}
+=
+\frac23(x+1)^{3/2}
+-
+\frac23x^{3/2}
++C.
+</md>
+
+  <p>The calculus was easy after the algebra.</p>
+
+  <note xml:id="note-sec-11-5-strategy-for-integration-105">
+    <title>Algebra before technique</title>
       <p>Before choosing an integration method, ask whether the integrand can be simplified by</p>
-      <md>\text{factoring, canceling, expanding, completing the square,}</md>
-      <md>\text{dividing polynomials, using identities, or rationalizing.}</md>
+        <md>\text{factoring, canceling, expanding, completing the square,}</md>
+        <md>\text{dividing polynomials, using identities, or rationalizing.}</md>
       <p>A hard-looking integral may become a basic one after the right algebraic move.</p>
-    </note>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-integration-decision-tree">
     <title>A practical decision tree</title>
 
-    <p>No decision tree can replace judgment. But a rough order helps.</p>
+  <p>No decision tree can replace judgment.  But a rough order helps.</p>
 
-    <figure xml:id="fig-integration-decision-tree">
-      <caption>A practical order of questions. The arrows are not laws; they are a way to begin thinking.</caption>
-      <image>
-        <latex-image>
-          \begin{tikzpicture}[
-            node distance=1.35cm,
-            box/.style={draw, rounded corners, align=center, inner sep=5pt, font=\small},
-            arrow/.style={-&gt;, thick}
-          ]
-          \node[box] (start) {Look at the integrand};
-          \node[box, below of=start] (algebra) {Can algebra simplify it?\\Factor, cancel, expand, rationalize,\\complete the square, or divide.};
-          \node[box, below of=algebra] (sub) {Is there an inside function\\whose derivative is present?\\Try substitution.};
-          \node[box, below of=sub] (parts) {Is it a product where one factor\\simplifies when differentiated?\\Try integration by parts.};
-          \node[box, below of=parts] (trig) {Does it contain powers of trig functions\\or square-root patterns?\\Use identities or trig substitution.};
-          \node[box, below of=trig] (rat) {Is it rational?\\Use partial fractions.};
-          \node[box, below of=rat] (none) {If no method works, the antiderivative\\may not be elementary.\\Use numerical methods, series, or a special function.};
+  <figure xml:id="fig-integration-decision-tree">
+    <caption>A practical order of questions.  The arrows are not laws; they are a way to begin thinking.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[
+  node distance=12mm,
+  box/.style={draw, rounded corners, align=center, inner sep=6pt, font=\small},
+  arrow/.style={-&gt;, thick}
+]
+\node[box] (start) {Look at the integrand};
+\node[box, below=of start] (algebra) {Can algebra simplify it?\\Factor, cancel, expand, rationalize,\\complete the square, or divide.};
+\node[box, below=of algebra] (sub) {Is there an inside function\\whose derivative is present?\\Try substitution.};
+\node[box, below=of sub] (parts) {Is it a product where one factor\\simplifies when differentiated?\\Try integration by parts.};
+\node[box, below=of parts] (trig) {Does it contain powers of trig functions\\or square-root patterns?\\Use identities or trig substitution.};
+\node[box, below=of trig] (rat) {Is it rational?\\Use partial fractions.};
+\node[box, below=of rat] (none) {If no method works, the antiderivative\\may not be elementary.\\Use numerical methods, series, or a special function.};
 
-          \draw[arrow] (start) -- (algebra);
-          \draw[arrow] (algebra) -- (sub);
-          \draw[arrow] (sub) -- (parts);
-          \draw[arrow] (parts) -- (trig);
-          \draw[arrow] (trig) -- (rat);
-          \draw[arrow] (rat) -- (none);
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+\draw[arrow] (start) -- (algebra);
+\draw[arrow] (algebra) -- (sub);
+\draw[arrow] (sub) -- (parts);
+\draw[arrow] (parts) -- (trig);
+\draw[arrow] (trig) -- (rat);
+\draw[arrow] (rat) -- (none);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>The order matters less than the habit: pause, read the integrand, and identify the structure.</p>
+  <p>The order matters less than the habit: pause, read the integrand, and identify the
+structure.</p>
 
-    <example xml:id="ex-decision-mixed-substitution">
-      <title>A mixed decision</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \frac{x^3}{\sqrt{x^2+1}}\,dx.</md>
-        <p>The square root suggests a possible trigonometric substitution, but there is also an inside function:</p>
-        <md>x^2+1.</md>
-        <p>Its derivative is <m>2x</m>, and the numerator contains <m>x^3\,dx</m>. Rewrite</p>
-        <md>x^3\,dx=x^2(x\,dx).</md>
-        <p>Use</p>
-        <md>u=x^2+1, \qquad du=2x\,dx.</md>
-        <p>Then</p>
-        <md>x\,dx=\frac12\,du,</md>
-        <p>and</p>
-        <md>x^2=u-1.</md>
-        <p>The integral becomes</p>
-        <md>\int \frac{x^3}{\sqrt{x^2+1}}\,dx = \frac12\int \frac{u-1}{\sqrt{u}}\,du.</md>
-        <p>Simplify:</p>
-        <md>\frac{u-1}{\sqrt u}=u^{1/2}-u^{-1/2}.</md>
-        <p>So</p>
-        <md>\frac12\int \left(u^{1/2}-u^{-1/2}\right)\,du = \frac12\left(\frac23u^{3/2}-2u^{1/2}\right)+C.</md>
-        <p>Thus</p>
-        <md>\frac12\int \left(u^{1/2}-u^{-1/2}\right)\,du = \frac13u^{3/2}-u^{1/2}+C.</md>
-        <p>Return to <m>x</m>:</p>
-        <md>\int \frac{x^3}{\sqrt{x^2+1}}\,dx = \frac13(x^2+1)^{3/2} - (x^2+1)^{1/2} + C.</md>
-        <p>A trigonometric substitution would work, but it would be longer. The simpler inside function was already present.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-11-5-strategy-for-integration-10">
+    <title>a mixed decision</title>
+    <statement>
+  <p>Find</p>
 
-    <example xml:id="ex-decision-definite-symmetry">
-      <title>A definite integral can simplify by symmetry</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_{-2}^{2} x e^{-x^2}\,dx.</md>
-        <p>The integrand</p>
-        <md>x e^{-x^2}</md>
-        <p>is odd, because</p>
-        <md>(-x)e^{-(-x)^2}=-xe^{-x^2}.</md>
-        <p>The interval <m>[-2,2]</m> is symmetric about <m>0</m>. Therefore the positive and negative parts cancel:</p>
-        <md>\int_{-2}^{2} x e^{-x^2}\,dx=0.</md>
-        <p>We could also use substitution, but symmetry is faster and more revealing.</p>
-      </statement>
-    </example>
+  <md>\int \frac{x^3}{\sqrt{x^2+1}}\,dx.</md>
 
-    <note xml:id="note-definite-information-use">
-      <title>For definite integrals, use definite information</title>
+  <p>The square root suggests a possible trigonometric substitution, but there is also an
+inside function:</p>
+
+  <md>x^2+1.</md>
+
+  <p>Its derivative is <m>2x</m>, and the numerator contains <m>x^3\,dx</m>.  Rewrite</p>
+
+  <md>x^3\,dx=x^2(x\,dx).</md>
+
+  <p>Use</p>
+
+  <md>u=x^2+1,
+\qquad
+du=2x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>x\,dx=\frac12\,du,</md>
+
+  <p>and</p>
+
+  <md>x^2=u-1.</md>
+
+  <p>The integral becomes</p>
+
+  <md>\int \frac{x^3}{\sqrt{x^2+1}}\,dx
+=
+\frac12\int \frac{u-1}{\sqrt{u}}\,du.</md>
+
+  <p>Simplify:</p>
+
+  <md>\frac{u-1}{\sqrt u}=u^{1/2}-u^{-1/2}.</md>
+
+  <p>So</p>
+
+  <md>\frac12\int \left(u^{1/2}-u^{-1/2}\right)\,du
+=
+\frac12\left(\frac23u^{3/2}-2u^{1/2}\right)+C.</md>
+
+  <p>Thus</p>
+
+  <md>\frac12\int \left(u^{1/2}-u^{-1/2}\right)\,du
+=
+\frac13u^{3/2}-u^{1/2}+C.</md>
+
+  <p>Return to <m>x</m>:</p>
+
+  <md>
+\int \frac{x^3}{\sqrt{x^2+1}}\,dx
+=
+\frac13(x^2+1)^{3/2}
+-
+(x^2+1)^{1/2}
++C.
+</md>
+
+  <p>A trigonometric substitution would work, but it would be longer.  The simpler inside
+function was already present.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-5-strategy-for-integration-11">
+    <title>a definite integral can simplify by symmetry</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_{-2}^{2} x e^{-x^2}\,dx.</md>
+
+  <p>The integrand</p>
+
+  <md>x e^{-x^2}</md>
+
+  <p>is odd, because</p>
+
+  <md>(-x)e^{-(-x)^2}=-xe^{-x^2}.</md>
+
+  <p>The interval <m>[-2,2]</m> is symmetric about <m>0</m>.  Therefore the positive and negative
+parts cancel:</p>
+
+  <md>
+\int_{-2}^{2} x e^{-x^2}\,dx=0.
+</md>
+
+  <p>We could also use substitution, but symmetry is faster and more revealing.</p>
+
+  <note xml:id="note-sec-11-5-strategy-for-integration-106">
+    <title>For definite integrals, use definite information</title>
       <p>Before finding an antiderivative, check for</p>
-      <md>\text{symmetry, sign, cancellation, geometry, and bounds.}</md>
+        <md>\text{symmetry, sign, cancellation, geometry, and bounds.}</md>
       <p>A definite integral may have a simple value even when the indefinite integral is hard.</p>
-    </note>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-no-elementary-antiderivative">
     <title>When no elementary antiderivative exists</title>
 
-    <p>It is natural to hope that every continuous function has a familiar antiderivative. The Fundamental Theorem tells us that every continuous function <m>f</m> has an antiderivative:</p>
-    <md>F(x)=\int_a^x f(t)\,dt.</md>
+  <p>It is natural to hope that every continuous function has a familiar antiderivative.
+The Fundamental Theorem tells us that every continuous function <m>f</m> has an
+antiderivative:</p>
 
-    <p>But it does not say that <m>F</m> can be written using the elementary functions we already know.</p>
+  <md>F(x)=\int_a^x f(t)\,dt.</md>
 
-    <p>By <term>elementary functions</term>, we mean functions built from polynomials, rational functions, powers, exponentials, logarithms, trigonometric functions, inverse trigonometric functions, and combinations of these by addition, subtraction, multiplication, division, and composition.</p>
+  <p>But it does not say that <m>F</m> can be written using the elementary functions we already
+know.</p>
 
-    <p>Many elementary functions have antiderivatives that are not elementary.</p>
+  <p>By <em>elementary functions</em>, we mean functions built from polynomials, rational
+functions, powers, exponentials, logarithms, trigonometric functions, inverse
+trigonometric functions, and combinations of these by addition, subtraction,
+multiplication, division, and composition.</p>
 
-    <p>Famous examples include</p>
-    <md>\int e^{-x^2}\,dx,</md>
-    <md>\int \frac{\sin x}{x}\,dx,</md>
-    <md>\int \sin(x^2)\,dx,</md>
-    <p>and</p>
-    <md>\int \frac{dx}{\ln x}.</md>
+  <p>Many elementary functions have antiderivatives that are not elementary.</p>
 
-    <p>This is not a failure of calculus. It is a sign that the family of elementary functions is not closed under antidifferentiation.</p>
+  <p>Famous examples include</p>
 
-    <example xml:id="ex-gaussian-non-elementary">
-      <title>The Gaussian example</title>
-      <statement>
-        <p>The function</p>
-        <md>e^{-x^2}</md>
-        <p>is continuous everywhere. Therefore</p>
-        <md>G(x)=\int_0^x e^{-t^2}\,dt</md>
-        <p>is a perfectly good function, and the Fundamental Theorem gives</p>
-        <md>G'(x)=e^{-x^2}.</md>
-        <p>But <m>G(x)</m> cannot be expressed using elementary functions. So instead of forcing it into old language, mathematicians name it. A scaled version is called the error function:</p>
-        <md>\operatorname{erf}(x) = \frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}\,dt.</md>
-        <p>The name is not a trick. It is a recognition that this accumulation is important enough to become a function in its own right.</p>
-      </statement>
-    </example>
+  <md>\int e^{-x^2}\,dx,</md>
 
-    <example xml:id="ex-definite-integral-meaningful-non-elementary">
-      <title>A definite integral may still be meaningful</title>
-      <statement>
-        <p>Even if</p>
-        <md>\int e^{-x^2}\,dx</md>
-        <p>has no elementary antiderivative, the definite integral</p>
-        <md>\int_0^1 e^{-x^2}\,dx</md>
-        <p>still has a definite value. It measures accumulated area. We can approximate it numerically. Later, we will also approximate it with power series.</p>
-        <p>The absence of an elementary antiderivative does not stop the integral from existing.</p>
-        <md>\text{Exact elementary formulas are useful, but they are not the only way to know an integral.}</md>
-      </statement>
-    </example>
+  <md>\int \frac{\sin x}{x}\,dx,</md>
+
+  <md>\int \sin(x^2)\,dx,</md>
+
+  <p>and</p>
+
+  <md>\int \frac{dx}{\ln x}.</md>
+
+  <p>This is not a failure of calculus.  It is a sign that the family of elementary functions is
+not closed under antidifferentiation.</p>
+
+  <paragraphs>
+    <title>The Gaussian example</title>
+
+  <p>The function</p>
+
+  <md>e^{-x^2}</md>
+
+  <p>is continuous everywhere.  Therefore</p>
+
+  <md>G(x)=\int_0^x e^{-t^2}\,dt</md>
+
+  <p>is a perfectly good function, and the Fundamental Theorem gives</p>
+
+  <md>G'(x)=e^{-x^2}.</md>
+
+  <p>But <m>G(x)</m> cannot be expressed using elementary functions.  So instead of forcing it
+into old language, mathematicians name it.  A scaled version is called the error function:</p>
+
+  <md>\operatorname{erf}(x)
+=
+\frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}\,dt.</md>
+
+  <p>The name is not a trick.  It is a recognition that this accumulation is important enough
+to become a function in its own right.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A definite integral may still be meaningful</title>
+
+  <p>Even if</p>
+
+  <md>\int e^{-x^2}\,dx</md>
+
+  <p>has no elementary antiderivative, the definite integral</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>still has a definite value.  It measures accumulated area.  We can approximate it
+numerically.  Later, we will also approximate it with power series.</p>
+
+  <p>The absence of an elementary antiderivative does not stop the integral from existing.</p>
+
+  <md>
+\text{Exact elementary formulas are useful, but they are not the only way to know an integral.}
+</md>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-11-5-no-elementary">
+        <title>Why can an antiderivative exist without being elementary?</title>
+        <statement>
+          <p>
+            Part I guarantees that every continuous function has an antiderivative <m>F(x)=\int_a^x f(t)\,dt</m>. In your own words, why does that not mean <m>F</m> can be written from polynomials, exponentials, logarithms, and trigonometric functions, and why is that not a failure of calculus?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The family of elementary functions is not closed under antidifferentiation. The accumulation function is still a genuine function; it may simply be a new name, such as the error function, or a quantity we approximate.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-strategy-summary">
     <title>Strategy summary</title>
 
-    <p>Integration is less mechanical than differentiation. Differentiation has a direct rule for each way of building a function. Integration asks us to recognize what construction might have produced the integrand.</p>
+  <p>Integration is less mechanical than differentiation.  Differentiation has a direct rule for
+each way of building a function.  Integration asks us to recognize what construction
+might have produced the integrand.</p>
 
-    <p>A useful final checklist is:</p>
+  <p>A useful final checklist is:</p>
 
-    <table xml:id="tab-strategy-summary-checklist">
-      <title>Integration strategy checklist</title>
-      <tabular halign="left">
-        <col width="45%"/>
-        <col width="55%"/>
-        <row header="yes" bottom="medium">
-          <cell>Question</cell>
-          <cell>Possible response</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Can the integrand be simplified algebraically?</cell>
-          <cell>Factor, cancel, expand, rationalize, complete the square, or divide.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Is there an inside function with its derivative nearby?</cell>
-          <cell>Use substitution.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Is there a product with a factor that simplifies under differentiation?</cell>
-          <cell>Use integration by parts.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Are there trigonometric powers or products?</cell>
-          <cell>Use identities and then substitute.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Is there a square root matching a Pythagorean pattern?</cell>
-          <cell>Use trigonometric or hyperbolic substitution.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Is the integrand rational?</cell>
-          <cell>Use polynomial division and partial fractions.</cell>
-        </row>
-        <row bottom="minor">
-          <cell>Is it a definite integral with symmetry or geometry?</cell>
-          <cell>Use the bounds and the shape before seeking an antiderivative.</cell>
-        </row>
-        <row>
-          <cell>Does no elementary method work?</cell>
-          <cell>Define a new accumulation function, approximate numerically, or use series.</cell>
-        </row>
-      </tabular>
-    </table>
+  <table xml:id="tab-sec-11-5-strategy-for-integration-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>Question</strong></cell>
+        <cell><strong>Possible response</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Can the integrand be simplified algebraically?</cell>
+        <cell>Factor, cancel, expand, rationalize, complete the square, or divide.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is there an inside function with its derivative nearby?</cell>
+        <cell>Use substitution.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is there a product with a factor that simplifies under differentiation?</cell>
+        <cell>Use integration by parts.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Are there trigonometric powers or products?</cell>
+        <cell>Use identities and then substitute.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is there a square root matching a Pythagorean pattern?</cell>
+        <cell>Use trigonometric or hyperbolic substitution.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is the integrand rational?</cell>
+        <cell>Use polynomial division and partial fractions.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+Is it a definite integral with symmetry or geometry?</cell>
+        <cell>Use the bounds and the shape before seeking an antiderivative.</cell>
+      </row>
+      <row>
+        <cell>
+Does no elementary method work?</cell>
+        <cell>Define a new accumulation function, approximate numerically, or use series.</cell>
+      </row>
+    </tabular>
+  </table>
 
-    <p>The best way to learn strategy is to practice with mixed examples. But the guiding principle stays simple:</p>
-    <md>\text{Do not ask first, <q>What technique should I use?</q>}</md>
-    <p>Ask instead:</p>
-    <md>\text{What is the integrand trying to tell me?}</md>
+  <p>The best way to learn strategy is to practice with mixed examples.  But the guiding
+principle stays simple:</p>
 
-    <p>The next section adds a modern tool. Computer algebra systems and integral tables can find many antiderivatives. But they do not remove the need for thought. They make checking, interpretation, and domain awareness more important.</p>
+  <md>
+\text{Do not ask first, ``What technique should I use?''}
+</md>
+
+  <p>Ask instead:</p>
+
+  <md>
+\text{What is the integrand trying to tell me?}
+</md>
+
+  <p>The next section adds a modern tool.  Computer algebra systems and integral tables can
+find many antiderivatives.  But they do not remove the need for thought.  They make
+checking, interpretation, and domain awareness more important.</p>
   </subsection>
+
+
 
 </section>

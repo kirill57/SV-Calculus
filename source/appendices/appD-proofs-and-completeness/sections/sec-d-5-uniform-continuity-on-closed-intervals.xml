@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-d-5-uniform-continuity-on-closed-intervals">
+  <title>Uniform Continuity on Closed Intervals</title>
+
+  <p>Continuity at a point says:</p>
+
+  <md>\text{near this input, nearby inputs give nearby outputs.}</md>
+
+  <p>Uniform continuity says something stronger:</p>
+
+  <md>\text{one input tolerance works everywhere on the interval.}</md>
+
+  <p>This distinction matters when we want to control error across a whole interval, as in
+Riemann sums, numerical integration, and approximation.</p>
+
+  <subsection xml:id="appsubsec-pointwise-vs-uniform-continuity">
+    <title>Pointwise continuity versus uniform continuity</title>
+
+  <p>A function <m>f</m> is continuous at <m>c</m> if, for every <m>\varepsilon&gt;0</m>, there is a
+<m>\delta&gt;0</m> such that</p>
+
+  <md>|x-c|&lt;\delta
+\quad\Longrightarrow\quad
+|f(x)-f(c)|&lt;\varepsilon.</md>
+
+  <p>The number <m>\delta</m> may depend on the point <m>c</m>.</p>
+
+  <p>Uniform continuity asks for one <m>\delta</m> that works for all points in the set.</p>
+
+  <note xml:id="note-sec-d-5-uniform-continuity-on-closed-intervals-35">
+    <title>Uniform continuity</title>
+      <p>A function <m>f</m> is <em>uniformly continuous</em> on a set <m>S</m> if, for every
+<m>\varepsilon&gt;0</m>, there is a <m>\delta&gt;0</m> such that whenever <m>x,y\in S</m>,</p>
+        <md>|x-y|&lt;\delta</md>
+      <p>we have</p>
+        <md>|f(x)-f(y)|&lt;\varepsilon.</md>
+  </note>
+
+  <p>The order of the quantifiers is the whole point.</p>
+
+  <p>For ordinary continuity, the point is chosen first, and <m>\delta</m> may depend on that
+point.</p>
+
+  <p>For uniform continuity, <m>\varepsilon</m> is chosen first, and then one <m>\delta</m> must work
+for every pair of points in the set.</p>
+
+  <table xml:id="tab-sec-d-5-uniform-continuity-on-closed-intervals-1">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>continuity at each point</strong></cell>
+        <cell><strong>uniform continuity</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\delta</m> may change from point to point</cell>
+        <cell>one <m>\delta</m> works everywhere</cell>
+      </row>
+      <row bottom="minor">
+        <cell>local control</cell>
+        <cell>global control on the set</cell>
+      </row>
+      <row>
+        <cell>enough for tangent behavior at a point</cell>
+        <cell>needed for reliable interval-wide error control</cell>
+      </row>
+    </tabular>
+  </table>
+  </subsection>
+
+  <subsection xml:id="appsubsec-simple-uniform-estimate">
+    <title>A simple uniform continuity estimate</title>
+
+  <p>Let</p>
+
+  <md>f(x)=x^2</md>
+
+  <p>on the interval</p>
+
+  <md>[0,10].</md>
+
+  <p>For <m>x,y\in[0,10]</m>,</p>
+
+  <md>|x^2-y^2|
+=
+|x-y||x+y|.</md>
+
+  <p>Since <m>0\le x\le10</m> and <m>0\le y\le10</m>,</p>
+
+  <md>|x+y|\le20.</md>
+
+  <p>So</p>
+
+  <md>|x^2-y^2|\le20|x-y|.</md>
+
+  <p>Given <m>\varepsilon&gt;0</m>, choose</p>
+
+  <md>\delta=\frac{\varepsilon}{20}.</md>
+
+  <p>Then</p>
+
+  <md>|x-y|&lt;\delta</md>
+
+  <p>implies</p>
+
+  <md>|x^2-y^2|&lt;20\cdot\frac{\varepsilon}{20}=\varepsilon.</md>
+
+  <p>Thus <m>x^2</m> is uniformly continuous on <m>[0,10]</m>.</p>
+
+  <p>The bounded interval mattered.  It gave the uniform estimate</p>
+
+  <md>|x+y|\le20.</md>
+  </subsection>
+
+  <subsection xml:id="appsubsec-not-uniform-continuity-examples">
+    <title>A continuous function that is not uniformly continuous</title>
+
+  <p>The function</p>
+
+  <md>f(x)=\frac1x</md>
+
+  <p>is continuous on the open interval</p>
+
+  <md>(0,1).</md>
+
+  <p>But it is not uniformly continuous there.</p>
+
+  <p>To see the problem, compare the two nearby numbers</p>
+
+  <md>x_n=\frac1n
+\qquad\text{and}\qquad
+y_n=\frac1{n+1}.</md>
+
+  <p>Their distance is</p>
+
+  <md>|x_n-y_n|
+=
+\left|\frac1n-\frac1{n+1}\right|
+=
+\frac1{n(n+1)}.</md>
+
+  <p>This tends to <m>0</m>.</p>
+
+  <p>But the function values differ by</p>
+
+  <md>\left|f(x_n)-f(y_n)\right|
+=
+|n-(n+1)|
+=
+1.</md>
+
+  <p>So the inputs can be made arbitrarily close while the outputs stay <m>1</m> unit apart.</p>
+
+  <p>Therefore no single <m>\delta</m> can guarantee output error less than, say,</p>
+
+  <md>\varepsilon=\frac12.</md>
+
+  <md>
+\frac1x\text{ is continuous on }(0,1)\text{ but not uniformly continuous there.}
+</md>
+
+  <p>The issue is the missing endpoint <m>0</m>.  Near <m>0</m>, the graph becomes steeper and
+steeper.</p>
+
+  <figure xml:id="fig-one-over-x-not-uniform">
+    <caption>The function <m>1/x</m> is continuous on <m>(0,1)</m>, but no single input tolerance works everywhere.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.72\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1,
+    ymin=0, ymax=10,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(1/x\)},
+    xtick={0,0.25,0.5,0.75,1},
+    ytick={0,2,4,6,8,10},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0.1:1, samples=200] {1/x};
+\node[anchor=west] at (axis cs:0.24,7.2) {steeper near \(0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+  </subsection>
+
+  <subsection xml:id="appsubsec-uniform-continuity-theorem">
+    <title>The theorem on closed intervals</title>
+
+  <p>Closed bounded intervals prevent the kind of escape seen in <m>1/x</m> on <m>(0,1)</m>.</p>
+
+  <theorem xml:id="thm-sec-d-5-uniform-continuity-on-closed-intervals-36">
+    <title>Uniform Continuity Theorem</title>
+    <statement>
+      <p>If <m>f</m> is continuous on a closed interval <m>[a,b]</m>, then <m>f</m> is uniformly continuous
+on <m>[a,b]</m>.</p>
+    </statement>
+  </theorem>
+
+  <p>This theorem says that point-by-point continuity becomes interval-wide control when
+the domain is closed and bounded.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-finite-covering-lemma">
+    <title>Finite covering lemma</title>
+
+  <p>The proof uses one compactness fact about closed intervals.</p>
+
+  <note xml:id="note-sec-d-5-uniform-continuity-on-closed-intervals-37">
+    <title>Finite covering lemma for closed intervals</title>
+      <p>Suppose every point of <m>[a,b]</m> lies in at least one open interval from some collection
+of open intervals.  Then finitely many of those open intervals already cover all of
+<m>[a,b]</m>.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof idea</title>
+
+  <p>If no finite subcollection covered <m>[a,b]</m>, bisect <m>[a,b]</m>.  At least one half would
+also fail to be covered by finitely many intervals.  Choose such a half and repeat.</p>
+
+  <p>This creates nested closed intervals whose lengths shrink to <m>0</m>.  They trap a point
+<m>c\in[a,b]</m>.</p>
+
+  <p>But <m>c</m> lies in one of the open intervals from the original cover.  Since that interval is
+open, it contains a small neighborhood around <m>c</m>.  Eventually the nested interval is
+so short that it lies entirely inside that one open interval.  Then that nested interval is
+covered by a single member of the cover, contradicting how it was chosen.</p>
+
+  <p>So a finite subcover must exist.</p>
+
+  <p>This is another place where the completeness of the real line is doing hidden work.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="appsubsec-uniform-continuity-proof">
+    <title>Proof of uniform continuity</title>
+
+  <p>Let <m>f</m> be continuous on <m>[a,b]</m>.  We prove that <m>f</m> is uniformly continuous.</p>
+
+  <p>Choose an arbitrary</p>
+
+  <md>\varepsilon&gt;0.</md>
+
+  <p>For each point <m>c\in[a,b]</m>, continuity at <m>c</m> gives a number <m>\rho_c&gt;0</m> such that</p>
+
+  <md>|x-c|&lt;\rho_c
+\quad\Longrightarrow\quad
+|f(x)-f(c)|&lt;\frac{\varepsilon}{2}.</md>
+
+  <p>Now form the smaller open interval</p>
+
+  <md>U_c=\left(c-\frac{\rho_c}{2},c+\frac{\rho_c}{2}\right).</md>
+
+  <p>As <m>c</m> runs through <m>[a,b]</m>, these intervals cover <m>[a,b]</m>.</p>
+
+  <p>By the finite covering lemma, finitely many of them cover the whole interval:</p>
+
+  <md>U_{c_1},U_{c_2},\ldots,U_{c_N}.</md>
+
+  <p>Now define</p>
+
+  <md>\delta=\frac12\min\{\rho_{c_1},\rho_{c_2},\ldots,\rho_{c_N}\}.</md>
+
+  <p>This <m>\delta</m> is positive because it is half the minimum of finitely many positive
+numbers.</p>
+
+  <p>Suppose <m>x,y\in[a,b]</m> and</p>
+
+  <md>|x-y|&lt;\delta.</md>
+
+  <p>Since the finitely many <m>U_{c_j}</m> cover <m>[a,b]</m>, the point <m>x</m> lies in one of them.
+Say</p>
+
+  <md>x\in U_{c_j}.</md>
+
+  <p>Then</p>
+
+  <md>|x-c_j|&lt;\frac{\rho_{c_j}}{2}.</md>
+
+  <p>Also,</p>
+
+  <md>|y-c_j|
+\le
+|y-x|+|x-c_j|
+&lt;
+\delta+\frac{\rho_{c_j}}{2}
+\le
+\frac{\rho_{c_j}}{2}+\frac{\rho_{c_j}}{2}
+=
+\rho_{c_j}.</md>
+
+  <p>Thus both <m>x</m> and <m>y</m> are within <m>\rho_{c_j}</m> of <m>c_j</m>.  Therefore</p>
+
+  <md>|f(x)-f(c_j)|&lt;\frac{\varepsilon}{2}</md>
+
+  <p>and</p>
+
+  <md>|f(y)-f(c_j)|&lt;\frac{\varepsilon}{2}.</md>
+
+  <p>By the triangle inequality,</p>
+
+  <md>|f(x)-f(y)|
+\le
+|f(x)-f(c_j)|+|f(c_j)-f(y)|
+&lt;
+\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+=
+\varepsilon.</md>
+
+  <p>So one <m>\delta</m> works for all <m>x,y\in[a,b]</m>.  Hence <m>f</m> is uniformly continuous.</p>
+
+  <note xml:id="note-sec-d-5-uniform-continuity-on-closed-intervals-38">
+    <title>Why this matters</title>
+      <p>Uniform continuity is the reason that, on a closed interval, making subintervals short
+enough controls the function’s oscillation everywhere.  That is one of the quiet
+foundations behind Riemann sums and numerical integration.</p>
+  </note>
+  </subsection>
+
+</section>

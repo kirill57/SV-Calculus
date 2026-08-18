@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-8-uniform-convergence-preview">
+  <title>Uniform convergence preview</title>
+
+  <p>Power series have been unusually obedient.  Inside their radius of convergence, we have
+added them, multiplied them, differentiated them, integrated them, and used them to
+represent functions.</p>
+
+  <p>This is not how arbitrary infinite sums of functions behave.</p>
+
+  <p>The missing idea is not another formula.  It is a stronger kind of convergence.</p>
+
+  <p>Ordinary convergence can happen separately at each point.  Uniform convergence means
+the approximation is good on a whole interval at once.</p>
+
+  <md>
+\text{Uniform convergence is convergence with one error bound for all points in a set.}
+</md>
+
+  <p>This section is a preview.  A later analysis course will make these ideas fully systematic.
+Here we use them to explain why power series are trustworthy inside their radius.</p>
+
+  <subsection xml:id="subsec-pointwise-convergence-functions">
+    <title>Pointwise convergence of functions</title>
+
+  <p>A sequence of numbers is a list:</p>
+
+  <md>a_1,\ a_2,\ a_3,\ldots.</md>
+
+  <p>A sequence of functions is a list of functions:</p>
+
+  <md>f_1,\ f_2,\ f_3,\ldots.</md>
+
+  <p>For example, on the interval <m>[0,1]</m>, define</p>
+
+  <md>f_n(x)=x^n.</md>
+
+  <p>Then</p>
+
+  <md>f_1(x)=x,\qquad
+f_2(x)=x^2,\qquad
+f_3(x)=x^3,\qquad \ldots.</md>
+
+  <p>For a fixed number <m>x</m> with</p>
+
+  <md>0\le x&lt;1,</md>
+
+  <p>we have</p>
+
+  <md>x^n\to0.</md>
+
+  <p>But at <m>x=1</m>,</p>
+
+  <md>1^n=1</md>
+
+  <p>for every <m>n</m>.  So the limiting function is</p>
+
+  <md>
+    <mrow>f(x)=
+\begin{cases}
+0, \amp 0\le x&lt;1,</mrow>
+    <mrow>1, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>This means that <m>f_n(x)=x^n</m> converges to <m>f(x)</m> point by point.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-82">
+    <title>Pointwise convergence</title>
+      <p>A sequence of functions <m>f_n</m> converges <em>pointwise</em> to a function <m>f</m> on a set
+<m>I</m> if, for each fixed <m>x\in I</m>,</p>
+        <md>\lim_{n\to\infty}f_n(x)=f(x).</md>
+  </note>
+
+  <p>The words “for each fixed <m>x</m>” are important.  Pointwise convergence lets the speed
+of convergence depend on the point.</p>
+
+  <p>Near <m>x=0</m>, the powers <m>x^n</m> shrink quickly.  Near <m>x=1</m>, they shrink slowly.</p>
+
+  <figure xml:id="fig-pointwise-xn">
+    <caption>The functions <m>x^n</m> converge pointwise on <m>[0,1]</m>, but the convergence is slow near <m>x=1</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=1.05,
+    ymin=-0.08, ymax=1.12,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,0.5,1},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[thick, domain=0:1, samples=150] {x};
+\addlegendentry{\(x\)}
+
+\addplot[thick, dashed, domain=0:1, samples=150] {x^2};
+\addlegendentry{\(x^2\)}
+
+\addplot[thick, dotted, domain=0:1, samples=150] {x^5};
+\addlegendentry{\(x^5\)}
+
+\addplot[thick, dashdotted, domain=0:1, samples=150] {x^20};
+\addlegendentry{\(x^{20}\)}
+
+\addplot[very thick, domain=0:0.985, samples=2] {0};
+\addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(1,0)};
+\addplot[only marks, mark=*, mark size=2.3pt] coordinates {(1,1)};
+\node[anchor=west] at (axis cs:0.33,0.09) {pointwise limit};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>A surprising thing happened: every <m>f_n(x)=x^n</m> is continuous, but the pointwise
+limit is not continuous.  The limit jumps at <m>x=1</m>.</p>
+
+  <p>This is our first warning that pointwise convergence is too weak to preserve all the good
+behavior of the approximating functions.</p>
+
+  <exercise xml:id="checkpoint-16-8-pointwise-means-each-x">
+        <title>What does pointwise convergence of functions mean?</title>
+        <statement>
+          <p>
+            The powers <m>x^n</m> converge to <m>0</m> for each fixed <m>x</m> in <m>[0,1)</m>, but to <m>1</m> at <m>x=1</m>. In your own words, why does pointwise convergence let the speed depend on the point, and why is that already a warning about treating a sequence of functions like a sequence of numbers?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            For each fixed <m>x</m> you get an ordinary numerical limit, possibly with its own <m>N</m>. Near <m>x=1</m> the wait becomes arbitrarily long, so the whole interval is not controlled at once.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-uniform-convergence-one-error-bound">
+    <title>Uniform convergence as one error bound for all points</title>
+
+  <p>Uniform convergence strengthens pointwise convergence by requiring one <m>N</m> that
+works for every point in the set.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-83">
+    <title>Uniform convergence</title>
+      <p>A sequence of functions <m>f_n</m> converges <em>uniformly</em> to <m>f</m> on a set <m>I</m> if, for
+every <m>\varepsilon&gt;0</m>, there is an integer <m>N</m> such that</p>
+        <md>|f_n(x)-f(x)|&lt;\varepsilon</md>
+      <p>for every <m>x\in I</m> whenever <m>n\ge N</m>.</p>
+  </note>
+
+  <p>Compare the two ideas.</p>
+
+  <table xml:id="tab-sec-16-8-uniform-convergence-preview-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>pointwise convergence</strong></cell>
+        <cell><strong>uniform convergence</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>For each <m>x</m>, find an <m>N</m>.</cell>
+        <cell>Find one <m>N</m> that works for all <m>x</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>The speed may depend on <m>x</m>.</cell>
+        <cell>The error is controlled on the whole set.</cell>
+      </row>
+      <row>
+        <cell>Good at individual points.</cell>
+        <cell>Good on an interval all at once.</cell>
+      </row>
+    </tabular>
+  </table>
+
+
+  <exercise xml:id="checkpoint-16-8-one-error-bound">
+        <title>What extra demand is uniform convergence making?</title>
+        <statement>
+          <p>
+            Uniform convergence requires one <m>N</m> that works for every point in the set. In your own words, why is that the same as having one error bound for all points, and why does staying a fixed distance away from a bad endpoint often restore uniformity?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            If <m>0\le x\le r&lt;1</m>, then <m>x^n\le r^n</m>, and <m>r^n</m> is a single numerical sequence. One bound for the worst point is then a bound for every point.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-8-uniform-convergence-preview-1">
+    <title>uniform convergence on a smaller interval</title>
+    <statement>
+  <p>The functions</p>
+
+  <md>f_n(x)=x^n</md>
+
+  <p>do not converge uniformly to <m>0</m> on <m>[0,1)</m>.  But they do converge uniformly to <m>0</m>
+on any interval</p>
+
+  <md>[0,r]</md>
+
+  <p>where</p>
+
+  <md>0&lt;r&lt;1.</md>
+
+  <p>Indeed, if <m>0\le x\le r</m>, then</p>
+
+  <md>0\le x^n\le r^n.</md>
+
+  <p>Since</p>
+
+  <md>r^n\to0,</md>
+
+  <p>we can make <m>r^n</m> smaller than any chosen <m>\varepsilon</m>.  Then</p>
+
+  <md>|x^n-0|&lt;\varepsilon</md>
+
+  <p>for every <m>x\in[0,r]</m> at once.</p>
+
+  <p>The endpoint <m>1</m> was the problem.  Staying a fixed distance away from it gives a
+uniform error bound.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why <m>x^n</m> is not uniform on <m>[0,1)</m></title>
+
+  <p>For each fixed <m>x&lt;1</m>,</p>
+
+  <md>x^n\to0.</md>
+
+  <p>But no single <m>N</m> controls all <m>x&lt;1</m>.  To see why, choose</p>
+
+  <md>x_n=\left(\frac34\right)^{1/n}.</md>
+
+  <p>Then</p>
+
+  <md>0&lt;x_n&lt;1,</md>
+
+  <p>but</p>
+
+  <md>x_n^n=\frac34.</md>
+
+  <p>So no matter how large <m>n</m> is, there is a point <m>x_n</m> close enough to <m>1</m> where the
+error is still</p>
+
+  <md>\frac34.</md>
+
+  <p>The convergence is pointwise, but not uniform.</p>
+  </paragraphs>
+
+  <example xml:id="ex-sec-16-8-uniform-convergence-preview-3">
+    <title>geometric series with a uniform error bound</title>
+    <statement>
+  <p>Let</p>
+
+  <md>S_N(x)=1+x+x^2+\cdots+x^N.</md>
+
+  <p>For <m>|x|&lt;1</m>,</p>
+
+  <md>S_N(x)\to \frac1{1-x}.</md>
+
+  <p>The exact remainder is</p>
+
+  <md>\frac1{1-x}-S_N(x)
+=
+\frac{x^{N+1}}{1-x}.</md>
+
+  <p>Now choose a number <m>r</m> with</p>
+
+  <md>0&lt;r&lt;1.</md>
+
+  <p>On the closed interval</p>
+
+  <md>[-r,r],</md>
+
+  <p>we have</p>
+
+  <md>|x|\le r</md>
+
+  <p>and</p>
+
+  <md>|1-x|\ge 1-r.</md>
+
+  <p>Therefore</p>
+
+  <md>\left|
+\frac1{1-x}-S_N(x)
+\right|
+\le
+\frac{r^{N+1}}{1-r}.</md>
+
+  <p>The right side does not depend on <m>x</m>.  Since</p>
+
+  <md>\frac{r^{N+1}}{1-r}\to0,</md>
+
+  <p>the convergence is uniform on <m>[-r,r]</m>.</p>
+
+  <p>This is the key pattern for power series:</p>
+
+  <md>
+\text{inside the radius, leave a safety margin; then one error bound controls the interval.}
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-interchanging-limits-integrals">
+    <title>Interchanging limits and integrals</title>
+
+  <p>Uniform convergence matters because it allows us to pass limits through integrals.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-84">
+    <title>Uniform convergence and integrals</title>
+      <p>Suppose <m>f_n</m> are continuous on <m>[a,b]</m>, and</p>
+        <md>f_n\to f</md>
+      <p>uniformly on <m>[a,b]</m>.  Then</p>
+        <md>
+\lim_{n\to\infty}\int_a^b f_n(x)\,dx
+=
+\int_a^b f(x)\,dx.
+</md>
+      <p>Equivalently,</p>
+        <md>
+\int_a^b \left(\lim_{n\to\infty} f_n(x)\right)dx
+=
+\lim_{n\to\infty}\int_a^b f_n(x)\,dx.
+</md>
+  </note>
+
+  <p>Here is the reason.</p>
+
+  <p>If the convergence is uniform, then for a chosen error <m>\varepsilon&gt;0</m>, we can make</p>
+
+  <md>|f_n(x)-f(x)|
+&lt;
+\frac{\varepsilon}{b-a}</md>
+
+  <p>for every <m>x\in[a,b]</m> once <m>n</m> is large enough.  Then</p>
+
+  <md>\left|
+\int_a^b f_n(x)\,dx-\int_a^b f(x)\,dx
+\right|
+=
+\left|
+\int_a^b \bigl(f_n(x)-f(x)\bigr)\,dx
+\right|.</md>
+
+  <p>By the triangle inequality for integrals,</p>
+
+  <md>\left|
+\int_a^b \bigl(f_n(x)-f(x)\bigr)\,dx
+\right|
+\le
+\int_a^b |f_n(x)-f(x)|\,dx.</md>
+
+  <p>So</p>
+
+  <md>\int_a^b |f_n(x)-f(x)|\,dx
+&lt;
+\int_a^b \frac{\varepsilon}{b-a}\,dx
+=
+\varepsilon.</md>
+
+  <p>Thus the integrals converge to the integral of the limit.</p>
+
+  <p>Uniform convergence gives one error bound for the whole interval, so the accumulated
+error is controlled.</p>
+
+  <example xml:id="ex-sec-16-8-uniform-convergence-preview-4">
+    <title>integrating the geometric series</title>
+    <statement>
+  <p>For <m>|t|&lt;1</m>,</p>
+
+  <md>\frac1{1-t}=1+t+t^2+t^3+\cdots.</md>
+
+  <p>Fix an <m>x</m> with <m>|x|&lt;1</m>.  Choose <m>r</m> such that</p>
+
+  <md>|x|&lt;r&lt;1.</md>
+
+  <p>On the interval between <m>0</m> and <m>x</m>, the geometric series converges uniformly,
+because that interval lies inside <m>[-r,r]</m>.  Therefore we may integrate term by term:</p>
+
+  <md>\int_0^x \frac1{1-t}\,dt
+=
+\int_0^x (1+t+t^2+t^3+\cdots)\,dt.</md>
+
+  <p>The left side is</p>
+
+  <md>-\ln(1-x).</md>
+
+  <p>The right side is</p>
+
+  <md>x+\frac{x^2}{2}+\frac{x^3}{3}+\frac{x^4}{4}+\cdots.</md>
+
+  <p>Thus</p>
+
+  <md>
+-\ln(1-x)
+=
+\sum_{n=1}^{\infty}\frac{x^n}{n},
+\qquad |x|&lt;1.
+</md>
+
+  <p>Replacing <m>x</m> by <m>-x</m> gives the familiar series</p>
+
+  <md>\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+
+  <p>The term-by-term integration was not symbol pushing.  It was justified by uniform
+control on a smaller closed interval inside the radius of convergence.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why pointwise convergence is not enough</title>
+
+  <p>Pointwise convergence can fail to control area.</p>
+
+  <p>For example, on <m>[0,1]</m>, define a triangular spike <m>g_n</m> by</p>
+
+  <md>
+    <mrow>g_n(x)=
+\begin{cases}
+n^2x, \amp 0\le x\le \frac1n,</mrow>
+    <mrow>2n-n^2x, \amp \frac1n&lt;x\le \frac2n,</mrow>
+    <mrow>0, \amp \frac2n&lt;x\le1.
+\end{cases}</mrow>
+  </md>
+
+  <p>Each <m>g_n</m> is a triangle with base</p>
+
+  <md>\frac2n</md>
+
+  <p>and height</p>
+
+  <md>n.</md>
+
+  <p>So its area is</p>
+
+  <md>\frac12\cdot \frac2n\cdot n=1.</md>
+
+  <p>For each fixed <m>x&gt;0</m>, eventually</p>
+
+  <md>x&gt;\frac2n,</md>
+
+  <p>so</p>
+
+  <md>g_n(x)=0.</md>
+
+  <p>Also,</p>
+
+  <md>g_n(0)=0.</md>
+
+  <p>Thus</p>
+
+  <md>g_n(x)\to0</md>
+
+  <p>pointwise on <m>[0,1]</m>.  But</p>
+
+  <md>\int_0^1 g_n(x)\,dx=1</md>
+
+  <p>for every <m>n</m>, while</p>
+
+  <md>\int_0^1 0\,dx=0.</md>
+
+  <p>So</p>
+
+  <md>\lim_{n\to\infty}\int_0^1 g_n(x)\,dx
+\neq
+\int_0^1 \lim_{n\to\infty}g_n(x)\,dx.</md>
+
+  <p>The spike gets narrower, but taller.  It disappears at each fixed point, yet it keeps area
+<m>1</m>.  Pointwise convergence did not control accumulated error.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-85">
+    <title>Moral</title>
+      <p>Pointwise convergence answers a point-by-point question.</p>
+      <p>Uniform convergence answers an interval-wide error question.</p>
+      <p>Integrals need interval-wide control.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-8-spikes-keep-area">
+        <title>Why is pointwise convergence not enough for integrals?</title>
+        <statement>
+          <p>
+            A sequence of tall, thin spikes can go to zero at every point while each spike still has area <m>1</m>. In your own words, why does that show that limits and integrals cannot always be interchanged, and what kind of control would prevent the spike from hiding?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each fixed <m>x</m> is eventually outside the spike, so the pointwise limit is zero. Area is an interval-wide quantity, so it needs interval-wide error control, which is what uniform convergence supplies.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-why-power-series-trustworthy">
+    <title>Why power series are trustworthy inside their radius</title>
+
+  <p>Power series are special because, inside their radius of convergence, they come with a
+geometric safety margin.</p>
+
+  <p>Let</p>
+
+  <md>F(x)=\sum_{n=0}^{\infty}c_n(x-a)^n</md>
+
+  <p>have radius of convergence <m>R&gt;0</m>.  Choose a smaller radius <m>r</m> such that</p>
+
+  <md>0&lt;r&lt;R.</md>
+
+  <p>We will look only on the closed interval</p>
+
+  <md>a-r\le x\le a+r.</md>
+
+  <p>This interval stays safely inside the radius.</p>
+
+  <p>Now choose a number <m>\rho</m> such that</p>
+
+  <md>r&lt;\rho&lt;R.</md>
+
+  <p>Since <m>\rho</m> lies inside the radius of convergence,</p>
+
+  <md>\sum_{n=0}^{\infty}|c_n|\rho^n</md>
+
+  <p>converges.</p>
+
+  <p>For every <m>x</m> with</p>
+
+  <md>|x-a|\le r,</md>
+
+  <p>we have</p>
+
+  <md>|c_n(x-a)^n|
+\le
+|c_n|r^n
+\le
+|c_n|\rho^n.</md>
+
+  <p>The series</p>
+
+  <md>\sum_{n=0}^{\infty}|c_n|\rho^n</md>
+
+  <p>is a convergent numerical series independent of <m>x</m>.  Therefore the power series is
+controlled uniformly on</p>
+
+  <md>[a-r,a+r].</md>
+
+  <p>This is the uniform-convergence reason behind the safe operations.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-86">
+    <title>Power series inside their radius</title>
+      <p>A power series converges uniformly on every closed interval that stays strictly inside
+its radius of convergence.</p>
+      <p>That is, if</p>
+        <md>r&lt;R,</md>
+      <p>then</p>
+        <md>\sum_{n=0}^{\infty}c_n(x-a)^n</md>
+      <p>converges uniformly for</p>
+        <md>|x-a|\le r.</md>
+  </note>
+
+  <p>The same safety margin also controls differentiated and integrated series.</p>
+
+  <p>For differentiation, the new terms are</p>
+
+  <md>n c_n(x-a)^{n-1}.</md>
+
+  <p>The extra factor <m>n</m> looks dangerous, but the geometric safety margin absorbs it.</p>
+
+  <p>Since</p>
+
+  <md>\sum |c_n|\rho^n</md>
+
+  <p>converges, the terms <m>|c_n|\rho^n</m> are bounded by some number <m>M</m>.  For
+<m>|x-a|\le r</m>,</p>
+
+  <md>n|c_n||x-a|^{n-1}
+\le
+\frac{M}{\rho}\, n\left(\frac{r}{\rho}\right)^{n-1}.</md>
+
+  <p>Because</p>
+
+  <md>0&lt;\frac{r}{\rho}&lt;1,</md>
+
+  <p>the numerical series</p>
+
+  <md>\sum_{n=1}^{\infty} n\left(\frac{r}{\rho}\right)^{n-1}</md>
+
+  <p>converges.  So the differentiated series is also uniformly controlled on <m>[a-r,a+r]</m>.</p>
+
+  <p>This explains the theorem from Section <xref ref="subsec-differentiating-power-series" text="title"/>:</p>
+
+  <md>\frac{d}{dx}\left(\sum_{n=0}^{\infty}c_n(x-a)^n\right)
+=
+\sum_{n=1}^{\infty}n c_n(x-a)^{n-1}</md>
+
+  <p>inside the radius of convergence.</p>
+
+  <p>Integration is even gentler.  The integrated terms are</p>
+
+  <md>c_n\frac{(x-a)^{n+1}}{n+1}.</md>
+
+  <p>The factor <m>1/(n+1)</m> helps rather than hurts.  Uniform convergence allows</p>
+
+  <md>\int \left(\sum_{n=0}^{\infty}c_n(x-a)^n\right)dx
+=
+C+\sum_{n=0}^{\infty}c_n\frac{(x-a)^{n+1}}{n+1}</md>
+
+  <p>inside the radius.</p>
+
+  <note xml:id="note-sec-16-8-uniform-convergence-preview-87">
+    <title>The safety-margin rule</title>
+      <p>Power series may be manipulated like polynomials on intervals that stay strictly inside
+their radius of convergence.</p>
+      <p>At the endpoints, the safety margin disappears.  Endpoint behavior must be tested
+separately.</p>
+  </note>
+
+  <p>This is the hidden reason the earlier sections worked.  When we integrated</p>
+
+  <md>1-x+x^2-x^3+\cdots</md>
+
+  <p>to get</p>
+
+  <md>\ln(1+x),</md>
+
+  <p>we were working inside <m>|x|&lt;1</m>, where uniform control is available on every smaller
+closed interval.</p>
+
+  <p>When we differentiated the geometric series to get</p>
+
+  <md>\frac1{(1-x)^2}=1+2x+3x^2+4x^3+\cdots,</md>
+
+  <p>we were again working inside the radius.</p>
+
+  <p>The endpoint behavior was never automatic.  It had to be checked separately.</p>
+
+  <p>Uniform convergence explains the good behavior of power series inside the radius.  The
+next section shows what can go wrong when we forget the warnings: Taylor series may
+have surprising endpoint behavior, term-by-term operations may fail for arbitrary
+function series, and a Taylor series may even converge without converging to the function
+that produced it.</p>
+
+  <exercise xml:id="checkpoint-16-8-why-power-series-trustworthy">
+        <title>Why are power series trustworthy inside their radius?</title>
+        <statement>
+          <p>
+            A power series converges uniformly on every closed interval strictly inside its radius. In your own words, why does that geometric safety margin justify term-by-term integration and differentiation there, and why does the same justification stop at the endpoints?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Inside a smaller radius, the terms are dominated by a convergent numerical series independent of <m>x</m>. That one bound controls the whole interval. At an endpoint the dominating geometric comparison is gone.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

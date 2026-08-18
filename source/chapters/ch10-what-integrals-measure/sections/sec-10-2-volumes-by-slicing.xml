@@ -3,10 +3,13 @@
 <section xml:id="sec-10-2-volumes-by-slicing">
   <title>Volumes by slicing</title>
 
-  <p>Area is two-dimensional accumulation. Volume is three-dimensional accumulation.</p>
+  <p>Area is two-dimensional accumulation.  Volume is three-dimensional accumulation.</p>
 
-  <p>The idea is familiar from a loaf of bread. If we know the area of each slice and the thickness of the slices, then the volume is approximately</p>
+  <p>The idea is familiar from a loaf of bread.  If we know the area of each slice and the
+thickness of the slices, then the volume is approximately</p>
+
   <md>\text{slice area}\cdot\text{slice thickness}</md>
+
   <p>added over all slices.</p>
 
   <p>As the slices become thinner, the approximation becomes an integral.</p>
@@ -14,389 +17,926 @@
   <subsection xml:id="subsec-cross-sectional-area-function">
     <title>Cross-sectional area as a function</title>
 
-    <p>Suppose a solid stretches from <m>x=a</m> to <m>x=b</m>. At each <m>x</m>, cut the solid by a plane perpendicular to the <m>x</m>-axis. Let</p>
-    <md>A(x)</md>
-    <p>be the area of that cross section.</p>
+  <p>Suppose a solid stretches from <m>x=a</m> to <m>x=b</m>.  At each <m>x</m>, cut the solid by a plane
+perpendicular to the <m>x</m>-axis.  Let</p>
 
-    <p>A thin slice near <m>x</m> with thickness <m>\Delta x</m> has volume approximately</p>
-    <md>A(x)\Delta x.</md>
+  <md>A(x)</md>
 
-    <p>Add the slices:</p>
-    <md>A(x_1)\Delta x+A(x_2)\Delta x+\cdots+A(x_n)\Delta x.</md>
+  <p>be the area of that cross section.</p>
 
-    <p>Taking the limit gives the volume.</p>
+  <p>A thin slice near <m>x</m> with thickness <m>\Delta x</m> has volume approximately</p>
 
-    <definition xml:id="def-volume-by-slicing">
-      <title>Volume by slicing</title>
-      <statement>
-        <p>If a solid lies between <m>x=a</m> and <m>x=b</m>, and if the cross-sectional area perpendicular to the <m>x</m>-axis is <m>A(x)</m>, then</p>
-        <md>V=\int_a^b A(x)\,dx.</md>
-      </statement>
-    </definition>
+  <md>A(x)\Delta x.</md>
 
-    <p>The unit check is useful. If <m>A(x)</m> is measured in square centimeters and <m>dx</m> is measured in centimeters, then</p>
-    <md>A(x)\,dx</md>
-    <p>has units</p>
-    <md>\text{cm}^2\cdot\text{cm}=\text{cm}^3.</md>
-    <p>That is volume.</p>
+  <p>Add the slices:</p>
 
-    <figure xml:id="fig-volume-by-slicing-loaf">
-      <caption>Volume by slicing: a differential slice of thickness <m>\Delta x</m> has volume approximately <m>A(x)\Delta x</m>.</caption>
-      <image width="85%">
-        <latex-image>
-          \begin{tikzpicture}[xscale=1.3, yscale=1.1, &gt;=stealth]
-            % Axis
-            \draw[-&gt;, thick] (-0.5,0) -- (6.8,0) node[right] {\(x\)};
-            
-            % Solid outline profile
-            \draw[thick, fill=gray!10] (0,1.5) .. controls (2,2.2) and (4,1.2) .. (6,1.5)
-              -- (6,-1.5) .. controls (4,-1.2) and (2,-2.2) .. (0,-1.5) -- cycle;
-            
-            % Left cap
-            \draw[thick, fill=gray!25] (0,0) ellipse (0.35 and 1.5);
-            
-            % Highlighted slice between x=3 and x=3.5
-            \draw[thick, fill=gray!35] (3.5,0) ellipse (0.38 and 1.6);
-            \draw[thick, fill=gray!50] (3,1.6) .. controls (3.2,1.65) .. (3.5,1.6)
-              -- (3.5,-1.6) .. controls (3.2,-1.65) .. (3,-1.6) -- cycle;
-            \draw[thick, fill=gray!40] (3.5,0) ellipse (0.38 and 1.6);
-            
-            % Right cap (dashed back, solid front)
-            \draw[thick, dashed] (6,1.5) arc (90:270:0.35 and 1.5);
-            \draw[thick] (6,-1.5) arc (-90:90:0.35 and 1.5);
-            
-            % Ticks and labels on x-axis
-            \draw[thick] (0,0.1) -- (0,-0.1) node[below=8pt] {\(a\)};
-            \draw[thick] (3,0.1) -- (3,-0.1) node[below=8pt] {\(x\)};
-            \draw[thick] (3.5,0.1) -- (3.5,-0.1) node[below=8pt] {\(x+\Delta x\)};
-            \draw[thick] (6,0.1) -- (6,-0.1) node[below=8pt] {\(b\)};
-            
-            % Dimension bracket for Delta x at top
-            \draw[thick] (3,1.9) -- (3,2.2);
-            \draw[thick] (3.5,1.9) -- (3.5,2.2);
-            \draw[thick, &lt;-&gt;] (3,2.05) -- (3.5,2.05) node[midway, above] {\(\Delta x\)};
-            
-            % Area label on slice face
-            \node at (3.5,0) {\small area \(A(x)\)};
-            
-            % Volume annotation
-            \draw[thick, &lt;-] (3.25,-1.7) -- (3.25,-2.3) node[below] {volume \(\approx A(x)\Delta x\)};
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <md>A(x_1)\Delta x+A(x_2)\Delta x+\cdots+A(x_n)\Delta x.</md>
 
-    <p>This formula is simple, but it hides the real work. The hard part is finding <m>A(x)</m>.</p>
+  <p>Taking the limit gives the volume.</p>
 
-    <example xml:id="ex-volume-cone-slicing">
-      <title>A cone from its cross sections</title>
-      <statement>
-        <p>A right circular cone has height <m>h</m> and base radius <m>R</m>. Put the vertex at <m>x=0</m> and the base at <m>x=h</m>. At position <m>x</m>, the cross section perpendicular to the <m>x</m>-axis is a disk.</p>
-        <p>The radius grows linearly from <m>0</m> to <m>R</m>. By similar triangles,</p>
-        <md>r(x)=\frac{R}{h}x.</md>
-        <p>So the cross-sectional area is</p>
-        <md>A(x)=\pi r(x)^2 = \pi\left(\frac{R}{h}x\right)^2 = \frac{\pi R^2}{h^2}x^2.</md>
-        <p>The volume is</p>
-        <md>V=\int_0^h A(x)\,dx = \int_0^h \frac{\pi R^2}{h^2}x^2\,dx.</md>
-        <p>Compute:</p>
-        <md>V = \frac{\pi R^2}{h^2}\left(\frac{x^3}{3}\right)\Big|_0^h = \frac{\pi R^2}{h^2}\cdot \frac{h^3}{3} = \frac13\pi R^2h.</md>
-        <p>This is the familiar cone formula. The integral explains the factor <m>1/3</m>: the cross sections grow like <m>x^2</m>, and</p>
-        <md>\int_0^h x^2\,dx=\frac{h^3}{3}.</md>
-      </statement>
-    </example>
+  <note xml:id="note-sec-10-2-volumes-by-slicing-63">
+    <title>Volume by slicing</title>
+      <p>If a solid lies between <m>x=a</m> and <m>x=b</m>, and if the cross-sectional area perpendicular
+to the <m>x</m>-axis is <m>A(x)</m>, then</p>
+        <md>
+V=\int_a^b A(x)\,dx.
+</md>
+  </note>
+
+  <p>The unit check is useful.  If <m>A(x)</m> is measured in square centimeters and <m>dx</m> is
+measured in centimeters, then</p>
+
+  <md>A(x)\,dx</md>
+
+  <p>has units</p>
+
+  <md>\text{cm}^2\cdot\text{cm}=\text{cm}^3.</md>
+
+  <p>That is volume.</p>
+
+  <figure xml:id="fig-volume-by-slicing-loaf">
+    <caption>Volume by slicing: a differential slice of thickness <m>\Delta x</m> has volume approximately <m>A(x)\Delta x</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    view={35}{20},
+    width=0.95\textwidth,
+    height=0.65\textwidth,
+    grid=none,
+    axis lines=center,
+    xlabel={\(x\)},
+    ylabel={},
+    zlabel={},
+    xtick={0, 3, 3.5, 6},
+    xticklabels={\(a\), \(x\), \(x+\Delta x\), \(b\)},
+    ytick=\empty,
+    ztick=\empty,
+    xmin=-0.5, xmax=7.5,
+    ymin=-2.5, ymax=2.5,
+    zmin=-2.5, zmax=2.5,
+    z buffer=sort
+]
+
+% 1. Back portion of the solid (x from 0 to 3)
+\addplot3[
+    surf,
+    domain=0:3,
+    y domain=0:360,
+    samples=15,
+    samples y=36,
+    fill=gray!10,
+    faceted color=gray!40,
+    line width=0.1pt
+] (
+    {x},
+    {(1.5 + 0.5*sin(x*30)) * cos(y)},
+    {(1.5 + 0.5*sin(x*30)) * sin(y)}
+);
+
+% 2. Solid cap at x=3 (Back wall of the slice)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    faceted color=gray!50,
+    line width=0.1pt
+] (
+    {3},
+    {2.0 * x * cos(y)},
+    {2.0 * x * sin(y)}
+);
+
+% 3. The highlighted differential slice crust (x from 3 to 3.5)
+\addplot3[
+    surf,
+    domain=3:3.5,
+    y domain=0:360,
+    samples=4,
+    samples y=36,
+    fill=gray!50,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {x},
+    {(1.5 + 0.5*sin(x*30)) * cos(y)},
+    {(1.5 + 0.5*sin(x*30)) * sin(y)}
+);
+
+% 4. Solid cap at x=3.5 (Front face of the slice)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!40,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {3.5},
+    {1.9829 * x * cos(y)}, 
+    {1.9829 * x * sin(y)}
+);
+
+% 5. Front portion of the solid (x from 3.5 to 6) - TRANSPARENT
+\addplot3[
+    surf,
+    domain=3.5:6,
+    y domain=0:360,
+    samples=15,
+    samples y=36,
+    fill=gray!30,
+    draw=none, % No grid
+    opacity=0.35 % See-through
+] (
+    {x},
+    {(1.5 + 0.5*sin(x*30)) * cos(y)},
+    {(1.5 + 0.5*sin(x*30)) * sin(y)}
+);
+
+% 6. End cap at x=6 - TRANSPARENT
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    draw=none,
+    opacity=0.35
+] (
+    {6},
+    {1.5 * x * cos(y)},
+    {1.5 * x * sin(y)}
+);
+
+% --- Annotations ---
+
+% Delta x dimension bracket at the top
+\draw[thick] (axis cs:3.0, 0, 2.15) -- (axis cs:3.0, 0, 2.4);
+\draw[thick] (axis cs:3.5, 0, 2.15) -- (axis cs:3.5, 0, 2.4);
+\draw[thick, &lt;-&gt;] (axis cs:3.0, 0, 2.275) -- (axis cs:3.5, 0, 2.275) node[midway, above] {\(\Delta x\)};
+
+% Area label directly on the face of the slice
+\node at (axis cs:3.5, 0, 0) {area \(A(x)\)};
+
+% Volume label pointing to the bottom of the slice
+\node[anchor=north] at (axis cs:3.25, 0, -2.6) {volume \(\approx A(x)\Delta x\)};
+\draw[thick, &lt;-] (axis cs:3.25, 0, -2.05) -- (axis cs:3.25, 0, -2.6);
+
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This formula is simple, but it hides the real work.  The hard part is finding <m>A(x)</m>.</p>
+
+
+  <exercise xml:id="checkpoint-10-2-slice-area">
+        <title>Why is volume the integral of cross-sectional area?</title>
+        <statement>
+          <p>
+            A thin slice near <m>x</m> has volume about <m>A(x)\Delta x</m>. In your own words, why does knowing the area of each cross section, together with the thickness of the slices, determine the volume, and why is the base of the solid not enough by itself?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Volume is three-dimensional accumulation. You need both where the slices run and the area of one slice as a function of position.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-1">
+    <title>a cone from its cross sections</title>
+    <statement>
+  <p>A right circular cone has height <m>h</m> and base radius <m>R</m>.  Put the vertex at <m>x=0</m>
+and the base at <m>x=h</m>.  At position <m>x</m>, the cross section perpendicular to the
+<m>x</m>-axis is a disk.</p>
+
+  <p>The radius grows linearly from <m>0</m> to <m>R</m>.  By similar triangles,</p>
+
+  <md>r(x)=\frac{R}{h}x.</md>
+
+  <p>So the cross-sectional area is</p>
+
+  <md>A(x)=\pi r(x)^2
+=
+\pi\left(\frac{R}{h}x\right)^2
+=
+\frac{\pi R^2}{h^2}x^2.</md>
+
+  <p>The volume is</p>
+
+  <md>V=\int_0^h A(x)\,dx
+=
+\int_0^h \frac{\pi R^2}{h^2}x^2\,dx.</md>
+
+  <p>Compute:</p>
+
+  <md>V
+=
+\frac{\pi R^2}{h^2}
+\left(\frac{x^3}{3}\right)\Big|_0^h
+=
+\frac{\pi R^2}{h^2}\cdot \frac{h^3}{3}
+=
+\frac13\pi R^2h.</md>
+
+  <p>This is the familiar cone formula.  The integral explains the factor <m>1/3</m>: the cross
+sections grow like <m>x^2</m>, and</p>
+
+  <md>\int_0^h x^2\,dx=\frac{h^3}{3}.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-solids-of-revolution-disks-washers">
     <title>Solids of revolution: disks and washers</title>
 
-    <p>A common way to make a solid is to rotate a plane region around an axis. The resulting solid is called a <term>solid of revolution</term>.</p>
+  <p>A common way to make a solid is to rotate a plane region around an axis.  The resulting
+solid is called a <em>solid of revolution</em>.</p>
 
-    <p>If a vertical slice rotates around the <m>x</m>-axis, it sweeps out a disk or a washer.</p>
+  <p>If a vertical slice rotates around the <m>x</m>-axis, it sweeps out a disk or a washer.</p>
 
-    <paragraphs>
-      <title>Disk slices</title>
-      <p>Suppose <m>f(x)\ge 0</m> on <m>[a,b]</m>. Rotate the region under</p>
-      <md>y=f(x)</md>
-      <p>above the <m>x</m>-axis around the <m>x</m>-axis.</p>
-      <p>At position <m>x</m>, the cross section perpendicular to the <m>x</m>-axis is a disk with radius</p>
-      <md>f(x).</md>
-      <p>So</p>
-      <md>A(x)=\pi f(x)^2.</md>
-      <p>Therefore</p>
-      <md>V=\pi\int_a^b f(x)^2\,dx.</md>
-    </paragraphs>
+  <paragraphs>
+    <title>Disk slices</title>
 
-    <example xml:id="ex-volume-disk-sqrtx">
-      <title>Rotating <m>y=\sqrt{x}</m></title>
-      <statement>
-        <p>Rotate the region under</p>
-        <md>y=\sqrt{x}</md>
-        <p>from <m>x=0</m> to <m>x=4</m> around the <m>x</m>-axis.</p>
-        <p>A cross section at <m>x</m> is a disk with radius</p>
-        <md>\sqrt{x}.</md>
-        <p>So</p>
-        <md>A(x)=\pi(\sqrt{x})^2=\pi x.</md>
-        <p>Thus</p>
-        <md>V=\int_0^4 \pi x\,dx = \pi\left(\frac{x^2}{2}\right)\Big|_0^4 = 8\pi.</md>
+  <p>Suppose <m>f(x)\ge0</m> on <m>[a,b]</m>.  Rotate the region under</p>
 
-        <figure xml:id="fig-disk-method-sqrtx">
-          <caption>Rotating the region under <m>y=\sqrt{x}</m> around the <m>x</m>-axis gives disk slices.</caption>
-          <image width="80%">
-            <latex-image>
-              \begin{tikzpicture}[xscale=1.6, yscale=1.1, &gt;=stealth]
-                % Axis
-                \draw[-&gt;, thick] (-0.3,0) -- (4.7,0) node[right] {\(x\)};
-                \draw[-&gt;, thick] (0,-2.5) -- (0,2.5) node[above] {\(y\)};
-                
-                % Solid surface outline y = sqrt(x) and y = -sqrt(x)
-                \draw[thick, domain=0:4, samples=100, fill=gray!15] plot (\x, {sqrt(\x)})
-                  -- (4, -2) plot[domain=4:0, samples=100] (\x, {-sqrt(\x)}) -- cycle;
-                
-                % Upper curve emphasized
-                \draw[very thick, domain=0:4, samples=100] plot (\x, {sqrt(\x)});
-                \node[anchor=south] at (1.8, 1.45) {\(y=\sqrt{x}\)};
-                
-                % Slice at x=2.5
-                \draw[thick, fill=gray!45] (2.5,0) ellipse (0.35 and 1.58);
-                \draw[thick, fill=gray!60] (2.4,1.55) -- (2.5,1.58) -- (2.5,-1.58) -- (2.4,-1.55) -- cycle;
-                \draw[thick, fill=gray!40] (2.5,0) ellipse (0.35 and 1.58);
-                
-                % End cap at x=4
-                \draw[thick, dashed] (4,2) arc (90:270:0.45 and 2);
-                \draw[thick] (4,-2) arc (-90:90:0.45 and 2);
-                
-                % Radius line
-                \draw[thick, &lt;-&gt;] (2.5,0) -- (2.5,1.58) node[midway, right] {radius \(\sqrt{x}\)};
-                
-                % X ticks
-                \draw[thick] (0,0.1) -- (0,-0.1) node[below left] {\(0\)};
-                \draw[thick] (2.5,0.1) -- (2.5,-0.1) node[below=8pt] {\(x\)};
-                \draw[thick] (4,0.1) -- (4,-0.1) node[below=8pt] {\(4\)};
-                
-                % Rotation arrow around x axis
-                \draw[-&gt;, thick] (4.4,0.5) arc (60:300:0.3 and 0.5);
-                \node[anchor=north] at (2.5,-2.2) {rotation around \(x\)-axis};
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </statement>
-    </example>
+  <md>y=f(x)</md>
 
-    <paragraphs>
-      <title>Washer slices</title>
-      <p>If a region has a hole after rotation, the cross sections are washers.</p>
-      <p>Suppose <m>R(x)\ge r(x)\ge 0</m>. Rotate the region between</p>
-      <md>y=R(x)</md>
-      <p>and</p>
-      <md>y=r(x)</md>
-      <p>around the <m>x</m>-axis. The outer radius is <m>R(x)</m>. The inner radius is <m>r(x)</m>. The cross-sectional area is</p>
-      <md>A(x)=\pi R(x)^2-\pi r(x)^2.</md>
-      <p>Thus</p>
-      <md>V=\pi\int_a^b \bigl(R(x)^2-r(x)^2\bigr)\,dx.</md>
-      <p>This is the <term>washer method</term>.</p>
-    </paragraphs>
+  <p>above the <m>x</m>-axis around the <m>x</m>-axis.</p>
 
-    <warning xml:id="warning-washer-area-square-difference">
+  <p>At position <m>x</m>, the cross section perpendicular to the <m>x</m>-axis is a disk with radius</p>
+
+  <md>f(x).</md>
+
+  <p>So</p>
+
+  <md>A(x)=\pi f(x)^2.</md>
+
+  <p>Therefore</p>
+
+  <md>
+V=\pi\int_a^b f(x)^2\,dx.
+</md>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-10-2-disk">
+        <title>Why does rotating a radius produce a disk of area <m>\pi r^2</m>?</title>
+        <statement>
+          <p>
+            If the region under <m>y=f(x)</m> rotates around the <m>x</m>-axis, a vertical slice sweeps out a disk of radius <m>f(x)</m>. In your own words, why is the small volume <m>\pi\bigl(f(x)\bigr)^2\,dx</m> rather than a rectangle of height <m>f(x)</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            After rotation, the cross section perpendicular to the axis is a filled circle. Its area comes from the radius of that circle, not from the original strip’s area in the plane.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-3">
+    <title>rotating <m>y=\sqrt{x}</m></title>
+    <statement>
+  <p>Rotate the region under</p>
+
+  <md>y=\sqrt{x}</md>
+
+  <p>from <m>x=0</m> to <m>x=4</m> around the <m>x</m>-axis.</p>
+
+  <p>A cross section at <m>x</m> is a disk with radius</p>
+
+  <md>\sqrt{x}.</md>
+
+  <p>So</p>
+
+  <md>A(x)=\pi(\sqrt{x})^2=\pi x.</md>
+
+  <p>Thus</p>
+
+  <md>V=\int_0^4 \pi x\,dx
+=
+\pi\left(\frac{x^2}{2}\right)\Big|_0^4
+=
+8\pi.</md>
+
+  <figure xml:id="fig-disk-method-sqrtx">
+    <caption>Rotating the region under <m>y=\sqrt{x}</m> around the <m>x</m>-axis gives disk slices.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    view={35}{20},
+    width=0.85\textwidth,
+    height=0.6\textwidth,
+    grid=none,
+    axis lines=center,
+    xlabel={\(x\)},
+    ylabel={},
+    zlabel={},
+    xtick={0, 2.5, 4},
+    xticklabels={\(0\), \(x\), \(4\)},
+    ytick=\empty,
+    ztick=\empty,
+    xmin=-0.2, xmax=4.8,
+    ymin=-2.5, ymax=2.5,
+    zmin=-2.5, zmax=2.5,
+    z buffer=sort
+]
+
+% 1. Back portion of the solid (x from 0 to 2.45)
+\addplot3[
+    surf,
+    domain=0:2.45,
+    y domain=0:360,
+    samples=20,
+    samples y=36,
+    fill=gray!15,
+    faceted color=gray!40,
+    line width=0.1pt
+] (
+    {x},
+    {sqrt(x) * cos(y)},
+    {sqrt(x) * sin(y)}
+);
+
+% 2. Back cap of the disk slice (x=2.45)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    faceted color=gray!50,
+    line width=0.1pt
+] (
+    {2.45},
+    {sqrt(2.45) * x * cos(y)},
+    {sqrt(2.45) * x * sin(y)}
+);
+
+% 3. The highlighted differential disk crust (x from 2.45 to 2.55)
+\addplot3[
+    surf,
+    domain=2.45:2.55,
+    y domain=0:360,
+    samples=3,
+    samples y=36,
+    fill=gray!50,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {x},
+    {sqrt(x) * cos(y)},
+    {sqrt(x) * sin(y)}
+);
+
+% 4. Front face of the disk slice (x=2.55)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!40,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {2.55},
+    {sqrt(2.55) * x * cos(y)},
+    {sqrt(2.55) * x * sin(y)}
+);
+
+% 5. Front portion of the solid (x from 2.55 to 4) - TRANSPARENT
+\addplot3[
+    surf,
+    domain=2.55:4,
+    y domain=0:360,
+    samples=15,
+    samples y=36,
+    fill=gray!30,
+    draw=none, % No grid
+    opacity=0.35 % See-through
+] (
+    {x},
+    {sqrt(x) * cos(y)},
+    {sqrt(x) * sin(y)}
+);
+
+% 6. End cap at x=4 - TRANSPARENT
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    draw=none,
+    opacity=0.35
+] (
+    {4},
+    {2 * x * cos(y)}, % sqrt(4) = 2
+    {2 * x * sin(y)}
+);
+
+% --- Annotations ---
+
+% Radius line directly on the front face of the disk slice
+\draw[thick, &lt;-&gt;] (axis cs:2.55, 0, 0) -- (axis cs:2.55, 0, 1.5968) node[midway, right] {radius \(\sqrt{x}\)};
+
+% Curve label floating along the upper edge
+\node[anchor=south] at (axis cs:1.5, 0, 1.4) {\(y=\sqrt{x}\)};
+
+% Rotation label below the solid
+\node[anchor=north] at (axis cs:2.0, 0, -2.5) {rotation around \(x\)-axis};
+
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Washer slices</title>
+
+  <p>If a region has a hole after rotation, the cross sections are washers.</p>
+
+  <p>Suppose <m>R(x)\ge r(x)\ge0</m>.  Rotate the region between</p>
+
+  <md>y=R(x)</md>
+
+  <p>and</p>
+
+  <md>y=r(x)</md>
+
+  <p>around the <m>x</m>-axis.  The outer radius is <m>R(x)</m>.  The inner radius is <m>r(x)</m>.  The
+cross-sectional area is</p>
+
+  <md>A(x)=\pi R(x)^2-\pi r(x)^2.</md>
+
+  <p>Thus</p>
+
+  <md>
+V=\pi\int_a^b \bigl(R(x)^2-r(x)^2\bigr)\,dx.
+</md>
+
+  <p>This is the washer method.</p>
+
+  <warning xml:id="warn-sec-10-2-volumes-by-slicing-64">
+    <title>Warning</title>
       <p>The area of a washer is</p>
-      <md>\pi R^2-\pi r^2,</md>
+        <md>\pi R^2-\pi r^2,</md>
       <p>not</p>
-      <md>\pi(R-r)^2.</md>
+        <md>\pi(R-r)^2.</md>
       <p>For example, if <m>R=3</m> and <m>r=2</m>, the correct washer area is</p>
-      <md>9\pi-4\pi=5\pi,</md>
+        <md>9\pi-4\pi=5\pi,</md>
       <p>while</p>
-      <md>\pi(3-2)^2=\pi.</md>
+        <md>\pi(3-2)^2=\pi.</md>
       <p>The radius difference is not the area difference.</p>
-    </warning>
+  </warning>
+  </paragraphs>
 
-    <example xml:id="ex-volume-washer-region">
-      <title>Rotating a region between two curves</title>
-      <statement>
-        <p>Rotate the region between</p>
-        <md>y=x</md>
-        <p>and</p>
-        <md>y=x^2</md>
-        <p>from <m>x=0</m> to <m>x=1</m> around the <m>x</m>-axis.</p>
-        <p>On <m>0\le x\le 1</m>,</p>
-        <md>x\ge x^2.</md>
-        <p>So the outer radius is</p>
-        <md>R(x)=x,</md>
-        <p>and the inner radius is</p>
-        <md>r(x)=x^2.</md>
-        <p>The volume is</p>
-        <md>V = \pi\int_0^1 \bigl(x^2-x^4\bigr)\,dx.</md>
-        <p>Compute:</p>
-        <md>V = \pi\left(\frac{x^3}{3}-\frac{x^5}{5}\right)\Big|_0^1 = \pi\left(\frac13-\frac15\right) = \frac{2\pi}{15}.</md>
-        <p>The integrand is not <m>x-x^2</m>. That would be the height of the two-dimensional region. For volume, each slice is a washer, so we need the difference of squared radii:</p>
-        <md>x^2-x^4.</md>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-5">
+    <title>rotating a region between two curves</title>
+    <statement>
+  <p>Rotate the region between</p>
+
+  <md>y=x</md>
+
+  <p>and</p>
+
+  <md>y=x^2</md>
+
+  <p>from <m>x=0</m> to <m>x=1</m> around the <m>x</m>-axis.</p>
+
+  <p>On <m>0\le x\le1</m>,</p>
+
+  <md>x\ge x^2.</md>
+
+  <p>So the outer radius is</p>
+
+  <md>R(x)=x,</md>
+
+  <p>and the inner radius is</p>
+
+  <md>r(x)=x^2.</md>
+
+  <p>The volume is</p>
+
+  <md>V
+=
+\pi\int_0^1 \bigl(x^2-x^4\bigr)\,dx.</md>
+
+  <p>Compute:</p>
+
+  <md>V
+=
+\pi\left(\frac{x^3}{3}-\frac{x^5}{5}\right)\Big|_0^1
+=
+\pi\left(\frac13-\frac15\right)
+=
+\frac{2\pi}{15}.</md>
+
+  <p>The integrand is not <m>x-x^2</m>.  That would be the height of the two-dimensional
+region.  For volume, each slice is a washer, so we need the difference of squared radii:</p>
+
+  <md>x^2-x^4.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-non-circular-cross-sections">
     <title>Non-circular cross sections</title>
 
-    <p>The slicing formula</p>
-    <md>V=\int_a^b A(x)\,dx</md>
-    <p>does not require circular slices. Any cross-sectional shape is allowed, as long as we can express its area as a function of <m>x</m>.</p>
+  <p>The slicing formula</p>
 
-    <example xml:id="ex-volume-square-cross-sections">
-      <title>Square cross sections</title>
-      <statement>
-        <p>A solid has base in the <m>xy</m>-plane bounded by</p>
-        <md>y=\sqrt{x}, \qquad y=0, \qquad 0\le x\le 4.</md>
-        <p>Cross sections perpendicular to the <m>x</m>-axis are squares.</p>
-        <p>At position <m>x</m>, the side length of the square is the vertical distance from <m>y=0</m> to <m>y=\sqrt{x}</m>:</p>
-        <md>s(x)=\sqrt{x}.</md>
-        <p>So the cross-sectional area is</p>
-        <md>A(x)=s(x)^2=(\sqrt{x})^2=x.</md>
-        <p>The volume is</p>
-        <md>V=\int_0^4 x\,dx = \left(\frac{x^2}{2}\right)\Big|_0^4 = 8.</md>
-        <p>Notice that no <m>\pi</m> appears. These slices are squares, not disks.</p>
-      </statement>
-    </example>
+  <md>V=\int_a^b A(x)\,dx</md>
 
-    <example xml:id="ex-volume-semicircular-cross-sections">
-      <title>Semicircular cross sections</title>
-      <statement>
-        <p>Use the same base region, but now let the cross sections perpendicular to the <m>x</m>-axis be semicircles.</p>
-        <p>The diameter of the semicircle is the vertical distance</p>
-        <md>d(x)=\sqrt{x}.</md>
-        <p>So the radius is</p>
-        <md>r(x)=\frac{\sqrt{x}}{2}.</md>
-        <p>The area of a semicircle is</p>
-        <md>\frac12\pi r^2.</md>
-        <p>Thus</p>
-        <md>A(x) = \frac12\pi\left(\frac{\sqrt{x}}{2}\right)^2 = \frac12\pi\cdot\frac{x}{4} = \frac{\pi x}{8}.</md>
-        <p>The volume is</p>
-        <md>V=\int_0^4 \frac{\pi x}{8}\,dx = \frac{\pi}{8}\left(\frac{x^2}{2}\right)\Big|_0^4 = \pi.</md>
-        <p>The base region is the same as in the square example. The volume changed because the cross-sectional shape changed.</p>
-      </statement>
-    </example>
+  <p>does not require circular slices.  Any cross-sectional shape is allowed, as long as we
+can express its area as a function of <m>x</m>.</p>
 
-    <note xml:id="note-what-matters-in-slicing">
-      <title>What matters in slicing</title>
+
+  <exercise xml:id="checkpoint-10-2-washer">
+        <title>Why is washer area <m>\pi R^2-\pi r^2</m> rather than <m>\pi(R-r)^2</m>?</title>
+        <statement>
+          <p>
+            A region with a hole after rotation has washers, not disks. In your own words, why do we subtract two disk areas, and why is the radius difference the wrong quantity to square?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The hole is itself a disk. Area of a ring is outer disk minus inner disk. Squaring the thickness of the ring would describe a much smaller disk.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-6">
+    <title>square cross sections</title>
+    <statement>
+  <p>A solid has base in the <m>xy</m>-plane bounded by</p>
+
+  <md>y=\sqrt{x},
+\qquad
+y=0,
+\qquad
+0\le x\le4.</md>
+
+  <p>Cross sections perpendicular to the <m>x</m>-axis are squares.</p>
+
+  <p>At position <m>x</m>, the side length of the square is the vertical distance from <m>y=0</m> to
+<m>y=\sqrt{x}</m>:</p>
+
+  <md>s(x)=\sqrt{x}.</md>
+
+  <p>So the cross-sectional area is</p>
+
+  <md>A(x)=s(x)^2=(\sqrt{x})^2=x.</md>
+
+  <p>The volume is</p>
+
+  <md>V=\int_0^4 x\,dx
+=
+\left(\frac{x^2}{2}\right)\Big|_0^4
+=
+8.</md>
+
+  <p>Notice that no <m>\pi</m> appears.  These slices are squares, not disks.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-7">
+    <title>semicircular cross sections</title>
+    <statement>
+  <p>Use the same base region, but now let the cross sections perpendicular to the <m>x</m>-axis
+be semicircles.</p>
+
+  <p>The diameter of the semicircle is the vertical distance</p>
+
+  <md>d(x)=\sqrt{x}.</md>
+
+  <p>So the radius is</p>
+
+  <md>r(x)=\frac{\sqrt{x}}{2}.</md>
+
+  <p>The area of a semicircle is</p>
+
+  <md>\frac12\pi r^2.</md>
+
+  <p>Thus</p>
+
+  <md>A(x)
+=
+\frac12\pi\left(\frac{\sqrt{x}}{2}\right)^2
+=
+\frac12\pi\cdot\frac{x}{4}
+=
+\frac{\pi x}{8}.</md>
+
+  <p>The volume is</p>
+
+  <md>V=\int_0^4 \frac{\pi x}{8}\,dx
+=
+\frac{\pi}{8}\left(\frac{x^2}{2}\right)\Big|_0^4
+=
+\pi.</md>
+
+  <p>The base region is the same as in the square example.  The volume changed because the
+cross-sectional shape changed.</p>
+
+  <note xml:id="note-sec-10-2-volumes-by-slicing-65">
+    <title>What matters in slicing</title>
       <p>To compute volume by slicing, we need two pieces of information:</p>
-      <md>\text{where the slices run}</md>
+        <md>\text{where the slices run}</md>
       <p>and</p>
-      <md>\text{the area of one slice as a function of position.}</md>
+        <md>\text{the area of one slice as a function of position.}</md>
       <p>The base alone is not enough.</p>
-    </note>
+  </note>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-choosing-slicing-direction">
     <title>Choosing the slicing direction</title>
 
-    <p>The best slicing direction is the one that makes the cross-sectional area easy to write.</p>
+  <p>The best slicing direction is the one that makes the cross-sectional area easy to write.</p>
 
-    <p>Sometimes <m>x</m>-slices are best. Sometimes <m>y</m>-slices are better.</p>
+  <p>Sometimes <m>x</m>-slices are best.  Sometimes <m>y</m>-slices are better.</p>
 
-    <example xml:id="ex-volume-rotate-y-axis">
-      <title>Rotating around the <m>y</m>-axis</title>
-      <statement>
-        <p>Rotate the region bounded by</p>
-        <md>y=x^2,\qquad x=0,\qquad y=4</md>
-        <p>around the <m>y</m>-axis.</p>
-        <p>The region is easier to describe using horizontal slices. Solve</p>
-        <md>y=x^2</md>
-        <p>for <m>x</m>:</p>
-        <md>x=\sqrt{y}.</md>
-        <p>For <m>0\le y\le 4</m>, a horizontal slice runs from the <m>y</m>-axis to</p>
-        <md>x=\sqrt{y}.</md>
-        <p>When rotated around the <m>y</m>-axis, it forms a disk of radius</p>
-        <md>\sqrt{y}.</md>
-        <p>So the cross-sectional area is</p>
-        <md>A(y)=\pi(\sqrt{y})^2=\pi y.</md>
-        <p>The volume is</p>
-        <md>V=\int_0^4 \pi y\,dy = \pi\left(\frac{y^2}{2}\right)\Big|_0^4 = 8\pi.</md>
-        <p>The variable is <m>y</m>, not <m>x</m>, because the slices are perpendicular to the <m>y</m>-axis.</p>
 
-        <figure xml:id="fig-disk-method-y-axis">
-          <caption>Rotating around the <m>y</m>-axis suggests horizontal slices and an integral in <m>y</m>.</caption>
-          <image width="80%">
-            <latex-image>
-              \begin{tikzpicture}[xscale=1.4, yscale=1.1, &gt;=stealth]
-                % Axes
-                \draw[-&gt;, thick] (-2.8,0) -- (2.8,0) node[right] {\(x\)};
-                \draw[-&gt;, thick] (0,-0.4) -- (0,4.8) node[above] {\(y\)};
-                
-                % Solid surface of revolution for y = x^2 (paraboloid) up to y=4
-                \draw[thick, domain=0:2, samples=100, fill=gray!15] plot (\x, {\x*\x})
-                  -- (-2, 4) plot[domain=-2:0, samples=100] (\x, {\x*\x}) -- cycle;
-                
-                % Paraboloid outer curve
-                \draw[very thick, domain=-2:2, samples=100] plot (\x, {\x*\x});
-                
-                % Top cap at y=4
-                \draw[thick, fill=gray!25] (0,4) ellipse (2 and 0.45);
-                
-                % Horizontal slice at y=2.2
-                \draw[thick, fill=gray!50] (0,2.2) ellipse (1.48 and 0.35);
-                \draw[thick, fill=gray!60] (-1.41,2.0) -- (-1.48,2.2) -- (1.48,2.2) -- (1.41,2.0) -- cycle;
-                \draw[thick, fill=gray!40] (0,2.2) ellipse (1.48 and 0.35);
-                
-                % Annotations
-                \draw[thick, &lt;-&gt;] (0,2.2) -- (1.48,2.2) node[midway, above] {\small radius \(\sqrt{y}\)};
-                \node at (0,2.2) [below=8pt] {\small area \(A(y)\)};
-                
-                % Thickness Delta y annotation
-                \draw[thick, &lt;-] (1.45,2.1) -- (2.3,2.1) node[right] {\(\Delta y\)};
-                \draw[thick, &lt;-] (0,1.2) -- (-1.8,1.2) node[left] {volume \(\approx A(y)\Delta y\)};
-                
-                % Labels
-                \node[anchor=west] at (1.6, 2.8) {\(x=\sqrt{y}\)};
-                \node[anchor=south west] at (0.5, 4.0) {\(y=4\)};
-                
-                % Rotation arrow around y axis
-                \draw[-&gt;, thick] (0.4,4.5) arc (30:330:0.4 and 0.2);
-                \node[anchor=east] at (-0.5,4.5) {rotation around \(y\)-axis};
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </statement>
-    </example>
+  <exercise xml:id="checkpoint-10-2-slicing-direction">
+        <title>How do you choose the slicing direction?</title>
+        <statement>
+          <p>
+            Sometimes <m>x</m>-slices are best and sometimes <m>y</m>-slices are better. In your own words, why is the best direction the one that makes the cross-sectional area easy to write, even though the volume being measured has not changed?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The notation <m>\int A(x)\,dx</m> or <m>\int A(y)\,dy</m> changes. The idea does not: add the area of one slice times its thickness.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-10-2-volumes-by-slicing-8">
+    <title>rotating around the <m>y</m>-axis</title>
+    <statement>
+  <p>Rotate the region bounded by</p>
+
+  <md>y=x^2,\qquad x=0,\qquad y=4</md>
+
+  <p>around the <m>y</m>-axis.</p>
+
+  <p>The region is easier to describe using horizontal slices.  Solve</p>
+
+  <md>y=x^2</md>
+
+  <p>for <m>x</m>:</p>
+
+  <md>x=\sqrt{y}.</md>
+
+  <p>For <m>0\le y\le4</m>, a horizontal slice runs from the <m>y</m>-axis to</p>
+
+  <md>x=\sqrt{y}.</md>
+
+  <p>When rotated around the <m>y</m>-axis, it forms a disk of radius</p>
+
+  <md>\sqrt{y}.</md>
+
+  <p>So the cross-sectional area is</p>
+
+  <md>A(y)=\pi(\sqrt{y})^2=\pi y.</md>
+
+  <p>The volume is</p>
+
+  <md>V=\int_0^4 \pi y\,dy
+=
+\pi\left(\frac{y^2}{2}\right)\Big|_0^4
+=
+8\pi.</md>
+
+  <p>The variable is <m>y</m>, not <m>x</m>, because the slices are perpendicular to the <m>y</m>-axis.</p>
+
+  <figure xml:id="fig-disk-method-y-axis">
+    <caption>Rotating around the <m>y</m>-axis suggests horizontal slices and an integral in <m>y</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    view={35}{20},
+    width=0.95\textwidth,
+    height=0.65\textwidth,
+    grid=none,
+    axis lines=center,
+    xlabel={},
+    ylabel={},
+    zlabel={},
+    ztick={0, 2, 2.2, 4},
+    zticklabels={\(0\), \(y\), \(y+\Delta y\), \(4\)},
+    xtick=\empty,
+    ytick=\empty,
+    xmin=-3.5, xmax=2.8,
+    ymin=-2.8, ymax=2.8,
+    zmin=-1.0, zmax=5.2,
+    z buffer=sort
+]
+
+% 1. Back/Lower portion of the solid (y from 0 to 2)
+\addplot3[
+    surf,
+    domain=0:2,
+    y domain=0:360,
+    samples=15,
+    samples y=36,
+    fill=gray!10,
+    faceted color=gray!40,
+    line width=0.1pt
+] (
+    {sqrt(x) * cos(y)}, % Radius function r = sqrt(y)
+    {sqrt(x) * sin(y)},
+    {x}
+);
+
+% 2. Solid cap at y=2 (Back wall of the slice)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    faceted color=gray!50,
+    line width=0.1pt
+] (
+    {1.414 * x * cos(y)}, % Radius is exactly sqrt(2) \approx 1.414 at y=2
+    {1.414 * x * sin(y)},
+    {2}
+);
+
+% 3. The highlighted differential slice crust (y from 2 to 2.2)
+\addplot3[
+    surf,
+    domain=2:2.2,
+    y domain=0:360,
+    samples=4,
+    samples y=36,
+    fill=gray!50,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {sqrt(x) * cos(y)},
+    {sqrt(x) * sin(y)},
+    {x}
+);
+
+% 4. Solid cap at y=2.2 (Front face of the slice)
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!40,
+    faceted color=black!70,
+    line width=0.3pt
+] (
+    {1.483 * x * cos(y)}, % Radius is approx sqrt(2.2) \approx 1.483 at y=2.2
+    {1.483 * x * sin(y)},
+    {2.2}
+);
+
+% 5. Front/Glass upper portion of the solid (y from 2.2 to 4) - TRANSPARENT
+\addplot3[
+    surf,
+    domain=2.2:4,
+    y domain=0:360,
+    samples=15,
+    samples y=36,
+    fill=gray!30,
+    draw=none, % No grid
+    opacity=0.35 % See-through
+] (
+    {sqrt(x) * cos(y)},
+    {sqrt(x) * sin(y)},
+    {x}
+);
+
+% 6. End/Glass cap at y=4 - TRANSPARENT
+\addplot3[
+    surf,
+    domain=0:1,
+    y domain=0:360,
+    samples=2,
+    samples y=36,
+    fill=gray!30,
+    draw=none,
+    opacity=0.35
+] (
+    {2 * x * cos(y)}, % Radius function sqrt(4) = 2
+    {2 * x * sin(y)},
+    {4}
+);
+
+% --- Annotations ---
+
+% Axis labels corrected to the proper 3D mapping axes
+\node[anchor=west] at (axis cs:2.6, 0, 0) {\(x\)};
+\node[anchor=south] at (axis cs:0, 0, 5.0) {\(y\)};
+
+% Thickness dimension pointing to the FRONT-RIGHT edge of the slice
+\draw[thick, &lt;-] (axis cs:1.45, 0, 2.1) -- (axis cs:2.3, 0, 2.1) node[right] {\(\Delta y\)};
+
+% Area label directly on the visible face of the slice
+\node at (axis cs:0, 0, 2.2) {area \(A(y)\)};
+
+% Volume label pointing to the FRONT edge of the slice
+\node[anchor=north] at (axis cs:0, -2.4, 1.2) {volume \(\approx A(y)\Delta y\)};
+\draw[thick, &lt;-] (axis cs:0, -1.45, 2.1) -- (axis cs:0, -2.4, 1.2);
+
+% Top curve boundary label
+\node[anchor=south west] at (axis cs:0, 2.0, 4.0) {\(y=4\)};
+
+% Surface label cleanly anchored along the FRONT-RIGHT edge
+\node[anchor=west] at (axis cs:1.75, 0, 3.0) {\(x=\sqrt{y}\)};
+
+% Rotation label pulled closer to the center, and plot xmin expanded to give it room
+\draw[thick, &lt;-] (axis cs:-0.2, 0, 4.6) -- (axis cs:-1.5, 0, 4.6) node[left] {rotation around \(y\)-axis};
+
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-slicing-checklist">
     <title>A slicing checklist</title>
 
-    <p>Volumes by slicing become manageable when the setup is organized.</p>
+  <p>Volumes by slicing become manageable when the setup is organized.</p>
 
-    <paragraphs>
-      <title>Setting up a volume by slicing</title>
-      <ol>
-        <li><p>Choose the slicing direction.</p></li>
-        <li><p>Identify the interval for the slicing variable.</p></li>
-        <li><p>Draw or describe a typical cross section.</p></li>
-        <li><p>Find its area <m>A(x)</m> or <m>A(y)</m>.</p></li>
-        <li><p>Integrate the cross-sectional area over the slicing interval.</p></li>
-      </ol>
-    </paragraphs>
+  <note xml:id="note-sec-10-2-volumes-by-slicing-66">
+    <title>Setting up a volume by slicing</title>
+          <ol>
+      <li>
+        <p>Choose the slicing direction.</p>
+      </li>
+      <li>
+        <p>Identify the interval for the slicing variable.</p>
+      </li>
+      <li>
+        <p>Draw or describe a typical cross section.</p>
+      </li>
+      <li>
+        <p>Find its area <m>A(x)</m> or <m>A(y)</m>.</p>
+      </li>
+      <li>
+        <p>Integrate the cross-sectional area over the slicing interval.</p>
+      </li>
+    </ol>
+  </note>
 
-    <p>For <m>x</m>-slices,</p>
-    <md>V=\int_a^b A(x)\,dx.</md>
+  <p>For <m>x</m>-slices,</p>
 
-    <p>For <m>y</m>-slices,</p>
-    <md>V=\int_c^d A(y)\,dy.</md>
+  <md>V=\int_a^b A(x)\,dx.</md>
 
-    <p>The notation changes, but the idea does not.</p>
-    <note xml:id="note-volume-slicing-general">
-      <p>volume <m>=\displaystyle\int(\text{area of one slice})(\text{slice thickness})</m>.</p>
-    </note>
+  <p>For <m>y</m>-slices,</p>
+
+  <md>V=\int_c^d A(y)\,dy.</md>
+
+  <p>The notation changes, but the idea does not.</p>
+
+  <md>
+\text{volume}=\int(\text{area of one slice})(\text{slice thickness}).
+</md>
   </subsection>
 
   <subsection xml:id="subsec-volume-slicing-hook-shells">
     <title>Where this points</title>
 
-    <p>Disks and washers come from slices perpendicular to the axis of rotation. They are excellent when the cross sections are easy.</p>
+  <p>Disks and washers come from slices perpendicular to the axis of rotation.  They are
+excellent when the cross sections are easy.</p>
 
-    <p>But some rotations make washers awkward. A vertical strip rotated around a vertical axis does not make a washer. It makes a thin cylindrical shell.</p>
+  <p>But some rotations make washers awkward.  A vertical strip rotated around a vertical
+axis does not make a washer.  It makes a thin cylindrical shell.</p>
 
-    <p>That gives a different small piece:</p>
-    <md>(\text{circumference})(\text{height})(\text{thickness}).</md>
+  <p>That gives a different small piece:</p>
 
-    <p>The next section builds that shell method from the same slicing idea.</p>
+  <md>(\text{circumference})(\text{height})(\text{thickness}).</md>
+
+  <p>The next section builds that shell method from the same slicing idea.</p>
   </subsection>
+
+
 
 </section>

@@ -1,0 +1,645 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-17-3-fourier-series-preview">
+  <title>Fourier series preview</title>
+
+  <p>A single spring gives one clean frequency:</p>
+
+  <md>\cos(\omega t)
+\qquad\text{or}\qquad
+\sin(\omega t).</md>
+
+  <p>But real periodic motion is rarely one pure wave.  A violin string, an electrical signal,
+a heartbeat, a tide table, and a repeating temperature pattern all contain mixtures.</p>
+
+  <p>Taylor series built functions from powers:</p>
+
+  <md>1,\ x,\ x^2,\ x^3,\ldots.</md>
+
+  <p>Fourier series build periodic functions from waves:</p>
+
+  <md>1,\ \cos t,\ \sin t,\ \cos(2t),\ \sin(2t),\ \cos(3t),\ \sin(3t),\ldots.</md>
+
+  <p>This section is a preview.  The full convergence theory belongs to a later course.  But
+the main idea is already visible with the calculus we know:</p>
+
+  <md>
+\text{Fourier series use integrals to measure how much of each wave is present.}
+</md>
+
+  <subsection xml:id="subsec-building-periodic-function-from-waves">
+    <title>Building a periodic function from waves</title>
+
+  <p>A function <m>f</m> is <em>periodic</em> with period <m>2\pi</m> if</p>
+
+  <md>f(t+2\pi)=f(t)</md>
+
+  <p>for every <m>t</m>.</p>
+
+  <p>The basic waves</p>
+
+  <md>\cos(nt)
+\qquad\text{and}\qquad
+\sin(nt)</md>
+
+  <p>are all <m>2\pi</m>-periodic when <m>n</m> is a positive integer.  The integer <m>n</m> counts how
+many full oscillations occur during one interval of length <m>2\pi</m>.</p>
+
+  <p>A finite mixture of these waves has the form</p>
+
+  <md>P_N(t)
+=
+\frac{a_0}{2}
++
+\sum_{n=1}^{N}
+\bigl(a_n\cos(nt)+b_n\sin(nt)\bigr).</md>
+
+  <p>This is called a <em>trigonometric polynomial</em>.  It is a finite Fourier approximation.</p>
+
+  <note xml:id="note-sec-17-3-fourier-series-preview-60">
+    <title>Fourier idea</title>
+      <p>For a <m>2\pi</m>-periodic function <m>f</m>, try to write</p>
+        <md>
+f(t)
+\sim
+\frac{a_0}{2}
++
+\sum_{n=1}^{\infty}
+\bigl(a_n\cos(nt)+b_n\sin(nt)\bigr).
+</md>
+      <p>The coefficients <m>a_n</m> and <m>b_n</m> measure how much of each cosine and sine wave is
+present.</p>
+  </note>
+
+  <p>The symbol</p>
+
+  <md>\sim</md>
+
+  <p>is being used carefully.  It means “has Fourier series.”  It does not automatically mean
+that the series converges everywhere to <m>f(t)</m>.  Convergence is part of the deeper
+theory.</p>
+
+  <p>Still, the guiding picture is simple:</p>
+
+  <md>
+\text{complicated periodic motion can often be approximated by adding simple waves.}
+</md>
+
+  <figure xml:id="fig-fourier-wave-mixture">
+    <caption>Adding a few sine and cosine waves already creates a more complicated periodic shape.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.46\textwidth,
+    xmin=-6.4, xmax=6.4,
+    ymin=-2.2, ymax=2.2,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={},
+    xtick={-6.283,-3.1416,0,3.1416,6.283},
+    xticklabels={\(-2\pi\),\(-\pi\),\(0\),\(\pi\),\(2\pi\)},
+    ytick={-2,-1,0,1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-6.283:6.283, samples=600]
+  {sin(deg(x)) + 0.45*sin(deg(2*x)) + 0.25*cos(deg(3*x))};
+\node[anchor=west] at (axis cs:-5.8,1.7)
+  {\(\sin t+0.45\sin(2t)+0.25\cos(3t)\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is why Fourier series belong after vibrations.  One oscillator gives one wave.
+Many oscillators, or one complicated periodic signal, give a mixture.</p>
+
+  <exercise xml:id="checkpoint-17-3-waves-not-powers">
+        <title>Why do Fourier series use waves instead of powers?</title>
+        <statement>
+          <p>
+            Taylor series build functions from powers near a center. Fourier series build periodic functions from sines and cosines over a cycle. In your own words, why is that a different question, and why does the symbol <m>\sim</m> warn that having a Fourier series is not automatically the same as equaling it everywhere?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A repeating shape asks which frequencies are present, not how the function looks near one point. Convergence of the wave series is a separate, deeper issue, especially at jumps.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-orthogonality-sine-cosine-geometrically">
+    <title>Orthogonality of sine and cosine, geometrically</title>
+
+  <p>To find the coefficients in a Fourier series, we need a way to measure how much one
+function points in the direction of another.</p>
+
+  <p>For ordinary vectors, the dot product measures alignment.  Perpendicular vectors have
+dot product zero.</p>
+
+  <p>For functions on <m>[-\pi,\pi]</m>, the analogous dot product is an integral:</p>
+
+  <md>
+\langle f,g\rangle
+=
+\int_{-\pi}^{\pi} f(t)g(t)\,dt.
+</md>
+
+  <p>If</p>
+
+  <md>\langle f,g\rangle=0,</md>
+
+  <p>we say the functions are <em>orthogonal</em> on <m>[-\pi,\pi]</m>.</p>
+
+  <p>This language is geometric.  The functions are being treated like vectors, but with
+infinitely many coordinates.</p>
+
+
+  <exercise xml:id="checkpoint-17-3-orthogonality">
+        <title>Why do integrals measure how much of each wave is present?</title>
+        <statement>
+          <p>
+            On <m>[-\pi,\pi]</m>, the inner product of two functions is an integral, and distinct sine and cosine waves are orthogonal. In your own words, why is that the analogue of a dot product, and why does orthogonality let you extract one coefficient without the others interfering?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Perpendicular vectors have dot product zero, so projection onto one direction ignores the others. Integrating a function against one wave is the same idea: the other waves contribute signed area zero over a full period.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-17-3-fourier-series-preview-1">
+    <title>Example</title>
+    <statement>
+  <p>The functions <m>\sin t</m> and <m>\sin(2t)</m> are orthogonal on <m>[-\pi,\pi]</m>, because</p>
+
+  <md>\int_{-\pi}^{\pi} \sin t\sin(2t)\,dt=0.</md>
+
+  <p>Use the product-to-sum identity</p>
+
+  <md>\sin A\sin B
+=
+\frac12\bigl(\cos(A-B)-\cos(A+B)\bigr).</md>
+
+  <p>With <m>A=t</m> and <m>B=2t</m>,</p>
+
+  <md>\sin t\sin(2t)
+=
+\frac12\bigl(\cos t-\cos(3t)\bigr).</md>
+
+  <p>Therefore</p>
+
+  <md>\int_{-\pi}^{\pi}\sin t\sin(2t)\,dt
+=
+\frac12\int_{-\pi}^{\pi}\cos t\,dt
+-
+\frac12\int_{-\pi}^{\pi}\cos(3t)\,dt.</md>
+
+  <p>Both integrals are zero over a full symmetric period.  Hence</p>
+
+  <md>
+\int_{-\pi}^{\pi}\sin t\sin(2t)\,dt=0.
+</md>
+
+  <figure xml:id="fig-orthogonality-product-signed-area">
+    <caption>The product <m>\sin t\sin(2t)</m> has signed area zero over <m>[-\pi,\pi]</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.84\textwidth,
+    height=0.42\textwidth,
+    xmin=-3.1416, xmax=3.1416,
+    ymin=-1.1, ymax=1.1,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={},
+    xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+    xticklabels={\(-\pi\),\(-\frac{\pi}{2}\),\(0\),\(\frac{\pi}{2}\),\(\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=-3.1416:3.1416, samples=500]
+  {sin(deg(x))*sin(deg(2*x))};
+\node[anchor=west] at (axis cs:-2.9,0.82)
+  {\(\sin t\,\sin(2t)\)};
+\node[anchor=west] at (axis cs:0.35,-0.78)
+  {positive and negative signed areas cancel};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The same cancellation happens systematically.  If <m>m</m> and <m>n</m> are positive integers,
+then</p>
+
+  <md>\int_{-\pi}^{\pi}\cos(mt)\cos(nt)\,dt=0
+\qquad\text{when }m\neq n,</md>
+
+  <md>\int_{-\pi}^{\pi}\sin(mt)\sin(nt)\,dt=0
+\qquad\text{when }m\neq n,</md>
+
+  <p>and</p>
+
+  <md>\int_{-\pi}^{\pi}\sin(mt)\cos(nt)\,dt=0</md>
+
+  <p>for all <m>m,n</m>.</p>
+
+  <p>The only time a sine or cosine wave has nonzero dot product with itself is when the
+frequencies match:</p>
+
+  <md>\int_{-\pi}^{\pi}\cos^2(nt)\,dt=\pi,
+\qquad n\ge1,</md>
+
+  <md>\int_{-\pi}^{\pi}\sin^2(nt)\,dt=\pi,
+\qquad n\ge1.</md>
+
+  <p>Also,</p>
+
+  <md>\int_{-\pi}^{\pi}1^2\,dt=2\pi.</md>
+
+  <p>These facts are the engine of Fourier coefficients.</p>
+
+  <p>Suppose, at least formally, that</p>
+
+  <md>f(t)
+\sim
+\frac{a_0}{2}
++
+\sum_{n=1}^{\infty}
+\bigl(a_n\cos(nt)+b_n\sin(nt)\bigr).</md>
+
+  <p>Multiply both sides by <m>\cos(mt)</m> and integrate from <m>-\pi</m> to <m>\pi</m>.  Orthogonality
+kills every term except the matching cosine term:</p>
+
+  <md>\int_{-\pi}^{\pi} f(t)\cos(mt)\,dt
+=
+a_m\int_{-\pi}^{\pi}\cos^2(mt)\,dt
+=
+a_m\pi.</md>
+
+  <p>So</p>
+
+  <md>
+a_m=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\cos(mt)\,dt,
+\qquad m\ge1.
+</md>
+
+  <p>Similarly,</p>
+
+  <md>
+b_m=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\sin(mt)\,dt,
+\qquad m\ge1.
+</md>
+
+  <p>For the constant term,</p>
+
+  <md>\int_{-\pi}^{\pi} f(t)\,dt
+=
+\int_{-\pi}^{\pi}\frac{a_0}{2}\,dt
+=
+a_0\pi.</md>
+
+  <p>Thus</p>
+
+  <md>
+a_0=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\,dt.
+</md>
+
+  <note xml:id="note-sec-17-3-fourier-series-preview-61">
+    <title>Fourier coefficients on <m>[-\pi,\pi]</m></title>
+      <p>For a <m>2\pi</m>-periodic function <m>f</m>, the Fourier coefficients are</p>
+        <md>
+a_0=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\,dt,
+</md>
+        <md>
+a_n=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\cos(nt)\,dt,
+\qquad n\ge1,
+</md>
+      <p>and</p>
+        <md>
+b_n=
+\frac1\pi
+\int_{-\pi}^{\pi} f(t)\sin(nt)\,dt,
+\qquad n\ge1.
+</md>
+  </note>
+
+  <p>The formulas use integrals because integrals are dot products for functions.</p>
+
+  <p>For finite trigonometric polynomials, this derivation is exact.  For infinite Fourier
+series, one must justify the limiting step.  That is part of Fourier analysis.  The preview
+idea remains:</p>
+
+  <md>
+\text{integrate against a wave to measure the amount of that wave.}
+</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-square-waves-gibbs-phenomenon">
+    <title>Square waves and Gibbs phenomenon</title>
+
+  <p>Fourier’s idea becomes surprising when the target function has corners or jumps.</p>
+
+  <p>Consider the <m>2\pi</m>-periodic square wave</p>
+
+  <md>
+    <mrow>Q(t)=
+\begin{cases}
+-1, \amp -\pi&lt;t&lt;0,</mrow>
+    <mrow>1, \amp 0&lt;t&lt;\pi.
+\end{cases}</mrow>
+  </md>
+
+  <p>Then repeat this pattern with period <m>2\pi</m>.  The values at the jump points can be
+assigned separately; they do not change the integrals that determine the coefficients.</p>
+
+  <p>This function is odd:</p>
+
+  <md>Q(-t)=-Q(t).</md>
+
+  <p>Cosine is even, so</p>
+
+  <md>Q(t)\cos(nt)</md>
+
+  <p>is odd.  The integral of an odd function over <m>[-\pi,\pi]</m> is zero.  Therefore all cosine
+coefficients are zero:</p>
+
+  <md>a_n=0.</md>
+
+  <p>Also,</p>
+
+  <md>a_0=0.</md>
+
+  <p>Only sine terms remain.</p>
+
+  <p>For <m>n\ge1</m>,</p>
+
+  <md>b_n=
+\frac1\pi
+\int_{-\pi}^{\pi} Q(t)\sin(nt)\,dt.</md>
+
+  <p>Since <m>Q(t)\sin(nt)</m> is even,</p>
+
+  <md>b_n=
+\frac2\pi
+\int_0^\pi \sin(nt)\,dt.</md>
+
+  <p>Compute:</p>
+
+  <md>\int_0^\pi \sin(nt)\,dt
+=
+\left[-\frac{\cos(nt)}{n}\right]_0^\pi
+=
+\frac{1-\cos(n\pi)}{n}.</md>
+
+  <p>Since</p>
+
+  <md>\cos(n\pi)=(-1)^n,</md>
+
+  <p>we get</p>
+
+  <md>b_n=
+\frac2\pi
+\cdot
+\frac{1-(-1)^n}{n}.</md>
+
+  <p>If <m>n</m> is even, then <m>(-1)^n=1</m>, so</p>
+
+  <md>b_n=0.</md>
+
+  <p>If <m>n</m> is odd, then <m>(-1)^n=-1</m>, so</p>
+
+  <md>b_n=\frac{4}{\pi n}.</md>
+
+  <p>Therefore the square wave has Fourier series</p>
+
+  <md>
+Q(t)
+\sim
+\frac4\pi
+\left(
+\sin t+\frac{\sin(3t)}{3}
++\frac{\sin(5t)}{5}
++\frac{\sin(7t)}{7}
++\cdots
+\right).
+</md>
+
+  <p>The <m>N</m>-th odd partial sum is</p>
+
+  <md>
+S_N(t)
+=
+\frac4\pi
+\sum_{k=0}^{N}
+\frac{\sin((2k+1)t)}{2k+1}.
+</md>
+
+  <figure xml:id="fig-square-wave-fourier-partial-sums">
+    <caption>Fourier partial sums approximate a square wave by adding sine waves.  Near each jump, ripples remain.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.86\textwidth,
+    height=0.50\textwidth,
+    xmin=-3.1416, xmax=3.1416,
+    ymin=-1.6, ymax=1.6,
+    axis lines=middle,
+    xlabel={\(t\)},
+    ylabel={},
+    xtick={-3.1416,-1.5708,0,1.5708,3.1416},
+    xticklabels={\(-\pi\),\(-\frac{\pi}{2}\),\(0\),\(\frac{\pi}{2}\),\(\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.02,0.98)}, anchor=north west}
+]
+% square wave
+\addplot[thick, dashed, domain=-3.1416:0, samples=2] {-1};
+\addplot[thick, dashed, domain=0:3.1416, samples=2] {1};
+\addplot[thick, dashed] coordinates {(-3.1416,1) (-3.1416,-1)};
+\addplot[thick, dashed] coordinates {(0,-1) (0,1)};
+\addplot[thick, dashed] coordinates {(3.1416,1) (3.1416,-1)};
+
+% partial sums
+\addplot[very thick, domain=-3.1416:3.1416, samples=900]
+  {4/3.14159*(sin(deg(x)))};
+\addlegendentry{\(S_0\)}
+\addplot[thick, domain=-3.1416:3.1416, samples=900]
+  {4/3.14159*(sin(deg(x)) + sin(deg(3*x))/3 + sin(deg(5*x))/5)};
+\addlegendentry{\(S_2\)}
+\addplot[thick, dotted, domain=-3.1416:3.1416, samples=900]
+  {4/3.14159*(sin(deg(x)) + sin(deg(3*x))/3 + sin(deg(5*x))/5 + sin(deg(7*x))/7 + sin(deg(9*x))/9 + sin(deg(11*x))/11 + sin(deg(13*x))/13)};
+\addlegendentry{\(S_6\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The approximation improves away from the jumps.  But near a jump, something strange
+happens.  The partial sums overshoot the top level and undershoot the bottom level.</p>
+
+  <p>As we add more terms, the ripples get narrower.  But the first overshoot near the jump
+does not simply disappear.  It approaches a persistent limiting size.</p>
+
+  <p>This is called the <em>Gibbs phenomenon</em>.</p>
+
+  <note xml:id="note-sec-17-3-fourier-series-preview-62">
+    <title>Gibbs phenomenon</title>
+      <p>Fourier partial sums of a function with a jump often overshoot near the jump.  Adding
+more terms makes the overshoot region narrower, but the overshoot height approaches
+a persistent limiting size.</p>
+  </note>
+
+  <p>There is also a convergence warning at the jump itself.  The square wave jumps from
+<m>-1</m> to <m>1</m> at <m>t=0</m>.  The Fourier series does not choose the left value or the right
+value.  It converges to the midpoint:</p>
+
+  <md>\frac{-1+1}{2}=0.</md>
+
+  <p>More generally, for a sufficiently well-behaved periodic function, the Fourier series
+converges at a jump to the average of the left-hand and right-hand limits.</p>
+
+  <p>That is a new kind of honesty.  Fourier series can represent discontinuous shapes, but
+they do not erase the discontinuity.  The jump leaves a visible trace in the approximation.</p>
+
+  <exercise xml:id="checkpoint-17-3-gibbs-honesty">
+        <title>What does Gibbs phenomenon admit about jumps?</title>
+        <statement>
+          <p>
+            Fourier series can represent a square wave, but they overshoot near a jump and converge at the jump to the average of the two sides. In your own words, why is that a kind of honesty rather than a failure, and why can Fourier series handle discontinuities that Taylor series cannot?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The jump is still visible in the approximation; the series does not pretend the function is continuous. Taylor series need local derivatives at a center, while Fourier coefficients are averages over a whole period.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-why-fourier-after-taylor">
+    <title>Why Fourier series belong after Taylor series</title>
+
+  <p>Taylor series and Fourier series are cousins.  Both try to build complicated functions
+from simple functions.</p>
+
+  <p>But they have different personalities.</p>
+
+  <table xml:id="tab-sec-17-3-fourier-series-preview-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>series type</strong></cell>
+        <cell><strong>building blocks</strong></cell>
+        <cell><strong>main viewpoint</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Taylor series</cell>
+        <cell><m>1,(x-a),(x-a)^2,(x-a)^3,\ldots</m></cell>
+        <cell>local behavior near a center <m>a</m></cell>
+      </row>
+      <row>
+        <cell>Fourier series</cell>
+        <cell><m>1,\cos t,\sin t,\cos(2t),\sin(2t),\ldots</m></cell>
+        <cell>periodic behavior over a whole cycle</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>A Taylor series asks:</p>
+
+  <md>\text{How does the function behave near one point?}</md>
+
+  <p>A Fourier series asks:</p>
+
+  <md>\text{What frequencies make up this repeating shape?}</md>
+
+  <p>Taylor coefficients come from derivatives at one point:</p>
+
+  <md>f(a),\quad f'(a),\quad f''(a),\quad \ldots.</md>
+
+  <p>Fourier coefficients come from integrals over a whole period:</p>
+
+  <md>\int_{-\pi}^{\pi} f(t)\cos(nt)\,dt,
+\qquad
+\int_{-\pi}^{\pi} f(t)\sin(nt)\,dt.</md>
+
+  <p>So Taylor series are local.  Fourier series are global over a period.</p>
+
+  <p>This also explains why Fourier series can handle jumps better than Taylor series.  A
+Taylor series is tied to local differentiability at a center.  A Fourier series is built from
+waves and measures average alignment over an interval.  It can still make sense when
+the function has corners or jumps.</p>
+
+  <p>Euler’s formula compresses the real waves into complex exponentials:</p>
+
+  <md>e^{int}=\cos(nt)+i\sin(nt).</md>
+
+  <p>So a Fourier series can also be written in the compact complex form</p>
+
+  <md>
+f(t)\sim\sum_{n=-\infty}^{\infty} c_n e^{int}.
+</md>
+
+  <p>The corresponding coefficients are</p>
+
+  <md>
+c_n=
+\frac{1}{2\pi}
+\int_{-\pi}^{\pi} f(t)e^{-int}\,dt.
+</md>
+
+  <p>This form belongs more naturally to a later course, but the meaning is already visible:</p>
+
+  <md>
+\text{complex exponentials are rotating waves, and Fourier series add rotating waves.}
+</md>
+
+  <p>The chapter began with a rotating exponential, reached vibrating springs, and then
+combined many waves.  One more bridge remains.  The Fundamental Theorem of
+Calculus was the hinge of single-variable calculus.  It also has a second life: it is the
+first example of a boundary theorem.</p>
+
+  <exercise xml:id="checkpoint-17-3-local-versus-global">
+        <title>Why do Fourier series belong after Taylor series?</title>
+        <statement>
+          <p>
+            Taylor coefficients come from derivatives at one point. Fourier coefficients come from integrals over a period. In your own words, why is one viewpoint local and the other global over a cycle, and how does Euler’s formula compress the real waves into complex exponentials?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Local matching is the Taylor personality. Measuring frequencies over a whole loop is the Fourier personality. Since <m>e^{int}=\cos(nt)+i\sin(nt)</m>, the two real families become one complex family.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

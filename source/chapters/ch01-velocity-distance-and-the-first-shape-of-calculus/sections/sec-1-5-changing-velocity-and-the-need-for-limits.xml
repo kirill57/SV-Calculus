@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-changing-velocity-limits">
+<section xml:id="sec-1-5-changing-velocity-and-the-need-for-limits">
   <title>Changing velocity and the need for limits</title>
 
   <p>Step velocities were friendly. On each interval, the velocity graph was flat, so a rectangle gave exact displacement and a line segment gave exact position.</p>
@@ -9,337 +9,413 @@
 
   <p>The new idea is to look closer and closer.</p>
 
-  <subsection xml:id="subsec-average-velocity-interval">
+  <subsection xml:id="subsec-sec-1-5-changing-velocity-and-the-need-for-limits-average-velocity-over-a-time-interval">
     <title>Average velocity over a time interval</title>
 
-    <p>Let <m>s(t)</m> be signed position at time <m>t</m>. If <m>a\neq b</m>, the average velocity from time <m>a</m> to time <m>b</m> is</p>
+  <p>Let <m>s(t)</m> be signed position at time <m>t</m>. If <m>a\neq b</m>, the average velocity from time <m>a</m> to time <m>b</m> is</p>
 
-    <md>\overline{v}_{[a,b]} = \frac{s(b)-s(a)}{b-a}.</md>
+  <md>\overline v_{[a,b]}
+=
+\frac{s(b)-s(a)}{b-a}.</md>
 
-    <p>This is the same formula we have used since the dashboard:</p>
+  <p>This is the same formula we have used since the dashboard:</p>
 
-    <md>\frac{\text{change in position}}{\text{change in time}}.</md>
+  <md>\frac{\text{change in position}}{\text{change in time}}.</md>
 
-    <p>The denominator cannot be zero. Average velocity needs an interval of time, not a single instant.</p>
+  <p>The denominator cannot be zero. Average velocity needs an interval of time, not a single instant.</p>
 
-    <example xml:id="ex-average-to-instantaneous">
-      <title>Approaching instantaneous velocity</title>
-      <statement>
-        <p>Suppose a toy motion has signed position</p>
-        <md>s(t)=t^2.</md>
-        <p>The formula is chosen because the arithmetic is simple. The average velocity from <m>t=2</m> to <m>t=3</m> is</p>
-        <md>\frac{s(3)-s(2)}{3-2} = \frac{9-4}{1} = 5.</md>
-        <p>The average velocity from <m>t=2</m> to <m>t=2.1</m> is</p>
-        <md>\frac{s(2.1)-s(2)}{2.1-2} = \frac{4.41-4}{0.1} = 4.1.</md>
-        <p>The shorter interval gives a number closer to what we expect the velocity to be at the instant <m>t=2</m>.</p>
-        <p>To see the pattern, write the nearby time as <m>2+h</m>. Then</p>
-        <md>\frac{s(2+h)-s(2)}{h} = \frac{(2+h)^2-2^2}{h}.</md>
-        <p>Expanding the numerator,</p>
-        <md>(2+h)^2-2^2 = 4+4h+h^2-4 = 4h+h^2.</md>
-        <p>So for <m>h\neq 0</m>,</p>
-        <md>\frac{s(2+h)-s(2)}{h} = \frac{4h+h^2}{h} = 4+h.</md>
-        <p>The number <m>h</m> is the time step. It may be positive or negative, but it cannot equal <m>0</m> inside this fraction.</p>
-      </statement>
-    </example>
 
-    <table xml:id="tab-shrinking-time-steps">
-      <title>Average velocities over shrinking intervals</title>
-      <tabular>
-        <row header="yes" bottom="medium">
-          <cell><m>h</m></cell>
-          <cell><m>1</m></cell>
-          <cell><m>0.5</m></cell>
-          <cell><m>0.1</m></cell>
-          <cell><m>0.01</m></cell>
-          <cell><m>-0.1</m></cell>
-          <cell><m>-0.01</m></cell>
-        </row>
-        <row>
-          <cell><m>\dfrac{s(2+h)-s(2)}{h}</m></cell>
-          <cell><m>5</m></cell>
-          <cell><m>4.5</m></cell>
-          <cell><m>4.1</m></cell>
-          <cell><m>4.01</m></cell>
-          <cell><m>3.9</m></cell>
-          <cell><m>3.99</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <exercise xml:id="checkpoint-1-5-shrinking-average">
+        <title>Why must the time interval shrink?</title>
+        <statement>
+          <p>
+            Average velocity over a long interval can hide a lot of speeding up and slowing down. In your own words, why does shrinking the interval give a better clue to the velocity at one instant, and why is <m>h=0</m> still forbidden in the difference quotient?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A smaller window mixes fewer different velocities. Setting the window width to zero would ask you to divide by zero, so the instant has to be approached rather than plugged in.
+          </p>
+        </hint>
+      </exercise>
 
-    <p>As <m>h</m> gets closer to <m>0</m>, the average velocities get closer to <m>4</m>. So the instantaneous velocity at <m>t=2</m> should be <m>4</m>.</p>
+  <example xml:id="ex-sec-1-5-changing-velocity-and-the-need-for-limits-1">
+    <title>Example</title>
+    <statement>
+  <p>Suppose a toy motion has signed position</p>
 
-    <p>We have just used the idea of a limit. We have not yet defined limits carefully, but the picture is already clear:</p>
+  <md>s(t)=t^2.</md>
 
-    <md>\boxed{\text{instantaneous velocity} = \text{the value approached by average velocities over shrinking intervals.}}</md>
+  <p>The formula is chosen because the arithmetic is simple. The average velocity from <m>t=2</m> to <m>t=3</m> is</p>
 
-    <p>For this example,</p>
+  <md>\frac{s(3)-s(2)}{3-2}
+=
+\frac{9-4}{1}
+=
+5.</md>
 
-    <md>v(2)=\lim_{h\to 0}\frac{s(2+h)-s(2)}{h}=4.</md>
+  <p>The average velocity from <m>t=2</m> to <m>t=2.1</m> is</p>
 
-    <p>The notation <m>\lim_{h\to 0}</m> means that <m>h</m> is allowed to get closer and closer to <m>0</m>, while <m>h</m> itself remains nonzero during the calculation.</p>
+  <md>\frac{s(2.1)-s(2)}{2.1-2}
+=
+\frac{4.41-4}{0.1}
+=
+4.1.</md>
+
+  <p>The shorter interval gives a number closer to what we expect the velocity to be at the instant <m>t=2</m>.</p>
+
+  <p>To see the pattern, write the nearby time as <m>2+h</m>. Then</p>
+
+  <md>\frac{s(2+h)-s(2)}{h}
+=
+\frac{(2+h)^2-2^2}{h}.</md>
+
+  <p>Expanding the numerator,</p>
+
+  <md>(2+h)^2-2^2
+=
+4+4h+h^2-4
+=
+4h+h^2.</md>
+
+  <p>So for <m>h\neq 0</m>,</p>
+
+  <md>\frac{s(2+h)-s(2)}{h}
+=
+\frac{4h+h^2}{h}
+=
+4+h.</md>
+
+  <p>The number <m>h</m> is the time step. It may be positive or negative, but it cannot equal <m>0</m> inside this fraction.</p>
+
+  <md>
+    <mrow>\begin{array}{c|rrrrrr}
+h \amp 1 \amp 0.5 \amp 0.1 \amp 0.01 \amp -0.1 \amp -0.01</mrow>
+    <mrow>\hline
+\dfrac{s(2+h)-s(2)}{h}
+\amp 5 \amp 4.5 \amp 4.1 \amp 4.01 \amp 3.9 \amp 3.99
+\end{array}</mrow>
+  </md>
+
+  <p>As <m>h</m> gets closer to <m>0</m>, the average velocities get closer to <m>4</m>. So the instantaneous velocity at <m>t=2</m> should be</p>
+
+  <md>4.</md>
+
+  <p>We have just used the idea of a limit. We have not yet defined limits carefully, but the picture is already clear:</p>
+
+  <md>
+\text{instantaneous velocity}
+=
+\text{the value approached by average velocities over shrinking intervals.}
+</md>
+
+  <p>For this example,</p>
+
+  <md>v(2)=\lim_{h\to 0}\frac{s(2+h)-s(2)}{h}=4.</md>
+
+  <p>The notation <m>\lim_{h\to 0}</m> means that <m>h</m> is allowed to get closer and closer to <m>0</m>, while <m>h</m> itself remains nonzero during the calculation.</p>
+    </statement>
+  </example>
   </subsection>
 
-  <subsection xml:id="subsec-the-word-if-matters">
-    <title>The word <q>if</q> matters</title>
+  <subsection xml:id="subsec-sec-1-5-changing-velocity-and-the-need-for-limits-the-word-if-matters">
+    <title>The word “if” matters</title>
 
-    <p>The average velocities must approach a single number. That does not always happen.</p>
+  <p>The average velocities must approach a single number. That does not always happen.</p>
 
-    <p>Recall the forward-then-backward motion from <xref ref="sec-signed-motion"/>. In one simplified model,</p>
+  <p>Recall the forward-then-backward motion from Section~<xref ref="sec-1-3-forward-backward-and-signed-motion"/>. In one simplified model,</p>
 
-    <md>
-      s(t)=
-      \begin{cases}
-      40t, \amp 0\leq t\leq 2,\\
-      80-30(t-2), \amp 2\leq t\leq 3.
-      \end{cases}
-    </md>
+  <md>
+    <mrow>s(t)=
+\begin{cases}
+40t, \amp 0\leq t\leq 2,</mrow>
+    <mrow>80-30(t-2), \amp 2\leq t\leq 3.
+\end{cases}</mrow>
+  </md>
 
-    <p>Before <m>t=2</m>, the slope is <m>40</m>. After <m>t=2</m>, the slope is <m>-30</m>. The graph has a corner at <m>t=2</m>.</p>
+  <p>Before <m>t=2</m>, the slope is <m>40</m>. After <m>t=2</m>, the slope is <m>-30</m>. The graph has a corner at <m>t=2</m>.</p>
 
-    <p>If we approach <m>t=2</m> from the left, the average velocities approach <m>40</m>. If we approach from the right, they approach <m>-30</m>. There is no single velocity at the switching instant in this idealized model.</p>
+  <p>If we approach <m>t=2</m> from the left, the average velocities approach <m>40</m>. If we approach from the right, they approach <m>-30</m>. There is no single velocity at the switching instant in this idealized model.</p>
 
-    <remark xml:id="rmk-derivative-condition">
-      <title>Condition for a derivative</title>
+  <note xml:id="note-sec-1-5-changing-velocity-and-the-need-for-limits-30">
       <p>A derivative is born only when the nearby average rates settle toward one value.</p>
-    </remark>
+  </note>
 
-    <p>This is why calculus needs limits. The phrase <q>gets close to</q> must become precise enough to decide whether one number is really being approached.</p>
+  <p>This is why calculus needs limits. The phrase “gets close to” must become precise enough to decide whether one number is really being approached.</p>
   </subsection>
 
-  <subsection xml:id="subsec-tangent-line-problem">
+  <subsection xml:id="subsec-sec-1-5-changing-velocity-and-the-need-for-limits-the-tangent-line-problem">
     <title>The tangent line problem</title>
 
-    <p>Average velocity has a geometric twin: secant slope.</p>
+  <p>Average velocity has a geometric twin: secant slope.</p>
 
-    <p>For a graph <m>y=s(t)</m>, the average velocity from <m>t=a</m> to <m>t=a+h</m> is</p>
+  <p>For a graph <m>y=s(t)</m>, the average velocity from <m>t=a</m> to <m>t=a+h</m> is</p>
 
-    <md>\frac{s(a+h)-s(a)}{h}.</md>
+  <md>\frac{s(a+h)-s(a)}{h}.</md>
 
-    <p>This is the slope of the secant line through the two points</p>
+  <p>This is the slope of the secant line through the two points</p>
 
-    <md>(a,s(a))\quad\text{and}\quad (a+h,s(a+h)).</md>
+  <md>(a,s(a))
+\quad\text{and}\quad
+(a+h,s(a+h)).</md>
 
-    <p>If these secant slopes approach one number as <m>h\to0</m>, the limiting line is called the tangent line.</p>
+  <p>If these secant slopes approach one number as <m>h\to0</m>, the limiting line is called the tangent line.</p>
 
-    <p>For <m>s(t)=t^2</m> at <m>t=2</m>, the limiting slope is <m>4</m>. The tangent line passes through <m>(2,4)</m>, so its equation is</p>
+  <p>For <m>s(t)=t^2</m> at <m>t=2</m>, the limiting slope is <m>4</m>. The tangent line passes through <m>(2,4)</m>, so its equation is</p>
 
-    <md>y-4=4(t-2).</md>
+  <md>y-4=4(t-2).</md>
 
-    <p>Equivalently,</p>
+  <p>Equivalently,</p>
 
-    <md>y=4t-4.</md>
+  <md>y=4t-4.</md>
 
-    <figure xml:id="fig-secants-to-tangent">
-      <caption>As the second point <m>Q</m> moves toward <m>P</m>, the secant lines approach the tangent line. The slope of that tangent line is the instantaneous velocity.</caption>
-      <image>
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.78\textwidth,
-              height=0.48\textwidth,
-              xmin=0, xmax=3.25,
-              ymin=0, ymax=10.5,
-              axis lines=left,
-              xlabel={\(t\)},
-              ylabel={\(s(t)\)},
-              xtick={0,1,2,2.5,3},
-              ytick={0,4,6.25,9},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick,domain=0:3.15,samples=100] {x^2};
-          \addplot[domain=0.85:3.15,samples=2,dashed] {4*x-4};
-          \addplot[domain=1.7:3.05,samples=2] {5*x-6};
-          \addplot[domain=1.85:2.65,samples=2] {4.5*x-5};
+  <figure xml:id="fig-secants-to-tangent">
+    <caption>As the second point <m>Q</m> moves toward <m>P</m>, the secant lines approach the tangent line. The slope of that tangent line is the instantaneous velocity.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=3.25,
+    ymin=0, ymax=10.5,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(s(t)\)},
+    xtick={0,1,2,2.5,3},
+    ytick={0,4,6.25,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick,domain=0:3.15,samples=100] {x^2};
+\addplot[domain=0.85:3.15,samples=2,dashed] {4*x-4};
+\addplot[domain=1.7:3.05,samples=2] {5*x-6};
+\addplot[domain=1.85:2.65,samples=2] {4.5*x-5};
 
-          \addplot[only marks,mark=*] coordinates {(2,4)};
-          \addplot[only marks,mark=*] coordinates {(3,9) (2.5,6.25)};
+\addplot[only marks,mark=*] coordinates {(2,4)};
+\addplot[only marks,mark=*] coordinates {(3,9) (2.5,6.25)};
 
-          \node[anchor=south east] at (axis cs:1.95,4.05) {\(P=(2,4)\)};
-          \node[anchor=west] at (axis cs:3,9) {\(Q\)};
-          \node[anchor=west] at (axis cs:2.5,6.25) {\(Q\)};
-          \node[anchor=west] at (axis cs:2.5,8.9) {secants};
-          \node[anchor=west] at (axis cs:2.0,3.6) {tangent slope \(4\)};
-          \node[anchor=east] at (axis cs:0.8,2.0) {\(s(t)=t^2\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+\node[anchor=south east] at (axis cs:1.95,4.05) {\(P=(2,4)\)};
+\node[anchor=west] at (axis cs:3,9) {\(Q\)};
+\node[anchor=west] at (axis cs:2.5,6.25) {\(Q\)};
+\node[anchor=west] at (axis cs:2.5,8.9) {secants};
+\node[anchor=west] at (axis cs:2.0,3.6) {tangent slope \(4\)};
+\node[anchor=east] at (axis cs:0.8,2.0) {\(s(t)=t^2\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <p>At this stage, the tangent line is not merely a line that touches the curve. Some tangent lines cross the curve. Some lines can touch a graph without being the right tangent. The tangent line is the line obtained from limiting secant lines.</p>
+  <p>At this stage, the tangent line is not merely a line that touches the curve. Some tangent lines cross the curve. Some lines can touch a graph without being the right tangent. The tangent line is the line obtained from limiting secant lines.</p>
 
-    <p>This changes the question from geometry to arithmetic:</p>
+  <p>This changes the question from geometry to arithmetic:</p>
 
-    <md>\boxed{\text{Find the tangent slope} \quad\Longleftrightarrow\quad \text{find a limit of average rates.}}</md>
+  <md>
+\text{Find the tangent slope}
+\quad
+\Longleftrightarrow
+\quad
+\text{find a limit of average rates.}
+</md>
+
+  <exercise xml:id="checkpoint-1-5-two-geometry-problems">
+        <title>Why do tangent slope and area become the same two questions?</title>
+        <statement>
+          <p>
+            The first dashboard question becomes the slope of a tangent line. The second becomes area under a graph. In your own words, why are those geometric problems the same two questions as <q>distance to velocity</q> and <q>velocity to distance</q>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Slope is rise over run, which is change in output over change in input. Area is height times width, which is a rate times a time interval, then added.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
-  <subsection xml:id="subsec-the-area-problem">
+  <subsection xml:id="subsec-sec-1-5-changing-velocity-and-the-need-for-limits-the-area-problem">
     <title>The area problem</title>
 
-    <p>Now reverse the story. Suppose we know velocity and want displacement.</p>
+  <p>Now reverse the story. Suppose we know velocity and want displacement.</p>
 
-    <p>If the velocity is constant on each time interval, rectangles give the exact answer. But suppose the velocity changes continuously, for example</p>
+  <p>If the velocity is constant on each time interval, rectangles give the exact answer. But suppose the velocity changes continuously, for example</p>
 
-    <md>v(t)=t^2</md>
+  <md>v(t)=t^2</md>
 
-    <p>from <m>t=0</m> to <m>t=2</m>.</p>
+  <p>from <m>t=0</m> to <m>t=2</m>.</p>
 
-    <p>The graph is curved. No finite collection of rectangles naturally gives the exact area under it. But rectangles can estimate the area.</p>
+  <p>The graph is curved. No finite collection of rectangles naturally gives the exact area under it. But rectangles can estimate the area.</p>
 
-    <p>Divide the interval <m>[0,2]</m> into <m>n</m> equal parts. Each part has width</p>
+  <p>Divide the interval <m>[0,2]</m> into <m>n</m> equal parts. Each part has width</p>
 
-    <md>\Delta t=\frac{2}{n}.</md>
+  <md>\Delta t=\frac{2}{n}.</md>
 
-    <p>For <m>n=4</m>, the width is <m>\Delta t=\frac{1}{2}</m>.</p>
+  <p>For <m>n=4</m>, the width is <m>\Delta t=\frac12</m>.</p>
 
-    <p>Using left endpoints gives a lower estimate, because <m>t^2</m> is increasing:</p>
+  <p>Using left endpoints gives a lower estimate, because <m>t^2</m> is increasing:</p>
 
-    <md>
-      L_4 = \frac{1}{2}\left(0^2+\left(\frac{1}{2}\right)^2+1^2+\left(\frac{3}{2}\right)^2\right) = \frac{1}{2}\left(0+\frac{1}{4}+1+\frac{9}{4}\right) = \frac{7}{4} = 1.75.
-    </md>
+  <md>L_4
+=
+\frac12\left(0^2+\left(\frac12\right)^2+1^2+\left(\frac32\right)^2\right)
+=
+\frac12\left(0+\frac14+1+\frac94\right)
+=
+\frac74
+=
+1.75.</md>
 
-    <p>Using right endpoints gives an upper estimate:</p>
+  <p>Using right endpoints gives an upper estimate:</p>
 
-    <md>
-      R_4 = \frac{1}{2}\left(\left(\frac{1}{2}\right)^2+1^2+\left(\frac{3}{2}\right)^2+2^2\right) = \frac{1}{2}\left(\frac{1}{4}+1+\frac{9}{4}+4\right) = \frac{15}{4} = 3.75.
-    </md>
+  <md>R_4
+=
+\frac12\left(\left(\frac12\right)^2+1^2+\left(\frac32\right)^2+2^2\right)
+=
+\frac12\left(\frac14+1+\frac94+4\right)
+=
+\frac{15}{4}
+=
+3.75.</md>
 
-    <p>So the true area is somewhere between <m>1.75</m> and <m>3.75</m>. That is a large window, but it is a start.</p>
+  <p>So the true area is somewhere between <m>1.75</m> and <m>3.75</m>. That is a large window, but it is a start.</p>
 
-    <figure xml:id="fig-left-right-area-estimates">
-      <caption>For an increasing velocity <m>v(t)=t^2</m>, left rectangles underestimate the area and right rectangles overestimate it. More rectangles make both estimates better.</caption>
-      <sidebyside widths="47% 47%">
-        <figure xml:id="fig-left-area-estimate">
-          <caption>Left estimate</caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\textwidth,
-                  height=0.72\textwidth,
-                  xmin=0, xmax=2.15,
-                  ymin=0, ymax=4.5,
-                  axis lines=left,
-                  xlabel={\(t\)},
-                  ylabel={\(v(t)\)},
-                  xtick={0,0.5,1,1.5,2},
-                  xticklabels={\(0\),\(\frac{1}{2}\),\(1\),\(\frac{3}{2}\),\(2\)},
-                  ytick={0,1,2,3,4},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \draw[fill=gray!15,draw=gray] (axis cs:0,0) rectangle (axis cs:0.5,0);
-              \draw[fill=gray!15,draw=gray] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
-              \draw[fill=gray!15,draw=gray] (axis cs:1,0) rectangle (axis cs:1.5,1);
-              \draw[fill=gray!15,draw=gray] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
-              \addplot[thick,domain=0:2,samples=100] {x^2};
-              \node at (axis cs:1.05,3.7) {left estimate};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-        <figure xml:id="fig-right-area-estimate">
-          <caption>Right estimate</caption>
-          <image>
-            <latex-image>
-              \begin{tikzpicture}
-              \begin{axis}[
-                  width=\textwidth,
-                  height=0.72\textwidth,
-                  xmin=0, xmax=2.15,
-                  ymin=0, ymax=4.5,
-                  axis lines=left,
-                  xlabel={\(t\)},
-                  ylabel={\(v(t)\)},
-                  xtick={0,0.5,1,1.5,2},
-                  xticklabels={\(0\),\(\frac{1}{2}\),\(1\),\(\frac{3}{2}\),\(2\)},
-                  ytick={0,1,2,3,4},
-                  grid=both,
-                  grid style={line width=.1pt, draw=gray!25},
-              ]
-              \draw[fill=gray!15,draw=gray] (axis cs:0,0) rectangle (axis cs:0.5,0.25);
-              \draw[fill=gray!15,draw=gray] (axis cs:0.5,0) rectangle (axis cs:1,1);
-              \draw[fill=gray!15,draw=gray] (axis cs:1,0) rectangle (axis cs:1.5,2.25);
-              \draw[fill=gray!15,draw=gray] (axis cs:1.5,0) rectangle (axis cs:2,4);
-              \addplot[thick,domain=0:2,samples=100] {x^2};
-              \node at (axis cs:1.05,3.7) {right estimate};
-              \end{axis}
-              \end{tikzpicture}
-            </latex-image>
-          </image>
-        </figure>
-      </sidebyside>
-    </figure>
+  <figure xml:id="fig-left-right-area-estimates">
+    <caption>For an increasing velocity <m>v(t)=t^2</m>, left rectangles underestimate the area and right rectangles overestimate it. More rectangles make both estimates better.</caption>
+            <sidebyside widths="48% 48%" valign="bottom">
+    <image xml:id="fig-left-right-area-estimates-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=2.15,
+    ymin=0, ymax=4.5,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(v(t)\)},
+    xtick={0,0.5,1,1.5,2},
+    xticklabels={\(0\),\(\frac12\),\(1\),\(\frac32\),\(2\)},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15,draw=gray] (axis cs:0,0) rectangle (axis cs:0.5,0);
+\draw[fill=gray!15,draw=gray] (axis cs:0.5,0) rectangle (axis cs:1,0.25);
+\draw[fill=gray!15,draw=gray] (axis cs:1,0) rectangle (axis cs:1.5,1);
+\draw[fill=gray!15,draw=gray] (axis cs:1.5,0) rectangle (axis cs:2,2.25);
+\addplot[thick,domain=0:2,samples=100] {x^2};
+\node at (axis cs:1.05,3.7) {left estimate};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-left-right-area-estimates-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.72\textwidth,
+    xmin=0, xmax=2.15,
+    ymin=0, ymax=4.5,
+    axis lines=left,
+    xlabel={\(t\)},
+    ylabel={\(v(t)\)},
+    xtick={0,0.5,1,1.5,2},
+    xticklabels={\(0\),\(\frac12\),\(1\),\(\frac32\),\(2\)},
+    ytick={0,1,2,3,4},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\draw[fill=gray!15,draw=gray] (axis cs:0,0) rectangle (axis cs:0.5,0.25);
+\draw[fill=gray!15,draw=gray] (axis cs:0.5,0) rectangle (axis cs:1,1);
+\draw[fill=gray!15,draw=gray] (axis cs:1,0) rectangle (axis cs:1.5,2.25);
+\draw[fill=gray!15,draw=gray] (axis cs:1.5,0) rectangle (axis cs:2,4);
+\addplot[thick,domain=0:2,samples=100] {x^2};
+\node at (axis cs:1.05,3.7) {right estimate};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
 
-    <p>Using more rectangles improves the estimates.</p>
+  <p>Using more rectangles improves the estimates.</p>
 
-    <table xml:id="tab-riemann-sum-estimates">
-      <title>Estimates of area under <m>v(t)=t^2</m></title>
-      <tabular>
-        <row header="yes" bottom="medium">
-          <cell><m>n</m></cell>
-          <cell><m>L_n</m></cell>
-          <cell><m>M_n</m></cell>
-          <cell><m>R_n</m></cell>
-        </row>
-        <row>
-          <cell><m>4</m></cell>
-          <cell><m>1.7500</m></cell>
-          <cell><m>2.6250</m></cell>
-          <cell><m>3.7500</m></cell>
-        </row>
-        <row>
-          <cell><m>8</m></cell>
-          <cell><m>2.1875</m></cell>
-          <cell><m>2.65625</m></cell>
-          <cell><m>3.1875</m></cell>
-        </row>
-        <row>
-          <cell><m>16</m></cell>
-          <cell><m>2.421875</m></cell>
-          <cell><m>2.6640625</m></cell>
-          <cell><m>2.921875</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>
+    <mrow>\begin{array}{c|ccc}
+n \amp L_n \amp M_n \amp R_n</mrow>
+    <mrow>\hline
+4  \amp 1.7500 \amp 2.6250 \amp 3.7500</mrow>
+    <mrow>8  \amp 2.1875 \amp 2.65625 \amp 3.1875</mrow>
+    <mrow>16 \amp 2.421875 \amp 2.6640625 \amp 2.921875
+\end{array}</mrow>
+  </md>
 
-    <p>Here <m>M_n</m> is the midpoint estimate, which uses the height of the curve at the middle of each subinterval.</p>
+  <p>Here <m>M_n</m> is the midpoint estimate, which uses the height of the curve at the middle of each subinterval.</p>
 
-    <p>The left and right estimates squeeze closer together. The midpoint estimate settles even faster. The number they approach is the area under the curve. Later we will call it</p>
+  <p>The left and right estimates squeeze closer together. The midpoint estimate settles even faster. The number they approach is the area under the curve. Later we will call it</p>
 
-    <md>\int_0^2 t^2\,dt.</md>
+  <md>\int_0^2 t^2\,dt.</md>
 
-    <p>The exact value will turn out to be <m>\frac{8}{3}</m>.</p>
+  <p>The exact value will turn out to be</p>
 
-    <p>For now, the important point is not the answer. It is the method:</p>
+  <p><m>\frac83.</m></p>
 
-    <md>\boxed{\text{area under a changing graph} = \text{the value approached by better and better rectangle sums.}}</md>
+  <p>For now, the important point is not the answer. It is the method:</p>
+
+  <md>
+\text{area under a changing graph}
+=
+\text{the value approached by better and better rectangle sums.}
+</md>
   </subsection>
 
-  <subsection xml:id="subsec-why-finite-arithmetic-not-enough">
+  <subsection xml:id="subsec-sec-1-5-changing-velocity-and-the-need-for-limits-why-finite-arithmetic-is-no-longer-enough">
     <title>Why finite arithmetic is no longer enough</title>
 
-    <p>Finite differences and finite sums worked perfectly for step motion.</p>
+  <p>Finite differences and finite sums worked perfectly for step motion.</p>
 
-    <p>If velocity is constant on each of finitely many intervals, then displacement is exactly</p>
+  <p>If velocity is constant on each of finitely many intervals, then displacement is exactly</p>
 
-    <md>\sum_{j=1}^{n} v_j\Delta t_j.</md>
+  <md>\sum_{j=1}^{n} v_j\Delta t_j.</md>
 
-    <p>But if velocity changes at every instant, no finite list of rectangles can fully capture the graph. We need an idea that lets infinitely many improving finite estimates settle toward one number.</p>
+  <p>But if velocity changes at every instant, no finite list of rectangles can fully capture the graph. We need an idea that lets infinitely many improving finite estimates settle toward one number.</p>
 
-    <p>That idea is a limit.</p>
+  <p>That idea is a limit.</p>
 
-    <p>Limits will let us define:</p>
+  <p>Limits will let us define:</p>
 
-    <md>\text{instantaneous velocity} = \lim_{\Delta t\to0}\frac{\Delta s}{\Delta t},</md>
+  <md>\text{instantaneous velocity}
+=
+\lim_{\Delta t\to0}
+\frac{\Delta s}{\Delta t},</md>
 
-    <p>and</p>
+  <p>and</p>
 
-    <md>\text{accumulated displacement} = \lim_{\text{widths}\to0}\sum (\text{velocity})(\text{time width}).</md>
+  <md>\text{accumulated displacement}
+=
+\lim_{\text{widths}\to0}
+\sum (\text{velocity})(\text{time width}).</md>
 
-    <p>These two limiting processes serve as the entry points to calculus. Before constructing them in detail, it’s helpful to take a step back and view the entire picture.</p>
+  <p>These two limiting processes serve as the entry points to calculus. Before constructing them in detail, it’s helpful to take a step back and view the entire picture.</p>
+
+  <exercise xml:id="checkpoint-1-5-why-limits">
+        <title>Why are finite rectangles no longer enough?</title>
+        <statement>
+          <p>
+            For a velocity that changes at every instant, no finite list of rectangles can be exact. In your own words, what does a limit add that a better-but-still-finite partition cannot, and why is that extra idea necessary rather than optional?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each finite partition is an estimate. A limit is the claim that those estimates settle toward one number as the pieces become arbitrarily fine.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

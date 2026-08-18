@@ -4,520 +4,848 @@
   <title>Chapter review and discovery problems</title>
 
   <p>This chapter began with a moving endpoint:</p>
+
   <md>A(x)=\int_a^x f(t)\,dt.</md>
 
-  <p>That small change turned an integral from a number into a function. Then the Fundamental Theorem revealed the main hinge of calculus:</p>
+  <p>That small change turned an integral from a number into a function.  Then the
+Fundamental Theorem revealed the main hinge of calculus:</p>
+
   <md>\text{accumulation and instantaneous change undo each other.}</md>
 
   <p>Part I says that differentiating an accumulation gives back the integrand:</p>
+
   <md>\frac{d}{dx}\int_a^x f(t)\,dt=f(x).</md>
 
   <p>Part II says that integrating a derivative gives net change:</p>
+
   <md>\int_a^b F'(x)\,dx=F(b)-F(a).</md>
 
-  <p>These are not two unrelated formulas. They are the same story read in opposite directions.</p>
+  <p>These are not two unrelated formulas.  They are the same story read in opposite
+directions.</p>
 
   <subsection xml:id="subsec-chapter9-map">
     <title>Chapter map</title>
 
-    <p>The main ideas of the chapter can be organized around one question:</p>
-    <md>\text{Which quantity is changing, and which quantity is being accumulated?}</md>
+  <p>The main ideas of the chapter can be organized around one question:</p>
 
-    <figure xml:id="fig-chapter9-ftc-map">
-      <caption>The Fundamental Theorem connects rate, accumulation, antiderivative, and net change.</caption>
-      <image width="90%">
-        <latex-image>
-          \begin{tikzpicture}[every node/.style={font=\small}, &gt;=stealth]
-            \node[draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1cm] (f)
-              at (0,3) {rate or height\\ \(f(x)\)};
+  <md>\text{Which quantity is changing, and which quantity is being accumulated?}</md>
 
-            \node[draw, rounded corners, align=center, minimum width=4.3cm, minimum height=1cm] (A)
-              at (7.5,3) {accumulation function\\ \(A(x)=\displaystyle\int_a^x f(t)\,dt\)};
+  <figure xml:id="fig-chapter9-ftc-map">
+    <caption>The Fundamental Theorem connects rate, accumulation, antiderivative, and net change.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[every node/.style={font=\small}, &gt;=stealth]
+  \node[draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1cm] (f)
+    at (0,3) {rate or height\\ \(f(x)\)};
 
-            \draw[-&gt;, thick] (f) -- node[above] {accumulate} (A);
-            \draw[-&gt;, thick] (A) to[bend left=15] node[below] {differentiate} (f);
+  \node[draw, rounded corners, align=center, minimum width=4.3cm, minimum height=1cm] (A)
+    at (7.5,3) {accumulation function\\ \(A(x)=\displaystyle\int_a^x f(t)\,dt\)};
 
-            \node[draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1cm] (F)
-              at (0,0) {antiderivative\\ \(F'(x)=f(x)\)};
+  \draw[-&gt;, thick] (f) -- node[above] {accumulate} (A);
+  \draw[-&gt;, thick] (A) to[bend left=15] node[below] {differentiate} (f);
 
-            \node[draw, rounded corners, align=center, minimum width=4.3cm, minimum height=1cm] (net)
-              at (7.5,0) {net change\\ \(\displaystyle\int_a^b f(x)\,dx=F(b)-F(a)\)};
+  \node[draw, rounded corners, align=center, minimum width=3.4cm, minimum height=1cm] (F)
+    at (0,0) {antiderivative\\ \(F'(x)=f(x)\)};
 
-            \draw[-&gt;, thick] (F) -- node[above] {endpoint subtraction} (net);
-            \draw[-&gt;, thick] (net) to[bend left=15] node[below] {accumulated rate} (F);
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  \node[draw, rounded corners, align=center, minimum width=4.3cm, minimum height=1cm] (net)
+    at (7.5,0) {net change\\ \(\displaystyle\int_a^b f(x)\,dx=F(b)-F(a)\)};
 
-    <p>Here is the working summary.</p>
+  \draw[-&gt;, thick] (F) -- node[above] {endpoint subtraction} (net);
+  \draw[-&gt;, thick] (net) to[bend left=15] node[below] {accumulated rate} (F);
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
 
-    <table>
-      <title>Working summary of Chapter 9</title>
-      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left"/>
-        <col halign="left"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><m>\textbf{idea}</m></cell>
-          <cell><m>\textbf{formula}</m></cell>
-          <cell><m>\textbf{meaning}</m></cell>
-        </row>
-        <row>
-          <cell>FTC Part I</cell>
-          <cell><m>\displaystyle \frac{d}{dx}\int_a^x f(t)\,dt=f(x)</m></cell>
-          <cell>the slope of accumulated area is the current height</cell>
-        </row>
-        <row>
-          <cell>FTC Part II</cell>
-          <cell><m>\displaystyle \int_a^b f(x)\,dx=F(b)-F(a)</m>, where <m>F'=f</m></cell>
-          <cell>a definite integral can be evaluated by net change</cell>
-        </row>
-        <row>
-          <cell>net change theorem</cell>
-          <cell><m>\displaystyle \int_a^b F'(x)\,dx=F(b)-F(a)</m></cell>
-          <cell>the integral of a rate gives final minus initial</cell>
-        </row>
-        <row>
-          <cell>indefinite integral</cell>
-          <cell><m>\displaystyle \int f(x)\,dx=F(x)+C</m></cell>
-          <cell>the family of all antiderivatives</cell>
-        </row>
-        <row>
-          <cell>moving endpoint</cell>
-          <cell><m>\displaystyle \frac{d}{dx}\int_a^{g(x)} f(t)\,dt=f(g(x))g'(x)</m></cell>
-          <cell>FTC Part I plus the chain rule</cell>
-        </row>
-        <row>
-          <cell>two moving endpoints</cell>
-          <cell><m>\displaystyle \frac{d}{dx}\int_{u(x)}^{v(x)} f(t)\,dt = f(v(x))v'(x)-f(u(x))u'(x)</m></cell>
-          <cell>upper endpoint adds; lower endpoint subtracts</cell>
-        </row>
-        <row>
-          <cell>substitution</cell>
-          <cell><m>\displaystyle \int_a^b f(x)\,dx = \int_\alpha^\beta f(g(u))g'(u)\,du</m></cell>
-          <cell>change variables using <m>x=g(u)</m>, with <m>g(\alpha)=a</m>, <m>g(\beta)=b</m></cell>
-        </row>
-        <row>
-          <cell>orientation</cell>
-          <cell><m>\displaystyle \int_b^a f(x)\,dx=-\int_a^b f(x)\,dx</m></cell>
-          <cell>reversing direction changes the sign</cell>
-        </row>
-      </tabular>
-    </table>
+  <p>Here is the working summary.</p>
 
-    <p>The most common mistakes come from forgetting one of these meanings. A definite integral is signed accumulation. An indefinite integral is a family of functions. A substitution changes both the integrand and the limits. A formula for an antiderivative must be valid on the interval where it is used.</p>
+  <table xml:id="tab-sec-9-7-chapter-review-and-discovery-problems-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>idea</strong></cell>
+        <cell><strong>formula</strong></cell>
+        <cell><strong>meaning</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>FTC Part I</cell>
+        <cell><m>\displaystyle \frac{d}{dx}\int_a^x f(t)\,dt=f(x)</m></cell>
+        <cell>the slope of accumulated area is the current height</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+FTC Part II</cell>
+        <cell><m>\displaystyle \int_a^b f(x)\,dx=F(b)-F(a)</m>, where <m>F'=f</m></cell>
+        <cell>a definite integral can be evaluated by net change</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+net change theorem</cell>
+        <cell><m>\displaystyle \int_a^b F'(x)\,dx=F(b)-F(a)</m></cell>
+        <cell>the integral of a rate gives final minus initial</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+indefinite integral</cell>
+        <cell><m>\displaystyle \int f(x)\,dx=F(x)+C</m></cell>
+        <cell>the family of all antiderivatives</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+moving endpoint</cell>
+        <cell><m>\displaystyle \frac{d}{dx}\int_a^{g(x)} f(t)\,dt=f(g(x))g'(x)</m></cell>
+        <cell>FTC Part I plus the chain rule</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+two moving endpoints</cell>
+        <cell><m>\displaystyle \frac{d}{dx}\int_{u(x)}^{v(x)} f(t)\,dt</m> \newline
+<m>=f(v(x))v'(x)-f(u(x))u'(x)</m></cell>
+        <cell>upper endpoint adds; lower endpoint subtracts</cell>
+      </row>
+      <row bottom="minor">
+        <cell>[4mm] \hline
+substitution</cell>
+        <cell><m>\displaystyle \int_a^b f(x)\,dx
+=\int_\alpha^\beta f(g(u))g'(u)\,du</m></cell>
+        <cell>change variables using <m>x=g(u)</m>, with <m>g(\alpha)=a</m>, <m>g(\beta)=b</m></cell>
+      </row>
+      <row>
+        <cell>[4mm] \hline
+orientation</cell>
+        <cell><m>\displaystyle \int_b^a f(x)\,dx=-\int_a^b f(x)\,dx</m></cell>
+        <cell>reversing direction changes the sign</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The most common mistakes come from forgetting one of these meanings.  A definite
+integral is signed accumulation.  An indefinite integral is a family of functions.  A
+substitution changes both the integrand and the limits.  A formula for an
+antiderivative must be valid on the interval where it is used.</p>
+
+  <exercise xml:id="checkpoint-9-7-two-directions">
+        <title>Why are the two parts of the Fundamental Theorem the same story?</title>
+        <statement>
+          <p>
+            Part I differentiates an accumulation and recovers the integrand. Part II integrates a derivative and recovers net change. In your own words, why are these not two unrelated formulas, but the same hinge of calculus read in opposite directions?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            One direction starts with a rate and builds a running total. The other starts with a running total and reads its rate. Each undoes the other.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-skills-ftc-substitution">
     <title>Skills: FTC and substitution</title>
 
-    <p>The following problems are meant to build fluency. In each problem, first identify which idea is being used: FTC Part I, FTC Part II, an indefinite integral, substitution, or orientation.</p>
+  <p>The following problems are meant to build fluency.  In each problem, first identify
+which idea is being used: FTC Part I, FTC Part II, an indefinite integral, substitution,
+or orientation.</p>
 
-    <paragraphs>
-      <title>A. Differentiate accumulation functions</title>
-      <p>Assume all integrands are continuous on the relevant intervals. Find the derivative.</p>
-      <ol>
-        <li><p><m>G(x)=\displaystyle\int_1^x (t^2+1)\,dt</m>.</p></li>
-        <li><p><m>H(x)=\displaystyle\int_0^{x^2} e^{-t^2}\,dt</m>.</p></li>
-        <li><p><m>K(x)=\displaystyle\int_x^3 \sqrt{1+t^4}\,dt</m>.</p></li>
-        <li><p><m>P(x)=\displaystyle\int_{\cos x}^{x} (1+t^3)\,dt</m>.</p></li>
-        <li><p><m>Q(x)=\displaystyle\int_{x^2}^{\sin x} \frac{1}{1+t^2}\,dt</m>.</p></li>
-        <li><p><m>S(x)=\displaystyle\int_2^{\ln x} \sqrt{1+u^2}\,du, \qquad x\gt 0</m>.</p></li>
-        <li><p><m>M(x)=\displaystyle\int_0^x |t|\,dt</m>. Where is <m>M</m> differentiable, and what is <m>M'(x)</m>?</p></li>
-        <li><p><m>N(x)=\displaystyle\int_0^{\sqrt{x}} \frac{1}{1+t^3}\,dt, \qquad x\gt 0</m>.</p></li>
-        <li><p><m>R(x)=\displaystyle\int_{1/x}^{x} \cos(t^2)\,dt, \qquad x\neq 0</m>.</p></li>
-        <li><p><m>Y(x)=\displaystyle\int_{\tan x}^{e^x} \sqrt{2+t^2}\,dt</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <paragraphs>
+    <title>A. Differentiate accumulation functions</title>
 
-    <paragraphs>
-      <title>B. Evaluate definite integrals</title>
-      <p>Use antiderivatives and the Fundamental Theorem, Part II.</p>
-      <ol>
-        <li><p><m>\displaystyle\int_0^2 (3x^2-4x+1)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_1^e \left(\frac2x+3x\right)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^{\pi/2}(\sin x+2\cos x)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_{-2}^2 (x^3+4x)\,dx</m>. Explain why the answer could have been predicted from symmetry.</p></li>
-        <li><p><m>\displaystyle\int_{-1}^1 (x^2-x)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^4 \sqrt{x}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_1^8 x^{-2/3}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^1 \frac{1}{1+x^2}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^{\pi/3}\sec^2 x\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^{\ln 2} e^x\,dx</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <p>Assume all integrands are continuous on the relevant intervals.  Find the derivative.</p>
 
-    <paragraphs>
-      <title>C. Indefinite integrals and initial values</title>
-      <p>Find the family of antiderivatives. Then solve the initial value problems.</p>
-      <ol>
-        <li><p><m>\displaystyle\int (5x^4-6x+7)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int \left(\frac3x-4\sin x\right)\,dx</m>. State the interval restriction.</p></li>
-        <li><p><m>\displaystyle\int \left(\sec^2 x+\frac{1}{1+x^2}\right)\,dx</m>.</p></li>
-        <li><p>Solve <m>y'=4x^3-2x, \qquad y(1)=0</m>.</p></li>
-        <li><p>Solve <m>s'(t)=3t^2-12t+9, \qquad s(0)=5</m>. Then find <m>s(4)-s(0)</m>.</p></li>
-        <li><p>A population changes at the rate <m>P'(t)=20e^{0.1t}</m> people per year. If <m>P(0)=500</m>, find <m>P(t)</m>.</p></li>
-        <li><p>A temperature changes at the rate <m>T'(t)=-6e^{-0.2t}</m> degrees Celsius per minute. If <m>T(0)=80</m>, find <m>T(t)</m>.</p></li>
-      </ol>
-    </paragraphs>
+    <ol>
+      <li>
+          <md>G(x)=\int_1^x (t^2+1)\,dt.</md>
+      </li>
+      <li>
+          <md>H(x)=\int_0^{x^2} e^{-t^2}\,dt.</md>
+      </li>
+      <li>
+          <md>K(x)=\int_x^3 \sqrt{1+t^4}\,dt.</md>
+      </li>
+      <li>
+          <md>P(x)=\int_{\cos x}^{x} (1+t^3)\,dt.</md>
+      </li>
+      <li>
+          <md>Q(x)=\int_{x^2}^{\sin x} \frac{1}{1+t^2}\,dt.</md>
+      </li>
+      <li>
+          <md>S(x)=\int_2^{\ln x} \sqrt{1+u^2}\,du,
+\qquad x&gt;0.</md>
+      </li>
+      <li>
+          <md>M(x)=\int_0^x |t|\,dt.</md>
+        <p>Where is <m>M</m> differentiable, and what is <m>M'(x)</m>?</p>
+      </li>
+      <li>
+          <md>N(x)=\int_0^{\sqrt{x}} \frac{1}{1+t^3}\,dt,
+\qquad x&gt;0.</md>
+      </li>
+      <li>
+          <md>R(x)=\int_{1/x}^{x} \cos(t^2)\,dt,
+\qquad x\neq0.</md>
+      </li>
+      <li>
+          <md>Y(x)=\int_{\tan x}^{e^x} \sqrt{2+t^2}\,dt.</md>
+      </li>
+    </ol>
+  </paragraphs>
 
-    <paragraphs>
-      <title>D. Substitution</title>
-      <p>Use substitution. For definite integrals, change the limits or clearly return to the original variable before using the original limits.</p>
-      <ol>
-        <li><p><m>\displaystyle\int 2x\cos(x^2)\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^2 x\sqrt{1+x^2}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^1 6x(1+x^2)^2\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_1^e \frac{\ln x}{x}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^{\pi/2} \sin x\cos^3 x\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_{-1}^{1}2xe^{x^2}\,dx</m>. Explain how the substitution handles the orientation.</p></li>
-        <li><p><m>\displaystyle\int_0^1 \frac{2x}{1+x^2}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^{\pi/4}\sec^2 x(1+\tan x)^5\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_0^4 \frac{1}{1+\sqrt{x}}\,dx</m>. Use the substitution <m>u=\sqrt{x}</m>.</p></li>
-        <li><p><m>\displaystyle\int_{0}^{1} \frac{x}{\sqrt{1-x^2}}\,dx</m>.</p></li>
-        <li><p><m>\displaystyle\int_{1}^{4} \frac{\sqrt{x}}{1+x^{3/2}}\,dx</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <paragraphs>
+    <title>B. Evaluate definite integrals</title>
 
-    <paragraphs>
-      <title>E. Mixed review</title>
-      <p>Choose the method.</p>
-      <ol>
-        <li><p>Find <m>\displaystyle\frac{d}{dx}\left[x^2+\int_0^x e^{-t^2}\,dt\right]</m>.</p></li>
-        <li><p>Find <m>\displaystyle\frac{d}{dx}\left[\int_0^{x^3} \sqrt{1+t^2}\,dt - \int_0^{x} \sqrt{1+t^2}\,dt\right]</m>.</p></li>
-        <li><p>Evaluate <m>\displaystyle\int_0^1 \left(3x^2+2x+\frac{1}{1+x^2}\right)\,dx</m>.</p></li>
-        <li><p>Let <m>F(x)=\displaystyle\int_1^x \frac{1}{t}\,dt, \qquad x\gt 0</m>. Find <m>F'(x)</m>. What familiar function has the same derivative and the same value at <m>x=1</m>?</p></li>
-        <li><p>Let <m>A(x)=\displaystyle\int_0^x (2+t)\,dt</m>. Find <m>A(x)</m> by evaluating the integral. Then differentiate your formula and check FTC Part I.</p></li>
-        <li><p>Let <m>B(x)=\displaystyle\int_x^{x^2} t^2\,dt</m>. Find <m>B'(x)</m> using moving endpoints. Then evaluate <m>B(x)</m> explicitly and check your derivative.</p></li>
-      </ol>
-    </paragraphs>
+  <p>Use antiderivatives and the Fundamental Theorem, Part II.</p>
+
+    <ol>
+      <li>
+          <md>\int_0^2 (3x^2-4x+1)\,dx.</md>
+      </li>
+      <li>
+          <md>\int_1^e \left(\frac2x+3x\right)\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^{\pi/2}(\sin x+2\cos x)\,dx.</md>
+      </li>
+      <li>
+          <md>\int_{-2}^2 (x^3+4x)\,dx.</md>
+        <p>Explain why the answer could have been predicted from symmetry.</p>
+      </li>
+      <li>
+          <md>\int_{-1}^1 (x^2-x)\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^4 \sqrt{x}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_1^8 x^{-2/3}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^1 \frac{1}{1+x^2}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^{\pi/3}\sec^2 x\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^{\ln 2} e^x\,dx.</md>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>C. Indefinite integrals and initial values</title>
+
+  <p>Find the family of antiderivatives.  Then solve the initial value problems.</p>
+
+    <ol>
+      <li>
+          <md>\int (5x^4-6x+7)\,dx.</md>
+      </li>
+      <li>
+          <md>\int \left(\frac3x-4\sin x\right)\,dx.</md>
+        <p>State the interval restriction.</p>
+      </li>
+      <li>
+          <md>\int \left(\sec^2 x+\frac{1}{1+x^2}\right)\,dx.</md>
+      </li>
+      <li>
+        <p>Solve</p>
+          <md>y'=4x^3-2x,
+\qquad
+y(1)=0.</md>
+      </li>
+      <li>
+        <p>Solve</p>
+          <md>s'(t)=3t^2-12t+9,
+\qquad
+s(0)=5.</md>
+        <p>Then find</p>
+          <md>s(4)-s(0).</md>
+      </li>
+      <li>
+        <p>A population changes at the rate</p>
+          <md>P'(t)=20e^{0.1t}</md>
+        <p>people per year.  If</p>
+          <md>P(0)=500,</md>
+        <p>find <m>P(t)</m>.</p>
+      </li>
+      <li>
+        <p>A temperature changes at the rate</p>
+          <md>T'(t)=-6e^{-0.2t}</md>
+        <p>degrees Celsius per minute.  If</p>
+          <md>T(0)=80,</md>
+        <p>find <m>T(t)</m>.</p>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>D. Substitution</title>
+
+  <p>Use substitution.  For definite integrals, change the limits or clearly return to the
+original variable before using the original limits.</p>
+
+    <ol>
+      <li>
+          <md>\int 2x\cos(x^2)\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^2 x\sqrt{1+x^2}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^1 6x(1+x^2)^2\,dx.</md>
+      </li>
+      <li>
+          <md>\int_1^e \frac{\ln x}{x}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^{\pi/2} \sin x\cos^3 x\,dx.</md>
+      </li>
+      <li>
+          <md>\int_{-1}^{1}2xe^{x^2}\,dx.</md>
+        <p>Explain how the substitution handles the orientation.</p>
+      </li>
+      <li>
+          <md>\int_0^1 \frac{2x}{1+x^2}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^{\pi/4}\sec^2 x(1+\tan x)^5\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^4 \frac{1}{1+\sqrt{x}}\,dx.</md>
+        <p>Use the substitution <m>u=\sqrt{x}</m>.</p>
+      </li>
+      <li>
+          <md>\int_{0}^{1} \frac{x}{\sqrt{1-x^2}}\,dx.</md>
+      </li>
+      <li>
+          <md>\int_{1}^{4} \frac{\sqrt{x}}{1+x^{3/2}}\,dx.</md>
+      </li>
+    </ol>
+  </paragraphs>
+
+  <paragraphs>
+    <title>E. Mixed review</title>
+
+  <p>Choose the method.</p>
+
+    <ol>
+      <li>
+        <p>Find</p>
+          <md>\frac{d}{dx}\left[
+x^2+\int_0^x e^{-t^2}\,dt
+\right].</md>
+      </li>
+      <li>
+        <p>Find</p>
+          <md>\frac{d}{dx}\left[
+\int_0^{x^3} \sqrt{1+t^2}\,dt
+-
+\int_0^{x} \sqrt{1+t^2}\,dt
+\right].</md>
+      </li>
+      <li>
+        <p>Evaluate</p>
+          <md>\int_0^1 \left(3x^2+2x+\frac{1}{1+x^2}\right)\,dx.</md>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>F(x)=\int_1^x \frac{1}{t}\,dt,
+\qquad x&gt;0.</md>
+        <p>Find <m>F'(x)</m>.  What familiar function has the same derivative and the same value at
+<m>x=1</m>?</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>A(x)=\int_0^x (2+t)\,dt.</md>
+        <p>Find <m>A(x)</m> by evaluating the integral.  Then differentiate your formula and check
+FTC Part I.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>B(x)=\int_x^{x^2} t^2\,dt.</md>
+        <p>Find <m>B'(x)</m> using moving endpoints.  Then evaluate <m>B(x)</m> explicitly and check
+your derivative.</p>
+      </li>
+    </ol>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-chapter9-concept-checks">
     <title>Concept checks</title>
 
-    <p>Answer in complete sentences where appropriate.</p>
+  <p>Answer in complete sentences where appropriate.</p>
 
     <ol>
-      <li><p>What is the difference between <m>\displaystyle\int_a^b f(x)\,dx</m> and <m>\displaystyle\int f(x)\,dx</m>?</p></li>
-      <li><p>In <m>A(x)=\displaystyle\int_a^x f(t)\,dt</m>, why do we usually use <m>t</m> instead of <m>x</m> inside the integral?</p></li>
-      <li><p>State the Fundamental Theorem of Calculus, Part I, in words.</p></li>
-      <li><p>State the Fundamental Theorem of Calculus, Part II, in words.</p></li>
-      <li><p>Why does FTC Part I require continuity at the point where we take the derivative?</p></li>
-      <li><p>If <m>F'(x)=f(x)</m>, why do all antiderivatives of <m>f</m> on one interval have the form <m>F(x)+C</m>?</p></li>
-      <li><p>Why does the constant <m>C</m> disappear when we use an antiderivative to evaluate a definite integral?</p></li>
-      <li><p>Explain why <m>\displaystyle\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx</m>.</p></li>
-      <li><p>Give an example where <m>\displaystyle\int_a^b f(x)\,dx=0</m> but the ordinary area between the graph and the <m>x</m>-axis is not <m>0</m>.</p></li>
-      <li><p>If <m>v(t)</m> is velocity, what is the difference between <m>\displaystyle\int_a^b v(t)\,dt</m> and <m>\displaystyle\int_a^b |v(t)|\,dt</m>?</p></li>
-      <li><p>Why must the limits change when we use a substitution in a definite integral?</p></li>
-      <li><p>Suppose <m>u=x^2</m>. If <m>x</m> goes from <m>1</m> to <m>3</m>, what are the corresponding <m>u</m>-limits?</p></li>
-      <li><p>Suppose <m>u=1-x</m>. If <m>x</m> goes from <m>0</m> to <m>1</m>, what are the corresponding <m>u</m>-limits? What does this have to do with orientation?</p></li>
-      <li><p>Why is it dangerous to use <m>-\frac1x</m> as an antiderivative for <m>1/x^2</m> across an interval containing <m>0</m>?</p></li>
-      <li><p>Explain the sentence: <m>\displaystyle\int_a^b dF=F(b)-F(a)</m>.</p></li>
+      <li>
+        <p>What is the difference between</p>
+          <md>\int_a^b f(x)\,dx</md>
+        <p>and</p>
+          <md>\int f(x)\,dx?</md>
+      </li>
+      <li>
+        <p>In</p>
+          <md>A(x)=\int_a^x f(t)\,dt,</md>
+        <p>why do we usually use <m>t</m> instead of <m>x</m> inside the integral?</p>
+      </li>
+      <li>
+        <p>State the Fundamental Theorem of Calculus, Part I, in words.</p>
+      </li>
+      <li>
+        <p>State the Fundamental Theorem of Calculus, Part II, in words.</p>
+      </li>
+      <li>
+        <p>Why does FTC Part I require continuity at the point where we take the derivative?</p>
+      </li>
+      <li>
+        <p>If</p>
+          <md>F'(x)=f(x),</md>
+        <p>why do all antiderivatives of <m>f</m> on one interval have the form</p>
+          <md>F(x)+C?</md>
+      </li>
+      <li>
+        <p>Why does the constant <m>C</m> disappear when we use an antiderivative to evaluate
+a definite integral?</p>
+      </li>
+      <li>
+        <p>Explain why</p>
+          <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+      </li>
+      <li>
+        <p>Give an example where</p>
+          <md>\int_a^b f(x)\,dx=0</md>
+        <p>but the ordinary area between the graph and the <m>x</m>-axis is not <m>0</m>.</p>
+      </li>
+      <li>
+        <p>If <m>v(t)</m> is velocity, what is the difference between</p>
+          <md>\int_a^b v(t)\,dt</md>
+        <p>and</p>
+          <md>\int_a^b |v(t)|\,dt?</md>
+      </li>
+      <li>
+        <p>Why must the limits change when we use a substitution in a definite integral?</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>u=x^2.</md>
+        <p>If <m>x</m> goes from <m>1</m> to <m>3</m>, what are the corresponding <m>u</m>-limits?</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>u=1-x.</md>
+        <p>If <m>x</m> goes from <m>0</m> to <m>1</m>, what are the corresponding <m>u</m>-limits?  What does
+this have to do with orientation?</p>
+      </li>
+      <li>
+        <p>Why is it dangerous to use</p>
+          <md>-\frac1x</md>
+        <p>as an antiderivative for <m>1/x^2</m> across an interval containing <m>0</m>?</p>
+      </li>
+      <li>
+        <p>Explain the sentence:</p>
+          <md>\int_a^b dF=F(b)-F(a).</md>
+      </li>
     </ol>
   </subsection>
 
   <subsection xml:id="subsec-chapter9-warning-checks">
     <title>Warning checks</title>
 
-    <p>Each item contains a tempting step. Decide whether the step is valid. If it is invalid, explain exactly what went wrong.</p>
+  <p>Each item contains a tempting step.  Decide whether the step is valid.  If it is invalid,
+explain exactly what went wrong.</p>
 
     <ol>
-      <li><p><m>\displaystyle\int_{-1}^{1}\frac1{x^2}\,dx = -\frac1x\Big|_{-1}^{1} = -2</m>.</p></li>
-      <li><p><m>\displaystyle\int_1^2 2x\cos(x^2)\,dx = \int_1^2 \cos u\,du, \qquad u=x^2</m>.</p></li>
-      <li><p><m>\displaystyle\int x\,dx = x\int 1\,dx</m>.</p></li>
-      <li><p><m>\displaystyle\int_0^1 x^2\,dx = \int_1^0 (1-u)^2\,du, \qquad x=1-u</m>.</p></li>
-      <li><p><m>\displaystyle\frac{d}{dx}\int_0^x f(t)\,dt=f(x)</m> for every integrable function <m>f</m>.</p></li>
-      <li><p><m>\displaystyle\int_{-2}^{2} |x|\,dx=0</m> because the graph is symmetric.</p></li>
-      <li><p><m>\displaystyle\int \frac1x\,dx=\ln x+C</m> on the interval <m>(-3,-1)</m>.</p></li>
-      <li><p><m>\displaystyle\frac{d}{dx}\int_{\sin x}^{x^2} f(t)\,dt = f(x^2)-f(\sin x)</m>.</p></li>
-      <li><p><m>\displaystyle\int_0^4 \sqrt{x}\,dx = \int_0^2 u(2u)\,du, \qquad x=u^2</m>.</p></li>
-      <li><p><m>\displaystyle\int f(x)g(x)\,dx = \left(\int f(x)\,dx\right)\left(\int g(x)\,dx\right)</m>.</p></li>
+      <li>
+          <md>\int_{-1}^{1}\frac1{x^2}\,dx
+=
+-\frac1x\Big|_{-1}^{1}
+=
+-2.</md>
+      </li>
+      <li>
+          <md>\int_1^2 2x\cos(x^2)\,dx
+=
+\int_1^2 \cos u\,du,
+\qquad u=x^2.</md>
+      </li>
+      <li>
+          <md>\int x\,dx
+=
+x\int 1\,dx.</md>
+      </li>
+      <li>
+          <md>\int_0^1 x^2\,dx
+=
+\int_1^0 (1-u)^2\,du,
+\qquad x=1-u.</md>
+      </li>
+      <li>
+          <md>\frac{d}{dx}\int_0^x f(t)\,dt=f(x)</md>
+        <p>for every integrable function <m>f</m>.</p>
+      </li>
+      <li>
+          <md>\int_{-2}^{2} |x|\,dx=0</md>
+        <p>because the graph is symmetric.</p>
+      </li>
+      <li>
+          <md>\int \frac1x\,dx=\ln x+C</md>
+        <p>on the interval <m>(-3,-1)</m>.</p>
+      </li>
+      <li>
+          <md>\frac{d}{dx}\int_{\sin x}^{x^2} f(t)\,dt
+=
+f(x^2)-f(\sin x).</md>
+      </li>
+      <li>
+          <md>\int_0^4 \sqrt{x}\,dx
+=
+\int_0^2 u(2u)\,du,
+\qquad x=u^2.</md>
+      </li>
+      <li>
+          <md>\int f(x)g(x)\,dx
+=
+\left(\int f(x)\,dx\right)\left(\int g(x)\,dx\right).</md>
+      </li>
     </ol>
+
+  <exercise xml:id="checkpoint-9-7-three-meanings">
+        <title>What three different things can an integral sign mean?</title>
+        <statement>
+          <p>
+            This chapter uses <m>\int_a^b f(x)\,dx</m>, <m>\int f(x)\,dx</m>, and <m>A(x)=\int_a^x f(t)\,dt</m>. In your own words, why must you decide, before computing, whether you are looking at a signed number, a family of functions, or a new function of a moving endpoint?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The same symbol is doing three jobs: completed accumulation, the antiderivative family, and accumulation as a function of the stopping point.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-proof-practice-ftc1-simple-case">
     <title>Proof practice: FTC Part I in a simple case</title>
 
-    <p>The proof of FTC Part I rests on one idea:</p>
-    <md>\frac{A(x+h)-A(x)}{h} = \frac1h\int_x^{x+h} f(t)\,dt,</md>
-    <p>so the difference quotient is the average value of <m>f</m> on a short interval. If <m>f</m> is continuous at <m>x</m>, that average must approach <m>f(x)</m>.</p>
+  <p>The proof of FTC Part I rests on one idea:</p>
 
-    <p>The following guided proof asks you to prove this directly for</p>
-    <md>f(t)=t^2</md>
-    <p>without first evaluating the integral.</p>
+  <md>\frac{A(x+h)-A(x)}{h}
+=
+\frac1h\int_x^{x+h} f(t)\,dt,</md>
 
-    <p>Let</p>
-    <md>A(x)=\int_0^x t^2\,dt.</md>
-    <p>Fix a real number <m>x</m>.</p>
+  <p>so the difference quotient is the average value of <m>f</m> on a short interval.  If <m>f</m> is
+continuous at <m>x</m>, that average must approach <m>f(x)</m>.</p>
+
+  <p>The following guided proof asks you to prove this directly for</p>
+
+  <md>f(t)=t^2</md>
+
+  <p>without first evaluating the integral.</p>
+
+  <p>Let</p>
+
+  <md>A(x)=\int_0^x t^2\,dt.</md>
+
+  <p>Fix a real number <m>x</m>.</p>
 
     <ol>
-      <li><p>Use additivity of the integral to show that</p>
-      <md>A(x+h)-A(x)=\int_x^{x+h} t^2\,dt.</md>
-      <p>This identity should hold for <m>h\gt 0</m> and <m>h\lt 0</m>.</p></li>
-
-      <li><p>Show that</p>
-      <md>\frac{A(x+h)-A(x)}{h}-x^2 = \frac1h\int_x^{x+h}(t^2-x^2)\,dt.</md></li>
-
-      <li><p>Suppose <m>0\lt |h|\lt 1</m>, and <m>t</m> lies between <m>x</m> and <m>x+h</m>. Show that</p>
-      <md>|t-x|\le |h|.</md></li>
-
-      <li><p>Under the same assumption, show that</p>
-      <md>|t+x|\le 2|x|+1.</md></li>
-
-      <li><p>Use</p>
-      <md>t^2-x^2=(t-x)(t+x)</md>
-      <p>to prove</p>
-      <md>|t^2-x^2|\le (2|x|+1)|h|</md>
-      <p>for all <m>t</m> between <m>x</m> and <m>x+h</m>.</p></li>
-
-      <li><p>Use the order property of the integral to show</p>
-      <md>\left|\frac1h\int_x^{x+h}(t^2-x^2)\,dt\right| \le (2|x|+1)|h|.</md></li>
-
-      <li><p>Let <m>h\to 0</m>. Conclude that</p>
-      <md>A'(x)=x^2.</md></li>
-
-      <li><p>Explain why this proof did not need an antiderivative formula for <m>t^2</m>.</p></li>
-
-      <li><p>Repeat the same strategy for</p>
-      <md>A(x)=\int_0^x (3t-1)\,dt.</md></li>
-
-      <li><p>Try the same strategy for</p>
-      <md>A(x)=\int_0^x t^3\,dt.</md>
-      <p>What bound replaces <m>(2|x|+1)|h|</m>?</p></li>
+      <li>
+        <p>Use additivity of the integral to show that</p>
+          <md>A(x+h)-A(x)=\int_x^{x+h} t^2\,dt.</md>
+        <p>This identity should hold for <m>h&gt;0</m> and <m>h&lt;0</m>.</p>
+      </li>
+      <li>
+        <p>Show that</p>
+          <md>\frac{A(x+h)-A(x)}{h}-x^2
+=
+\frac1h\int_x^{x+h}(t^2-x^2)\,dt.</md>
+      </li>
+      <li>
+        <p>Suppose <m>0&lt;|h|&lt;1</m>, and <m>t</m> lies between <m>x</m> and <m>x+h</m>.  Show that</p>
+          <md>|t-x|\le |h|.</md>
+      </li>
+      <li>
+        <p>Under the same assumption, show that</p>
+          <md>|t+x|\le 2|x|+1.</md>
+      </li>
+      <li>
+        <p>Use</p>
+          <md>t^2-x^2=(t-x)(t+x)</md>
+        <p>to prove</p>
+          <md>|t^2-x^2|\le (2|x|+1)|h|</md>
+        <p>for all <m>t</m> between <m>x</m> and <m>x+h</m>.</p>
+      </li>
+      <li>
+        <p>Use the order property of the integral to show</p>
+          <md>\left|
+\frac1h\int_x^{x+h}(t^2-x^2)\,dt
+\right|
+\le
+(2|x|+1)|h|.</md>
+      </li>
+      <li>
+        <p>Let <m>h\to0</m>.  Conclude that</p>
+          <md>A'(x)=x^2.</md>
+      </li>
+      <li>
+        <p>Explain why this proof did not need an antiderivative formula for <m>t^2</m>.</p>
+      </li>
+      <li>
+        <p>Repeat the same strategy for</p>
+          <md>A(x)=\int_0^x (3t-1)\,dt.</md>
+      </li>
+      <li>
+        <p>Try the same strategy for</p>
+          <md>A(x)=\int_0^x t^3\,dt.</md>
+        <p>What bound replaces</p>
+          <md>(2|x|+1)|h|?</md>
+      </li>
     </ol>
 
-    <note xml:id="note-what-proof-tests-ftc1">
-      <title>What the proof tests</title>
-      <p>FTC Part I is not a trick for differentiating integral notation. It is the statement that the average height over a shrinking interval approaches the current height.</p>
-    </note>
+  <note xml:id="note-sec-9-7-chapter-review-and-discovery-problems-118">
+    <title>What the proof tests</title>
+      <p>FTC Part I is not a trick for differentiating integral notation.  It is the statement that
+the average height over a shrinking interval approaches the current height.</p>
+  </note>
   </subsection>
 
   <subsection xml:id="subsec-project-reconstruct-function-from-rate">
     <title>Project: reconstruct a function from its rate</title>
 
-    <p>A rate tells how a quantity changes. The Fundamental Theorem tells how to rebuild the quantity from the rate, once one starting value is known.</p>
-    <md>Q(x)=Q(a)+\int_a^x Q'(t)\,dt.</md>
+  <p>A rate tells how a quantity changes.  The Fundamental Theorem tells how to rebuild
+the quantity from the rate, once one starting value is known.</p>
 
-    <p>This project reconstructs a quantity from both an exact rate formula and sampled rate data.</p>
+  <md>
+Q(x)=Q(a)+\int_a^x Q'(t)\,dt.
+</md>
 
-    <paragraphs>
-      <title>Part 1: exact reconstruction</title>
-      <p>A tank starts with</p>
-      <md>Q(0)=12</md>
-      <p>liters of water. Water flows into the tank at the rate</p>
-      <md>R(t)=2+\sin\left(\frac{\pi t}{4}\right)</md>
-      <p>liters per minute, for</p>
-      <md>0\le t\le 8.</md>
-      <p>Since <m>R(t)=Q'(t)</m>, the amount of water in the tank at time <m>x</m> is</p>
-      <md>Q(x)=12+\int_0^x R(t)\,dt.</md>
+  <p>This project reconstructs a quantity from both an exact rate formula and sampled rate
+data.</p>
 
-      <ol>
-        <li><p>Write</p>
-        <md>Q(x)=12+\int_0^x \left(2+\sin\left(\frac{\pi t}{4}\right)\right)\,dt.</md></li>
+  <p>\subsubsection*{Part 1: exact reconstruction}</p>
 
-        <li><p>Evaluate the integral to find an explicit formula for <m>Q(x)</m>.</p></li>
+  <p>A tank starts with</p>
 
-        <li><p>Find <m>Q(4)</m> and <m>Q(8)</m>.</p></li>
+  <md>Q(0)=12</md>
 
-        <li><p>Differentiate your formula for <m>Q(x)</m>. Check that</p>
-        <md>Q'(x)=R(x).</md></li>
+  <p>liters of water.  Water flows into the tank at the rate</p>
 
-        <li><p>The rate <m>R(t)</m> increases at first and then decreases. Does <m>Q(t)</m> ever decrease on <m>[0,8]</m>? Explain using the sign of <m>R(t)</m>.</p></li>
-      </ol>
-    </paragraphs>
+  <md>R(t)=2+\sin\left(\frac{\pi t}{4}\right)</md>
 
-    <paragraphs>
-      <title>Part 2: reconstruction from data</title>
-      <p>Now suppose the rate is measured once per minute instead of given by a formula.</p>
+  <p>liters per minute, for</p>
 
-      <table>
-        <title>Sampled flow rate data</title>
-        <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-          <col halign="left"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <col halign="center"/>
-          <row>
-            <cell><m>t\text{ (minutes)}</m></cell>
-            <cell><m>0</m></cell>
-            <cell><m>1</m></cell>
-            <cell><m>2</m></cell>
-            <cell><m>3</m></cell>
-            <cell><m>4</m></cell>
-            <cell><m>5</m></cell>
-            <cell><m>6</m></cell>
-            <cell><m>7</m></cell>
-            <cell><m>8</m></cell>
-          </row>
-          <row>
-            <cell><m>R(t)\text{ (liters/minute)}</m></cell>
-            <cell><m>2.0</m></cell>
-            <cell><m>2.8</m></cell>
-            <cell><m>3.4</m></cell>
-            <cell><m>3.0</m></cell>
-            <cell><m>2.2</m></cell>
-            <cell><m>1.6</m></cell>
-            <cell><m>1.2</m></cell>
-            <cell><m>0.8</m></cell>
-            <cell><m>0.5</m></cell>
-          </row>
-        </tabular>
-      </table>
+  <md>0\le t\le 8.</md>
 
-      <p>Again assume</p>
-      <md>Q(0)=12.</md>
+  <p>Since <m>R(t)=Q'(t)</m>, the amount of water in the tank at time <m>x</m> is</p>
 
-      <figure xml:id="fig-reconstruct-from-rate-data">
-        <caption>To reconstruct <m>Q(t)</m>, accumulate the measured rate <m>R(t)</m>.</caption>
-        <image width="82%">
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=0.82\textwidth,
-                height=0.45\textwidth,
-                xmin=0, xmax=8.4,
-                ymin=0, ymax=3.8,
-                axis lines=left,
-                xlabel={\(t\) (minutes)},
-                ylabel={\(R(t)\) (liters/minute)},
-                xtick={0,1,2,3,4,5,6,7,8},
-                ytick={0,1,2,3},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[only marks, mark=*] coordinates {
-                (0,2.0) (1,2.8) (2,3.4) (3,3.0) (4,2.2)
-                (5,1.6) (6,1.2) (7,0.8) (8,0.5)
-            };
-            \addplot[thick] coordinates {
-                (0,2.0) (1,2.8) (2,3.4) (3,3.0) (4,2.2)
-                (5,1.6) (6,1.2) (7,0.8) (8,0.5)
-            };
-            \node[anchor=west] at (axis cs:2.4,3.45) {sampled rate data};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <md>Q(x)=12+\int_0^x R(t)\,dt.</md>
 
-      <p>Use trapezoids to estimate the accumulated water. For example, from <m>t=0</m> to <m>t=1</m>,</p>
-      <md>\Delta Q \approx \frac12\bigl(R(0)+R(1)\bigr)(1) = \frac12(2.0+2.8) = 2.4.</md>
-      <p>So</p>
-      <md>Q(1)\approx 12+2.4=14.4.</md>
+    <ol>
+      <li>
+        <p>Write</p>
+          <md>Q(x)=12+\int_0^x
+\left(
+2+\sin\left(\frac{\pi t}{4}\right)
+\right)\,dt.</md>
+      </li>
+      <li>
+        <p>Evaluate the integral to find an explicit formula for <m>Q(x)</m>.</p>
+      </li>
+      <li>
+        <p>Find <m>Q(4)</m> and <m>Q(8)</m>.</p>
+      </li>
+      <li>
+        <p>Differentiate your formula for <m>Q(x)</m>.  Check that</p>
+          <md>Q'(x)=R(x).</md>
+      </li>
+      <li>
+        <p>The rate <m>R(t)</m> increases at first and then decreases.  Does <m>Q(t)</m> ever
+decrease on <m>[0,8]</m>?  Explain using the sign of <m>R(t)</m>.</p>
+      </li>
+    </ol>
 
-      <paragraphs>
-        <title>Project tasks</title>
-        <ol>
-          <li><p>Complete the cumulative trapezoid table.</p>
-          <table>
-            <title>Cumulative trapezoid table</title>
-            <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-              <col halign="center"/>
-              <col halign="center"/>
-              <col halign="center"/>
-              <row header="yes">
-                <cell><m>t</m></cell>
-                <cell>estimated accumulated water from <m>0</m> to <m>t</m></cell>
-                <cell>estimated <m>Q(t)</m></cell>
-              </row>
-              <row><cell><m>0</m></cell><cell><m>0</m></cell><cell><m>12</m></cell></row>
-              <row><cell><m>1</m></cell><cell><m>2.4</m></cell><cell><m>14.4</m></cell></row>
-              <row><cell><m>2</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>3</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>4</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>5</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>6</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>7</m></cell><cell></cell><cell></cell></row>
-              <row><cell><m>8</m></cell><cell></cell><cell></cell></row>
-            </tabular>
-          </table>
-          </li>
+  <p>\subsubsection*{Part 2: reconstruction from data}</p>
 
-          <li><p>Estimate the total amount of water added during the <m>8</m> minutes.</p></li>
-          <li><p>Estimate <m>Q(8)</m>.</p></li>
-          <li><p>Sketch the reconstructed graph of <m>Q(t)</m>. It should be increasing, but its slope should change.</p></li>
-          <li><p>At what time does the rate <m>R(t)</m> appear largest? What does that say about the graph of <m>Q(t)</m>?</p></li>
-          <li><p>Does the maximum of <m>R(t)</m> correspond to a maximum of <m>Q(t)</m>? Explain.</p></li>
-          <li><p>Suppose the tank can hold <m>30</m> liters. Based on your reconstruction, does it overflow by <m>t=8</m>?</p></li>
-          <li><p>What additional measurements would make the reconstruction more reliable?</p></li>
-        </ol>
-      </paragraphs>
-    </paragraphs>
+  <p>Now suppose the rate is measured once per minute instead of given by a formula.</p>
 
-    <note xml:id="note-what-project-tests-reconstruct">
-      <title>What the project tests</title>
-      <p>A rate graph is not the same thing as the quantity graph. The rate tells the slope of the quantity. The quantity is reconstructed by accumulation.</p>
-    </note>
+  <md>
+    <mrow>\begin{array}{c|ccccccccc}
+t\text{ (minutes)} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4 \amp 5 \amp 6 \amp 7 \amp 8</mrow>
+    <mrow>\hline
+R(t)\text{ (liters/minute)} \amp 2.0 \amp 2.8 \amp 3.4 \amp 3.0 \amp 2.2 \amp 1.6 \amp 1.2 \amp 0.8 \amp 0.5
+\end{array}</mrow>
+  </md>
+
+  <p>Again assume</p>
+
+  <md>Q(0)=12.</md>
+
+  <figure xml:id="fig-reconstruct-from-rate-data">
+    <caption>To reconstruct <m>Q(t)</m>, accumulate the measured rate <m>R(t)</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.45\textwidth,
+    xmin=0, xmax=8.4,
+    ymin=0, ymax=3.8,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(R(t)\) (liters/minute)},
+    xtick={0,1,2,3,4,5,6,7,8},
+    ytick={0,1,2,3},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (0,2.0) (1,2.8) (2,3.4) (3,3.0) (4,2.2)
+    (5,1.6) (6,1.2) (7,0.8) (8,0.5)
+};
+\addplot[thick] coordinates {
+    (0,2.0) (1,2.8) (2,3.4) (3,3.0) (4,2.2)
+    (5,1.6) (6,1.2) (7,0.8) (8,0.5)
+};
+\node[anchor=west] at (axis cs:2.4,3.45) {sampled rate data};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Use trapezoids to estimate the accumulated water.  For example, from <m>t=0</m> to
+<m>t=1</m>,</p>
+
+  <md>\Delta Q
+\approx
+\frac12\bigl(R(0)+R(1)\bigr)(1)
+=
+\frac12(2.0+2.8)
+=
+2.4.</md>
+
+  <p>So</p>
+
+  <md>Q(1)\approx 12+2.4=14.4.</md>
+
+  <paragraphs>
+    <title>Project tasks</title>
+
+    <ol>
+      <li>
+        <p>Complete the cumulative trapezoid table.</p>
+          <md>
+    <mrow>\begin{array}{c|c|c}
+t \amp \text{estimated accumulated water from }0\text{ to }t \amp \text{estimated }Q(t)</mrow>
+    <mrow>\hline
+0 \amp 0 \amp 12</mrow>
+    <mrow>1 \amp 2.4 \amp 14.4</mrow>
+    <mrow>2 \amp \amp</mrow>
+    <mrow>3 \amp \amp</mrow>
+    <mrow>4 \amp \amp</mrow>
+    <mrow>5 \amp \amp</mrow>
+    <mrow>6 \amp \amp</mrow>
+    <mrow>7 \amp \amp</mrow>
+    <mrow>8 \amp \amp
+\end{array}</mrow>
+  </md>
+      </li>
+      <li>
+        <p>Estimate the total amount of water added during the <m>8</m> minutes.</p>
+      </li>
+      <li>
+        <p>Estimate <m>Q(8)</m>.</p>
+      </li>
+      <li>
+        <p>Sketch the reconstructed graph of <m>Q(t)</m>.  It should be increasing, but its slope
+should change.</p>
+      </li>
+      <li>
+        <p>At what time does the rate <m>R(t)</m> appear largest?  What does that say about the
+graph of <m>Q(t)</m>?</p>
+      </li>
+      <li>
+        <p>Does the maximum of <m>R(t)</m> correspond to a maximum of <m>Q(t)</m>?  Explain.</p>
+      </li>
+      <li>
+        <p>Suppose the tank can hold <m>30</m> liters.  Based on your reconstruction, does it
+overflow by <m>t=8</m>?</p>
+      </li>
+      <li>
+        <p>What additional measurements would make the reconstruction more reliable?</p>
+      </li>
+    </ol>
+
+  <note xml:id="note-sec-9-7-chapter-review-and-discovery-problems-119">
+    <title>What the project tests</title>
+      <p>A rate graph is not the same thing as the quantity graph.  The rate tells the slope of
+the quantity.  The quantity is reconstructed by accumulation.</p>
+  </note>
+  </paragraphs>
   </subsection>
 
   <subsection xml:id="subsec-chapter9-hook-applications">
     <title>Where this points</title>
 
-    <p>The Fundamental Theorem has made integration computable.</p>
+  <p>The Fundamental Theorem has made integration computable.</p>
 
-    <p>Before this chapter, a definite integral was a limit of sums:</p>
-    <md>\int_a^b f(x)\,dx.</md>
+  <p>Before this chapter, a definite integral was a limit of sums:</p>
 
-    <p>Now, when we can find an antiderivative,</p>
-    <md>\int_a^b f(x)\,dx=F(b)-F(a).</md>
+  <md>\int_a^b f(x)\,dx.</md>
 
-    <p>That changes what we can do.</p>
+  <p>Now, when we can find an antiderivative,</p>
 
-    <p>The next chapter asks what integrals can measure. Area under a curve was only the first picture. The same accumulation idea will measure many quantities:</p>
+  <md>\int_a^b f(x)\,dx=F(b)-F(a).</md>
 
-    <table>
-      <title>Quantities, small pieces, and their integral formulas</title>
-      <tabular halign="left" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left"/>
-        <col halign="left"/>
-        <col halign="left"/>
-        <row header="yes">
-          <cell><m>\textbf{quantity}</m></cell>
-          <cell><m>\textbf{small piece}</m></cell>
-          <cell><m>\textbf{integral}</m></cell>
-        </row>
-        <row>
-          <cell>area between curves</cell>
-          <cell><m>\text{height difference}\cdot dx</m></cell>
-          <cell><m>\displaystyle\int (\text{top}-\text{bottom})\,dx</m></cell>
-        </row>
-        <row>
-          <cell>volume by slices</cell>
-          <cell><m>\text{cross-sectional area}\cdot dx</m></cell>
-          <cell><m>\displaystyle\int A(x)\,dx</m></cell>
-        </row>
-        <row>
-          <cell>mass of a rod</cell>
-          <cell><m>\text{density}\cdot dx</m></cell>
-          <cell><m>\displaystyle\int \rho(x)\,dx</m></cell>
-        </row>
-        <row>
-          <cell>work by a variable force</cell>
-          <cell><m>\text{force}\cdot dx</m></cell>
-          <cell><m>\displaystyle\int F(x)\,dx</m></cell>
-        </row>
-        <row>
-          <cell>average value</cell>
-          <cell>accumulated height divided by length</cell>
-          <cell><m>\displaystyle \frac1{b-a}\int_a^b f(x)\,dx</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <p>That changes what we can do.</p>
 
-    <p>The pattern will not change:</p>
-    <note xml:id="note-integral-pattern-summary">
-      <p>identify a small piece, add all the pieces, and take the limit.</p>
-    </note>
+  <p>The next chapter asks what integrals can measure.  Area under a curve was only the
+first picture.  The same accumulation idea will measure many quantities:</p>
 
-    <p>What changes is the shape of the small piece. That is where applications of the integral begin.</p>
+  <md>
+    <mrow>\begin{array}{c|c|c}
+<strong>quantity</strong> \amp <strong>small piece</strong> \amp <strong>integral</strong></mrow>
+    <mrow>\hline
+\text{area between curves} \amp \text{height difference}\cdot dx
+\amp \displaystyle\int (\text{top}-\text{bottom})\,dx</mrow>
+    <mrow>
+\text{volume by slices} \amp \text{cross-sectional area}\cdot dx
+\amp \displaystyle\int A(x)\,dx</mrow>
+    <mrow>
+\text{mass of a rod} \amp \text{density}\cdot dx
+\amp \displaystyle\int \rho(x)\,dx</mrow>
+    <mrow>
+\text{work by a variable force} \amp \text{force}\cdot dx
+\amp \displaystyle\int F(x)\,dx</mrow>
+    <mrow>
+\text{average value} \amp \text{accumulated height divided by length}
+\amp \displaystyle \frac1{b-a}\int_a^b f(x)\,dx
+\end{array}</mrow>
+  </md>
+
+  <p>The pattern will not change:</p>
+
+  <md>
+\text{identify a small piece, add all the pieces, and take the limit.}
+</md>
+
+  <p>What changes is the shape of the small piece.  That is where applications of the
+integral begin.</p>
+
+  <exercise xml:id="checkpoint-9-7-substitution-orientation">
+        <title>What must you carry along when you change variables or reverse direction?</title>
+        <statement>
+          <p>
+            A substitution changes the integrand, and reversing an interval changes the sign. In your own words, why are orientation and the new limits part of the meaning of the integral rather than extra bookkeeping?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The small piece being added is height times oriented step. Changing the coordinate or the direction changes that step, so the description of the accumulation must change with it.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

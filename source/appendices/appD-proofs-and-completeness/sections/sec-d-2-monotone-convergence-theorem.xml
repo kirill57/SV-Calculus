@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-d-2-monotone-convergence-theorem">
+  <title>The Monotone Convergence Theorem</title>
+
+  <p>A sequence may wander forever.  But if it moves only in one direction and cannot escape
+past a bound, then it must settle down.</p>
+
+  <p>That statement is the Monotone Convergence Theorem.</p>
+
+  <p>It is one of the first places where completeness does visible work.</p>
+
+  <subsection xml:id="appsubsec-monotone-sequences">
+    <title>Monotone sequences</title>
+
+  <p>A sequence</p>
+
+  <md>a_1,a_2,a_3,\ldots</md>
+
+  <p>is <em>increasing</em> if</p>
+
+  <md>a_1\le a_2\le a_3\le\cdots.</md>
+
+  <p>It is <em>decreasing</em> if</p>
+
+  <md>a_1\ge a_2\ge a_3\ge\cdots.</md>
+
+  <p>A sequence is <em>monotone</em> if it is increasing or decreasing.</p>
+
+  <example xml:id="ex-sec-d-2-monotone-convergence-theorem-1">
+    <title>Example</title>
+    <statement>
+  <p>The sequence</p>
+
+  <md>a_n=1-\frac1n</md>
+
+  <p>is increasing:</p>
+
+  <md>0,\ \frac12,\ \frac23,\ \frac34,\ldots.</md>
+
+  <p>It is bounded above by <m>1</m>.  The terms approach <m>1</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-d-2-monotone-convergence-theorem-2">
+    <title>Example</title>
+    <statement>
+  <p>The sequence</p>
+
+  <md>b_n=\frac1n</md>
+
+  <p>is decreasing:</p>
+
+  <md>1,\ \frac12,\ \frac13,\ \frac14,\ldots.</md>
+
+  <p>It is bounded below by <m>0</m>.  The terms approach <m>0</m>.</p>
+
+  <figure xml:id="fig-monotone-sequence-approaches-sup">
+    <caption>An increasing sequence trapped below an upper bound must approach its least upper bound.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.36\textwidth,
+    xmin=0.5, xmax=12.5,
+    ymin=-0.05, ymax=1.15,
+    axis lines=left,
+    xlabel={\(n\)},
+    ylabel={\(a_n\)},
+    xtick={1,2,3,4,5,10},
+    ytick={0,0.5,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[only marks, mark=*] coordinates {
+    (1,0)
+    (2,0.5)
+    (3,0.6667)
+    (4,0.75)
+    (5,0.8)
+    (6,0.8333)
+    (7,0.8571)
+    (8,0.875)
+    (9,0.8889)
+    (10,0.9)
+    (11,0.9091)
+    (12,0.9167)
+};
+\addplot[thick, dashed, domain=0.5:12.5, samples=2] {1};
+\node[anchor=west] at (axis cs:6.4,1.04) {least upper bound \(1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-monotone-convergence-theorem-statement">
+    <title>The theorem</title>
+
+  <theorem xml:id="thm-sec-d-2-monotone-convergence-theorem-39">
+    <title>Monotone Convergence Theorem</title>
+    <statement>
+      <p>If an increasing sequence is bounded above, then it converges.</p>
+      <p>If a decreasing sequence is bounded below, then it converges.</p>
+    </statement>
+  </theorem>
+
+  <p>The theorem is not saying that every sequence converges.  It is saying that two
+conditions together force convergence:</p>
+
+  <md>
+\text{one direction of motion}+\text{a barrier}
+\quad\Longrightarrow\quad
+\text{a limit.}
+</md>
+
+  <paragraphs>
+    <title>Proof for increasing sequences</title>
+
+  <p>Let</p>
+
+  <md>a_1\le a_2\le a_3\le\cdots</md>
+
+  <p>be an increasing sequence that is bounded above.</p>
+
+  <p>Consider the set of its terms:</p>
+
+  <md>A=\{a_n:n=1,2,3,\ldots\}.</md>
+
+  <p>This set is nonempty and bounded above.  By the Least Upper Bound Property, it has a
+least upper bound.  Call it <m>L</m>:</p>
+
+  <md>L=\sup A.</md>
+
+  <p>We will prove that</p>
+
+  <md>a_n\to L.</md>
+
+  <p>Let <m>\varepsilon&gt;0</m>.  By the approximation property of the supremum, there is some
+term <m>a_N</m> such that</p>
+
+  <md>L-\varepsilon&lt;a_N\le L.</md>
+
+  <p>Since the sequence is increasing, every later term satisfies</p>
+
+  <md>a_n\ge a_N
+\qquad\text{for }n\ge N.</md>
+
+  <p>Also, since <m>L</m> is an upper bound, every term satisfies</p>
+
+  <md>a_n\le L.</md>
+
+  <p>Therefore, for every <m>n\ge N</m>,</p>
+
+  <md>L-\varepsilon&lt;a_n\le L.</md>
+
+  <p>This gives</p>
+
+  <md>|a_n-L|&lt;\varepsilon.</md>
+
+  <p>So</p>
+
+  <md>a_n\to L.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Proof for decreasing sequences</title>
+
+  <p>If</p>
+
+  <md>b_1\ge b_2\ge b_3\ge\cdots</md>
+
+  <p>and the sequence is bounded below, then the set of terms has an infimum.  Call it
+<m>M</m>:</p>
+
+  <md>M=\inf\{b_n:n=1,2,3,\ldots\}.</md>
+
+  <p>The same argument from below shows that</p>
+
+  <md>b_n\to M.</md>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="appsubsec-monotone-theorem-hypotheses">
+    <title>Why the hypotheses matter</title>
+
+  <p>Both hypotheses are needed.</p>
+
+  <paragraphs>
+    <title>Increasing but not bounded</title>
+
+  <p>The sequence</p>
+
+  <md>a_n=n</md>
+
+  <p>is increasing, but it is not bounded above.  It does not converge to a real number.</p>
+
+  <md>1,\ 2,\ 3,\ 4,\ldots</md>
+
+  <p>It escapes.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Bounded but not monotone</title>
+
+  <p>The sequence</p>
+
+  <md>b_n=(-1)^n</md>
+
+  <p>is bounded:</p>
+
+  <md>-1\le b_n\le 1.</md>
+
+  <p>But it is not monotone.  It keeps jumping:</p>
+
+  <md>-1,\ 1,\ -1,\ 1,\ldots.</md>
+
+  <p>It does not converge.</p>
+
+  <theorem xml:id="thm-sec-d-2-monotone-convergence-theorem-40">
+    <title>The theorem needs both parts</title>
+    <statement>
+      <p>A barrier without one-direction motion is not enough.  One-direction motion without a
+barrier is not enough.</p>
+    </statement>
+  </theorem>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="appsubsec-nested-intervals">
+    <title>Nested intervals</title>
+
+  <p>The Monotone Convergence Theorem gives a useful interval principle.</p>
+
+  <p>Suppose we have closed intervals</p>
+
+  <md>I_n=[L_n,R_n]</md>
+
+  <p>such that each interval sits inside the previous one:</p>
+
+  <md>I_1\supset I_2\supset I_3\supset\cdots.</md>
+
+  <p>Then the left endpoints move right or stay fixed:</p>
+
+  <md>L_1\le L_2\le L_3\le\cdots,</md>
+
+  <p>and the right endpoints move left or stay fixed:</p>
+
+  <md>R_1\ge R_2\ge R_3\ge\cdots.</md>
+
+  <p>If the interval lengths shrink to <m>0</m>,</p>
+
+  <md>R_n-L_n\to0,</md>
+
+  <p>then the intervals trap exactly one real number.</p>
+
+  <note xml:id="note-sec-d-2-monotone-convergence-theorem-41">
+    <title>Nested Interval Principle, shrinking version</title>
+      <p>If</p>
+        <md>[L_1,R_1]\supset [L_2,R_2]\supset [L_3,R_3]\supset\cdots</md>
+      <p>and</p>
+        <md>R_n-L_n\to0,</md>
+      <p>then there is exactly one real number <m>c</m> that lies in every interval.</p>
+  </note>
+
+  <paragraphs>
+    <title>Proof sketch</title>
+
+  <p>The sequence <m>L_n</m> is increasing and bounded above by <m>R_1</m>, so it converges.
+The sequence <m>R_n</m> is decreasing and bounded below by <m>L_1</m>, so it converges.</p>
+
+  <p>Let</p>
+
+  <md>L_n\to c
+\qquad\text{and}\qquad
+R_n\to d.</md>
+
+  <p>Since</p>
+
+  <md>R_n-L_n\to0,</md>
+
+  <p>we must have</p>
+
+  <md>d-c=0,</md>
+
+  <p>so</p>
+
+  <md>c=d.</md>
+
+  <p>Thus the left and right endpoints squeeze down to one number.</p>
+
+  <figure xml:id="fig-nested-intervals-shrink">
+    <caption>Shrinking nested closed intervals trap a single real number.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[xscale=4.0, yscale=0.8, every node/.style={font=\small}]
+  \draw[&lt;-&gt;, thick] (0.75,0) -- (1.75,0);
+  \foreach \y/\l/\r/\name in {1/0.8/1.7/{\(I_1\)},2/1.0/1.55/{\(I_2\)},3/1.15/1.47/{\(I_3\)},4/1.25/1.41/{\(I_4\)}} {
+    \draw[very thick] (\l,\y) -- (\r,\y);
+    \draw[fill=black] (\l,\y) circle (0.7pt);
+    \draw[fill=black] (\r,\y) circle (0.7pt);
+    \node[left] at (\l,\y) {\name};
+  }
+  \draw[dashed, thick] (1.333,0) -- (1.333,4.4);
+  \node[below] at (1.333,0) {\(c\)};
+  \node[right] at (1.48,3.5) {nested intervals};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This is the proof engine behind bisection.</p>
+  </paragraphs>
+  </subsection>
+
+</section>

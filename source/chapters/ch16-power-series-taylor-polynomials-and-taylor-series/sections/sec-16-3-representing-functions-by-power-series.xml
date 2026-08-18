@@ -1,0 +1,764 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-3-representing-functions-by-power-series">
+  <title>Representing functions by power series</title>
+
+  <p>The last section gave us permission to work with power series inside their radius of
+convergence.  We can add, multiply, differentiate, and integrate them term by term.</p>
+
+  <p>Now we use that permission in the opposite direction.</p>
+
+  <p>Instead of starting with a power series and asking where it converges, we start with a
+function and ask:</p>
+
+  <md>
+\text{Can this function be written as an infinite polynomial?}
+</md>
+
+  <p>The first seed is the geometric series.  From that one seed, differentiation,
+integration, and substitution will grow new series.</p>
+
+  <subsection xml:id="subsec-geometric-series-seed">
+    <title>Geometric series as the seed</title>
+
+  <p>Start with the finite sum</p>
+
+  <md>S_N(x)=1+x+x^2+\cdots+x^N.</md>
+
+  <p>Multiply by <m>1-x</m>:</p>
+
+  <md>(1-x)S_N(x)
+=
+(1+x+x^2+\cdots+x^N)
+-
+(x+x^2+x^3+\cdots+x^{N+1}).</md>
+
+  <p>Everything cancels except the first and last terms:</p>
+
+  <md>(1-x)S_N(x)=1-x^{N+1}.</md>
+
+  <p>So, if <m>x\neq1</m>,</p>
+
+  <md>S_N(x)=\frac{1-x^{N+1}}{1-x}.</md>
+
+  <p>Now let <m>N\to\infty</m>.  If</p>
+
+  <md>|x|&lt;1,</md>
+
+  <p>then</p>
+
+  <md>x^{N+1}\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>S_N(x)\to \frac1{1-x}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\frac1{1-x}=1+x+x^2+x^3+\cdots,
+\qquad |x|&lt;1.
+</md>
+
+  <p>This is our first power series representation of a function.</p>
+
+  <figure xml:id="fig-geometric-partial-sums-function">
+    <caption>Partial sums of the geometric series approach <m>\frac1{1-x}</m> on <m>(-1,1)</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-0.85, xmax=0.85,
+    ymin=0, ymax=5.8,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-0.8,-0.4,0,0.4,0.8},
+    ytick={1,2,3,4,5},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[very thick, domain=-0.84:0.84, samples=200] {1/(1-x)};
+\addlegendentry{\(\dfrac1{1-x}\)}
+
+\addplot[thick, dashed, domain=-0.84:0.84, samples=200] {1+x};
+\addlegendentry{\(1+x\)}
+
+\addplot[thick, dotted, domain=-0.84:0.84, samples=200] {1+x+x^2+x^3};
+\addlegendentry{\(1+x+x^2+x^3\)}
+
+\addplot[thick, dashdotted, domain=-0.84:0.84, samples=200] {1+x+x^2+x^3+x^4+x^5+x^6+x^7};
+\addlegendentry{\(S_7(x)\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The equality</p>
+
+  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots</md>
+
+  <p>is not true for every <m>x</m>.  At <m>x=2</m>, the right side is</p>
+
+  <md>1+2+4+8+\cdots,</md>
+
+  <p>which diverges.  At <m>x=-1</m>, the right side is</p>
+
+  <md>1-1+1-1+\cdots,</md>
+
+  <p>which also diverges.</p>
+
+  <p>So the formula always carries its home with it:</p>
+
+  <md>|x|&lt;1.</md>
+
+  <p>A power series representation is not only an identity.  It is an identity together with
+an interval where the identity is valid.</p>
+
+  <exercise xml:id="checkpoint-16-3-geometric-seed">
+        <title>Why is a power series representation an identity together with an interval?</title>
+        <statement>
+          <p>
+            The geometric series gives <m>1/(1-x)=1+x+x^2+\cdots</m> only for <m>|x|&lt;1</m>. In your own words, why is the interval part of the mathematics rather than a footnote, and why is the formula false at <m>x=2</m> even though the left side is defined there?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The right side is a limit of partial sums. Outside <m>|x|&lt;1</m> those partial sums do not approach the function, so the two sides are not the same object.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-series-for-one-over-one-minus-x">
+    <title>Series for <m>\frac1{1-x}</m></title>
+
+  <p>The geometric series is a machine.  Once we know</p>
+
+  <md>\frac1{1-x}=\sum_{n=0}^{\infty}x^n,
+\qquad |x|&lt;1,</md>
+
+  <p>we can replace <m>x</m> by other expressions, as long as the new expression has absolute
+value less than <m>1</m>.</p>
+
+  <example xml:id="ex-sec-16-3-representing-functions-by-power-series-1">
+    <title>replacing <m>x</m> by <m>-x</m></title>
+    <statement>
+  <p>Since</p>
+
+  <md>\frac1{1-u}=1+u+u^2+u^3+\cdots,
+\qquad |u|&lt;1,</md>
+
+  <p>put</p>
+
+  <md>u=-x.</md>
+
+  <p>Then</p>
+
+  <md>\frac1{1-(-x)}
+=
+1+(-x)+(-x)^2+(-x)^3+\cdots.</md>
+
+  <p>So</p>
+
+  <md>
+\frac1{1+x}
+=
+1-x+x^2-x^3+\cdots,
+\qquad |x|&lt;1.
+</md>
+
+  <p>This will become the seed for the logarithm.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-3-representing-functions-by-power-series-2">
+    <title>replacing <m>x</m> by <m>x^2</m></title>
+    <statement>
+  <p>Put</p>
+
+  <md>u=x^2.</md>
+
+  <p>Then</p>
+
+  <md>\frac1{1-x^2}
+=
+1+x^2+x^4+x^6+\cdots.</md>
+
+  <p>The condition is</p>
+
+  <md>|x^2|&lt;1,</md>
+
+  <p>which is the same as</p>
+
+  <md>|x|&lt;1.</md>
+
+  <p>Thus</p>
+
+  <md>
+\frac1{1-x^2}
+=
+1+x^2+x^4+x^6+\cdots,
+\qquad |x|&lt;1.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-3-representing-functions-by-power-series-3">
+    <title>a different radius</title>
+    <statement>
+  <p>Find a power series for</p>
+
+  <md>\frac1{2-x}</md>
+
+  <p>centered at <m>0</m>.</p>
+
+  <p>Rewrite the function so that the geometric form appears:</p>
+
+  <md>\frac1{2-x}
+=
+\frac12\cdot \frac1{1-\frac{x}{2}}.</md>
+
+  <p>Now use the geometric series with</p>
+
+  <md>u=\frac{x}{2}.</md>
+
+  <p>Then</p>
+
+  <md>\frac1{1-\frac{x}{2}}
+=
+\sum_{n=0}^{\infty}\left(\frac{x}{2}\right)^n</md>
+
+  <p>when</p>
+
+  <md>\left|\frac{x}{2}\right|&lt;1.</md>
+
+  <p>So</p>
+
+  <md>
+\frac1{2-x}
+=
+\sum_{n=0}^{\infty}\frac{x^n}{2^{n+1}},
+\qquad |x|&lt;2.
+</md>
+
+  <p>The radius is <m>2</m>, not <m>1</m>, because the actual ratio is <m>x/2</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-3-representing-functions-by-power-series-4">
+    <title>a series centered at <m>2</m></title>
+    <statement>
+  <p>Find a power series for</p>
+
+  <md>\frac1x</md>
+
+  <p>centered at <m>2</m>.</p>
+
+  <p>Write <m>x</m> as</p>
+
+  <md>x=2+(x-2).</md>
+
+  <p>Then</p>
+
+  <md>\frac1x
+=
+\frac1{2+(x-2)}
+=
+\frac12\cdot \frac1{1+\frac{x-2}{2}}.</md>
+
+  <p>Use the series</p>
+
+  <md>\frac1{1+u}=1-u+u^2-u^3+\cdots,
+\qquad |u|&lt;1,</md>
+
+  <p>with</p>
+
+  <md>u=\frac{x-2}{2}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\frac1x
+=
+\frac12
+-\frac{x-2}{4}
++\frac{(x-2)^2}{8}
+-\frac{(x-2)^3}{16}
++\cdots
+</md>
+
+  <p>or, more compactly,</p>
+
+  <md>
+\frac1x
+=
+\sum_{n=0}^{\infty}
+\frac{(-1)^n(x-2)^n}{2^{n+1}},
+\qquad |x-2|&lt;2.
+</md>
+
+  <p>The center is <m>2</m>.  The series converges when <m>x</m> is within distance <m>2</m> of that
+center:</p>
+
+  <md>0&lt;x&lt;4.</md>
+
+  <p>This makes sense.  The function <m>1/x</m> has trouble at <m>x=0</m>, and that point is exactly
+distance <m>2</m> from the center <m>2</m>.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Differentiating the geometric series</title>
+
+  <p>Inside <m>|x|&lt;1</m>,</p>
+
+  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots.</md>
+
+  <p>Differentiate both sides:</p>
+
+  <md>\frac{d}{dx}\left(\frac1{1-x}\right)
+=
+\frac{d}{dx}\left(1+x+x^2+x^3+\cdots\right).</md>
+
+  <p>The left side is</p>
+
+  <md>\frac1{(1-x)^2}.</md>
+
+  <p>The right side is</p>
+
+  <md>1+2x+3x^2+4x^3+\cdots.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\frac1{(1-x)^2}
+=
+1+2x+3x^2+4x^3+\cdots,
+\qquad |x|&lt;1.
+</md>
+
+  <p>This is the same product series we saw earlier:</p>
+
+  <md>(1+x+x^2+\cdots)^2
+=
+1+2x+3x^2+4x^3+\cdots.</md>
+
+  <p>The algebra and the calculus agree.</p>
+
+  <note xml:id="note-sec-16-3-representing-functions-by-power-series-91">
+    <title>A useful workflow</title>
+      <p>To represent a function by a power series:</p>
+          <ol>
+      <li>
+        <p>Start from a known series, usually the geometric series.</p>
+      </li>
+      <li>
+        <p>Rewrite the function until the known pattern appears.</p>
+      </li>
+      <li>
+        <p>Substitute carefully.</p>
+      </li>
+      <li>
+        <p>State the convergence condition.</p>
+      </li>
+      <li>
+        <p>If you differentiate or integrate, keep the same radius but test endpoints again.</p>
+      </li>
+    </ol>
+  </note>
+
+  <p>The endpoint warning is not decoration.  The next examples show why.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-3-machine-from-geometry">
+        <title>How can one seed series grow new representations?</title>
+        <statement>
+          <p>
+            Once the geometric series is known, substitution, differentiation, and integration produce series for other functions. In your own words, why must a substitution keep the new inner expression inside the original radius, and why do differentiated or integrated series keep the radius but not the endpoints?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Replacing <m>x</m> by <m>u(x)</m> is legal only where <m>|u(x)|&lt;1</m>. Calculus operations are justified inside the radius; the endpoints are a separate numerical question after the operation.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-series-for-log-one-plus-x">
+    <title>Series for <m>\ln(1+x)</m></title>
+
+  <p>The logarithm is connected to</p>
+
+  <md>\frac1{1+x}</md>
+
+  <p>because</p>
+
+  <md>\frac{d}{dx}\ln(1+x)=\frac1{1+x}.</md>
+
+  <p>We already found</p>
+
+  <md>\frac1{1+x}
+=
+1-x+x^2-x^3+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>Integrate both sides from <m>0</m> to <m>x</m>.  On the left,</p>
+
+  <md>\int_0^x \frac1{1+t}\,dt
+=
+\ln(1+x)-\ln(1)
+=
+\ln(1+x).</md>
+
+  <p>On the right,</p>
+
+  <md>\int_0^x (1-t+t^2-t^3+\cdots)\,dt
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\ln(1+x)
+=
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots,
+\qquad -1&lt;x&lt;1.
+</md>
+
+  <p>The theorem on integrating power series gives the equality inside the radius.  The
+endpoints must be tested separately.</p>
+
+  <p>At <m>x=1</m>, the series becomes</p>
+
+  <md>1-\frac12+\frac13-\frac14+\frac15-\cdots.</md>
+
+  <p>This converges by the Alternating Series Test.</p>
+
+  <p>At <m>x=-1</m>, the series becomes</p>
+
+  <md>-1-\frac12-\frac13-\frac14-\cdots,</md>
+
+  <p>which diverges.  This also matches the function side, because <m>\ln(1+x)</m> is not
+defined at <m>x=-1</m>.</p>
+
+  <p>So the power series has interval of convergence</p>
+
+  <md>(-1,1].</md>
+
+  <p>There is one subtle point: term-by-term integration directly proved the formula only
+for <m>-1&lt;x&lt;1</m>.  Why is the endpoint <m>x=1</m> allowed in the identity?</p>
+
+  <p>Here is a concrete remainder argument.</p>
+
+  <p>For every <m>N</m>,</p>
+
+  <md>\frac1{1+t}
+=
+1-t+t^2-\cdots+(-1)^N t^N
++
+\frac{(-1)^{N+1}t^{N+1}}{1+t}.</md>
+
+  <p>Integrate from <m>0</m> to <m>1</m>:</p>
+
+  <md>\ln 2
+=
+1-\frac12+\frac13-\cdots+\frac{(-1)^N}{N+1}
++
+\int_0^1 \frac{(-1)^{N+1}t^{N+1}}{1+t}\,dt.</md>
+
+  <p>The remainder satisfies</p>
+
+  <md>\left|
+\int_0^1 \frac{(-1)^{N+1}t^{N+1}}{1+t}\,dt
+\right|
+\le
+\int_0^1 t^{N+1}\,dt
+=
+\frac1{N+2}.</md>
+
+  <p>Since</p>
+
+  <md>\frac1{N+2}\to0,</md>
+
+  <p>the remainder goes to <m>0</m>.  Therefore</p>
+
+  <md>
+\ln 2
+=
+1-\frac12+\frac13-\frac14+\cdots.
+</md>
+
+  <p>The endpoint did not come for free.  It came from a separate estimate.</p>
+
+  <exercise xml:id="checkpoint-16-3-log-endpoints">
+        <title>Why can integration pick up an endpoint that differentiation would lose?</title>
+        <statement>
+          <p>
+            Integrating the series for <m>1/(1+x)</m> produces the series for <m>\ln(1+x)</m> on <m>(-1,1]</m>. In your own words, why is the identity first proved only inside the radius, and why is the endpoint <m>x=1</m> a separate argument rather than an automatic gift?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Term-by-term integration is guaranteed in the open interval. At <m>x=1</m> the series becomes the alternating harmonic series, whose convergence and identification with <m>\ln 2</m> need their own reasons.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-series-for-arctan">
+    <title>Series for <m>\arctan x</m></title>
+
+  <p>The inverse tangent is connected to</p>
+
+  <md>\frac1{1+x^2}</md>
+
+  <p>because</p>
+
+  <md>\frac{d}{dx}\arctan x=\frac1{1+x^2}.</md>
+
+  <p>Start from</p>
+
+  <md>\frac1{1+u}=1-u+u^2-u^3+\cdots,
+\qquad |u|&lt;1.</md>
+
+  <p>Put</p>
+
+  <md>u=x^2.</md>
+
+  <p>Then</p>
+
+  <md>\frac1{1+x^2}
+=
+1-x^2+x^4-x^6+\cdots,
+\qquad |x|&lt;1.</md>
+
+  <p>Integrate from <m>0</m> to <m>x</m>:</p>
+
+  <md>\int_0^x \frac1{1+t^2}\,dt
+=
+\int_0^x (1-t^2+t^4-t^6+\cdots)\,dt.</md>
+
+  <p>The left side is</p>
+
+  <md>\arctan x-\arctan 0=\arctan x.</md>
+
+  <p>The right side is</p>
+
+  <md>x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
+
+  <p>Thus</p>
+
+  <md>
+\arctan x
+=
+x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots,
+\qquad |x|&lt;1.
+</md>
+
+  <p>Now test the endpoints.</p>
+
+  <p>At <m>x=1</m>, the series becomes</p>
+
+  <md>1-\frac13+\frac15-\frac17+\cdots,</md>
+
+  <p>which converges by the Alternating Series Test.</p>
+
+  <p>At <m>x=-1</m>, it becomes</p>
+
+  <md>-1+\frac13-\frac15+\frac17-\cdots,</md>
+
+  <p>which also converges.</p>
+
+  <p>So the interval of convergence is</p>
+
+  <md>[-1,1].</md>
+
+  <p>Again, equality at the endpoints needs justification.  The finite identity</p>
+
+  <md>\frac1{1+t^2}
+=
+1-t^2+t^4-\cdots+(-1)^N t^{2N}
++
+\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}</md>
+
+  <p>gives, after integration from <m>0</m> to <m>1</m>,</p>
+
+  <md>\frac{\pi}{4}
+=
+1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1}
++
+\int_0^1
+\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}\,dt.</md>
+
+  <p>The remainder has absolute value at most</p>
+
+  <md>\int_0^1 t^{2N+2}\,dt
+=
+\frac1{2N+3},</md>
+
+  <p>which tends to <m>0</m>.  Therefore</p>
+
+  <md>
+\frac{\pi}{4}
+=
+1-\frac13+\frac15-\frac17+\cdots.
+</md>
+
+  <p>This is one of the famous surprises of power series: a series built from odd
+reciprocals knows the number <m>\pi</m>.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-estimating-pi-from-series">
+    <title>Estimating <m>\pi</m> from a series</title>
+
+  <p>The identity</p>
+
+  <md>\frac{\pi}{4}
+=
+1-\frac13+\frac15-\frac17+\cdots</md>
+
+  <p>gives a way to estimate <m>\pi</m>.  The Alternating Series Estimation Theorem says that
+the error after stopping is at most the size of the first omitted term.</p>
+
+  <p>If we stop after</p>
+
+  <md>1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1},</md>
+
+  <p>then</p>
+
+  <md>\left|
+\frac{\pi}{4}
+-
+\left(1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1}\right)
+\right|
+\le
+\frac1{2N+3}.</md>
+
+  <p>Multiplying by <m>4</m>, the error in <m>\pi</m> is at most</p>
+
+  <md>
+\frac4{2N+3}.
+</md>
+
+  <p>This is useful, but slow.  To guarantee an error less than <m>0.01</m>, we need</p>
+
+  <md>\frac4{2N+3}&lt;0.01,</md>
+
+  <p>so</p>
+
+  <md>2N+3&gt;400.</md>
+
+  <p>That means about <m>200</m> terms.</p>
+
+  <p>The series is beautiful, but it is not efficient.</p>
+
+  <p>A better idea is to use the same arctangent series at smaller inputs.  Smaller powers
+shrink faster.</p>
+
+  <p>Let</p>
+
+  <md>A=\arctan\frac12,
+\qquad
+B=\arctan\frac13.</md>
+
+  <p>Then</p>
+
+  <md>\tan(A+B)
+=
+\frac{\frac12+\frac13}{1-\frac12\cdot\frac13}
+=
+\frac{\frac56}{\frac56}
+=
+1.</md>
+
+  <p>Since <m>A</m> and <m>B</m> are positive acute angles,</p>
+
+  <md>A+B=\frac{\pi}{4}.</md>
+
+  <p>Thus</p>
+
+  <md>
+\frac{\pi}{4}
+=
+\arctan\frac12+\arctan\frac13.
+</md>
+
+  <p>Now use the arctangent series:</p>
+
+  <md>\arctan x
+=
+x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
+
+  <p>With <m>x=\frac12</m> and <m>x=\frac13</m>, the terms shrink quickly:</p>
+
+  <md>\frac{\pi}{4}
+=
+\left(
+\frac12-\frac{1}{3\cdot2^3}+\frac{1}{5\cdot2^5}
+-\frac{1}{7\cdot2^7}+\cdots
+\right)
++
+\left(
+\frac13-\frac{1}{3\cdot3^3}+\frac{1}{5\cdot3^5}
+-\frac{1}{7\cdot3^7}+\cdots
+\right).</md>
+
+  <p>Using the first five terms from each arctangent series gives</p>
+
+  <md>\pi\approx 3.141741.</md>
+
+  <p>The alternating error estimate gives an error less than</p>
+
+  <md>0.00018.</md>
+
+  <p>The same power series produced both estimates.  The difference was the input.  At
+<m>x=1</m>, powers shrink slowly.  At <m>x=\frac12</m> and <m>x=\frac13</m>, powers shrink
+quickly.</p>
+
+  <note xml:id="note-sec-16-3-representing-functions-by-power-series-92">
+    <title>Computational lesson</title>
+      <p>A series representation is not only a formula.  It is also an algorithm.  Its usefulness
+depends on how fast its terms shrink.</p>
+  </note>
+
+  <p>The geometric series gave us logarithms and inverse tangents.  But the functions</p>
+
+  <md>e^x,\qquad \sin x,\qquad \cos x</md>
+
+  <p>do not obviously come from the geometric series.  To reach them, we need a new
+question:</p>
+
+  <md>
+\text{Can the derivatives of a function tell us which polynomial should approximate it?}
+</md>
+
+  <p>That question leads to Taylor polynomials.</p>
+
+  <exercise xml:id="checkpoint-16-3-series-as-computation">
+        <title>Why can a slowly convergent series still be the right idea?</title>
+        <statement>
+          <p>
+            The Leibniz series for <m>\pi/4</m> is beautiful but slow, while arctangent at smaller inputs is faster. In your own words, why does a series representation become a computational tool, and why does using the same series closer to its center change the efficiency?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A series is useful only where its remainder is controllable. Smaller inputs make powers shrink faster, so the same identity can be a poor calculator or a good one depending on where it is evaluated.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

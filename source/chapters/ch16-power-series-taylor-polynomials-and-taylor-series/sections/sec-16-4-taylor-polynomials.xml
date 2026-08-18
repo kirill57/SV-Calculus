@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-16-4-taylor-polynomials">
+  <title>Taylor polynomials</title>
+
+  <p>Power series gave us infinite polynomials.  But before an infinite polynomial can be
+trusted, we should understand the finite ones that approximate a function near one
+point.</p>
+
+  <p>The derivative already gave us the first approximation:</p>
+
+  <md>f(x)\approx f(a)+f'(a)(x-a).</md>
+
+  <p>That is the tangent line.  It matches the value and slope of <m>f</m> at <m>a</m>.</p>
+
+  <p>Taylor’s idea is to continue the matching.</p>
+
+  <md>\text{match value, slope, curvature, and higher derivatives.}</md>
+
+  <p>The result is a polynomial built from local information.</p>
+
+  <subsection xml:id="subsec-matching-value-and-derivatives">
+    <title>Matching value and derivatives</title>
+
+  <p>Begin with the function</p>
+
+  <md>f(x)=e^x</md>
+
+  <p>near <m>x=0</m>.</p>
+
+  <p>We know</p>
+
+  <md>f(0)=1.</md>
+
+  <p>So the constant approximation should be</p>
+
+  <md>P_0(x)=1.</md>
+
+  <p>We also know</p>
+
+  <md>f'(x)=e^x,
+\qquad
+f'(0)=1.</md>
+
+  <p>The linear approximation should match value and slope:</p>
+
+  <md>P_1(x)=1+x.</md>
+
+  <p>Now ask for a quadratic approximation</p>
+
+  <md>P_2(x)=1+x+cx^2.</md>
+
+  <p>The coefficient <m>c</m> should be chosen so that the second derivative also matches.
+Since</p>
+
+  <md>f''(x)=e^x,
+\qquad
+f''(0)=1,</md>
+
+  <p>we want</p>
+
+  <md>P_2''(0)=1.</md>
+
+  <p>But</p>
+
+  <md>P_2''(x)=2c,</md>
+
+  <p>so</p>
+
+  <md>2c=1,
+\qquad
+c=\frac12.</md>
+
+  <p>Thus</p>
+
+  <md>P_2(x)=1+x+\frac{x^2}{2}.</md>
+
+  <p>For a cubic approximation,</p>
+
+  <md>P_3(x)=1+x+\frac{x^2}{2}+dx^3.</md>
+
+  <p>Since</p>
+
+  <md>f'''(0)=1</md>
+
+  <p>and</p>
+
+  <md>P_3'''(0)=6d,</md>
+
+  <p>we need</p>
+
+  <md>6d=1,
+\qquad
+d=\frac16.</md>
+
+  <p>So</p>
+
+  <md>P_3(x)=1+x+\frac{x^2}{2}+\frac{x^3}{6}.</md>
+
+  <p>The factorials are not mysterious.  They come from differentiating powers:</p>
+
+  <md>\frac{d^k}{dx^k}x^k=k!.</md>
+
+  <figure xml:id="fig-taylor-polynomials-exp">
+    <caption>Taylor polynomials for <m>e^x</m> match more derivatives at the center <m>0</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.50\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.5, ymax=7.5,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-2,-1,0,1,2},
+    ytick={0,1,2,4,6},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[very thick, domain=-2:2, samples=200] {exp(x)};
+\addlegendentry{\(e^x\)}
+
+\addplot[thick, dashed, domain=-2:2, samples=2] {1+x};
+\addlegendentry{\(1+x\)}
+
+\addplot[thick, dotted, domain=-2:2, samples=200] {1+x+x^2/2};
+\addlegendentry{\(1+x+\frac{x^2}{2}\)}
+
+\addplot[thick, dashdotted, domain=-2:2, samples=200] {1+x+x^2/2+x^3/6};
+\addlegendentry{\(1+x+\frac{x^2}{2}+\frac{x^3}{6}\)}
+
+\addplot[only marks, mark=*] coordinates {(0,1)};
+    \node[anchor=east] at (axis cs:0,1) {center \(0\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The polynomials</p>
+
+  <md>1,
+\qquad
+1+x,
+\qquad
+1+x+\frac{x^2}{2},
+\qquad
+1+x+\frac{x^2}{2}+\frac{x^3}{6}</md>
+
+  <p>are not random.  Each one matches more local information about <m>e^x</m> at <m>0</m>.</p>
+
+  <table xml:id="tab-sec-16-4-taylor-polynomials-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>polynomial</strong></cell>
+        <cell><strong>what it matches at <m>0</m></strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>P_0</m></cell>
+        <cell>value</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>P_1</m></cell>
+        <cell>value and first derivative</cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>P_2</m></cell>
+        <cell>value, first derivative, and second derivative</cell>
+      </row>
+      <row>
+        <cell><m>P_3</m></cell>
+        <cell>value through third derivative</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>This is the pattern Taylor polynomials formalize.</p>
+
+  <exercise xml:id="checkpoint-16-4-matching-derivatives">
+        <title>Why does a Taylor polynomial match derivatives at a center?</title>
+        <statement>
+          <p>
+            The tangent line matches value and slope. A Taylor polynomial continues the matching through higher derivatives. In your own words, why is that the right way to build a local polynomial, and what local information is each extra coefficient recording?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Near a point, the first things a smooth function reveals are its value, its rate of change, its bending, and so on. Matching those derivatives makes the polynomial share the function’s local shape.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-linear-quadratic-cubic-approximations">
+    <title>Linear, quadratic, and cubic approximations</title>
+
+  <p>The first Taylor polynomial is the tangent line:</p>
+
+  <md>
+P_1(x)=f(a)+f'(a)(x-a).
+</md>
+
+  <p>It matches <m>f</m> and <m>f'</m> at <m>a</m>.</p>
+
+  <p>The second Taylor polynomial adds curvature information:</p>
+
+  <md>
+P_2(x)
+=
+f(a)+f'(a)(x-a)+\frac{f''(a)}{2}(x-a)^2.
+</md>
+
+  <p>The third Taylor polynomial adds the third derivative:</p>
+
+  <md>
+P_3(x)
+=
+f(a)+f'(a)(x-a)
++\frac{f''(a)}{2}(x-a)^2
++\frac{f'''(a)}{6}(x-a)^3.
+</md>
+
+  <p>The numbers <m>2</m> and <m>6</m> are</p>
+
+  <md>2!=2,
+\qquad
+3!=6.</md>
+
+  <example xml:id="ex-sec-16-4-taylor-polynomials-1">
+    <title>approximating a square root</title>
+    <statement>
+  <p>Find the cubic Taylor polynomial for</p>
+
+  <md>f(x)=\sqrt{1+x}</md>
+
+  <p>centered at <m>0</m>, and use it to approximate</p>
+
+  <md>\sqrt{1.1}.</md>
+
+  <p>First compute derivatives:</p>
+
+  <md>f(x)=(1+x)^{1/2},</md>
+
+  <md>f'(x)=\frac12(1+x)^{-1/2},</md>
+
+  <md>f''(x)=-\frac14(1+x)^{-3/2},</md>
+
+  <md>f'''(x)=\frac38(1+x)^{-5/2}.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>f(0)=1,
+\qquad
+f'(0)=\frac12,
+\qquad
+f''(0)=-\frac14,
+\qquad
+f'''(0)=\frac38.</md>
+
+  <p>Therefore</p>
+
+  <md>P_3(x)
+=
+1+\frac12x+\frac{-\frac14}{2}x^2+\frac{\frac38}{6}x^3.</md>
+
+  <p>So</p>
+
+  <md>
+P_3(x)=1+\frac{x}{2}-\frac{x^2}{8}+\frac{x^3}{16}.
+</md>
+
+  <p>To approximate <m>\sqrt{1.1}</m>, use</p>
+
+  <md>1.1=1+0.1.</md>
+
+  <p>So <m>x=0.1</m>.  Then</p>
+
+  <md>P_3(0.1)
+=
+1+\frac{0.1}{2}-\frac{(0.1)^2}{8}+\frac{(0.1)^3}{16}.</md>
+
+  <p>Compute:</p>
+
+  <md>P_3(0.1)
+=
+1+0.05-0.00125+0.0000625
+=
+1.0488125.</md>
+
+  <p>Thus</p>
+
+  <md>
+\sqrt{1.1}\approx 1.0488125.
+</md>
+
+  <p>The approximation is good because <m>0.1</m> is close to the center <m>0</m>.  The polynomial
+was built for nearby inputs.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>What each term is doing</title>
+
+  <p>The approximation</p>
+
+  <md>1+\frac{x}{2}</md>
+
+  <p>uses the tangent line.  It says that near <m>0</m>,</p>
+
+  <md>\sqrt{1+x}</md>
+
+  <p>initially rises at rate <m>1/2</m>.</p>
+
+  <p>The term</p>
+
+  <md>-\frac{x^2}{8}</md>
+
+  <p>corrects for concavity.  The square-root graph bends downward, so the tangent line
+slightly overestimates.  The negative quadratic term pulls the approximation down.</p>
+
+  <p>The term</p>
+
+  <md>\frac{x^3}{16}</md>
+
+  <p>makes a smaller correction to the correction.</p>
+
+  <p>A Taylor polynomial is not just a formula.  Each coefficient records derivative
+information at the center.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-4-what-each-term-does">
+        <title>What is each Taylor term doing?</title>
+        <statement>
+          <p>
+            For <m>\sqrt{1+x}</m> near <m>0</m>, the linear term follows the tangent, the quadratic term corrects for concavity, and the cubic term corrects the correction. In your own words, why is a Taylor polynomial not just a formula, and why do later terms matter less when you stay close to the center?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each coefficient is derivative data at one point. Close to the center, higher powers of <m>x-a</m> are small, so the first few matched derivatives dominate the picture.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-taylor-polynomial-centered-at-a">
+    <title>Taylor polynomial centered at <m>a</m></title>
+
+  <p>Now write the general formula.</p>
+
+  <p>Suppose <m>f</m> has derivatives up to order <m>n</m> at <m>x=a</m>.  The degree <m>n</m> Taylor
+polynomial for <m>f</m> centered at <m>a</m> is</p>
+
+  <md>
+T_n(x)
+=
+f(a)
++
+f'(a)(x-a)
++
+\frac{f''(a)}{2!}(x-a)^2
++
+\cdots
++
+\frac{f^{(n)}(a)}{n!}(x-a)^n.
+</md>
+
+  <p>In sigma notation,</p>
+
+  <md>
+T_n(x)=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(a)}{k!}(x-a)^k.
+</md>
+
+  <p>Here</p>
+
+  <md>f^{(0)}(a)=f(a),
+\qquad
+0!=1.</md>
+
+  <paragraphs>
+    <title>Why the coefficients have this form</title>
+
+  <p>Suppose</p>
+
+  <md>P(x)=A_0+A_1(x-a)+A_2(x-a)^2+\cdots+A_n(x-a)^n.</md>
+
+  <p>Evaluate at <m>x=a</m>.  Every term with a factor <m>(x-a)</m> disappears, so</p>
+
+  <md>P(a)=A_0.</md>
+
+  <p>Differentiate once:</p>
+
+  <md>P'(x)=A_1+2A_2(x-a)+3A_3(x-a)^2+\cdots.</md>
+
+  <p>At <m>x=a</m>,</p>
+
+  <md>P'(a)=A_1.</md>
+
+  <p>Differentiate twice:</p>
+
+  <md>P''(a)=2!A_2.</md>
+
+  <p>Differentiate <m>k</m> times.  At <m>x=a</m>, the only surviving contribution to the <m>k</m>-th
+derivative comes from</p>
+
+  <md>A_k(x-a)^k.</md>
+
+  <p>It gives</p>
+
+  <md>P^{(k)}(a)=k!A_k.</md>
+
+  <p>To make <m>P^{(k)}(a)=f^{(k)}(a)</m>, we must choose</p>
+
+  <md>A_k=\frac{f^{(k)}(a)}{k!}.</md>
+
+  <p>That is exactly the Taylor coefficient.</p>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-16-4-why-factorials">
+        <title>Why do the Taylor coefficients involve factorials?</title>
+        <statement>
+          <p>
+            The degree <m>n</m> Taylor polynomial centered at <m>a</m> has coefficients <m>f^{(k)}(a)/k!</m>. In your own words, why does differentiating a power <m>(x-a)^k</m> a total of <m>k</m> times produce a factorial, and why is that factorial needed to match <m>f^{(k)}(a)</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Differentiating <m>c(x-a)^k</m> down to a constant multiplies by <m>k!</m>. To make the constant equal <m>f^{(k)}(a)</m>, the coefficient must already contain the reciprocal factorial.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-16-4-taylor-polynomials-4">
+    <title><m>\ln x</m> centered at <m>1</m></title>
+    <statement>
+  <p>The logarithm is not defined at <m>0</m>, so a polynomial centered at <m>0</m> would be a bad
+idea.  But <m>\ln x</m> behaves nicely near <m>x=1</m>.</p>
+
+  <p>Let</p>
+
+  <md>f(x)=\ln x.</md>
+
+  <p>Then</p>
+
+  <md>f(1)=0,</md>
+
+  <md>f'(x)=\frac1x,
+\qquad
+f'(1)=1,</md>
+
+  <md>f''(x)=-\frac1{x^2},
+\qquad
+f''(1)=-1,</md>
+
+  <md>f'''(x)=\frac2{x^3},
+\qquad
+f'''(1)=2.</md>
+
+  <p>The cubic Taylor polynomial centered at <m>1</m> is</p>
+
+  <md>T_3(x)
+=
+0+1(x-1)+\frac{-1}{2!}(x-1)^2+\frac{2}{3!}(x-1)^3.</md>
+
+  <p>So</p>
+
+  <md>
+T_3(x)
+=
+(x-1)-\frac{(x-1)^2}{2}+\frac{(x-1)^3}{3}.
+</md>
+
+  <p>To approximate <m>\ln(1.2)</m>, use <m>x=1.2</m>.  Then <m>x-1=0.2</m>, and</p>
+
+  <md>T_3(1.2)
+=
+0.2-\frac{(0.2)^2}{2}+\frac{(0.2)^3}{3}.</md>
+
+  <p>So</p>
+
+  <md>T_3(1.2)
+=
+0.2-0.02+\frac{0.008}{3}
+=
+0.182666\ldots.</md>
+
+  <p>This matches the earlier logarithm series in another language.  If we write</p>
+
+  <md>u=x-1,</md>
+
+  <p>then</p>
+
+  <md>\ln x=\ln(1+u)</md>
+
+  <p>and the polynomial becomes</p>
+
+  <md>u-\frac{u^2}{2}+\frac{u^3}{3}.</md>
+
+  <p>The center changed the notation, but not the idea.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-maclaurin-polynomials">
+    <title>Maclaurin polynomials</title>
+
+  <p>A Taylor polynomial centered at <m>0</m> has a special name.</p>
+
+  <note xml:id="note-sec-16-4-taylor-polynomials-79">
+    <title>Maclaurin polynomial</title>
+      <p>The degree <m>n</m> Taylor polynomial centered at <m>0</m> is called the degree <m>n</m>
+<em>Maclaurin polynomial</em>:</p>
+        <md>
+M_n(x)=
+\sum_{k=0}^{n}
+\frac{f^{(k)}(0)}{k!}x^k.
+</md>
+  </note>
+
+  <p>Many of the most familiar series begin as Maclaurin polynomials.</p>
+
+  <example xml:id="ex-sec-16-4-taylor-polynomials-5">
+    <title><m>e^x</m></title>
+    <statement>
+  <p>All derivatives of <m>e^x</m> are <m>e^x</m>, and</p>
+
+  <md>e^0=1.</md>
+
+  <p>So every derivative at <m>0</m> equals <m>1</m>.  Therefore</p>
+
+  <md>
+M_n(x)=
+1+x+\frac{x^2}{2!}+\frac{x^3}{3!}+\cdots+\frac{x^n}{n!}
+</md>
+
+  <p>for <m>e^x</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-4-taylor-polynomials-6">
+    <title><m>\sin x</m></title>
+    <statement>
+  <p>The derivatives of <m>\sin x</m> cycle:</p>
+
+  <md>\sin x,\quad \cos x,\quad -\sin x,\quad -\cos x,\quad \sin x,\ldots.</md>
+
+  <p>At <m>x=0</m>,</p>
+
+  <md>\sin0=0,
+\qquad
+\cos0=1.</md>
+
+  <p>So the derivatives at <m>0</m> follow the pattern</p>
+
+  <md>0,\ 1,\ 0,\ -1,\ 0,\ 1,\ldots.</md>
+
+  <p>Thus the degree <m>5</m> Maclaurin polynomial is</p>
+
+  <md>
+M_5(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-16-4-taylor-polynomials-7">
+    <title><m>\cos x</m></title>
+    <statement>
+  <p>For <m>\cos x</m>, the derivative values at <m>0</m> are</p>
+
+  <md>1,\ 0,\ -1,\ 0,\ 1,\ 0,\ -1,\ldots.</md>
+
+  <p>So the degree <m>6</m> Maclaurin polynomial is</p>
+
+  <md>
+M_6(x)=1-\frac{x^2}{2!}+\frac{x^4}{4!}-\frac{x^6}{6!}.
+</md>
+
+  <table xml:id="tab-sec-16-4-taylor-polynomials-2">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>function</strong></cell>
+        <cell><strong>early Maclaurin polynomials</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>e^x</m></cell>
+        <cell><m>1,\quad 1+x,\quad 1+x+\dfrac{x^2}{2!},\quad
+1+x+\dfrac{x^2}{2!}+\dfrac{x^3}{3!}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>
+<m>\sin x</m></cell>
+        <cell><m>x,\quad x-\dfrac{x^3}{3!},\quad x-\dfrac{x^3}{3!}+\dfrac{x^5}{5!}</m></cell>
+      </row>
+      <row>
+        <cell>
+<m>\cos x</m></cell>
+        <cell><m>1,\quad 1-\dfrac{x^2}{2!},\quad
+1-\dfrac{x^2}{2!}+\dfrac{x^4}{4!}</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>These are still finite polynomials.  We have not yet proved that the corresponding
+infinite series equal the functions.  That distinction matters.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A necessary warning</title>
+
+  <p>Taylor polynomials require derivatives at the center.</p>
+
+  <p>The function</p>
+
+  <md>f(x)=|x|</md>
+
+  <p>is continuous at <m>0</m>, but it is not differentiable at <m>0</m>.  The left slope is <m>-1</m>, and
+the right slope is <m>1</m>.  There is no single number <m>f'(0)</m>.</p>
+
+  <p>So there is no first-degree Taylor polynomial for <m>|x|</m> centered at <m>0</m> that matches
+the derivative.  The needed local data does not exist.</p>
+
+  <note xml:id="note-sec-16-4-taylor-polynomials-80">
+    <title>Moral</title>
+      <p>A Taylor polynomial is built from derivatives at a center.  If those derivatives do not
+exist, the polynomial cannot be built in the usual way.</p>
+  </note>
+
+  <p>There is another warning.  Even when the polynomial exists, it is only a local
+approximation until we understand its error.</p>
+
+  <p>For <m>e^x</m>, the polynomial</p>
+
+  <md>1+x+\frac{x^2}{2}</md>
+
+  <p>is good near <m>0</m>.  It is not automatically good far away.  Taylor polynomials are
+promises about contact at a point, not yet promises about accuracy on a whole interval.</p>
+
+  <p>That is the next question:</p>
+
+  <md>
+\text{How far is \(f(x)\) from its Taylor polynomial?}
+</md>
+
+  <p>The answer is the remainder term.  Without it, approximation has no scale.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-16-4-local-not-global">
+        <title>Why is a Taylor polynomial a local promise?</title>
+        <statement>
+          <p>
+            Taylor polynomials require derivatives at the center, and even when they exist they are not automatically accurate far away. In your own words, why can <m>|x|</m> have no first-degree Taylor polynomial at <m>0</m>, and why is matching at a point not yet a statement about error on an interval?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Without a derivative, there is no slope to match. With a derivative, contact at a point still says nothing about how large the leftover gap becomes as you move away. That gap is the remainder.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

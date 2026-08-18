@@ -1,375 +1,591 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- CONVERTED — VISUALLY VERIFIED -->
-<section xml:id="sec-differentiability-and-continuity">
+<section xml:id="sec-4-5-differentiability-and-continuity">
   <title>Differentiability and continuity</title>
 
   <p>Local linear approximation ended with the formula</p>
-  <md>f(a+h)=f(a)+f'(a)h+E(h), \qquad \frac{E(h)}{h}\to 0.</md>
 
-  <p>This says that, near <m>a</m>, a differentiable function behaves like a line. A line cannot jump. So a differentiable function cannot jump either.</p>
+  <md>f(a+h)=f(a)+f'(a)h+E(h),
+\qquad
+\frac{E(h)}{h}\to0.</md>
+
+  <p>This says that, near <m>a</m>, a differentiable function behaves like a line.  A line cannot jump.  So a differentiable function cannot jump either.</p>
 
   <p>That is our first structural theorem about derivatives:</p>
+
   <md>\text{differentiability is stronger than continuity.}</md>
 
   <subsection xml:id="subsec-differentiability-implies-continuity">
     <title>Differentiability implies continuity</title>
 
-    <p>Recall what continuity at <m>a</m> means:</p>
-    <md>\lim_{x\to a}f(x)=f(a).</md>
+  <p>Recall what continuity at <m>a</m> means:</p>
 
-    <p>In the <m>h</m>-notation, where <m>x=a+h</m>, this is</p>
-    <md>\lim_{h\to 0}f(a+h)=f(a).</md>
+  <md>\lim_{x\to a}f(x)=f(a).</md>
 
-    <p>So continuity says that small input changes produce small output changes. Differentiability says more: small input changes produce output changes that are nearly linear.</p>
+  <p>In the <m>h</m>-notation, where <m>x=a+h</m>, this is</p>
 
-    <paragraphs xml:id="paragraphs-differentiability-first-example">
-      <title>A first example</title>
-      <p>Let <m>f(x)=x^2</m>. At <m>a=3</m>,</p>
-      <md>f(3+h)=(3+h)^2=9+6h+h^2.</md>
-      <p>So</p>
-      <md>f(3+h)-f(3)=6h+h^2.</md>
-      <p>As <m>h\to 0</m>,</p>
-      <md>6h+h^2\to 0.</md>
-      <p>Therefore</p>
-      <md>f(3+h)\to f(3).</md>
-      <p>The derivative at <m>3</m> is <m>6</m>, but continuity only needs the weaker fact that the output change goes to <m>0</m>.</p>
-      <p>The same idea works for every differentiable function.</p>
-    </paragraphs>
+  <md>\lim_{h\to0}f(a+h)=f(a).</md>
 
-    <theorem xml:id="thm-differentiable-implies-continuous">
-      <title>Differentiability implies continuity</title>
-      <statement>
-        <p>If <m>f</m> is differentiable at <m>a</m>, then <m>f</m> is continuous at <m>a</m>.</p>
-      </statement>
-      <proof>
-        <p>Since <m>f</m> is differentiable at <m>a</m>, the limit</p>
-        <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}</md>
-        <p>exists as a finite number.</p>
-        <p>For <m>h\neq 0</m>, write</p>
-        <md>f(a+h)-f(a) = h\cdot \frac{f(a+h)-f(a)}{h}.</md>
-        <p>Now let <m>h\to 0</m>. The first factor <m>h</m> approaches <m>0</m>. The second factor approaches the finite number <m>f'(a)</m>. Therefore the product approaches</p>
-        <md>0\cdot f'(a)=0.</md>
-        <p>Thus</p>
-        <md>\lim_{h\to 0}\bigl(f(a+h)-f(a)\bigr)=0.</md>
-        <p>So</p>
-        <md>\lim_{h\to 0}f(a+h)=f(a).</md>
-        <p>That is exactly continuity at <m>a</m>.</p>
-      </proof>
-    </theorem>
+  <p>So continuity says that small input changes produce small output changes.  Differentiability says more: small input changes produce output changes that are nearly linear.</p>
 
-    <md>\text{differentiable at }a \quad \Longrightarrow \quad \text{continuous at }a.</md>
+  <paragraphs>
+    <title>A first example</title>
 
-    <p>The proof is short because the idea is simple. If</p>
-    <md>\frac{\text{output change}}{\text{input change}}</md>
-    <p>settles to a finite number, then the output change itself must go to <m>0</m> when the input change goes to <m>0</m>.</p>
+  <p>Let</p>
+
+  <md>f(x)=x^2.</md>
+
+  <p>At <m>a=3</m>,</p>
+
+  <md>f(3+h)=(3+h)^2=9+6h+h^2.</md>
+
+  <p>So</p>
+
+  <md>f(3+h)-f(3)=6h+h^2.</md>
+
+  <p>As <m>h\to0</m>,</p>
+
+  <md>6h+h^2\to0.</md>
+
+  <p>Therefore</p>
+
+  <md>f(3+h)\to f(3).</md>
+
+  <p>The derivative at <m>3</m> is <m>6</m>, but continuity only needs the weaker fact that the output change goes to <m>0</m>.</p>
+
+  <p>The same idea works for every differentiable function.</p>
+
+  <theorem xml:id="thm-sec-4-5-differentiability-and-continuity-55">
+    <title>Theorem</title>
+    <statement>
+      <p>If <m>f</m> is differentiable at <m>a</m>, then <m>f</m> is continuous at <m>a</m>.</p>
+    </statement>
+  </theorem>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Proof</title>
+
+  <p>Since <m>f</m> is differentiable at <m>a</m>, the limit</p>
+
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</md>
+
+  <p>exists as a finite number.</p>
+
+  <p>For <m>h\neq0</m>, write</p>
+
+  <md>f(a+h)-f(a)
+=
+h\cdot \frac{f(a+h)-f(a)}{h}.</md>
+
+  <p>Now let <m>h\to0</m>.  The first factor <m>h</m> approaches <m>0</m>.  The second factor approaches the finite number <m>f'(a)</m>.  Therefore the product approaches</p>
+
+  <md>0\cdot f'(a)=0.</md>
+
+  <p>Thus</p>
+
+  <md>\lim_{h\to0}\bigl(f(a+h)-f(a)\bigr)=0.</md>
+
+  <p>So</p>
+
+  <md>\lim_{h\to0}f(a+h)=f(a).</md>
+
+  <p>That is exactly continuity at <m>a</m>.</p>
+
+  <md>
+\text{differentiable at }a
+\quad \Longrightarrow \quad
+\text{continuous at }a.
+</md>
+
+  <p>The proof is short because the idea is simple.  If</p>
+
+  <md>\frac{\text{output change}}{\text{input change}}</md>
+
+  <p>settles to a finite number, then the output change itself must go to <m>0</m> when the input change goes to <m>0</m>.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-5-diff-implies-cont">
+        <title>Why does differentiability force continuity?</title>
+        <statement>
+          <p>
+            If the difference quotient settles to a finite number, then <m>f(a+h)-f(a)</m> is that quotient times <m>h</m>. In your own words, why must the output change go to <m>0</m> as <m>h\to 0</m>, and why is this the claim that a differentiable function cannot jump?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A product of something approaching <m>0</m> and something approaching a finite number approaches <m>0</m>. Continuity is exactly that output change going to <m>0</m>.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-continuity-not-differentiability">
     <title>Why the converse is false</title>
 
-    <p>The theorem has only one direction. Differentiability implies continuity, but continuity does not imply differentiability.</p>
+  <p>The theorem has only one direction.  Differentiability implies continuity, but continuity does not imply differentiability.</p>
 
-    <p>Continuity says the graph has no break at the point. Differentiability says the graph has one limiting slope there. A graph can be unbroken and still have no single tangent slope.</p>
+  <p>Continuity says the graph has no break at the point.  Differentiability says the graph has one limiting slope there.  A graph can be unbroken and still have no single tangent slope.</p>
 
-    <p>The first warning example is</p>
-    <md>f(x)=|x|.</md>
+  <p>The first warning example is</p>
 
-    <p>This function is continuous at <m>0</m>, because</p>
-    <md>\lim_{x\to 0}|x|=0=|0|.</md>
+  <md>f(x)=|x|.</md>
 
-    <p>But the derivative at <m>0</m> would be</p>
-    <md>f'(0)=\lim_{h\to 0}\frac{|h|-0}{h} = \lim_{h\to 0}\frac{|h|}{h}.</md>
+  <p>This function is continuous at <m>0</m>, because</p>
 
-    <p>If <m>h\gt 0</m>, then <m>\frac{|h|}{h}=1</m>.</p>
-    <p>If <m>h\lt 0</m>, then <m>\frac{|h|}{h}=-1</m>.</p>
+  <md>\lim_{x\to0}|x|=0=|0|.</md>
 
-    <p>The right-hand slopes approach <m>1</m>. The left-hand slopes approach <m>-1</m>. There is no single limiting slope.</p>
+  <p>But the derivative at <m>0</m> would be</p>
 
-    <p>Therefore <m>f'(0)</m> does not exist.</p>
+  <md>f'(0)=\lim_{h\to0}\frac{|h|-0}{h}
+=
+\lim_{h\to0}\frac{|h|}{h}.</md>
 
-    <principle xml:id="principle-abs-continuous-not-differentiable">
-      <statement>
-        <p><m>|x|</m> is continuous at <m>0</m>, but not differentiable at <m>0</m>.</p>
-      </statement>
-    </principle>
+  <p>If <m>h&gt;0</m>, then</p>
 
-    <p>The graph does not jump. It turns too sharply.</p>
+  <md>\frac{|h|}{h}=1.</md>
 
-    <figure xml:id="fig-absolute-value-continuous-not-differentiable">
-      <caption>The graph of <m>y=|x|</m> is continuous at <m>0</m>, but the two limiting slopes disagree.</caption>
-      <image width="68%">
-        <latex-image>
-          \begin{tikzpicture}
-          \begin{axis}[
-              width=0.68\textwidth,
-              height=0.44\textwidth,
-              xmin=-2.2, xmax=2.2,
-              ymin=-0.2, ymax=2.3,
-              axis lines=middle,
-              xlabel={\(x\)},
-              ylabel={\(y\)},
-              xtick={-1,0,1},
-              ytick={1,2},
-              grid=both,
-              grid style={line width=.1pt, draw=gray!25},
-          ]
-          \addplot[thick, domain=-2:0, samples=2] {-x};
-          \addplot[thick, domain=0:2, samples=2] {x};
-          \addplot[very thick, dashed, domain=-1.55:0.05, samples=2] {-x};
-          \addplot[very thick, dotted, domain=-0.05:1.55, samples=2] {x};
-          \addplot[only marks, mark=*] coordinates {(0,0)};
-          \node[anchor=east] at (axis cs:-0.35,1.45) {left slope \(-1\)};
-          \node[anchor=west] at (axis cs:0.35,1.45) {right slope \(1\)};
-          \end{axis}
-          \end{tikzpicture}
-        </latex-image>
-      </image>
-    </figure>
+  <p>If <m>h&lt;0</m>, then</p>
 
-    <p>This example separates two ideas that are easy to confuse:</p>
-    <md>\text{continuity is about nearby heights,}</md>
-    <p>while</p>
-    <md>\text{differentiability is about nearby slopes.}</md>
+  <md>\frac{|h|}{h}=-1.</md>
+
+  <p>The right-hand slopes approach <m>1</m>.  The left-hand slopes approach <m>-1</m>.  There is no single limiting slope.</p>
+
+  <p>Therefore</p>
+
+  <md>f'(0)</md>
+
+  <p>does not exist.</p>
+
+  <md>
+|x|\text{ is continuous at }0,\text{ but not differentiable at }0.
+</md>
+
+  <p>The graph does not jump.  It turns too sharply.</p>
+
+  <figure xml:id="fig-absolute-value-continuous-not-differentiable">
+    <caption>The graph of <m>y=|x|</m> is continuous at <m>0</m>, but the two limiting slopes disagree.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.68\textwidth,
+    height=0.44\textwidth,
+    xmin=-2.2, xmax=2.2,
+    ymin=-0.2, ymax=2.55,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={1,2},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:0, samples=2] {-x};
+\addplot[thick, domain=0:2, samples=2] {x};
+\addplot[very thick, dashed, domain=-1.55:0.05, samples=2] {-x};
+\addplot[very thick, dotted, domain=-0.05:1.55, samples=2] {x};
+\addplot[only marks, mark=*] coordinates {(0,0)};
+\node[fill=white, inner sep=1pt, anchor=south east] at (axis cs:-0.75,2.05) {left slope \(-1\)};
+\node[fill=white, inner sep=1pt, anchor=south west] at (axis cs:0.75,2.05) {right slope \(1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>This example separates two ideas that are easy to confuse:</p>
+
+  <md>\text{continuity is about nearby heights,}</md>
+
+  <p>while</p>
+
+  <md>\text{differentiability is about nearby slopes.}</md>
+
+  <exercise xml:id="checkpoint-4-5-converse-false">
+        <title>Why does continuity not promise a derivative?</title>
+        <statement>
+          <p>
+            Continuity is about nearby heights; differentiability is about nearby slopes. In your own words, why can a graph be unbroken and still fail to have a derivative, and how does <m>|x|</m> at <m>0</m> separate the two ideas?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Nearby values can match while the left and right limiting slopes disagree. A corner is continuous but not locally linear.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-ways-differentiability-can-fail">
     <title>Corners, cusps, vertical tangents, and jumps</title>
 
-    <p>The derivative at <m>a</m> exists only if the difference quotient</p>
-    <md>\frac{f(a+h)-f(a)}{h}</md>
-    <p>approaches one finite number as <m>h\to 0</m>. Several things can go wrong.</p>
+  <p>The derivative at <m>a</m> exists only if the difference quotient</p>
 
-    <table>
-      <title>Ways differentiability can fail</title>
-      <tabular halign="center" top="minor" bottom="minor" left="minor" right="minor">
-        <col halign="left" width="25%"/>
-        <col halign="left" width="50%"/>
-        <col halign="left" width="25%"/>
-        <row header="yes">
-          <cell><term>graph feature</term></cell>
-          <cell><term>what happens to slopes</term></cell>
-          <cell><term>example</term></cell>
-        </row>
-        <row>
-          <cell>corner</cell>
-          <cell>left and right slopes are finite but unequal</cell>
-          <cell><m>|x|</m></cell>
-        </row>
-        <row>
-          <cell>cusp</cell>
-          <cell>slopes become unbounded in opposite directions</cell>
-          <cell><m>|x|^{2/3}</m></cell>
-        </row>
-        <row>
-          <cell>vertical tangent</cell>
-          <cell>slopes become unbounded</cell>
-          <cell><m>\sqrt[3]{x}</m></cell>
-        </row>
-        <row>
-          <cell>jump</cell>
-          <cell>continuity already fails</cell>
-          <cell><m>\begin{cases} 0,\amp x\lt 0\\ 1,\amp x\ge 0 \end{cases}</m></cell>
-        </row>
-      </tabular>
-    </table>
+  <md>\frac{f(a+h)-f(a)}{h}</md>
 
-    <sidebyside widths="48% 48%" margins="auto">
-      <figure xml:id="fig-fail-corner">
-        <caption>A corner: <m>y=|x|</m>.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.70\textwidth,
-                xmin=-2, xmax=2,
-                ymin=-0.2, ymax=2.2,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={-1,0,1},
-                ytick={1},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-2:2, samples=80] {abs(x)};
-            \node[anchor=west] at (axis cs:0.25,1.55) {corner};
-            \node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <p>approaches one finite number as <m>h\to0</m>.  Several things can go wrong.</p>
 
-      <figure xml:id="fig-fail-cusp">
-        <caption>A cusp: <m>y=|x|^{2/3}</m>.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.70\textwidth,
-                xmin=-2, xmax=2,
-                ymin=-0.2, ymax=2.2,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={-1,0,1},
-                ytick={1},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-2:2, samples=120] {abs(x)^(2/3)};
-            \node[anchor=west] at (axis cs:0.25,1.55) {cusp};
-            \node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|^{2/3}\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <table xml:id="tab-ways-derivative-fails">
+    <tabular>
+      <row bottom="minor">
+        <cell><strong>graph feature</strong></cell>
+        <cell><strong>what happens to slopes</strong></cell>
+        <cell><strong>example</strong></cell>
+      </row>
+      <row>
+        <cell>corner</cell>
+        <cell>left and right slopes are finite but unequal</cell>
+        <cell><m>|x|</m></cell>
+      </row>
+      <row>
+        <cell>cusp</cell>
+        <cell>slopes become unbounded in opposite directions</cell>
+        <cell><m>|x|^{2/3}</m></cell>
+      </row>
+      <row>
+        <cell>vertical tangent</cell>
+        <cell>slopes become unbounded</cell>
+        <cell><m>\sqrt[3]{x}</m></cell>
+      </row>
+      <row>
+        <cell>jump</cell>
+        <cell>continuity already fails</cell>
+        <cell><m>\begin{cases}0,\amp x&lt;0\\ 1,\amp x\ge0\end{cases}</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <figure xml:id="fig-ways-derivative-fails">
+    <caption>Differentiability can fail in different ways.  Continuity rules out jumps, but not corners, cusps, or vertical tangents.</caption>
+            <sidebyside widths="23% 23% 23% 23%" valign="bottom">
+    <image xml:id="fig-ways-derivative-fails-panel-1">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.70\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.2, ymax=2.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:2, samples=80] {abs(x)};
+\node[anchor=west] at (axis cs:0.25,1.55) {corner};
+\node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-ways-derivative-fails-panel-2">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.70\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.2, ymax=2.2,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:2, samples=120] {abs(x)^(2/3)};
+\node[anchor=west] at (axis cs:0.25,1.55) {cusp};
+\node[anchor=west] at (axis cs:0.25,1.25) {\(y=|x|^{2/3}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-ways-derivative-fails-panel-3">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.70\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-1.5, ymax=1.5,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={-1,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:0, samples=80] {-(-x)^(1/3)};
+\addplot[thick, domain=0:2, samples=80] {x^(1/3)};
+\draw[very thick, dashed] (axis cs:0,-1.3) -- (axis cs:0,1.3);
+\node[anchor=west] at (axis cs:0.25,0.9) {vertical tangent};
+\node[anchor=west] at (axis cs:0.25,0.62) {\(y=\sqrt[3]{x}\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-ways-derivative-fails-panel-4">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.70\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.4, ymax=1.4,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={-1,0,1},
+    ytick={0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:0, samples=2] {0};
+\addplot[thick, domain=0:2, samples=2] {1};
+\addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,1)};
+\node[anchor=west] at (axis cs:0.25,0.75) {jump};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
     </sidebyside>
+  </figure>
 
-    <sidebyside widths="48% 48%" margins="auto">
-      <figure xml:id="fig-fail-vertical-tangent">
-        <caption>A vertical tangent: <m>y=\sqrt[3]{x}</m>.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.70\textwidth,
-                xmin=-2, xmax=2,
-                ymin=-1.5, ymax=1.5,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={-1,0,1},
-                ytick={-1,1},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-2:0, samples=80] {-(-x)^(1/3)};
-            \addplot[thick, domain=0:2, samples=80] {x^(1/3)};
-            \draw[very thick, dashed] (axis cs:0,-1.3) -- (axis cs:0,1.3);
-            \node[anchor=west] at (axis cs:0.25,0.9) {vertical tangent};
-            \node[anchor=west] at (axis cs:0.25,0.62) {\(y=\sqrt[3]{x}\)};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
+  <paragraphs>
+    <title>A corner</title>
 
-      <figure xml:id="fig-fail-jump">
-        <caption>A jump discontinuity.</caption>
-        <image>
-          <latex-image>
-            \begin{tikzpicture}
-            \begin{axis}[
-                width=\textwidth,
-                height=0.70\textwidth,
-                xmin=-2, xmax=2,
-                ymin=-0.4, ymax=1.4,
-                axis lines=middle,
-                xlabel={\(x\)},
-                ylabel={\(y\)},
-                xtick={-1,0,1},
-                ytick={0,1},
-                grid=both,
-                grid style={line width=.1pt, draw=gray!25},
-            ]
-            \addplot[thick, domain=-2:0, samples=2] {0};
-            \addplot[thick, domain=0:2, samples=2] {1};
-            \addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
-            \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,1)};
-            \node[anchor=west] at (axis cs:0.25,0.75) {jump};
-            \end{axis}
-            \end{tikzpicture}
-          </latex-image>
-        </image>
-      </figure>
-    </sidebyside>
+  <p>For</p>
 
-    <paragraphs xml:id="paragraphs-details-corner">
-      <title>A corner</title>
-      <p>For <m>f(x)=|x|</m>, the function is continuous at <m>0</m>. But the left and right slopes are <m>-1</m> and <m>1</m>. Since they disagree, the derivative does not exist.</p>
-    </paragraphs>
+  <md>f(x)=|x|,</md>
 
-    <paragraphs xml:id="paragraphs-details-cusp">
-      <title>A cusp</title>
-      <p>Let <m>f(x)=|x|^{2/3}</m>. At <m>0</m>, the function is continuous:</p>
-      <md>\lim_{x\to 0}|x|^{2/3}=0=f(0).</md>
-      <p>But the difference quotient is</p>
-      <md>\frac{f(h)-f(0)}{h} = \frac{|h|^{2/3}}{h}.</md>
-      <p>If <m>h\gt 0</m>, then</p>
-      <md>\frac{|h|^{2/3}}{h} = \frac{h^{2/3}}{h} = \frac{1}{h^{1/3}} \to +\infty.</md>
-      <p>If <m>h\lt 0</m>, write <m>h=-u</m>, where <m>u\gt 0</m>. Then</p>
-      <md>\frac{|h|^{2/3}}{h} = \frac{u^{2/3}}{-u} = -\frac{1}{u^{1/3}} \to -\infty.</md>
-      <p>The slopes do not approach a finite number. They shoot upward from one side and downward from the other.</p>
-    </paragraphs>
+  <p>the function is continuous at <m>0</m>.  But the left and right slopes are</p>
 
-    <paragraphs xml:id="paragraphs-details-vertical-tangent">
-      <title>A vertical tangent</title>
-      <p>Let <m>g(x)=\sqrt[3]{x}</m>. Again,</p>
-      <md>g(x)\to 0=g(0)</md>
-      <p>as <m>x\to 0</m>, so <m>g</m> is continuous at <m>0</m>.</p>
-      <p>The difference quotient at <m>0</m> is</p>
-      <md>\frac{g(h)-g(0)}{h} = \frac{\sqrt[3]{h}}{h} = \frac{1}{h^{2/3}}.</md>
-      <p>As <m>h\to 0</m>, this grows without bound. It does not approach a finite slope. The graph has a vertical tangent line at the origin, but in our definition a derivative must be a finite number. Therefore <m>g'(0)</m> does not exist.</p>
-    </paragraphs>
+  <md>-1
+\qquad\text{and}\qquad
+1.</md>
 
-    <paragraphs xml:id="paragraphs-details-jump">
-      <title>A jump</title>
-      <p>Define</p>
-      <md>
-        J(x)=
-        \begin{cases}
-        0, \amp x\lt 0,\\
-        1, \amp x\ge 0.
-        \end{cases}
-      </md>
-      <p>This function is not continuous at <m>0</m>, because the left-hand values approach <m>0</m> while <m>J(0)=1</m>.</p>
-      <p>Since differentiability implies continuity, <m>J</m> cannot be differentiable at <m>0</m>.</p>
-      <p>We do not even need to inspect the slopes. The theorem already tells us that a jump prevents differentiability.</p>
-    </paragraphs>
+  <p>Since they disagree, the derivative does not exist.</p>
+  </paragraphs>
 
-    <principle xml:id="principle-what-continuity-promises">
-      <title>What continuity can and cannot promise</title>
-      <statement>
-        <p>Continuity promises that the graph does not break.</p>
-        <p>It does not promise that the graph has a tangent slope.</p>
-      </statement>
-    </principle>
+  <paragraphs>
+    <title>A cusp</title>
+
+  <p>Let</p>
+
+  <md>f(x)=|x|^{2/3}.</md>
+
+  <p>At <m>0</m>, the function is continuous:</p>
+
+  <md>\lim_{x\to0}|x|^{2/3}=0=f(0).</md>
+
+  <p>But the difference quotient is</p>
+
+  <md>\frac{f(h)-f(0)}{h}
+=
+\frac{|h|^{2/3}}{h}.</md>
+
+  <p>If <m>h&gt;0</m>, then</p>
+
+  <md>\frac{|h|^{2/3}}{h}
+=
+\frac{h^{2/3}}{h}
+=
+\frac{1}{h^{1/3}}
+\to+\infty.</md>
+
+  <p>If <m>h&lt;0</m>, write <m>h=-u</m>, where <m>u&gt;0</m>.  Then</p>
+
+  <md>\frac{|h|^{2/3}}{h}
+=
+\frac{u^{2/3}}{-u}
+=
+-\frac{1}{u^{1/3}}
+\to-\infty.</md>
+
+  <p>The slopes do not approach a finite number.  They shoot upward from one side and downward from the other.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A vertical tangent</title>
+
+  <p>Let</p>
+
+  <md>g(x)=\sqrt[3]{x}.</md>
+
+  <p>Again,</p>
+
+  <md>g(x)\to0=g(0)</md>
+
+  <p>as <m>x\to0</m>, so <m>g</m> is continuous at <m>0</m>.</p>
+
+  <p>The difference quotient at <m>0</m> is</p>
+
+  <md>\frac{g(h)-g(0)}{h}
+=
+\frac{\sqrt[3]{h}}{h}
+=
+\frac{1}{h^{2/3}}.</md>
+
+  <p>As <m>h\to0</m>, this grows without bound.  It does not approach a finite slope.  The graph has a vertical tangent line at the origin, but in our definition a derivative must be a finite number.  Therefore</p>
+
+  <md>g'(0)</md>
+
+  <p>does not exist.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>A jump</title>
+
+  <p>Define</p>
+
+  <md>
+    <mrow>J(x)=
+\begin{cases}
+0, \amp x&lt;0,</mrow>
+    <mrow>1, \amp x\ge0.
+\end{cases}</mrow>
+  </md>
+
+  <p>This function is not continuous at <m>0</m>, because the left-hand values approach <m>0</m> while</p>
+
+  <md>J(0)=1.</md>
+
+  <p>Since differentiability implies continuity, <m>J</m> cannot be differentiable at <m>0</m>.</p>
+
+  <p>We do not even need to inspect the slopes.  The theorem already tells us that a jump prevents differentiability.</p>
+
+  <note xml:id="note-sec-4-5-differentiability-and-continuity-56">
+    <title>What continuity can and cannot promise</title>
+      <p>Continuity promises that the graph does not break.</p>
+      <p>It does not promise that the graph has a tangent slope.</p>
+  </note>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-4-5-ways-to-fail">
+        <title>How can differentiability fail even when the graph does not jump?</title>
+        <statement>
+          <p>
+            Corners, cusps, and vertical tangents all prevent a finite two-sided derivative, while a jump already prevents continuity. In your own words, what happens to nearby slopes in each of the first three cases, and why does continuity rule out only the fourth?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A derivative requires one finite limiting slope. Finite-but-unequal, unbounded-in-opposite-directions, and unbounded-together are three different ways that demand can fail.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-absolute-value-warning-example">
     <title>The absolute value as the first warning example</title>
 
-    <p>The function <m>f(x)=|x|</m> is the example to keep in mind because it is simple and honest. Nothing strange happens to the height. The function is continuous everywhere. The only problem is that at <m>0</m>, the graph wants two different tangent lines: <m>y=-x</m> from the left, and <m>y=x</m> from the right. There is no single best linear approximation at the origin.</p>
+  <p>The function</p>
 
-    <p>If we try to force a linear approximation <m>|h|\approx mh</m> near <m>h=0</m>, then the relative first-order error would be</p>
-    <md>\frac{|h|-mh}{h}.</md>
+  <md>f(x)=|x|</md>
 
-    <p>For <m>h\gt 0</m>, <m>\frac{|h|-mh}{h}=1-m</m>.</p>
-    <p>For <m>h\lt 0</m>, <m>\frac{|h|-mh}{h}=-1-m</m>.</p>
+  <p>is the example to keep in mind because it is simple and honest.  Nothing strange happens to the height.  The function is continuous everywhere.  The only problem is that at <m>0</m>, the graph wants two different tangent lines:</p>
 
-    <p>For both sides to approach <m>0</m>, we would need <m>1-m=0</m> and <m>-1-m=0</m>. That would require <m>m=1</m> and <m>m=-1</m> at the same time. Impossible.</p>
+  <md>y=-x
+\qquad\text{from the left,}</md>
 
-    <p>So the derivative fails for the same reason local linear approximation fails: there is no single slope that describes both sides.</p>
+  <p>and</p>
+
+  <md>y=x
+\qquad\text{from the right.}</md>
+
+  <p>There is no single best linear approximation at the origin.</p>
+
+  <p>If we try to force a linear approximation</p>
+
+  <md>|h|\approx mh</md>
+
+  <p>near <m>h=0</m>, then the relative first-order error would be</p>
+
+  <md>\frac{|h|-mh}{h}.</md>
+
+  <p>For <m>h&gt;0</m>,</p>
+
+  <md>\frac{|h|-mh}{h}
+=
+1-m.</md>
+
+  <p>For <m>h&lt;0</m>,</p>
+
+  <md>\frac{|h|-mh}{h}
+=
+-1-m.</md>
+
+  <p>For both sides to approach <m>0</m>, we would need</p>
+
+  <md>1-m=0
+\qquad\text{and}\qquad
+-1-m=0.</md>
+
+  <p>That would require</p>
+
+  <md>m=1
+\qquad\text{and}\qquad
+m=-1</md>
+
+  <p>at the same time.  Impossible.</p>
+
+  <p>So the derivative fails for the same reason local linear approximation fails: there is no single slope that describes both sides.</p>
   </subsection>
 
   <subsection xml:id="subsec-derivative-endpoints-note">
     <title>A note about endpoints</title>
 
-    <p>Our definition of <m>f'(a)</m> uses a two-sided limit:</p>
-    <md>f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}.</md>
+  <p>Our definition of <m>f'(a)</m> uses a two-sided limit:</p>
 
-    <p>So <m>f</m> must be defined near <m>a</m> from both sides. If <m>a</m> is an endpoint of an interval, the ordinary two-sided derivative is not defined there.</p>
+  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}.</md>
 
-    <p>For example, <m>f(x)=\sqrt{x}</m> is defined on <m>[0,\infty)</m>. At <m>x=0</m>, we may study the right-hand quotient</p>
-    <md>\frac{\sqrt{h}-0}{h} = \frac{1}{\sqrt{h}}, \qquad h\gt 0,</md>
-    <p>but there is no left side inside the domain. Later, endpoints will matter when we look for maximum and minimum values on closed intervals. At endpoints, one-sided behavior is useful, but it is not the same as the ordinary derivative.</p>
+  <p>So <m>f</m> must be defined near <m>a</m> from both sides.  If <m>a</m> is an endpoint of an interval, the ordinary two-sided derivative is not defined there.</p>
 
-    <p>The derivative is a strong demand. It gives continuity and a local linear model. The next question is practical: for the smooth functions we meet every day, how do we compute derivatives without returning to the limit definition each time?</p>
+  <p>For example,</p>
+
+  <md>f(x)=\sqrt{x}</md>
+
+  <p>is defined on</p>
+
+  <md>[0,\infty).</md>
+
+  <p>At <m>x=0</m>, we may study the right-hand quotient</p>
+
+  <md>\frac{\sqrt{h}-0}{h}
+=
+\frac{1}{\sqrt{h}},
+\qquad h&gt;0,</md>
+
+  <p>but there is no left side inside the domain.  Later, endpoints will matter when we look for maximum and minimum values on closed intervals.  At endpoints, one-sided behavior is useful, but it is not the same as the ordinary derivative.</p>
+
+  <p>The derivative is a strong demand.  It gives continuity and a local linear model.  The next question is practical: for the smooth functions we meet every day, how do we compute derivatives without returning to the limit definition each time?</p>
+
+  <exercise xml:id="checkpoint-4-5-endpoints">
+        <title>Why is the ordinary derivative two-sided?</title>
+        <statement>
+          <p>
+            The definition of <m>f'(a)</m> uses a two-sided limit, so <m>f</m> must be defined near <m>a</m> from both sides. In your own words, why does that prevent an ordinary derivative of <m>\sqrt{x}</m> at <m>0</m>, even though a right-hand quotient can still be studied?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            At an endpoint there is no other side inside the domain. One-sided behavior is useful, but it is not the same as the two-sided derivative.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
+
+
 
 </section>

@@ -1,0 +1,759 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-3-simpson-s-rule">
+  <title>Simpson’s Rule</title>
+
+  <p>The midpoint and trapezoidal rules replaced the graph by something simple: a
+horizontal line or a straight line.  Those approximations are easy to compute, and
+their errors are controlled by curvature.</p>
+
+  <p>But a curve is not usually straight.  On a short interval, a better first picture may be a
+parabola.</p>
+
+  <p>That is the idea behind Simpson’s Rule.</p>
+
+  <md>
+\text{Use a quadratic curve instead of a line.}
+</md>
+
+  <p>The reward is surprisingly large.  Midpoint and trapezoidal errors usually shrink like
+<m>1/n^2</m>.  Simpson’s Rule, for smooth functions, usually shrinks like <m>1/n^4</m>.</p>
+
+  <subsection xml:id="subsec-quadratic-approximation-pairs-intervals">
+    <title>Quadratic approximation on pairs of intervals</title>
+
+  <p>A line is determined by two points.  A parabola is determined by three points.</p>
+
+  <p>So Simpson’s Rule uses three equally spaced sample points:</p>
+
+  <md>x_0,\qquad x_1,\qquad x_2,</md>
+
+  <p>where</p>
+
+  <md>x_1=x_0+\Delta x,
+\qquad
+x_2=x_0+2\Delta x.</md>
+
+  <p>The middle point <m>x_1</m> is the midpoint of <m>[x_0,x_2]</m>.</p>
+
+  <p>The function values are</p>
+
+  <md>f(x_0),\qquad f(x_1),\qquad f(x_2).</md>
+
+  <p>Through the three points</p>
+
+  <md>(x_0,f(x_0)),\qquad (x_1,f(x_1)),\qquad (x_2,f(x_2)),</md>
+
+  <p>there is exactly one quadratic polynomial.  Simpson’s Rule integrates that quadratic
+instead of the original function.</p>
+
+  <figure xml:id="fig-simpson-quadratic-through-three-points">
+    <caption>Simpson’s Rule replaces the graph on two subintervals by the parabola through three sample points.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.78\textwidth,
+    height=0.48\textwidth,
+    xmin=-0.1, xmax=2.15,
+    ymin=0, ymax=2.2,
+    axis lines=left,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xtick={0,1,2},
+    xticklabels={\(x_0\),\(x_1\),\(x_2\)},
+    ytick=\empty,
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+% Quadratic fill/interpolant
+\addplot[domain=0:2, samples=100, fill=gray!16, draw=none] {1+0.95*x-0.3*x^2} \closedcycle;
+\addplot[very thick, dashed, domain=0:2, samples=100] {1+0.95*x-0.3*x^2};
+
+% A nearby non-quadratic function with same values at 0,1,2
+\addplot[very thick, domain=0:2, samples=150] {1+0.15*x+0.9*x^2-0.4*x^3};
+
+\addplot[only marks, mark=*] coordinates {
+    (0,1)
+    (1,1.65)
+    (2,1.70)
+};
+
+\node[anchor=west] at (axis cs:0.22,1.9) {actual graph};
+\node[anchor=west] at (axis cs:1.02,1.15) {quadratic through three points};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The formula is simple:</p>
+
+  <md>
+\int_{x_0}^{x_2} f(x)\,dx
+\approx
+\frac{\Delta x}{3}
+\left[
+f(x_0)+4f(x_1)+f(x_2)
+\right].
+</md>
+
+  <p>The middle value receives weight <m>4</m>.  The endpoint values receive weight <m>1</m>.</p>
+
+  <paragraphs>
+    <title>Where the weights come from</title>
+
+  <p>To see the weights, shift and scale the interval so that the three sample points become</p>
+
+  <md>-1,\qquad 0,\qquad 1.</md>
+
+  <p>Let</p>
+
+  <md>p(u)=Au^2+Bu+C</md>
+
+  <p>be the quadratic through</p>
+
+  <md>(-1,y_0),\qquad (0,y_1),\qquad (1,y_2).</md>
+
+  <p>Then</p>
+
+  <md>p(0)=C=y_1.</md>
+
+  <p>Also</p>
+
+  <md>p(-1)=A-B+C=y_0,</md>
+
+  <p>and</p>
+
+  <md>p(1)=A+B+C=y_2.</md>
+
+  <p>Adding these last two equations gives</p>
+
+  <md>2A+2C=y_0+y_2.</md>
+
+  <p>Since <m>C=y_1</m>,</p>
+
+  <md>A=\frac{y_0+y_2-2y_1}{2}.</md>
+
+  <p>Now integrate <m>p</m> from <m>-1</m> to <m>1</m>:</p>
+
+  <md>\int_{-1}^{1}p(u)\,du
+=
+\int_{-1}^{1}(Au^2+Bu+C)\,du.</md>
+
+  <p>The odd term integrates to zero:</p>
+
+  <md>\int_{-1}^{1}Bu\,du=0.</md>
+
+  <p>So</p>
+
+  <md>\int_{-1}^{1}p(u)\,du
+=
+A\int_{-1}^{1}u^2\,du+C\int_{-1}^{1}1\,du.</md>
+
+  <p>Since</p>
+
+  <md>\int_{-1}^{1}u^2\,du=\frac23</md>
+
+  <p>and</p>
+
+  <md>\int_{-1}^{1}1\,du=2,</md>
+
+  <p>we get</p>
+
+  <md>\int_{-1}^{1}p(u)\,du
+=
+\frac23A+2C.</md>
+
+  <p>Substitute the values of <m>A</m> and <m>C</m>:</p>
+
+  <md>\frac23\cdot\frac{y_0+y_2-2y_1}{2}+2y_1
+=
+\frac13(y_0+y_2-2y_1)+2y_1.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_{-1}^{1}p(u)\,du
+=
+\frac13(y_0+4y_1+y_2).</md>
+
+  <p>Finally, returning to <m>x</m>-coordinates multiplies the integral by the spacing
+<m>\Delta x</m>.  Thus</p>
+
+  <md>\int_{x_0}^{x_2}p(x)\,dx
+=
+\frac{\Delta x}{3}
+\left[
+y_0+4y_1+y_2
+\right].</md>
+
+  <p>That is Simpson’s Rule.</p>
+
+  <note xml:id="note-sec-12-3-simpson-s-rule-87">
+    <title>One-panel Simpson’s Rule</title>
+      <p>If</p>
+        <md>m=\frac{a+b}{2},</md>
+      <p>then</p>
+        <md>
+\int_a^b f(x)\,dx
+\approx
+\frac{b-a}{6}\left[
+f(a)+4f(m)+f(b)
+\right].
+</md>
+      <p>This is the same formula as above, written for one interval <m>[a,b]</m> with midpoint
+<m>m</m>.</p>
+  </note>
+  </paragraphs>
+
+
+  <exercise xml:id="checkpoint-12-3-quadratic-on-pairs">
+        <title>Why does Simpson’s Rule use three sample points at a time?</title>
+        <statement>
+          <p>
+            A line is determined by two points, while a parabola is determined by three. In your own words, why does Simpson’s Rule therefore work on pairs of subintervals, and why must composite Simpson’s Rule use an even number of subintervals?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Three equally spaced values determine one quadratic interpolant. Pairing subintervals means <m>n</m> is even.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-12-3-simpson-s-rule-2">
+    <title>exact for a quadratic</title>
+    <statement>
+  <p>Use Simpson’s Rule to compute</p>
+
+  <md>\int_0^2 x^2\,dx.</md>
+
+  <p>Here</p>
+
+  <md>a=0,\qquad m=1,\qquad b=2.</md>
+
+  <p>The Simpson approximation is</p>
+
+  <md>\frac{2-0}{6}\left[f(0)+4f(1)+f(2)\right].</md>
+
+  <p>Since <m>f(x)=x^2</m>,</p>
+
+  <md>f(0)=0,\qquad f(1)=1,\qquad f(2)=4.</md>
+
+  <p>So</p>
+
+  <md>S=\frac{2}{6}(0+4+4)=\frac{8}{3}.</md>
+
+  <p>The exact value is</p>
+
+  <md>\int_0^2 x^2\,dx
+=
+\left[\frac{x^3}{3}\right]_0^2
+=
+\frac83.</md>
+
+  <p>So Simpson’s Rule is exact in this example.</p>
+
+  <p>That should not be surprising.  Simpson’s Rule integrates the quadratic interpolating
+polynomial.  If the original function is already quadratic, the approximation is the
+function itself.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-composite-simpsons-rule">
+    <title>Composite Simpson’s Rule</title>
+
+  <p>One parabola over a wide interval may not be enough.  As before, we divide the interval
+into smaller pieces.</p>
+
+  <p>Let <m>[a,b]</m> be divided into <m>n</m> equal subintervals, where <m>n</m> is even.  Define</p>
+
+  <md>\Delta x=\frac{b-a}{n},</md>
+
+  <p>and</p>
+
+  <md>x_i=a+i\Delta x,
+\qquad
+i=0,1,2,\ldots,n.</md>
+
+  <p>Because Simpson’s Rule uses pairs of subintervals, <m>n</m> must be even.  We apply
+Simpson’s Rule on</p>
+
+  <md>[x_0,x_2],\quad [x_2,x_4],\quad [x_4,x_6],\quad \ldots,\quad [x_{n-2},x_n].</md>
+
+  <p>On the first pair,</p>
+
+  <md>\int_{x_0}^{x_2} f(x)\,dx
+\approx
+\frac{\Delta x}{3}
+\left[
+f(x_0)+4f(x_1)+f(x_2)
+\right].</md>
+
+  <p>On the second pair,</p>
+
+  <md>\int_{x_2}^{x_4} f(x)\,dx
+\approx
+\frac{\Delta x}{3}
+\left[
+f(x_2)+4f(x_3)+f(x_4)
+\right].</md>
+
+  <p>Adding the pieces, the shared endpoint values such as <m>f(x_2)</m> are counted twice.
+That is why the even interior indices receive weight <m>2</m>.</p>
+
+  <note xml:id="note-sec-12-3-simpson-s-rule-88">
+    <title>Composite Simpson’s Rule</title>
+      <p>Suppose <m>n</m> is even.  Then</p>
+        <md>
+S_n=
+\frac{\Delta x}{3}
+\left[
+f(x_0)
++4f(x_1)
++2f(x_2)
++4f(x_3)
++2f(x_4)
++\cdots
++4f(x_{n-1})
++f(x_n)
+\right].
+</md>
+      <p>The weights follow the pattern</p>
+        <md>1,\ 4,\ 2,\ 4,\ 2,\ \ldots,\ 4,\ 1.</md>
+  </note>
+
+  <p>A compact way to remember the formula is:</p>
+
+  <md>
+    <mrow>S_n
+=
+\frac{\Delta x}{3}
+\left[
+f(x_0)+f(x_n)
++
+4\sum_{\substack{i=1</mrow>
+    <mrow>i\text{ odd}}}^{n-1} f(x_i)
++
+2\sum_{\substack{i=2</mrow>
+    <mrow>i\text{ even}}}^{n-2} f(x_i)
+\right].</mrow>
+  </md>
+
+  <p>The odd interior points get weight <m>4</m>.  The even interior points get weight <m>2</m>.</p>
+
+  <paragraphs>
+    <title>Warning: <m>n</m> must be even</title>
+
+  <p>Composite Simpson’s Rule pairs neighboring subintervals.  If <m>n</m> is odd, one
+subinterval is left unpaired.</p>
+
+  <p>For example, <m>n=5</m> gives five subintervals.  Simpson’s Rule can cover four of them
+in two pairs, but one remains.  In that situation, either change <m>n</m> to an even number
+or combine Simpson’s Rule with another rule on the leftover interval.</p>
+
+  <p>For this course, when using Simpson’s Rule, choose <m>n</m> even.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-3-hypotheses-still-matter">
+        <title>What fails when the fourth derivative is unbounded?</title>
+        <statement>
+          <p>
+            Simpson’s Rule can still be applied to <m>\int_0^1\sqrt{x}\,dx</m>, even though <m>f^{(4)}</m> blows up at <m>x=0</m>. In your own words, what exactly fails in that situation, and what does that teach about trusting a formula that still returns a number?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The numerical rule can still be used. The theorem that estimates its error is what no longer applies.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-simpson-example-e-minus-x-squared">
+    <title>Example: Simpson’s Rule for <m>\int_0^1 e^{-x^2}\,dx</m></title>
+
+  <p>Approximate</p>
+
+  <md>I=\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>using Simpson’s Rule with <m>n=4</m>.</p>
+
+  <p>Here</p>
+
+  <md>\Delta x=\frac{1-0}{4}=\frac14.</md>
+
+  <p>The grid points are</p>
+
+  <md>x_0=0,\quad x_1=0.25,\quad x_2=0.50,\quad x_3=0.75,\quad x_4=1.</md>
+
+  <p>The function values are:</p>
+
+  <md>
+    <mrow>\begin{array}{c|ccccc}
+x_i \amp 0 \amp 0.25 \amp 0.50 \amp 0.75 \amp 1.00</mrow>
+    <mrow>\hline
+e^{-x_i^2} \amp 1.000000 \amp 0.939413 \amp 0.778801 \amp 0.569783 \amp 0.367879
+\end{array}</mrow>
+  </md>
+
+  <p>Since <m>n=4</m>, the weights are</p>
+
+  <md>1,\ 4,\ 2,\ 4,\ 1.</md>
+
+  <p>Therefore</p>
+
+  <md>S_4
+=
+\frac{0.25}{3}
+\left[
+1.000000
++4(0.939413)
++2(0.778801)
++4(0.569783)
++0.367879
+\right].</md>
+
+  <p>Compute the weighted sum:</p>
+
+  <md>1.000000
++3.757652
++1.557602
++2.279132
++0.367879
+=
+8.962265.</md>
+
+  <p>Thus</p>
+
+  <md>S_4=\frac{0.25}{3}(8.962265)\approx 0.746855.</md>
+
+  <p>So</p>
+
+  <md>
+\int_0^1 e^{-x^2}\,dx\approx 0.746855
+</md>
+
+  <p>using Simpson’s Rule with only four subintervals.</p>
+
+  <p>A more accurate value is</p>
+
+  <md>0.746824\ldots,</md>
+
+  <p>so this approximation is already quite good.</p>
+
+  <table xml:id="tab-sec-12-3-simpson-s-rule-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>rule with <m>n=4</m></strong></cell>
+        <cell><strong>approximation to <m>\int_0^1 e^{-x^2}\,dx</m></strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>midpoint</cell>
+        <cell><m>0.748747</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>trapezoidal</cell>
+        <cell><m>0.742984</m></cell>
+      </row>
+      <row>
+        <cell>Simpson</cell>
+        <cell><m>0.746855</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The Simpson value is much closer in this example.  The next subsection explains why
+this often happens.</p>
+  </subsection>
+
+  <subsection xml:id="subsec-why-simpson-rule-better">
+    <title>Why Simpson’s Rule is often much better</title>
+
+  <p>The midpoint and trapezoidal rules approximate a graph using degree <m>0</m> and degree
+<m>1</m> shapes:</p>
+
+  <md>\text{horizontal line},
+\qquad
+\text{straight line}.</md>
+
+  <p>Simpson’s Rule uses degree <m>2</m>:</p>
+
+  <md>\text{parabola}.</md>
+
+  <p>So it should be exact for quadratic functions.  The surprise is that it is also exact for
+cubic functions.</p>
+
+  <p>To see why, work on the symmetric interval <m>[-1,1]</m>.  Simpson’s Rule says</p>
+
+  <md>\int_{-1}^{1} f(x)\,dx
+\approx
+\frac13\left[f(-1)+4f(0)+f(1)\right].</md>
+
+  <p>Check the four basic powers <m>1,x,x^2,x^3</m>.</p>
+
+  <p>For <m>f(x)=1</m>,</p>
+
+  <md>\int_{-1}^{1}1\,dx=2,</md>
+
+  <p>and Simpson gives</p>
+
+  <md>\frac13(1+4+1)=2.</md>
+
+  <p>For <m>f(x)=x</m>,</p>
+
+  <md>\int_{-1}^{1}x\,dx=0,</md>
+
+  <p>and Simpson gives</p>
+
+  <md>\frac13(-1+0+1)=0.</md>
+
+  <p>For <m>f(x)=x^2</m>,</p>
+
+  <md>\int_{-1}^{1}x^2\,dx=\frac23,</md>
+
+  <p>and Simpson gives</p>
+
+  <md>\frac13(1+0+1)=\frac23.</md>
+
+  <p>For <m>f(x)=x^3</m>,</p>
+
+  <md>\int_{-1}^{1}x^3\,dx=0,</md>
+
+  <p>and Simpson gives</p>
+
+  <md>\frac13(-1+0+1)=0.</md>
+
+  <p>So Simpson’s Rule is exact for all polynomials of degree at most <m>3</m>.  Any cubic is a
+linear combination of</p>
+
+  <md>1,\quad x,\quad x^2,\quad x^3.</md>
+
+  <p>Since both integration and Simpson’s formula are linear, exactness for these four
+powers gives exactness for every cubic.</p>
+
+  <note xml:id="note-sec-12-3-simpson-s-rule-89">
+    <title>Key fact</title>
+      <p>Simpson’s Rule is built from a quadratic approximation, but it integrates every cubic
+polynomial exactly.</p>
+  </note>
+
+  <p>This is why Simpson’s Rule can outperform what its construction suggests.</p>
+
+  <p>There is also a useful geometric way to remember the improvement.  On a concave-up
+graph, the trapezoidal rule tends to overestimate and the midpoint rule tends to
+underestimate.  Simpson’s Rule is the weighted average</p>
+
+  <md>
+S=\frac13T+\frac23M
+</md>
+
+  <p>on a single interval, where <m>T</m> is the one-trapezoid approximation and <m>M</m> is the
+midpoint approximation.</p>
+
+  <p>Indeed,</p>
+
+  <md>T=\frac{b-a}{2}\bigl(f(a)+f(b)\bigr),</md>
+
+  <p>and</p>
+
+  <md>M=(b-a)f(m).</md>
+
+  <p>Then</p>
+
+  <md>\frac13T+\frac23M
+=
+\frac{b-a}{6}\bigl(f(a)+f(b)\bigr)
++
+\frac{2(b-a)}{3}f(m).</md>
+
+  <p>So</p>
+
+  <md>\frac13T+\frac23M
+=
+\frac{b-a}{6}
+\left[
+f(a)+4f(m)+f(b)
+\right],</md>
+
+  <p>which is Simpson’s Rule.</p>
+
+  <p>The leading curvature errors of <m>T</m> and <m>M</m> have opposite signs.  Simpson’s Rule
+combines them in just the right proportion to cancel much of that error.</p>
+
+  <exercise xml:id="checkpoint-12-3-exact-for-cubics">
+        <title>Why is Simpson’s Rule exact for cubics, not only quadratics?</title>
+        <statement>
+          <p>
+            Simpson’s Rule is built by integrating a quadratic interpolant, yet it also integrates every cubic exactly. In your own words, why is that possible, and how does writing Simpson as the weighted average <m>\frac13 T+\frac23 M</m> help explain the improvement?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            On a symmetric interval, the odd cubic term integrates to zero in both the true integral and Simpson’s formula. The leading curvature errors of the trapezoid and midpoint have opposite signs.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-simpson-error-bound">
+    <title>Simpson error bound</title>
+
+  <p>The midpoint and trapezoidal error bounds were controlled by <m>f”</m>, because lines
+fail when curvature is present.</p>
+
+  <p>Simpson’s Rule is exact for cubics.  So its first possible error comes from behavior
+beyond cubic.  That is why the fourth derivative appears.</p>
+
+  <note xml:id="note-sec-12-3-simpson-s-rule-90">
+    <title>Error bound for composite Simpson’s Rule</title>
+      <p>Suppose <m>f^{(4)}</m> is continuous on <m>[a,b]</m>, and suppose</p>
+        <md>|f^{(4)}(x)|\le K</md>
+      <p>for all <m>x\in[a,b]</m>.</p>
+      <p>Let <m>S_n</m> be the composite Simpson approximation using <m>n</m> equal subintervals,
+where <m>n</m> is even.  Then</p>
+        <md>
+\left|
+\int_a^b f(x)\,dx-S_n
+\right|
+\le
+\frac{K(b-a)^5}{180n^4}.
+</md>
+  </note>
+
+  <p>The important feature is</p>
+
+  <md>\frac{1}{n^4}.</md>
+
+  <p>Doubling <m>n</m> divides the error bound by</p>
+
+  <md>2^4=16.</md>
+
+  <p>That is a much faster improvement than the <m>1/n^2</m> behavior of the midpoint and
+trapezoidal rules.</p>
+
+  <example xml:id="ex-sec-12-3-simpson-s-rule-4">
+    <title>a guaranteed Simpson approximation</title>
+    <statement>
+  <p>Use Simpson’s Rule to approximate</p>
+
+  <md>\int_0^1 e^{-x^2}\,dx</md>
+
+  <p>with guaranteed error less than <m>0.0005</m>.</p>
+
+  <p>For</p>
+
+  <md>f(x)=e^{-x^2},</md>
+
+  <p>a calculation gives</p>
+
+  <md>f^{(4)}(x)=\left(16x^4-48x^2+12\right)e^{-x^2}.</md>
+
+  <p>On <m>[0,1]</m>, a derivative check shows</p>
+
+  <md>|f^{(4)}(x)|\le 12.</md>
+
+  <p>So we may take</p>
+
+  <md>K=12.</md>
+
+  <p>The Simpson error bound gives</p>
+
+  <md>|I-S_n|
+\le
+\frac{12(1)^5}{180n^4}
+=
+\frac{1}{15n^4}.</md>
+
+  <p>We want</p>
+
+  <md>\frac{1}{15n^4}&lt;0.0005.</md>
+
+  <p>This is equivalent to</p>
+
+  <md>15n^4&gt;2000,</md>
+
+  <p>or</p>
+
+  <md>n^4&gt;\frac{2000}{15}\approx 133.33.</md>
+
+  <p>Taking fourth roots,</p>
+
+  <md>n&gt;3.40.</md>
+
+  <p>Since Simpson’s Rule requires <m>n</m> even, we take</p>
+
+  <md>n=4.</md>
+
+  <p>So <m>4</m> subintervals are enough to guarantee error less than <m>0.0005</m>.</p>
+
+  <p>With <m>n=4</m>, we found</p>
+
+  <md>S_4\approx0.746855.</md>
+
+  <p>The actual error is even smaller than the guaranteed bound.</p>
+
+  <note xml:id="note-sec-12-3-simpson-s-rule-91">
+    <title>A bound is a guarantee, not a prediction</title>
+      <p>An error bound tells us the approximation cannot be worse than a certain amount.
+It does not usually tell us the actual error exactly.</p>
+  </note>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Why the hypotheses matter</title>
+
+  <p>The Simpson error bound assumes that <m>f^{(4)}</m> exists, is continuous, and is bounded
+on the interval.</p>
+
+  <p>For example,</p>
+
+  <md>f(x)=\sqrt{x}</md>
+
+  <p>is continuous on <m>[0,1]</m>, and the integral</p>
+
+  <md>\int_0^1 \sqrt{x}\,dx</md>
+
+  <p>exists.  But the derivatives of <m>f</m> become singular near <m>x=0</m>.  In particular, the
+fourth derivative is unbounded near <m>0</m>.</p>
+
+  <p>Simpson’s Rule may still produce useful approximations, but the standard Simpson
+error bound does not apply on <m>[0,1]</m>.</p>
+
+  <md>
+\text{The numerical rule can still be used.  The guarantee is what fails.}
+</md>
+
+  <p>That warning is important in computation.  A formula can return a number even when
+the theorem that estimates its error does not apply.</p>
+
+  <p>Numerical integration approximates accumulation.  But the other half of calculus can
+also be approximated.  If we know values of a function from data, can we estimate its
+derivative?</p>
+
+  <p>That question leads to numerical differentiation.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-12-3-fourth-derivative">
+        <title>Why does Simpson’s error bound involve the fourth derivative?</title>
+        <statement>
+          <p>
+            Midpoint and trapezoidal errors are controlled by <m>f''</m>. Simpson’s bound is controlled by <m>f^{(4)}</m> and shrinks like <m>1/n^4</m>. In your own words, why does exactness through cubics push the first possible error to the next derivative, and why is a bound still only a guarantee?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A rule that is exact for polynomials up through degree <m>3</m> first feels the failure of a degree-<m>4</m> term. Doubling <m>n</m> divides the bound by <m>16</m>, but the actual error may be smaller.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

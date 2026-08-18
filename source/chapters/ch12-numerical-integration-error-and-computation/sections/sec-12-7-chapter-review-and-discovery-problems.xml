@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-12-7-chapter-review-and-discovery-problems">
+  <title>Chapter review and discovery problems</title>
+
+  <p>This chapter began with a practical confession:</p>
+
+  <md>\text{exact integration is powerful, but not always available.}</md>
+
+  <p>A function may come from data.  An antiderivative may not be elementary.  A computer
+may give a decimal but no explanation of how trustworthy the decimal is.</p>
+
+  <p>So the chapter built a second habit:</p>
+
+  <md>
+\text{approximate, then ask how large the error might be.}
+</md>
+
+  <p>The rules in this chapter are not only computational recipes.  They are controlled
+ways of replacing a difficult object by a simpler one:</p>
+
+  <md>\text{a curve by rectangles, trapezoids, or parabolas;}</md>
+
+  <md>\text{a derivative by a finite difference;}</md>
+
+  <md>\text{a root by tangent-line iteration.}</md>
+
+  <p>The common theme is the same theme that has run through the book from the
+beginning:</p>
+
+  <md>\text{local information can produce global understanding, if we control the error.}</md>
+
+  <subsection xml:id="subsec-chapter-12-map">
+    <title>Chapter map</title>
+
+  <table xml:id="tab-sec-12-7-chapter-review-and-discovery-problems-0">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>method</strong></cell>
+        <cell><strong>main idea</strong></cell>
+        <cell><strong>what controls the error</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Midpoint rule</cell>
+        <cell>Replace the graph on each subinterval by a midpoint rectangle.</cell>
+        <cell>The second derivative, through curvature.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Trapezoidal rule</cell>
+        <cell>Replace the graph on each subinterval by a secant line.</cell>
+        <cell>The second derivative, through curvature.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Simpson’s Rule</cell>
+        <cell>Replace the graph on pairs of subintervals by a parabola.</cell>
+        <cell>The fourth derivative, because Simpson is exact through cubics.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Finite differences</cell>
+        <cell>Replace a derivative limit by a quotient with small nonzero step <m>h</m>.</cell>
+        <cell>Truncation error and roundoff error.</cell>
+      </row>
+      <row>
+        <cell>Newton’s method</cell>
+        <cell>Replace the graph near a guess by its tangent line.</cell>
+        <cell>The starting point, the derivative near the root, and the multiplicity of the root.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>The error estimates have hypotheses.  Those hypotheses are not decoration.  The
+midpoint and trapezoidal bounds need a bounded second derivative.  Simpson’s bound
+needs a bounded fourth derivative.  Newton’s fast convergence needs a simple root and
+a good starting point.  Numerical differentiation is sensitive to roundoff because it
+subtracts nearly equal numbers.</p>
+
+  <p>A method can still produce a number when its hypotheses fail.  The guarantee is what
+may fail.</p>
+
+  <exercise xml:id="checkpoint-12-7-replace-then-control-error">
+        <title>What common idea unites the chapter’s methods?</title>
+        <statement>
+          <p>
+            Midpoint, trapezoid, Simpson, finite differences, and Newton’s method all replace a difficult object by a simpler local picture. In your own words, what is that common idea, and why is controlling the error as important as producing the approximation?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Local information can produce global understanding only if we know how large the replacement error might be.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-12-essential-formulas">
+    <title>Essential formulas</title>
+
+  <p>Divide <m>[a,b]</m> into <m>n</m> equal subintervals:</p>
+
+  <md>\Delta x=\frac{b-a}{n},
+\qquad
+x_i=a+i\Delta x.</md>
+
+  <p>The midpoint of the <m>i</m>th subinterval <m>[x_{i-1},x_i]</m> is</p>
+
+  <md>\overline{x}_i=\frac{x_{i-1}+x_i}{2}.</md>
+
+  <paragraphs>
+    <title>Composite midpoint rule</title>
+
+  <md>
+M_n=\Delta x\sum_{i=1}^n f(\overline{x}_i).
+</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Composite trapezoidal rule</title>
+
+  <md>
+T_n=
+\Delta x\left[
+\frac12 f(x_0)+f(x_1)+f(x_2)+\cdots+f(x_{n-1})+\frac12 f(x_n)
+\right].
+</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Composite Simpson’s Rule</title>
+
+  <p>For even <m>n</m>,</p>
+
+  <md>
+    <mrow>S_n=
+\frac{\Delta x}{3}
+\left[
+f(x_0)+f(x_n)
++
+4\sum_{\substack{1\le i\le n-1</mrow>
+    <mrow>i\text{ odd}}} f(x_i)
++
+2\sum_{\substack{2\le i\le n-2</mrow>
+    <mrow>i\text{ even}}} f(x_i)
+\right].</mrow>
+  </md>
+
+  <p>The weights are</p>
+
+  <md>1,\ 4,\ 2,\ 4,\ 2,\ \ldots,\ 4,\ 1.</md>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Error bounds</title>
+
+  <p>If <m>f”</m> is continuous on <m>[a,b]</m> and</p>
+
+  <md>|f''(x)|\le K</md>
+
+  <p>on <m>[a,b]</m>, then</p>
+
+  <md>
+\left|\int_a^b f(x)\,dx-M_n\right|
+\le
+\frac{K(b-a)^3}{24n^2}
+</md>
+
+  <p>and</p>
+
+  <md>
+\left|\int_a^b f(x)\,dx-T_n\right|
+\le
+\frac{K(b-a)^3}{12n^2}.
+</md>
+
+  <p>If <m>f^{(4)}</m> is continuous on <m>[a,b]</m>, <m>n</m> is even, and</p>
+
+  <md>|f^{(4)}(x)|\le K</md>
+
+  <p>on <m>[a,b]</m>, then</p>
+
+  <md>
+\left|\int_a^b f(x)\,dx-S_n\right|
+\le
+\frac{K(b-a)^5}{180n^4}.
+</md>
+
+  <p>The powers of <m>n</m> are the main message:</p>
+
+  <md>\text{midpoint and trapezoidal errors shrink like } \frac1{n^2},</md>
+
+  <p>while</p>
+
+  <md>\text{Simpson errors shrink like } \frac1{n^4},</md>
+
+  <p>when the hypotheses are satisfied.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Finite differences</title>
+
+  <p>For <m>h&gt;0</m>,</p>
+
+  <md>
+D_h^+f(a)=\frac{f(a+h)-f(a)}{h}
+</md>
+
+  <p>is the forward difference,</p>
+
+  <md>
+D_h^-f(a)=\frac{f(a)-f(a-h)}{h}
+</md>
+
+  <p>is the backward difference, and</p>
+
+  <md>
+D_h^0f(a)=\frac{f(a+h)-f(a-h)}{2h}
+</md>
+
+  <p>is the centered difference.</p>
+
+  <p>For smooth functions,</p>
+
+  <md>D_h^+f(a)=f'(a)+O(h),</md>
+
+  <md>D_h^-f(a)=f'(a)+O(h),</md>
+
+  <p>and</p>
+
+  <md>D_h^0f(a)=f'(a)+O(h^2).</md>
+
+  <p>The centered difference is usually more accurate for the same step size, but no finite
+difference formula escapes roundoff error when <m>h</m> becomes too small.</p>
+  </paragraphs>
+
+  <paragraphs>
+    <title>Newton’s method</title>
+
+  <p>To solve</p>
+
+  <md>f(x)=0,</md>
+
+  <p>Newton’s method uses</p>
+
+  <md>
+x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.
+</md>
+
+  <p>The residual is</p>
+
+  <md>|f(x_n)|.</md>
+
+  <p>The step size is</p>
+
+  <md>|x_n-x_{n-1}|.</md>
+
+  <p>A practical stopping rule should monitor both.</p>
+
+  <p>If <m>r</m> is a root and</p>
+
+  <md>|f'(x)|\ge m&gt;0</md>
+
+  <p>between <m>x_n</m> and <m>r</m>, then</p>
+
+  <md>
+|x_n-r|\le \frac{|f(x_n)|}{m}.
+</md>
+
+  <p>Near a simple root, Newton’s method often has quadratic convergence:</p>
+
+  <md>|x_{n+1}-r|\approx C|x_n-r|^2.</md>
+
+  <p>Near a multiple root, the convergence may slow to linear.</p>
+  </paragraphs>
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-12-common-mistakes">
+    <title>Common mistakes</title>
+
+  <table xml:id="tab-sec-12-7-chapter-review-and-discovery-problems-1">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>mistake</strong></cell>
+        <cell><strong>correction</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Using Simpson’s Rule with odd <m>n</m>.</cell>
+        <cell>Composite Simpson’s Rule pairs subintervals, so <m>n</m> must be even.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Forgetting the half weights in the trapezoidal rule.</cell>
+        <cell>The endpoint values <m>f(x_0)</m> and <m>f(x_n)</m> have weight <m>1/2</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Using an error bound without checking derivative hypotheses.</cell>
+        <cell>The midpoint and trapezoidal bounds need bounded <m>f”</m>; Simpson’s bound needs bounded <m>f^{(4)}</m>.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Assuming two close numerical approximations prove accuracy.</cell>
+        <cell>Stabilization is evidence.  A theorem or independent error estimate gives a guarantee.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Making <m>h</m> extremely small in numerical differentiation.</cell>
+        <cell>Smaller <m>h</m> reduces truncation error but can increase roundoff error.</cell>
+      </row>
+      <row bottom="minor">
+        <cell>Stopping Newton’s method only because the step is small.</cell>
+        <cell>A small step should be paired with a small residual.</cell>
+      </row>
+      <row>
+        <cell>Assuming a small residual always means a small root error.</cell>
+        <cell>The slope near the root matters.  A flat graph can have small residual far from the root.</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <exercise xml:id="checkpoint-12-7-number-versus-guarantee">
+        <title>What is the difference between a method producing a number and a theorem guaranteeing accuracy?</title>
+        <statement>
+          <p>
+            A numerical rule can still return a decimal when its error-bound hypotheses fail. In your own words, what exactly fails in that situation, and why should stabilization of a table not be confused with a proof?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The guarantee is what may fail, not necessarily the approximation. Close successive values are evidence, not a theorem.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-12-skills-problems">
+    <title>Skills: numerical rules and error bounds</title>
+
+    <ol>
+      <li>
+        <p>Use <m>M_4</m>, <m>T_4</m>, and <m>S_4</m> to approximate</p>
+          <md>\int_0^2 (1+x^2)\,dx.</md>
+        <p>Then compute the exact value and the absolute errors.</p>
+      </li>
+      <li>
+        <p>Use <m>M_4</m>, <m>T_4</m>, and <m>S_4</m> to approximate</p>
+          <md>\int_0^1 e^{-x^2}\,dx.</md>
+        <p>Compare your answers with</p>
+          <md>0.7468241328.</md>
+      </li>
+      <li>
+        <p>Use <m>M_4</m>, <m>T_4</m>, and <m>S_4</m> to approximate</p>
+          <md>\int_0^\pi \sin x\,dx.</md>
+        <p>Which rule gives the closest answer?  Which answers overestimate or underestimate?</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>f(x)=\frac{1}{1+x^2}.</md>
+        <p>Use <m>T_8</m> to approximate</p>
+          <md>\int_0^1 f(x)\,dx.</md>
+        <p>Then multiply by <m>4</m> to approximate <m>\pi</m>.</p>
+      </li>
+      <li>
+        <p>A force is measured at equally spaced positions:</p>
+          <md>
+    <mrow>\begin{array}{c|ccccc}
+x\text{ (meters)} \amp 0 \amp 1 \amp 2 \amp 3 \amp 4</mrow>
+    <mrow>\hline
+F(x)\text{ (newtons)} \amp 5.0 \amp 6.2 \amp 7.1 \amp 7.8 \amp 8.0
+\end{array}</mrow>
+  </md>
+        <p>Use the trapezoidal rule to estimate the work</p>
+          <md>W=\int_0^4 F(x)\,dx.</md>
+        <p>Include units.</p>
+      </li>
+      <li>
+        <p>A velocity is measured at half-second intervals:</p>
+          <md>
+    <mrow>\begin{array}{c|ccccc}
+t\text{ (seconds)} \amp 0 \amp 0.5 \amp 1.0 \amp 1.5 \amp 2.0</mrow>
+    <mrow>\hline
+v(t)\text{ (meters/second)} \amp 0 \amp 1.8 \amp 3.1 \amp 3.9 \amp 4.2
+\end{array}</mrow>
+  </md>
+        <p>Use the trapezoidal rule to estimate displacement from <m>t=0</m> to <m>t=2</m>.</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>|f''(x)|\le 6</md>
+        <p>on <m>[0,2]</m>.  How large must <m>n</m> be to guarantee that the midpoint rule has error
+less than <m>10^{-3}</m> for</p>
+          <md>\int_0^2 f(x)\,dx?</md>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>|f''(x)|\le 6</md>
+        <p>on <m>[0,2]</m>.  How large must <m>n</m> be to guarantee that the trapezoidal rule has error
+less than <m>10^{-3}</m>?</p>
+      </li>
+      <li>
+        <p>Suppose</p>
+          <md>|f^{(4)}(x)|\le 10</md>
+        <p>on <m>[0,1]</m>.  What even value of <m>n</m> guarantees that Simpson’s Rule has error less
+than <m>10^{-6}</m>?</p>
+      </li>
+      <li>
+        <p>Use the midpoint error bound to find a value of <m>n</m> that guarantees</p>
+          <md>\left|
+\int_0^1 \cos x\,dx-M_n
+\right|
+&lt;10^{-4}.</md>
+        <p>You may use</p>
+          <md>|\cos x|\le1</md>
+        <p>and</p>
+          <md>|\sin x|\le1.</md>
+      </li>
+      <li>
+        <p>Use the Simpson error bound to find an even value of <m>n</m> that guarantees</p>
+          <md>\left|
+\int_0^1 e^x\,dx-S_n
+\right|
+&lt;10^{-6}.</md>
+        <p>You may use</p>
+          <md>e^x\le e</md>
+        <p>on <m>[0,1]</m>.</p>
+      </li>
+      <li>
+        <p>Determine whether the trapezoidal rule overestimates or underestimates</p>
+          <md>\int_0^1 x^4\,dx.</md>
+        <p>Then determine whether the midpoint rule overestimates or underestimates.</p>
+      </li>
+      <li>
+        <p>Determine whether the trapezoidal rule overestimates or underestimates</p>
+          <md>\int_0^{\pi/2}\sin x\,dx.</md>
+        <p>Then determine whether the midpoint rule overestimates or underestimates.</p>
+      </li>
+      <li>
+        <p>Explain why the standard midpoint, trapezoidal, and Simpson error bounds do not
+apply directly to</p>
+          <md>\int_0^1 \sqrt{x}\,dx.</md>
+      </li>
+      <li>
+        <p>Estimate</p>
+          <md>f'(1)</md>
+        <p>for</p>
+          <md>f(x)=\ln x</md>
+        <p>using <m>h=0.1</m> and the forward, backward, and centered differences.  Compare with
+the exact value.</p>
+      </li>
+      <li>
+        <p>Estimate</p>
+          <md>f'(0)</md>
+        <p>for</p>
+          <md>f(x)=e^x</md>
+        <p>using <m>h=0.01</m> and the centered difference.</p>
+      </li>
+      <li>
+        <p>Use Taylor expansion to show that</p>
+          <md>\frac{f(a+h)-f(a-h)}{2h}
+=
+f'(a)+\frac16 f'''(a)h^2+\text{higher-order terms}.</md>
+      </li>
+      <li>
+        <p>Explain why the quotient</p>
+          <md>\frac{\sqrt{1+h}-1}{h}</md>
+        <p>can be numerically unstable when <m>h</m> is very small.  Then rewrite it in a more
+stable form.</p>
+      </li>
+      <li>
+        <p>Starting with <m>x_0=2</m>, use Newton’s method to approximate</p>
+          <md>\sqrt5.</md>
+        <p>Use</p>
+          <md>f(x)=x^2-5.</md>
+        <p>Stop when two successive iterates agree to six decimal places.</p>
+      </li>
+      <li>
+        <p>Starting with <m>x_0=1</m>, use Newton’s method to solve</p>
+          <md>x^3-x-1=0.</md>
+        <p>Compute four iterates.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>f(x)=(x-2)^2.</md>
+        <p>Show that Newton’s method gives</p>
+          <md>x_{n+1}=\frac{x_n+2}{2}</md>
+        <p>when <m>x_n\neq2</m>.  Explain why the convergence is only linear.</p>
+      </li>
+      <li>
+        <p>Let</p>
+          <md>f(x)=(x-2)^3.</md>
+        <p>Find the Newton iteration formula and determine the factor by which the error is
+multiplied at each step.</p>
+      </li>
+      <li>
+        <p>Suppose <m>f(r)=0</m> and</p>
+          <md>|f'(x)|\ge 4</md>
+        <p>near the root.  If a Newton approximation <m>x_n</m> satisfies</p>
+          <md>|f(x_n)|&lt;10^{-8},</md>
+        <p>what error bound can you guarantee for <m>|x_n-r|</m>?</p>
+      </li>
+      <li>
+        <p>For</p>
+          <md>f(x)=10^{-6}(x-1000),</md>
+        <p>the root is <m>1000</m>.  Compute <m>f(990)</m>.  Explain why a small residual alone can be a
+misleading stopping test.</p>
+      </li>
+      <li>
+        <p>Apply Newton’s method to</p>
+          <md>f(x)=x^2+1</md>
+        <p>starting from <m>x_0=1</m>.  What happens?  Why should this not surprise you?</p>
+      </li>
+    </ol>
+
+  <exercise xml:id="checkpoint-12-7-newton-needs-monitoring">
+        <title>What extra discipline does Newton’s method need as an algorithm?</title>
+        <statement>
+          <p>
+            The tangent-line idea is simple, but the computational version asks when to stop and whether the root is simple. In your own words, why should both residual and step size be monitored, and what does linear rather than quadratic convergence suggest?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A small residual or a small step can each mislead. Slow convergence may mean a multiple root or a bad starting point.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-12-concept-check">
+    <title>Concept check: exact value versus approximation</title>
+
+    <ol>
+      <li>
+        <p>What is the difference between an exact value and a numerical approximation?</p>
+      </li>
+      <li>
+        <p>What is the difference between the actual error and an error bound?</p>
+      </li>
+      <li>
+        <p>A method gives</p>
+          <md>A=0.74685.</md>
+        <p>What additional information would make this numerical answer more trustworthy?</p>
+      </li>
+      <li>
+        <p>Why can a table of increasingly stable approximations be convincing but still not a
+proof?</p>
+      </li>
+      <li>
+        <p>Why does Simpson’s Rule require an even number of subintervals?</p>
+      </li>
+      <li>
+        <p>Why is Simpson’s Rule exact for every cubic polynomial, even though it is built from
+quadratic interpolation?</p>
+      </li>
+      <li>
+        <p>Why does concavity decide the direction of the trapezoidal error?</p>
+      </li>
+      <li>
+        <p>Why do midpoint and trapezoidal error bounds involve <m>f”</m>?</p>
+      </li>
+      <li>
+        <p>Why does Simpson’s error bound involve <m>f^{(4)}</m>?</p>
+      </li>
+      <li>
+        <p>If <m>f”</m> is unbounded on an interval, does that mean numerical integration cannot
+be used?  What exactly fails?</p>
+      </li>
+      <li>
+        <p>Why is numerical integration usually more forgiving than numerical differentiation?</p>
+      </li>
+      <li>
+        <p>Why can numerical differentiation magnify measurement noise?</p>
+      </li>
+      <li>
+        <p>What are truncation error and roundoff error?</p>
+      </li>
+      <li>
+        <p>Why is smaller <m>h</m> not always better for finite differences?</p>
+      </li>
+      <li>
+        <p>Why should Newton’s method usually monitor both the residual and the step size?</p>
+      </li>
+      <li>
+        <p>What does it mean for Newton’s method to converge quadratically?</p>
+      </li>
+      <li>
+        <p>Why does a multiple root slow Newton’s method?</p>
+      </li>
+      <li>
+        <p>What is one advantage of bisection over Newton’s method?  What is one advantage of
+Newton’s method over bisection?</p>
+      </li>
+      <li>
+        <p>A computer returns a decimal answer.  What questions should you ask before trusting
+it?</p>
+      </li>
+      <li>
+        <p>In one sentence, explain the main lesson of this chapter.</p>
+      </li>
+    </ol>
+
+  <exercise xml:id="checkpoint-12-7-integration-versus-differentiation">
+        <title>Why is numerical integration usually more forgiving than numerical differentiation?</title>
+        <statement>
+          <p>
+            Integration averages values over an interval. Differentiation subtracts nearby values and divides by a small step. In your own words, why do those two personalities lead to different computational warnings?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Averaging tends to cancel noise. Subtracting nearly equal numbers and dividing by small <m>h</m> magnifies truncation and roundoff.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-chapter-12-discovery-problems">
+    <title>Discovery problems</title>
+
+    <ol>
+      <li>
+        <p><strong>Observed order of convergence.</strong>
+For each rule <m>M_n</m>, <m>T_n</m>, and <m>S_n</m>, approximate</p>
+          <md>\int_0^1 e^{-x^2}\,dx</md>
+        <p>using</p>
+          <md>n=4,\ 8,\ 16,\ 32.</md>
+        <p>Use</p>
+          <md>0.7468241328</md>
+        <p>as a reference value.  Make a table of absolute errors.  Estimate the factor by which
+the error shrinks when <m>n</m> doubles.</p>
+      </li>
+      <li>
+        <p><strong>Smooth versus endpoint singularity.</strong>
+Repeat the previous problem for</p>
+          <md>\int_0^1 \sqrt{x}\,dx=\frac23.</md>
+        <p>Which rule loses the most of its expected advantage?  Explain why the endpoint
+<m>x=0</m> matters.</p>
+      </li>
+      <li>
+        <p><strong>Splitting off the bad endpoint.</strong>
+For</p>
+          <md>\int_0^1 \sqrt{x}\,dx,</md>
+        <p>write</p>
+          <md>\int_0^1 \sqrt{x}\,dx
+=
+\int_0^\alpha \sqrt{x}\,dx+\int_\alpha^1 \sqrt{x}\,dx.</md>
+        <p>Choose a small positive <m>\alpha</m>, compute the first integral exactly, and approximate
+the second numerically.  Compare with applying Simpson’s Rule on the whole interval.</p>
+      </li>
+      <li>
+        <p><strong>A probability estimate.</strong>
+Use Simpson’s Rule to approximate</p>
+          <md>\int_{-2}^{2}\frac1{\sqrt{2\pi}}e^{-x^2/2}\,dx.</md>
+        <p>Compare this probability with the probability between <m>-1</m> and <m>1</m>.  What does the
+comparison say about the spread of the normal curve?</p>
+      </li>
+      <li>
+        <p><strong>Function evaluations matter.</strong>
+For a fixed number of function evaluations, compare the midpoint, trapezoidal, and
+Simpson rules on</p>
+          <md>\int_0^1 \frac{4}{1+x^2}\,dx.</md>
+        <p>Which method gives the best approximation to <m>\pi</m>?  Does your answer change for
+small versus large numbers of evaluations?</p>
+      </li>
+      <li>
+        <p><strong>An adaptive experiment.</strong>
+Start with <m>n=4</m> and compute Simpson approximations to</p>
+          <md>\int_0^1 e^{-x^2}\,dx.</md>
+        <p>Double <m>n</m> until two successive approximations differ by less than <m>10^{-8}</m>.
+Report the final approximation and the value of <m>n</m>.  Explain why the difference
+between successive approximations is evidence, not a guaranteed error bound by
+itself.</p>
+      </li>
+      <li>
+        <p><strong>Noisy derivative data.</strong>
+Suppose the measured values of <m>f(a+h)</m> and <m>f(a-h)</m> each have possible error at
+most <m>0.001</m>.  Estimate how large the resulting error in</p>
+          <md>\frac{f(a+h)-f(a-h)}{2h}</md>
+        <p>could be.  What happens as <m>h</m> gets small?</p>
+      </li>
+      <li>
+        <p><strong>Centered difference experiment.</strong>
+For</p>
+          <md>f(x)=\sin x,</md>
+        <p>estimate <m>f'(0)</m> using centered differences with</p>
+          <md>h=10^{-1},\ 10^{-2},\ 10^{-3},\ 10^{-4}.</md>
+        <p>Compare with the exact value.  If you use a computer, continue to smaller <m>h</m> and
+watch for roundoff effects.</p>
+      </li>
+      <li>
+        <p><strong>Newton basins on a line.</strong>
+Apply Newton’s method to</p>
+          <md>f(x)=x^3-2x+2</md>
+        <p>from several starting values between <m>-3</m> and <m>3</m>.  Record which starting values
+lead to convergence and which do not.  Describe what you observe.</p>
+      </li>
+      <li>
+        <p><strong>Modified Newton for multiple roots.</strong>
+For</p>
+          <md>f(x)=(x-1)^3(x+2),</md>
+        <p>use ordinary Newton’s method near <m>x=1</m>.  Then try the modified method</p>
+          <md>x_{n+1}=x_n-3\frac{f(x_n)}{f'(x_n)}.</md>
+        <p>Compare the convergence.</p>
+      </li>
+      <li>
+        <p><strong>Build a numerical report.</strong>
+Choose one integral from science, probability, economics, or geometry.  Your report
+should include:</p>
+          <md>\text{the exact quantity being approximated,}</md>
+          <md>\text{the numerical rule used,}</md>
+          <md>\text{a table of approximations,}</md>
+          <md>\text{an error bound or stability evidence,}</md>
+        <p>and</p>
+          <md>\text{a sentence explaining why the hypotheses do or do not apply.}</md>
+      </li>
+      <li>
+        <p><strong>A computation can be right for the wrong reason.</strong>
+Find an example where two different numerical methods give close answers, but the
+common answer is not very accurate.  Explain how this can happen.</p>
+      </li>
+    </ol>
+
+  <note xml:id="note-sec-12-7-chapter-review-and-discovery-problems-99">
+    <title>End-of-chapter habit</title>
+      <p>For every numerical answer, ask four questions:</p>
+        <md>\text{What exact quantity is being approximated?}</md>
+        <md>\text{Which method produced the approximation?}</md>
+        <md>\text{What assumptions does the method need?}</md>
+        <md>\text{What evidence or theorem supports the claimed accuracy?}</md>
+  </note>
+
+  <p>The next section turns this habit toward a new kind of problem.  So far, numerical
+methods have mostly produced numbers: values of integrals, derivatives, and roots.
+But many laws of science ask for more than one number.  They ask for a whole unknown
+function.</p>
+  </subsection>
+
+
+
+</section>

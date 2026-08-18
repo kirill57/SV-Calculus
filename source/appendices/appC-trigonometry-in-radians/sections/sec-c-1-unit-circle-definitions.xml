@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-c-1-unit-circle-definitions">
+  <title>Unit circle definitions</title>
+
+  <p>Right triangles are a good beginning.  The unit circle is the calculus definition.</p>
+
+  <p>A right triangle defines sine and cosine only for acute angles.  But calculus needs
+functions such as</p>
+
+  <md>\sin x
+\qquad\text{and}\qquad
+\cos x</md>
+
+  <p>for every real number <m>x</m>.  The unit circle gives that definition.</p>
+
+  <subsection xml:id="appsubsec-radians-arc-length">
+    <title>Radians and arc length</title>
+
+  <p>A radian measures angle by arc length.</p>
+
+  <p>If a circle has radius <m>r</m>, and a central angle <m>\theta</m> cuts off an arc of length <m>s</m>,
+then</p>
+
+  <md>
+\theta=\frac{s}{r}
+</md>
+
+  <p>when <m>\theta</m> is measured in radians.  Equivalently,</p>
+
+  <md>
+s=r\theta.
+</md>
+
+  <p>This formula is one of the reasons radians are the natural angle measure in calculus.
+It says that angle is arc length divided by radius.</p>
+
+  <p>On the unit circle, where <m>r=1</m>,</p>
+
+  <md>s=\theta.</md>
+
+  <p>So an angle of <m>\theta</m> radians is exactly an arc of length <m>\theta</m> on the unit circle.</p>
+
+  <figure xml:id="fig-appendix-unit-circle-arc">
+    <caption>On the unit circle, radian measure equals arc length.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.0, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.25,0) -- (1.45,0) node[right] {\(x\)};
+  \draw[-&gt;] (0,-0.25) -- (0,1.35) node[above] {\(y\)};
+
+  \draw[thick] (0,0) circle (1);
+
+  \def\ang{50}
+  \coordinate (A) at (1,0);
+  \coordinate (P) at ({cos(\ang)},{sin(\ang)});
+
+  \draw[very thick] (0,0) -- (A);
+  \draw[very thick] (0,0) -- (P);
+  \draw[very thick] (A) arc (0:\ang:1);
+
+  \draw[thick] (0.32,0) arc (0:\ang:0.32);
+  \node at ({0.45*cos(25)},{0.45*sin(25)}) {\(\theta\)};
+
+  \node[below right] at (A) {\((1,0)\)};
+  \node[above right] at (P) {\(P(\theta)\)};
+  \node[above] at ({cos(25)},{sin(25)+0.05}) {\(s=\theta\)};
+  \node at (0.35,-0.17) {radius \(1\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>A full turn around a circle has circumference</p>
+
+  <md>2\pi r.</md>
+
+  <p>Dividing by <m>r</m>, a full turn has angle</p>
+
+  <md>2\pi</md>
+
+  <p>radians.  Therefore</p>
+
+  <md>
+2\pi\text{ radians}=360^\circ.
+</md>
+
+  <p>So</p>
+
+  <md>
+\pi\text{ radians}=180^\circ.
+</md>
+
+  <p>To convert degrees to radians, multiply by</p>
+
+  <md>\frac{\pi}{180}.</md>
+
+  <p>To convert radians to degrees, multiply by</p>
+
+  <md>\frac{180}{\pi}.</md>
+
+  <example xml:id="ex-sec-c-1-unit-circle-definitions-1">
+    <title>Example</title>
+    <statement>
+  <p>Convert <m>150^\circ</m> to radians.</p>
+
+  <md>150^\circ
+=
+150\cdot\frac{\pi}{180}
+=
+\frac{5\pi}{6}.</md>
+
+  <p>So</p>
+
+  <md>
+150^\circ=\frac{5\pi}{6}\text{ radians}.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-c-1-unit-circle-definitions-2">
+    <title>Example</title>
+    <statement>
+  <p>Convert <m>\frac{7\pi}{4}</m> radians to degrees.</p>
+
+  <md>\frac{7\pi}{4}\cdot\frac{180}{\pi}
+=
+7\cdot45
+=
+315.</md>
+
+  <p>So</p>
+
+  <md>
+\frac{7\pi}{4}=315^\circ.
+</md>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-c-1-unit-circle-definitions-3">
+    <title>Example</title>
+    <statement>
+  <p>A circle has radius <m>6</m>.  Find the arc length cut off by a central angle of
+<m>\frac{2\pi}{3}</m> radians.</p>
+
+  <p>Use</p>
+
+  <md>s=r\theta.</md>
+
+  <p>Thus</p>
+
+  <md>s=6\cdot\frac{2\pi}{3}=4\pi.</md>
+
+  <p>So the arc length is</p>
+
+  <md>4\pi.</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-sine-cosine-unit-circle">
+    <title>Sine and cosine from the unit circle</title>
+
+  <p>Start at the point</p>
+
+  <md>(1,0)</md>
+
+  <p>on the unit circle.  Move counterclockwise along the circle through an arc of length
+<m>\theta</m>.  The point reached is called <m>P(\theta)</m>.</p>
+
+  <p>If</p>
+
+  <md>P(\theta)=(x,y),</md>
+
+  <p>then we define</p>
+
+  <md>
+\cos\theta=x
+</md>
+
+  <p>and</p>
+
+  <md>
+\sin\theta=y.
+</md>
+
+  <p>So</p>
+
+  <md>
+P(\theta)=(\cos\theta,\sin\theta).
+</md>
+
+  <p>This definition works for every real number <m>\theta</m>.  Positive <m>\theta</m> moves
+counterclockwise.  Negative <m>\theta</m> moves clockwise.</p>
+
+  <figure xml:id="fig-appendix-sine-cosine-coordinates">
+    <caption>The cosine is the <m>x</m>-coordinate and the sine is the <m>y</m>-coordinate on the unit circle.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}[scale=2.0, every node/.style={font=\small}]
+  \draw[-&gt;] (-1.35,0) -- (1.45,0) node[right] {\(x\)};
+  \draw[-&gt;] (0,-1.35) -- (0,1.45) node[above] {\(y\)};
+
+  \draw[thick] (0,0) circle (1);
+
+  \def\ang{130}
+  \coordinate (P) at ({cos(\ang)},{sin(\ang)});
+  \coordinate (Q) at ({cos(\ang)},0);
+
+  \draw[very thick,-&gt;] (0,0) -- (P);
+  \draw[dashed] (P) -- (Q);
+  \draw[dashed] (0,0) -- (Q);
+
+  \draw[thick] (0.35,0) arc (0:\ang:0.35);
+  \node at ({0.49*cos(65)},{0.49*sin(65)}) {\(\theta\)};
+
+  \fill (P) circle (1.5pt);
+  \node[above left] at (P) {\((\cos\theta,\sin\theta)\)};
+
+  \node[below] at (Q) {\(\cos\theta\)};
+  \node[left] at ({cos(\ang)}, {sin(\ang)/2}) {\(\sin\theta\)};
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>Because every point on the unit circle satisfies</p>
+
+  <md>x^2+y^2=1,</md>
+
+  <p>we immediately get</p>
+
+  <md>
+\cos^2\theta+\sin^2\theta=1.
+</md>
+
+  <p>This is the main identity of trigonometry.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-other-trig-functions">
+    <title>Tangent, secant, cosecant, and cotangent</title>
+
+  <p>The other trigonometric functions are built from sine and cosine.</p>
+
+  <md>
+\tan\theta=\frac{\sin\theta}{\cos\theta}
+
+\qquad
+\text{when }\cos\theta\neq0.</md>
+
+  <md>
+\sec\theta=\frac1{\cos\theta}
+
+\qquad
+\text{when }\cos\theta\neq0.</md>
+
+  <md>
+\csc\theta=\frac1{\sin\theta}
+
+\qquad
+\text{when }\sin\theta\neq0.</md>
+
+  <md>
+\cot\theta=\frac{\cos\theta}{\sin\theta}
+
+\qquad
+\text{when }\sin\theta\neq0.</md>
+
+  <p>The restrictions matter.  Division by zero is still forbidden.</p>
+
+  <p>For example,</p>
+
+  <md>\cos\left(\frac{\pi}{2}\right)=0,</md>
+
+  <p>so</p>
+
+  <md>\tan\left(\frac{\pi}{2}\right)</md>
+
+  <p>and</p>
+
+  <md>\sec\left(\frac{\pi}{2}\right)</md>
+
+  <p>are undefined.</p>
+  </subsection>
+
+  <subsection xml:id="appsubsec-special-angles">
+    <title>Special angles</title>
+
+  <p>The most common exact values come from the <m>30^\circ</m>-<m>60^\circ</m>-<m>90^\circ</m>
+triangle and the <m>45^\circ</m>-<m>45^\circ</m>-<m>90^\circ</m> triangle.</p>
+
+  <p>In radians, these angles are</p>
+
+  <md>\frac{\pi}{6},
+\qquad
+\frac{\pi}{3},
+\qquad
+\frac{\pi}{4}.</md>
+
+  <table xml:id="tab-sec-c-1-unit-circle-definitions-3">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><m>\theta</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>\dfrac{\pi}{6}</m></cell>
+        <cell><m>\dfrac{\pi}{4}</m></cell>
+        <cell><m>\dfrac{\pi}{3}</m></cell>
+        <cell><m>\dfrac{\pi}{2}</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\sin\theta</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>\dfrac12</m></cell>
+        <cell><m>\dfrac{\sqrt2}{2}</m></cell>
+        <cell><m>\dfrac{\sqrt3}{2}</m></cell>
+        <cell><m>1</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell><m>\cos\theta</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>\dfrac{\sqrt3}{2}</m></cell>
+        <cell><m>\dfrac{\sqrt2}{2}</m></cell>
+        <cell><m>\dfrac12</m></cell>
+        <cell><m>0</m></cell>
+      </row>
+      <row>
+        <cell><m>\tan\theta</m></cell>
+        <cell><m>0</m></cell>
+        <cell><m>\dfrac{\sqrt3}{3}</m></cell>
+        <cell><m>1</m></cell>
+        <cell><m>\sqrt3</m></cell>
+        <cell>\text{undefined}</cell>
+      </row>
+    </tabular>
+  </table>
+
+  <p>These first-quadrant values, together with signs and symmetry, give the exact values
+in the other quadrants.</p>
+
+  <table xml:id="tab-sec-c-1-unit-circle-definitions-4">
+    <tabular halign="left">
+      <row header="yes" bottom="medium">
+        <cell><strong>quadrant</strong></cell>
+        <cell><m>\sin\theta</m></cell>
+        <cell><m>\cos\theta</m></cell>
+        <cell><m>\tan\theta</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>I</cell>
+        <cell><m>+</m></cell>
+        <cell><m>+</m></cell>
+        <cell><m>+</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>II</cell>
+        <cell><m>+</m></cell>
+        <cell><m>-</m></cell>
+        <cell><m>-</m></cell>
+      </row>
+      <row bottom="minor">
+        <cell>III</cell>
+        <cell><m>-</m></cell>
+        <cell><m>-</m></cell>
+        <cell><m>+</m></cell>
+      </row>
+      <row>
+        <cell>IV</cell>
+        <cell><m>-</m></cell>
+        <cell><m>+</m></cell>
+        <cell><m>-</m></cell>
+      </row>
+    </tabular>
+  </table>
+
+  <example xml:id="ex-sec-c-1-unit-circle-definitions-4">
+    <title>Example</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\sin\left(\frac{5\pi}{6}\right),
+\qquad
+\cos\left(\frac{5\pi}{6}\right),
+\qquad
+\tan\left(\frac{5\pi}{6}\right).</md>
+
+  <p>The angle</p>
+
+  <md>\frac{5\pi}{6}</md>
+
+  <p>lies in Quadrant II.  Its reference angle is</p>
+
+  <md>\pi-\frac{5\pi}{6}=\frac{\pi}{6}.</md>
+
+  <p>In Quadrant II, sine is positive and cosine is negative.  Therefore</p>
+
+  <md>\sin\left(\frac{5\pi}{6}\right)=\frac12,</md>
+
+  <md>\cos\left(\frac{5\pi}{6}\right)=-\frac{\sqrt3}{2},</md>
+
+  <p>and</p>
+
+  <md>\tan\left(\frac{5\pi}{6}\right)
+=
+\frac{\sin(5\pi/6)}{\cos(5\pi/6)}
+=
+-\frac1{\sqrt3}
+=
+-\frac{\sqrt3}{3}.</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-periodicity-coterminal">
+    <title>Periodicity and coterminal angles</title>
+
+  <p>Adding <m>2\pi</m> radians makes one full turn around the unit circle.  The point on the
+circle does not change.  Therefore</p>
+
+  <md>
+\sin(\theta+2\pi)=\sin\theta
+</md>
+
+  <p>and</p>
+
+  <md>
+\cos(\theta+2\pi)=\cos\theta.
+</md>
+
+  <p>For any integer <m>k</m>,</p>
+
+  <md>
+\sin(\theta+2\pi k)=\sin\theta,
+\qquad
+\cos(\theta+2\pi k)=\cos\theta.
+</md>
+
+  <p>Angles that differ by a multiple of <m>2\pi</m> are called <em>coterminal angles</em>.</p>
+
+  <p>Tangent has period <m>\pi</m>, because opposite points on the unit circle have both sine
+and cosine signs reversed, so the quotient is unchanged:</p>
+
+  <md>
+\tan(\theta+\pi)=\tan\theta.
+</md>
+
+  <example xml:id="ex-sec-c-1-unit-circle-definitions-5">
+    <title>Example</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\cos\left(\frac{17\pi}{6}\right).</md>
+
+  <p>Subtract <m>2\pi=\frac{12\pi}{6}</m>:</p>
+
+  <md>\frac{17\pi}{6}-2\pi
+=
+\frac{17\pi}{6}-\frac{12\pi}{6}
+=
+\frac{5\pi}{6}.</md>
+
+  <p>So</p>
+
+  <md>\cos\left(\frac{17\pi}{6}\right)
+=
+\cos\left(\frac{5\pi}{6}\right)
+=
+-\frac{\sqrt3}{2}.</md>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="appsubsec-graphs-sine-cosine-review">
+    <title>Graphs of sine and cosine</title>
+
+  <p>The unit circle produces the graphs of sine and cosine as the angle changes.</p>
+
+  <p>Both functions have period <m>2\pi</m>.  The sine graph starts at <m>0</m>, rises to <m>1</m>, returns
+to <m>0</m>, falls to <m>-1</m>, and returns to <m>0</m>.</p>
+
+  <p>The cosine graph starts at <m>1</m>, falls to <m>0</m>, reaches <m>-1</m>, returns to <m>0</m>, and
+then returns to <m>1</m>.</p>
+
+  <figure xml:id="fig-appendix-sine-cosine-graphs">
+    <caption>Sine and cosine are periodic because the unit circle repeats after a full turn.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.46\textwidth,
+    xmin=-6.6, xmax=6.6,
+    ymin=-1.35, ymax=1.35,
+    axis lines=middle,
+    xlabel={\(\theta\)},
+    ylabel={},
+    xtick={-6.283,-3.142,0,3.142,6.283},
+    xticklabels={\(-2\pi\),\(-\pi\),\(0\),\(\pi\),\(2\pi\)},
+    ytick={-1,0,1},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+    legend style={draw=none, at={(0.03,0.97)}, anchor=north west}
+]
+\addplot[very thick, domain=-6.283:6.283, samples=250] {sin(deg(x))};
+\addlegendentry{\(y=\sin\theta\)}
+\addplot[very thick, dashed, domain=-6.283:6.283, samples=250] {cos(deg(x))};
+\addlegendentry{\(y=\cos\theta\)}
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>These graphs are not only pictures.  Later, their slopes give</p>
+
+  <md>(\sin x)'=\cos x</md>
+
+  <p>and</p>
+
+  <md>(\cos x)'=-\sin x.</md>
+
+  <p>Those formulas are this circular motion translated into calculus.</p>
+  </subsection>
+
+</section>

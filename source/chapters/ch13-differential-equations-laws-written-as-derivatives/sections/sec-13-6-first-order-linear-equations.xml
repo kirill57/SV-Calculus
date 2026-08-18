@@ -1,0 +1,803 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- CONVERTED — VISUALLY VERIFIED -->
+<section xml:id="sec-13-6-first-order-linear-equations">
+  <title>First-order linear equations</title>
+
+  <p>Separable equations can be solved by pulling all <m>y</m>’s to one side and all <m>x</m>’s to the
+other.  Many useful equations do not separate.</p>
+
+  <p>A tank may have salt entering and salt leaving.  A bank account may earn interest while
+money is also being deposited.  A cooling object may sit in a room whose temperature is
+changing.</p>
+
+  <p>These models have a common form:</p>
+
+  <md>\text{rate of change}
++
+\text{known multiple of the current amount}
+=
+\text{outside input}.</md>
+
+  <p>That is the shape of a first-order linear equation.</p>
+
+  <subsection xml:id="subsec-first-order-linear-standard-form">
+    <title>Standard form</title>
+
+  <p>A first-order differential equation is <em>linear</em> if the unknown function and its
+derivative appear only to the first power and are not multiplied together.</p>
+
+  <p>The standard form is</p>
+
+  <md>
+y'+p(t)y=q(t).
+</md>
+
+  <p>Here</p>
+
+  <md>p(t)
+\qquad\text{and}\qquad
+q(t)</md>
+
+  <p>are known functions of <m>t</m>.  The unknown is <m>y(t)</m>.</p>
+
+  <note xml:id="note-sec-13-6-first-order-linear-equations-129">
+    <title>First-order linear equation</title>
+      <p>A first-order linear differential equation has the form</p>
+        <md>
+y'+p(t)y=q(t).
+</md>
+      <p>If <m>q(t)=0</m>, the equation is called <em>homogeneous</em>.  If <m>q(t)\neq0</m>, it is called
+<em>nonhomogeneous</em>.</p>
+  </note>
+
+  <p>The word linear means linear in <m>y</m> and <m>y'</m>.  The coefficient functions <m>p(t)</m> and
+<m>q(t)</m> may be complicated functions of <m>t</m>.</p>
+
+  <md>y'+(\sin t)y=e^{-t}</md>
+
+  <p>is linear.</p>
+
+  <md>y'+t^2y=\cos t</md>
+
+  <p>is linear.</p>
+
+  <p>But</p>
+
+  <md>y'=y^2</md>
+
+  <p>is not linear, and</p>
+
+  <md>y'+y\,y'=t</md>
+
+  <p>is not linear, because the unknown function appears nonlinearly.</p>
+
+  <paragraphs>
+    <title>A first linear example</title>
+
+  <p>Consider</p>
+
+  <md>y'+0.2y=6.</md>
+
+  <p>This says that <m>y</m> is being pushed upward by a constant input <m>6</m>, while the term
+<m>0.2y</m> pulls against the current amount.</p>
+
+  <p>We can rewrite it as</p>
+
+  <md>y'=6-0.2y.</md>
+
+  <p>The equilibrium occurs when</p>
+
+  <md>6-0.2y=0.</md>
+
+  <p>Thus</p>
+
+  <md>y=30.</md>
+
+  <p>If <m>y&lt;30</m>, then <m>y'&gt;0</m>, so the solution rises.</p>
+
+  <p>If <m>y&gt;30</m>, then <m>y'&lt;0</m>, so the solution falls.</p>
+
+  <p>So we expect solutions to approach <m>30</m>.</p>
+
+  <p>This particular equation can be solved by shifting the variable:</p>
+
+  <md>z=y-30.</md>
+
+  <p>Then</p>
+
+  <md>z'=y',</md>
+
+  <p>and</p>
+
+  <md>y'=6-0.2y
+=
+6-0.2(z+30)
+=
+6-0.2z-6
+=
+-0.2z.</md>
+
+  <p>So</p>
+
+  <md>z'=-0.2z.</md>
+
+  <p>Therefore</p>
+
+  <md>z=Ce^{-0.2t}.</md>
+
+  <p>Since</p>
+
+  <md>z=y-30,</md>
+
+  <p>we get</p>
+
+  <md>
+y(t)=30+Ce^{-0.2t}.
+</md>
+
+  <p>If</p>
+
+  <md>y(0)=0,</md>
+
+  <p>then</p>
+
+  <md>0=30+C,</md>
+
+  <p>so</p>
+
+  <md>C=-30.</md>
+
+  <p>The solution is</p>
+
+  <md>
+y(t)=30\left(1-e^{-0.2t}\right).
+</md>
+
+  <p>This example was friendly because the right side was constant.  We need a method that
+also works when <m>p(t)</m> and <m>q(t)</m> vary with time.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-6-what-linear-means">
+        <title>What makes a first-order equation linear?</title>
+        <statement>
+          <p>
+            The standard form is <m>y'+p(t)y=q(t)</m>. In your own words, what does the word linear refer to here, and why can <m>p(t)</m> and <m>q(t)</m> still be complicated functions of <m>t</m> without destroying linearity?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Linear means linear in the unknown <m>y</m> and its derivative <m>y'</m>. The coefficients are allowed to depend on the independent variable.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-integrating-factors">
+    <title>Integrating factors</title>
+
+  <p>The product rule says</p>
+
+  <md>(\mu y)'=\mu y'+\mu' y.</md>
+
+  <p>A linear equation has the left side</p>
+
+  <md>y'+p(t)y.</md>
+
+  <p>If we multiply the equation by a function <m>\mu(t)</m>, we get</p>
+
+  <md>\mu y'+\mu p(t)y=\mu q(t).</md>
+
+  <p>We want the left side to be</p>
+
+  <md>(\mu y)'.</md>
+
+  <p>For that to happen, we need</p>
+
+  <md>\mu'=\mu p(t).</md>
+
+  <p>That is a separable equation for <m>\mu</m>:</p>
+
+  <md>\frac{\mu'}{\mu}=p(t).</md>
+
+  <p>Integrate:</p>
+
+  <md>\ln|\mu|=\int p(t)\,dt.</md>
+
+  <p>So we may choose</p>
+
+  <md>
+\mu(t)=e^{\int p(t)\,dt}.
+</md>
+
+  <p>This function is called an integrating factor.</p>
+
+  <note xml:id="note-sec-13-6-first-order-linear-equations-130">
+    <title>Integrating factor method</title>
+      <p>To solve</p>
+        <md>y'+p(t)y=q(t),</md>
+      <p>choose</p>
+        <md>
+\mu(t)=e^{\int p(t)\,dt}.
+</md>
+      <p>Then</p>
+        <md>\mu'=\mu p(t),</md>
+      <p>so multiplying the equation by <m>\mu</m> gives</p>
+        <md>(\mu y)'=\mu q(t).</md>
+      <p>Integrate both sides and solve for <m>y</m>.</p>
+  </note>
+
+  <p>The method is not a trick.  It is the product rule used backward.</p>
+
+  <example xml:id="ex-sec-13-6-first-order-linear-equations-2">
+    <title>Example</title>
+    <statement>
+  <p>Solve</p>
+
+  <md>y'+2y=e^t,
+\qquad
+y(0)=1.</md>
+
+  <p>Here</p>
+
+  <md>p(t)=2,
+\qquad
+q(t)=e^t.</md>
+
+  <p>An integrating factor is</p>
+
+  <md>\mu(t)=e^{\int 2\,dt}=e^{2t}.</md>
+
+  <p>Multiply the equation by <m>e^{2t}</m>:</p>
+
+  <md>e^{2t}y'+2e^{2t}y=e^{3t}.</md>
+
+  <p>The left side is</p>
+
+  <md>(e^{2t}y)'.</md>
+
+  <p>So</p>
+
+  <md>(e^{2t}y)'=e^{3t}.</md>
+
+  <p>Integrate:</p>
+
+  <md>e^{2t}y=\int e^{3t}\,dt=\frac13e^{3t}+C.</md>
+
+  <p>Therefore</p>
+
+  <md>y=\frac13e^t+Ce^{-2t}.</md>
+
+  <p>Use the initial condition:</p>
+
+  <md>1=y(0)=\frac13+C.</md>
+
+  <p>So</p>
+
+  <md>C=\frac23.</md>
+
+  <p>Thus</p>
+
+  <md>
+y(t)=\frac13e^t+\frac23e^{-2t}.
+</md>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>Check</title>
+
+  <p>Differentiate:</p>
+
+  <md>y'(t)=\frac13e^t-\frac43e^{-2t}.</md>
+
+  <p>Then</p>
+
+  <md>y'+2y
+=
+\left(\frac13e^t-\frac43e^{-2t}\right)
++
+2\left(\frac13e^t+\frac23e^{-2t}\right).</md>
+
+  <p>The exponential decay terms cancel:</p>
+
+  <md>-\frac43e^{-2t}+\frac43e^{-2t}=0.</md>
+
+  <p>The <m>e^t</m> terms add:</p>
+
+  <md>\frac13e^t+\frac23e^t=e^t.</md>
+
+  <p>So</p>
+
+  <md>y'+2y=e^t.</md>
+
+  <p>Also,</p>
+
+  <md>y(0)=\frac13+\frac23=1.</md>
+
+  <p>The solution checks.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-6-integrating-factor">
+        <title>Why does an integrating factor turn the left side into a product rule?</title>
+        <statement>
+          <p>
+            Multiplying by <m>\mu=e^{\int p(t)\,dt}</m> converts <m>y'+p(t)y</m> into <m>(\mu y)'</m>. In your own words, why is that not a trick, and what single sentence explains why the method works?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The factor is chosen so that <m>\mu'=\mu p(t)</m>. Then <m>\mu y'+\mu' y</m> is exactly the derivative of the product <m>\mu y</m>.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+  <subsection xml:id="subsec-linear-mixing-finance-examples">
+    <title>Mixing and finance examples</title>
+
+  <p>Linear equations appear whenever there is a current amount and an outside input.</p>
+
+
+  <exercise xml:id="checkpoint-13-6-outside-input">
+        <title>What story does the nonhomogeneous term <m>q(t)</m> tell?</title>
+        <statement>
+          <p>
+            Mixing tanks and continuous deposits produce linear equations with an outside input. In your own words, why does the solution combine an initial amount with accumulated weighted input, and what would <m>q(t)=0</m> mean in those stories?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            After the product rule is restored, integration accumulates the forced term. A zero input is the homogeneous case: the amount then only decays or grows from its starting value.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-13-6-first-order-linear-equations-4">
+    <title>salt entering and leaving a tank</title>
+    <statement>
+  <p>A tank contains <m>100</m> liters of water.  Brine flows in at <m>5</m> liters per minute with
+concentration</p>
+
+  <md>0.2\text{ grams/liter}.</md>
+
+  <p>The well-mixed solution flows out at <m>5</m> liters per minute, so the volume remains
+<m>100</m> liters.</p>
+
+  <p>Let</p>
+
+  <md>A(t)=\text{grams of salt in the tank after \(t\) minutes}.</md>
+
+  <p>Salt enters at the rate</p>
+
+  <md>5(0.2)=1</md>
+
+  <p>gram per minute.</p>
+
+  <p>The concentration in the tank is</p>
+
+  <md>\frac{A(t)}{100}</md>
+
+  <p>grams per liter, so salt leaves at the rate</p>
+
+  <md>5\cdot \frac{A(t)}{100}=\frac{A(t)}{20}</md>
+
+  <p>grams per minute.</p>
+
+  <p>Thus</p>
+
+  <md>A'=1-\frac{A}{20}.</md>
+
+  <p>In linear standard form,</p>
+
+  <md>
+A'+\frac1{20}A=1.
+</md>
+
+  <p>Use an integrating factor:</p>
+
+  <md>\mu(t)=e^{\int (1/20)\,dt}=e^{t/20}.</md>
+
+  <p>Multiply by <m>e^{t/20}</m>:</p>
+
+  <md>e^{t/20}A'+\frac1{20}e^{t/20}A=e^{t/20}.</md>
+
+  <p>The left side is</p>
+
+  <md>(e^{t/20}A)'.</md>
+
+  <p>So</p>
+
+  <md>(e^{t/20}A)'=e^{t/20}.</md>
+
+  <p>Integrate:</p>
+
+  <md>e^{t/20}A=20e^{t/20}+C.</md>
+
+  <p>Therefore</p>
+
+  <md>A=20+Ce^{-t/20}.</md>
+
+  <p>If the tank initially contains pure water, then</p>
+
+  <md>A(0)=0.</md>
+
+  <p>So</p>
+
+  <md>0=20+C,</md>
+
+  <p>and</p>
+
+  <md>C=-20.</md>
+
+  <p>Thus</p>
+
+  <md>
+A(t)=20\left(1-e^{-t/20}\right).
+</md>
+
+  <p>The amount of salt approaches</p>
+
+  <md>20\text{ grams}.</md>
+
+  <p>That makes sense.  The incoming concentration is <m>0.2</m> grams per liter, and the tank
+holds <m>100</m> liters.  If the tank eventually matches the incoming concentration, it should
+contain</p>
+
+  <md>0.2(100)=20</md>
+
+  <p>grams of salt.</p>
+
+  <figure xml:id="fig-linear-mixing-salt">
+    <caption>With a constant incoming concentration, the salt amount approaches an equilibrium.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.82\textwidth,
+    height=0.48\textwidth,
+    xmin=0, xmax=100,
+    ymin=0, ymax=23,
+    axis lines=left,
+    xlabel={\(t\) (minutes)},
+    ylabel={\(A(t)\) (grams)},
+    xtick={0,20,40,60,80,100},
+    ytick={0,10,20},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[very thick, domain=0:100, samples=200] {20*(1-exp(-x/20))};
+\addplot[thick, dotted, domain=0:100, samples=2] {20};
+\node[anchor=west] at (axis cs:52,20.4) {equilibrium \(20\) grams};
+\node[anchor=west] at (axis cs:24,11) {\(A(t)=20(1-e^{-t/20})\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-13-6-first-order-linear-equations-5">
+    <title>continuous deposits with interest</title>
+    <statement>
+  <p>A bank account earns continuous interest at annual rate</p>
+
+  <md>4\%.</md>
+
+  <p>Money is deposited continuously at</p>
+
+  <md>1200\text{ dollars per year}.</md>
+
+  <p>Let</p>
+
+  <md>B(t)=\text{account balance after \(t\) years}.</md>
+
+  <p>Interest contributes</p>
+
+  <md>0.04B</md>
+
+  <p>dollars per year.  Deposits contribute</p>
+
+  <md>1200</md>
+
+  <p>dollars per year.  Therefore</p>
+
+  <md>B'=0.04B+1200.</md>
+
+  <p>Write this in standard linear form:</p>
+
+  <md>B'-0.04B=1200.</md>
+
+  <p>Here</p>
+
+  <md>p(t)=-0.04.</md>
+
+  <p>An integrating factor is</p>
+
+  <md>\mu(t)=e^{\int -0.04\,dt}=e^{-0.04t}.</md>
+
+  <p>Multiply:</p>
+
+  <md>e^{-0.04t}B'-0.04e^{-0.04t}B=1200e^{-0.04t}.</md>
+
+  <p>The left side is</p>
+
+  <md>(e^{-0.04t}B)'.</md>
+
+  <p>So</p>
+
+  <md>(e^{-0.04t}B)'=1200e^{-0.04t}.</md>
+
+  <p>Integrate:</p>
+
+  <md>e^{-0.04t}B
+=
+1200\int e^{-0.04t}\,dt
+=
+1200\left(-\frac1{0.04}e^{-0.04t}\right)+C.</md>
+
+  <p>Since</p>
+
+  <md>\frac{1200}{0.04}=30000,</md>
+
+  <p>we get</p>
+
+  <md>e^{-0.04t}B=-30000e^{-0.04t}+C.</md>
+
+  <p>Thus</p>
+
+  <md>B=-30000+Ce^{0.04t}.</md>
+
+  <p>If the account starts empty,</p>
+
+  <md>B(0)=0,</md>
+
+  <p>then</p>
+
+  <md>0=-30000+C,</md>
+
+  <p>so</p>
+
+  <md>C=30000.</md>
+
+  <p>Therefore</p>
+
+  <md>
+B(t)=30000\left(e^{0.04t}-1\right).
+</md>
+
+  <p>The formula has a natural interpretation.  The deposits alone would add <m>1200t</m>.  The
+interest makes earlier deposits grow, so the balance is larger than <m>1200t</m> for <m>t&gt;0</m>.</p>
+
+  <p>After <m>10</m> years,</p>
+
+  <md>B(10)=30000\left(e^{0.4}-1\right).</md>
+
+  <p>Since</p>
+
+  <md>e^{0.4}\approx1.4918,</md>
+
+  <p>we get</p>
+
+  <md>B(10)\approx30000(0.4918)=14754.</md>
+
+  <p>The account has about</p>
+
+  <md>\$14{,}754</md>
+
+  <p>after <m>10</m> years.</p>
+    </statement>
+  </example>
+  </subsection>
+
+  <subsection xml:id="subsec-why-integrating-factor-works">
+    <title>Why the integrating factor works</title>
+
+  <p>The integrating factor method is worth seeing in one clean line.</p>
+
+  <p>Start with</p>
+
+  <md>y'+p(t)y=q(t).</md>
+
+  <p>Suppose we can find a positive function <m>\mu(t)</m> such that</p>
+
+  <md>\mu'=p(t)\mu.</md>
+
+  <p>Then multiplying the equation by <m>\mu</m> gives</p>
+
+  <md>\mu y'+\mu p(t)y=\mu q(t).</md>
+
+  <p>But</p>
+
+  <md>\mu p(t)=\mu',</md>
+
+  <p>so the left side becomes</p>
+
+  <md>\mu y'+\mu' y.</md>
+
+  <p>By the product rule,</p>
+
+  <md>\mu y'+\mu' y=(\mu y)'.</md>
+
+  <p>Therefore</p>
+
+  <md>(\mu y)'=\mu q(t).</md>
+
+  <p>Now integrate.</p>
+
+  <p>The whole method rests on choosing <m>\mu</m> so that the left side becomes one derivative.</p>
+
+  <p>Since</p>
+
+  <md>\frac{\mu'}{\mu}=p(t),</md>
+
+  <p>we may take</p>
+
+  <md>\mu(t)=e^{\int p(t)\,dt}.</md>
+
+  <p>The exponential is useful because its derivative brings down the derivative of the
+exponent:</p>
+
+  <md>\frac{d}{dt}e^{\int p(t)\,dt}
+=
+p(t)e^{\int p(t)\,dt}.</md>
+
+  <p>So</p>
+
+  <md>\mu'=p(t)\mu.</md>
+
+  <note xml:id="note-sec-13-6-first-order-linear-equations-131">
+    <title>The product-rule sentence</title>
+      <p>The integrating factor is chosen so that</p>
+        <md>\mu y'+\mu p(t)y</md>
+      <p>becomes</p>
+        <md>(\mu y)'.</md>
+      <p>That is why the method works.</p>
+  </note>
+
+  <p>There is also a definite-integral version that is useful for initial value problems.</p>
+
+  <p>Suppose</p>
+
+  <md>y'+p(t)y=q(t),
+\qquad
+y(t_0)=y_0,</md>
+
+  <p>and <m>p,q</m> are continuous on an interval containing <m>t_0</m>.  Define</p>
+
+  <md>\Phi(t)=\int_{t_0}^{t}p(s)\,ds</md>
+
+  <p>and</p>
+
+  <md>\mu(t)=e^{\Phi(t)}.</md>
+
+  <p>Then</p>
+
+  <md>\mu(t_0)=e^0=1.</md>
+
+  <p>Multiplying the equation by <m>\mu</m> gives</p>
+
+  <md>(\mu y)'=\mu q.</md>
+
+  <p>Integrate from <m>t_0</m> to <m>t</m>:</p>
+
+  <md>\mu(t)y(t)-\mu(t_0)y(t_0)
+=
+\int_{t_0}^{t}\mu(s)q(s)\,ds.</md>
+
+  <p>Since <m>\mu(t_0)=1</m> and <m>y(t_0)=y_0</m>,</p>
+
+  <md>\mu(t)y(t)-y_0
+=
+\int_{t_0}^{t}\mu(s)q(s)\,ds.</md>
+
+  <p>Therefore</p>
+
+  <md>
+y(t)
+=
+e^{-\Phi(t)}
+\left[
+y_0+\int_{t_0}^{t}e^{\Phi(s)}q(s)\,ds
+\right].
+</md>
+
+  <p>This formula is not always the easiest way to compute, but it tells the whole structure:</p>
+
+  <md>\text{initial amount}
++
+\text{accumulated weighted input}.</md>
+
+  <paragraphs>
+    <title>Why the interval matters</title>
+
+  <p>The formula assumes that <m>p(t)</m> and <m>q(t)</m> are continuous on the interval where we
+solve the equation.  If a coefficient breaks, the solution may have to be handled on
+separate intervals.</p>
+
+  <p>Consider</p>
+
+  <md>y'+\frac1t y=1.</md>
+
+  <p>This is linear, but the coefficient</p>
+
+  <md>\frac1t</md>
+
+  <p>is not defined at</p>
+
+  <md>t=0.</md>
+
+  <p>So we solve on intervals that avoid <m>0</m>, such as</p>
+
+  <md>(0,\infty)</md>
+
+  <p>or</p>
+
+  <md>(-\infty,0).</md>
+
+  <p>On <m>t&gt;0</m>, an integrating factor is</p>
+
+  <md>\mu(t)=e^{\int (1/t)\,dt}=e^{\ln t}=t.</md>
+
+  <p>Then</p>
+
+  <md>ty'+y=t,</md>
+
+  <p>so</p>
+
+  <md>(ty)'=t.</md>
+
+  <p>Integrate:</p>
+
+  <md>ty=\frac{t^2}{2}+C.</md>
+
+  <p>Thus</p>
+
+  <md>
+y=\frac t2+\frac{C}{t},
+\qquad t&gt;0.
+</md>
+
+  <p>The formula cannot be continued through <m>t=0</m> because of the term <m>C/t</m>, and the
+original equation itself is not defined at <m>0</m>.</p>
+
+  <warning xml:id="warn-sec-13-6-first-order-linear-equations-132">
+    <title>Coefficient warning</title>
+      <p>A solution of a differential equation lives on an interval where the equation makes
+sense.  Singular coefficients split the real line into separate problems.</p>
+  </warning>
+
+  <p>First-order equations already show several personalities.  Some are separable.  Some
+are linear.  Some are best understood by a phase line.  Some require numerical methods.</p>
+
+  <p>But many laws of motion do not stop at the first derivative.  A spring, a pendulum in a
+small-angle approximation, and a vibrating string involve acceleration.  Their laws begin
+with</p>
+
+  <md>y''.</md>
+
+  <p>That is the next door: differential equations where the unknown function is governed by
+its second derivative.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-13-6-interval-of-coefficients">
+        <title>Why can a singular coefficient split one equation into separate problems?</title>
+        <statement>
+          <p>
+            The equation <m>y'+(1/t)y=1</m> is linear, but <m>1/t</m> is undefined at <m>t=0</m>. In your own words, why must a solution live on an interval where the equation makes sense, and why can a formula such as <m>y=t/2+C/t</m> not be continued through zero?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Continuous coefficients are part of the hypotheses. A singularity of <m>p(t)</m> or <m>q(t)</m> is a wall between intervals, not a point to be crossed casually.
+          </p>
+        </hint>
+      </exercise>
+
+  </subsection>
+
+
+
+</section>

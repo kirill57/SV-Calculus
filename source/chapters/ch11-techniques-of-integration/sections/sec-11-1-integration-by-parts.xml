@@ -7,291 +7,611 @@
 
   <p>Integration by parts reverses the product rule.</p>
 
-  <p>This is the first new method because products occur naturally. Work integrals may contain force times distance. Probability integrals may contain a variable times a density. Arc length and center of mass can also produce products. When an integrand looks like</p>
+  <p>This is the first new method because products occur naturally.  Work integrals may
+contain force times distance.  Probability integrals may contain a variable times a
+density.  Arc length and center of mass can also produce products.  When an integrand
+looks like</p>
+
   <md>x e^x,\qquad x\cos x,\qquad x^2\ln x,</md>
-  <p>substitution may not know what to do. The product rule does.</p>
+
+  <p>substitution may not know what to do.  The product rule does.</p>
 
   <subsection xml:id="subsec-reversing-product-rule">
     <title>Reversing the product rule</title>
 
-    <p>The product rule says</p>
-    <md>\frac{d}{dx}\bigl(u(x)v(x)\bigr) = u'(x)v(x)+u(x)v'(x).</md>
+  <p>The product rule says</p>
 
-    <p>In differential notation, this is</p>
-    <md>d(uv)=u\,dv+v\,du.</md>
+  <md>\frac{d}{dx}\bigl(u(x)v(x)\bigr)
+=
+u'(x)v(x)+u(x)v'(x).</md>
 
-    <p>This notation is useful here because it separates the two small changes: <m>du</m> and <m>dv</m>.</p>
+  <p>In differential notation, this is</p>
 
-    <p>Rearrange the equation:</p>
-    <md>u\,dv=d(uv)-v\,du.</md>
+  <md>d(uv)=u\,dv+v\,du.</md>
 
-    <p>Now accumulate both sides:</p>
-    <md>\int u\,dv=\int d(uv)-\int v\,du.</md>
+  <p>This notation is useful here because it separates the two small changes: <m>du</m> and
+<m>dv</m>.</p>
 
-    <p>By the Fundamental Theorem,</p>
-    <md>\int d(uv)=uv.</md>
+  <p>Rearrange the equation:</p>
 
-    <p>Therefore</p>
-    <md>\int u\,dv=uv-\int v\,du.</md>
+  <md>u\,dv=d(uv)-v\,du.</md>
 
-    <p>This is the formula for integration by parts.</p>
+  <p>Now accumulate both sides:</p>
 
-    <theorem xml:id="thm-integration-by-parts">
-      <title>Integration by parts</title>
-      <statement>
-        <p>If <m>u=u(x)</m> and <m>v=v(x)</m> are differentiable functions, then</p>
-        <md>\int u\,dv=uv-\int v\,du.</md>
-        <p>Equivalently, if <m>dv=v'(x)\,dx</m> and <m>du=u'(x)\,dx</m>, then</p>
-        <md>\int u(x)v'(x)\,dx = u(x)v(x)-\int v(x)u'(x)\,dx.</md>
-      </statement>
-    </theorem>
+  <md>\int u\,dv=\int d(uv)-\int v\,du.</md>
 
-    <p>The formula does not make an integral disappear for free. It trades one integral for another. It helps only when the new integral is simpler than the old one.</p>
+  <p>By the Fundamental Theorem,</p>
 
-    <example xml:id="ex-ibp-seed-x-exp-x">
-      <title>Seed example</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x e^x\,dx.</md>
-        <p>The integrand is a product. The factor <m>e^x</m> is easy to integrate, and the factor <m>x</m> becomes simpler when differentiated.</p>
-        <p>Choose</p>
-        <md>u=x, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=e^x.</md>
-        <p>Integration by parts gives</p>
-        <md>\int x e^x\,dx = x e^x-\int e^x\,dx.</md>
-        <p>So</p>
-        <md>\int x e^x\,dx = x e^x-e^x+C.</md>
-        <p>It is worth checking:</p>
-        <md>\frac{d}{dx}\bigl(xe^x-e^x\bigr) = (e^x+xe^x)-e^x = xe^x.</md>
-        <p>The derivative returns the original integrand.</p>
-      </statement>
-    </example>
+  <md>\int d(uv)=uv.</md>
+
+  <p>Therefore</p>
+
+  <md>
+\int u\,dv=uv-\int v\,du.
+</md>
+
+  <p>This is the formula for integration by parts.</p>
+
+  <note xml:id="note-sec-11-1-integration-by-parts-76">
+    <title>Integration by parts</title>
+      <p>If <m>u=u(x)</m> and <m>v=v(x)</m> are differentiable functions, then</p>
+        <md>
+\int u\,dv=uv-\int v\,du.
+</md>
+      <p>Equivalently, if <m>dv=v'(x)\,dx</m> and <m>du=u'(x)\,dx</m>, then</p>
+        <md>
+\int u(x)v'(x)\,dx
+=
+u(x)v(x)-\int v(x)u'(x)\,dx.
+</md>
+  </note>
+
+  <p>The formula does not make an integral disappear for free.  It trades one integral for
+another.  It helps only when the new integral is simpler than the old one.</p>
+
+  <paragraphs>
+    <title>Seed example</title>
+
+  <p>Find</p>
+
+  <md>\int x e^x\,dx.</md>
+
+  <p>The integrand is a product.  The factor <m>e^x</m> is easy to integrate, and the factor
+<m>x</m> becomes simpler when differentiated.</p>
+
+  <p>Choose</p>
+
+  <md>u=x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=e^x.</md>
+
+  <p>Integration by parts gives</p>
+
+  <md>\int x e^x\,dx
+=
+x e^x-\int e^x\,dx.</md>
+
+  <p>So</p>
+
+  <md>
+\int x e^x\,dx
+=
+x e^x-e^x+C.
+</md>
+
+  <p>It is worth checking:</p>
+
+  <md>\frac{d}{dx}\bigl(xe^x-e^x\bigr)
+=
+(e^x+xe^x)-e^x
+=
+xe^x.</md>
+
+  <p>The derivative returns the original integrand.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-11-1-reverse-product">
+        <title>Why does integration by parts reverse the product rule?</title>
+        <statement>
+          <p>
+            The product rule says <m>d(uv)=u\,dv+v\,du</m>. Rearranging and integrating produces <m>\int u\,dv=uv-\int v\,du</m>. In your own words, why does this trade one integral for another rather than making an integral disappear for free, and when is the trade a good one?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The formula helps only when the new integral is simpler than the old one. You are moving a derivative from one factor onto the other.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-choosing-u-dv">
     <title>Choosing <m>u</m> and <m>dv</m></title>
 
-    <p>The formula</p>
-    <md>\int u\,dv=uv-\int v\,du</md>
-    <p>requires a choice. We must decide which part of the integrand to call <m>u</m>, and which part to call <m>dv</m>.</p>
+  <p>The formula</p>
 
-    <p>The choice is not cosmetic. A good choice makes the remaining integral simpler. A poor choice makes it harder.</p>
+  <md>\int u\,dv=uv-\int v\,du</md>
 
-    <p>In the example</p>
-    <md>\int x e^x\,dx,</md>
-    <p>we chose</p>
-    <md>u=x, \qquad dv=e^x\,dx.</md>
-    <p>That made</p>
-    <md>du=dx,</md>
-    <p>so the power of <m>x</m> disappeared.</p>
+  <p>requires a choice.  We must decide which part of the integrand to call <m>u</m>, and
+which part to call <m>dv</m>.</p>
 
-    <p>If we had chosen instead</p>
-    <md>u=e^x, \qquad dv=x\,dx,</md>
-    <p>then</p>
-    <md>du=e^x\,dx, \qquad v=\frac{x^2}{2}.</md>
-    <p>The formula would give</p>
-    <md>\int x e^x\,dx = \frac{x^2}{2}e^x-\int \frac{x^2}{2}e^x\,dx.</md>
-    <p>The new integral is harder than the original one. That choice moves us backward.</p>
+  <p>The choice is not cosmetic.  A good choice makes the remaining integral simpler.
+A poor choice makes it harder.</p>
 
-    <note xml:id="note-choosing-u-dv">
-      <title>Choosing <m>u</m> and <m>dv</m></title>
+  <p>In the example</p>
+
+  <md>\int x e^x\,dx,</md>
+
+  <p>we chose</p>
+
+  <md>u=x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>That made</p>
+
+  <md>du=dx,</md>
+
+  <p>so the power of <m>x</m> disappeared.</p>
+
+  <p>If we had chosen instead</p>
+
+  <md>u=e^x,
+\qquad
+dv=x\,dx,</md>
+
+  <p>then</p>
+
+  <md>du=e^x\,dx,
+\qquad
+v=\frac{x^2}{2}.</md>
+
+  <p>The formula would give</p>
+
+  <md>\int x e^x\,dx
+=
+\frac{x^2}{2}e^x-\int \frac{x^2}{2}e^x\,dx.</md>
+
+  <p>The new integral is harder than the original one.  That choice moves us backward.</p>
+
+  <note xml:id="note-sec-11-1-integration-by-parts-77">
+    <title>Choosing <m>u</m> and <m>dv</m></title>
       <p>Ask two questions.</p>
-      <table xml:id="tab-choosing-u-dv-questions">
-        <title>Questions for choosing parts</title>
-        <tabular halign="left">
-          <row header="yes" bottom="medium">
-            <cell>Question</cell>
-            <cell>Reason</cell>
-          </row>
-          <row bottom="minor">
-            <cell>Will <m>u</m> become simpler when differentiated?</cell>
-            <cell>We must replace <m>u</m> by <m>du</m>.</cell>
-          </row>
-          <row>
-            <cell>Can <m>dv</m> be integrated easily?</cell>
-            <cell>We must find <m>v</m>.</cell>
-          </row>
-        </tabular>
-      </table>
+        <table xml:id="tab-sec-11-1-integration-by-parts-0">
+    <tabular halign="left">
+      <row bottom="minor">
+        <cell><strong>Question</strong></cell>
+        <cell><strong>Reason</strong></cell>
+      </row>
+      <row bottom="minor">
+        <cell>Will <m>u</m> become simpler when differentiated?</cell>
+        <cell>We must replace <m>u</m> by <m>du</m>.</cell>
+      </row>
+      <row>
+        <cell>
+Can <m>dv</m> be integrated easily?</cell>
+        <cell>We must find <m>v</m>.</cell>
+      </row>
+    </tabular>
+  </table>
       <p>A good choice usually makes <m>du</m> simpler than <m>u</m>, while keeping <m>v</m> manageable.</p>
-    </note>
+  </note>
 
-    <example xml:id="ex-ibp-ln-x">
-      <title>No visible product</title>
-      <statement>
-        <p>Find</p>
-        <md>\int \ln x\,dx, \qquad x\gt 0.</md>
-        <p>There is no visible product, but we can write</p>
-        <md>\ln x=(\ln x)\cdot 1.</md>
-        <p>Choose</p>
-        <md>u=\ln x, \qquad dv=dx.</md>
-        <p>Then</p>
-        <md>du=\frac1x\,dx, \qquad v=x.</md>
-        <p>Integration by parts gives</p>
-        <md>\int \ln x\,dx = x\ln x-\int x\cdot \frac1x\,dx.</md>
-        <p>Thus</p>
-        <md>\int \ln x\,dx = x\ln x-\int 1\,dx,</md>
-        <p>so</p>
-        <md>\int \ln x\,dx=x\ln x-x+C.</md>
-        <p>This example is a useful reminder. Integration by parts can apply even when the integrand does not look like a product. The hidden factor may be <m>1\,dx</m>.</p>
-      </statement>
-    </example>
 
-    <example xml:id="ex-ibp-x-cos-x">
-      <title>A trigonometric product</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x\cos x\,dx.</md>
-        <p>Choose</p>
-        <md>u=x, \qquad dv=\cos x\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=\sin x.</md>
-        <p>So</p>
-        <md>\int x\cos x\,dx = x\sin x-\int \sin x\,dx.</md>
-        <p>Since</p>
-        <md>\int \sin x\,dx=-\cos x,</md>
-        <p>we get</p>
-        <md>\int x\cos x\,dx=x\sin x+\cos x+C.</md>
-        <p>The sign comes from the antiderivative of <m>\sin x</m>. A quick derivative check confirms the result:</p>
-        <md>\frac{d}{dx}(x\sin x+\cos x) = \sin x+x\cos x-\sin x = x\cos x.</md>
-      </statement>
-    </example>
+  <exercise xml:id="checkpoint-11-1-choose-u">
+        <title>What makes one choice of <m>u</m> and <m>dv</m> better than another?</title>
+        <statement>
+          <p>
+            For <m>\int x e^x\,dx</m>, taking <m>u=x</m> simplifies the remaining integral, while taking <m>u=e^x</m> makes it worse. In your own words, why is the choice not cosmetic, and what should you want to happen to <m>u</m> when it is differentiated?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Differentiate the factor that becomes simpler, and integrate the factor that stays manageable. A poor choice raises the power or complicates the remaining integral.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-1-integration-by-parts-2">
+    <title>no visible product</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int \ln x\,dx,
+\qquad x&gt;0.</md>
+
+  <p>There is no visible product, but we can write</p>
+
+  <md>\ln x=(\ln x)\cdot 1.</md>
+
+  <p>Choose</p>
+
+  <md>u=\ln x,
+\qquad
+dv=dx.</md>
+
+  <p>Then</p>
+
+  <md>du=\frac1x\,dx,
+\qquad
+v=x.</md>
+
+  <p>Integration by parts gives</p>
+
+  <md>\int \ln x\,dx
+=
+x\ln x-\int x\cdot \frac1x\,dx.</md>
+
+  <p>Thus</p>
+
+  <md>\int \ln x\,dx
+=
+x\ln x-\int 1\,dx,</md>
+
+  <p>so</p>
+
+  <md>
+\int \ln x\,dx=x\ln x-x+C.
+</md>
+
+  <p>This example is a useful reminder.  Integration by parts can apply even when the
+integrand does not look like a product.  The hidden factor may be <m>1\,dx</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-1-integration-by-parts-3">
+    <title>a trigonometric product</title>
+    <statement>
+  <p>Find</p>
+
+  <md>\int x\cos x\,dx.</md>
+
+  <p>Choose</p>
+
+  <md>u=x,
+\qquad
+dv=\cos x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=\sin x.</md>
+
+  <p>So</p>
+
+  <md>\int x\cos x\,dx
+=
+x\sin x-\int \sin x\,dx.</md>
+
+  <p>Since</p>
+
+  <md>\int \sin x\,dx=-\cos x,</md>
+
+  <p>we get</p>
+
+  <md>
+\int x\cos x\,dx=x\sin x+\cos x+C.
+</md>
+
+  <p>The sign comes from the antiderivative of <m>\sin x</m>.  A quick derivative check confirms
+the result:</p>
+
+  <md>\frac{d}{dx}(x\sin x+\cos x)
+=
+\sin x+x\cos x-\sin x
+=
+x\cos x.</md>
+    </statement>
+  </example>
   </subsection>
 
   <subsection xml:id="subsec-repeated-integration-by-parts">
     <title>Repeated integration by parts</title>
 
-    <p>Sometimes one use of integration by parts is not enough. A power may need to be reduced one degree at a time.</p>
+  <p>Sometimes one use of integration by parts is not enough.  A power may need to be
+reduced one degree at a time.</p>
 
-    <example xml:id="ex-ibp-repeated-x-squared-exp">
-      <title>Repeated integration by parts</title>
-      <statement>
-        <p>Find</p>
-        <md>\int x^2 e^x\,dx.</md>
-        <p>Choose</p>
-        <md>u=x^2, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=2x\,dx, \qquad v=e^x.</md>
-        <p>So</p>
-        <md>\int x^2 e^x\,dx = x^2e^x-\int 2x e^x\,dx.</md>
-        <p>The remaining integral still needs integration by parts. From the seed example,</p>
-        <md>\int x e^x\,dx=xe^x-e^x+C.</md>
-        <p>Therefore</p>
-        <md>\int 2x e^x\,dx = 2xe^x-2e^x.</md>
-        <p>Substitute back:</p>
-        <md>\int x^2 e^x\,dx = x^2e^x-(2xe^x-2e^x)+C.</md>
-        <p>Thus</p>
-        <md>\int x^2 e^x\,dx = e^x(x^2-2x+2)+C.</md>
-        <p>The pattern is clear. Each integration by parts differentiates the polynomial factor. Eventually the polynomial becomes constant.</p>
-      </statement>
-    </example>
+  <example xml:id="ex-sec-11-1-integration-by-parts-4">
+    <title>Example</title>
+    <statement>
+  <p>Find</p>
 
-    <example xml:id="ex-ibp-cyclic-exp-cos">
-      <title>A cyclic example</title>
-      <statement>
-        <p>Let</p>
-        <md>I=\int e^x\cos x\,dx.</md>
-        <p>Choose</p>
-        <md>u=\cos x, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=-\sin x\,dx, \qquad v=e^x.</md>
-        <p>So</p>
-        <md>I=e^x\cos x+\int e^x\sin x\,dx.</md>
-        <p>Now integrate the remaining integral. Let</p>
-        <md>J=\int e^x\sin x\,dx.</md>
-        <p>Choose</p>
-        <md>u=\sin x, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=\cos x\,dx, \qquad v=e^x.</md>
-        <p>Thus</p>
-        <md>J=e^x\sin x-\int e^x\cos x\,dx.</md>
-        <p>But the last integral is <m>I</m>. Therefore</p>
-        <md>J=e^x\sin x-I.</md>
-        <p>Substitute this into the equation for <m>I</m>:</p>
-        <md>I=e^x\cos x+J = e^x\cos x+e^x\sin x-I.</md>
-        <p>So</p>
-        <md>2I=e^x(\sin x+\cos x).</md>
-        <p>Hence</p>
-        <md>\int e^x\cos x\,dx = \frac12 e^x(\sin x+\cos x)+C.</md>
-        <p>When the original integral returns, do not panic. Treat it as an unknown and solve for it.</p>
-      </statement>
-    </example>
+  <md>\int x^2 e^x\,dx.</md>
+
+  <p>Choose</p>
+
+  <md>u=x^2,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=2x\,dx,
+\qquad
+v=e^x.</md>
+
+  <p>So</p>
+
+  <md>\int x^2 e^x\,dx
+=
+x^2e^x-\int 2x e^x\,dx.</md>
+
+  <p>The remaining integral still needs integration by parts.  From the seed example,</p>
+
+  <md>\int x e^x\,dx=xe^x-e^x+C.</md>
+
+  <p>Therefore</p>
+
+  <md>\int 2x e^x\,dx
+=
+2xe^x-2e^x.</md>
+
+  <p>Substitute back:</p>
+
+  <md>\int x^2 e^x\,dx
+=
+x^2e^x-(2xe^x-2e^x)+C.</md>
+
+  <p>Thus</p>
+
+  <md>
+\int x^2 e^x\,dx
+=
+e^x(x^2-2x+2)+C.
+</md>
+
+  <p>The pattern is clear.  Each integration by parts differentiates the polynomial factor.
+Eventually the polynomial becomes constant.</p>
+    </statement>
+  </example>
+
+  <paragraphs>
+    <title>A cyclic example</title>
+
+  <p>Some integrals do not become simpler at each step.  Instead, the original integral
+returns.</p>
+
+  <p>Let</p>
+
+  <md>I=\int e^x\cos x\,dx.</md>
+
+  <p>Choose</p>
+
+  <md>u=\cos x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=-\sin x\,dx,
+\qquad
+v=e^x.</md>
+
+  <p>So</p>
+
+  <md>I=e^x\cos x+\int e^x\sin x\,dx.</md>
+
+  <p>Now integrate the remaining integral.  Let</p>
+
+  <md>J=\int e^x\sin x\,dx.</md>
+
+  <p>Choose</p>
+
+  <md>u=\sin x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=\cos x\,dx,
+\qquad
+v=e^x.</md>
+
+  <p>Thus</p>
+
+  <md>J=e^x\sin x-\int e^x\cos x\,dx.</md>
+
+  <p>But the last integral is <m>I</m>.  Therefore</p>
+
+  <md>J=e^x\sin x-I.</md>
+
+  <p>Substitute this into the equation for <m>I</m>:</p>
+
+  <md>I=e^x\cos x+J
+=
+e^x\cos x+e^x\sin x-I.</md>
+
+  <p>So</p>
+
+  <md>2I=e^x(\sin x+\cos x).</md>
+
+  <p>Hence</p>
+
+  <md>
+\int e^x\cos x\,dx
+=
+\frac12 e^x(\sin x+\cos x)+C.
+</md>
+
+  <p>When the original integral returns, do not panic.  Treat it as an unknown and solve for
+it.</p>
+  </paragraphs>
+
+  <exercise xml:id="checkpoint-11-1-repeated">
+        <title>Why is one use of parts sometimes not enough?</title>
+        <statement>
+          <p>
+            A power such as <m>x^2</m> may need to be reduced one degree at a time, and some integrals cycle back to the original. In your own words, why can repeating the method, or naming the original integral and solving for it, still be reversing the product rule rather than starting over?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Each pass peels one derivative off a factor. If the original integral returns, it has become an algebraic unknown that can be moved to the other side.
+          </p>
+        </hint>
+      </exercise>
+
   </subsection>
 
   <subsection xml:id="subsec-definite-integrals-boundary-terms">
     <title>Definite integrals and boundary terms</title>
 
-    <p>For definite integrals, integration by parts has the same idea, but the product term is evaluated at the endpoints.</p>
+  <p>For definite integrals, integration by parts has the same idea, but the product term is
+evaluated at the endpoints.</p>
 
-    <theorem xml:id="thm-integration-by-parts-definite">
-      <title>Integration by parts for definite integrals</title>
-      <statement>
-        <p>If <m>u</m> and <m>v</m> are differentiable on <m>[a,b]</m>, then</p>
-        <md>\int_a^b u\,dv = \bigl[uv\bigr]_a^b-\int_a^b v\,du.</md>
-        <p>Here</p>
+  <note xml:id="note-sec-11-1-integration-by-parts-78">
+    <title>Integration by parts for definite integrals</title>
+      <p>If <m>u</m> and <m>v</m> are differentiable on <m>[a,b]</m>, then</p>
+        <md>
+\int_a^b u\,dv
+=
+\bigl[uv\bigr]_a^b-\int_a^b v\,du.
+</md>
+      <p>Here</p>
         <md>\bigl[uv\bigr]_a^b=u(b)v(b)-u(a)v(a).</md>
-      </statement>
-    </theorem>
+  </note>
 
-    <p>The term <m>\bigl[uv\bigr]_a^b</m> is called a <term>boundary term</term>. It comes from the Fundamental Theorem:</p>
-    <md>\int_a^b d(uv)=u(b)v(b)-u(a)v(a).</md>
+  <p>The term <m>\bigl[uv\bigr]_a^b</m> is called a <em>boundary term</em>.  It comes from the
+Fundamental Theorem:</p>
 
-    <p>In an indefinite integral, this term appears as <m>uv</m>. In a definite integral, it becomes an endpoint contribution.</p>
+  <md>\int_a^b d(uv)=u(b)v(b)-u(a)v(a).</md>
 
-    <example xml:id="ex-ibp-definite-x-exp">
-      <title>Definite integral with parts</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_0^1 x e^x\,dx.</md>
-        <p>Use</p>
-        <md>u=x, \qquad dv=e^x\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=e^x.</md>
-        <p>So</p>
-        <md>\int_0^1 x e^x\,dx = \bigl[x e^x\bigr]_0^1-\int_0^1 e^x\,dx.</md>
-        <p>Compute the boundary term:</p>
-        <md>\bigl[x e^x\bigr]_0^1=e-0=e.</md>
-        <p>Also,</p>
-        <md>\int_0^1 e^x\,dx=e-1.</md>
-        <p>Therefore</p>
-        <md>\int_0^1 x e^x\,dx = e-(e-1)=1.</md>
-        <p>No <m>+C</m> appears in a definite integral. The endpoint evaluation produces a number.</p>
-      </statement>
-    </example>
+  <p>In an indefinite integral, this term appears as <m>uv</m>.  In a definite integral, it becomes
+an endpoint contribution.</p>
 
-    <example xml:id="ex-ibp-definite-boundary-term-main">
-      <title>The boundary term carries the main value</title>
-      <statement>
-        <p>Evaluate</p>
-        <md>\int_0^\pi x\sin x\,dx.</md>
-        <p>Choose</p>
-        <md>u=x, \qquad dv=\sin x\,dx.</md>
-        <p>Then</p>
-        <md>du=dx, \qquad v=-\cos x.</md>
-        <p>Therefore</p>
-        <md>\int_0^\pi x\sin x\,dx = \bigl[-x\cos x\bigr]_0^\pi-\int_0^\pi (-\cos x)\,dx.</md>
-        <p>The boundary term is</p>
-        <md>\bigl[-x\cos x\bigr]_0^\pi = -\pi\cos\pi-0 = \pi.</md>
-        <p>The remaining integral is</p>
-        <md>\int_0^\pi \cos x\,dx = \sin x\Big|_0^\pi = 0.</md>
-        <p>So</p>
-        <md>\int_0^\pi x\sin x\,dx=\pi.</md>
-        <p>The value comes entirely from the boundary term.</p>
-      </statement>
-    </example>
 
-    <warning xml:id="warning-ibp-definite-boundary-term">
-      <title>A common mistake</title>
+  <exercise xml:id="checkpoint-11-1-boundary">
+        <title>What is the boundary term in a definite integral?</title>
+        <statement>
+          <p>
+            For definite integrals, integration by parts evaluates <m>uv</m> at the endpoints: <m>\bigl[uv\bigr]_a^b</m>. In your own words, why does that term come from the Fundamental Theorem, and why does it replace the standalone product <m>uv</m> that appears in the indefinite formula?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Accumulating <m>d(uv)</m> from <m>a</m> to <m>b</m> is net change of the product. In an indefinite integral that net change has not yet been evaluated.
+          </p>
+        </hint>
+      </exercise>
+
+  <example xml:id="ex-sec-11-1-integration-by-parts-6">
+    <title>Example</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_0^1 x e^x\,dx.</md>
+
+  <p>Use</p>
+
+  <md>u=x,
+\qquad
+dv=e^x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=e^x.</md>
+
+  <p>So</p>
+
+  <md>\int_0^1 x e^x\,dx
+=
+\bigl[x e^x\bigr]_0^1-\int_0^1 e^x\,dx.</md>
+
+  <p>Compute the boundary term:</p>
+
+  <md>\bigl[x e^x\bigr]_0^1=e-0=e.</md>
+
+  <p>Also,</p>
+
+  <md>\int_0^1 e^x\,dx=e-1.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_0^1 x e^x\,dx
+=
+e-(e-1)=1.</md>
+
+  <p>No <m>+C</m> appears in a definite integral.  The endpoint evaluation produces a number.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-sec-11-1-integration-by-parts-7">
+    <title>the boundary term carries the main value</title>
+    <statement>
+  <p>Evaluate</p>
+
+  <md>\int_0^\pi x\sin x\,dx.</md>
+
+  <p>Choose</p>
+
+  <md>u=x,
+\qquad
+dv=\sin x\,dx.</md>
+
+  <p>Then</p>
+
+  <md>du=dx,
+\qquad
+v=-\cos x.</md>
+
+  <p>Therefore</p>
+
+  <md>\int_0^\pi x\sin x\,dx
+=
+\bigl[-x\cos x\bigr]_0^\pi-\int_0^\pi (-\cos x)\,dx.</md>
+
+  <p>The boundary term is</p>
+
+  <md>\bigl[-x\cos x\bigr]_0^\pi
+=
+-\pi\cos\pi-0
+=
+\pi.</md>
+
+  <p>The remaining integral is</p>
+
+  <md>\int_0^\pi \cos x\,dx
+=
+\sin x\Big|_0^\pi
+=
+0.</md>
+
+  <p>So</p>
+
+  <md>
+\int_0^\pi x\sin x\,dx=\pi.
+</md>
+
+  <p>The value comes entirely from the boundary term.</p>
+
+  <note xml:id="note-sec-11-1-integration-by-parts-79">
+    <title>A common mistake</title>
       <p>Do not write</p>
-      <md>\int_a^b u\,dv=uv-\int_a^b v\,du.</md>
-      <p>The expression <m>uv</m> is a function, not a number. For a definite integral it must be evaluated at the endpoints:</p>
-      <md>\int_a^b u\,dv=\bigl[uv\bigr]_a^b-\int_a^b v\,du.</md>
-    </warning>
+        <md>\int_a^b u\,dv=uv-\int_a^b v\,du.</md>
+      <p>The expression <m>uv</m> is a function, not a number.  For a definite integral it must be
+evaluated at the endpoints:</p>
+        <md>\int_a^b u\,dv=\bigl[uv\bigr]_a^b-\int_a^b v\,du.</md>
+  </note>
 
-    <p>Integration by parts is one way of recognizing the hidden derivative rule behind an integrand. Products of algebraic and exponential or logarithmic functions often need it.</p>
+  <p>Integration by parts is one way of recognizing the hidden derivative rule behind an
+integrand.  Products of algebraic and exponential or logarithmic functions often need it.</p>
 
-    <p>But another large family of integrals comes from identities rather than product rules. Trigonometric functions bring their own algebra.</p>
+  <p>But another large family of integrals comes from identities rather than product rules.
+Trigonometric functions bring their own algebra.</p>
+    </statement>
+  </example>
   </subsection>
+
+
 
 </section>
