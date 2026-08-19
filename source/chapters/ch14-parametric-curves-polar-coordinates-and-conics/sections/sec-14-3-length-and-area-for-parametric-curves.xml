@@ -362,28 +362,49 @@ S=4\pi R^2.
   <figure xml:id="fig-sphere-from-parametric-semicircle">
     <caption>The sphere is built from rotating small arc segments of the upper semicircle.</caption>
     <image width="75%">
-      <latex-image>
-\begin{tikzpicture}[scale=1.25, every node/.style={font=\small}]
-  % axes
-  \draw[-&gt;, thick] (-2.5,0) -- (2.7,0) node[right] {\(x\)};
-  \draw[-&gt;, thick] (0,-0.2) -- (0,2.0) node[above] {\(y\)};
+      <shortdescription>Interactive 3D sphere obtained by rotating the upper semicircle around the x-axis.</shortdescription>
+      <asymptote>
+import graph3;
+import solids;
 
-  % semicircle
-  \draw[very thick] (-2,0) arc (180:0:2);
+size(450);
+viewportmargin = (8, 12);
+currentprojection = orthographic(-3.2, 1.75, -7.6, up=Y);
+currentlight = light(white, specularfactor=1, (-4, 10, -6));
 
-  % rotation hints
-  \draw[dashed] (0,0) ellipse (0.18 and 1.55);
-  \draw[dashed] (-1.2,0) ellipse (0.14 and 1.25);
-  \draw[dashed] (1.2,0) ellipse (0.14 and 1.25);
+real R = 2;
 
-  % sample point/radius
-  \draw[thick] (0,0) -- (0,2);
-  \node[right] at (0.05,1.0) {\(R\)};
+triple F(real t) {
+  return (R * cos(t), R * sin(t), 0);
+}
 
-  \node[above] at (0,2.05) {\(x=R\cos t,\; y=R\sin t\)};
-  \node[below] at (0,-0.35) {rotating the upper semicircle gives a sphere};
-\end{tikzpicture}
-      </latex-image>
+path3 gen = graph(F, 0, pi, n=64, operator ..);
+path3 genmesh = graph(F, 0, pi, n=16, operator ..);
+
+revolution sph = revolution(genmesh, X);
+pen surfpen = rgb(0.68, 0.80, 0.94) + opacity(0.28);
+pen meshpen = gray(0.55) + opacity(0.40);
+draw(surface(sph, 12), surfpen, meshpen=meshpen);
+
+path3 bandarc = graph(F, 0.95, 1.25, n=8, operator ..);
+draw(surface(revolution(bandarc, X), 24), rgb(0.22, 0.42, 0.82) + opacity(0.70));
+
+draw(gen, black + 2bp);
+
+real[] ts = {acos(0.6), pi / 2, pi - acos(0.6)};
+for (real t : ts)
+  draw(circle((R * cos(t), 0, 0), R * sin(t), X), dashed + 0.8bp);
+
+xaxis3(Label("$x$", 1), xmin=-1.35 * R, xmax=1.55 * R, Arrow3);
+yaxis3(Label("$y$", 1), ymin=0, ymax=1.18 * R, Arrow3);
+zaxis3(Label("$z$", 1), zmin=-0.62 * R, zmax=0.62 * R, Arrow3);
+
+draw(O -- (0, R, 0));
+label("$R$", (0, 0.52 * R, 0), E);
+
+label("$x=R\cos t,\quad y=R\sin t$", (0, 1.45 * R, 0));
+label("rotating the upper semicircle gives a sphere", (0, -1.38 * R, 0));
+      </asymptote>
     </image>
   </figure>
 
