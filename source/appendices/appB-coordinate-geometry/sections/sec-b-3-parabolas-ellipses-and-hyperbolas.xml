@@ -212,8 +212,12 @@ The full width is <m>2a</m>, and the full height is <m>2b</m>.</p>
     axis lines=middle,
     xlabel={\(x\)},
     ylabel={\(y\)},
+    xlabel style={at={(axis cs:4.5,0)}, anchor=west, xshift=2pt},
+    ylabel style={at={(axis cs:0,3)}, anchor=east, xshift=-3pt},
     xtick={-3,0,3},
     ytick={-2,0,2},
+    xticklabels=\empty,
+    yticklabels=\empty,
     grid=both,
     grid style={line width=.1pt, draw=gray!25},
     axis equal image,
@@ -221,8 +225,12 @@ The full width is <m>2a</m>, and the full height is <m>2b</m>.</p>
 \addplot[very thick, domain=0:360, samples=250] ({3*cos(x)}, {2*sin(x)});
 \addplot[only marks, mark=*] coordinates {(0,0) (3,0) (-3,0) (0,2) (0,-2)};
 \node[anchor=south west] at (axis cs:0,0) {\((0,0)\)};
-\node[anchor=south] at (axis cs:1.5,0) {\(a=3\)};
-\node[anchor=west] at (axis cs:0,1) {\(b=2\)};
+\node[anchor=north] at (axis cs:1.5,0) {\(a=3\)};
+\node[anchor=east] at (axis cs:0,1) {\(b=2\)};
+\node[anchor=west] at (axis cs:3.45,0) {\(3\)};
+\node[anchor=east] at (axis cs:-3.45,0) {\(-3\)};
+\node[anchor=south] at (axis cs:0,2.35) {\(2\)};
+\node[anchor=north] at (axis cs:0,-2.35) {\(-2\)};
 \end{axis}
 \end{tikzpicture}
       </latex-image>
@@ -348,8 +356,10 @@ y=\pm\frac23x.
 \addplot[only marks, mark=*] coordinates {(-3,0) (3,0)};
 \node[anchor=south west] at (axis cs:3,0) {\((3,0)\)};
 \node[anchor=south east] at (axis cs:-3,0) {\((-3,0)\)};
-\node[anchor=west] at (axis cs:4.7,3.6) {\(y=\frac23x\)};
-\node[anchor=west] at (axis cs:4.7,-3.6) {\(y=-\frac23x\)};
+\path (axis cs:3.3,2.90) -- (axis cs:5.6,4.43)
+    node[midway, sloped] {\(y=\frac23x\)};
+\path (axis cs:3.3,-2.90) -- (axis cs:5.6,-4.43)
+    node[midway, sloped] {\(y=-\frac23x\)};
 \end{axis}
 \end{tikzpicture}
       </latex-image>
