@@ -503,6 +503,324 @@ g(x)\to g(a)</md>
   <p>This kind of substitution is legal because continuity protects it.</p>
     </statement>
   </example>
+
+  <p>The note above used continuity of <m>g</m> at <m>a</m>.  That makes <m>f\circ g</m> continuous at <m>a</m>.  For the limit of <m>f(g(x))</m> alone, it is enough that <m>g</m> has a limit.</p>
+
+  <note xml:id="note-composition-when-inner-limit-exists">
+    <title>Composition when the inner limit exists</title>
+      <p>If</p>
+        <md>\lim_{x\to a}g(x)=L</md>
+      <p>and <m>f</m> is continuous at <m>L</m>, then</p>
+        <md>\lim_{x\to a}f(g(x))=f(L).</md>
+      <p>The inner function need not be continuous at <m>a</m>.  It need not be defined at <m>a</m>.  Nearby values of <m>g</m> must approach <m>L</m>, and <m>f</m> must be continuous at <m>L</m>.</p>
+      <p>The same statement holds with <m>x\to\infty</m> or <m>x\to-\infty</m> in place of <m>x\to a</m>.</p>
+  </note>
+
+  <p>This gives the limit of <m>f(g(x))</m>.  It does not say that <m>f\circ g</m> is continuous at <m>a</m>.  For that, <m>f(g(a))</m> must exist and equal the limit.</p>
+
+  <example xml:id="ex-composition-inner-hole">
+    <title>an inner hole</title>
+    <statement>
+  <p>Let</p>
+
+  <md>g(x)=\frac{x^2-1}{x-1},
+\qquad x\neq1.</md>
+
+  <p>As before,</p>
+
+  <md>\lim_{x\to1}g(x)=2,</md>
+
+  <p>but <m>g(1)</m> is missing, so <m>g</m> is not continuous at <m>1</m>.</p>
+
+  <p>Let <m>f(y)=\sin y</m>.  Sine is continuous at <m>2</m>.  Therefore</p>
+
+  <md>\lim_{x\to1}\sin\left(\frac{x^2-1}{x-1}\right)=\sin(2).</md>
+
+  <p>For <m>x\neq1</m> the inside is <m>x+1</m>, so the same limit is</p>
+
+  <md>\lim_{x\to1}\sin(x+1)=\sin(2).</md>
+
+  <p>The hole does not stop the composition limit.  Nearby values of <m>g</m> still go to <m>2</m>, and sine is continuous at <m>2</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-composition-cos-sin-at-infinity">
+    <title>a composition as <m>x\to\infty</m></title>
+    <statement>
+  <p>Consider</p>
+
+  <md>\cos\bigl(\sin(1/x)\bigr)</md>
+
+  <p>as <m>x\to\infty</m>.</p>
+
+  <p>This is not the oscillation of <m>\sin(1/x)</m> as <m>x\to0</m>.  Here <m>x</m> is large, so <m>1/x</m> is small.</p>
+
+  <p>As <m>x\to\infty</m>,</p>
+
+  <md>\frac1x\to0.</md>
+
+  <p>Sine is continuous at <m>0</m>, so</p>
+
+  <md>\sin(1/x)\to\sin(0)=0.</md>
+
+  <p>Cosine is continuous at <m>0</m>, so</p>
+
+  <md>\lim_{x\to\infty}\cos\bigl(\sin(1/x)\bigr)
+=
+\cos(0)
+=
+1.</md>
+
+  <p>The inner function only needs a limit.  There is no value at infinity to check.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-composition-inner-wrong-value">
+    <title>a wrong inner value</title>
+    <statement>
+  <p>Consider again</p>
+
+  <md>
+    <mrow>F(x)=
+\begin{cases}
+2x+1, \amp x\neq1,</mrow>
+    <mrow>-1, \amp x=1.
+\end{cases}</mrow>
+  </md>
+
+  <p>Then</p>
+
+  <md>\lim_{x\to1}F(x)=3,</md>
+
+  <p>but <m>F(1)=-1</m>, so <m>F</m> is not continuous at <m>1</m>.</p>
+
+  <p>Let <m>f(y)=y^2</m>.  This is continuous at <m>3</m>.  Therefore</p>
+
+  <md>\lim_{x\to1}\bigl(F(x)\bigr)^2=3^2=9.</md>
+
+  <p>For <m>x\neq1</m>,</p>
+
+  <md>F(x)=2x+1,</md>
+
+  <p>so</p>
+
+  <md>\bigl(F(x)\bigr)^2=(2x+1)^2\to9.</md>
+
+  <p>The value of the composition at <m>1</m> is</p>
+
+  <md>\bigl(F(1)\bigr)^2=(-1)^2=1.</md>
+
+  <p>The limit is <m>9</m>.  The value at <m>1</m> is <m>1</m>.  The composition has a limit at <m>1</m>, but it is not continuous there.</p>
+    </statement>
+  </example>
+
+  <figure xml:id="fig-composition-relocated-square">
+    <caption>Nearby, <m>(F(x))^2</m> follows <m>y=(2x+1)^2</m> and approaches <m>9</m>.  At <m>x=1</m> the value is <m>1</m>.  The composition has a limit, but it is not continuous at <m>1</m>.</caption>
+    <image width="75%">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=0.68\textwidth,
+    height=0.48\textwidth,
+    xmin=-0.25, xmax=1.5,
+    ymin=-0.8, ymax=16,
+    axis lines=middle,
+    xlabel={\(x\)},
+    ylabel={\(y\)},
+    xlabel style={at={(axis cs:1.5,0)}, anchor=north, yshift=-5pt},
+    ylabel style={at={(axis cs:0,16)}, anchor=east, xshift=-3pt},
+    xtick={1},
+    ytick={1,9},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-0.25:1.5, samples=120] {(2*x+1)^2};
+\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(1,9)};
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(1,1)};
+\node[anchor=west, fill=white, inner sep=1.5pt] at (axis cs:1,9) {nearby height \(9\)};
+\node[anchor=west] at (axis cs:1,1) {actual value \(1\)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+  </figure>
+
+  <p>The hypotheses are not decoration.  If the inner limit fails, or if the outer function is not continuous at <m>L</m>, then <m>f(L)</m> may be wrong, or the composition may have no two-sided limit.</p>
+
+  <example xml:id="ex-composition-outer-not-continuous">
+    <title>the outer function is not continuous at <m>L</m></title>
+    <statement>
+  <p>Define</p>
+
+  <md>
+    <mrow>H(y)=
+\begin{cases}
+1, \amp y\neq0,</mrow>
+    <mrow>0, \amp y=0.
+\end{cases}</mrow>
+  </md>
+
+  <p>Then</p>
+
+  <md>\lim_{y\to0}H(y)=1,</md>
+
+  <p>but <m>H(0)=0</m>, so <m>H</m> is not continuous at <m>0</m>.</p>
+
+  <p>First let <m>g(x)=x</m> and <m>a=0</m>.  Then <m>\lim_{x\to0}g(x)=0</m>, and</p>
+
+  <md>H(g(x))=H(x).</md>
+
+  <p>So</p>
+
+  <md>\lim_{x\to0}H(g(x))=1,</md>
+
+  <p>while</p>
+
+  <md>H\bigl(\lim_{x\to0}g(x)\bigr)=H(0)=0.</md>
+
+  <p>The inner limit exists, but we cannot pass it through <m>H</m>, because <m>H</m> is not continuous at <m>0</m>.</p>
+
+  <p>Now let <m>g(x)=0</m> for every <m>x</m>.  Then</p>
+
+  <md>\lim_{x\to0}g(x)=0,</md>
+
+  <p>and the nearby limit of <m>H</m> still exists:</p>
+
+  <md>\lim_{y\to0}H(y)=1.</md>
+
+  <p>But <m>H(g(x))=H(0)=0</m> for every <m>x</m>, so</p>
+
+  <md>\lim_{x\to0}H(g(x))=0.</md>
+
+  <p>The two limits exist, but the composition limit is not <m>H(0)</m>, and it is not the nearby limit of <m>H</m>.  The outer function must be continuous at <m>L</m>.  A nearby limit of <m>f</m> is not enough, because <m>g</m> may equal <m>L</m> near <m>a</m>.</p>
+    </statement>
+  </example>
+
+  <example xml:id="ex-composition-inner-jump">
+    <title>the inner limit does not exist</title>
+    <statement>
+  <p>Let</p>
+
+  <md>s(x)=\frac{|x|}{x},
+\qquad x\neq0.</md>
+
+  <p>From the left the values are <m>-1</m>.  From the right they are <m>1</m>.  So</p>
+
+  <md>\lim_{x\to0}s(x)</md>
+
+  <p>does not exist.</p>
+
+  <p>If <m>f</m> is the identity, then <m>f(s(x))=s(x)</m>, and</p>
+
+  <md>\lim_{x\to0}f(s(x))</md>
+
+  <p>does not exist either.</p>
+
+  <p>Now square the same inner function:</p>
+
+  <md>\bigl(s(x)\bigr)^2=1
+\qquad\text{for }x\neq0.</md>
+
+  <p>Then</p>
+
+  <md>\lim_{x\to0}\bigl(s(x)\bigr)^2=1,</md>
+
+  <p>even though <m>\lim_{x\to0}s(x)</m> does not exist.  Both sides give the value <m>1</m>.  The inner limit fails, but the composition has a limit.  The hypotheses of the rule are enough.  They are not required.</p>
+    </statement>
+  </example>
+
+  <figure xml:id="fig-composition-hypotheses-fail">
+    <caption>Two failures: the outer function is not continuous at <m>L</m>, or the inner function has no two-sided limit.</caption>
+            <sidebyside widths="47% 47%" valign="bottom">
+    <image xml:id="fig-composition-outer-spike">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.88\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-0.45, ymax=1.55,
+    axis lines=middle,
+    xtick={0},
+    ytick={0,1},
+    title={outer function not continuous at \(0\)},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:-0.06, samples=2] {1};
+\addplot[thick, domain=0.06:2, samples=2] {1};
+\addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(0,1)};
+\addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,0)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    <image xml:id="fig-composition-inner-sign">
+      <latex-image>
+\begin{tikzpicture}
+\begin{axis}[
+    width=\textwidth,
+    height=0.88\textwidth,
+    xmin=-2, xmax=2,
+    ymin=-1.6, ymax=1.6,
+    axis lines=middle,
+    xtick={0},
+    ytick={-1,1},
+    title={inner jump},
+    grid=both,
+    grid style={line width=.1pt, draw=gray!25},
+]
+\addplot[thick, domain=-2:-0.05, samples=2] {-1};
+\addplot[thick, domain=0.05:2, samples=2] {1};
+\addplot[only marks, mark=o, mark size=2.8pt, thick] coordinates {(0,-1) (0,1)};
+\end{axis}
+\end{tikzpicture}
+      </latex-image>
+    </image>
+    </sidebyside>
+  </figure>
+
+  <exercise xml:id="checkpoint-3-5-composition-inner-limit">
+        <title>Why can a composition have a limit when the inner function is not continuous?</title>
+        <statement>
+          <p>
+            If <m>\lim_{x\to a}g(x)=L</m> and <m>f</m> is continuous at <m>L</m>, then <m>\lim_{x\to a}f(g(x))=f(L)</m>, even if <m>g</m> has a hole or a wrong value at <m>a</m>. Why is the inner limit enough for the composition limit? Why is it not enough for continuity of <m>f\circ g</m> at <m>a</m>?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            Nearby values of <m>g</m> go to <m>L</m>, and a continuous outer function sends them to values near <m>f(L)</m>. Continuity of the composition also needs <m>f(g(a))</m> to exist and to equal that limit.
+          </p>
+        </hint>
+      </exercise>
+
+  <exercise xml:id="checkpoint-3-5-composition-outer-at-target">
+        <title>Why must the outer function be continuous at <m>L</m>?</title>
+        <statement>
+          <p>
+            If <m>\lim_{x\to a}g(x)=L</m> but <m>f</m> is not continuous at <m>L</m>, then <m>f(L)</m> may not be the limit of <m>f(g(x))</m>. This is clearest when <m>g(x)=L</m> for every <m>x</m>. Why is a nearby limit of <m>f</m> not enough?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            A nearby limit of <m>f</m> ignores the value at <m>L</m>. If <m>g</m> equals <m>L</m>, the composition uses that ignored value.
+          </p>
+        </hint>
+      </exercise>
+
+  <exercise xml:id="checkpoint-3-5-composition-inner-jump">
+        <title>If the inner limit fails, when can the composition still have a limit?</title>
+        <statement>
+          <p>
+            The function <m>|x|/x</m> has no two-sided limit at <m>0</m>. Neither does the identity of that function. Its square does. When does an inner jump remain after composition? When does it disappear?
+          </p>
+        </statement>
+        <hint>
+          <p>
+            The jump remains if the two sides go to different heights. It disappears if they go to the same height.
+          </p>
+        </hint>
+      </exercise>
   </subsection>
 
   <subsection xml:id="subsec-three-common-discontinuities">
