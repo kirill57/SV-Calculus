@@ -1,96 +1,84 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-5-3-the-chain-rule">
   <title>The chain rule</title>
 
-  <p>The product rule handled functions built side by side:</p>
-
-  <md>f(x)g(x).</md>
-
-  <p>Composition is more hidden.  One function changes because another function inside it changes first:</p>
-
-  <md>f(g(x)).</md>
-
-  <p>This happens constantly.  A temperature changes because position changes.  A cost changes because production changes.  A population changes because time changes.  The outside quantity does not see <m>x</m> directly.  It sees an intermediate quantity.</p>
-
-  <subsection xml:id="subsec-temperature-position-chain">
+  <introduction><p>In a composition <m>f(g(x))</m>, a change in <m>x</m> first changes <m>g(x)</m>, which then changes the output of <m>f</m>. The chain rule multiplies the derivative of the outer function, evaluated at <m>g(x)</m>, by the derivative of the inner function.</p></introduction><subsection xml:id="subsec-temperature-position-chain">
     <title>A temperature that changes because position changes</title>
 
   <p>A small sensor moves along a wire.  Its position after <m>t</m> seconds is</p>
 
-  <md>x(t)=t^2</md>
+  <p><me>x(t)=t^2</me></p>
 
   <p>centimeters from one end of the wire.  The temperature at position <m>x</m> is</p>
 
-  <md>T(x)=100-x^2</md>
+  <p><me>T(x)=100-x^2</me></p>
 
   <p>degrees Celsius.</p>
 
   <p>At time <m>t</m>, the sensor reads the temperature</p>
 
-  <md>T(x(t)).</md>
+  <p><me>T(x(t)).</me></p>
 
   <p>Since <m>x(t)=t^2</m>, this is</p>
 
-  <md>T(x(t))=T(t^2)=100-(t^2)^2=100-t^4.</md>
+  <p><me>T(x(t))=T(t^2)=100-(t^2)^2=100-t^4.</me></p>
 
   <p>So we can differentiate directly:</p>
 
-  <md>\frac{d}{dt}T(x(t))
+  <p><me>\frac{d}{dt}T(x(t))
 =
 \frac{d}{dt}(100-t^4)
 =
--4t^3.</md>
+-4t^3.</me></p>
 
   <p>At <m>t=2</m>,</p>
 
-  <md>\frac{d}{dt}T(x(t))\bigg|_{t=2}
+  <p><me>\frac{d}{dt}T(x(t))\bigg|_{t=2}
 =
 -4(2)^3
 =
--32.</md>
+-32.</me></p>
 
   <p>The sensor’s reading is decreasing at <m>32</m> degrees Celsius per second.</p>
 
   <p>But the direct calculation hides the reason.  Two changes are happening:</p>
 
-  <md>t \longrightarrow x \longrightarrow T.</md>
+  <p><me>t \longrightarrow x \longrightarrow T.</me></p>
 
   <p>The position changes with respect to time:</p>
 
-  <md>\frac{dx}{dt}=2t.</md>
+  <p><me>\frac{dx}{dt}=2t.</me></p>
 
   <p>The temperature changes with respect to position:</p>
 
-  <md>\frac{dT}{dx}=-2x.</md>
+  <p><me>\frac{dT}{dx}=-2x.</me></p>
 
   <p>At <m>t=2</m>, the sensor is at</p>
 
-  <md>x(2)=4.</md>
+  <p><me>x(2)=4.</me></p>
 
   <p>So</p>
 
-  <md>\frac{dT}{dx}\bigg|_{x=4}=-8,
+  <p><me>\frac{dT}{dx}\bigg|_{x=4}=-8,
 \qquad
-\frac{dx}{dt}\bigg|_{t=2}=4.</md>
+\frac{dx}{dt}\bigg|_{t=2}=4.</me></p>
 
   <p>Multiplying gives</p>
 
-  <md>\frac{dT}{dt}
+  <p><me>\frac{dT}{dt}
 =
 \frac{dT}{dx}\frac{dx}{dt}
 =
 (-8)(4)
 =
--32.</md>
+-32.</me></p>
 
   <p>The same answer appears, but now we see why it is a product:</p>
 
-  <md>
+  <p><md>
     <mrow>\amp\text{rate of temperature change in time}</mrow>
     <mrow>\amp\quad = \text{rate of temperature change in space}</mrow>
     <mrow>\amp\quad\quad \cdot \text{rate of position change in time}.</mrow>
-  </md>
+  </md></p>
 
   <p>The outside change is carried through the inside change.</p>
 
@@ -115,25 +103,25 @@
 
   <p>A composition has the form</p>
 
-  <md>y=f(g(x)).</md>
+  <p><me>y=f(g(x)).</me></p>
 
   <p>It is often clearer to name the inside quantity:</p>
 
-  <md>u=g(x),
+  <p><me>u=g(x),
 \qquad
-y=f(u).</md>
+y=f(u).</me></p>
 
   <p>Then the dependence is</p>
 
-  <md>x \longrightarrow u \longrightarrow y.</md>
+  <p><me>x \longrightarrow u \longrightarrow y.</me></p>
 
   <p>A small change in <m>x</m> first causes a small change in <m>u</m>.  Then that small change in <m>u</m> causes a small change in <m>y</m>.</p>
 
   <p>If <m>u</m> changes at the rate <m>du/dx</m>, and <m>y</m> changes at the rate <m>dy/du</m>, then we expect</p>
 
-  <md>\frac{dy}{dx}
+  <p><me>\frac{dy}{dx}
 =
-\frac{dy}{du}\frac{du}{dx}.</md>
+\frac{dy}{du}\frac{du}{dx}.</me></p>
 
   <p>This is the chain rule.</p>
 
@@ -141,44 +129,42 @@ y=f(u).</md>
 
   <example xml:id="ex-sec-5-3-the-chain-rule-1">
     <title>Example</title>
-    <statement>
-  <p>Differentiate</p>
+    <p>Differentiate</p>
 
-  <md>y=(x^2+1)^5.</md>
+  <p><me>y=(x^2+1)^5.</me></p>
 
   <p>The inside function is</p>
 
-  <md>u=x^2+1.</md>
+  <p><me>u=x^2+1.</me></p>
 
   <p>The outside function is</p>
 
-  <md>y=u^5.</md>
+  <p><me>y=u^5.</me></p>
 
   <p>The outside rate is</p>
 
-  <md>\frac{dy}{du}=5u^4.</md>
+  <p><me>\frac{dy}{du}=5u^4.</me></p>
 
   <p>The inside rate is</p>
 
-  <md>\frac{du}{dx}=2x.</md>
+  <p><me>\frac{du}{dx}=2x.</me></p>
 
   <p>Therefore</p>
 
-  <md>\frac{dy}{dx}
+  <p><me>\frac{dy}{dx}
 =
-5u^4\cdot 2x.</md>
+5u^4\cdot 2x.</me></p>
 
   <p>Substitute back <m>u=x^2+1</m>:</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}(x^2+1)^5
 =
 10x(x^2+1)^4.
-</md>
+</me></p>
 
   <p>Expanding <m>(x^2+1)^5</m> would work, but it would make a simple idea look complicated.  The chain rule keeps the structure visible.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-chain-rule-formula">
@@ -187,163 +173,157 @@ y=f(u).</md>
   <note xml:id="note-sec-5-3-the-chain-rule-113">
     <title>Chain Rule</title>
       <p>Suppose <m>g</m> is differentiable at <m>x</m>, and <m>f</m> is differentiable at <m>g(x)</m>.  Then the composite function</p>
-        <md>F(x)=f(g(x))</md>
+        <p><me>F(x)=f(g(x))</me></p>
       <p>is differentiable at <m>x</m>, and</p>
-        <md>
+        <p><me>
 F'(x)=f'(g(x))\,g'(x).
-</md>
+</me></p>
       <p>Equivalently, if</p>
-        <md>u=g(x),
+        <p><me>u=g(x),
 \qquad
-y=f(u),</md>
+y=f(u),</me></p>
       <p>then</p>
-        <md>
+        <p><me>
 \frac{dy}{dx}
 =
 \frac{dy}{du}\frac{du}{dx}.
-</md>
+</me></p>
   </note>
 
   <p>The formula has two factors:</p>
 
-  <md>f'(g(x))</md>
+  <p><me>f'(g(x))</me></p>
 
   <p>measures how the outside function changes at the current inside value, and</p>
 
-  <md>g'(x)</md>
+  <p><me>g'(x)</me></p>
 
   <p>measures how the inside function changes with respect to <m>x</m>.</p>
 
   <example xml:id="ex-sec-5-3-the-chain-rule-2">
     <title>Example</title>
-    <statement>
-  <p>Differentiate</p>
+    <p>Differentiate</p>
 
-  <md>F(x)=(3x^2-5x+1)^4.</md>
+  <p><me>F(x)=(3x^2-5x+1)^4.</me></p>
 
   <p>Let</p>
 
-  <md>u=3x^2-5x+1.</md>
+  <p><me>u=3x^2-5x+1.</me></p>
 
   <p>Then</p>
 
-  <md>F(x)=u^4.</md>
+  <p><me>F(x)=u^4.</me></p>
 
   <p>The outside derivative is</p>
 
-  <md>\frac{d}{du}(u^4)=4u^3.</md>
+  <p><me>\frac{d}{du}(u^4)=4u^3.</me></p>
 
   <p>The inside derivative is</p>
 
-  <md>\frac{du}{dx}=6x-5.</md>
+  <p><me>\frac{du}{dx}=6x-5.</me></p>
 
   <p>Thus</p>
 
-  <md>F'(x)=4u^3(6x-5).</md>
+  <p><me>F'(x)=4u^3(6x-5).</me></p>
 
   <p>Substitute back:</p>
 
-  <md>
+  <p><me>
 F'(x)
 =
 4(3x^2-5x+1)^3(6x-5).
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-5-3-the-chain-rule-3">
     <title>Example</title>
-    <statement>
-  <p>Differentiate</p>
+    <p>Differentiate</p>
 
-  <md>G(x)=\frac{1}{1+x^2}.</md>
+  <p><me>G(x)=\frac{1}{1+x^2}.</me></p>
 
   <p>This can be seen as a reciprocal wrapped around the inside function</p>
 
-  <md>u=1+x^2.</md>
+  <p><me>u=1+x^2.</me></p>
 
   <p>The outside function is</p>
 
-  <md>G=\frac1u.</md>
+  <p><me>G=\frac1u.</me></p>
 
   <p>The reciprocal rule gives</p>
 
-  <md>\frac{d}{du}\left(\frac1u\right)=-\frac1{u^2}.</md>
+  <p><me>\frac{d}{du}\left(\frac1u\right)=-\frac1{u^2}.</me></p>
 
   <p>The inside derivative is</p>
 
-  <md>\frac{du}{dx}=2x.</md>
+  <p><me>\frac{du}{dx}=2x.</me></p>
 
   <p>Therefore</p>
 
-  <md>G'(x)
+  <p><me>G'(x)
 =
 -\frac1{u^2}\cdot 2x
 =
--\frac{2x}{(1+x^2)^2}.</md>
+-\frac{2x}{(1+x^2)^2}.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}\left(\frac{1}{1+x^2}\right)
 =
 -\frac{2x}{(1+x^2)^2}.
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-5-3-the-chain-rule-4">
     <title>Example</title>
-    <statement>
-  <p>Differentiate</p>
+    <p>Differentiate</p>
 
-  <md>H(x)=\frac{1}{(1+x^2)^3}.</md>
+  <p><me>H(x)=\frac{1}{(1+x^2)^3}.</me></p>
 
   <p>We could think of this as a reciprocal:</p>
 
-  <md>H(x)=\frac1{W(x)},
+  <p><me>H(x)=\frac1{W(x)},
 \qquad
-W(x)=(1+x^2)^3.</md>
+W(x)=(1+x^2)^3.</me></p>
 
   <p>First use the chain rule on <m>W</m>.  Let</p>
 
-  <md>u=1+x^2.</md>
+  <p><me>u=1+x^2.</me></p>
 
   <p>Then</p>
 
-  <md>W=u^3,</md>
+  <p><me>W=u^3,</me></p>
 
   <p>so</p>
 
-  <md>W'(x)=3u^2\cdot 2x=6x(1+x^2)^2.</md>
+  <p><me>W'(x)=3u^2\cdot 2x=6x(1+x^2)^2.</me></p>
 
   <p>Now use the reciprocal rule:</p>
 
-  <md>H'(x)
+  <p><me>H'(x)
 =
--\frac{W'(x)}{W(x)^2}.</md>
+-\frac{W'(x)}{W(x)^2}.</me></p>
 
   <p>Thus</p>
 
-  <md>H'(x)
+  <p><me>H'(x)
 =
--\frac{6x(1+x^2)^2}{\bigl((1+x^2)^3\bigr)^2}.</md>
+-\frac{6x(1+x^2)^2}{\bigl((1+x^2)^3\bigr)^2}.</me></p>
 
   <p>Since</p>
 
-  <md>\bigl((1+x^2)^3\bigr)^2=(1+x^2)^6,</md>
+  <p><me>\bigl((1+x^2)^3\bigr)^2=(1+x^2)^6,</me></p>
 
   <p>we get</p>
 
-  <md>
+  <p><me>
 H'(x)
 =
 -\frac{6x}{(1+x^2)^4}.
-</md>
+</me></p>
 
   <p>The chain rule often works together with earlier rules.  The expression is built in layers, and the derivative follows those layers.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-why-chain-rule-true">
@@ -353,106 +333,106 @@ H'(x)
 
   <p>Suppose</p>
 
-  <md>u=g(x),
+  <p><me>u=g(x),
 \qquad
-y=f(u).</md>
+y=f(u).</me></p>
 
   <p>Near a point <m>x=a</m>, the inside function satisfies</p>
 
-  <md>g(a+h)\approx g(a)+g'(a)h.</md>
+  <p><me>g(a+h)\approx g(a)+g'(a)h.</me></p>
 
   <p>So the inside change is approximately</p>
 
-  <md>\Delta u \approx g'(a)h.</md>
+  <p><me>\Delta u \approx g'(a)h.</me></p>
 
   <p>Near <m>u=g(a)</m>, the outside function satisfies</p>
 
-  <md>f(u+\Delta u)\approx f(u)+f'(u)\Delta u.</md>
+  <p><me>f(u+\Delta u)\approx f(u)+f'(u)\Delta u.</me></p>
 
   <p>Thus the outside change is approximately</p>
 
-  <md>\Delta y \approx f'(u)\Delta u.</md>
+  <p><me>\Delta y \approx f'(u)\Delta u.</me></p>
 
   <p>Substitute the inside change:</p>
 
-  <md>\Delta y
+  <p><me>\Delta y
 \approx
-f'(g(a))\bigl(g'(a)h\bigr).</md>
+f'(g(a))\bigl(g'(a)h\bigr).</me></p>
 
   <p>Divide by <m>h</m>:</p>
 
-  <md>\frac{\Delta y}{h}
+  <p><me>\frac{\Delta y}{h}
 \approx
-f'(g(a))g'(a).</md>
+f'(g(a))g'(a).</me></p>
 
   <p>Letting <m>h\to0</m> gives</p>
 
-  <md>\frac{d}{dx}f(g(x))\bigg|_{x=a}
+  <p><me>\frac{d}{dx}f(g(x))\bigg|_{x=a}
 =
-f'(g(a))g'(a).</md>
+f'(g(a))g'(a).</me></p>
 
   <paragraphs>
     <title>Proof</title>
 
   <p>Let</p>
 
-  <md>u_0=g(a).</md>
+  <p><me>u_0=g(a).</me></p>
 
   <p>Since <m>f</m> is differentiable at <m>u_0</m>, we can write its local linear approximation with an error term:</p>
 
-  <md>f(u_0+k)
+  <p><me>f(u_0+k)
 =
-f(u_0)+f'(u_0)k+k\varepsilon(k),</md>
+f(u_0)+f'(u_0)k+k\varepsilon(k),</me></p>
 
-  <p>where</p>
+  <p>where we define <m>\varepsilon(0)=0</m>, and</p>
 
-  <md>\varepsilon(k)\to0
+  <p><me>\varepsilon(k)\to0
 \qquad\text{as}\qquad
-k\to0.</md>
+k\to0.</me></p>
 
   <p>Now put</p>
 
-  <md>k=g(a+h)-g(a).</md>
+  <p><me>k=g(a+h)-g(a).</me></p>
 
   <p>Then</p>
 
-  <md>f(g(a+h))
+  <p><me>f(g(a+h))
 =
 f(g(a))+f'(g(a))\bigl(g(a+h)-g(a)\bigr)
 +
-\bigl(g(a+h)-g(a)\bigr)\varepsilon(k).</md>
+\bigl(g(a+h)-g(a)\bigr)\varepsilon(k).</me></p>
 
   <p>Subtract <m>f(g(a))</m> and divide by <m>h</m>:</p>
 
-  <md>\frac{f(g(a+h))-f(g(a))}{h}
+  <p><me>\frac{f(g(a+h))-f(g(a))}{h}
 =
 f'(g(a))\frac{g(a+h)-g(a)}{h}
 +
-\frac{g(a+h)-g(a)}{h}\varepsilon(k).</md>
+\frac{g(a+h)-g(a)}{h}\varepsilon(k).</me></p>
 
   <p>Because <m>g</m> is differentiable at <m>a</m>,</p>
 
-  <md>\frac{g(a+h)-g(a)}{h}\to g'(a).</md>
+  <p><me>\frac{g(a+h)-g(a)}{h}\to g'(a).</me></p>
 
   <p>Also, differentiability of <m>g</m> implies continuity of <m>g</m>, so</p>
 
-  <md>g(a+h)-g(a)\to0.</md>
+  <p><me>g(a+h)-g(a)\to0.</me></p>
 
   <p>Thus <m>k\to0</m>, and therefore</p>
 
-  <md>\varepsilon(k)\to0.</md>
+  <p><me>\varepsilon(k)\to0.</me></p>
 
   <p>Taking limits gives</p>
 
-  <md>(f\circ g)'(a)
+  <p><me>(f\circ g)'(a)
 =
-f'(g(a))g'(a)+g'(a)\cdot0.</md>
+f'(g(a))g'(a)+g'(a)\cdot0.</me></p>
 
   <p>Hence</p>
 
-  <md>
+  <p><me>
 (f\circ g)'(a)=f'(g(a))g'(a).
-</md>
+</me></p>
 
   <p>This proves the chain rule.</p>
   </paragraphs>
@@ -468,17 +448,17 @@ f'(g(a))g'(a)+g'(a)\cdot0.</md>
 
   <p>Let</p>
 
-  <md>f(u)=|u|,
+  <p><me>f(u)=|u|,
 \qquad
-g(x)=x.</md>
+g(x)=x.</me></p>
 
   <p>Then</p>
 
-  <md>f(g(x))=|x|.</md>
+  <p><me>f(g(x))=|x|.</me></p>
 
   <p>At <m>x=0</m>, the inside value is</p>
 
-  <md>g(0)=0.</md>
+  <p><me>g(0)=0.</me></p>
 
   <p>But <m>f(u)=|u|</m> is not differentiable at <m>u=0</m>.  The composite <m>|x|</m> is not differentiable at <m>x=0</m>.  There is no chain rule product to compute there.</p>
   </paragraphs>
@@ -488,13 +468,13 @@ g(x)=x.</md>
 
   <p>Let</p>
 
-  <md>f(u)=u,
+  <p><me>f(u)=u,
 \qquad
-g(x)=|x|.</md>
+g(x)=|x|.</me></p>
 
   <p>Then</p>
 
-  <md>f(g(x))=|x|.</md>
+  <p><me>f(g(x))=|x|.</me></p>
 
   <p>The outside function <m>f(u)=u</m> is differentiable everywhere, but <m>g(x)=|x|</m> is not differentiable at <m>x=0</m>.  Again the composite is not differentiable at <m>0</m>.</p>
 
@@ -505,17 +485,13 @@ g(x)=|x|.</md>
   </paragraphs>
 
   <exercise xml:id="checkpoint-5-3-both-links">
-        <title>Why must both links in the chain be differentiable?</title>
+        <title>Why does the chain rule require two differentiable links?</title>
         <statement>
           <p>
-            The chain rule needs the inside function differentiable at the point and the outside function differentiable at the inside value. In your own words, why does replacing either link by absolute value at <m>0</m> break the composite derivative?
+            The chain rule needs the inside function differentiable at the point and the outside function differentiable at the inside value. In your own words, why does a nondifferentiable link prevent us from applying the rule, and why does that alone not prove that the composite lacks a derivative? Compare <m>|x|</m> with <m>|x|^2=x^2</m> at zero.
           </p>
         </statement>
-        <hint>
-          <p>
-            A composite can inherit a derivative only through both links. If either link lacks a tangent slope at the needed place, the chain has no product to compute.
-          </p>
-        </hint>
+        <hint><p>The chain rule guarantees a derivative when both links are differentiable at the required points. If either hypothesis fails, the rule gives no conclusion; the composite may still be differentiable. For example, <m>|x|^2=x^2</m> is differentiable at zero although the inner function <m>|x|</m> is not.</p></hint>
       </exercise>
 
   </subsection>
@@ -527,16 +503,16 @@ g(x)=|x|.</md>
 
   <p>Consider</p>
 
-  <md>y=\left(1+(2x-3)^2\right)^5.</md>
+  <p><me>y=\left(1+(2x-3)^2\right)^5.</me></p>
 
   <p>The layers are</p>
 
-  <md>x \longrightarrow u=2x-3 \longrightarrow v=1+u^2 \longrightarrow y=v^5.</md>
+  <p><me>x \longrightarrow u=2x-3 \longrightarrow v=1+u^2 \longrightarrow y=v^5.</me></p>
 
   <figure xml:id="fig-chain-diagram">
     <caption>A chain diagram records the order in which the function is built.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A chain diagram records the order in which the function is built.</p></description><latex-image>
 \begin{tikzpicture}[node distance=2.4cm, every node/.style={font=\small}]
   \node (x) at (0,0) {\(\boxed{x}\)};
   \node (u) at (2.6,0) {\(\boxed{u=2x-3}\)};
@@ -557,87 +533,85 @@ g(x)=|x|.</md>
 
   <p>The derivative is the product of the derivatives along the chain:</p>
 
-  <md>\frac{dy}{dx}
+  <p><me>\frac{dy}{dx}
 =
-\frac{dy}{dv}\frac{dv}{du}\frac{du}{dx}.</md>
+\frac{dy}{dv}\frac{dv}{du}\frac{du}{dx}.</me></p>
 
   <p>So</p>
 
-  <md>\frac{dy}{dx}
+  <p><me>\frac{dy}{dx}
 =
-5v^4\cdot 2u\cdot 2.</md>
+5v^4\cdot 2u\cdot 2.</me></p>
 
   <p>Substitute back:</p>
 
-  <md>u=2x-3,
+  <p><me>u=2x-3,
 \qquad
-v=1+(2x-3)^2.</md>
+v=1+(2x-3)^2.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}\left(1+(2x-3)^2\right)^5
 =
 20(2x-3)\left(1+(2x-3)^2\right)^4.
-</md>
+</me></p>
 
   <p>Some expressions branch before they recombine.  Then the product rule and chain rule work together.</p>
 
   <example xml:id="ex-sec-5-3-the-chain-rule-8">
     <title>Example</title>
-    <statement>
-  <p>Differentiate</p>
+    <p>Differentiate</p>
 
-  <md>y=\bigl((x^2+1)(3x-2)\bigr)^4.</md>
+  <p><me>y=\bigl((x^2+1)(3x-2)\bigr)^4.</me></p>
 
   <p>Let</p>
 
-  <md>v=x^2+1,
+  <p><me>v=x^2+1,
 \qquad
 w=3x-2,
 \qquad
 u=vw,
 \qquad
-y=u^4.</md>
+y=u^4.</me></p>
 
   <p>The outside derivative is</p>
 
-  <md>\frac{dy}{du}=4u^3.</md>
+  <p><me>\frac{dy}{du}=4u^3.</me></p>
 
   <p>The derivative of <m>u=vw</m> is</p>
 
-  <md>\frac{du}{dx}=v'w+vw'.</md>
+  <p><me>\frac{du}{dx}=v'w+vw'.</me></p>
 
   <p>Here</p>
 
-  <md>v'=2x,
+  <p><me>v'=2x,
 \qquad
-w'=3.</md>
+w'=3.</me></p>
 
   <p>So</p>
 
-  <md>u'=2x(3x-2)+3(x^2+1).</md>
+  <p><me>u'=2x(3x-2)+3(x^2+1).</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 y'
 =
 4\bigl((x^2+1)(3x-2)\bigr)^3
 \left(2x(3x-2)+3(x^2+1)\right).
-</md>
+</me></p>
 
   <p>The outside power contributes the factor</p>
 
-  <md>4u^3.</md>
+  <p><me>4u^3.</me></p>
 
   <p>The inside product contributes the factor</p>
 
-  <md>u'=v'w+vw'.</md>
+  <p><me>u'=v'w+vw'.</me></p>
 
   <p>A diagram is not required, but it helps keep the structure from collapsing into a long line of symbols.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-composition-order-warning">
@@ -645,7 +619,7 @@ y'
 
   <p>Composition is not commutative.  Usually,</p>
 
-  <md>f(g(x))\neq g(f(x)).</md>
+  <p><me>f(g(x))\neq g(f(x)).</me></p>
 
   <p>The derivatives are also different.</p>
 
@@ -666,99 +640,97 @@ y'
 
   <example xml:id="ex-sec-5-3-the-chain-rule-9">
     <title>Example</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>f(u)=u^2,
+  <p><me>f(u)=u^2,
 \qquad
-g(x)=x+1.</md>
+g(x)=x+1.</me></p>
 
   <p>Then</p>
 
-  <md>f(g(x))=(x+1)^2,</md>
+  <p><me>f(g(x))=(x+1)^2,</me></p>
 
   <p>so</p>
 
-  <md>\frac{d}{dx}f(g(x))=2(x+1).</md>
+  <p><me>\frac{d}{dx}f(g(x))=2(x+1).</me></p>
 
   <p>But</p>
 
-  <md>g(f(x))=x^2+1,</md>
+  <p><me>g(f(x))=x^2+1,</me></p>
 
   <p>so</p>
 
-  <md>\frac{d}{dx}g(f(x))=2x.</md>
+  <p><me>\frac{d}{dx}g(f(x))=2x.</me></p>
 
   <p>The same two functions, used in a different order, produce different composites.</p>
 
+  </example>
   <warning xml:id="warn-sec-5-3-the-chain-rule-115">
     <title>Chain rule warning</title>
       <p>Differentiate from the outside inward, but preserve the order in which the function is built.</p>
   </warning>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-chain-rule-differential-notation">
     <title>Chain rule in differential notation</title>
 
   <p>The notation</p>
 
-  <md>\frac{dy}{dx}
+  <p><me>\frac{dy}{dx}
 =
-\frac{dy}{du}\frac{du}{dx}</md>
+\frac{dy}{du}\frac{du}{dx}</me></p>
 
   <p>looks like canceling <m>du</m>.  That is a useful memory, but it is not the proof.  The proof came from local linear approximation.</p>
 
   <p>The notation is still meaningful.  If</p>
 
-  <md>y=f(u),</md>
+  <p><me>y=f(u),</me></p>
 
   <p>then a small change in <m>u</m> produces</p>
 
-  <md>dy=f'(u)\,du.</md>
+  <p><me>dy=f'(u)\,du.</me></p>
 
   <p>If</p>
 
-  <md>u=g(x),</md>
+  <p><me>u=g(x),</me></p>
 
   <p>then a small change in <m>x</m> produces</p>
 
-  <md>du=g'(x)\,dx.</md>
+  <p><me>du=g'(x)\,dx.</me></p>
 
   <p>Substitute the second relation into the first:</p>
 
-  <md>dy=f'(u)g'(x)\,dx.</md>
+  <p><me>dy=f'(u)g'(x)\,dx.</me></p>
 
   <p>Since <m>u=g(x)</m>,</p>
 
-  <md>dy=f'(g(x))g'(x)\,dx.</md>
+  <p><me>dy=f'(g(x))g'(x)\,dx.</me></p>
 
   <p>Dividing by <m>dx</m> gives</p>
 
-  <md>\frac{dy}{dx}=f'(g(x))g'(x).</md>
+  <p><me>\frac{dy}{dx}=f'(g(x))g'(x).</me></p>
 
   <p>This is the same chain rule.</p>
 
   <p>The differential notation remembers the units.  In the temperature example,</p>
 
-  <md>\frac{dT}{dx}</md>
+  <p><me>\frac{dT}{dx}</me></p>
 
   <p>has units degrees per centimeter, and</p>
 
-  <md>\frac{dx}{dt}</md>
+  <p><me>\frac{dx}{dt}</me></p>
 
   <p>has units centimeters per second.  Their product has units</p>
 
-  <md>\frac{\text{degrees}}{\text{centimeter}}
+  <p><me>\frac{\text{degrees}}{\text{centimeter}}
 \cdot
 \frac{\text{centimeters}}{\text{second}}
 =
-\frac{\text{degrees}}{\text{second}}.</md>
+\frac{\text{degrees}}{\text{second}}.</me></p>
 
   <p>That is exactly the unit of</p>
 
-  <md>\frac{dT}{dt}.</md>
+  <p><me>\frac{dT}{dt}.</me></p>
 
   <p>The chain rule lets us differentiate functions built in layers.  It also gives a way to handle curves whose equations are not solved for <m>y</m>.  On such a curve, <m>y</m> changes because <m>x</m> changes, even when no formula <m>y=f(x)</m> has been written down.</p>
 

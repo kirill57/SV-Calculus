@@ -1,75 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-11-8-warning-examples">
   <title>Warning examples</title>
 
-  <p>Improper integrals are limits.  That one sentence prevents many errors.</p>
-
-  <p>The errors below are common because they look like ordinary applications of the
-Fundamental Theorem of Calculus.  But the Fundamental Theorem applies directly only
-on intervals where the integrand is continuous.  When the interval is infinite or the
-integrand blows up, the limit must be handled first.</p>
-
-  <subsection xml:id="subsec-formal-antiderivative-improper-diverges">
+  <introduction><p>For an improper integral, apply the Fundamental Theorem only on finite nonsingular intervals, then take the required limits. If there is an interior singularity or two infinite tails, treat each piece separately. The examples below show errors caused by skipping these steps.</p></introduction><subsection xml:id="subsec-formal-antiderivative-improper-diverges">
     <title>An antiderivative exists formally but the improper integral diverges</title>
 
   <p>Consider</p>
 
-  <md>\int_{-1}^{1}\frac1{x^2}\,dx.</md>
+  <p><me>\int_{-1}^{1}\frac1{x^2}\,dx.</me></p>
 
   <p>A tempting but wrong computation is</p>
 
-  <md>\int_{-1}^{1}\frac1{x^2}\,dx
+  <p><me>\int_{-1}^{1}\frac1{x^2}\,dx
 =
 \left[-\frac1x\right]_{-1}^{1}
 =
 -1-1
 =
--2.</md>
+-2.</me></p>
 
   <p>This cannot be right.  The integrand</p>
 
-  <md>\frac1{x^2}</md>
+  <p><me>\frac1{x^2}</me></p>
 
   <p>is positive wherever it is defined, so its area cannot be negative.</p>
 
   <p>The error is that <m>1/x^2</m> is not continuous on <m>[-1,1]</m>.  It has an infinite
 discontinuity at <m>x=0</m>.  We must split the integral:</p>
 
-  <md>\int_{-1}^{1}\frac1{x^2}\,dx
+  <p><me>\int_{-1}^{1}\frac1{x^2}\,dx
 =
 \int_{-1}^{0}\frac1{x^2}\,dx
 +
-\int_{0}^{1}\frac1{x^2}\,dx.</md>
+\int_{0}^{1}\frac1{x^2}\,dx.</me></p>
 
   <p>Now examine the right-hand piece:</p>
 
-  <md>\int_0^1 \frac1{x^2}\,dx
+  <p><me>\int_0^1 \frac1{x^2}\,dx
 =
-\lim_{t\to0^+}\int_t^1 x^{-2}\,dx.</md>
+\lim_{t\to0^+}\int_t^1 x^{-2}\,dx.</me></p>
 
   <p>Compute:</p>
 
-  <md>\int_t^1 x^{-2}\,dx
+  <p><me>\int_t^1 x^{-2}\,dx
 =
 \left[-\frac1x\right]_t^1
 =
--1+\frac1t.</md>
+-1+\frac1t.</me></p>
 
   <p>As <m>t\to0^+</m>,</p>
 
-  <md>-1+\frac1t\to\infty.</md>
+  <p><me>-1+\frac1t\to\infty.</me></p>
 
   <p>So</p>
 
-  <md>\int_0^1 \frac1{x^2}\,dx</md>
+  <p><me>\int_0^1 \frac1{x^2}\,dx</me></p>
 
   <p>diverges.  Therefore</p>
 
-  <md>
+  <p><me>
 \int_{-1}^{1}\frac1{x^2}\,dx
 \text{ diverges.}
-</md>
+</me></p>
 
   <p>The antiderivative <m>-1/x</m> is valid on each interval where <m>x\neq0</m>.  It is not a
 license to jump across <m>x=0</m>.</p>
@@ -77,7 +68,7 @@ license to jump across <m>x=0</m>.</p>
   <note xml:id="note-sec-11-8-warning-examples-50">
     <title>Moral</title>
       <p>Before using</p>
-        <md>\int_a^b f(x)\,dx=F(b)-F(a),</md>
+        <p><me>\int_a^b f(x)\,dx=F(b)-F(a),</me></p>
       <p>check that <m>f</m> is continuous on the interval.  If not, split the interval and use limits.</p>
   </note>
 
@@ -88,11 +79,7 @@ license to jump across <m>x=0</m>.</p>
             Subtracting <m>-1/x</m> from <m>-1</m> to <m>1</m> for <m>\int_{-1}^{1}(1/x^2)\,dx</m> produces a negative number for a positive integrand. In your own words, why is the Fundamental Theorem not a license to jump across a singularity, and what must you do instead?
           </p>
         </statement>
-        <hint>
-          <p>
-            Part II requires continuity on the interval. Split at the blow-up and replace each dangerous endpoint by a limit. If either side diverges, the whole integral diverges.
-          </p>
-        </hint>
+        <hint><p>First check the Fundamental Theorem’s hypotheses; continuity on the whole interval is sufficient. At a blow-up, split the integral and replace each dangerous endpoint by a separate limit. If either side diverges, the improper integral diverges.</p></hint>
       </exercise>
 
   </subsection>
@@ -105,72 +92,72 @@ cancel symmetrically.</p>
 
   <p>Consider</p>
 
-  <md>\int_{-1}^{1}\frac1x\,dx.</md>
+  <p><me>\int_{-1}^{1}\frac1x\,dx.</me></p>
 
   <p>The graph of <m>1/x</m> is negative on <m>(-1,0)</m> and positive on <m>(0,1)</m>.  If we cut out a
 symmetric gap around <m>0</m>, then</p>
 
-  <md>\int_{-1}^{-\varepsilon}\frac1x\,dx
+  <p><me>\int_{-1}^{-\varepsilon}\frac1x\,dx
 +
 \int_{\varepsilon}^{1}\frac1x\,dx
 =
-0.</md>
+0.</me></p>
 
   <p>So one might think the integral is <m>0</m>.</p>
 
   <p>But that is not the definition of the improper integral.  Because the singularity is at
 <m>0</m>, we must split:</p>
 
-  <md>\int_{-1}^{1}\frac1x\,dx
+  <p><me>\int_{-1}^{1}\frac1x\,dx
 =
 \int_{-1}^{0}\frac1x\,dx
 +
-\int_0^1\frac1x\,dx.</md>
+\int_0^1\frac1x\,dx.</me></p>
 
   <p>The right-hand piece is</p>
 
-  <md>\int_0^1 \frac1x\,dx
+  <p><me>\int_0^1 \frac1x\,dx
 =
 \lim_{t\to0^+}\int_t^1 \frac1x\,dx
 =
 \lim_{t\to0^+}\bigl(0-\ln t\bigr)
 =
-\infty.</md>
+\infty.</me></p>
 
   <p>The left-hand piece is</p>
 
-  <md>\int_{-1}^{0} \frac1x\,dx
+  <p><me>\int_{-1}^{0} \frac1x\,dx
 =
 \lim_{t\to0^-}\int_{-1}^{t} \frac1x\,dx
 =
 \lim_{t\to0^-}\ln|t|
 =
--\infty.</md>
+-\infty.</me></p>
 
   <p>Neither piece converges to a finite number.  Therefore</p>
 
-  <md>
+  <p><me>
 \int_{-1}^{1}\frac1x\,dx
 \text{ diverges.}
-</md>
+</me></p>
 
   <p>The symmetric cancellation gives a different object called a <em>principal value</em>:</p>
 
-  <md>\lim_{\varepsilon\to0^+}
+  <p><me>\lim_{\varepsilon\to0^+}
 \left(
 \int_{-1}^{-\varepsilon}\frac1x\,dx
 +
 \int_{\varepsilon}^{1}\frac1x\,dx
 \right)
 =
-0.</md>
+0.</me></p>
 
   <p>That principal value exists, but it is not the improper integral.</p>
 
   <figure xml:id="fig-principal-value-one-over-x">
     <caption>The positive and negative pieces of <m>1/x</m> cancel symmetrically, but each piece has infinite size.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The positive and negative pieces of <m>1/x</m> cancel symmetrically, but each piece has infinite size.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.76\textwidth,
@@ -229,88 +216,88 @@ the real line, or correct only after choosing a complex logarithm branch.</p>
 
   <p>Consider</p>
 
-  <md>\int \frac{x}{x^2-1}\,dx.</md>
+  <p><me>\int \frac{x}{x^2-1}\,dx.</me></p>
 
   <p>A symbolic system might return</p>
 
-  <md>\frac12\ln(x^2-1)+C.</md>
+  <p><me>\frac12\ln(x^2-1)+C.</me></p>
 
   <p>Differentiating formally gives</p>
 
-  <md>\frac12\cdot\frac{2x}{x^2-1}
+  <p><me>\frac12\cdot\frac{2x}{x^2-1}
 =
-\frac{x}{x^2-1}.</md>
+\frac{x}{x^2-1}.</me></p>
 
   <p>But as a real-valued function,</p>
 
-  <md>\ln(x^2-1)</md>
+  <p><me>\ln(x^2-1)</me></p>
 
   <p>is defined only when</p>
 
-  <md>x^2-1&gt;0,</md>
+  <p><me>x^2-1&gt;0,</me></p>
 
   <p>that is, on</p>
 
-  <md>(-\infty,-1)
+  <p><me>(-\infty,-1)
 \qquad\text{and}\qquad
-(1,\infty).</md>
+(1,\infty).</me></p>
 
   <p>On the interval</p>
 
-  <md>(-1,1),</md>
+  <p><me>(-1,1),</me></p>
 
   <p>we have</p>
 
-  <md>x^2-1&lt;0.</md>
+  <p><me>x^2-1&lt;0.</me></p>
 
   <p>The real antiderivative there can be written as</p>
 
-  <md>\frac12\ln(1-x^2)+C,</md>
+  <p><me>\frac12\ln(1-x^2)+C,</me></p>
 
   <p>because</p>
 
-  <md>\frac{d}{dx}\left(\frac12\ln(1-x^2)\right)
+  <p><me>\frac{d}{dx}\left(\frac12\ln(1-x^2)\right)
 =
 \frac12\cdot\frac{-2x}{1-x^2}
 =
-\frac{x}{x^2-1}.</md>
+\frac{x}{x^2-1}.</me></p>
 
   <p>The safest real formula on intervals where the integrand is defined is</p>
 
-  <md>
+  <p><me>
 \int \frac{x}{x^2-1}\,dx
 =
 \frac12\ln|x^2-1|+C.
-</md>
+</me></p>
 
   <p>Now evaluate</p>
 
-  <md>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx.</md>
+  <p><me>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx.</me></p>
 
   <p>The integrand is continuous on <m>[-1/2,1/2]</m>, so the ordinary Fundamental Theorem
 applies.  Using the real antiderivative,</p>
 
-  <md>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx
+  <p><me>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx
 =
-\frac12\ln|x^2-1|\Big|_{-1/2}^{1/2}.</md>
+\frac12\ln|x^2-1|\Big|_{-1/2}^{1/2}.</me></p>
 
   <p>At both endpoints,</p>
 
-  <md>x^2-1=\frac14-1=-\frac34,</md>
+  <p><me>x^2-1=\frac14-1=-\frac34,</me></p>
 
   <p>so</p>
 
-  <md>|x^2-1|=\frac34.</md>
+  <p><me>|x^2-1|=\frac34.</me></p>
 
   <p>Therefore</p>
 
-  <md>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx
+  <p><me>\int_{-1/2}^{1/2}\frac{x}{x^2-1}\,dx
 =
 \frac12\ln\left(\frac34\right)
 -
 \frac12\ln\left(\frac34\right)
 =
-0.</md>
+0.</me></p>
 
   <p>This also matches symmetry: the integrand is odd and the interval is symmetric.</p>
 
@@ -345,26 +332,26 @@ If we reuse the same triangle on the wrong interval, the answer can change.</p>
 
   <p>Earlier, for <m>x&gt;2</m>, we found</p>
 
-  <md>\int \frac{\sqrt{x^2-4}}{x}\,dx
+  <p><me>\int \frac{\sqrt{x^2-4}}{x}\,dx
 =
 \sqrt{x^2-4}
 -
 2\arccos\left(\frac{2}{x}\right)
-+C.</md>
++C.</me></p>
 
   <p>That formula came from the substitution</p>
 
-  <md>x=2\sec\theta,
+  <p><me>x=2\sec\theta,
 \qquad
-0\le\theta&lt;\frac{\pi}{2}.</md>
+0\le\theta&lt;\frac{\pi}{2}.</me></p>
 
   <p>On this range,</p>
 
-  <md>\sec\theta\ge1,</md>
+  <p><me>\sec\theta\ge1,</me></p>
 
   <p>so</p>
 
-  <md>x\ge2.</md>
+  <p><me>x\ge2.</me></p>
 
   <p>The formula was derived on the interval <m>(2,\infty)</m>.</p>
 
@@ -372,58 +359,58 @@ If we reuse the same triangle on the wrong interval, the answer can change.</p>
 
   <p>Let</p>
 
-  <md>F_+(x)=\sqrt{x^2-4}-2\arccos\left(\frac2x\right).</md>
+  <p><me>F_+(x)=\sqrt{x^2-4}-2\arccos\left(\frac2x\right).</me></p>
 
   <p>For <m>x&lt;-2</m>,</p>
 
-  <md>\sqrt{1-\frac4{x^2}}
+  <p><me>\sqrt{1-\frac4{x^2}}
 =
 \frac{\sqrt{x^2-4}}{|x|}
 =
--\frac{\sqrt{x^2-4}}{x},</md>
+-\frac{\sqrt{x^2-4}}{x},</me></p>
 
   <p>because <m>x&lt;0</m>.  Therefore</p>
 
-  <md>\frac{d}{dx}\arccos\left(\frac2x\right)
+  <p><me>\frac{d}{dx}\arccos\left(\frac2x\right)
 =
 -\frac{1}{\sqrt{1-\frac4{x^2}}}\left(-\frac2{x^2}\right)
 =
--\frac{2}{x\sqrt{x^2-4}}.</md>
+-\frac{2}{x\sqrt{x^2-4}}.</me></p>
 
   <p>So</p>
 
-  <md>F_+'(x)
+  <p><me>F_+'(x)
 =
 \frac{x}{\sqrt{x^2-4}}
 +
-\frac{4}{x\sqrt{x^2-4}}.</md>
+\frac{4}{x\sqrt{x^2-4}}.</me></p>
 
   <p>Thus</p>
 
-  <md>F_+'(x)
+  <p><me>F_+'(x)
 =
-\frac{x^2+4}{x\sqrt{x^2-4}},</md>
+\frac{x^2+4}{x\sqrt{x^2-4}},</me></p>
 
   <p>which is not</p>
 
-  <md>\frac{\sqrt{x^2-4}}{x}
+  <p><me>\frac{\sqrt{x^2-4}}{x}
 =
-\frac{x^2-4}{x\sqrt{x^2-4}}.</md>
+\frac{x^2-4}{x\sqrt{x^2-4}}.</me></p>
 
   <p>The formula from the <m>x&gt;2</m> interval is not valid on <m>x&lt;-2</m>.</p>
 
   <p>On <m>x&lt;-2</m>, one correct antiderivative is</p>
 
-  <md>
+  <p><me>
 \sqrt{x^2-4}
 +
 2\arccos\left(\frac2x\right)
 +C.
-</md>
+</me></p>
 
   <p>Indeed, using the same derivative calculation,</p>
 
-  <md>\frac{d}{dx}
+  <p><me>\frac{d}{dx}
 \left[
 \sqrt{x^2-4}
 +
@@ -434,23 +421,23 @@ If we reuse the same triangle on the wrong interval, the answer can change.</p>
 -
 \frac{4}{x\sqrt{x^2-4}}
 =
-\frac{x^2-4}{x\sqrt{x^2-4}}.</md>
+\frac{x^2-4}{x\sqrt{x^2-4}}.</me></p>
 
   <p>Therefore</p>
 
-  <md>\frac{d}{dx}
+  <p><me>\frac{d}{dx}
 \left[
 \sqrt{x^2-4}
 +
 2\arccos\left(\frac2x\right)
 \right]
 =
-\frac{\sqrt{x^2-4}}{x}.</md>
+\frac{\sqrt{x^2-4}}{x}.</me></p>
 
   <figure xml:id="fig-trig-substitution-domain-branches">
     <caption>The expression <m>\sqrt{x^2-4}</m> has two real branches of the domain.  A trigonometric substitution must respect the branch.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The expression <m>\sqrt{x^2-4}</m> has two real branches of the domain.  A trigonometric substitution must respect the branch.</p></description><latex-image>
 \begin{tikzpicture}[xscale=1.1, every node/.style={font=\small}]
   \draw[&lt;-&gt;, thick] (-4.5,0) -- (4.5,0);
   \foreach \x/\lab in {-2/{-2},0/{0},2/{2}} {
@@ -460,12 +447,12 @@ If we reuse the same triangle on the wrong interval, the answer can change.</p>
 
   \draw[very thick] (-4.2,0) -- (-2,0);
   \draw[very thick] (2,0) -- (4.2,0);
-  \draw[fill=white, thick] (-2,0) circle (2.5pt);
-  \draw[fill=white, thick] (2,0) circle (2.5pt);
+  \draw[fill=black, thick] (-2,0) circle (2.5pt);
+  \draw[fill=black, thick] (2,0) circle (2.5pt);
 
-  \node[above] at (3.1,0.25) {\(x&gt;2\): \(x=2\sec\theta\)};
-  \node[above] at (-3.1,0.25) {\(x&lt;-2\): use a different range};
-  \node[below] at (0,-0.55) {\(\sqrt{x^2-4}\) is real only on two separate intervals};
+  \node[above] at (3.1,0.25) {\(x\ge2\): \(x=2\sec\theta\)};
+  \node[above] at (-3.1,0.25) {\(x\le-2\): use a different range};
+  \node[below] at (0,-0.55) {\(\sqrt{x^2-4}\) is real on two closed intervals; antiderivatives use the interiors};
 \end{tikzpicture}
       </latex-image>
     </image>
@@ -475,9 +462,9 @@ If we reuse the same triangle on the wrong interval, the answer can change.</p>
     <title>Moral</title>
       <p>An indefinite integral formula is usually valid on an interval.  When the domain has
 separate pieces, such as</p>
-        <md>(-\infty,-2)
+        <p><me>(-\infty,-2)
 \qquad\text{and}\qquad
-(2,\infty),</md>
+(2,\infty),</me></p>
       <p>the same-looking formula may need different signs or different inverse functions on
 different pieces.</p>
   </note>
@@ -489,9 +476,7 @@ ask where the integral is defined and what limit is being taken.</p>
 are not always available, and convergence alone may not give the number we need.  The
 next question is practical:</p>
 
-  <md>
-\text{How can we approximate an accumulated amount, and how can we control the error?}
-</md>
+  <p><em>How can we approximate an accumulated amount, and how can we control the error?</em></p>
 
   <p>That question leads to numerical integration.</p>
 

@@ -1,52 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-17-4-the-one-dimensional-stokes-theorem">
   <title>The one-dimensional Stokes theorem</title>
 
-  <p>The Fundamental Theorem told us that</p>
-
-  <md>\int_a^b F'(x)\,dx=F(b)-F(a).</md>
-
-  <p>At first, this was an antiderivative rule.  It let us evaluate integrals.  But there is a
-deeper geometric reading:</p>
-
-  <md>
-\text{what accumulates inside an interval is measured by what happens on its boundary.}
-</md>
-
-  <p>In one dimension, the boundary of an interval consists of two endpoints.  The right
-endpoint counts positively.  The left endpoint counts negatively.</p>
-
-  <p>That signed boundary is the seed of Stokes’ theorem.</p>
-
-  <subsection xml:id="subsec-boundary-of-interval">
+  <introduction><p>The Fundamental Theorem writes an integral of a derivative as a signed endpoint sum:</p><p><me>\int_a^b F\prime(x)\,dx=F(b)-F(a).</me></p><p>This is the one-dimensional case of a boundary identity. We will define the oriented boundary of an interval and use differential notation to express the identity.</p></introduction><subsection xml:id="subsec-boundary-of-interval">
     <title>Boundary of an interval</title>
 
   <p>An interval is not just a set of points.  When we write</p>
 
-  <md>\int_a^b f(x)\,dx,</md>
+  <p><me>\int_a^b f(x)\,dx,</me></p>
 
   <p>we are traveling from <m>a</m> to <m>b</m>.  The direction matters.  Reversing the direction
 changes the sign:</p>
 
-  <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+  <p><me>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</me></p>
 
   <p>So the oriented interval from <m>a</m> to <m>b</m> has an oriented boundary.</p>
 
-  <md>
+  <p><me>
 \partial[a,b]=\{b\}-\{a\}.
-</md>
+</me></p>
 
   <p>This notation says:</p>
 
-  <md>\text{right endpoint} \quad - \quad \text{left endpoint}.</md>
+  <p><me>\text{right endpoint} \quad - \quad \text{left endpoint}.</me></p>
 
   <p>The endpoint <m>b</m> has sign <m>+</m>.  The endpoint <m>a</m> has sign <m>-</m>.</p>
 
   <figure xml:id="fig-oriented-interval-boundary">
     <caption>The boundary of an oriented interval is its ending point minus its starting point.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The boundary of an oriented interval is its ending point minus its starting point.</p></description><latex-image>
 \begin{tikzpicture}[scale=1.1, every node/.style={font=\small}]
   \draw[-&gt;, thick] (-0.4,0) -- (6.4,0);
   \draw[very thick, -&gt;] (1,0) -- (5,0);
@@ -71,36 +53,36 @@ changes the sign:</p>
 
   <p>Suppose</p>
 
-  <md>a&lt;c&lt;b.</md>
+  <p><me>a&lt;c&lt;b.</me></p>
 
   <p>Then the interval <m>[a,b]</m> can be split into</p>
 
-  <md>[a,c]
+  <p><me>[a,c]
 \qquad\text{and}\qquad
-[c,b].</md>
+[c,b].</me></p>
 
   <p>Their boundaries are</p>
 
-  <md>\partial[a,c]=\{c\}-\{a\},</md>
+  <p><me>\partial[a,c]=\{c\}-\{a\},</me></p>
 
   <p>and</p>
 
-  <md>\partial[c,b]=\{b\}-\{c\}.</md>
+  <p><me>\partial[c,b]=\{b\}-\{c\}.</me></p>
 
   <p>Add them:</p>
 
-  <md>\bigl(\{c\}-\{a\}\bigr)+\bigl(\{b\}-\{c\}\bigr)=\{b\}-\{a\}.</md>
+  <p><me>\bigl(\{c\}-\{a\}\bigr)+\bigl(\{b\}-\{c\}\bigr)=\{b\}-\{a\}.</me></p>
 
   <p>The interior point <m>c</m> cancels.</p>
 
-  <md>
+  <p><me>
 \text{interior boundaries cancel; only the outer boundary remains.}
-</md>
+</me></p>
 
   <figure xml:id="fig-boundary-cancellation">
     <caption>Splitting an interval creates an artificial boundary at <m>c</m>, but the two signs at <m>c</m> cancel.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Splitting an interval creates an artificial boundary at <m>c</m>, but the two signs at <m>c</m> cancel.</p></description><latex-image>
 \begin{tikzpicture}[scale=1.05, every node/.style={font=\small}]
   \draw[-&gt;, thick] (-0.4,0) -- (7.0,0);
 
@@ -127,11 +109,11 @@ changes the sign:</p>
 
   <p>This is the same cancellation that appeared in finite differences.  If</p>
 
-  <md>a=x_0&lt;x_1&lt;\cdots&lt;x_n=b,</md>
+  <p><me>a=x_0&lt;x_1&lt;\cdots&lt;x_n=b,</me></p>
 
   <p>then</p>
 
-  <md>\bigl(F(x_1)-F(x_0)\bigr)
+  <p><me>\bigl(F(x_1)-F(x_0)\bigr)
 +
 \bigl(F(x_2)-F(x_1)\bigr)
 +
@@ -139,7 +121,7 @@ changes the sign:</p>
 +
 \bigl(F(x_n)-F(x_{n-1})\bigr)
 =
-F(b)-F(a).</md>
+F(b)-F(a).</me></p>
 
   <p>All the interior values cancel.  The boundary values survive.</p>
 
@@ -167,82 +149,78 @@ F(b)-F(a).</md>
   <p>Let <m>F</m> be differentiable on <m>[a,b]</m>, with <m>F'</m> continuous.  Then the Fundamental
 Theorem gives</p>
 
-  <md>
+  <p><me>
 \int_a^b F'(x)\,dx=F(b)-F(a).
-</md>
+</me></p>
 
   <p>We can now read the formula in boundary language:</p>
 
-  <md>F(b)-F(a)
+  <p><me>F(b)-F(a)
 =
-\text{value of \(F\) on the signed boundary } \{b\}-\{a\}.</md>
+\text{value of \(F\) on the signed boundary } \{b\}-\{a\}.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int_a^b F'(x)\,dx
 =
 \int_{\partial[a,b]} F.
-</md>
+</me></p>
 
   <p>The notation on the right is only a compact way to say</p>
 
-  <md>\int_{\partial[a,b]} F
+  <p><me>\int_{\partial[a,b]} F
 =
-F(b)-F(a).</md>
+F(b)-F(a).</me></p>
 
   <p>It is not a new kind of ordinary integral yet.  It is boundary bookkeeping.</p>
 
   <example xml:id="ex-sec-17-4-the-one-dimensional-stokes-theorem-1">
     <title>Example</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>F(x)=x^3.</md>
+  <p><me>F(x)=x^3.</me></p>
 
   <p>Then</p>
 
-  <md>F'(x)=3x^2.</md>
+  <p><me>F'(x)=3x^2.</me></p>
 
   <p>On the interval <m>[1,3]</m>,</p>
 
-  <md>\int_1^3 3x^2\,dx
+  <p><me>\int_1^3 3x^2\,dx
 =
 F(3)-F(1)
 =
 27-1
 =
-26.</md>
+26.</me></p>
 
   <p>The integral of the derivative over the interval is determined entirely by the endpoint
 values of <m>F</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-17-4-the-one-dimensional-stokes-theorem-2">
     <title>reversing the orientation</title>
-    <statement>
-  <p>Again let</p>
+    <p>Again let</p>
 
-  <md>F(x)=x^3.</md>
+  <p><me>F(x)=x^3.</me></p>
 
   <p>Then</p>
 
-  <md>\int_3^1 3x^2\,dx
+  <p><me>\int_3^1 3x^2\,dx
 =
 F(1)-F(3)
 =
 1-27
 =
--26.</md>
+-26.</me></p>
 
   <p>The same interval with the opposite orientation has the opposite boundary:</p>
 
-  <md>\partial[3,1]=\{1\}-\{3\}.</md>
+  <p><me>\partial[3,1]=\{1\}-\{3\}.</me></p>
 
   <p>So the sign changes exactly as it should.</p>
-    </statement>
-  </example>
+    </example>
 
   <paragraphs>
     <title>Warning: jumps are not ordinary derivatives</title>
@@ -252,24 +230,22 @@ ordinary derivative does not capture the jump.</p>
 
   <p>Consider the step function</p>
 
-  <md>
-    <mrow>H(x)=
+  <p><me>H(x)=
 \begin{cases}
-0, \amp x&lt;0,</mrow>
-    <mrow>1, \amp x\ge0.
-\end{cases}</mrow>
-  </md>
+0, \amp x&lt;0,\\
+1, \amp x\ge0.
+\end{cases}</me></p>
 
   <p>On <m>[-1,1]</m>, the endpoint change is</p>
 
-  <md>H(1)-H(-1)=1-0=1.</md>
+  <p><me>H(1)-H(-1)=1-0=1.</me></p>
 
   <p>But <m>H</m> is not differentiable at <m>0</m>.  Away from <m>0</m>, it is constant, so its derivative
 is <m>0</m> where the derivative exists.</p>
 
   <p>If we tried to integrate the ordinary derivative away from the jump, we would get</p>
 
-  <md>0,</md>
+  <p><me>0,</me></p>
 
   <p>not <m>1</m>.</p>
 
@@ -277,9 +253,7 @@ is <m>0</m> where the derivative exists.</p>
 not represent that jump as an ordinary derivative.  This is why the differentiability
 hypothesis matters.</p>
 
-  <md>
-\text{The Fundamental Theorem applies to honest derivatives, not to hidden jumps.}
-</md>
+  <p><m>\int_a^b F\prime=F(b)-F(a)</m> requires the theorem's differentiability and integrability conditions. A jump in <m>F</m> is not included in an ordinary derivative integral.</p>
   </paragraphs>
 
   <exercise xml:id="checkpoint-17-4-ftc-as-boundary">
@@ -305,26 +279,26 @@ hypothesis matters.</p>
 
   <p>For a differentiable function <m>F</m>, define</p>
 
-  <md>
+  <p><me>
 dF=F'(x)\,dx.
-</md>
+</me></p>
 
   <p>At this point, <m>dF</m> is a compact name for the integrand <m>F'(x)\,dx</m>.  It is the
 small change in <m>F</m> predicted by the derivative:</p>
 
-  <md>F(x+dx)-F(x)\approx F'(x)\,dx.</md>
+  <p><me>F(x+dx)-F(x)\approx F'(x)\,dx.</me></p>
 
   <p>With this notation, the Fundamental Theorem becomes</p>
 
-  <md>
+  <p><me>
 \int_{[a,b]} dF=F(b)-F(a).
-</md>
+</me></p>
 
   <p>Using boundary notation,</p>
 
-  <md>
+  <p><me>
 \int_{[a,b]} dF=\int_{\partial[a,b]} F.
-</md>
+</me></p>
 
   <p>This is the one-dimensional Stokes theorem.</p>
 
@@ -332,23 +306,23 @@ small change in <m>F</m> predicted by the derivative:</p>
     <title>The one-dimensional Stokes theorem</title>
     <statement>
       <p>If <m>F</m> is differentiable on <m>[a,b]</m> and <m>F'</m> is continuous, then</p>
-        <md>
+        <p><me>
 \int_{[a,b]} dF=\int_{\partial[a,b]} F.
-</md>
+</me></p>
       <p>In ordinary calculus notation, this says</p>
-        <md>
+        <p><me>
 \int_a^b F'(x)\,dx=F(b)-F(a).
-</md>
+</me></p>
     </statement>
   </theorem>
 
   <p>The theorem has the same structure as the finite telescoping sum:</p>
 
-  <md>\sum_{j=1}^{n}\bigl(F(x_j)-F(x_{j-1})\bigr)=F(b)-F(a).</md>
+  <p><me>\sum_{j=1}^{n}\bigl(F(x_j)-F(x_{j-1})\bigr)=F(b)-F(a).</me></p>
 
   <p>The integral version replaces finite changes by infinitely many small changes:</p>
 
-  <md>dF=F'(x)\,dx.</md>
+  <p><me>dF=F'(x)\,dx.</me></p>
 
   <p>Then the interior cancellations become continuous.  Only the boundary remains.</p>
 
@@ -357,13 +331,13 @@ small change in <m>F</m> predicted by the derivative:</p>
 
   <p>An integrand of the form</p>
 
-  <md>F'(x)\,dx=dF</md>
+  <p><me>F'(x)\,dx=dF</me></p>
 
   <p>is called an <em>exact differential</em>.</p>
 
   <p>When an integrand is exact, its integral depends only on the boundary:</p>
 
-  <md>\int_a^b dF=F(b)-F(a).</md>
+  <p><me>\int_a^b dF=F(b)-F(a).</me></p>
 
   <p>This is exactly what an antiderivative does.  Finding an antiderivative is finding a
 function <m>F</m> whose differential is the integrand.</p>
@@ -373,9 +347,7 @@ function <m>F</m> whose differential is the integrand.</p>
   <exercise xml:id="checkpoint-17-4-exact-means-boundary">
         <title>What does it mean for an integrand to be exact?</title>
         <statement>
-          <p>
-            An integrand of the form <m>dF=F'(x)\,dx</m> is exact, and its integral depends only on the boundary. In your own words, why is finding an antiderivative the same as recognizing an exact differential, and why does that make interior cancellations the whole story?
-          </p>
+          <p>An exact differential has the form <m>dF=F\prime(x)\,dx</m>. Explain why its integral reduces to a signed endpoint difference and how finding an antiderivative identifies such a differential.</p>
         </statement>
         <hint>
           <p>
@@ -386,50 +358,48 @@ function <m>F</m> whose differential is the integrand.</p>
 
   <example xml:id="ex-sec-17-4-the-one-dimensional-stokes-theorem-5">
     <title>Example</title>
-    <statement>
-  <p>The integrand</p>
+    <p>The integrand</p>
 
-  <md>2x\,dx</md>
+  <p><me>2x\,dx</me></p>
 
   <p>is exact because</p>
 
-  <md>2x\,dx=d(x^2).</md>
+  <p><me>2x\,dx=d(x^2).</me></p>
 
   <p>Therefore</p>
 
-  <md>\int_a^b 2x\,dx
+  <p><me>\int_a^b 2x\,dx
 =
 x^2\Big|_a^b
 =
-b^2-a^2.</md>
+b^2-a^2.</me></p>
 
   <p>The integrand</p>
 
-  <md>\cos x\,dx</md>
+  <p><me>\cos x\,dx</me></p>
 
   <p>is exact because</p>
 
-  <md>\cos x\,dx=d(\sin x).</md>
+  <p><me>\cos x\,dx=d(\sin x).</me></p>
 
   <p>Therefore</p>
 
-  <md>\int_a^b \cos x\,dx
+  <p><me>\int_a^b \cos x\,dx
 =
-\sin b-\sin a.</md>
+\sin b-\sin a.</me></p>
 
   <p>In one-variable calculus, every continuous integrand <m>f(x)\,dx</m> has an antiderivative
 locally, because we can define an accumulation function</p>
 
-  <md>A(x)=\int_a^x f(t)\,dt.</md>
+  <p><me>A(x)=\int_a^x f(t)\,dt.</me></p>
 
   <p>Then the Fundamental Theorem says</p>
 
-  <md>dA=f(x)\,dx.</md>
+  <p><me>dA=f(x)\,dx.</me></p>
 
   <p>In higher dimensions, this becomes a real question: not every integrand is exact.  That
 is one reason the boundary viewpoint becomes powerful.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-preview-line-integrals-differential-forms">
@@ -437,28 +407,28 @@ is one reason the boundary viewpoint becomes powerful.</p>
 
   <p>The notation</p>
 
-  <md>f(x)\,dx</md>
+  <p><me>f(x)\,dx</me></p>
 
   <p>has been with us since the first integrals.  It means more than “a function times a
 symbol.”  It is an object designed to be accumulated along an oriented interval.</p>
 
   <p>The <m>dx</m> carries direction.  When the direction reverses, <m>dx</m> reverses:</p>
 
-  <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+  <p><me>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</me></p>
 
   <p>Substitution also fits this view.  If</p>
 
-  <md>x=g(u),</md>
+  <p><me>x=g(u),</me></p>
 
   <p>then the small step changes by</p>
 
-  <md>dx=g'(u)\,du.</md>
+  <p><me>dx=g'(u)\,du.</me></p>
 
   <p>So the integrand changes as</p>
 
-  <md>f(x)\,dx
+  <p><me>f(x)\,dx
 =
-f(g(u))g'(u)\,du.</md>
+f(g(u))g'(u)\,du.</me></p>
 
   <p>This is not symbol pushing.  It is changing the measuring stick.</p>
 
@@ -466,39 +436,39 @@ f(g(u))g'(u)\,du.</md>
 
   <p>In one variable, a path along the line can be written as</p>
 
-  <md>x=x(t),
-\qquad \alpha\le t\le \beta.</md>
+  <p><me>x=x(t),
+\qquad \alpha\le t\le \beta.</me></p>
 
   <p>Then</p>
 
-  <md>dx=x'(t)\,dt.</md>
+  <p><me>dx=x'(t)\,dt.</me></p>
 
   <p>So the integral of <m>f(x)\,dx</m> along the path becomes</p>
 
-  <md>\int_{\alpha}^{\beta} f(x(t))x'(t)\,dt.</md>
+  <p><me>\int_{\alpha}^{\beta} f(x(t))x'(t)\,dt.</me></p>
 
   <p>This is just substitution written as integration along a path.</p>
 
   <p>In the plane, a curve has two changing coordinates:</p>
 
-  <md>x=x(t),
+  <p><me>x=x(t),
 \qquad
-y=y(t).</md>
+y=y(t).</me></p>
 
   <p>A natural integrand along such a curve has the form</p>
 
-  <md>P(x,y)\,dx+Q(x,y)\,dy.</md>
+  <p><me>P(x,y)\,dx+Q(x,y)\,dy.</me></p>
 
   <p>Along the parametrized curve,</p>
 
-  <md>dx=x'(t)\,dt,
+  <p><me>dx=x'(t)\,dt,
 \qquad
-dy=y'(t)\,dt.</md>
+dy=y'(t)\,dt.</me></p>
 
   <p>So the line integral becomes</p>
 
-  <md>\int_{\alpha}^{\beta}
-\Bigl(P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)\Bigr)\,dt.</md>
+  <p><me>\int_{\alpha}^{\beta}
+\Bigl(P(x(t),y(t))x'(t)+Q(x(t),y(t))y'(t)\Bigr)\,dt.</me></p>
 
   <p>This is the next-course analogue of substitution.</p>
 
@@ -507,12 +477,12 @@ dy=y'(t)\,dt.</md>
       <p>A one-dimensional integrand <m>f(x)\,dx</m> is the simplest example of a differential
 form.</p>
       <p>A plane integrand</p>
-        <md>P\,dx+Q\,dy</md>
+        <p><me>P\,dx+Q\,dy</me></p>
       <p>is accumulated along a curve.</p>
       <p>If it happens to equal</p>
-        <md>d\Phi</md>
+        <p><me>d\Phi</me></p>
       <p>for some potential function <m>\Phi</m>, then its integral depends only on the boundary:</p>
-        <md>\int_C d\Phi=\Phi(\text{end})-\Phi(\text{start}).</md>
+        <p><me>\int_C d\Phi=\Phi(\text{end})-\Phi(\text{start}).</me></p>
   </note>
 
   <p>That last formula is the same boundary theorem again.  The interval has become a
@@ -520,17 +490,13 @@ curve.  The endpoints are still the boundary.</p>
 
   <p>Stokes’ theorem in higher dimensions says the same kind of thing in larger geometry:</p>
 
-  <md>
-\text{integral of a derivative over a region}
-=
-\text{integral of the original object over the boundary.}
-</md>
+  <p><em>integral of a derivative over a region = integral of the original object over the boundary.</em></p>
 
   <p>Single-variable calculus has carried this pattern all along:</p>
 
-  <md>
+  <p><me>
 \int_{[a,b]} dF=\int_{\partial[a,b]} F.
-</md>
+</me></p>
 
   <p>The next bridge uses the same boundary idea for conservation.  If a quantity inside an
 interval changes, then something must be created inside or must cross the boundary.</p>

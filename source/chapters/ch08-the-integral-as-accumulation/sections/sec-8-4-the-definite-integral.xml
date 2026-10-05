@@ -1,81 +1,67 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-8-4-the-definite-integral">
   <title>The definite integral</title>
 
-  <p>Sigma notation made rectangular sums readable.  Now we give the limiting process a
-name.</p>
-
-  <p>The definite integral is the number that rectangular sums approach when every
-rectangle becomes thin.</p>
-
-  <md>\text{finite sum of rectangles}
-\quad\longrightarrow\quad
-\text{definite integral}.</md>
-
-  <p>This definition is the formal version of the accumulation idea that began the chapter.</p>
-
-  <subsection xml:id="subsec-partitions-sample-points">
+  <introduction><p>A Riemann sum approximates accumulation by adding function values multiplied by subinterval widths. The definite integral is their common limit, when it exists, as the largest subinterval width tends to zero. The limit must be independent of the partitions and sample points.</p></introduction><subsection xml:id="subsec-partitions-sample-points">
     <title>Partitions and sample points</title>
 
   <p>To build rectangular sums carefully, we first divide an interval into pieces.</p>
 
   <p>Let</p>
 
-  <md>[a,b]</md>
+  <p><me>[a,b]</me></p>
 
   <p>be a closed interval.  A <em>partition</em> <m>P</m> of <m>[a,b]</m> is a finite list of points</p>
 
-  <md>a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b.</md>
+  <p><me>a=x_0&lt;x_1&lt;x_2&lt;\cdots&lt;x_n=b.</me></p>
 
   <p>The subintervals are</p>
 
-  <md>[x_0,x_1],
+  <p><me>[x_0,x_1],
 \quad
 [x_1,x_2],
 \quad
 \ldots,
 \quad
-[x_{n-1},x_n].</md>
+[x_{n-1},x_n].</me></p>
 
   <p>The width of the <m>i</m>th subinterval is</p>
 
-  <md>\Delta x_i=x_i-x_{i-1}.</md>
+  <p><me>\Delta x_i=x_i-x_{i-1}.</me></p>
 
   <p>If all widths are equal, then</p>
 
-  <md>\Delta x_i=\Delta x=\frac{b-a}{n}.</md>
+  <p><me>\Delta x_i=\Delta x=\frac{b-a}{n}.</me></p>
 
   <p>But equal widths are not required.</p>
 
   <p>The largest width is called the <em>mesh</em> of the partition:</p>
 
-  <md>\lVert P\rVert
+  <p><me>\lVert P\rVert
 =
-\max\{\Delta x_1,\Delta x_2,\ldots,\Delta x_n\}.</md>
+\max\{\Delta x_1,\Delta x_2,\ldots,\Delta x_n\}.</me></p>
 
   <p>The condition</p>
 
-  <md>\lVert P\rVert\to0</md>
+  <p><me>\lVert P\rVert\to0</me></p>
 
   <p>means that every subinterval is becoming small.</p>
 
   <p>On each subinterval <m>[x_{i-1},x_i]</m>, choose a sample point</p>
 
-  <md>x_i^*</md>
+  <p><me>x_i^*</me></p>
 
   <p>inside that subinterval:</p>
 
-  <md>x_i^*\in[x_{i-1},x_i].</md>
+  <p><me>x_i^*\in[x_{i-1},x_i].</me></p>
 
   <p>The sample point determines the height of the rectangle:</p>
 
-  <md>f(x_i^*).</md>
+  <p><me>f(x_i^*).</me></p>
 
   <figure xml:id="fig-partition-sample-points">
     <caption>A partition divides the interval. A sample point in each subinterval determines the rectangle height.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A partition divides the interval. A sample point in each subinterval determines the rectangle height.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.82\textwidth,
@@ -112,15 +98,15 @@ rectangle becomes thin.</p>
 
   <p>The sample point may be the left endpoint:</p>
 
-  <md>x_i^*=x_{i-1}.</md>
+  <p><me>x_i^*=x_{i-1}.</me></p>
 
   <p>It may be the right endpoint:</p>
 
-  <md>x_i^*=x_i.</md>
+  <p><me>x_i^*=x_i.</me></p>
 
   <p>It may be the midpoint:</p>
 
-  <md>x_i^*=\frac{x_{i-1}+x_i}{2}.</md>
+  <p><me>x_i^*=\frac{x_{i-1}+x_i}{2}.</me></p>
 
   <p>Or it may be some other point in the subinterval.  The definition of the integral will
 ask whether all reasonable choices are forced toward the same number as the partition
@@ -147,28 +133,28 @@ becomes fine.</p>
 
   <p>For each subinterval, the rectangle has width</p>
 
-  <md>\Delta x_i</md>
+  <p><me>\Delta x_i</me></p>
 
   <p>and height</p>
 
-  <md>f(x_i^*).</md>
+  <p><me>f(x_i^*).</me></p>
 
   <p>So its signed rectangular contribution is</p>
 
-  <md>f(x_i^*)\Delta x_i.</md>
+  <p><me>f(x_i^*)\Delta x_i.</me></p>
 
   <p>Adding all the contributions gives a <em>Riemann sum</em>.</p>
 
   <note xml:id="note-sec-8-4-the-definite-integral-70">
     <title>Riemann sum</title>
       <p>Given a partition</p>
-        <md>P:\quad a=x_0&lt;x_1&lt;\cdots&lt;x_n=b</md>
+        <p><me>P:\quad a=x_0&lt;x_1&lt;\cdots&lt;x_n=b</me></p>
       <p>and sample points</p>
-        <md>x_i^*\in[x_{i-1},x_i],</md>
+        <p><me>x_i^*\in[x_{i-1},x_i],</me></p>
       <p>the corresponding Riemann sum for <m>f</m> on <m>[a,b]</m> is</p>
-        <md>
+        <p><me>
 \sum_{i=1}^{n} f(x_i^*)\Delta x_i.
-</md>
+</me></p>
   </note>
 
   <p>If <m>f(x)\ge0</m>, this sum approximates area under the graph.</p>
@@ -178,28 +164,27 @@ negatively.  That signed interpretation will become central in the next section.
 
   <example xml:id="ex-sec-8-4-the-definite-integral-1">
     <title>Example</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>f(x)=1+x^2</md>
+  <p><me>f(x)=1+x^2</me></p>
 
   <p>on <m>[0,2]</m>.  Divide the interval into four equal subintervals and use right endpoints.</p>
 
   <p>Then</p>
 
-  <md>\Delta x=\frac{2-0}{4}=\frac12.</md>
+  <p><me>\Delta x=\frac{2-0}{4}=\frac12.</me></p>
 
   <p>The right endpoints are</p>
 
-  <md>\frac12,\qquad 1,\qquad \frac32,\qquad 2.</md>
+  <p><me>\frac12,\qquad 1,\qquad \frac32,\qquad 2.</me></p>
 
   <p>The Riemann sum is</p>
 
-  <md>\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12.</md>
+  <p><me>\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12.</me></p>
 
   <p>Compute:</p>
 
-  <md>
+  <p><md>
     <mrow>\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12
 \amp=
 \frac12\left[
@@ -210,11 +195,11 @@ f\left(\frac12\right)+f(1)+f\left(\frac32\right)+f(2)
 \frac12\left[
 \left(1+\frac14\right)+(1+1)+\left(1+\frac94\right)+(1+4)
 \right].</mrow>
-  </md>
+  </md></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><md>
     <mrow>\sum_{i=1}^{4} f\left(\frac{i}{2}\right)\frac12
 \amp=
 \frac12\left[
@@ -222,20 +207,19 @@ f\left(\frac12\right)+f(1)+f\left(\frac32\right)+f(2)
 \right]</mrow>
     <mrow>
 \amp=
-\frac12\left(\frac{42}{4}\right)</mrow>
+\frac12\left(\frac{46}{4}\right)</mrow>
     <mrow>
 \amp=
-\frac{21}{4}.</mrow>
-  </md>
+\frac{23}{4}.</mrow>
+  </md></p>
 
   <p>So this particular Riemann sum is</p>
 
-  <md>\frac{21}{4}=5.25.</md>
+  <p><me>\frac{23}{4}=5.75.</me></p>
 
   <p>It is one approximation.  The integral is what these approximations approach as the
 subintervals become thin.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-definite-integral-definition">
@@ -246,51 +230,51 @@ subintervals become thin.</p>
   <note xml:id="note-sec-8-4-the-definite-integral-71">
     <title>Definite integral</title>
       <p>Let <m>f</m> be a bounded function on <m>[a,b]</m>.  If the Riemann sums</p>
-        <md>\sum_{i=1}^{n} f(x_i^*)\Delta x_i</md>
+        <p><me>\sum_{i=1}^{n} f(x_i^*)\Delta x_i</me></p>
       <p>approach one common number as</p>
-        <md>\lVert P\rVert\to0,</md>
+        <p><me>\lVert P\rVert\to0,</me></p>
       <p>no matter how the partitions and sample points are chosen, then <m>f</m> is called
 <em>integrable</em> on <m>[a,b]</m>.</p>
       <p>That common number is the <em>definite integral</em> of <m>f</m> from <m>a</m> to <m>b</m>, written</p>
-        <md>
+        <p><me>
 \int_a^b f(x)\,dx
 =
 \lim_{\lVert P\rVert\to0}
 \sum_{i=1}^{n} f(x_i^*)\Delta x_i.
-</md>
+</me></p>
   </note>
 
   <p>The notation is full of memory.</p>
 
-  <md>\int</md>
+  <p><me>\int</me></p>
 
   <p>is an elongated <m>S</m>, reminding us of a sum.</p>
 
   <p>The expression</p>
 
-  <md>f(x)</md>
+  <p><me>f(x)</me></p>
 
   <p>reminds us of the rectangle height.</p>
 
   <p>The symbol</p>
 
-  <md>dx</md>
+  <p><me>dx</me></p>
 
   <p>reminds us of the small horizontal width, the limiting descendant of <m>\Delta x_i</m>.</p>
 
   <p>So</p>
 
-  <md>\int_a^b f(x)\,dx</md>
+  <p><me>\int_a^b f(x)\,dx</me></p>
 
   <p>means:</p>
 
-  <md>\text{accumulate \(f(x)\) along the interval from \(a\) to \(b\).}</md>
+  <p><me>\text{accumulate \(f(x)\) along the interval from \(a\) to \(b\).}</me></p>
 
   <p>The <m>dx</m> is not decoration.  It tells us which variable is being accumulated and
 points to the small step in the input.  Later, when we reverse direction along the
 interval, that orientation will matter:</p>
 
-  <md>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</md>
+  <p><me>\int_b^a f(x)\,dx=-\int_a^b f(x)\,dx.</me></p>
 
   <p>For now, when <m>a&lt;b</m>, the widths <m>\Delta x_i</m> are positive.</p>
 
@@ -299,18 +283,18 @@ interval, that orientation will matter:</p>
 
   <p>The expressions</p>
 
-  <md>\int_a^b f(x)\,dx,
+  <p><me>\int_a^b f(x)\,dx,
 \qquad
 \int_a^b f(t)\,dt,
 \qquad
-\int_a^b f(u)\,du</md>
+\int_a^b f(u)\,du</me></p>
 
   <p>mean the same number.  The variable is a placeholder inside the integral, just as the
 index in a finite sum is a placeholder:</p>
 
-  <md>\sum_{i=1}^{n} i^2
+  <p><me>\sum_{i=1}^{n} i^2
 =
-\sum_{k=1}^{n} k^2.</md>
+\sum_{k=1}^{n} k^2.</me></p>
 
   <p>The bounds <m>a</m> and <m>b</m> are not temporary.  They determine the interval of
 accumulation.</p>
@@ -338,27 +322,27 @@ accumulation.</p>
   <p>Many calculations use equal subintervals.  If <m>[a,b]</m> is divided into <m>n</m> equal
 pieces, then</p>
 
-  <md>\Delta x=\frac{b-a}{n}.</md>
+  <p><me>\Delta x=\frac{b-a}{n}.</me></p>
 
   <p>Using right endpoints,</p>
 
-  <md>x_i=a+i\Delta x,
-\qquad i=1,2,\ldots,n.</md>
+  <p><me>x_i=a+i\Delta x,
+\qquad i=1,2,\ldots,n.</me></p>
 
   <p>The right Riemann sum is</p>
 
-  <md>\sum_{i=1}^{n} f(a+i\Delta x)\Delta x.</md>
+  <p><me>\sum_{i=1}^{n} f(a+i\Delta x)\Delta x.</me></p>
 
   <p>If <m>f</m> is integrable, then this particular sequence of sums approaches the integral:</p>
 
-  <md>
+  <p><me>
 \int_a^b f(x)\,dx
 =
 \lim_{n\to\infty}
 \sum_{i=1}^{n} f(a+i\Delta x)\Delta x,
 \qquad
 \Delta x=\frac{b-a}{n}.
-</md>
+</me></p>
 
   <p>This formula is not the definition in its full strength, because it uses only equal
 widths and right endpoints.  But for integrable functions, it is often the most convenient
@@ -370,98 +354,98 @@ way to compute from the definition.</p>
 
   <p>The area under</p>
 
-  <md>y=x^2</md>
+  <p><me>y=x^2</me></p>
 
   <p>from <m>0</m> to <m>2</m> was estimated in the previous section.  Now we compute its exact
 integral from Riemann sums.</p>
 
   <p>Let</p>
 
-  <md>f(x)=x^2,
+  <p><me>f(x)=x^2,
 \qquad
-0\le x\le2.</md>
+0\le x\le2.</me></p>
 
   <p>Divide <m>[0,2]</m> into <m>n</m> equal subintervals.  Then</p>
 
-  <md>\Delta x=\frac{2}{n}.</md>
+  <p><me>\Delta x=\frac{2}{n}.</me></p>
 
   <p>Use right endpoints:</p>
 
-  <md>x_i=\frac{2i}{n}.</md>
+  <p><me>x_i=\frac{2i}{n}.</me></p>
 
   <p>The right Riemann sum is</p>
 
-  <md>R_n
+  <p><me>R_n
 =
 \sum_{i=1}^{n}
-f(x_i)\Delta x.</md>
+f(x_i)\Delta x.</me></p>
 
   <p>Since <m>f(x)=x^2</m>,</p>
 
-  <md>R_n
+  <p><me>R_n
 =
 \sum_{i=1}^{n}
 \left(\frac{2i}{n}\right)^2
-\left(\frac{2}{n}\right).</md>
+\left(\frac{2}{n}\right).</me></p>
 
   <p>Simplify:</p>
 
-  <md>R_n
+  <p><me>R_n
 =
 \sum_{i=1}^{n}
 \frac{4i^2}{n^2}\cdot\frac{2}{n}
 =
-\frac{8}{n^3}\sum_{i=1}^{n}i^2.</md>
+\frac{8}{n^3}\sum_{i=1}^{n}i^2.</me></p>
 
   <p>Use</p>
 
-  <md>\sum_{i=1}^{n}i^2
+  <p><me>\sum_{i=1}^{n}i^2
 =
-\frac{n(n+1)(2n+1)}{6}.</md>
+\frac{n(n+1)(2n+1)}{6}.</me></p>
 
   <p>Then</p>
 
-  <md>R_n
+  <p><me>R_n
 =
-\frac{8}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}.</md>
+\frac{8}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}.</me></p>
 
   <p>Thus</p>
 
-  <md>R_n
+  <p><me>R_n
 =
 \frac{4}{3}
 \cdot
-\frac{(n+1)(2n+1)}{n^2}.</md>
+\frac{(n+1)(2n+1)}{n^2}.</me></p>
 
   <p>Expand:</p>
 
-  <md>R_n
+  <p><me>R_n
 =
 \frac{4}{3}
 \left(
 2+\frac{3}{n}+\frac{1}{n^2}
-\right).</md>
+\right).</me></p>
 
   <p>Therefore</p>
 
-  <md>\lim_{n\to\infty}R_n
+  <p><me>\lim_{n\to\infty}R_n
 =
 \frac{4}{3}\cdot2
 =
-\frac{8}{3}.</md>
+\frac{8}{3}.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int_0^2 x^2\,dx=\frac{8}{3}.
-</md>
+</me></p>
 
   <p>Because <m>x^2\ge0</m> on <m>[0,2]</m>, this number is also the area under the curve.</p>
 
   <figure xml:id="fig-riemann-x-squared-right">
     <caption>The exact area under <m>y=x^2</m> on <m>[0,2]</m> is the limit of these rectangular sums: <m>\int_0^2 x^2\,dx=8/3</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The exact area under <m>y=x^2</m> on <m>[0,2]</m> is the limit of these rectangular sums: <m>\int_0^2 x^2\,dx=8/3</m>.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.78\textwidth,
@@ -493,11 +477,11 @@ f(x_i)\Delta x.</md>
   <p>This calculation is the first exact curved area in the chapter.  It came from three
 ingredients:</p>
 
-  <md>\text{partition},
+  <p><me>\text{partition},
 \qquad
 \text{Riemann sum},
 \qquad
-\text{limit}.</md>
+\text{limit}.</me></p>
   </subsection>
 
   <subsection xml:id="subsec-why-sample-point-should-not-matter">
@@ -519,32 +503,30 @@ become negligible as the widths shrink.</p>
   <p>For <m>f(x)=x^2</m> on <m>[0,2]</m>, the left and right sums have the same limit.  The right
 sum is</p>
 
-  <md>R_n=
+  <p><me>R_n=
 \sum_{i=1}^{n}
 \left(\frac{2i}{n}\right)^2
 \left(\frac{2}{n}\right)
 \to
-\frac83.</md>
+\frac83.</me></p>
 
   <p>The left sum is</p>
 
-  <md>L_n=
+  <p><me>L_n=
 \sum_{i=0}^{n-1}
 \left(\frac{2i}{n}\right)^2
-\left(\frac{2}{n}\right).</md>
+\left(\frac{2}{n}\right).</me></p>
 
   <p>Using the same sum-of-squares formula, one finds</p>
 
-  <md>L_n\to\frac83.</md>
+  <p><me>L_n\to\frac83.</me></p>
 
   <p>The upper and lower sums also squeeze toward the same number.  That is why the
 integral exists and equals</p>
 
-  <md>\frac83.</md>
+  <p><me>\frac83.</me></p>
 
-  <md>
-\text{When all fine rectangular sums are forced toward one number, that number is the integral.}
-</md>
+  <p><em>When all fine rectangular sums are forced toward one number, that number is the integral.</em></p>
 
   <exercise xml:id="checkpoint-8-4-sample-should-not-matter">
         <title>Why should the sample point not matter for a well-behaved function?</title>
@@ -567,7 +549,7 @@ integral exists and equals</p>
 
   <p>The definition says:</p>
 
-  <md>\text{all fine Riemann sums must approach one common value.}</md>
+  <p><me>\text{all fine Riemann sums must approach one common value.}</me></p>
 
   <p>This is a strong condition, but most functions we meet in first-year calculus satisfy it.</p>
 
@@ -587,18 +569,16 @@ discontinuities can still be integrable.</p>
 
   <p>For example, the step function</p>
 
-  <md>
-    <mrow>H(x)=
+  <p><me>H(x)=
 \begin{cases}
-0, \amp 0\le x&lt;1,</mrow>
-    <mrow>1, \amp 1\le x\le2
-\end{cases}</mrow>
-  </md>
+0, \amp 0\le x&lt;1,\\
+1, \amp 1\le x\le2
+\end{cases}</me></p>
 
   <p>is integrable on <m>[0,2]</m>.  The jump at <m>x=1</m> affects only one point.  Riemann sums
 still settle down to the total area:</p>
 
-  <md>1.</md>
+  <p><me>1.</me></p>
 
   <p>But not every bounded function is integrable.</p>
 
@@ -607,13 +587,11 @@ still settle down to the total area:</p>
 
   <p>Define a function <m>D</m> on <m>[0,1]</m> by</p>
 
-  <md>
-    <mrow>D(x)=
+  <p><me>D(x)=
 \begin{cases}
-1, \amp x\text{ is rational},</mrow>
-    <mrow>0, \amp x\text{ is irrational}.
-\end{cases}</mrow>
-  </md>
+1, \amp x\text{ is rational},\\
+0, \amp x\text{ is irrational}.
+\end{cases}</me></p>
 
   <p>Every interval, no matter how small, contains rational numbers and irrational numbers.
 So on every subinterval, we can choose a rational sample point and get height <m>1</m>, or
@@ -621,17 +599,17 @@ choose an irrational sample point and get height <m>0</m>.</p>
 
   <p>If every sample point is rational, the Riemann sum is</p>
 
-  <md>\sum_{i=1}^{n}1\cdot \Delta x_i
+  <p><me>\sum_{i=1}^{n}1\cdot \Delta x_i
 =
 \sum_{i=1}^{n}\Delta x_i
 =
-1.</md>
+1.</me></p>
 
   <p>If every sample point is irrational, the Riemann sum is</p>
 
-  <md>\sum_{i=1}^{n}0\cdot \Delta x_i
+  <p><me>\sum_{i=1}^{n}0\cdot \Delta x_i
 =
-0.</md>
+0.</me></p>
 
   <p>These two outcomes do not approach one common number.  They remain separated by
 <m>1</m>, no matter how fine the partition is.</p>
@@ -644,14 +622,11 @@ choose an irrational sample point and get height <m>0</m>.</p>
 fine Riemann sums are forced toward the same value, regardless of the sample points.</p>
   </note>
 
-  <p>This warning is not meant to frighten us.  It tells us why the definition is honest.
-The continuous functions, piecewise continuous functions, and ordinary models of
-science and geometry are integrable.  But the definition knows how to reject functions
-that oscillate too violently at every scale.</p>
+  <p>Boundedness alone does not imply Riemann integrability. Continuous functions and bounded piecewise-continuous functions on a closed finite interval are integrable, but a bounded function can fail to have convergent Riemann sums.</p>
 
   <p>We now have the central object of integral calculus:</p>
 
-  <md>\int_a^b f(x)\,dx.</md>
+  <p><me>\int_a^b f(x)\,dx.</me></p>
 
   <p>When <m>f\ge0</m>, it is area under the graph.  But the original motivation came from
 velocity, and velocity can be negative.  The next step is to understand the integral as
@@ -666,11 +641,7 @@ counts negatively.</p>
             Continuity on a closed interval is enough for integrability, and a finite number of jumps can still be all right. In your own words, why is boundedness not enough by itself, and what goes wrong if a function oscillates too violently at every scale?
           </p>
         </statement>
-        <hint>
-          <p>
-            Integrability asks that all fine Riemann sums settle on one value. If heights refuse to settle inside every tiny interval, the sums cannot agree.
-          </p>
-        </hint>
+        <hint><p>Integrability requires all sufficiently fine Riemann sums to approach one value. For the function that is one on rationals and zero on irrationals, every subinterval allows either sample height, so the sums can stay a full interval length apart.</p></hint>
       </exercise>
 
   </subsection>

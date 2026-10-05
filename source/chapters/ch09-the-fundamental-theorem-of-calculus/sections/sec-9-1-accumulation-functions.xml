@@ -1,27 +1,23 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-9-1-accumulation-functions">
   <title>Accumulation functions</title>
 
-  <p>A definite integral with fixed endpoints gives one accumulated amount.  But if the upper
+  <introduction><p>A definite integral with fixed endpoints gives one accumulated amount.  But if the upper
 endpoint moves, the accumulated amount changes.  That changing amount is a function.</p>
 
-  <p>This is the same idea as an odometer.  At each time, the odometer reading is the
-accumulated velocity up to that time.  If we know the velocity graph, then the odometer
-reading is an area-with-sign whose right endpoint moves.</p>
+  <p>This is the same idea as recovering position from velocity. At each time, the position change is the accumulated signed velocity up to that time. If we know the velocity graph, that change is an area-with-sign whose right endpoint moves. An odometer instead accumulates speed, so its reading never decreases.</p>
 
-  <subsection xml:id="subsec-area-moving-endpoint">
+  </introduction><subsection xml:id="subsec-area-moving-endpoint">
     <title>Area with a moving endpoint</title>
 
   <p>Start with a simple height function,</p>
 
-  <md>f(t)=2+t,
-\qquad t\ge 0.</md>
+  <p><me>f(t)=2+t,
+\qquad t\ge 0.</me></p>
 
   <p>Let <m>A(x)</m> be the area under <m>f</m> from <m>0</m> to <m>x</m>:</p>
 
-  <md>A(x)=\int_0^x (2+t)\,dt,
-\qquad x\ge 0.</md>
+  <p><me>A(x)=\int_0^x (2+t)\,dt,
+\qquad x\ge 0.</me></p>
 
   <p>Because <m>f(t)=2+t</m> is a line, we can compute this area by geometry.  The region is a
 rectangle of height <m>2</m> and width <m>x</m>, plus a right triangle of base <m>x</m> and height
@@ -29,12 +25,12 @@ rectangle of height <m>2</m> and width <m>x</m>, plus a right triangle of base <
 
   <p>So</p>
 
-  <md>A(x)=2x+\frac12 x^2.</md>
+  <p><me>A(x)=2x+\frac12 x^2.</me></p>
 
   <figure xml:id="fig-area-moving-endpoint-line">
     <caption>As the right endpoint <m>x</m> moves, the accumulated area <m>A(x)</m> changes.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>As the right endpoint <m>x</m> moves, the accumulated area <m>A(x)</m> changes.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.78\textwidth,
@@ -67,19 +63,19 @@ rectangle of height <m>2</m> and width <m>x</m>, plus a right triangle of base <
 
   <p>Since</p>
 
-  <md>A(x)=2x+\frac12x^2,</md>
+  <p><me>A(x)=2x+\frac12x^2,</me></p>
 
   <p>we have</p>
 
-  <md>A'(x)=2+x.</md>
+  <p><me>A'(x)=2+x.</me></p>
 
   <p>But</p>
 
-  <md>2+x=f(x).</md>
+  <p><me>2+x=f(x).</me></p>
 
   <p>So in this example,</p>
 
-  <md>A'(x)=f(x).</md>
+  <p><me>A'(x)=f(x).</me></p>
 
   <p>The slope of the accumulated area function is the current height of the graph.</p>
 
@@ -106,68 +102,64 @@ rectangle of height <m>2</m> and width <m>x</m>, plus a right triangle of base <
 
   <p>Let <m>f</m> be integrable on an interval containing <m>a</m>.  Fix the starting point <m>a</m>.  Define</p>
 
-  <md>
+  <p><me>
 A(x)=\int_a^x f(t)\,dt.
-</md>
+</me></p>
 
   <p>This <m>A</m> is called an <em>accumulation function</em>.</p>
 
   <p>The variable <m>t</m> is a placeholder inside the integral.  We use <m>t</m> instead of <m>x</m>
 because <m>x</m> is already being used for the moving endpoint.  The expressions</p>
 
-  <md>\int_a^x f(t)\,dt</md>
+  <p><me>\int_a^x f(t)\,dt</me></p>
 
   <p>and</p>
 
-  <md>\int_a^x f(u)\,du</md>
+  <p><me>\int_a^x f(u)\,du</me></p>
 
   <p>mean the same thing.  The letter inside the integral is temporary.  The endpoint <m>x</m>
 is not temporary; it is the input to the new function <m>A</m>.</p>
 
   <example xml:id="ex-sec-9-1-accumulation-functions-1">
     <title>Example</title>
-    <statement>
-  <p>If</p>
+    <p>If</p>
 
-  <md>f(t)=t^2</md>
+  <p><me>f(t)=t^2</me></p>
 
   <p>and</p>
 
-  <md>A(x)=\int_1^x t^2\,dt,</md>
+  <p><me>A(x)=\int_1^x t^2\,dt,</me></p>
 
   <p>then <m>A(3)</m> is the accumulated area under <m>t^2</m> from <m>1</m> to <m>3</m>:</p>
 
-  <md>A(3)=\int_1^3 t^2\,dt.</md>
+  <p><me>A(3)=\int_1^3 t^2\,dt.</me></p>
 
   <p>The number <m>A(2)</m> is</p>
 
-  <md>A(2)=\int_1^2 t^2\,dt.</md>
+  <p><me>A(2)=\int_1^2 t^2\,dt.</me></p>
 
   <p>The function <m>A(x)</m> stores all such accumulated areas at once.</p>
-    </statement>
-  </example>
+    </example>
 
   <paragraphs>
     <title>Orientation still matters</title>
 
   <p>If <m>x&gt;a</m>, then</p>
 
-  <md>A(x)=\int_a^x f(t)\,dt</md>
+  <p><me>A(x)=\int_a^x f(t)\,dt</me></p>
 
   <p>accumulates in the usual left-to-right direction.</p>
 
   <p>If <m>x&lt;a</m>, then</p>
 
-  <md>A(x)=\int_a^x f(t)\,dt
+  <p><me>A(x)=\int_a^x f(t)\,dt
 =
--\int_x^a f(t)\,dt.</md>
+-\int_x^a f(t)\,dt.</me></p>
 
   <p>So even when <m>f(t)\ge0</m>, the value of <m>A(x)</m> can be negative for <m>x&lt;a</m>.  The sign
 comes from the direction of accumulation.</p>
 
-  <md>
-\text{The endpoint \(x\) moves.  The direction from \(a\) to \(x\) is part of the meaning.}
-</md>
+  <p><em>The endpoint <m>x</m> moves. The direction from <m>a</m> to <m>x</m> is part of the meaning.</em></p>
   </paragraphs>
 
   <exercise xml:id="checkpoint-9-1-dummy-variable">
@@ -191,25 +183,25 @@ comes from the direction of accumulation.</p>
 
   <p>The derivative of <m>A</m> begins with a difference quotient:</p>
 
-  <md>\frac{A(x+h)-A(x)}{h}.</md>
+  <p><me>\frac{A(x+h)-A(x)}{h}.</me></p>
 
   <p>Because <m>A</m> is an integral, the numerator is a difference of accumulated amounts:</p>
 
-  <md>A(x+h)-A(x)
+  <p><me>A(x+h)-A(x)
 =
-\int_a^{x+h} f(t)\,dt-\int_a^x f(t)\,dt.</md>
+\int_a^{x+h} f(t)\,dt-\int_a^x f(t)\,dt.</me></p>
 
   <p>By additivity of the integral over intervals,</p>
 
-  <md>\int_a^{x+h} f(t)\,dt
+  <p><me>\int_a^{x+h} f(t)\,dt
 =
-\int_a^x f(t)\,dt+\int_x^{x+h} f(t)\,dt.</md>
+\int_a^x f(t)\,dt+\int_x^{x+h} f(t)\,dt.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.
-</md>
+</me></p>
 
   <p>This identity is the key.  The change in accumulated area is the small new strip from
 <m>x</m> to <m>x+h</m>.</p>
@@ -217,7 +209,7 @@ A(x+h)-A(x)=\int_x^{x+h} f(t)\,dt.
   <figure xml:id="fig-accumulation-change-strip">
     <caption>The change in an accumulation function is the thin strip from <m>x</m> to <m>x+h</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The change in an accumulation function is the thin strip from <m>x</m> to <m>x+h</m>.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.80\textwidth,
@@ -257,17 +249,17 @@ direction, and the same formula still works.</p>
 <m>x</m> and <m>x+h</m>.  The strip is approximately a rectangle with height <m>f(x)</m> and width
 <m>h</m>.  Therefore</p>
 
-  <md>A(x+h)-A(x)
+  <p><me>A(x+h)-A(x)
 =
 \int_x^{x+h} f(t)\,dt
 \approx
-f(x)h.</md>
+f(x)h.</me></p>
 
   <p>Divide by <m>h</m>:</p>
 
-  <md>\frac{A(x+h)-A(x)}{h}
+  <p><me>\frac{A(x+h)-A(x)}{h}
 \approx
-f(x).</md>
+f(x).</me></p>
 
   <p>As <m>h\to0</m>, this approximation should become exact.</p>
 
@@ -292,17 +284,17 @@ f(x).</md>
 
   <p>For <m>h&gt;0</m>, the difference quotient becomes</p>
 
-  <md>\frac{A(x+h)-A(x)}{h}
+  <p><me>\frac{A(x+h)-A(x)}{h}
 =
-\frac1h\int_x^{x+h} f(t)\,dt.</md>
+\frac1h\int_x^{x+h} f(t)\,dt.</me></p>
 
   <p>The right side has a direct meaning:</p>
 
-  <md>
+  <p><me>
 \frac1h\int_x^{x+h} f(t)\,dt
 =
 \text{average value of \(f\) on }[x,x+h].
-</md>
+</me></p>
 
   <p>So the slope of the accumulation function over <m>[x,x+h]</m> is the average height of the
 original function over that same interval.</p>
@@ -310,13 +302,13 @@ original function over that same interval.</p>
   <p>As the interval shrinks, the average height should approach the current height, provided
 there is no jump at <m>x</m>.</p>
 
-  <md>\text{average height near \(x\)}
+  <p><me>\text{average height near \(x\)}
 \longrightarrow
-\text{height at \(x\)}.</md>
+\text{height at \(x\)}.</me></p>
 
   <p>That is why we expect</p>
 
-  <md>A'(x)=f(x).</md>
+  <p><me>A'(x)=f(x).</me></p>
 
 
   <exercise xml:id="checkpoint-9-1-orientation">
@@ -335,50 +327,48 @@ there is no jump at <m>x</m>.</p>
 
   <example xml:id="ex-sec-9-1-accumulation-functions-3">
     <title>the line again</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>A(x)=\int_0^x (2+t)\,dt.</md>
+  <p><me>A(x)=\int_0^x (2+t)\,dt.</me></p>
 
   <p>From geometry,</p>
 
-  <md>A(x)=2x+\frac12x^2.</md>
+  <p><me>A(x)=2x+\frac12x^2.</me></p>
 
   <p>Then</p>
 
-  <md>A(x+h)-A(x)
+  <p><me>A(x+h)-A(x)
 =
 \left(2(x+h)+\frac12(x+h)^2\right)
 -
-\left(2x+\frac12x^2\right).</md>
+\left(2x+\frac12x^2\right).</me></p>
 
   <p>Simplify:</p>
 
-  <md>A(x+h)-A(x)
+  <p><me>A(x+h)-A(x)
 =
-2h+xh+\frac12h^2.</md>
+2h+xh+\frac12h^2.</me></p>
 
   <p>So</p>
 
-  <md>\frac{A(x+h)-A(x)}{h}
+  <p><me>\frac{A(x+h)-A(x)}{h}
 =
-2+x+\frac12h.</md>
+2+x+\frac12h.</me></p>
 
   <p>Let <m>h\to0</m>:</p>
 
-  <md>A'(x)=2+x.</md>
+  <p><me>A'(x)=2+x.</me></p>
 
   <p>But the original height function was</p>
 
-  <md>f(x)=2+x.</md>
+  <p><me>f(x)=2+x.</me></p>
 
   <p>Again,</p>
 
-  <md>A'(x)=f(x).</md>
+  <p><me>A'(x)=f(x).</me></p>
 
   <p>The example has given the pattern.  The next section turns the pattern into a theorem.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
 

@@ -1,92 +1,76 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-13-4-separable-equations">
   <title>Separable equations</title>
 
-  <p>Euler’s method follows a differential equation numerically.  A separable equation can
-sometimes be solved by integration.</p>
-
-  <p>The idea is simple.  Some differential equations can be rearranged so that all the <m>y</m>’s
-are on one side and all the <m>x</m>’s are on the other.</p>
-
-  <p>Then the equation becomes an integral statement.</p>
-
-  <md>\text{separate}
-\quad\Longrightarrow\quad
-\text{integrate}
-\quad\Longrightarrow\quad
-\text{solve for the constant}.</md>
-
-  <subsection xml:id="subsec-separating-variables">
+  <introduction><p>A separable differential equation has the form <m>y\prime=g(t)h(y)</m>. On intervals where <m>h(y)\ne0</m>, divide by <m>h(y)</m> and integrate to obtain an implicit relation between <m>t</m> and <m>y</m>. Check the zeros of <m>h</m> separately, since they may give equilibrium solutions lost by division.</p></introduction><subsection xml:id="subsec-separating-variables">
     <title>Separating variables</title>
 
   <p>Start with the differential equation</p>
 
-  <md>\frac{dy}{dx}=xy.</md>
+  <p><me>\frac{dy}{dx}=xy.</me></p>
 
   <p>This says that the rate of change of <m>y</m> is the product of the current input <m>x</m> and
 the current output <m>y</m>.</p>
 
   <p>If <m>y\neq0</m>, we can divide by <m>y</m>:</p>
 
-  <md>\frac{1}{y}\frac{dy}{dx}=x.</md>
+  <p><me>\frac{1}{y}\frac{dy}{dx}=x.</me></p>
 
   <p>In differential notation, this is written</p>
 
-  <md>\frac{dy}{y}=x\,dx.</md>
+  <p><me>\frac{dy}{y}=x\,dx.</me></p>
 
   <p>Now integrate both sides:</p>
 
-  <md>\int \frac{1}{y}\,dy=\int x\,dx.</md>
+  <p><me>\int \frac{1}{y}\,dy=\int x\,dx.</me></p>
 
   <p>Thus</p>
 
-  <md>\ln|y|=\frac{x^2}{2}+C.</md>
+  <p><me>\ln|y|=\frac{x^2}{2}+C.</me></p>
 
   <p>Exponentiating gives</p>
 
-  <md>|y|=e^C e^{x^2/2}.</md>
+  <p><me>|y|=e^C e^{x^2/2}.</me></p>
 
   <p>The sign of <m>y</m> can be absorbed into the constant, so the nonzero solutions are</p>
 
-  <md>y=Ce^{x^2/2}.</md>
+  <p><me>y=Ce^{x^2/2}.</me></p>
 
   <p>Now apply an initial condition.  If</p>
 
-  <md>y(0)=2,</md>
+  <p><me>y(0)=2,</me></p>
 
   <p>then</p>
 
-  <md>2=Ce^0,</md>
+  <p><me>2=Ce^0,</me></p>
 
   <p>so</p>
 
-  <md>C=2.</md>
+  <p><me>C=2.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 y=2e^{x^2/2}.
-</md>
+</me></p>
 
   <p>Check the answer:</p>
 
-  <md>y'=2e^{x^2/2}\cdot x
+  <p><me>y'=2e^{x^2/2}\cdot x
 =
-xy.</md>
+xy.</me></p>
 
   <p>The formula satisfies the differential equation and the initial condition.</p>
 
   <note xml:id="note-sec-13-4-separable-equations-116">
     <title>Separable equation</title>
       <p>A first-order differential equation is <em>separable</em> if it can be written in the form</p>
-        <md>\frac{dy}{dx}=g(x)h(y).</md>
+        <p><me>\frac{dy}{dx}=g(x)h(y).</me></p>
       <p>On intervals where <m>h(y)\neq0</m>, we can write</p>
-        <md>\frac{1}{h(y)}\,dy=g(x)\,dx</md>
+        <p><me>\frac{1}{h(y)}\,dy=g(x)\,dx</me></p>
       <p>and integrate:</p>
-        <md>
+        <p><me>
 \int \frac{1}{h(y)}\,dy=\int g(x)\,dx+C.
-</md>
+</me></p>
   </note>
 
   <p>The separation notation is compact, but it is not meaningless symbol pushing.  It is the
@@ -94,19 +78,19 @@ chain rule in disguise.</p>
 
   <p>Suppose</p>
 
-  <md>H'(y)=\frac{1}{h(y)}</md>
+  <p><me>H'(y)=\frac{1}{h(y)}</me></p>
 
   <p>and</p>
 
-  <md>G'(x)=g(x).</md>
+  <p><me>G'(x)=g(x).</me></p>
 
   <p>If <m>y=y(x)</m> satisfies</p>
 
-  <md>y'=g(x)h(y),</md>
+  <p><me>y'=g(x)h(y),</me></p>
 
   <p>then</p>
 
-  <md>\frac{d}{dx}H(y(x))
+  <p><me>\frac{d}{dx}H(y(x))
 =
 H'(y)y'
 =
@@ -114,11 +98,11 @@ H'(y)y'
 =
 g(x)
 =
-G'(x).</md>
+G'(x).</me></p>
 
   <p>Therefore</p>
 
-  <md>H(y(x))=G(x)+C.</md>
+  <p><me>H(y(x))=G(x)+C.</me></p>
 
   <p>That is exactly what separation and integration produced.</p>
 
@@ -127,14 +111,14 @@ G'(x).</md>
 
   <p>To solve a separable equation:</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>Write it in the form</p>
-          <md>\frac{dy}{dx}=g(x)h(y).</md>
+          <p><me>\frac{dy}{dx}=g(x)h(y).</me></p>
       </li>
       <li>
         <p>Move all <m>y</m>-factors to the left and all <m>x</m>-factors to the right:</p>
-          <md>\frac{1}{h(y)}\,dy=g(x)\,dx.</md>
+          <p><me>\frac{1}{h(y)}\,dy=g(x)\,dx.</me></p>
       </li>
       <li>
         <p>Integrate both sides.</p>
@@ -148,7 +132,7 @@ G'(x).</md>
       <li>
         <p>Check for constant solutions lost by division.</p>
       </li>
-    </ol>
+    </ol></p>
 
   <p>The last step is easy to forget and important.</p>
   </paragraphs>
@@ -158,36 +142,36 @@ G'(x).</md>
 
   <p>Consider</p>
 
-  <md>y'=y(1-y).</md>
+  <p><me>y'=y(1-y).</me></p>
 
   <p>This equation is separable.  But if we divide by</p>
 
-  <md>y(1-y),</md>
+  <p><me>y(1-y),</me></p>
 
   <p>we have assumed</p>
 
-  <md>y\neq0
+  <p><me>y\neq0
 \qquad\text{and}\qquad
-y\neq1.</md>
+y\neq1.</me></p>
 
   <p>The constant functions</p>
 
-  <md>y=0
+  <p><me>y=0
 \qquad\text{and}\qquad
-y=1</md>
+y=1</me></p>
 
   <p>are both solutions, because in each case</p>
 
-  <md>y'=0</md>
+  <p><me>y'=0</me></p>
 
   <p>and</p>
 
-  <md>y(1-y)=0.</md>
+  <p><me>y(1-y)=0.</me></p>
 
   <p>If we divide by <m>y(1-y)</m> before noticing them, we may lose them.</p>
 
   <note xml:id="note-sec-13-4-separable-equations-117">
-    <title>Separation rule of honesty</title>
+    <title>Check equilibrium solutions before division</title>
       <p>When you divide by an expression involving <m>y</m>, separately check the values of <m>y</m>
 that make that expression zero.  They often give equilibrium solutions.</p>
   </note>
@@ -198,9 +182,7 @@ that make that expression zero.  They often give equilibrium solutions.</p>
   <exercise xml:id="checkpoint-13-4-division-loses-solutions">
         <title>Why can dividing by an expression involving <m>y</m> lose solutions?</title>
         <statement>
-          <p>
-            For <m>y'=y(1-y)</m>, dividing by <m>y(1-y)</m> assumes <m>y\neq0</m> and <m>y\neq1</m>. In your own words, why are those excluded values often the most important solutions in a model, and what honest extra step should follow every such division?
-          </p>
+          <p>For <m>y\prime=y(1-y)</m>, dividing by <m>y(1-y)</m> excludes <m>y=0</m> and <m>y=1</m>. Explain why these are equilibrium solutions and how to check such excluded cases.</p>
         </statement>
         <hint>
           <p>
@@ -216,53 +198,53 @@ that make that expression zero.  They often give equilibrium solutions.</p>
 
   <p>The most famous separable equation is</p>
 
-  <md>y'=ky,</md>
+  <p><me>y'=ky,</me></p>
 
   <p>where <m>k</m> is constant.</p>
 
   <p>This says:</p>
 
-  <md>\text{rate of change is proportional to current amount}.</md>
+  <p><me>\text{rate of change is proportional to current amount}.</me></p>
 
   <p>Separate variables:</p>
 
-  <md>\frac{dy}{y}=k\,dt,
-\qquad y\neq0.</md>
+  <p><me>\frac{dy}{y}=k\,dt,
+\qquad y\neq0.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\ln|y|=kt+C.</md>
+  <p><me>\ln|y|=kt+C.</me></p>
 
   <p>Exponentiate:</p>
 
-  <md>y=Ce^{kt}.</md>
+  <p><me>y=Ce^{kt}.</me></p>
 
   <p>If</p>
 
-  <md>y(0)=y_0,</md>
+  <p><me>y(0)=y_0,</me></p>
 
   <p>then</p>
 
-  <md>C=y_0.</md>
+  <p><me>C=y_0.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 y(t)=y_0e^{kt}.
-</md>
+</me></p>
 
   <p>The formula also works when <m>y_0=0</m>, giving the equilibrium solution</p>
 
-  <md>y(t)=0.</md>
+  <p><me>y(t)=0.</me></p>
 
   <p>The sign of <m>k</m> determines the long-term behavior.</p>
 
   <table xml:id="tab-sec-13-4-separable-equations-1">
-    <tabular halign="left">
+    <title>Growth and decay revisited</title><tabular halign="left" width="100%">
       <row bottom="minor">
-        <cell><strong>equation</strong></cell>
-        <cell><strong>condition</strong></cell>
-        <cell><strong>behavior</strong></cell>
+        <cell><alert>equation</alert></cell>
+        <cell><alert>condition</alert></cell>
+        <cell><alert>behavior</alert></cell>
       </row>
       <row bottom="minor">
         <cell><m>y'=ky</m></cell>
@@ -299,88 +281,84 @@ y(t)=y_0e^{kt}.
 
   <example xml:id="ex-sec-13-4-separable-equations-3">
     <title>radioactive decay</title>
-    <statement>
-  <p>A radioactive sample has mass <m>M(t)</m>, measured in grams, and satisfies</p>
+    <p>A radioactive sample has mass <m>M(t)</m>, measured in grams, and satisfies</p>
 
-  <md>M'=-0.03M,
+  <p><me>M'=-0.03M,
 \qquad
-M(0)=80.</md>
+M(0)=80.</me></p>
 
   <p>The solution is</p>
 
-  <md>M(t)=80e^{-0.03t}.</md>
+  <p><me>M(t)=80e^{-0.03t}.</me></p>
 
   <p>The mass decays toward <m>0</m>, but never reaches <m>0</m> in finite time.</p>
 
   <p>To find the half-life, solve</p>
 
-  <md>40=80e^{-0.03t}.</md>
+  <p><me>40=80e^{-0.03t}.</me></p>
 
   <p>Divide by <m>80</m>:</p>
 
-  <md>\frac12=e^{-0.03t}.</md>
+  <p><me>\frac12=e^{-0.03t}.</me></p>
 
   <p>Take logarithms:</p>
 
-  <md>\ln\left(\frac12\right)=-0.03t.</md>
+  <p><me>\ln\left(\frac12\right)=-0.03t.</me></p>
 
   <p>Since</p>
 
-  <md>\ln\left(\frac12\right)=-\ln2,</md>
+  <p><me>\ln\left(\frac12\right)=-\ln2,</me></p>
 
   <p>we get</p>
 
-  <md>t=\frac{\ln2}{0.03}.</md>
+  <p><me>t=\frac{\ln2}{0.03}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 t\approx23.1.
-</md>
+</me></p>
 
   <p>The half-life is about <m>23.1</m> time units.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-13-4-separable-equations-4">
     <title>variable relative growth</title>
-    <statement>
-  <p>Solve</p>
+    <p>Solve</p>
 
-  <md>y'=ty,
+  <p><me>y'=ty,
 \qquad
-y(0)=3.</md>
+y(0)=3.</me></p>
 
   <p>Separate:</p>
 
-  <md>\frac{dy}{y}=t\,dt.</md>
+  <p><me>\frac{dy}{y}=t\,dt.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\ln|y|=\frac{t^2}{2}+C.</md>
+  <p><me>\ln|y|=\frac{t^2}{2}+C.</me></p>
 
   <p>Since <m>y(0)=3</m>, we get</p>
 
-  <md>C=\ln3.</md>
+  <p><me>C=\ln3.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 y=3e^{t^2/2}.
-</md>
+</me></p>
 
   <p>Here the relative growth rate is not constant.  It is <m>t</m>.  The exponent is therefore the
 accumulated growth rate:</p>
 
-  <md>\int_0^t s\,ds=\frac{t^2}{2}.</md>
+  <p><me>\int_0^t s\,ds=\frac{t^2}{2}.</me></p>
 
   <p>This is a useful way to remember the answer:</p>
 
-  <md>
+  <p><me>
 \text{amount}=\text{initial amount}\cdot e^{\text{accumulated relative rate}}.
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-cooling-and-mixing">
@@ -391,36 +369,36 @@ equilibrium.</p>
 
   <p>Newton’s law of cooling says</p>
 
-  <md>T'=-k(T-T_s),
-\qquad k&gt;0,</md>
+  <p><me>T'=-k(T-T_s),
+\qquad k&gt;0,</me></p>
 
   <p>where <m>T_s</m> is the surrounding temperature.</p>
 
   <p>Separate variables:</p>
 
-  <md>\frac{dT}{T-T_s}=-k\,dt.</md>
+  <p><me>\frac{dT}{T-T_s}=-k\,dt.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\ln|T-T_s|=-kt+C.</md>
+  <p><me>\ln|T-T_s|=-kt+C.</me></p>
 
   <p>Exponentiate:</p>
 
-  <md>T-T_s=Ce^{-kt}.</md>
+  <p><me>T-T_s=Ce^{-kt}.</me></p>
 
   <p>If</p>
 
-  <md>T(0)=T_0,</md>
+  <p><me>T(0)=T_0,</me></p>
 
   <p>then</p>
 
-  <md>C=T_0-T_s.</md>
+  <p><me>C=T_0-T_s.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 T(t)=T_s+(T_0-T_s)e^{-kt}.
-</md>
+</me></p>
 
   <p>This single formula describes cooling and warming.</p>
 
@@ -430,9 +408,9 @@ T(t)=T_s+(T_0-T_s)e^{-kt}.
 
   <p>The exponential term decays to <m>0</m>, so in both cases</p>
 
-  <md>T(t)\to T_s
+  <p><me>T(t)\to T_s
 \qquad\text{as}\qquad
-t\to\infty.</md>
+t\to\infty.</me></p>
 
 
   <exercise xml:id="checkpoint-13-4-approach-to-equilibrium">
@@ -451,61 +429,60 @@ t\to\infty.</md>
 
   <example xml:id="ex-sec-13-4-separable-equations-5">
     <title>coffee cooling</title>
-    <statement>
-  <p>A cup of coffee is initially</p>
+    <p>A cup of coffee is initially</p>
 
-  <md>80^\circ\text{C}.</md>
+  <p><me>80^\circ\text{C}.</me></p>
 
   <p>The room is</p>
 
-  <md>20^\circ\text{C}.</md>
+  <p><me>20^\circ\text{C}.</me></p>
 
   <p>Suppose</p>
 
-  <md>T'=-0.08(T-20),
+  <p><me>T'=-0.08(T-20),
 \qquad
-T(0)=80.</md>
+T(0)=80.</me></p>
 
   <p>Then</p>
 
-  <md>T(t)=20+(80-20)e^{-0.08t}.</md>
+  <p><me>T(t)=20+(80-20)e^{-0.08t}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 T(t)=20+60e^{-0.08t}.
-</md>
+</me></p>
 
   <p>When will the coffee reach <m>40^\circ\text{C}</m>?</p>
 
   <p>Solve</p>
 
-  <md>40=20+60e^{-0.08t}.</md>
+  <p><me>40=20+60e^{-0.08t}.</me></p>
 
   <p>Then</p>
 
-  <md>20=60e^{-0.08t},</md>
+  <p><me>20=60e^{-0.08t},</me></p>
 
   <p>so</p>
 
-  <md>\frac13=e^{-0.08t}.</md>
+  <p><me>\frac13=e^{-0.08t}.</me></p>
 
   <p>Take logarithms:</p>
 
-  <md>-\ln3=-0.08t.</md>
+  <p><me>-\ln3=-0.08t.</me></p>
 
   <p>Therefore</p>
 
-  <md>t=\frac{\ln3}{0.08}\approx13.7.</md>
+  <p><me>t=\frac{\ln3}{0.08}\approx13.7.</me></p>
 
   <p>The coffee reaches <m>40^\circ\text{C}</m> after about</p>
 
-  <md>13.7\text{ minutes}.</md>
+  <p><me>13.7\text{ minutes}.</me></p>
 
   <figure xml:id="fig-cooling-separable">
     <caption>Newton’s law of cooling gives exponential approach to the surrounding temperature.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Newton’s law of cooling gives exponential approach to the surrounding temperature.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.82\textwidth,
@@ -535,133 +512,130 @@ T(t)=20+60e^{-0.08t}.
   </figure>
 
   <p>Mixing can produce the same kind of equation.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-13-4-separable-equations-6">
     <title>flushing salt from a tank</title>
-    <statement>
-  <p>A tank contains <m>100</m> liters of well-mixed salt water.  Initially there are <m>10</m> grams of
+    <p>A tank contains <m>100</m> liters of well-mixed salt water.  Initially there are <m>10</m> grams of
 salt in the tank.  Pure water flows in at <m>5</m> liters per minute, and the well-mixed
 solution flows out at the same rate.</p>
 
   <p>Let</p>
 
-  <md>S(t)=\text{grams of salt in the tank after \(t\) minutes}.</md>
+  <p><me>S(t)=\text{grams of salt in the tank after \(t\) minutes}.</me></p>
 
   <p>Since the volume stays <m>100</m> liters, the concentration in the tank is</p>
 
-  <md>\frac{S(t)}{100}</md>
+  <p><me>\frac{S(t)}{100}</me></p>
 
   <p>grams per liter.</p>
 
   <p>Pure water brings in no salt.  Salt leaves at the rate</p>
 
-  <md>5\cdot\frac{S(t)}{100}
+  <p><me>5\cdot\frac{S(t)}{100}
 =
-\frac{S(t)}{20}</md>
+\frac{S(t)}{20}</me></p>
 
   <p>grams per minute.</p>
 
   <p>Therefore</p>
 
-  <md>S'=-\frac{S}{20}.</md>
+  <p><me>S'=-\frac{S}{20}.</me></p>
 
   <p>This is separable:</p>
 
-  <md>\frac{dS}{S}=-\frac{1}{20}\,dt.</md>
+  <p><me>\frac{dS}{S}=-\frac{1}{20}\,dt.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\ln|S|=-\frac{t}{20}+C.</md>
+  <p><me>\ln|S|=-\frac{t}{20}+C.</me></p>
 
   <p>Since <m>S(0)=10</m>, we get</p>
 
-  <md>
+  <p><me>
 S(t)=10e^{-t/20}.
-</md>
+</me></p>
 
   <p>The salt amount decays exponentially.</p>
 
   <p>When will only <m>1</m> gram remain?</p>
 
-  <md>1=10e^{-t/20}.</md>
+  <p><me>1=10e^{-t/20}.</me></p>
 
   <p>So</p>
 
-  <md>\frac{1}{10}=e^{-t/20}.</md>
+  <p><me>\frac{1}{10}=e^{-t/20}.</me></p>
 
   <p>Taking logarithms gives</p>
 
-  <md>-\ln10=-\frac{t}{20}.</md>
+  <p><me>-\ln10=-\frac{t}{20}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 t=20\ln10\approx46.1\text{ minutes}.
-</md>
+</me></p>
 
   <p>The tank never becomes perfectly salt-free in finite time, but the amount of salt can be
 made as small as desired.</p>
 
+  </example>
   <note xml:id="note-sec-13-4-separable-equations-118">
     <title>Equilibrium difference pattern</title>
       <p>Equations of the form</p>
-        <md>Q'=-k(Q-Q_{\text{eq}})</md>
+        <p><me>Q'=-k(Q-Q_{\text{eq}})</me></p>
       <p>have solutions</p>
-        <md>
+        <p><me>
 Q(t)=Q_{\text{eq}}+\bigl(Q(0)-Q_{\text{eq}}\bigr)e^{-kt}.
-</md>
-      <p>The quantity <m>Q</m> approaches the equilibrium value <m>Q_{\text{eq}}</m> exponentially.</p>
+</me></p>
+      <p>For <m>k&gt;0</m> and constant <m>Q_{\text{eq}}</m>, the quantity <m>Q</m> approaches that equilibrium exponentially (or remains there if it starts there).</p>
   </note>
 
   <p>Cooling, charging circuits, simple mixing, and many adjustment models share this same
 mathematical skeleton.</p>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-implicit-solutions-separable">
     <title>Implicit solutions</title>
 
   <p>Separation does not always lead to a clean formula</p>
 
-  <md>y=\text{something involving }x.</md>
+  <p><me>y=\text{something involving }x.</me></p>
 
   <p>Sometimes the best answer is an equation that <m>x</m> and <m>y</m> satisfy together.  Such an
 answer is called an implicit solution.</p>
 
   <p>Consider</p>
 
-  <md>y'=\frac{x}{1+y^2},
+  <p><me>y'=\frac{x}{1+y^2},
 \qquad
-y(0)=0.</md>
+y(0)=0.</me></p>
 
   <p>Separate variables:</p>
 
-  <md>(1+y^2)\,dy=x\,dx.</md>
+  <p><me>(1+y^2)\,dy=x\,dx.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\int(1+y^2)\,dy=\int x\,dx.</md>
+  <p><me>\int(1+y^2)\,dy=\int x\,dx.</me></p>
 
   <p>So</p>
 
-  <md>y+\frac{y^3}{3}=\frac{x^2}{2}+C.</md>
+  <p><me>y+\frac{y^3}{3}=\frac{x^2}{2}+C.</me></p>
 
   <p>Use the initial condition <m>y(0)=0</m>:</p>
 
-  <md>0+\frac{0^3}{3}=0+C,</md>
+  <p><me>0+\frac{0^3}{3}=0+C,</me></p>
 
   <p>so</p>
 
-  <md>C=0.</md>
+  <p><me>C=0.</me></p>
 
   <p>Thus the solution is given implicitly by</p>
 
-  <md>
+  <p><me>
 y+\frac{y^3}{3}=\frac{x^2}{2}.
-</md>
+</me></p>
 
   <p>This equation is a perfectly meaningful solution.  It tells us which points <m>(x,y)</m>
 lie on the solution curve.</p>
@@ -669,21 +643,21 @@ lie on the solution curve.</p>
   <p>We can also check it without solving for <m>y</m>.  Differentiate both sides with respect to
 <m>x</m>:</p>
 
-  <md>\frac{d}{dx}\left(y+\frac{y^3}{3}\right)
+  <p><me>\frac{d}{dx}\left(y+\frac{y^3}{3}\right)
 =
-\frac{d}{dx}\left(\frac{x^2}{2}\right).</md>
+\frac{d}{dx}\left(\frac{x^2}{2}\right).</me></p>
 
   <p>By the chain rule,</p>
 
-  <md>y'+y^2y'=x.</md>
+  <p><me>y'+y^2y'=x.</me></p>
 
   <p>Factor:</p>
 
-  <md>(1+y^2)y'=x.</md>
+  <p><me>(1+y^2)y'=x.</me></p>
 
   <p>Therefore</p>
 
-  <md>y'=\frac{x}{1+y^2}.</md>
+  <p><me>y'=\frac{x}{1+y^2}.</me></p>
 
   <p>So the implicit equation really does describe a solution of the differential equation.</p>
 
@@ -697,61 +671,59 @@ leave <m>x</m> and <m>y</m> tied together.</p>
 
   <example xml:id="ex-sec-13-4-separable-equations-7">
     <title>a family of hyperbolas</title>
-    <statement>
-  <p>Solve</p>
+    <p>Solve</p>
 
-  <md>y'=\frac{x}{y},
+  <p><me>y'=\frac{x}{y},
 \qquad
-y(0)=2.</md>
+y(0)=2.</me></p>
 
   <p>Separate:</p>
 
-  <md>y\,dy=x\,dx.</md>
+  <p><me>y\,dy=x\,dx.</me></p>
 
   <p>Integrate:</p>
 
-  <md>\frac{y^2}{2}=\frac{x^2}{2}+C.</md>
+  <p><me>\frac{y^2}{2}=\frac{x^2}{2}+C.</me></p>
 
   <p>Multiply by <m>2</m>:</p>
 
-  <md>y^2=x^2+C_1.</md>
+  <p><me>y^2=x^2+C_1.</me></p>
 
   <p>Use the initial condition:</p>
 
-  <md>2^2=0^2+C_1,</md>
+  <p><me>2^2=0^2+C_1,</me></p>
 
   <p>so</p>
 
-  <md>C_1=4.</md>
+  <p><me>C_1=4.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 y^2-x^2=4.
-</md>
+</me></p>
 
   <p>This implicit equation has two branches:</p>
 
-  <md>y=\sqrt{x^2+4}</md>
+  <p><me>y=\sqrt{x^2+4}</me></p>
 
   <p>and</p>
 
-  <md>y=-\sqrt{x^2+4}.</md>
+  <p><me>y=-\sqrt{x^2+4}.</me></p>
 
   <p>The initial condition <m>y(0)=2</m> selects the upper branch:</p>
 
-  <md>
+  <p><me>
 y=\sqrt{x^2+4}.
-</md>
+</me></p>
 
   <p>The differential equation</p>
 
-  <md>y'=\frac{x}{y}</md>
+  <p><me>y'=\frac{x}{y}</me></p>
 
   <p>does not make sense when <m>y=0</m>.  The selected branch never reaches <m>y=0</m>, so the
 solution stays safely inside the domain of the equation.</p>
-    </statement>
-  </example>
+    </example>
 
   <paragraphs>
     <title>Domains still matter</title>
@@ -762,19 +734,19 @@ makes sense.</p>
 
   <p>For</p>
 
-  <md>y'=\frac{x}{y},</md>
+  <p><me>y'=\frac{x}{y},</me></p>
 
   <p>any solution must have</p>
 
-  <md>y\neq0.</md>
+  <p><me>y\neq0.</me></p>
 
   <p>For</p>
 
-  <md>y'=\frac{1}{x}y,</md>
+  <p><me>y'=\frac{1}{x}y,</me></p>
 
   <p>any solution interval must avoid</p>
 
-  <md>x=0.</md>
+  <p><me>x=0.</me></p>
 
   <p>A formula without a domain is not yet a complete solution.</p>
 
@@ -782,11 +754,7 @@ makes sense.</p>
     <title>What separable equations give us</title>
       <p>Separation turns some differential equations into integral problems.  It connects this
 chapter back to the Fundamental Theorem:</p>
-        <md>\text{a law for a derivative}
-\quad\Longrightarrow\quad
-\text{an integral relation}
-\quad\Longrightarrow\quad
-\text{a solution curve}.</md>
+        <p><em>a law for a derivative <m>\Longrightarrow</m> an integral relation <m>\Longrightarrow</m> a solution curve.</em></p>
   </note>
 
   <p>The next separable model has two equilibrium solutions instead of one.  It grows almost

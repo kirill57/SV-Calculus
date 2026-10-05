@@ -1,54 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-15-1-sequences">
   <title>Sequences</title>
 
-  <p>A sequence is a function whose inputs are whole numbers.</p>
-
-  <p>That sounds dry, but the idea is familiar.  A table of decimal approximations is a
-sequence.  The outputs of Newton’s method form a sequence.  The yearly values in a
-population model form a sequence.  The finite approximations to an integral form a
-sequence.</p>
-
-  <p>The input is not a continuous variable like <m>x</m> or <m>t</m>.  It is a counting index:</p>
-
-  <md>n=1,2,3,\ldots.</md>
-
-  <p>The central question is:</p>
-
-  <md>
-\text{Do the terms settle toward a number?}
-</md>
-
-  <subsection xml:id="subsec-lists-with-a-rule">
+  <introduction><p>A sequence assigns a value to each integer index in its domain. Decimal approximations, Newton iterates, and successive integral approximations are examples. We will define convergence, prove criteria that establish a limit, and examine recursive sequences.</p></introduction><subsection xml:id="subsec-lists-with-a-rule">
     <title>Lists with a rule</title>
 
   <p>A sequence is usually written</p>
 
-  <md>a_1,\ a_2,\ a_3,\ldots</md>
+  <p><me>a_1,\ a_2,\ a_3,\ldots</me></p>
 
   <p>or more compactly as</p>
 
-  <md>\{a_n\}_{n=1}^{\infty}.</md>
+  <p><me>\{a_n\}_{n=1}^{\infty}.</me></p>
 
   <p>The number <m>a_n</m> is called the <m>n</m>-th term of the sequence.</p>
 
   <note xml:id="note-sec-15-1-sequences-108">
     <title>Sequence</title>
       <p>A <em>sequence</em> is a function whose domain is a set of consecutive integers, usually</p>
-        <md>1,2,3,\ldots.</md>
+        <p><me>1,2,3,\ldots.</me></p>
       <p>Instead of writing <m>a(n)</m>, we usually write</p>
-        <md>a_n.</md>
+        <p><me>a_n.</me></p>
   </note>
 
   <p>Some sequences begin with <m>a_0</m> instead of <m>a_1</m>.  The starting index is part of the
 notation.  For example,</p>
 
-  <md>\{a_n\}_{n=0}^{\infty}</md>
+  <p><me>\{a_n\}_{n=0}^{\infty}</me></p>
 
   <p>means</p>
 
-  <md>a_0,\ a_1,\ a_2,\ldots.</md>
+  <p><me>a_0,\ a_1,\ a_2,\ldots.</me></p>
 
 
   <exercise xml:id="checkpoint-15-1-sequence-as-function">
@@ -59,63 +40,56 @@ notation.  For example,</p>
           </p>
         </statement>
         <hint>
-          <p>
-            There is a next term, but there is no in-between input. The story is about a list, not about filling an interval.
-          </p>
+          <p>The domain contains integer indices, with no required values between consecutive indices.</p>
         </hint>
       </exercise>
 
   <example xml:id="ex-sec-15-1-sequences-1">
     <title>Example</title>
-    <statement>
-  <p>The rule</p>
+    <p>The rule</p>
 
-  <md>a_n=\frac1n,
-\qquad n=1,2,3,\ldots,</md>
+  <p><me>a_n=\frac1n,
+\qquad n=1,2,3,\ldots,</me></p>
 
   <p>gives</p>
 
-  <md>1,\ \frac12,\ \frac13,\ \frac14,\ \frac15,\ldots.</md>
+  <p><me>1,\ \frac12,\ \frac13,\ \frac14,\ \frac15,\ldots.</me></p>
 
   <p>The terms approach <m>0</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-2">
     <title>Example</title>
-    <statement>
-  <p>The rule</p>
+    <p>The rule</p>
 
-  <md>b_n=(-1)^n,
-\qquad n=1,2,3,\ldots,</md>
+  <p><me>b_n=(-1)^n,
+\qquad n=1,2,3,\ldots,</me></p>
 
   <p>gives</p>
 
-  <md>-1,\ 1,\ -1,\ 1,\ -1,\ldots.</md>
+  <p><me>-1,\ 1,\ -1,\ 1,\ -1,\ldots.</me></p>
 
   <p>The terms do not settle toward one number.  They keep jumping between <m>-1</m> and
 <m>1</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-3">
     <title>Example</title>
-    <statement>
-  <p>The rule</p>
+    <p>The rule</p>
 
-  <md>c_n=1-\frac1n,
-\qquad n=1,2,3,\ldots,</md>
+  <p><me>c_n=1-\frac1n,
+\qquad n=1,2,3,\ldots,</me></p>
 
   <p>gives</p>
 
-  <md>0,\ \frac12,\ \frac23,\ \frac34,\ \frac45,\ldots.</md>
+  <p><me>0,\ \frac12,\ \frac23,\ \frac34,\ \frac45,\ldots.</me></p>
 
   <p>The terms increase and approach <m>1</m>.</p>
 
   <figure xml:id="fig-sequence-points-approach-one">
     <caption>The sequence <m>c_n=1-\frac1n</m> approaches <m>1</m> from below.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The sequence <m>c_n=1-\frac1n</m> approaches <m>1</m> from below.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.78\textwidth,
@@ -153,27 +127,25 @@ notation.  For example,</p>
 
   <p>A sequence can also be given recursively.  That means each term is built from earlier
 terms.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-4">
     <title>Example</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>a_0=2,
+  <p><me>a_0=2,
 \qquad
-a_{n+1}=\frac12a_n.</md>
+a_{n+1}=\frac12a_n.</me></p>
 
   <p>Then</p>
 
-  <md>a_1=1,\qquad
+  <p><me>a_1=1,\qquad
 a_2=\frac12,\qquad
-a_3=\frac14.</md>
+a_3=\frac14.</me></p>
 
   <p>So the sequence is</p>
 
-  <md>2,\ 1,\ \frac12,\ \frac14,\ \frac18,\ldots.</md>
+  <p><me>2,\ 1,\ \frac12,\ \frac14,\ \frac18,\ldots.</me></p>
 
   <p>The rule does not give <m>a_n</m> directly.  It gives instructions for producing the next
 term from the current one.</p>
@@ -181,8 +153,7 @@ term from the current one.</p>
   <p>Recursive sequences are important because many algorithms work this way.  Newton’s
 method, Euler’s method, and many population models produce a next value from a
 current value.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-ch15-sequence-convergence-divergence">
@@ -190,15 +161,15 @@ current value.</p>
 
   <p>The terms of</p>
 
-  <md>\frac1n</md>
+  <p><me>\frac1n</me></p>
 
   <p>approach <m>0</m>.  The terms of</p>
 
-  <md>1-\frac1n</md>
+  <p><me>1-\frac1n</me></p>
 
   <p>approach <m>1</m>.  The terms of</p>
 
-  <md>(-1)^n</md>
+  <p><me>(-1)^n</me></p>
 
   <p>do not approach a single number.</p>
 
@@ -209,9 +180,9 @@ current value.</p>
       <p>A sequence <m>\{a_n\}</m> <em>converges</em> to <m>L</m> if the terms <m>a_n</m> get arbitrarily
 close to <m>L</m> as <m>n</m> becomes large.</p>
       <p>We write</p>
-        <md>\lim_{n\to\infty}a_n=L</md>
+        <p><me>\lim_{n\to\infty}a_n=L</me></p>
       <p>or</p>
-        <md>a_n\to L.</md>
+        <p><me>a_n\to L.</me></p>
       <p>The number <m>L</m> is called the <em>limit</em> of the sequence.</p>
   </note>
 
@@ -224,19 +195,17 @@ The only difference is that the input <m>n</m> now runs through whole numbers.</
     <title>Precise definition of sequence convergence</title>
     <statement>
       <p>We write</p>
-        <md>\lim_{n\to\infty}a_n=L</md>
+        <p><me>\lim_{n\to\infty}a_n=L</me></p>
       <p>if, for every <m>\varepsilon&gt;0</m>, there is an integer <m>N</m> such that</p>
-        <md>|a_n-L|&lt;\varepsilon</md>
+        <p><me>|a_n-L|&lt;\varepsilon</me></p>
       <p>whenever</p>
-        <md>n\ge N.</md>
+        <p><me>n\ge N.</me></p>
     </statement>
   </definition>
 
   <p>In words:</p>
 
-  <md>
-\text{After some point in the list, all later terms stay within \(\varepsilon\) of \(L\).}
-</md>
+  <p><em>After some point in the list, all later terms stay within <m>\varepsilon</m> of <m>L</m>.</em></p>
 
   <p>The integer <m>N</m> depends on the allowed error <m>\varepsilon</m>.  Smaller error usually
 requires a later starting point.</p>
@@ -249,92 +218,83 @@ requires a later starting point.</p>
             A sequence converges to <m>L</m> if its terms get arbitrarily close to <m>L</m> as <m>n</m> becomes large. In your own words, why is that stronger than saying the later terms look nearby in a table, and how is oscillating between two values different from growing without bound?
           </p>
         </statement>
-        <hint>
-          <p>
-            Convergence is a promise about every required closeness, not a snapshot of a few terms. Oscillation refuses to choose one landing place; unbounded growth refuses to land at all.
-          </p>
-        </hint>
+        <hint><p>Convergence requires every sufficiently late term to meet each prescribed tolerance. Persistent separated oscillations and unbounded growth prevent convergence, but oscillations of shrinking amplitude may converge.</p></hint>
       </exercise>
 
   <example xml:id="ex-sec-15-1-sequences-5">
     <title>proving <m>\frac1n\to0</m></title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>a_n=\frac1n.</md>
+  <p><me>a_n=\frac1n.</me></p>
 
   <p>We want to prove</p>
 
-  <md>a_n\to0.</md>
+  <p><me>a_n\to0.</me></p>
 
   <p>The error from <m>0</m> is</p>
 
-  <md>\left|\frac1n-0\right|=\frac1n.</md>
+  <p><me>\left|\frac1n-0\right|=\frac1n.</me></p>
 
   <p>Given an allowed error <m>\varepsilon&gt;0</m>, we need</p>
 
-  <md>\frac1n&lt;\varepsilon.</md>
+  <p><me>\frac1n&lt;\varepsilon.</me></p>
 
   <p>This is the same as</p>
 
-  <md>n&gt;\frac1\varepsilon.</md>
+  <p><me>n&gt;\frac1\varepsilon.</me></p>
 
   <p>Choose an integer <m>N</m> such that</p>
 
-  <md>N&gt;\frac1\varepsilon.</md>
+  <p><me>N&gt;\frac1\varepsilon.</me></p>
 
   <p>Then for every <m>n\ge N</m>,</p>
 
-  <md>\frac1n\le \frac1N&lt;\varepsilon.</md>
+  <p><me>\frac1n\le \frac1N&lt;\varepsilon.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \frac1n\to0.
-</md>
+</me></p>
 
   <p>The proof contains the whole pattern: start with a desired error, then find how far out
 in the sequence we must go.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-6">
     <title>a sequence approaching <m>1</m></title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>a_n=\frac{n}{n+1}.</md>
+  <p><me>a_n=\frac{n}{n+1}.</me></p>
 
   <p>Rewrite:</p>
 
-  <md>a_n=1-\frac1{n+1}.</md>
+  <p><me>a_n=1-\frac1{n+1}.</me></p>
 
   <p>So the error from <m>1</m> is</p>
 
-  <md>|a_n-1|
+  <p><me>|a_n-1|
 =
 \left|-\frac1{n+1}\right|
 =
-\frac1{n+1}.</md>
+\frac1{n+1}.</me></p>
 
   <p>As <m>n\to\infty</m>, this error approaches <m>0</m>.  Therefore</p>
 
-  <md>
+  <p><me>
 \lim_{n\to\infty}\frac{n}{n+1}=1.
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-7">
     <title>divergence by oscillation</title>
-    <statement>
-  <p>The sequence</p>
+    <p>The sequence</p>
 
-  <md>a_n=(-1)^n</md>
+  <p><me>a_n=(-1)^n</me></p>
 
   <p>does not converge.  Its terms are</p>
 
-  <md>-1,\ 1,\ -1,\ 1,\ldots.</md>
+  <p><me>-1,\ 1,\ -1,\ 1,\ldots.</me></p>
 
   <p>They do not settle near one number.</p>
 
@@ -345,43 +305,40 @@ clusters.</p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 (-1)^n \text{ diverges.}
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-8">
     <title>divergence to infinity</title>
-    <statement>
-  <p>The sequence</p>
+    <p>The sequence</p>
 
-  <md>a_n=n^2</md>
+  <p><me>a_n=n^2</me></p>
 
   <p>does not approach a finite number.  The terms grow without bound:</p>
 
-  <md>1,\ 4,\ 9,\ 16,\ldots.</md>
+  <p><me>1,\ 4,\ 9,\ 16,\ldots.</me></p>
 
   <p>We write</p>
 
-  <md>a_n\to\infty</md>
+  <p><me>a_n\to\infty</me></p>
 
   <p>to express this growth.  This is not convergence to a real number.  It is a precise way
 of saying that the terms eventually exceed every fixed bound.</p>
 
+  </example>
   <note xml:id="note-sec-15-1-sequences-111">
     <title>Divergence to infinity</title>
       <p>We write</p>
-        <md>a_n\to\infty</md>
+        <p><me>a_n\to\infty</me></p>
       <p>if, for every number <m>M</m>, there is an integer <m>N</m> such that</p>
-        <md>a_n&gt;M</md>
+        <p><me>a_n&gt;M</me></p>
       <p>whenever <m>n\ge N</m>.</p>
   </note>
 
   <p>The symbol <m>\infty</m> is not a number.  It describes unbounded growth.</p>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-basic-limit-laws-sequences">
     <title>Basic limit laws for sequences</title>
@@ -391,70 +348,66 @@ of saying that the terms eventually exceed every fixed bound.</p>
   <note xml:id="note-sec-15-1-sequences-112">
     <title>Limit laws for sequences</title>
       <p>Suppose</p>
-        <md>a_n\to A
+        <p><me>a_n\to A
 \qquad\text{and}\qquad
-b_n\to B.</md>
+b_n\to B.</me></p>
       <p>Then</p>
-        <md>a_n+b_n\to A+B,</md>
-        <md>a_n-b_n\to A-B,</md>
-        <md>ca_n\to cA</md>
+        <p><me>a_n+b_n\to A+B,</me></p>
+        <p><me>a_n-b_n\to A-B,</me></p>
+        <p><me>ca_n\to cA</me></p>
       <p>for every constant <m>c</m>, and</p>
-        <md>a_nb_n\to AB.</md>
+        <p><me>a_nb_n\to AB.</me></p>
       <p>If <m>B\neq0</m> and <m>b_n\neq0</m> for all sufficiently large <m>n</m>, then</p>
-        <md>\frac{a_n}{b_n}\to \frac AB.</md>
+        <p><me>\frac{a_n}{b_n}\to \frac AB.</me></p>
   </note>
 
   <p>These laws let us compute many sequence limits by separating simple parts.</p>
 
   <example xml:id="ex-sec-15-1-sequences-9">
     <title>Example</title>
-    <statement>
-  <p>Find</p>
+    <p>Find</p>
 
-  <md>\lim_{n\to\infty}\frac{3n^2+2n-5}{n^2-4}.</md>
+  <p><me>\lim_{n\to\infty}\frac{3n^2+2n-5}{n^2-4}.</me></p><p>Use the sequence for <m>n\ge3</m>; the quotient is undefined at <m>n=2</m>, which does not affect its limit.</p>
 
   <p>Divide numerator and denominator by <m>n^2</m>:</p>
 
-  <md>\frac{3n^2+2n-5}{n^2-4}
+  <p><me>\frac{3n^2+2n-5}{n^2-4}
 =
-\frac{3+\frac2n-\frac5{n^2}}{1-\frac4{n^2}}.</md>
+\frac{3+\frac2n-\frac5{n^2}}{1-\frac4{n^2}}.</me></p>
 
   <p>Since</p>
 
-  <md>\frac1n\to0
+  <p><me>\frac1n\to0
 \qquad\text{and}\qquad
-\frac1{n^2}\to0,</md>
+\frac1{n^2}\to0,</me></p>
 
   <p>we get</p>
 
-  <md>\lim_{n\to\infty}\frac{3+\frac2n-\frac5{n^2}}{1-\frac4{n^2}}
+  <p><me>\lim_{n\to\infty}\frac{3+\frac2n-\frac5{n^2}}{1-\frac4{n^2}}
 =
 \frac{3+0-0}{1-0}
 =
-3.</md>
-    </statement>
-  </example>
+3.</me></p>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-10">
     <title>Example</title>
-    <statement>
-  <p>Find</p>
+    <p>Find</p>
 
-  <md>\lim_{n\to\infty}\frac{5n-1}{2n+7}.</md>
+  <p><me>\lim_{n\to\infty}\frac{5n-1}{2n+7}.</me></p>
 
   <p>Divide by <m>n</m>:</p>
 
-  <md>\frac{5n-1}{2n+7}
+  <p><me>\frac{5n-1}{2n+7}
 =
-\frac{5-\frac1n}{2+\frac7n}.</md>
+\frac{5-\frac1n}{2+\frac7n}.</me></p>
 
   <p>Therefore</p>
 
-  <md>\lim_{n\to\infty}\frac{5n-1}{2n+7}
+  <p><me>\lim_{n\to\infty}\frac{5n-1}{2n+7}
 =
-\frac52.</md>
-    </statement>
-  </example>
+\frac52.</me></p>
+    </example>
 
   <paragraphs>
     <title>A warning about sampling</title>
@@ -464,15 +417,15 @@ continuous function, the sampled values may not settle.</p>
 
   <p>For example,</p>
 
-  <md>a_n=\sin\left(\frac{n\pi}{2}\right)</md>
+  <p><me>a_n=\sin\left(\frac{n\pi}{2}\right)</me></p>
 
   <p>gives</p>
 
-  <md>1,\ 0,\ -1,\ 0,\ 1,\ 0,\ -1,\ldots.</md>
+  <p><me>1,\ 0,\ -1,\ 0,\ 1,\ 0,\ -1,\ldots.</me></p>
 
   <p>So</p>
 
-  <md>\sin\left(\frac{n\pi}{2}\right)</md>
+  <p><me>\sin\left(\frac{n\pi}{2}\right)</me></p>
 
   <p>does not have a limit as <m>n\to\infty</m>.</p>
   </paragraphs>
@@ -500,11 +453,11 @@ continuous function, the sampled values may not settle.</p>
 
   <p>Consider</p>
 
-  <md>a_n=1-\frac1n.</md>
+  <p><me>a_n=1-\frac1n.</me></p>
 
   <p>The terms increase:</p>
 
-  <md>0,\ \frac12,\ \frac23,\ \frac34,\ldots.</md>
+  <p><me>0,\ \frac12,\ \frac23,\ \frac34,\ldots.</me></p>
 
   <p>They never pass <m>1</m>.  So they move upward but are bounded above.  The real line has
 no gaps, so the sequence has somewhere to land.</p>
@@ -514,10 +467,10 @@ no gaps, so the sequence has somewhere to land.</p>
   <note xml:id="note-sec-15-1-sequences-113">
     <title>Monotone sequences</title>
       <p>A sequence <m>\{a_n\}</m> is <em>increasing</em> if</p>
-        <md>a_{n+1}\ge a_n</md>
+        <p><me>a_{n+1}\ge a_n</me></p>
       <p>for every <m>n</m>.</p>
       <p>It is <em>decreasing</em> if</p>
-        <md>a_{n+1}\le a_n</md>
+        <p><me>a_{n+1}\le a_n</me></p>
       <p>for every <m>n</m>.</p>
       <p>A sequence is <em>monotone</em> if it is increasing or decreasing.</p>
   </note>
@@ -527,10 +480,10 @@ no gaps, so the sequence has somewhere to land.</p>
   <note xml:id="note-sec-15-1-sequences-114">
     <title>Bounded sequences</title>
       <p>A sequence <m>\{a_n\}</m> is <em>bounded above</em> if there is a number <m>M</m> such that</p>
-        <md>a_n\le M</md>
+        <p><me>a_n\le M</me></p>
       <p>for every <m>n</m>.</p>
       <p>It is <em>bounded below</em> if there is a number <m>m</m> such that</p>
-        <md>m\le a_n</md>
+        <p><me>m\le a_n</me></p>
       <p>for every <m>n</m>.</p>
       <p>It is <em>bounded</em> if it is bounded above and bounded below.</p>
   </note>
@@ -543,27 +496,24 @@ no gaps, so the sequence has somewhere to land.</p>
             The Monotone Convergence Theorem says that an increasing sequence bounded above must converge, and likewise for a decreasing sequence bounded below. In your own words, why is monotone alone not enough, why is bounded alone not enough, and what completeness of the real line is doing in the argument?
           </p>
         </statement>
-        <hint>
-          <p>
-            An increasing sequence with no ceiling runs away. A bounded sequence that keeps jumping never chooses a landing place. Completeness supplies a least upper bound for the terms to approach.
-          </p>
-        </hint>
+        <hint><p>An increasing sequence with no ceiling grows without bound. Boundedness alone is not enough: a sequence alternating between two distinct values does not converge. Completeness supplies the least upper bound approached by an increasing bounded sequence.</p></hint>
       </exercise>
 
   <example xml:id="ex-sec-15-1-sequences-12">
     <title>Example</title>
-    <statement>
-  <p>The sequence</p>
+    <p>The sequence</p>
 
-  <md>a_n=1-\frac1n</md>
+  <p><me>a_n=1-\frac1n</me></p>
 
   <p>is increasing and bounded above by <m>1</m>.  It converges to <m>1</m>.</p>
 
   <p>The sequence</p>
 
-  <md>b_n=\frac1n</md>
+  <p><me>b_n=\frac1n</me></p>
 
   <p>is decreasing and bounded below by <m>0</m>.  It converges to <m>0</m>.</p>
+
+  </example>
 
   <theorem xml:id="thm-sec-15-1-sequences-115">
     <title>Monotone Convergence Theorem</title>
@@ -574,35 +524,32 @@ no gaps, so the sequence has somewhere to land.</p>
   </theorem>
 
   <p>This theorem depends on the completeness of the real numbers: the real line has no
-holes.  Chapter <xref ref="ch02-numbers-functions-and-models"/> introduced this idea through least
+holes.  <xref ref="ch02-numbers-functions-and-models"/> introduced this idea through least
 upper bounds and nested intervals.</p>
-    </statement>
-  </example>
-
-  <paragraphs>
+    <paragraphs>
     <title>Idea of the proof</title>
 
   <p>Suppose <m>\{a_n\}</m> is increasing and bounded above.  The set of all terms</p>
 
-  <md>\{a_1,a_2,a_3,\ldots\}</md>
+  <p><me>\{a_1,a_2,a_3,\ldots\}</me></p>
 
   <p>has a least upper bound.  Call it <m>L</m>.</p>
 
   <p>Because <m>L</m> is the least upper bound, the terms must get arbitrarily close to <m>L</m> from
 below.  If they did not, then for some <m>\varepsilon&gt;0</m> all terms would satisfy</p>
 
-  <md>a_n\le L-\varepsilon.</md>
+  <p><me>a_n\le L-\varepsilon.</me></p>
 
   <p>But then <m>L-\varepsilon</m> would be an upper bound smaller than <m>L</m>, contradicting
 that <m>L</m> was the least upper bound.</p>
 
   <p>So for every <m>\varepsilon&gt;0</m>, at least one term enters the interval</p>
 
-  <md>(L-\varepsilon,L].</md>
+  <p><me>(L-\varepsilon,L].</me></p>
 
   <p>Since the sequence is increasing, all later terms stay in that interval.  Therefore</p>
 
-  <md>a_n\to L.</md>
+  <p><me>a_n\to L.</me></p>
 
   <p>The decreasing case is similar, using a greatest lower bound.</p>
   </paragraphs>
@@ -614,106 +561,113 @@ that <m>L</m> was the least upper bound.</p>
 
   <p>The sequence</p>
 
-  <md>a_n=n</md>
+  <p><me>a_n=n</me></p>
 
   <p>is increasing, but it is not bounded above.  It diverges to infinity.</p>
 
   <p>The sequence</p>
 
-  <md>b_n=(-1)^n</md>
+  <p><me>b_n=(-1)^n</me></p>
 
   <p>is bounded, because</p>
 
-  <md>-1\le b_n\le1</md>
+  <p><me>-1\le b_n\le1</me></p>
 
   <p>for every <m>n</m>.  But it is not monotone, and it does not converge.</p>
 
-  <md>
+  <p><me>
 \text{Monotone alone is not enough.  Bounded alone is not enough.}
-</md>
+</me></p>
   </paragraphs>
 
   <example xml:id="ex-sec-15-1-sequences-15">
     <title>a sequence of finite accumulated sums</title>
-    <statement>
-  <p>Define</p>
+    <p>Define</p>
 
-  <md>a_n=1+\frac12+\frac14+\cdots+\frac1{2^{n-1}},
-\qquad n\ge1.</md>
+  <p><me>a_n=1+\frac12+\frac14+\cdots+\frac1{2^{n-1}},
+\qquad n\ge1.</me></p>
 
   <p>The first few terms are</p>
 
-  <md>a_1=1,
+  <p><me>a_1=1,
 \qquad
 a_2=\frac32,
 \qquad
 a_3=\frac74,
 \qquad
-a_4=\frac{15}{8}.</md>
+a_4=\frac{15}{8}.</me></p>
 
   <p>The sequence is increasing because each new term adds a positive number.</p>
 
   <p>It is also bounded above by <m>2</m>.  To see this, use the finite geometric sum formula:</p>
 
-  <md>a_n
+  <p><me>a_n
 =
 \frac{1-\left(\frac12\right)^n}{1-\frac12}
 =
 2\left(1-\frac1{2^n}\right)
 =
-2-\frac1{2^{n-1}}.</md>
+2-\frac1{2^{n-1}}.</me></p>
 
   <p>So</p>
 
-  <md>a_n&lt;2</md>
+  <p><me>a_n&lt;2</me></p>
 
   <p>for every <m>n</m>.  Therefore the sequence converges.  In fact,</p>
 
-  <md>a_n\to2.</md>
+  <p><me>a_n\to2.</me></p>
 
   <p>This example is the first shadow of an infinite series.  The sequence <m>a_n</m> is made by
 adding more and more terms.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
-  <subsection xml:id="subsec-recursive-sequences-fixed-points">
+<subsection xml:id="subsec-cauchy-sequences">
+    <title>The Cauchy criterion: convergence without knowing the limit</title>
+    <p>Sometimes an approximation has no known target value. We can still ask whether all sufficiently late terms are close to one another. A real sequence <m>(a_n)</m> is <em>Cauchy</em> if, for every <m>\varepsilon&gt;0</m>, there is an integer <m>N</m> such that</p><p><me>|a_m-a_n|&lt;\varepsilon\qquad\text{for all }m,n\ge N.</me></p>
+    <theorem xml:id="thm-cauchy-sequences"><title>Cauchy criterion for real sequences</title><statement><p>A sequence of real numbers converges to a real number if and only if it is Cauchy.</p></statement><proof><p>If <m>a_n\to L</m>, choose <m>N</m> so that <m>|a_n-L|&lt;\varepsilon/2</m> for all <m>n\ge N</m>. The triangle inequality proves the Cauchy condition.</p><p>Conversely, a Cauchy sequence is bounded: take an eventual distance bound of <m>1</m> from one fixed term and then include the finitely many earlier terms. Define the tail bounds</p><p><me>\ell_N=\inf\{a_n:n\ge N\},\qquad u_N=\sup\{a_n:n\ge N\}.</me></p><p>Here <m>\inf</m> means greatest lower bound and <m>\sup</m> means least upper bound; completeness of the real line ensures both exist. The sequence <m>\ell_N</m> increases and <m>u_N</m> decreases, and both are bounded. The Monotone Convergence Theorem gives their limits. The Cauchy condition implies <m>u_N-\ell_N\to0</m>: if every pair of tail terms has distance less than <m>\varepsilon</m>, the tail's supremum minus its infimum is at most <m>\varepsilon</m>. Their limits are therefore the same number <m>L</m>. Since <m>\ell_N\le a_N\le u_N</m>, squeezing gives <m>a_N\to L</m>.</p></proof></theorem>
+    <example xml:id="ex-cauchy-geometric-steps"><title>Controlling all later steps</title><p>If <m>|a_{n+1}-a_n|\le2^{-n}</m> for <m>n\ge0</m>, then for <m>m&gt;n</m> the finite geometric sum gives</p><p><me>|a_m-a_n|\le\sum_{k=n}^{m-1}2^{-k}\le2^{1-n}.</me></p><p>This tends to zero independently of <m>m</m>, so the sequence converges. We have proved existence of a limit before identifying it.</p></example>
+    <warning xml:id="warn-cauchy-adjacent"><title>Adjacent terms are not enough</title><p>The condition <m>|a_{n+1}-a_n|\to0</m> is weaker. For <m>a_n=\ln n</m>, adjacent differences <m>\ln(1+1/n)</m> tend to zero, but <m>|a_{2n}-a_n|=\ln2</m>. This sequence is not Cauchy.</p><p>The criterion depends on the number system being complete. Rational decimal truncations of <m>\sqrt2</m> are Cauchy, yet they have no rational limit. They do have a real limit.</p></warning>
+    <exercise xml:id="exr-cauchy-sequences"><title>Use the quantifiers</title><statement><p>Prove directly that <m>a_n=1/n</m> is Cauchy and that <m>b_n=(-1)^n</m> is not. Why does bounding just <m>|a_{n+1}-a_n|</m> fail to check the definition?</p></statement><hint><p>For <m>m,n\ge N</m>, <m>|1/m-1/n|\le1/N</m>. Opposite-parity indices make the second distance equal to <m>2</m>, however large the indices are. The definition requires every pair of late terms.</p></hint></exercise>
+  </subsection>
+
+    <subsection xml:id="subsec-recursive-sequences-fixed-points">
     <title>Recursive sequences and fixed points</title>
 
   <p>A recursive sequence gives a starting value and a rule for the next value:</p>
 
-  <md>a_0 \quad\text{is given},
+  <p><me>a_0 \quad\text{is given},
 \qquad
-a_{n+1}=F(a_n).</md>
+a_{n+1}=F(a_n).</me></p>
 
   <p>If the sequence converges, say</p>
 
-  <md>a_n\to L,</md>
+  <p><me>a_n\to L,</me></p>
 
   <p>then the next terms should converge to the same limit:</p>
 
-  <md>a_{n+1}\to L.</md>
+  <p><me>a_{n+1}\to L.</me></p>
 
   <p>If <m>F</m> is continuous, we may pass to the limit in</p>
 
-  <md>a_{n+1}=F(a_n)</md>
+  <p><me>a_{n+1}=F(a_n)</me></p>
 
   <p>and get</p>
 
-  <md>L=F(L).</md>
+  <p><me>L=F(L).</me></p>
 
   <p>A number satisfying</p>
 
-  <md>F(L)=L</md>
+  <p><me>F(L)=L</me></p>
 
   <p>is called a fixed point of <m>F</m>.</p>
 
   <note xml:id="note-sec-15-1-sequences-116">
     <title>Fixed point</title>
       <p>A number <m>L</m> is a <em>fixed point</em> of a function <m>F</m> if</p>
-        <md>F(L)=L.</md>
+        <p><me>F(L)=L.</me></p>
       <p>If a recursive sequence</p>
-        <md>a_{n+1}=F(a_n)</md>
+        <p><me>a_{n+1}=F(a_n)</me></p>
       <p>converges to <m>L</m>, and <m>F</m> is continuous at <m>L</m>, then <m>L</m> must be a fixed point of
 <m>F</m>.</p>
   </note>
@@ -738,68 +692,67 @@ possible limit.  It does not by itself prove that the sequence converges.</p>
 
   <example xml:id="ex-sec-15-1-sequences-16">
     <title>halfway to a target</title>
-    <statement>
-  <p>Let</p>
+    <p>Let</p>
 
-  <md>a_0=0,
+  <p><me>a_0=0,
 \qquad
-a_{n+1}=\frac{a_n+3}{2}.</md>
+a_{n+1}=\frac{a_n+3}{2}.</me></p>
 
   <p>Each step moves halfway from the current value to <m>3</m>.</p>
 
   <p>The first few terms are</p>
 
-  <md>0,\quad
+  <p><me>0,\quad
 \frac32,\quad
 \frac94,\quad
 \frac{21}{8},\quad
-\frac{45}{16},\ldots.</md>
+\frac{45}{16},\ldots.</me></p>
 
   <p>The terms appear to approach <m>3</m>.</p>
 
   <p>First show that they stay below <m>3</m>.  If <m>a_n&lt;3</m>, then</p>
 
-  <md>a_{n+1}=\frac{a_n+3}{2}&lt;\frac{3+3}{2}=3.</md>
+  <p><me>a_{n+1}=\frac{a_n+3}{2}&lt;\frac{3+3}{2}=3.</me></p>
 
   <p>Since <m>a_0=0&lt;3</m>, induction gives</p>
 
-  <md>a_n&lt;3</md>
+  <p><me>a_n&lt;3</me></p>
 
   <p>for every <m>n</m>.</p>
 
   <p>Now show that the sequence increases.  Compute</p>
 
-  <md>a_{n+1}-a_n
+  <p><me>a_{n+1}-a_n
 =
 \frac{a_n+3}{2}-a_n
 =
-\frac{3-a_n}{2}.</md>
+\frac{3-a_n}{2}.</me></p>
 
   <p>Since <m>a_n&lt;3</m>, this difference is positive.  Therefore</p>
 
-  <md>a_{n+1}&gt;a_n.</md>
+  <p><me>a_{n+1}&gt;a_n.</me></p>
 
   <p>The sequence is increasing and bounded above by <m>3</m>.  By the Monotone Convergence
 Theorem, it converges.</p>
 
   <p>Let its limit be <m>L</m>.  Passing to the limit in the recursion gives</p>
 
-  <md>L=\frac{L+3}{2}.</md>
+  <p><me>L=\frac{L+3}{2}.</me></p>
 
   <p>Thus</p>
 
-  <md>2L=L+3,</md>
+  <p><me>2L=L+3,</me></p>
 
   <p>so</p>
 
-  <md>L=3.</md>
+  <p><me>L=3.</me></p>
 
   <p>The sequence converges to <m>3</m>.</p>
 
   <figure xml:id="fig-recursive-halfway-to-three">
     <caption>The recursion <m>a_{n+1}=(a_n+3)/2</m> moves halfway to <m>3</m> at each step.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The recursion <m>a_{n+1}=(a_n+3)/2</m> moves halfway to <m>3</m> at each step.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.82\textwidth,
@@ -832,42 +785,41 @@ Theorem, it converges.</p>
       </latex-image>
     </image>
   </figure>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-15-1-sequences-17">
     <title>fixed point is not enough</title>
-    <statement>
-  <p>Consider</p>
+    <p>Consider</p>
 
-  <md>a_0=0,
+  <p><me>a_0=0,
 \qquad
-a_{n+1}=2-a_n.</md>
+a_{n+1}=2-a_n.</me></p>
 
   <p>The function</p>
 
-  <md>F(x)=2-x</md>
+  <p><me>F(x)=2-x</me></p>
 
   <p>has a fixed point, because</p>
 
-  <md>L=2-L</md>
+  <p><me>L=2-L</me></p>
 
   <p>gives</p>
 
-  <md>L=1.</md>
+  <p><me>L=1.</me></p>
 
   <p>But the sequence itself is</p>
 
-  <md>0,\ 2,\ 0,\ 2,\ 0,\ 2,\ldots.</md>
+  <p><me>0,\ 2,\ 0,\ 2,\ 0,\ 2,\ldots.</me></p>
 
   <p>It does not converge to <m>1</m>.  It does not converge at all.</p>
 
   <p>The fixed-point equation found a possible landing place, but the sequence never lands.</p>
 
+  </example>
   <note xml:id="note-sec-15-1-sequences-117">
     <title>Moral</title>
       <p>For a recursive sequence, the equation</p>
-        <md>L=F(L)</md>
+        <p><me>L=F(L)</me></p>
       <p>can identify possible limits.  It does not prove convergence.  To prove convergence, we
 need more information, such as monotonicity and boundedness, or another argument that
 controls the iteration.</p>
@@ -876,9 +828,7 @@ controls the iteration.</p>
   <p>The next section uses sequences in a new way.  Instead of studying a list of terms
 directly, we build a new sequence by adding the first <m>n</m> terms.  If those partial sums
 settle toward a limit, we will call the result an infinite sum.</p>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
 
 

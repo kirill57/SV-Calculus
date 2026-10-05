@@ -1,78 +1,64 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-10-8-arc-length-and-surface-area-of-revolution">
   <title>Arc length and surface area of revolution</title>
 
-  <p>Area comes from small rectangles.  Volume comes from small slices.  Work comes from
-small force-times-distance pieces.</p>
-
-  <p>Length should come from small straight pieces.</p>
-
-  <p>A curve is not straight, but if we zoom in far enough, a smooth curve looks almost like
-a line segment.  So the small piece of length is not just <m>dx</m>.  It is a slanted distance:</p>
-
-  <md>ds\approx \sqrt{(dx)^2+(dy)^2}.</md>
-
-  <p>That is the new small piece.</p>
-
-  <subsection xml:id="subsec-arc-length-small-straight-pieces">
+  <introduction><p>Approximate a smooth curve by short line segments to compute its length. For a graph, the Pythagorean theorem gives the length factor <m>\sqrt{1+(dy/dx)^2}</m>. Rotating a short segment about an axis gives a surface-area contribution equal to circumference times segment length.</p></introduction><subsection xml:id="subsec-arc-length-small-straight-pieces">
     <title>Arc length from small straight pieces</title>
 
   <p>Suppose a curve is the graph of</p>
 
-  <md>y=f(x),
-\qquad a\le x\le b.</md>
+  <p><me>y=f(x),
+\qquad a\le x\le b.</me></p>
 
   <p>Divide the interval <m>[a,b]</m> into small pieces:</p>
 
-  <md>a=x_0&lt;x_1&lt;\cdots&lt;x_n=b.</md>
+  <p><me>a=x_0&lt;x_1&lt;\cdots&lt;x_n=b.</me></p>
 
   <p>The corresponding points on the graph are</p>
 
-  <md>(x_0,f(x_0)),\quad (x_1,f(x_1)),\quad \ldots,\quad (x_n,f(x_n)).</md>
+  <p><me>(x_0,f(x_0)),\quad (x_1,f(x_1)),\quad \ldots,\quad (x_n,f(x_n)).</me></p>
 
   <p>Join these points by straight line segments.  The polygonal path approximates the curve.</p>
 
   <p>The length of the segment from <m>x_{i-1}</m> to <m>x_i</m> is</p>
 
-  <md>\sqrt{(x_i-x_{i-1})^2+\bigl(f(x_i)-f(x_{i-1})\bigr)^2}.</md>
+  <p><me>\sqrt{(x_i-x_{i-1})^2+\bigl(f(x_i)-f(x_{i-1})\bigr)^2}.</me></p>
 
   <p>Write</p>
 
-  <md>\Delta x_i=x_i-x_{i-1}</md>
+  <p><me>\Delta x_i=x_i-x_{i-1}</me></p>
 
   <p>and</p>
 
-  <md>\Delta y_i=f(x_i)-f(x_{i-1}).</md>
+  <p><me>\Delta y_i=f(x_i)-f(x_{i-1}).</me></p>
 
   <p>Then the small segment length is</p>
 
-  <md>\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}.</md>
+  <p><me>\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}.</me></p>
 
   <p>Factor out <m>\Delta x_i</m>:</p>
 
-  <md>\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}
+  <p><me>\sqrt{(\Delta x_i)^2+(\Delta y_i)^2}
 =
-\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x_i.</md>
+\sqrt{1+\left(\frac{\Delta y_i}{\Delta x_i}\right)^2}\,\Delta x_i.</me></p>
 
   <p>When the pieces are small,</p>
 
-  <md>\frac{\Delta y_i}{\Delta x_i}</md>
+  <p><me>\frac{\Delta y_i}{\Delta x_i}</me></p>
 
   <p>is close to a derivative value.  Thus the small length is approximately</p>
 
-  <md>\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</md>
+  <p><me>\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
-</md>
+</me></p>
 
   <figure xml:id="fig-arc-length-polygonal">
     <caption>A smooth curve is approximated by short straight pieces.  Each small length comes from the Pythagorean theorem.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A smooth curve is approximated by short straight pieces.  Each small length comes from the Pythagorean theorem.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.80\textwidth,
@@ -129,153 +115,149 @@ ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
   <note xml:id="note-sec-10-8-arc-length-and-surface-area-of-revolution-81">
     <title>Arc length of a graph</title>
       <p>If <m>f'</m> is continuous on <m>[a,b]</m>, then the length of the graph</p>
-        <md>y=f(x),
-\qquad a\le x\le b,</md>
+        <p><me>y=f(x),
+\qquad a\le x\le b,</me></p>
       <p>is</p>
-        <md>
+        <p><me>
 L=\int_a^b \sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
-</md>
+</me></p>
   </note>
 
   <p>In words:</p>
 
-  <md>
+  <p><me>
 \text{length}=\int ds.
-</md>
+</me></p>
 
   <p>Here</p>
 
-  <md>ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx</md>
+  <p><me>ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx</me></p>
 
   <p>is the small slanted length along the curve.</p>
 
   <example xml:id="ex-sec-10-8-arc-length-and-surface-area-of-revolution-1">
     <title>a line segment</title>
-    <statement>
-  <p>Find the length of the graph</p>
+    <p>Find the length of the graph</p>
 
-  <md>y=mx+c</md>
+  <p><me>y=mx+c</me></p>
 
   <p>from <m>x=a</m> to <m>x=b</m>.</p>
 
   <p>Since</p>
 
-  <md>f'(x)=m,</md>
+  <p><me>f'(x)=m,</me></p>
 
   <p>the arc length is</p>
 
-  <md>L=\int_a^b \sqrt{1+m^2}\,dx.</md>
+  <p><me>L=\int_a^b \sqrt{1+m^2}\,dx.</me></p>
 
   <p>The integrand is constant, so</p>
 
-  <md>L=\sqrt{1+m^2}(b-a).</md>
+  <p><me>L=\sqrt{1+m^2}(b-a).</me></p>
 
   <p>This agrees with the distance formula.  The endpoints are</p>
 
-  <md>(a,ma+c)</md>
+  <p><me>(a,ma+c)</me></p>
 
   <p>and</p>
 
-  <md>(b,mb+c).</md>
+  <p><me>(b,mb+c).</me></p>
 
   <p>The horizontal change is</p>
 
-  <md>b-a,</md>
+  <p><me>b-a,</me></p>
 
   <p>and the vertical change is</p>
 
-  <md>m(b-a).</md>
+  <p><me>m(b-a).</me></p>
 
   <p>So the distance is</p>
 
-  <md>\sqrt{(b-a)^2+\bigl(m(b-a)\bigr)^2}
+  <p><me>\sqrt{(b-a)^2+\bigl(m(b-a)\bigr)^2}
 =
-\sqrt{1+m^2}(b-a).</md>
+\sqrt{1+m^2}(b-a).</me></p>
 
   <p>The integral formula passes the first test.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-10-8-arc-length-and-surface-area-of-revolution-2">
     <title>a curve chosen to make the length simple</title>
-    <statement>
-  <p>Find the length of</p>
+    <p>Find the length of</p>
 
-  <md>y=\frac23 x^{3/2}</md>
+  <p><me>y=\frac23 x^{3/2}</me></p>
 
   <p>from <m>x=0</m> to <m>x=3</m>.</p>
 
   <p>First compute the derivative:</p>
 
-  <md>y'=\frac23\cdot\frac32 x^{1/2}=\sqrt{x}.</md>
+  <p><me>y'=\frac23\cdot\frac32 x^{1/2}=\sqrt{x}.</me></p>
 
   <p>So</p>
 
-  <md>1+(y')^2=1+x.</md>
+  <p><me>1+(y')^2=1+x.</me></p>
 
   <p>The length is</p>
 
-  <md>L=\int_0^3 \sqrt{1+x}\,dx.</md>
+  <p><me>L=\int_0^3 \sqrt{1+x}\,dx.</me></p>
 
   <p>Let</p>
 
-  <md>u=1+x.</md>
+  <p><me>u=1+x.</me></p>
 
   <p>Then</p>
 
-  <md>du=dx.</md>
+  <p><me>du=dx.</me></p>
 
   <p>When <m>x=0</m>, <m>u=1</m>.  When <m>x=3</m>, <m>u=4</m>.  Therefore</p>
 
-  <md>L=\int_1^4 \sqrt{u}\,du.</md>
+  <p><me>L=\int_1^4 \sqrt{u}\,du.</me></p>
 
   <p>Compute:</p>
 
-  <md>L=\left(\frac23u^{3/2}\right)\Big|_1^4
+  <p><me>L=\left(\frac23u^{3/2}\right)\Big|_1^4
 =
-\frac23\left(4^{3/2}-1^{3/2}\right).</md>
+\frac23\left(4^{3/2}-1^{3/2}\right).</me></p>
 
   <p>Since</p>
 
-  <md>4^{3/2}=8,</md>
+  <p><me>4^{3/2}=8,</me></p>
 
   <p>we get</p>
 
-  <md>L=\frac23(8-1)=\frac{14}{3}.</md>
-    </statement>
-  </example>
+  <p><me>L=\frac23(8-1)=\frac{14}{3}.</me></p>
+    </example>
 
   <paragraphs>
     <title>Why not just integrate <m>|f'(x)|</m>?</title>
 
   <p>The integral</p>
 
-  <md>\int_a^b |f'(x)|\,dx</md>
+  <p><me>\int_a^b |f'(x)|\,dx</me></p>
 
   <p>measures total vertical change, not length along the curve.</p>
 
   <p>For the line</p>
 
-  <md>y=x</md>
+  <p><me>y=x</me></p>
 
   <p>from <m>x=0</m> to <m>x=1</m>,</p>
 
-  <md>\int_0^1 |f'(x)|\,dx
+  <p><me>\int_0^1 |f'(x)|\,dx
 =
 \int_0^1 1\,dx
 =
-1.</md>
+1.</me></p>
 
   <p>But the actual length of the line segment from <m>(0,0)</m> to <m>(1,1)</m> is</p>
 
-  <md>\sqrt{1^2+1^2}=\sqrt2.</md>
+  <p><me>\sqrt{1^2+1^2}=\sqrt2.</me></p>
 
   <p>The missing horizontal motion matters.</p>
 
   <warning xml:id="warn-sec-10-8-arc-length-and-surface-area-of-revolution-82">
     <title>Warning</title>
       <p>Arc length uses</p>
-        <md>ds=\sqrt{(dx)^2+(dy)^2},</md>
+        <p><me>ds=\sqrt{(dx)^2+(dy)^2},</me></p>
       <p>not only <m>dy</m>.  A curve moves horizontally and vertically at the same time.</p>
   </warning>
   </paragraphs>
@@ -308,61 +290,61 @@ Rotating a semicircle around the <m>x</m>-axis forms a sphere.</p>
 
   <p>Suppose a small arc segment has length</p>
 
-  <md>ds.</md>
+  <p><me>ds.</me></p>
 
   <p>If it is at height <m>y</m> above the <m>x</m>-axis and rotates around the <m>x</m>-axis, it sweeps
 out a thin band.  The band is almost a rectangle when unwrapped.  Its width is</p>
 
-  <md>ds,</md>
+  <p><me>ds,</me></p>
 
   <p>and its other dimension is the circumference</p>
 
-  <md>2\pi y.</md>
+  <p><me>2\pi y.</me></p>
 
   <p>So its area is approximately</p>
 
-  <md>dS=2\pi y\,ds.</md>
+  <p><me>dS=2\pi y\,ds.</me></p>
 
   <p>For a graph <m>y=f(x)</m>,</p>
 
-  <md>ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</md>
+  <p><me>ds=\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</me></p>
 
   <p>Thus</p>
 
-  <md>dS
+  <p><me>dS
 =
-2\pi f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</md>
+2\pi f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.</me></p>
 
   <note xml:id="note-sec-10-8-arc-length-and-surface-area-of-revolution-83">
     <title>Surface area around the <m>x</m>-axis</title>
       <p>If <m>f(x)\ge0</m> and <m>f'</m> is continuous on <m>[a,b]</m>, then the surface area formed by
 rotating</p>
-        <md>y=f(x),
-\qquad a\le x\le b,</md>
+        <p><me>y=f(x),
+\qquad a\le x\le b,</me></p>
       <p>around the <m>x</m>-axis is</p>
-        <md>
+        <p><me>
 S=2\pi\int_a^b f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
-</md>
+</me></p>
   </note>
 
   <p>In words:</p>
 
-  <md>
+  <p><me>
 \text{surface area}
 =
 \int(\text{circumference})(\text{small arc length}).
-</md>
+</me></p>
 
   <p>The formula is the surface-area cousin of the shell method:</p>
 
-  <md>\text{circumference}\cdot\text{height}\cdot\text{thickness}.</md>
+  <p><me>\text{circumference}\cdot\text{height}\cdot\text{thickness}.</me></p>
 
   <p>Here the “height” of the unwrapped band is the small arc length <m>ds</m>.</p>
 
   <figure xml:id="fig-surface-area-band">
     <caption>A small arc segment rotated around the <m>x</m>-axis sweeps out a thin band.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A small arc segment rotated around the <m>x</m>-axis sweeps out a thin band.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
   % axis
   \draw[-&gt;, thick] (-0.3,0) -- (6.6,0);
@@ -391,9 +373,9 @@ S=2\pi\int_a^b f(x)\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
   <p>If the graph is rotated around the <m>y</m>-axis instead, the radius is <m>x</m>, assuming
 <m>x\ge0</m>.  Then</p>
 
-  <md>
+  <p><me>
 S=2\pi\int_a^b x\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
-</md>
+</me></p>
 
   <p>More generally, the radius is always the distance to the axis of rotation.</p>
 
@@ -419,8 +401,8 @@ S=2\pi\int_a^b x\sqrt{1+\bigl(f'(x)\bigr)^2}\,dx.
   <p>A right circular cone has height <m>h</m> and base radius <m>R</m>.  We can get its side surface
 by rotating the line segment</p>
 
-  <md>y=\frac{R}{h}x,
-\qquad 0\le x\le h,</md>
+  <p><me>y=\frac{R}{h}x,
+\qquad 0\le x\le h,</me></p>
 
   <p>around the <m>x</m>-axis.</p>
 
@@ -428,60 +410,60 @@ by rotating the line segment</p>
 
   <p>Here</p>
 
-  <md>f(x)=\frac{R}{h}x,</md>
+  <p><me>f(x)=\frac{R}{h}x,</me></p>
 
   <p>so</p>
 
-  <md>f'(x)=\frac{R}{h}.</md>
+  <p><me>f'(x)=\frac{R}{h}.</me></p>
 
   <p>Thus</p>
 
-  <md>\sqrt{1+\bigl(f'(x)\bigr)^2}
+  <p><me>\sqrt{1+\bigl(f'(x)\bigr)^2}
 =
 \sqrt{1+\frac{R^2}{h^2}}
 =
-\frac{\sqrt{h^2+R^2}}{h}.</md>
+\frac{\sqrt{h^2+R^2}}{h}.</me></p>
 
   <p>The surface area is</p>
 
-  <md>S
+  <p><me>S
 =
 2\pi\int_0^h
 \frac{R}{h}x
 \cdot
 \frac{\sqrt{h^2+R^2}}{h}
-\,dx.</md>
+\,dx.</me></p>
 
   <p>Factor out constants:</p>
 
-  <md>S
+  <p><me>S
 =
 \frac{2\pi R\sqrt{h^2+R^2}}{h^2}
-\int_0^h x\,dx.</md>
+\int_0^h x\,dx.</me></p>
 
   <p>Compute:</p>
 
-  <md>\int_0^h x\,dx=\frac{h^2}{2}.</md>
+  <p><me>\int_0^h x\,dx=\frac{h^2}{2}.</me></p>
 
   <p>Therefore</p>
 
-  <md>S
+  <p><me>S
 =
-\frac{2\pi R\sqrt{h^2+R^2}}{h^2}\cdot\frac{h^2}{2}.</md>
+\frac{2\pi R\sqrt{h^2+R^2}}{h^2}\cdot\frac{h^2}{2}.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 S=\pi R\sqrt{h^2+R^2}.
-</md>
+</me></p>
 
   <p>The quantity</p>
 
-  <md>\sqrt{h^2+R^2}</md>
+  <p><me>\sqrt{h^2+R^2}</me></p>
 
   <p>is the slant height of the cone.  So this agrees with the familiar formula</p>
 
-  <md>S=\pi R(\text{slant height}).</md>
+  <p><me>S=\pi R(\text{slant height}).</me></p>
 
   <note xml:id="note-sec-10-8-arc-length-and-surface-area-of-revolution-84">
     <title>What the integral added</title>
@@ -495,51 +477,51 @@ adding the circumferences of tiny slanted bands.</p>
 
   <p>The upper semicircle</p>
 
-  <md>y=\sqrt{R^2-x^2},
-\qquad -R\le x\le R,</md>
+  <p><me>y=\sqrt{R^2-x^2},
+\qquad -R\le x\le R,</me></p>
 
   <p>rotated around the <m>x</m>-axis forms a sphere of radius <m>R</m>.</p>
 
   <p>For <m>-R&lt;x&lt;R</m>,</p>
 
-  <md>y'=\frac{-x}{\sqrt{R^2-x^2}}.</md>
+  <p><me>y'=\frac{-x}{\sqrt{R^2-x^2}}.</me></p>
 
   <p>Then</p>
 
-  <md>1+(y')^2
+  <p><me>1+(y')^2
 =
 1+\frac{x^2}{R^2-x^2}
 =
-\frac{R^2}{R^2-x^2}.</md>
+\frac{R^2}{R^2-x^2}.</me></p>
 
   <p>So</p>
 
-  <md>\sqrt{1+(y')^2}
+  <p><me>\sqrt{1+(y')^2}
 =
-\frac{R}{\sqrt{R^2-x^2}}.</md>
+\frac{R}{\sqrt{R^2-x^2}}.</me></p>
 
   <p>Now multiply by <m>y</m>:</p>
 
-  <md>y\sqrt{1+(y')^2}
+  <p><me>y\sqrt{1+(y')^2}
 =
 \sqrt{R^2-x^2}\cdot
 \frac{R}{\sqrt{R^2-x^2}}
 =
-R.</md>
+R.</me></p>
 
-  <p>The surface area is therefore</p>
+  <p>Apply the surface-area formula first on <m>[-R+\varepsilon,R-\varepsilon]</m>, where the derivative is continuous, and then let <m>\varepsilon\to0^+</m>. The limiting surface area is therefore</p>
 
-  <md>S
+  <p><me>S
 =
-2\pi\int_{-R}^{R} R\,dx.</md>
+2\pi\int_{-R}^{R} R\,dx.</me></p>
 
   <p>So</p>
 
-  <md>S
+  <p><me>S
 =
 2\pi R(2R)
 =
-4\pi R^2.</md>
+4\pi R^2.</me></p>
 
   <p>The derivative of the semicircle becomes infinite at the endpoints, but the surface-area
 integrand simplifies to the constant <m>2\pi R</m>.  The limiting surface area is finite.</p>
@@ -547,7 +529,7 @@ integrand simplifies to the constant <m>2\pi R</m>.  The limiting surface area i
   <figure xml:id="fig-sphere-from-semicircle">
     <caption>Rotating the upper semicircle around the <m>x</m>-axis produces a sphere.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Rotating the upper semicircle around the <m>x</m>-axis produces a sphere.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.70\textwidth,
@@ -577,7 +559,7 @@ integrand simplifies to the constant <m>2\pi R</m>.  The limiting surface area i
 
   <p>The result</p>
 
-  <md>4\pi R^2</md>
+  <p><me>4\pi R^2</me></p>
 
   <p>looks simple.  The cancellation in the integral explains why it is simple.</p>
   </subsection>
@@ -590,27 +572,26 @@ evaluate.</p>
 
   <p>For example, the length of</p>
 
-  <md>y=\sin x</md>
+  <p><me>y=\sin x</me></p>
 
   <p>from <m>x=0</m> to <m>x=\pi</m> is</p>
 
-  <md>L=\int_0^\pi \sqrt{1+\cos^2 x}\,dx.</md>
+  <p><me>L=\int_0^\pi \sqrt{1+\cos^2 x}\,dx.</me></p>
 
   <p>This integral is meaningful.  It is the length of a familiar curve.</p>
 
   <p>But</p>
 
-  <md>\sqrt{1+\cos^2 x}</md>
+  <p><me>\sqrt{1+\cos^2 x}</me></p>
 
-  <p>has no elementary antiderivative.  So the exact length cannot be written using only the
-usual elementary functions.  A numerical method gives</p>
+  <p>has no elementary antiderivative.  So the usual elementary antiderivative rules do not provide an exact endpoint formula for this length.  A numerical method gives</p>
 
-  <md>L\approx 3.8202.</md>
+  <p><me>L\approx 3.8202.</me></p>
 
   <figure xml:id="fig-sine-arc-length">
     <caption>Even a simple curve can lead to a length integral with no elementary antiderivative.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Even a simple curve can lead to a length integral with no elementary antiderivative.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.78\textwidth,
@@ -635,17 +616,17 @@ usual elementary functions.  A numerical method gives</p>
     </image>
   </figure>
 
-  <p>This is an important moment in the story.</p>
+  <p>The length calculation uses the speed along the curve.</p>
 
   <p>Setting up an integral and evaluating an integral are different skills.</p>
 
   <p>The setup comes from meaning:</p>
 
-  <md>\text{What is the small piece?}</md>
+  <p><me>\text{What is the small piece?}</me></p>
 
   <p>The evaluation comes from technique:</p>
 
-  <md>\text{Can we find an antiderivative, or must we approximate?}</md>
+  <p><me>\text{Can we find an antiderivative, or must we approximate?}</me></p>
 
   <p>Many applications produce correct, useful integrals that cannot be evaluated by the
 methods we know so far.</p>
@@ -664,11 +645,11 @@ area.</p>
 
   <p>When the correct setup gives an integral such as</p>
 
-  <md>\int x e^x\,dx,
+  <p><me>\int x e^x\,dx,
 \qquad
 \int \sin^3 x\,dx,
 \qquad
-\int \sqrt{a^2-x^2}\,dx,</md>
+\int \sqrt{a^2-x^2}\,dx,</me></p>
 
   <p>we need more than the basic antiderivative rules.  The next chapter develops techniques
 for finding antiderivatives when substitution alone is not enough.</p>
@@ -677,7 +658,7 @@ for finding antiderivatives when substitution alone is not enough.</p>
         <title>Why can a natural length have no elementary antiderivative?</title>
         <statement>
           <p>
-            The length of <m>y=\sin x</m> from <m>0</m> to <m>\pi</m> is a perfectly meaningful integral that cannot be written with the usual elementary functions. In your own words, why is the integral still a way to define and measure that length?
+            The length of <m>y=\sin x</m> from <m>0</m> to <m>\pi</m> is a perfectly meaningful integral whose integrand has no elementary antiderivative. In your own words, why is the integral still a way to define and measure that length?
           </p>
         </statement>
         <hint>

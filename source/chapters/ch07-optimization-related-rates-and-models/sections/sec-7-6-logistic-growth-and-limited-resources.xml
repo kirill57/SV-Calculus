@@ -1,71 +1,50 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-7-6-logistic-growth-and-limited-resources">
   <title>Logistic growth and limited resources</title>
 
-  <p>Exponential growth has no memory of limits.  If</p>
-
-  <md>P'=rP,</md>
-
-  <p>then a positive population keeps growing faster and faster forever.</p>
-
-  <p>That can describe the beginning of a process.  It cannot describe the whole life of a
-population in a bounded environment.  A petri dish has limited nutrients.  A lake has
-limited space.  A rumor has only so many people left to reach.</p>
-
-  <p>The first correction is simple:</p>
-
-  <md>\text{growth should slow down as the quantity approaches a maximum size.}</md>
-
-  <p>That idea leads to the logistic equation.</p>
-
-  <subsection xml:id="subsec-why-exponential-growth-cannot-last">
+  <introduction><p>The exponential model <m>P\prime=rP</m>, with <m>r&gt;0</m>, allows a positive population to grow without bound. To model limited resources, the logistic equation reduces the per-capita growth rate as the population approaches a carrying capacity.</p></introduction><subsection xml:id="subsec-why-exponential-growth-cannot-last">
     <title>Why pure exponential growth cannot last</title>
 
   <p>Suppose a population doubles every hour.  If it starts with <m>100</m> individuals, then
 after <m>n</m> hours it has size</p>
 
-  <md>100\cdot2^n.</md>
+  <p><me>100\cdot2^n.</me></p>
 
   <p>After <m>10</m> hours,</p>
 
-  <md>100\cdot2^{10}=102{,}400.</md>
+  <p><me>100\cdot2^{10}=102{,}400.</me></p>
 
   <p>After <m>20</m> hours,</p>
 
-  <md>100\cdot2^{20}=104{,}857{,}600.</md>
+  <p><me>100\cdot2^{20}=104{,}857{,}600.</me></p>
 
   <p>After <m>40</m> hours,</p>
 
-  <md>100\cdot2^{40}</md>
+  <p><me>100\cdot2^{40}</me></p>
 
   <p>is enormous.</p>
 
   <p>The problem is not that the early exponential model is useless.  It may be excellent
 at the beginning.  The problem is that the model has no built-in stopping mechanism.</p>
 
-  <p>If the environment can support at most <m>K</m> individuals, then the growth rate should
-be large when <m>P</m> is small and close to <m>0</m> when <m>P</m> is near <m>K</m>.</p>
+  <p>If the environment can support at most <m>K</m> individuals, then the relative growth rate should be close to its unrestricted value when <m>P</m> is small and close to <m>0</m> when <m>P</m> is near <m>K</m>.</p>
 
   <p>The simplest factor with that behavior is</p>
 
-  <md>1-\frac{P}{K}.</md>
+  <p><me>1-\frac{P}{K}.</me></p>
 
   <p>When <m>P</m> is small compared with <m>K</m>, this factor is close to <m>1</m>.  The model looks
 almost exponential.</p>
 
   <p>When <m>P=K</m>, the factor becomes</p>
 
-  <md>1-\frac{K}{K}=0.</md>
+  <p><me>1-\frac{K}{K}=0.</me></p>
 
   <p>Growth stops.</p>
 
   <exercise xml:id="checkpoint-7-6-exponential-cannot-last">
         <title>Why can pure exponential growth not last?</title>
         <statement>
-          <p>
-            The law <m>P'=rP</m> has no built-in stopping mechanism. In your own words, why may that model still be excellent at the beginning of a process, and why must a bounded environment eventually make it the wrong whole-life story?
-          </p>
+          <p>The model <m>P\prime=rP</m>, with <m>r&gt;0</m>, permits unbounded growth. Explain why it can approximate early population growth and why limited resources may invalidate it later.</p>
         </statement>
         <hint>
           <p>
@@ -81,52 +60,47 @@ almost exponential.</p>
 
   <p>The logistic model is</p>
 
-  <md>
+  <p><me>
 P'=rP\left(1-\frac{P}{K}\right),
 \qquad r&gt;0,\quad K&gt;0.
-</md>
+</me></p>
 
   <p>Here</p>
 
-  <md>P(t)=\text{population at time }t,</md>
+  <p><me>P(t)=\text{population at time }t,</me></p>
 
-  <md>r=\text{early relative growth rate},</md>
+  <p><me>r=\text{early relative growth rate},</me></p>
 
   <p>and</p>
 
-  <md>K=\text{carrying capacity}.</md>
+  <p><me>K=\text{carrying capacity}.</me></p>
 
   <p>The carrying capacity is the level the environment can support in the model.</p>
 
   <p>The equation contains two factors:</p>
 
-  <md>rP</md>
+  <p><me>rP</me></p>
 
   <p>and</p>
 
-  <md>1-\frac{P}{K}.</md>
+  <p><me>1-\frac{P}{K}.</me></p>
 
   <p>The first factor says that more individuals create more possible growth.  The second
 factor says that limited resources reduce growth as <m>P</m> approaches <m>K</m>.</p>
 
-  <md>
-    <mrow>\begin{array}{c|c|c}
-<strong>population size</strong> \amp 1-\dfrac{P}{K} \amp <strong>model behavior</strong></mrow>
-    <mrow>\hline
-P\ll K \amp \approx1 \amp P'\approx rP,\ \text{almost exponential}</mrow>
-    <mrow>
-P=K/2 \amp 1/2 \amp \text{growth still positive}</mrow>
-    <mrow>
-P=K \amp 0 \amp \text{growth stops}</mrow>
-    <mrow>
+  <p><me>\begin{array}{c|c|c}
+\textbf{population size} \amp 1-\dfrac{P}{K} \amp \textbf{model behavior}\\
+\hline
+P\ll K \amp \approx1 \amp P'\approx rP,\ \text{almost exponential}\\
+P=K/2 \amp 1/2 \amp \text{growth still positive}\\
+P=K \amp 0 \amp \text{growth stops}\\
 P&gt;K \amp &lt;0 \amp \text{population decreases}
-\end{array}</mrow>
-  </md>
+\end{array}</me></p>
 
   <note xml:id="note-sec-7-6-logistic-growth-and-limited-resources-79">
     <title>Logistic growth</title>
       <p>The logistic equation</p>
-        <md>P'=rP\left(1-\frac{P}{K}\right)</md>
+        <p><me>P'=rP\left(1-\frac{P}{K}\right)</me></p>
       <p>keeps the early exponential behavior <m>P'\approx rP</m>, but slows the growth as
 <m>P</m> approaches the carrying capacity <m>K</m>.</p>
   </note>
@@ -152,61 +126,61 @@ P&gt;K \amp &lt;0 \amp \text{population decreases}
 
   <p>A solution is in equilibrium if it does not change.  That means</p>
 
-  <md>P'=0.</md>
+  <p><me>P'=0.</me></p>
 
   <p>For the logistic equation,</p>
 
-  <md>P'=rP\left(1-\frac{P}{K}\right).</md>
+  <p><me>P'=rP\left(1-\frac{P}{K}\right).</me></p>
 
   <p>So</p>
 
-  <md>P'=0</md>
+  <p><me>P'=0</me></p>
 
   <p>when</p>
 
-  <md>P=0</md>
+  <p><me>P=0</me></p>
 
   <p>or</p>
 
-  <md>1-\frac{P}{K}=0.</md>
+  <p><me>1-\frac{P}{K}=0.</me></p>
 
   <p>Thus the equilibrium levels are</p>
 
-  <md>
+  <p><me>
 P=0
 \qquad\text{and}\qquad
 P=K.
-</md>
+</me></p>
 
   <p>The sign of <m>P'</m> tells how solutions move.</p>
 
   <p>If</p>
 
-  <md>0&lt;P&lt;K,</md>
+  <p><me>0&lt;P&lt;K,</me></p>
 
   <p>then</p>
 
-  <md>P&gt;0
+  <p><me>P&gt;0
 \qquad\text{and}\qquad
-1-\frac{P}{K}&gt;0,</md>
+1-\frac{P}{K}&gt;0,</me></p>
 
   <p>so</p>
 
-  <md>P'&gt;0.</md>
+  <p><me>P'&gt;0.</me></p>
 
   <p>The population increases.</p>
 
   <p>If</p>
 
-  <md>P&gt;K,</md>
+  <p><me>P&gt;K,</me></p>
 
   <p>then</p>
 
-  <md>1-\frac{P}{K}&lt;0,</md>
+  <p><me>1-\frac{P}{K}&lt;0,</me></p>
 
   <p>so</p>
 
-  <md>P'&lt;0.</md>
+  <p><me>P'&lt;0.</me></p>
 
   <p>The population decreases.</p>
 
@@ -219,7 +193,7 @@ above <m>0</m>, it grows away from <m>0</m>.</p>
   <figure xml:id="fig-ch07-logistic-phase-line">
     <caption>For the logistic equation, <m>P'</m> is positive below <m>K</m> and negative above <m>K</m>.  The carrying capacity <m>K</m> is stable.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>For the logistic equation, <m>P'</m> is positive below <m>K</m> and negative above <m>K</m>.  The carrying capacity <m>K</m> is stable.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.78\textwidth,
@@ -248,18 +222,18 @@ above <m>0</m>, it grows away from <m>0</m>.</p>
 
   <p>There is another important point in the graph of</p>
 
-  <md>P'=rP\left(1-\frac{P}{K}\right).</md>
+  <p><me>P'=rP\left(1-\frac{P}{K}\right).</me></p>
 
   <p>As a function of <m>P</m>, the right side is a downward-opening parabola.  It reaches its
 maximum at</p>
 
-  <md>P=\frac{K}{2}.</md>
+  <p><me>P=\frac{K}{2}.</me></p>
 
   <p>So logistic growth is fastest when the population is halfway to the carrying capacity.</p>
 
-  <md>
+  <p><me>
 \text{In the logistic model, the fastest growth occurs at }P=K/2.
-</md>
+</me></p>
 
   <exercise xml:id="checkpoint-7-6-equilibria-stability">
         <title>Why are <m>P=0</m> and <m>P=K</m> equilibria, and why do they behave differently?</title>
@@ -285,105 +259,103 @@ measure how much room remains compared with the current population.</p>
 
   <p>Assume</p>
 
-  <md>P(t)&gt;0.</md>
+  <p><me>P(t)&gt;0.</me></p>
 
   <p>Define</p>
 
-  <md>Q(t)=\frac{K}{P(t)}-1.</md>
+  <p><me>Q(t)=\frac{K}{P(t)}-1.</me></p>
 
   <p>This quantity is positive when <m>0&lt;P&lt;K</m>.  It measures the remaining room relative
 to the population.</p>
 
   <p>Differentiate:</p>
 
-  <md>Q'(t)
+  <p><me>Q'(t)
 =
--K\frac{P'(t)}{P(t)^2}.</md>
+-K\frac{P'(t)}{P(t)^2}.</me></p>
 
   <p>Using the logistic equation,</p>
 
-  <md>P'=rP\left(1-\frac{P}{K}\right),</md>
+  <p><me>P'=rP\left(1-\frac{P}{K}\right),</me></p>
 
   <p>we get</p>
 
-  <md>Q'
+  <p><me>Q'
 =
--K\frac{rP\left(1-\frac{P}{K}\right)}{P^2}.</md>
+-K\frac{rP\left(1-\frac{P}{K}\right)}{P^2}.</me></p>
 
   <p>Simplify:</p>
 
-  <md>Q'
+  <p><me>Q'
 =
--r\frac{K}{P}\left(1-\frac{P}{K}\right).</md>
+-r\frac{K}{P}\left(1-\frac{P}{K}\right).</me></p>
 
   <p>Since</p>
 
-  <md>\frac{K}{P}\left(1-\frac{P}{K}\right)
+  <p><me>\frac{K}{P}\left(1-\frac{P}{K}\right)
 =
 \frac{K}{P}-1
 =
-Q,</md>
+Q,</me></p>
 
   <p>we obtain</p>
 
-  <md>Q'=-rQ.</md>
+  <p><me>Q'=-rQ.</me></p>
 
   <p>That is exponential decay.</p>
 
   <p>Therefore</p>
 
-  <md>Q(t)=Q(0)e^{-rt}.</md>
+  <p><me>Q(t)=Q(0)e^{-rt}.</me></p>
 
   <p>If</p>
 
-  <md>P(0)=P_0&gt;0,</md>
+  <p><me>P(0)=P_0&gt;0,</me></p>
 
   <p>then</p>
 
-  <md>Q(0)=\frac{K}{P_0}-1=\frac{K-P_0}{P_0}.</md>
+  <p><me>Q(0)=\frac{K}{P_0}-1=\frac{K-P_0}{P_0}.</me></p>
 
   <p>Let</p>
 
-  <md>A=\frac{K-P_0}{P_0}.</md>
+  <p><me>A=\frac{K-P_0}{P_0}.</me></p>
 
   <p>Then</p>
 
-  <md>\frac{K}{P(t)}-1=Ae^{-rt}.</md>
+  <p><me>\frac{K}{P(t)}-1=Ae^{-rt}.</me></p>
 
   <p>So</p>
 
-  <md>\frac{K}{P(t)}=1+Ae^{-rt}.</md>
+  <p><me>\frac{K}{P(t)}=1+Ae^{-rt}.</me></p>
 
   <p>Finally,</p>
 
-  <md>
+  <p><me>
 P(t)=\frac{K}{1+Ae^{-rt}},
 \qquad
 A=\frac{K-P_0}{P_0}.
-</md>
+</me></p>
 
   <p>This is the logistic formula.</p>
 
   <note xml:id="note-sec-7-6-logistic-growth-and-limited-resources-80">
     <title>Logistic solution with positive initial population</title>
       <p>If</p>
-        <md>P'=rP\left(1-\frac{P}{K}\right),
+        <p><me>P'=rP\left(1-\frac{P}{K}\right),
 \qquad
-P(0)=P_0&gt;0,</md>
-      <p>then</p>
-        <md>
-P(t)=\frac{K}{1+\left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}.
-</md>
+P(0)=P_0&gt;0,</me></p>
+      <p>then, for <m>t\ge0</m>,</p>
+        <p><me>P(t)=\frac{K}{1+\left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}.</me></p>
   </note>
 
   <p>The formula also shows the long-term behavior.  Since</p>
 
-  <md>e^{-rt}\to0
-\qquad\text{as}\qquad t\to\infty,</md>
+  <p><me>e^{-rt}\to0
+\qquad\text{as}\qquad t\to\infty,</me></p>
 
   <p>we get</p>
 
-  <md>P(t)\to\frac{K}{1+0}=K.</md>
+  <p><me>P(t)\to\frac{K}{1+0}=K.</me></p>
 
   <p>So the population approaches the carrying capacity.</p>
 
@@ -392,86 +364,85 @@ P(t)=\frac{K}{1+\left(\dfrac{K-P_0}{P_0}\right)e^{-rt}}.
 
   <p>The formula above assumed</p>
 
-  <md>P_0&gt;0,</md>
+  <p><me>P_0&gt;0,</me></p>
 
   <p>because we divided by <m>P</m>.  The initial value</p>
 
-  <md>P_0=0</md>
+  <p><me>P_0=0</me></p>
 
   <p>is a separate equilibrium solution:</p>
 
-  <md>P(t)=0.</md>
+  <p><me>P(t)=0.</me></p>
 
   <p>If there is no population, the logistic model creates no population from nothing.</p>
   </paragraphs>
 
   <example xml:id="ex-sec-7-6-logistic-growth-and-limited-resources-2">
     <title>reaching half the carrying capacity</title>
-    <statement>
-  <p>A population satisfies</p>
+    <p>A population satisfies</p>
 
-  <md>P'=0.8P\left(1-\frac{P}{1000}\right),
+  <p><me>P'=0.8P\left(1-\frac{P}{1000}\right),
 \qquad
-P(0)=100.</md>
+P(0)=100.</me></p>
 
   <p>Here</p>
 
-  <md>r=0.8,
+  <p><me>r=0.8,
 \qquad
 K=1000,
 \qquad
-P_0=100.</md>
+P_0=100.</me></p>
 
   <p>So</p>
 
-  <md>A=\frac{1000-100}{100}=9.</md>
+  <p><me>A=\frac{1000-100}{100}=9.</me></p>
 
   <p>The solution is</p>
 
-  <md>P(t)=\frac{1000}{1+9e^{-0.8t}}.</md>
+  <p><me>P(t)=\frac{1000}{1+9e^{-0.8t}}.</me></p>
 
   <p>When does the population reach <m>500</m>, half the carrying capacity?</p>
 
   <p>Set</p>
 
-  <md>500=\frac{1000}{1+9e^{-0.8t}}.</md>
+  <p><me>500=\frac{1000}{1+9e^{-0.8t}}.</me></p>
 
   <p>Then</p>
 
-  <md>1+9e^{-0.8t}=2.</md>
+  <p><me>1+9e^{-0.8t}=2.</me></p>
 
   <p>So</p>
 
-  <md>9e^{-0.8t}=1,</md>
+  <p><me>9e^{-0.8t}=1,</me></p>
 
   <p>hence</p>
 
-  <md>e^{-0.8t}=\frac19.</md>
+  <p><me>e^{-0.8t}=\frac19.</me></p>
 
   <p>Taking logarithms,</p>
 
-  <md>-0.8t=-\ln9.</md>
+  <p><me>-0.8t=-\ln9.</me></p>
 
   <p>Therefore</p>
 
-  <md>t=\frac{\ln9}{0.8}.</md>
+  <p><me>t=\frac{\ln9}{0.8}.</me></p>
 
   <p>Since</p>
 
-  <md>\ln9\approx2.197,</md>
+  <p><me>\ln9\approx2.197,</me></p>
 
   <p>we get</p>
 
-  <md>
+  <p><me>
 t\approx2.75.
-</md>
+</me></p>
 
   <p>The population reaches <m>500</m> after about <m>2.75</m> time units.</p>
 
   <figure xml:id="fig-logistic-solutions">
     <caption>Logistic solutions move toward the carrying capacity <m>K</m>.  From below they rise toward <m>K</m>; from above they fall toward <m>K</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Logistic solutions move toward the carrying capacity <m>K</m>.  From below they rise toward <m>K</m>; from above they fall toward <m>K</m>.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.80\textwidth,
@@ -501,8 +472,7 @@ t\approx2.75.
       </latex-image>
     </image>
   </figure>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-population-spread-models">
@@ -510,11 +480,11 @@ t\approx2.75.
 
   <p>The logistic equation appears whenever two ideas are both reasonable:</p>
 
-  <md>\text{more current amount creates more growth}</md>
+  <p><me>\text{more current amount creates more growth}</me></p>
 
   <p>and</p>
 
-  <md>\text{limited remaining capacity slows growth}.</md>
+  <p><me>\text{limited remaining capacity slows growth}.</me></p>
 
   <p>For populations, the current amount is the population <m>P</m>, and the limiting factor is
 the carrying capacity <m>K</m>.</p>
@@ -524,24 +494,24 @@ limiting factor is the number of people who have not yet heard it.</p>
 
   <p>Suppose a school has</p>
 
-  <md>K=2000</md>
+  <p><me>K=2000</me></p>
 
   <p>students, and <m>R(t)</m> is the number who have heard a rumor after <m>t</m> days.  A simple
 logistic model is</p>
 
-  <md>R'=0.7R\left(1-\frac{R}{2000}\right).</md>
+  <p><me>R'=0.7R\left(1-\frac{R}{2000}\right).</me></p>
 
   <p>If</p>
 
-  <md>R(0)=20,</md>
+  <p><me>R(0)=20,</me></p>
 
   <p>then</p>
 
-  <md>A=\frac{2000-20}{20}=99.</md>
+  <p><me>A=\frac{2000-20}{20}=99.</me></p>
 
   <p>So</p>
 
-  <md>R(t)=\frac{2000}{1+99e^{-0.7t}}.</md>
+  <p><me>R(t)=\frac{2000}{1+99e^{-0.7t}}.</me></p>
 
   <p>The rumor spreads slowly at first because few people know it.  It then spreads quickly
 when many people know it and many people remain to hear it.  Finally it slows again
@@ -550,16 +520,12 @@ because most people have already heard it.</p>
   <p>This slow--fast--slow shape is the signature of a logistic curve.</p>
 
   <note xml:id="note-sec-7-6-logistic-growth-and-limited-resources-81">
-    <title>The logistic story</title>
-        <md>
-    <mrow>\begin{array}{c|c}
-<strong>early stage</strong> \amp P\ll K,\quad P'\approx rP,\quad \text{almost exponential}</mrow>
-    <mrow>
-<strong>middle stage</strong> \amp P\approx K/2,\quad \text{growth is fastest}</mrow>
-    <mrow>
-<strong>late stage</strong> \amp P\approx K,\quad P'\approx0,\quad \text{growth slows}
-\end{array}</mrow>
-  </md>
+    <title>Interpreting the logistic model</title>
+        <p><me>\begin{array}{c|c}
+\textbf{early stage} \amp P\ll K,\quad P'\approx rP,\quad \text{almost exponential}\\
+\textbf{middle stage} \amp P\approx K/2,\quad \text{growth is fastest}\\
+\textbf{late stage} \amp P\approx K,\quad P'\approx0,\quad \text{growth slows}
+\end{array}</me></p>
   </note>
   </subsection>
 
@@ -571,14 +537,12 @@ model.</p>
 
   <p>It assumes:</p>
 
-  <md>
-    <mrow>\begin{array}{ll}
-\text{1.} \amp \text{the carrying capacity \(K\) is fixed,}</mrow>
-    <mrow>\text{2.} \amp \text{the early growth rate \(r\) is fixed,}</mrow>
-    <mrow>\text{3.} \amp \text{the slowing factor is linear in \(P\),}</mrow>
-    <mrow>\text{4.} \amp \text{there are no delays, shocks, seasons, migrations, or changing behavior.}
-\end{array}</mrow>
-  </md>
+  <p><me>\begin{array}{ll}
+\text{1.} \amp \text{the carrying capacity \(K\) is fixed,}\\
+\text{2.} \amp \text{the early growth rate \(r\) is fixed,}\\
+\text{3.} \amp \text{the slowing factor is linear in \(P\),}\\
+\text{4.} \amp \text{there are no delays, shocks, seasons, migrations, or changing behavior.}
+\end{array}</me></p>
 
   <p>Those assumptions may be useful, but they are not automatic.</p>
 
@@ -587,15 +551,15 @@ model.</p>
 
   <p>When</p>
 
-  <md>P\ll K,</md>
+  <p><me>P\ll K,</me></p>
 
   <p>the logistic equation</p>
 
-  <md>P'=rP\left(1-\frac{P}{K}\right)</md>
+  <p><me>P'=rP\left(1-\frac{P}{K}\right)</me></p>
 
   <p>looks like</p>
 
-  <md>P'\approx rP.</md>
+  <p><me>P'\approx rP.</me></p>
 
   <p>So early logistic growth and exponential growth can look almost the same.</p>
 
@@ -603,10 +567,10 @@ model.</p>
 carrying capacity, we need data from the stage where growth begins to slow.</p>
 
   <note xml:id="note-sec-7-6-logistic-growth-and-limited-resources-82">
-    <title>A model is a promise with conditions</title>
-      <p>Exponential growth promises constant relative growth.</p>
-      <p>Logistic growth promises constant early relative growth and a fixed carrying capacity.</p>
-      <p>Before trusting the formula, check whether the promise matches the situation.</p>
+    <title>Check the model’s assumptions</title>
+      <p>Exponential growth assumes a constant relative growth rate.</p>
+      <p>Logistic growth assumes a fixed carrying capacity and a relative growth rate <m>r(1-P/K)</m>, approximately <m>r</m> when <m>P\ll K</m>.</p>
+      <p>Check whether these assumptions describe the situation before using the model to predict its behavior.</p>
   </note>
 
   <p>This chapter used derivatives to answer practical questions: rates related to rates,
@@ -624,9 +588,7 @@ waiting for us.  The next chapter begins the integral.</p>
   <exercise xml:id="checkpoint-7-6-early-data-hide-k">
         <title>Why can early data hide the carrying capacity?</title>
         <statement>
-          <p>
-            When <m>P</m> is far below <m>K</m>, logistic growth and exponential growth look almost the same. In your own words, why might early data reveal <m>r</m> but not <m>K</m>, and what does that show about treating a model as a promise with conditions?
-          </p>
+          <p>When <m>P\ll K</m>, the logistic model closely approximates exponential growth. Explain why early data may estimate <m>r</m> while providing little information about <m>K</m>.</p>
         </statement>
         <hint>
           <p>

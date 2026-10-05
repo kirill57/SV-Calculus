@@ -1,34 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-7-2-optimization-problems">
   <title>Optimization problems</title>
 
-  <p>The previous chapter taught us how to find high and low points of a function.  Optimization
-turns that skill into a method for solving word problems.</p>
-
-  <p>A real question rarely arrives as</p>
-
-  <md>\text{maximize } f(x).</md>
-
-  <p>It arrives as a sentence:</p>
-
-  <md>\text{Build the largest box from this sheet of cardboard.}</md>
-
-  <md>\text{Use the least metal for this can.}</md>
-
-  <md>\text{Enclose the most area with this much fence.}</md>
-
-  <p>The first task is not calculus.  The first task is translation.</p>
-
-  <md>\text{situation}
-\quad\longrightarrow\quad
-\text{function}
-\quad\longrightarrow\quad
-\text{derivative}
-\quad\longrightarrow\quad
-\text{decision}.</md>
-
-  <subsection xml:id="subsec-translating-word-problem-function">
+  <introduction><p>An optimization problem asks for a maximum or minimum under given constraints. First choose variables, determine their allowed values, and express the quantity to be optimized as a function. Then use derivatives and endpoint checks to compare all relevant candidates.</p></introduction><subsection xml:id="subsec-translating-word-problem-function">
     <title>Translating a word problem into a function</title>
 
   <p>A farmer has <m>200</m> meters of fencing and wants to enclose a rectangular field along a
@@ -39,69 +12,69 @@ the other three sides.</p>
 
   <p>Let</p>
 
-  <md>x=\text{the width perpendicular to the river}</md>
+  <p><me>x=\text{the width perpendicular to the river}</me></p>
 
   <p>and</p>
 
-  <md>y=\text{the length parallel to the river}.</md>
+  <p><me>y=\text{the length parallel to the river}.</me></p>
 
   <p>The fencing is used for two widths and one length:</p>
 
-  <md>2x+y=200.</md>
+  <p><me>2x+y=200.</me></p>
 
   <p>The area is</p>
 
-  <md>A=xy.</md>
+  <p><me>A=xy.</me></p>
 
   <p>We want to maximize <m>A</m>, but right now <m>A</m> uses two variables.  Use the constraint</p>
 
-  <md>2x+y=200</md>
+  <p><me>2x+y=200</me></p>
 
   <p>to solve for <m>y</m>:</p>
 
-  <md>y=200-2x.</md>
+  <p><me>y=200-2x.</me></p>
 
   <p>Then</p>
 
-  <md>A(x)=x(200-2x)=200x-2x^2.</md>
+  <p><me>A(x)=x(200-2x)=200x-2x^2.</me></p>
 
   <p>Now the problem is a one-variable calculus problem.</p>
 
   <p>The physical domain is</p>
 
-  <md>0\le x\le 100.</md>
+  <p><me>0\le x\le 100.</me></p>
 
   <p>If <m>x=0</m>, the rectangle has no width.  If <m>x=100</m>, then <m>y=0</m>.  Both give area <m>0</m>.
 For <m>0&lt;x&lt;100</m>, the rectangle has positive area.</p>
 
   <p>Differentiate:</p>
 
-  <md>A'(x)=200-4x.</md>
+  <p><me>A'(x)=200-4x.</me></p>
 
   <p>Set the derivative equal to <m>0</m>:</p>
 
-  <md>200-4x=0.</md>
+  <p><me>200-4x=0.</me></p>
 
   <p>Thus</p>
 
-  <md>x=50.</md>
+  <p><me>x=50.</me></p>
 
   <p>Then</p>
 
-  <md>y=200-2(50)=100.</md>
+  <p><me>y=200-2(50)=100.</me></p>
 
-  <p>The maximum area occurs when</p>
+  <p>Since <m>A''(x)=-4&lt;0</m>, the area is concave down; also <m>A(0)=A(100)=0</m> and <m>A(50)=5000</m>. Thus the absolute maximum area occurs when</p>
 
-  <md>
+  <p><me>
 x=50,\qquad y=100.
-</md>
+</me></p>
 
   <p>The farmer should build a field <m>50</m> meters wide and <m>100</m> meters long.</p>
 
   <figure xml:id="fig-fence-river-optimization">
     <caption>The river supplies one side, so the fencing constraint is <m>2x+y=200</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The river supplies one side, so the fencing constraint is <m>2x+y=200</m>.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
   % river
   \draw[very thick] (-0.5,3.2) -- (7,3.2);
@@ -126,13 +99,7 @@ x=50,\qquad y=100.
 
   <note xml:id="note-sec-7-2-optimization-problems-79">
     <title>The optimization translation</title>
-        <md>
-    <mrow>\begin{array}{ll}
-\text{objective} \amp \text{the quantity to maximize or minimize}</mrow>
-    <mrow>\text{constraint} \amp \text{the condition that limits the choices}</mrow>
-    <mrow>\text{domain} \amp \text{the physically meaningful values of the variable}
-\end{array}</mrow>
-  </md>
+        <table><title>Objective, constraint, and domain</title><tabular width="100%" halign="left"><col width="50%"/><col width="50%"/><row><cell><p>objective</p></cell><cell><p>the quantity to maximize or minimize</p></cell></row><row><cell><p>constraint</p></cell><cell><p>the condition that limits the choices</p></cell></row><row><cell><p>domain</p></cell><cell><p>the physically meaningful values of the variable</p></cell></row></tabular></table>
   </note>
 
   <p>In the fencing problem, the objective was area, the constraint was the amount of fencing,
@@ -162,36 +129,25 @@ reduce to one variable.</p>
 
   <p>The general pattern is:</p>
 
-  <md>\text{objective } Q=Q(x,y)</md>
+  <p><me>\text{objective } Q=Q(x,y)</me></p>
 
   <p>together with</p>
 
-  <md>\text{constraint relating }x\text{ and }y.</md>
+  <p><me>\text{constraint relating }x\text{ and }y.</me></p>
 
   <p>Use the constraint to write</p>
 
-  <md>y=\text{a formula in }x.</md>
+  <p><me>y=\text{a formula in }x.</me></p>
 
   <p>Then</p>
 
-  <md>Q=Q(x)</md>
+  <p><me>Q=Q(x)</me></p>
 
   <p>becomes a one-variable function.</p>
 
   <note xml:id="note-sec-7-2-optimization-problems-80">
     <title>Optimization workflow</title>
-        <md>
-    <mrow>\begin{array}{ll}
-\text{1.} \amp \text{Identify the quantity to optimize.}</mrow>
-    <mrow>\text{2.} \amp \text{Name the variables.}</mrow>
-    <mrow>\text{3.} \amp \text{Write the objective function.}</mrow>
-    <mrow>\text{4.} \amp \text{Write the constraint.}</mrow>
-    <mrow>\text{5.} \amp \text{Use the constraint to get one variable.}</mrow>
-    <mrow>\text{6.} \amp \text{Find the physical domain.}</mrow>
-    <mrow>\text{7.} \amp \text{Use derivatives and endpoint checks.}</mrow>
-    <mrow>\text{8.} \amp \text{Translate the answer back into the problem.}
-\end{array}</mrow>
-  </md>
+        <p><ol><li><p>Identify the quantity to optimize.</p></li><li><p>Name the variables.</p></li><li><p>Write the objective function.</p></li><li><p>Write the constraint.</p></li><li><p>Use the constraint to get one variable.</p></li><li><p>Find the physical domain.</p></li><li><p>Use derivatives and endpoint checks.</p></li><li><p>Translate the answer back into the problem.</p></li></ol></p>
   </note>
 
   <p>The domain is not optional.  It is part of the model.</p>
@@ -222,81 +178,80 @@ inside the domain may be the best solution.</p>
 
   <example xml:id="ex-sec-7-2-optimization-problems-1">
     <title>the largest open box from a square sheet</title>
-    <statement>
-  <p>A square sheet of cardboard is <m>12</m> inches by <m>12</m> inches.  Equal squares of side
+    <p>A square sheet of cardboard is <m>12</m> inches by <m>12</m> inches.  Equal squares of side
 length <m>x</m> are cut from the four corners.  The sides are folded up to make an open box.</p>
 
   <p>What value of <m>x</m> gives the largest volume?</p>
 
   <p>After cutting, the base has side length</p>
 
-  <md>12-2x.</md>
+  <p><me>12-2x.</me></p>
 
   <p>The height is</p>
 
-  <md>x.</md>
+  <p><me>x.</me></p>
 
   <p>So the volume is</p>
 
-  <md>V(x)=x(12-2x)^2.</md>
+  <p><me>V(x)=x(12-2x)^2.</me></p>
 
   <p>The physical domain is</p>
 
-  <md>0\le x\le 6.</md>
+  <p><me>0\le x\le 6.</me></p>
 
   <p>At <m>x=0</m>, no box is formed.  At <m>x=6</m>, the base has side length <m>0</m>.  Both endpoints
 give volume <m>0</m>.</p>
 
   <p>Differentiate:</p>
 
-  <md>V(x)=x(12-2x)^2.</md>
+  <p><me>V(x)=x(12-2x)^2.</me></p>
 
   <p>Using the product and chain rules,</p>
 
-  <md>V'(x)
+  <p><me>V'(x)
 =
-(12-2x)^2+x\cdot 2(12-2x)(-2).</md>
+(12-2x)^2+x\cdot 2(12-2x)(-2).</me></p>
 
   <p>Factor:</p>
 
-  <md>V'(x)
+  <p><me>V'(x)
 =
-(12-2x)\bigl((12-2x)-4x\bigr).</md>
+(12-2x)\bigl((12-2x)-4x\bigr).</me></p>
 
   <p>Thus</p>
 
-  <md>V'(x)
+  <p><me>V'(x)
 =
-(12-2x)(12-6x).</md>
+(12-2x)(12-6x).</me></p>
 
   <p>The critical numbers are</p>
 
-  <md>x=6
+  <p><me>x=6
 \qquad\text{and}\qquad
-x=2.</md>
+x=2.</me></p>
 
   <p>The number <m>x=6</m> is an endpoint.  The interior critical number is <m>x=2</m>.</p>
 
   <p>Check the volumes:</p>
 
-  <md>V(0)=0,</md>
+  <p><me>V(0)=0,</me></p>
 
-  <md>V(2)=2(12-4)^2=2(8)^2=128,</md>
+  <p><me>V(2)=2(12-4)^2=2(8)^2=128,</me></p>
 
-  <md>V(6)=0.</md>
+  <p><me>V(6)=0.</me></p>
 
   <p>Therefore the largest volume occurs at</p>
 
-  <md>x=2</md>
+  <p><me>x=2</me></p>
 
   <p>inches.  The box dimensions are</p>
 
-  <md>8\text{ in}\times 8\text{ in}\times 2\text{ in}.</md>
+  <p><me>8\text{ in}\times 8\text{ in}\times 2\text{ in}.</me></p>
 
   <figure xml:id="fig-open-box-cardboard">
     <caption>Cutting out four squares of side length <m>x</m> leaves an open box with volume <m>V=x(12-2x)^2</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Cutting out four squares of side length <m>x</m> leaves an open box with volume <m>V=x(12-2x)^2</m>.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.45, every node/.style={font=\small}]
   % square sheet
   \draw[thick] (0,0) rectangle (12,12);
@@ -330,82 +285,80 @@ x=2.</md>
       </latex-image>
     </image>
   </figure>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-7-2-optimization-problems-2">
     <title>the least material for a closed can</title>
-    <statement>
-  <p>A closed cylindrical can must hold volume <m>V_0</m>.  What shape uses the least surface
+    <p>A closed cylindrical can must hold volume <m>V_0</m>.  What shape uses the least surface
 area?</p>
 
   <p>Let</p>
 
-  <md>r=\text{radius}</md>
+  <p><me>r=\text{radius}</me></p>
 
   <p>and</p>
 
-  <md>h=\text{height}.</md>
+  <p><me>h=\text{height}.</me></p>
 
   <p>The volume constraint is</p>
 
-  <md>\pi r^2h=V_0.</md>
+  <p><me>\pi r^2h=V_0.</me></p>
 
   <p>The surface area of a closed cylinder is</p>
 
-  <md>S=2\pi r^2+2\pi rh.</md>
+  <p><me>S=2\pi r^2+2\pi rh.</me></p>
 
   <p>Use the constraint to solve for <m>h</m>:</p>
 
-  <md>h=\frac{V_0}{\pi r^2}.</md>
+  <p><me>h=\frac{V_0}{\pi r^2}.</me></p>
 
   <p>Substitute into <m>S</m>:</p>
 
-  <md>S(r)
+  <p><me>S(r)
 =
-2\pi r^2+2\pi r\left(\frac{V_0}{\pi r^2}\right).</md>
+2\pi r^2+2\pi r\left(\frac{V_0}{\pi r^2}\right).</me></p>
 
   <p>So</p>
 
-  <md>S(r)=2\pi r^2+\frac{2V_0}{r},
-\qquad r&gt;0.</md>
+  <p><me>S(r)=2\pi r^2+\frac{2V_0}{r},
+\qquad r&gt;0.</me></p>
 
   <p>Differentiate:</p>
 
-  <md>S'(r)=4\pi r-\frac{2V_0}{r^2}.</md>
+  <p><me>S'(r)=4\pi r-\frac{2V_0}{r^2}.</me></p>
 
   <p>Set <m>S'(r)=0</m>:</p>
 
-  <md>4\pi r-\frac{2V_0}{r^2}=0.</md>
+  <p><me>4\pi r-\frac{2V_0}{r^2}=0.</me></p>
 
   <p>Multiply by <m>r^2</m>:</p>
 
-  <md>4\pi r^3-2V_0=0.</md>
+  <p><me>4\pi r^3-2V_0=0.</me></p>
 
   <p>Thus</p>
 
-  <md>2\pi r^3=V_0.</md>
+  <p><me>2\pi r^3=V_0.</me></p>
 
   <p>Now compute the corresponding height:</p>
 
-  <md>h=\frac{V_0}{\pi r^2}.</md>
+  <p><me>h=\frac{V_0}{\pi r^2}.</me></p>
 
   <p>Since <m>V_0=2\pi r^3</m>,</p>
 
-  <md>h=\frac{2\pi r^3}{\pi r^2}=2r.</md>
+  <p><me>h=\frac{2\pi r^3}{\pi r^2}=2r.</me></p>
 
   <p>Therefore the least-material closed can satisfies</p>
 
-  <md>
+  <p><me>
 h=2r.
-</md>
+</me></p>
 
   <p>The height equals the diameter.</p>
 
   <figure xml:id="fig-closed-can-min-area">
     <caption>For a closed cylinder with fixed volume, the surface area is minimized when height equals diameter.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>For a closed cylinder with fixed volume, the surface area is minimized when height equals diameter.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
   % cylinder
   \draw[thick] (-1.5,1.5) arc[start angle=180,end angle=360,x radius=1.5,y radius=0.35];
@@ -431,93 +384,91 @@ h=2r.
 
   <p>A second derivative check confirms this critical point is a minimum:</p>
 
-  <md>S''(r)=4\pi+\frac{4V_0}{r^3}&gt;0.</md>
+  <p><me>S''(r)=4\pi+\frac{4V_0}{r^3}&gt;0.</me></p>
 
   <p>So <m>S</m> is concave up at every positive <m>r</m>.  The critical point is the least surface area.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-7-2-optimization-problems-3">
     <title>the shortest reflected path</title>
-    <statement>
-  <p>A point <m>A</m> is located <m>a</m> units above a straight mirror, and a point <m>B</m> is located
+    <p>A point <m>A</m> is located <m>a</m> units above a straight mirror, and a point <m>B</m> is located
 <m>b</m> units above the same mirror.  Their horizontal separation is <m>L</m>.  A light ray travels
 from <m>A</m> to the mirror and then to <m>B</m>.  Where should it hit the mirror to make the
 total distance as small as possible?</p>
 
   <p>Place the mirror on the <m>x</m>-axis.  Let</p>
 
-  <md>A=(0,a),
+  <p><me>A=(0,a),
 \qquad
-B=(L,b),</md>
+B=(L,b),</me></p>
 
   <p>and let the reflection point be</p>
 
-  <md>P=(x,0).</md>
+  <p><me>P=(x,0).</me></p>
 
   <p>The total distance is</p>
 
-  <md>D(x)=\sqrt{x^2+a^2}+\sqrt{(L-x)^2+b^2}.</md>
+  <p><me>D(x)=\sqrt{x^2+a^2}+\sqrt{(L-x)^2+b^2}.</me></p>
 
   <p>The physical domain is</p>
 
-  <md>0\le x\le L.</md>
+  <p><me>0\le x\le L.</me></p>
 
   <p>Differentiate:</p>
 
-  <md>D'(x)
+  <p><me>D'(x)
 =
 \frac{x}{\sqrt{x^2+a^2}}
 -
-\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</me></p>
 
   <p>At the shortest path, an interior critical point must satisfy</p>
 
-  <md>\frac{x}{\sqrt{x^2+a^2}}
+  <p><me>\frac{x}{\sqrt{x^2+a^2}}
 =
-\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</md>
+\frac{L-x}{\sqrt{(L-x)^2+b^2}}.</me></p>
 
   <p>Both sides are positive, so square:</p>
 
-  <md>\frac{x^2}{x^2+a^2}
+  <p><me>\frac{x^2}{x^2+a^2}
 =
-\frac{(L-x)^2}{(L-x)^2+b^2}.</md>
+\frac{(L-x)^2}{(L-x)^2+b^2}.</me></p>
 
   <p>Cross-multiply:</p>
 
-  <md>x^2\bigl((L-x)^2+b^2\bigr)
+  <p><me>x^2\bigl((L-x)^2+b^2\bigr)
 =
-(L-x)^2(x^2+a^2).</md>
+(L-x)^2(x^2+a^2).</me></p>
 
   <p>Cancel the matching term <m>x^2(L-x)^2</m>:</p>
 
-  <md>b^2x^2=a^2(L-x)^2.</md>
+  <p><me>b^2x^2=a^2(L-x)^2.</me></p>
 
   <p>Taking positive square roots gives</p>
 
-  <md>bx=a(L-x).</md>
+  <p><me>bx=a(L-x).</me></p>
 
   <p>Therefore</p>
 
-  <md>(a+b)x=aL,</md>
+  <p><me>(a+b)x=aL,</me></p>
 
   <p>so</p>
 
-  <md>
+  <p><me>
 x=\frac{aL}{a+b}.
-</md>
+</me></p>
 
-  <p>This condition is the familiar reflection rule: the incoming and outgoing angles are equal.
+  <p>Here <m>a,b,L&gt;0</m>. The second derivative is <m>D''(x)=a^2/(x^2+a^2)^{3/2}+b^2/((L-x)^2+b^2)^{3/2}&gt;0</m>, and the critical point lies in <m>(0,L)</m>, so it is the unique absolute minimum. This condition is the familiar reflection rule: the incoming and outgoing angles are equal.
 The derivative has found the law of reflection from a shortest-path principle.</p>
 
   <figure xml:id="fig-reflection-shortest-path">
     <caption>The total path length is <m>D(x)=\sqrt{x^2+a^2}+\sqrt{(L-x)^2+b^2}</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The total path length is <m>D(x)=\sqrt{x^2+a^2}+\sqrt{(L-x)^2+b^2}</m>.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.85, every node/.style={font=\small}]
   % mirror
   \draw[very thick] (-0.5,0) -- (7.5,0);
-  \node[below] at (3.5,0) {mirror};
+  \node[below] at (6.5,0) {mirror};
 
   % points
   \coordinate (A) at (0,3);
@@ -554,8 +505,7 @@ The derivative has found the law of reflection from a shortest-path principle.</
       </latex-image>
     </image>
   </figure>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-endpoint-checks-physical-feasibility">
@@ -571,29 +521,22 @@ not be physically allowed.</p>
   <note xml:id="note-sec-7-2-optimization-problems-81">
     <title>Closed interval method for applications</title>
       <p>If the objective function is continuous on a closed interval, then:</p>
-        <md>
-    <mrow>\begin{array}{ll}
-\text{1.} \amp \text{Find the critical numbers inside the interval.}</mrow>
-    <mrow>\text{2.} \amp \text{Evaluate the objective function at those critical numbers.}</mrow>
-    <mrow>\text{3.} \amp \text{Evaluate the objective function at the endpoints.}</mrow>
-    <mrow>\text{4.} \amp \text{Compare the values.}
-\end{array}</mrow>
-  </md>
+        <p><ol><li><p>Find the critical numbers inside the interval.</p></li><li><p>Evaluate the objective function at those critical numbers.</p></li><li><p>Evaluate the objective function at the endpoints.</p></li><li><p>Compare the values.</p></li></ol></p>
   </note>
 
   <p>In the open-box problem, the domain was</p>
 
-  <md>0\le x\le 6.</md>
+  <p><me>0\le x\le 6.</me></p>
 
   <p>The endpoints gave</p>
 
-  <md>V(0)=0,
+  <p><me>V(0)=0,
 \qquad
-V(6)=0.</md>
+V(6)=0.</me></p>
 
   <p>The interior critical point gave</p>
 
-  <md>V(2)=128.</md>
+  <p><me>V(2)=128.</me></p>
 
   <p>So <m>x=2</m> gave the absolute maximum.</p>
 
@@ -606,29 +549,29 @@ the physical domain, it is irrelevant.</p>
 
   <p>Suppose a company models profit from selling <m>q</m> units by</p>
 
-  <md>P(q)=-q^2+40q-300.</md>
+  <p><me>P(q)=-q^2+40q-300.</me></p>
 
   <p>The derivative is</p>
 
-  <md>P'(q)=-2q+40.</md>
+  <p><me>P'(q)=-2q+40.</me></p>
 
   <p>The critical point is</p>
 
-  <md>q=20.</md>
+  <p><me>q=20.</me></p>
 
   <p>If the company can produce any number of units between <m>0</m> and <m>50</m>, then <m>q=20</m>
 is a real candidate.  But if a contract requires</p>
 
-  <md>30\le q\le 50,</md>
+  <p><me>30\le q\le 50,</me></p>
 
   <p>then <m>q=20</m> is not physically allowed.  On the interval <m>[30,50]</m>,</p>
 
-  <md>P'(q)=-2q+40&lt;0.</md>
+  <p><me>P'(q)=-2q+40&lt;0.</me></p>
 
   <p>So <m>P</m> is decreasing throughout the allowed interval.  The maximum allowed profit occurs
 at the endpoint</p>
 
-  <md>q=30.</md>
+  <p><me>q=30.</me></p>
 
   <p>The derivative found the best point for the wrong domain.</p>
 

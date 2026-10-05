@@ -1,71 +1,54 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-16-3-representing-functions-by-power-series">
   <title>Representing functions by power series</title>
 
-  <p>The last section gave us permission to work with power series inside their radius of
-convergence.  We can add, multiply, differentiate, and integrate them term by term.</p>
-
-  <p>Now we use that permission in the opposite direction.</p>
-
-  <p>Instead of starting with a power series and asking where it converges, we start with a
-function and ask:</p>
-
-  <md>
-\text{Can this function be written as an infinite polynomial?}
-</md>
-
-  <p>The first seed is the geometric series.  From that one seed, differentiation,
-integration, and substitution will grow new series.</p>
-
-  <subsection xml:id="subsec-geometric-series-seed">
+  <introduction><p>Known series can produce representations of new functions by substitution, differentiation, and integration. We will start with the geometric series and state the interval on which each resulting identity holds.</p></introduction><subsection xml:id="subsec-geometric-series-seed">
     <title>Geometric series as the seed</title>
 
   <p>Start with the finite sum</p>
 
-  <md>S_N(x)=1+x+x^2+\cdots+x^N.</md>
+  <p><me>S_N(x)=1+x+x^2+\cdots+x^N.</me></p>
 
   <p>Multiply by <m>1-x</m>:</p>
 
-  <md>(1-x)S_N(x)
+  <p><me>(1-x)S_N(x)
 =
 (1+x+x^2+\cdots+x^N)
 -
-(x+x^2+x^3+\cdots+x^{N+1}).</md>
+(x+x^2+x^3+\cdots+x^{N+1}).</me></p>
 
   <p>Everything cancels except the first and last terms:</p>
 
-  <md>(1-x)S_N(x)=1-x^{N+1}.</md>
+  <p><me>(1-x)S_N(x)=1-x^{N+1}.</me></p>
 
   <p>So, if <m>x\neq1</m>,</p>
 
-  <md>S_N(x)=\frac{1-x^{N+1}}{1-x}.</md>
+  <p><me>S_N(x)=\frac{1-x^{N+1}}{1-x}.</me></p>
 
   <p>Now let <m>N\to\infty</m>.  If</p>
 
-  <md>|x|&lt;1,</md>
+  <p><me>|x|&lt;1,</me></p>
 
   <p>then</p>
 
-  <md>x^{N+1}\to0.</md>
+  <p><me>x^{N+1}\to0.</me></p>
 
   <p>Therefore</p>
 
-  <md>S_N(x)\to \frac1{1-x}.</md>
+  <p><me>S_N(x)\to \frac1{1-x}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \frac1{1-x}=1+x+x^2+x^3+\cdots,
 \qquad |x|&lt;1.
-</md>
+</me></p>
 
   <p>This is our first power series representation of a function.</p>
 
   <figure xml:id="fig-geometric-partial-sums-function">
     <caption>Partial sums of the geometric series approach <m>\frac1{1-x}</m> on <m>(-1,1)</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Partial sums of the geometric series approach <m>\frac1{1-x}</m> on <m>(-1,1)</m>.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.82\textwidth,
@@ -100,21 +83,21 @@ integration, and substitution will grow new series.</p>
 
   <p>The equality</p>
 
-  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots</md>
+  <p><me>\frac1{1-x}=1+x+x^2+x^3+\cdots</me></p>
 
   <p>is not true for every <m>x</m>.  At <m>x=2</m>, the right side is</p>
 
-  <md>1+2+4+8+\cdots,</md>
+  <p><me>1+2+4+8+\cdots,</me></p>
 
   <p>which diverges.  At <m>x=-1</m>, the right side is</p>
 
-  <md>1-1+1-1+\cdots,</md>
+  <p><me>1-1+1-1+\cdots,</me></p>
 
   <p>which also diverges.</p>
 
   <p>So the formula always carries its home with it:</p>
 
-  <md>|x|&lt;1.</md>
+  <p><me>|x|&lt;1.</me></p>
 
   <p>A power series representation is not only an identity.  It is an identity together with
 an interval where the identity is valid.</p>
@@ -140,150 +123,143 @@ an interval where the identity is valid.</p>
 
   <p>The geometric series is a machine.  Once we know</p>
 
-  <md>\frac1{1-x}=\sum_{n=0}^{\infty}x^n,
-\qquad |x|&lt;1,</md>
+  <p><me>\frac1{1-x}=\sum_{n=0}^{\infty}x^n,
+\qquad |x|&lt;1,</me></p>
 
   <p>we can replace <m>x</m> by other expressions, as long as the new expression has absolute
 value less than <m>1</m>.</p>
 
   <example xml:id="ex-sec-16-3-representing-functions-by-power-series-1">
     <title>replacing <m>x</m> by <m>-x</m></title>
-    <statement>
-  <p>Since</p>
+    <p>Since</p>
 
-  <md>\frac1{1-u}=1+u+u^2+u^3+\cdots,
-\qquad |u|&lt;1,</md>
+  <p><me>\frac1{1-u}=1+u+u^2+u^3+\cdots,
+\qquad |u|&lt;1,</me></p>
 
   <p>put</p>
 
-  <md>u=-x.</md>
+  <p><me>u=-x.</me></p>
 
   <p>Then</p>
 
-  <md>\frac1{1-(-x)}
+  <p><me>\frac1{1-(-x)}
 =
-1+(-x)+(-x)^2+(-x)^3+\cdots.</md>
+1+(-x)+(-x)^2+(-x)^3+\cdots.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \frac1{1+x}
 =
 1-x+x^2-x^3+\cdots,
 \qquad |x|&lt;1.
-</md>
+</me></p>
 
   <p>This will become the seed for the logarithm.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-16-3-representing-functions-by-power-series-2">
     <title>replacing <m>x</m> by <m>x^2</m></title>
-    <statement>
-  <p>Put</p>
+    <p>Put</p>
 
-  <md>u=x^2.</md>
+  <p><me>u=x^2.</me></p>
 
   <p>Then</p>
 
-  <md>\frac1{1-x^2}
+  <p><me>\frac1{1-x^2}
 =
-1+x^2+x^4+x^6+\cdots.</md>
+1+x^2+x^4+x^6+\cdots.</me></p>
 
   <p>The condition is</p>
 
-  <md>|x^2|&lt;1,</md>
+  <p><me>|x^2|&lt;1,</me></p>
 
   <p>which is the same as</p>
 
-  <md>|x|&lt;1.</md>
+  <p><me>|x|&lt;1.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \frac1{1-x^2}
 =
 1+x^2+x^4+x^6+\cdots,
 \qquad |x|&lt;1.
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-16-3-representing-functions-by-power-series-3">
     <title>a different radius</title>
-    <statement>
-  <p>Find a power series for</p>
+    <p>Find a power series for</p>
 
-  <md>\frac1{2-x}</md>
+  <p><me>\frac1{2-x}</me></p>
 
   <p>centered at <m>0</m>.</p>
 
   <p>Rewrite the function so that the geometric form appears:</p>
 
-  <md>\frac1{2-x}
+  <p><me>\frac1{2-x}
 =
-\frac12\cdot \frac1{1-\frac{x}{2}}.</md>
+\frac12\cdot \frac1{1-\frac{x}{2}}.</me></p>
 
   <p>Now use the geometric series with</p>
 
-  <md>u=\frac{x}{2}.</md>
+  <p><me>u=\frac{x}{2}.</me></p>
 
   <p>Then</p>
 
-  <md>\frac1{1-\frac{x}{2}}
+  <p><me>\frac1{1-\frac{x}{2}}
 =
-\sum_{n=0}^{\infty}\left(\frac{x}{2}\right)^n</md>
+\sum_{n=0}^{\infty}\left(\frac{x}{2}\right)^n</me></p>
 
   <p>when</p>
 
-  <md>\left|\frac{x}{2}\right|&lt;1.</md>
+  <p><me>\left|\frac{x}{2}\right|&lt;1.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \frac1{2-x}
 =
 \sum_{n=0}^{\infty}\frac{x^n}{2^{n+1}},
 \qquad |x|&lt;2.
-</md>
+</me></p>
 
   <p>The radius is <m>2</m>, not <m>1</m>, because the actual ratio is <m>x/2</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-16-3-representing-functions-by-power-series-4">
     <title>a series centered at <m>2</m></title>
-    <statement>
-  <p>Find a power series for</p>
+    <p>Find a power series for</p>
 
-  <md>\frac1x</md>
+  <p><me>\frac1x</me></p>
 
   <p>centered at <m>2</m>.</p>
 
   <p>Write <m>x</m> as</p>
 
-  <md>x=2+(x-2).</md>
+  <p><me>x=2+(x-2).</me></p>
 
   <p>Then</p>
 
-  <md>\frac1x
+  <p><me>\frac1x
 =
 \frac1{2+(x-2)}
 =
-\frac12\cdot \frac1{1+\frac{x-2}{2}}.</md>
+\frac12\cdot \frac1{1+\frac{x-2}{2}}.</me></p>
 
   <p>Use the series</p>
 
-  <md>\frac1{1+u}=1-u+u^2-u^3+\cdots,
-\qquad |u|&lt;1,</md>
+  <p><me>\frac1{1+u}=1-u+u^2-u^3+\cdots,
+\qquad |u|&lt;1,</me></p>
 
   <p>with</p>
 
-  <md>u=\frac{x-2}{2}.</md>
+  <p><me>u=\frac{x-2}{2}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \frac1x
 =
 \frac12
@@ -291,70 +267,69 @@ value less than <m>1</m>.</p>
 +\frac{(x-2)^2}{8}
 -\frac{(x-2)^3}{16}
 +\cdots
-</md>
+</me></p>
 
   <p>or, more compactly,</p>
 
-  <md>
+  <p><me>
 \frac1x
 =
 \sum_{n=0}^{\infty}
 \frac{(-1)^n(x-2)^n}{2^{n+1}},
 \qquad |x-2|&lt;2.
-</md>
+</me></p>
 
   <p>The center is <m>2</m>.  The series converges when <m>x</m> is within distance <m>2</m> of that
 center:</p>
 
-  <md>0&lt;x&lt;4.</md>
+  <p><me>0&lt;x&lt;4.</me></p>
 
   <p>This makes sense.  The function <m>1/x</m> has trouble at <m>x=0</m>, and that point is exactly
 distance <m>2</m> from the center <m>2</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <paragraphs>
     <title>Differentiating the geometric series</title>
 
   <p>Inside <m>|x|&lt;1</m>,</p>
 
-  <md>\frac1{1-x}=1+x+x^2+x^3+\cdots.</md>
+  <p><me>\frac1{1-x}=1+x+x^2+x^3+\cdots.</me></p>
 
   <p>Differentiate both sides:</p>
 
-  <md>\frac{d}{dx}\left(\frac1{1-x}\right)
+  <p><me>\frac{d}{dx}\left(\frac1{1-x}\right)
 =
-\frac{d}{dx}\left(1+x+x^2+x^3+\cdots\right).</md>
+\frac{d}{dx}\left(1+x+x^2+x^3+\cdots\right).</me></p>
 
   <p>The left side is</p>
 
-  <md>\frac1{(1-x)^2}.</md>
+  <p><me>\frac1{(1-x)^2}.</me></p>
 
   <p>The right side is</p>
 
-  <md>1+2x+3x^2+4x^3+\cdots.</md>
+  <p><me>1+2x+3x^2+4x^3+\cdots.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \frac1{(1-x)^2}
 =
 1+2x+3x^2+4x^3+\cdots,
 \qquad |x|&lt;1.
-</md>
+</me></p>
 
   <p>This is the same product series we saw earlier:</p>
 
-  <md>(1+x+x^2+\cdots)^2
+  <p><me>(1+x+x^2+\cdots)^2
 =
-1+2x+3x^2+4x^3+\cdots.</md>
+1+2x+3x^2+4x^3+\cdots.</me></p>
 
   <p>The algebra and the calculus agree.</p>
 
   <note xml:id="note-sec-16-3-representing-functions-by-power-series-91">
     <title>A useful workflow</title>
       <p>To represent a function by a power series:</p>
-          <ol>
+          <p><ol>
       <li>
         <p>Start from a known series, usually the geometric series.</p>
       </li>
@@ -370,7 +345,7 @@ distance <m>2</m> from the center <m>2</m>.</p>
       <li>
         <p>If you differentiate or integrate, keep the same radius but test endpoints again.</p>
       </li>
-    </ol>
+    </ol></p>
   </note>
 
   <p>The endpoint warning is not decoration.  The next examples show why.</p>
@@ -397,61 +372,61 @@ distance <m>2</m> from the center <m>2</m>.</p>
 
   <p>The logarithm is connected to</p>
 
-  <md>\frac1{1+x}</md>
+  <p><me>\frac1{1+x}</me></p>
 
   <p>because</p>
 
-  <md>\frac{d}{dx}\ln(1+x)=\frac1{1+x}.</md>
+  <p><me>\frac{d}{dx}\ln(1+x)=\frac1{1+x}.</me></p>
 
   <p>We already found</p>
 
-  <md>\frac1{1+x}
+  <p><me>\frac1{1+x}
 =
 1-x+x^2-x^3+\cdots,
-\qquad |x|&lt;1.</md>
+\qquad |x|&lt;1.</me></p>
 
   <p>Integrate both sides from <m>0</m> to <m>x</m>.  On the left,</p>
 
-  <md>\int_0^x \frac1{1+t}\,dt
+  <p><me>\int_0^x \frac1{1+t}\,dt
 =
 \ln(1+x)-\ln(1)
 =
-\ln(1+x).</md>
+\ln(1+x).</me></p>
 
   <p>On the right,</p>
 
-  <md>\int_0^x (1-t+t^2-t^3+\cdots)\,dt
+  <p><me>\int_0^x (1-t+t^2-t^3+\cdots)\,dt
 =
-x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</md>
+x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \ln(1+x)
 =
 x-\frac{x^2}{2}+\frac{x^3}{3}-\frac{x^4}{4}+\cdots,
 \qquad -1&lt;x&lt;1.
-</md>
+</me></p>
 
   <p>The theorem on integrating power series gives the equality inside the radius.  The
 endpoints must be tested separately.</p>
 
   <p>At <m>x=1</m>, the series becomes</p>
 
-  <md>1-\frac12+\frac13-\frac14+\frac15-\cdots.</md>
+  <p><me>1-\frac12+\frac13-\frac14+\frac15-\cdots.</me></p>
 
   <p>This converges by the Alternating Series Test.</p>
 
   <p>At <m>x=-1</m>, the series becomes</p>
 
-  <md>-1-\frac12-\frac13-\frac14-\cdots,</md>
+  <p><me>-1-\frac12-\frac13-\frac14-\cdots,</me></p>
 
   <p>which diverges.  This also matches the function side, because <m>\ln(1+x)</m> is not
 defined at <m>x=-1</m>.</p>
 
   <p>So the power series has interval of convergence</p>
 
-  <md>(-1,1].</md>
+  <p><me>(-1,1].</me></p>
 
   <p>There is one subtle point: term-by-term integration directly proved the formula only
 for <m>-1&lt;x&lt;1</m>.  Why is the endpoint <m>x=1</m> allowed in the identity?</p>
@@ -460,41 +435,41 @@ for <m>-1&lt;x&lt;1</m>.  Why is the endpoint <m>x=1</m> allowed in the identity
 
   <p>For every <m>N</m>,</p>
 
-  <md>\frac1{1+t}
+  <p><me>\frac1{1+t}
 =
 1-t+t^2-\cdots+(-1)^N t^N
 +
-\frac{(-1)^{N+1}t^{N+1}}{1+t}.</md>
+\frac{(-1)^{N+1}t^{N+1}}{1+t}.</me></p>
 
   <p>Integrate from <m>0</m> to <m>1</m>:</p>
 
-  <md>\ln 2
+  <p><me>\ln 2
 =
 1-\frac12+\frac13-\cdots+\frac{(-1)^N}{N+1}
 +
-\int_0^1 \frac{(-1)^{N+1}t^{N+1}}{1+t}\,dt.</md>
+\int_0^1 \frac{(-1)^{N+1}t^{N+1}}{1+t}\,dt.</me></p>
 
   <p>The remainder satisfies</p>
 
-  <md>\left|
+  <p><me>\left|
 \int_0^1 \frac{(-1)^{N+1}t^{N+1}}{1+t}\,dt
 \right|
 \le
 \int_0^1 t^{N+1}\,dt
 =
-\frac1{N+2}.</md>
+\frac1{N+2}.</me></p>
 
   <p>Since</p>
 
-  <md>\frac1{N+2}\to0,</md>
+  <p><me>\frac1{N+2}\to0,</me></p>
 
   <p>the remainder goes to <m>0</m>.  Therefore</p>
 
-  <md>
+  <p><me>
 \ln 2
 =
 1-\frac12+\frac13-\frac14+\cdots.
-</md>
+</me></p>
 
   <p>The endpoint did not come for free.  It came from a separate estimate.</p>
 
@@ -519,102 +494,101 @@ for <m>-1&lt;x&lt;1</m>.  Why is the endpoint <m>x=1</m> allowed in the identity
 
   <p>The inverse tangent is connected to</p>
 
-  <md>\frac1{1+x^2}</md>
+  <p><me>\frac1{1+x^2}</me></p>
 
   <p>because</p>
 
-  <md>\frac{d}{dx}\arctan x=\frac1{1+x^2}.</md>
+  <p><me>\frac{d}{dx}\arctan x=\frac1{1+x^2}.</me></p>
 
   <p>Start from</p>
 
-  <md>\frac1{1+u}=1-u+u^2-u^3+\cdots,
-\qquad |u|&lt;1.</md>
+  <p><me>\frac1{1+u}=1-u+u^2-u^3+\cdots,
+\qquad |u|&lt;1.</me></p>
 
   <p>Put</p>
 
-  <md>u=x^2.</md>
+  <p><me>u=x^2.</me></p>
 
   <p>Then</p>
 
-  <md>\frac1{1+x^2}
+  <p><me>\frac1{1+x^2}
 =
 1-x^2+x^4-x^6+\cdots,
-\qquad |x|&lt;1.</md>
+\qquad |x|&lt;1.</me></p>
 
   <p>Integrate from <m>0</m> to <m>x</m>:</p>
 
-  <md>\int_0^x \frac1{1+t^2}\,dt
+  <p><me>\int_0^x \frac1{1+t^2}\,dt
 =
-\int_0^x (1-t^2+t^4-t^6+\cdots)\,dt.</md>
+\int_0^x (1-t^2+t^4-t^6+\cdots)\,dt.</me></p>
 
   <p>The left side is</p>
 
-  <md>\arctan x-\arctan 0=\arctan x.</md>
+  <p><me>\arctan x-\arctan 0=\arctan x.</me></p>
 
   <p>The right side is</p>
 
-  <md>x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
+  <p><me>x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \arctan x
 =
 x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots,
 \qquad |x|&lt;1.
-</md>
+</me></p>
 
   <p>Now test the endpoints.</p>
 
   <p>At <m>x=1</m>, the series becomes</p>
 
-  <md>1-\frac13+\frac15-\frac17+\cdots,</md>
+  <p><me>1-\frac13+\frac15-\frac17+\cdots,</me></p>
 
   <p>which converges by the Alternating Series Test.</p>
 
   <p>At <m>x=-1</m>, it becomes</p>
 
-  <md>-1+\frac13-\frac15+\frac17-\cdots,</md>
+  <p><me>-1+\frac13-\frac15+\frac17-\cdots,</me></p>
 
   <p>which also converges.</p>
 
   <p>So the interval of convergence is</p>
 
-  <md>[-1,1].</md>
+  <p><me>[-1,1].</me></p>
 
   <p>Again, equality at the endpoints needs justification.  The finite identity</p>
 
-  <md>\frac1{1+t^2}
+  <p><me>\frac1{1+t^2}
 =
 1-t^2+t^4-\cdots+(-1)^N t^{2N}
 +
-\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}</md>
+\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}</me></p>
 
   <p>gives, after integration from <m>0</m> to <m>1</m>,</p>
 
-  <md>\frac{\pi}{4}
+  <p><me>\frac{\pi}{4}
 =
 1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1}
 +
 \int_0^1
-\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}\,dt.</md>
+\frac{(-1)^{N+1}t^{2N+2}}{1+t^2}\,dt.</me></p>
 
   <p>The remainder has absolute value at most</p>
 
-  <md>\int_0^1 t^{2N+2}\,dt
+  <p><me>\int_0^1 t^{2N+2}\,dt
 =
-\frac1{2N+3},</md>
+\frac1{2N+3},</me></p>
 
   <p>which tends to <m>0</m>.  Therefore</p>
 
-  <md>
+  <p><me>
 \frac{\pi}{4}
 =
 1-\frac13+\frac15-\frac17+\cdots.
-</md>
+</me></p>
 
-  <p>This is one of the famous surprises of power series: a series built from odd
-reciprocals knows the number <m>\pi</m>.</p>
+  <p>At the justified endpoint, this inverse-tangent series gives the displayed representation of <m>\pi</m>.</p>
   </subsection>
 
   <subsection xml:id="subsec-estimating-pi-from-series">
@@ -622,40 +596,40 @@ reciprocals knows the number <m>\pi</m>.</p>
 
   <p>The identity</p>
 
-  <md>\frac{\pi}{4}
+  <p><me>\frac{\pi}{4}
 =
-1-\frac13+\frac15-\frac17+\cdots</md>
+1-\frac13+\frac15-\frac17+\cdots</me></p>
 
   <p>gives a way to estimate <m>\pi</m>.  The Alternating Series Estimation Theorem says that
 the error after stopping is at most the size of the first omitted term.</p>
 
   <p>If we stop after</p>
 
-  <md>1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1},</md>
+  <p><me>1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1},</me></p>
 
   <p>then</p>
 
-  <md>\left|
+  <p><me>\left|
 \frac{\pi}{4}
 -
 \left(1-\frac13+\frac15-\cdots+\frac{(-1)^N}{2N+1}\right)
 \right|
 \le
-\frac1{2N+3}.</md>
+\frac1{2N+3}.</me></p>
 
   <p>Multiplying by <m>4</m>, the error in <m>\pi</m> is at most</p>
 
-  <md>
+  <p><me>
 \frac4{2N+3}.
-</md>
+</me></p>
 
   <p>This is useful, but slow.  To guarantee an error less than <m>0.01</m>, we need</p>
 
-  <md>\frac4{2N+3}&lt;0.01,</md>
+  <p><me>\frac4{2N+3}&lt;0.01,</me></p>
 
   <p>so</p>
 
-  <md>2N+3&gt;400.</md>
+  <p><me>2N+3&gt;400.</me></p>
 
   <p>That means about <m>200</m> terms.</p>
 
@@ -666,41 +640,41 @@ shrink faster.</p>
 
   <p>Let</p>
 
-  <md>A=\arctan\frac12,
+  <p><me>A=\arctan\frac12,
 \qquad
-B=\arctan\frac13.</md>
+B=\arctan\frac13.</me></p>
 
   <p>Then</p>
 
-  <md>\tan(A+B)
+  <p><me>\tan(A+B)
 =
 \frac{\frac12+\frac13}{1-\frac12\cdot\frac13}
 =
 \frac{\frac56}{\frac56}
 =
-1.</md>
+1.</me></p>
 
   <p>Since <m>A</m> and <m>B</m> are positive acute angles,</p>
 
-  <md>A+B=\frac{\pi}{4}.</md>
+  <p><me>A+B=\frac{\pi}{4}.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \frac{\pi}{4}
 =
 \arctan\frac12+\arctan\frac13.
-</md>
+</me></p>
 
   <p>Now use the arctangent series:</p>
 
-  <md>\arctan x
+  <p><me>\arctan x
 =
-x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
+x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</me></p>
 
   <p>With <m>x=\frac12</m> and <m>x=\frac13</m>, the terms shrink quickly:</p>
 
-  <md>\frac{\pi}{4}
+  <p><me>\frac{\pi}{4}
 =
 \left(
 \frac12-\frac{1}{3\cdot2^3}+\frac{1}{5\cdot2^5}
@@ -710,15 +684,15 @@ x-\frac{x^3}{3}+\frac{x^5}{5}-\frac{x^7}{7}+\cdots.</md>
 \left(
 \frac13-\frac{1}{3\cdot3^3}+\frac{1}{5\cdot3^5}
 -\frac{1}{7\cdot3^7}+\cdots
-\right).</md>
+\right).</me></p>
 
   <p>Using the first five terms from each arctangent series gives</p>
 
-  <md>\pi\approx 3.141741.</md>
+  <p><me>\pi\approx 3.141741.</me></p>
 
   <p>The alternating error estimate gives an error less than</p>
 
-  <md>0.00018.</md>
+  <p><me>0.00018.</me></p>
 
   <p>The same power series produced both estimates.  The difference was the input.  At
 <m>x=1</m>, powers shrink slowly.  At <m>x=\frac12</m> and <m>x=\frac13</m>, powers shrink
@@ -732,14 +706,12 @@ depends on how fast its terms shrink.</p>
 
   <p>The geometric series gave us logarithms and inverse tangents.  But the functions</p>
 
-  <md>e^x,\qquad \sin x,\qquad \cos x</md>
+  <p><me>e^x,\qquad \sin x,\qquad \cos x</me></p>
 
   <p>do not obviously come from the geometric series.  To reach them, we need a new
 question:</p>
 
-  <md>
-\text{Can the derivatives of a function tell us which polynomial should approximate it?}
-</md>
+  <p><em>Can the derivatives of a function tell us which polynomial should approximate it?</em></p>
 
   <p>That question leads to Taylor polynomials.</p>
 

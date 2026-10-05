@@ -1,78 +1,58 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-11-9-chapter-review-and-discovery-problems">
   <title>Chapter review and discovery problems</title>
 
-  <p>This chapter began with a practical problem:</p>
-
-  <md>\text{Applications give us integrals.  How do we evaluate them?}</md>
-
-  <p>The answer was not one method.  It was a collection of ways to recognize structure.</p>
-
-  <p>Substitution reverses the chain rule.  Integration by parts reverses the product rule.
-Trigonometric identities reshape trigonometric expressions.  Trigonometric substitution
-uses right triangles to simplify square roots.  Partial fractions split rational functions into
-simpler pieces.  Improper integrals add one more demand: before evaluating, we must ask
-whether the accumulated amount is finite.</p>
-
-  <p>So the main lesson is not a list of tricks.  It is a habit:</p>
-
-  <md>
-\text{Read the integrand before choosing a method.}
-</md>
-
-  <subsection xml:id="subsec-chapter-11-one-map">
+  <introduction><p>These problems combine substitution, integration by parts, trigonometric and hyperbolic identities, partial fractions, and improper-integral tests. Explain the choice of method, check antiderivatives by differentiation, and justify any improper limits.</p></introduction><subsection xml:id="subsec-chapter-11-one-map">
     <title>The chapter in one map</title>
 
   <p>A good integration method answers a specific question about the integrand.</p>
 
   <table xml:id="tab-sec-11-9-chapter-review-and-discovery-problems-1">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>What you see</strong></cell>
-        <cell><strong>Question to ask</strong></cell>
-        <cell><strong>Likely method</strong></cell>
+    <title>The chapter in one map</title><tabular halign="left" width="100%">
+      <col width="33.3%"/><col width="33.3%"/><col width="33.4%"/><row bottom="minor">
+        <cell><p><alert>What you see</alert></p></cell>
+        <cell><p><alert>Question to ask</alert></p></cell>
+        <cell><p><alert>Likely method</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>An inside function and its derivative</cell>
-        <cell>Is the chain rule hiding here?</cell>
-        <cell>Substitution</cell>
+        <cell><p>An inside function and its derivative</p></cell>
+        <cell><p>Is the chain rule hiding here?</p></cell>
+        <cell><p>Substitution</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-A product where one factor simplifies when differentiated</cell>
-        <cell>Did the product rule create this?</cell>
-        <cell>Integration by parts</cell>
+        <cell><p>
+A product where one factor simplifies when differentiated</p></cell>
+        <cell><p>Did the product rule create this?</p></cell>
+        <cell><p>Integration by parts</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-Powers of <m>\sin x</m>, <m>\cos x</m>, <m>\tan x</m>, or <m>\sec x</m></cell>
-        <cell>Can I save a differential and rewrite the rest?</cell>
-        <cell>Trigonometric identities</cell>
+        <cell><p>
+Powers of <m>\sin x</m>, <m>\cos x</m>, <m>\tan x</m>, or <m>\sec x</m></p></cell>
+        <cell><p>Can I save a differential and rewrite the rest?</p></cell>
+        <cell><p>Trigonometric identities</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-<m>\sqrt{a^2-x^2}</m>, <m>\sqrt{a^2+x^2}</m>, or <m>\sqrt{x^2-a^2}</m></cell>
-        <cell>Which Pythagorean identity matches the square root?</cell>
-        <cell>Trigonometric substitution</cell>
+        <cell><p>
+<m>\sqrt{a^2-x^2}</m>, <m>\sqrt{a^2+x^2}</m>, or <m>\sqrt{x^2-a^2}</m></p></cell>
+        <cell><p>Which Pythagorean identity matches the square root?</p></cell>
+        <cell><p>Trigonometric substitution</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-A quotient of polynomials</cell>
-        <cell>Is the rational function proper, and how does the denominator factor?</cell>
-        <cell>Partial fractions</cell>
+        <cell><p>
+A quotient of polynomials</p></cell>
+        <cell><p>Is the rational function proper, and how does the denominator factor?</p></cell>
+        <cell><p>Partial fractions</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-An infinite interval or an infinite discontinuity</cell>
-        <cell>Does the limiting accumulated amount exist?</cell>
-        <cell>Improper integral tests</cell>
+        <cell><p>
+An infinite interval or an infinite discontinuity</p></cell>
+        <cell><p>Does the limiting accumulated amount exist?</p></cell>
+        <cell><p>Improper integral tests</p></cell>
       </row>
       <row>
-        <cell>
-A strange but important integral</cell>
-        <cell>Does an elementary antiderivative exist?</cell>
-        <cell>Special functions or numerical methods</cell>
+        <cell><p>
+A strange but important integral</p></cell>
+        <cell><p>Does an elementary antiderivative exist?</p></cell>
+        <cell><p>Special functions or numerical methods</p></cell>
       </row>
     </tabular>
   </table>
@@ -83,7 +63,7 @@ path.  The goal is to find a path that makes the structure visible.</p>
   <figure xml:id="fig-chapter-11-integration-map">
     <caption>A practical order of questions for integration.  The order is flexible, but the first step is always to read the integrand.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A practical order of questions for integration.  The order is flexible, but the first step is always to read the integrand.</p></description><latex-image>
 \begin{tikzpicture}[
   node distance=1.2cm,
   box/.style={draw, rounded corners, align=center, inner sep=5pt, font=\small},
@@ -130,19 +110,19 @@ path.  The goal is to find a path that makes the structure visible.</p>
   <paragraphs>
     <title>Integration by parts</title>
 
-  <md>
+  <p><me>
 \int u\,dv=uv-\int v\,du.
-</md>
+</me></p>
 
   <p>For definite integrals,</p>
 
-  <md>
+  <p><me>
 \int_a^b u\,dv=\bigl[uv\bigr]_a^b-\int_a^b v\,du.
-</md>
+</me></p>
 
   <p>The product term</p>
 
-  <md>\bigl[uv\bigr]_a^b</md>
+  <p><me>\bigl[uv\bigr]_a^b</me></p>
 
   <p>is a boundary term.</p>
   </paragraphs>
@@ -150,53 +130,53 @@ path.  The goal is to find a path that makes the structure visible.</p>
   <paragraphs>
     <title>Trigonometric identities</title>
 
-  <md>\sin^2x+\cos^2x=1,</md>
+  <p><me>\sin^2x+\cos^2x=1,</me></p>
 
-  <md>1+\tan^2x=\sec^2x,</md>
+  <p><me>1+\tan^2x=\sec^2x,</me></p>
 
-  <md>\sin^2x=\frac{1-\cos2x}{2},
+  <p><me>\sin^2x=\frac{1-\cos2x}{2},
 \qquad
-\cos^2x=\frac{1+\cos2x}{2}.</md>
+\cos^2x=\frac{1+\cos2x}{2}.</me></p>
 
   <p>Product-to-sum identities include</p>
 
-  <md>\sin A\cos B=\frac12\bigl(\sin(A+B)+\sin(A-B)\bigr),</md>
+  <p><me>\sin A\cos B=\frac12\bigl(\sin(A+B)+\sin(A-B)\bigr),</me></p>
 
-  <md>\cos A\cos B=\frac12\bigl(\cos(A-B)+\cos(A+B)\bigr),</md>
+  <p><me>\cos A\cos B=\frac12\bigl(\cos(A-B)+\cos(A+B)\bigr),</me></p>
 
   <p>and</p>
 
-  <md>\sin A\sin B=\frac12\bigl(\cos(A-B)-\cos(A+B)\bigr).</md>
+  <p><me>\sin A\sin B=\frac12\bigl(\cos(A-B)-\cos(A+B)\bigr).</me></p>
   </paragraphs>
 
   <paragraphs>
     <title>Trigonometric substitution patterns</title>
 
-  <md>\sqrt{a^2-x^2}
+  <p><me>\sqrt{a^2-x^2}
 \quad\Longrightarrow\quad
-x=a\sin\theta,</md>
+x=a\sin\theta,</me></p>
 
-  <md>\sqrt{a^2+x^2}
+  <p><me>\sqrt{a^2+x^2}
 \quad\Longrightarrow\quad
-x=a\tan\theta,</md>
+x=a\tan\theta,</me></p>
 
-  <md>\sqrt{x^2-a^2}
+  <p><me>\sqrt{x^2-a^2}
 \quad\Longrightarrow\quad
-x=a\sec\theta.</md>
+x=a\sec\theta.</me></p>
 
   <p>The substitution is not complete until <m>dx</m> changes too.</p>
 
-  <md>x=a\sin\theta
+  <p><me>x=a\sin\theta
 \quad\Longrightarrow\quad
-dx=a\cos\theta\,d\theta,</md>
+dx=a\cos\theta\,d\theta,</me></p>
 
-  <md>x=a\tan\theta
+  <p><me>x=a\tan\theta
 \quad\Longrightarrow\quad
-dx=a\sec^2\theta\,d\theta,</md>
+dx=a\sec^2\theta\,d\theta,</me></p>
 
-  <md>x=a\sec\theta
+  <p><me>x=a\sec\theta
 \quad\Longrightarrow\quad
-dx=a\sec\theta\tan\theta\,d\theta.</md>
+dx=a\sec\theta\tan\theta\,d\theta.</me></p>
   </paragraphs>
 
   <paragraphs>
@@ -204,29 +184,29 @@ dx=a\sec\theta\tan\theta\,d\theta.</md>
 
   <p>A proper rational function with distinct linear factors has the form</p>
 
-  <md>\frac{P(x)}{(x-r_1)(x-r_2)\cdots(x-r_n)}
+  <p><me>\frac{P(x)}{(x-r_1)(x-r_2)\cdots(x-r_n)}
 =
 \frac{A_1}{x-r_1}
 +
 \frac{A_2}{x-r_2}
 +\cdots+
-\frac{A_n}{x-r_n}.</md>
+\frac{A_n}{x-r_n}.</me></p>
 
   <p>A repeated linear factor contributes every power:</p>
 
-  <md>(x-r)^m
+  <p><me>(x-r)^m
 \quad\Longrightarrow\quad
 \frac{A_1}{x-r}
 +
 \frac{A_2}{(x-r)^2}
 +\cdots+
-\frac{A_m}{(x-r)^m}.</md>
+\frac{A_m}{(x-r)^m}.</me></p>
 
   <p>An irreducible quadratic factor contributes a linear numerator:</p>
 
-  <md>ax^2+bx+c
+  <p><me>ax^2+bx+c
 \quad\Longrightarrow\quad
-\frac{Ax+B}{ax^2+bx+c}.</md>
+\frac{Ax+B}{ax^2+bx+c}.</me></p>
   </paragraphs>
 
   <paragraphs>
@@ -234,35 +214,35 @@ dx=a\sec\theta\tan\theta\,d\theta.</md>
 
   <p>An integral over an infinite interval is a limit:</p>
 
-  <md>
+  <p><me>
 \int_a^\infty f(x)\,dx
 =
 \lim_{t\to\infty}\int_a^t f(x)\,dx.
-</md>
+</me></p>
 
   <p>An integral with an infinite discontinuity at an endpoint is also a limit:</p>
 
-  <md>
+  <p><me>
 \int_a^b f(x)\,dx
 =
 \lim_{t\to a^+}\int_t^b f(x)\,dx
-</md>
+</me></p>
 
   <p>when the singularity is at <m>a</m>.</p>
 
   <p>The <m>p</m>-integrals are the main comparison family:</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{dx}{x^p}
 \text{ converges exactly when }p&gt;1,
-</md>
+</me></p>
 
   <p>and</p>
 
-  <md>
+  <p><me>
 \int_0^1 \frac{dx}{x^p}
 \text{ converges exactly when }p&lt;1.
-</md>
+</me></p>
   </paragraphs>
   </subsection>
 
@@ -271,18 +251,18 @@ dx=a\sec\theta\tan\theta\,d\theta.</md>
 
   <p>Answer these in words before doing calculations.</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>Why does integration by parts reverse the product rule?</p>
       </li>
       <li>
         <p>In</p>
-          <md>\int u\,dv=uv-\int v\,du,</md>
+          <p><me>\int u\,dv=uv-\int v\,du,</me></p>
         <p>what makes one choice of <m>u</m> and <m>dv</m> better than another?</p>
       </li>
       <li>
         <p>Why can</p>
-          <md>\int \ln x\,dx</md>
+          <p><me>\int \ln x\,dx</me></p>
         <p>be treated as an integration by parts problem?</p>
       </li>
       <li>
@@ -294,9 +274,9 @@ power useful?</p>
       </li>
       <li>
         <p>What right-triangle identity is behind the substitution</p>
-          <md>x=a\sin\theta</md>
+          <p><me>x=a\sin\theta</me></p>
         <p>for expressions involving</p>
-          <md>\sqrt{a^2-x^2}?</md>
+          <p><me>\sqrt{a^2-x^2}?</me></p>
       </li>
       <li>
         <p>Why must a rational function be proper before partial fractions begin?</p>
@@ -307,15 +287,15 @@ fractions?</p>
       </li>
       <li>
         <p>Why is</p>
-          <md>\int_{-1}^{1}\frac1x\,dx</md>
+          <p><me>\int_{-1}^{1}\frac1x\,dx</me></p>
         <p>not equal to <m>0</m>, even though the graph has symmetric positive and negative parts?</p>
       </li>
       <li>
         <p>What is the difference between saying</p>
-          <md>\int e^{-x^2}\,dx</md>
+          <p><me>\int e^{-x^2}\,dx</me></p>
         <p>has no elementary antiderivative and saying the integral does not exist?</p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-skills-choose-method">
@@ -324,44 +304,44 @@ fractions?</p>
   <p>For each integral, identify the method you would try first.  Do not evaluate the integral
 yet.  Explain the clue that led to your choice.</p>
 
-    <ol>
+    <p><ol>
       <li>
-          <md>\int x e^{x^2}\,dx</md>
+          <p><me>\int x e^{x^2}\,dx</me></p>
       </li>
       <li>
-          <md>\int x e^x\,dx</md>
+          <p><me>\int x e^x\,dx</me></p>
       </li>
       <li>
-          <md>\int x^2\ln x\,dx</md>
+          <p><me>\int x^2\ln x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sin^5x\cos^2x\,dx</md>
+          <p><me>\int \sin^5x\cos^2x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sin^2x\cos^2x\,dx</md>
+          <p><me>\int \sin^2x\cos^2x\,dx</me></p>
       </li>
       <li>
-          <md>\int \tan^3x\sec^4x\,dx</md>
+          <p><me>\int \tan^3x\sec^4x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sqrt{16-x^2}\,dx</md>
+          <p><me>\int \sqrt{16-x^2}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{dx}{\sqrt{x^2+9}}</md>
+          <p><me>\int \frac{dx}{\sqrt{x^2+9}}</me></p>
       </li>
       <li>
-          <md>\int \frac{x+1}{x^2-5x+6}\,dx</md>
+          <p><me>\int \frac{x+1}{x^2-5x+6}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{x^3}{x^2+1}\,dx</md>
+          <p><me>\int \frac{x^3}{x^2+1}\,dx</me></p>
       </li>
       <li>
-          <md>\int \sin(4x)\cos(7x)\,dx</md>
+          <p><me>\int \sin(4x)\cos(7x)\,dx</me></p>
       </li>
       <li>
-          <md>\int_1^\infty \frac{dx}{x^{3/2}}</md>
+          <p><me>\int_1^\infty \frac{dx}{x^{3/2}}</me></p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-chapter-11-mixed-practice">
@@ -369,69 +349,69 @@ yet.  Explain the clue that led to your choice.</p>
 
   <p>Evaluate the following indefinite integrals.  Check each answer by differentiating.</p>
 
-    <ol>
+    <p><ol>
       <li>
-          <md>\int x\sin x\,dx</md>
+          <p><me>\int x\sin x\,dx</me></p>
       </li>
       <li>
-          <md>\int x^2e^x\,dx</md>
+          <p><me>\int x^2e^x\,dx</me></p>
       </li>
       <li>
-          <md>\int x\arctan x\,dx</md>
+          <p><me>\int x\arctan x\,dx</me></p>
       </li>
       <li>
-          <md>\int \ln(3x)\,dx</md>
+          <p><me>\int \ln(3x)\,dx</me></p>
       </li>
       <li>
-          <md>\int e^{2x}\cos(3x)\,dx</md>
+          <p><me>\int e^{2x}\cos(3x)\,dx</me></p>
       </li>
       <li>
-          <md>\int \sin^3x\cos^4x\,dx</md>
+          <p><me>\int \sin^3x\cos^4x\,dx</me></p>
       </li>
       <li>
-          <md>\int \cos^5x\,dx</md>
+          <p><me>\int \cos^5x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sin^2(3x)\,dx</md>
+          <p><me>\int \sin^2(3x)\,dx</me></p>
       </li>
       <li>
-          <md>\int \tan^4x\sec^2x\,dx</md>
+          <p><me>\int \tan^4x\sec^2x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sec^2x\tan^3x\,dx</md>
+          <p><me>\int \sec^2x\tan^3x\,dx</me></p>
       </li>
       <li>
-          <md>\int \sqrt{9-x^2}\,dx</md>
+          <p><me>\int \sqrt{9-x^2}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{dx}{\sqrt{25-x^2}}</md>
+          <p><me>\int \frac{dx}{\sqrt{25-x^2}}</me></p>
       </li>
       <li>
-          <md>\int \frac{dx}{x^2+4x+13}</md>
+          <p><me>\int \frac{dx}{x^2+4x+13}</me></p>
       </li>
       <li>
-          <md>\int \frac{3x+1}{(x-2)(x+1)}\,dx</md>
+          <p><me>\int \frac{3x+1}{(x-2)(x+1)}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{x^2+1}{x^3-x}\,dx</md>
+          <p><me>\int \frac{x^2+1}{x^3-x}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{x^3}{x^2+1}\,dx</md>
+          <p><me>\int \frac{x^3}{x^2+1}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{dx}{1+e^x}</md>
+          <p><me>\int \frac{dx}{1+e^x}</me></p>
       </li>
       <li>
-          <md>\int \sin(4x)\cos(7x)\,dx</md>
+          <p><me>\int \sin(4x)\cos(7x)\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{x}{x^2-4x+5}\,dx</md>
+          <p><me>\int \frac{x}{x^2-4x+5}\,dx</me></p>
       </li>
       <li>
-          <md>\int \frac{dx}{x^2\sqrt{x^2-1}},
-\qquad x&gt;1.</md>
+          <p><me>\int \frac{dx}{x^2\sqrt{x^2-1}},
+\qquad x&gt;1.</me></p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-chapter-11-definite-integrals">
@@ -440,32 +420,32 @@ yet.  Explain the clue that led to your choice.</p>
   <p>Evaluate the following definite integrals.  Use endpoint terms carefully when using
 integration by parts.</p>
 
-    <ol>
+    <p><ol>
       <li>
-          <md>\int_0^1 xe^x\,dx</md>
+          <p><me>\int_0^1 xe^x\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^\pi x\sin x\,dx</md>
+          <p><me>\int_0^\pi x\sin x\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^{\pi/2}\sin^3x\cos^2x\,dx</md>
+          <p><me>\int_0^{\pi/2}\sin^3x\cos^2x\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^{\pi/4}\tan^3x\,dx</md>
+          <p><me>\int_0^{\pi/4}\tan^3x\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^2 \frac{x+1}{x^2+2x+2}\,dx</md>
+          <p><me>\int_0^2 \frac{x+1}{x^2+2x+2}\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^1 \frac{dx}{x^2+4}</md>
+          <p><me>\int_0^1 \frac{dx}{x^2+4}</me></p>
       </li>
       <li>
-          <md>\int_0^1 \sqrt{1-x^2}\,dx</md>
+          <p><me>\int_0^1 \sqrt{1-x^2}\,dx</me></p>
       </li>
       <li>
-          <md>\int_1^2 \frac{x^2+1}{x^3+x}\,dx</md>
+          <p><me>\int_1^2 \frac{x^2+1}{x^3+x}\,dx</me></p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-chapter-11-improper-practice">
@@ -474,44 +454,44 @@ integration by parts.</p>
   <p>For each integral, decide whether it converges or diverges.  If it converges and the value
 can be found with the methods of this chapter, evaluate it.</p>
 
-    <ol>
+    <p><ol>
       <li>
-          <md>\int_1^\infty \frac{dx}{x^{3/2}}</md>
+          <p><me>\int_1^\infty \frac{dx}{x^{3/2}}</me></p>
       </li>
       <li>
-          <md>\int_1^\infty \frac{dx}{\sqrt{x}}</md>
+          <p><me>\int_1^\infty \frac{dx}{\sqrt{x}}</me></p>
       </li>
       <li>
-          <md>\int_0^1 \frac{dx}{x^{2/3}}</md>
+          <p><me>\int_0^1 \frac{dx}{x^{2/3}}</me></p>
       </li>
       <li>
-          <md>\int_0^1 \frac{dx}{x}</md>
+          <p><me>\int_0^1 \frac{dx}{x}</me></p>
       </li>
       <li>
-          <md>\int_{-\infty}^{\infty}\frac{dx}{1+x^2}</md>
+          <p><me>\int_{-\infty}^{\infty}\frac{dx}{1+x^2}</me></p>
       </li>
       <li>
-          <md>\int_{-\infty}^{\infty}\frac{x}{1+x^2}\,dx</md>
+          <p><me>\int_{-\infty}^{\infty}\frac{x}{1+x^2}\,dx</me></p>
       </li>
       <li>
-          <md>\int_2^\infty \frac{5x+1}{x^3+4}\,dx</md>
+          <p><me>\int_2^\infty \frac{5x+1}{x^3+4}\,dx</me></p>
       </li>
       <li>
-          <md>\int_2^\infty \frac{x^2+1}{x^3+1}\,dx</md>
+          <p><me>\int_2^\infty \frac{x^2+1}{x^3+1}\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^\infty e^{-3x}\,dx</md>
+          <p><me>\int_0^\infty e^{-3x}\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^\infty xe^{-x}\,dx</md>
+          <p><me>\int_0^\infty xe^{-x}\,dx</me></p>
       </li>
       <li>
-          <md>\int_0^1 \frac{\ln x}{\sqrt{x}}\,dx</md>
+          <p><me>\int_0^1 \frac{\ln x}{\sqrt{x}}\,dx</me></p>
       </li>
       <li>
-          <md>\int_1^\infty \frac{1+\sin^2x}{x}\,dx</md>
+          <p><me>\int_1^\infty \frac{1+\sin^2x}{x}\,dx</me></p>
       </li>
-    </ol>
+    </ol></p>
 
   <exercise xml:id="checkpoint-11-9-improper-first">
         <title>What extra question do improper integrals add?</title>
@@ -534,43 +514,43 @@ can be found with the methods of this chapter, evaluate it.</p>
 
   <p>Each item below contains a common error.  Find it and correct it.</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>A student writes</p>
-          <md>\int x e^x\,dx
+          <p><me>\int x e^x\,dx
 =
-\frac{x^2}{2}e^x+C.</md>
+\frac{x^2}{2}e^x+C.</me></p>
         <p>Explain why this cannot be correct.</p>
       </li>
       <li>
         <p>A student evaluates</p>
-          <md>\int_{-1}^{1}\frac{dx}{x^2}</md>
+          <p><me>\int_{-1}^{1}\frac{dx}{x^2}</me></p>
         <p>by writing</p>
-          <md>\left[-\frac1x\right]_{-1}^1=-2.</md>
+          <p><me>\left[-\frac1x\right]_{-1}^1=-2.</me></p>
         <p>Where did the calculation fail?</p>
       </li>
       <li>
         <p>A student writes</p>
-          <md>\int_0^1 \frac{dx}{\sqrt{x}}
+          <p><me>\int_0^1 \frac{dx}{\sqrt{x}}
 =
 \left[2\sqrt{x}\right]_0^1
 =
-2,</md>
+2,</me></p>
         <p>without mentioning a limit.  The answer is correct.  What is missing from the reasoning?</p>
       </li>
       <li>
         <p>A student writes</p>
-          <md>\int \frac{x}{x^2-1}\,dx
+          <p><me>\int \frac{x}{x^2-1}\,dx
 =
-\frac12\ln(x^2-1)+C</md>
+\frac12\ln(x^2-1)+C</me></p>
         <p>and then uses it on the interval <m>(-1,1)</m>.  What is wrong, and how should the formula
 be written?</p>
       </li>
       <li>
         <p>A student tries</p>
-          <md>x=3\sin\theta</md>
+          <p><me>x=3\sin\theta</me></p>
         <p>for</p>
-          <md>\sqrt{x^2+9}.</md>
+          <p><me>\sqrt{x^2+9}.</me></p>
         <p>Why is this not the matching trigonometric substitution?</p>
       </li>
       <li>
@@ -579,12 +559,12 @@ What two checks should be done before trusting it?</p>
       </li>
       <li>
         <p>A graph suggests that</p>
-          <md>\int_{-10}^{10} \frac{\sin x}{x}\,dx</md>
+          <p><me>\int_{-10}^{10} \frac{\sin x}{x}\,dx</me></p>
         <p>has a finite value.  Why does this evidence not automatically answer whether</p>
-          <md>\int_{-\infty}^{\infty} \frac{\sin x}{x}\,dx</md>
+          <p><me>\int_{-\infty}^{\infty} \frac{\sin x}{x}\,dx</me></p>
         <p>converges as an improper integral?</p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-project-build-integration-decision-tree">
@@ -594,39 +574,39 @@ What two checks should be done before trusting it?</p>
 
   <p>Your decision tree should include at least the following methods:</p>
 
-  <md>\text{substitution, parts, trigonometric identities, trigonometric substitution,}</md>
+  <p><me>\text{substitution, parts, trigonometric identities, trigonometric substitution,}</me></p>
 
-  <md>\text{partial fractions, improper integral tests, and numerical approximation.}</md>
+  <p><me>\text{partial fractions, improper integral tests, and numerical approximation.}</me></p>
 
   <p>Use the following integrals as test cases.</p>
 
-  <md>\int x\cos(x^2)\,dx,
+  <p><me>\int x\cos(x^2)\,dx,
 \qquad
 \int x\cos x\,dx,
 \qquad
-\int \ln x\,dx,</md>
+\int \ln x\,dx,</me></p>
 
-  <md>\int \sin^4x\cos^3x\,dx,
+  <p><me>\int \sin^4x\cos^3x\,dx,
 \qquad
 \int \sin^2x\,dx,
 \qquad
-\int \frac{dx}{\sqrt{4-x^2}},</md>
+\int \frac{dx}{\sqrt{4-x^2}},</me></p>
 
-  <md>\int \sqrt{x^2+1}\,dx,
+  <p><me>\int \sqrt{x^2+1}\,dx,
 \qquad
 \int \frac{x+4}{x^2-x-2}\,dx,
 \qquad
-\int \frac{x^2}{x^2+1}\,dx,</md>
+\int \frac{x^2}{x^2+1}\,dx,</me></p>
 
-  <md>\int_1^\infty \frac{dx}{x^p},
+  <p><me>\int_1^\infty \frac{dx}{x^p},
 \qquad
 \int e^{-x^2}\,dx,
 \qquad
-\int_0^1 e^{-x^2}\,dx.</md>
+\int_0^1 e^{-x^2}\,dx.</me></p>
 
   <p>Your report should answer these questions.</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>Which questions does your decision tree ask first?</p>
       </li>
@@ -646,7 +626,7 @@ definite integral still has meaning.</p>
       <li>
         <p>Revise your decision tree after testing it.  What changed?</p>
       </li>
-    </ol>
+    </ol></p>
 
   <note xml:id="note-sec-11-9-chapter-review-and-discovery-problems-128">
     <title>What the project tests</title>
@@ -664,41 +644,41 @@ one, compare the computer’s answer with a human answer.</p>
   <p>Use at least six integrals, including one from each group.</p>
 
   <table xml:id="tab-sec-11-9-chapter-review-and-discovery-problems-2">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>Group</strong></cell>
-        <cell><strong>Choose at least one</strong></cell>
+    <title>Project: compare human and CAS antiderivatives</title><tabular halign="left" width="100%">
+      <col width="50.0%"/><col width="50.0%"/><row bottom="minor">
+        <cell><p><alert>Group</alert></p></cell>
+        <cell><p><alert>Choose at least one</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>Integration by parts</cell>
-        <cell><m>\displaystyle \int x e^x\,dx</m>, <m>\displaystyle \int x\ln x\,dx</m>, <m>\displaystyle \int x\arctan x\,dx</m></cell>
+        <cell><p>Integration by parts</p></cell>
+        <cell><p><m>\displaystyle \int x e^x\,dx</m>, <m>\displaystyle \int x\ln x\,dx</m>, <m>\displaystyle \int x\arctan x\,dx</m></p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-Trigonometric identities</cell>
-        <cell><m>\displaystyle \int \sin^4x\,dx</m>, <m>\displaystyle \int \sin(3x)\cos(5x)\,dx</m></cell>
+        <cell><p>
+Trigonometric identities</p></cell>
+        <cell><p><m>\displaystyle \int \sin^4x\,dx</m>, <m>\displaystyle \int \sin(3x)\cos(5x)\,dx</m></p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-Trigonometric substitution</cell>
-        <cell><m>\displaystyle \int \sqrt{9-x^2}\,dx</m>, <m>\displaystyle \int \frac{dx}{\sqrt{x^2+4}}</m></cell>
+        <cell><p>
+Trigonometric substitution</p></cell>
+        <cell><p><m>\displaystyle \int \sqrt{9-x^2}\,dx</m>, <m>\displaystyle \int \frac{dx}{\sqrt{x^2+4}}</m></p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-Partial fractions</cell>
-        <cell><m>\displaystyle \int \frac{dx}{x^2-1}</m>, <m>\displaystyle \int \frac{x+1}{x^2+x-2}\,dx</m></cell>
+        <cell><p>
+Partial fractions</p></cell>
+        <cell><p><m>\displaystyle \int \frac{dx}{x^2-1}</m>, <m>\displaystyle \int \frac{x+1}{x^2+x-2}\,dx</m></p></cell>
       </row>
       <row>
-        <cell>
-Improper or special-function issue</cell>
-        <cell><m>\displaystyle \int_0^\infty e^{-x}\,dx</m>, <m>\displaystyle \int e^{-x^2}\,dx</m></cell>
+        <cell><p>
+Improper or special-function issue</p></cell>
+        <cell><p><m>\displaystyle \int_0^\infty e^{-x}\,dx</m>, <m>\displaystyle \int e^{-x^2}\,dx</m></p></cell>
       </row>
     </tabular>
   </table>
 
   <p>For each integral, include the following.</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>The answer produced by the computer algebra system.</p>
       </li>
@@ -718,15 +698,15 @@ Improper or special-function issue</cell>
         <p>If the computer uses a special function, explain what accumulation that special
 function represents.</p>
       </li>
-    </ol>
+    </ol></p>
 
   <note xml:id="note-sec-11-9-chapter-review-and-discovery-problems-129">
     <title>What the project tests</title>
       <p>A computer can manipulate symbols quickly.  It cannot replace the mathematical
 questions:</p>
-        <md>\text{Does the answer differentiate correctly?}</md>
-        <md>\text{On what interval is it valid?}</md>
-        <md>\text{Does it explain the accumulated quantity?}</md>
+        <p><me>\text{Does the answer differentiate correctly?}</me></p>
+        <p><me>\text{On what interval is it valid?}</me></p>
+        <p><me>\text{Does it explain the accumulated quantity?}</me></p>
   </note>
   </subsection>
 
@@ -735,79 +715,79 @@ questions:</p>
 
   <p>These problems combine several ideas from the chapter.</p>
 
-    <ol>
+    <p><ol>
       <li>
         <p>Evaluate</p>
-          <md>\int x^3e^{x^2}\,dx.</md>
+          <p><me>\int x^3e^{x^2}\,dx.</me></p>
         <p>Use substitution first, then algebra.</p>
       </li>
       <li>
         <p>Evaluate</p>
-          <md>\int \frac{x^2}{x^2+2x+2}\,dx.</md>
+          <p><me>\int \frac{x^2}{x^2+2x+2}\,dx.</me></p>
         <p>Hint: rewrite the numerator in terms of the denominator and its derivative.</p>
       </li>
       <li>
         <p>Evaluate</p>
-          <md>\int \frac{dx}{x^4-1}.</md>
+          <p><me>\int \frac{dx}{x^4-1}.</me></p>
         <p>Begin by factoring the denominator over the real numbers.</p>
       </li>
       <li>
         <p>Evaluate</p>
-          <md>\int_0^1 x\ln(1+x)\,dx.</md>
+          <p><me>\int_0^1 x\ln(1+x)\,dx.</me></p>
         <p>Use integration by parts.</p>
       </li>
       <li>
         <p>Determine all real numbers <m>p</m> for which</p>
-          <md>\int_0^1 \frac{\ln x}{x^p}\,dx</md>
+          <p><me>\int_0^1 \frac{\ln x}{x^p}\,dx</me></p>
         <p>converges.</p>
       </li>
       <li>
         <p>Show that</p>
-          <md>\int_1^\infty \frac{dx}{x^p+x}</md>
+          <p><me>\int_1^\infty \frac{dx}{x^p+x}</me></p>
         <p>converges exactly when <m>p&gt;1</m>.</p>
       </li>
       <li>
         <p>Evaluate</p>
-          <md>\int \frac{dx}{\sqrt{x^2-4}},
-\qquad x&gt;2.</md>
+          <p><me>\int \frac{dx}{\sqrt{x^2-4}},
+\qquad x&gt;2.</me></p>
         <p>Then check your answer by differentiating.</p>
       </li>
       <li>
         <p>For <m>a&gt;0</m>, evaluate</p>
-          <md>\int_0^a \sqrt{a^2-x^2}\,dx</md>
+          <p><me>\int_0^a \sqrt{a^2-x^2}\,dx</me></p>
         <p>using geometry and then using trigonometric substitution.  Explain why the two answers
 must agree.</p>
       </li>
       <li>
         <p>Let</p>
-          <md>F(x)=\int_0^x e^{-t^2}\,dt.</md>
+          <p><me>F(x)=\int_0^x e^{-t^2}\,dt.</me></p>
         <p>Show that <m>F</m> is increasing on all of <m>\mathbb R</m>, and that <m>F</m> is concave down for
 <m>x&gt;0</m> and concave up for <m>x&lt;0</m>.  You do not need an elementary formula for <m>F</m>.</p>
       </li>
       <li>
         <p>Suppose <m>f</m> is positive, decreasing, and continuous on <m>[1,\infty)</m>.  Explain why
 the convergence of</p>
-          <md>\int_1^\infty f(x)\,dx</md>
+          <p><me>\int_1^\infty f(x)\,dx</me></p>
         <p>depends only on the tail behavior of <m>f</m>, not on any finite beginning interval
 <m>[1,N]</m>.</p>
       </li>
-    </ol>
+    </ol></p>
   </subsection>
 
   <subsection xml:id="subsec-chapter-11-hook-numerical-integration">
     <title>Where this points</title>
 
-  <p>Exact integration is powerful, but it is not the whole story.</p>
+  <p>When exact integration is unavailable, numerical integration can approximate the value.</p>
 
   <p>Some integrals have elementary antiderivatives:</p>
 
-  <md>\int x e^x\,dx,
+  <p><me>\int x e^x\,dx,
 \qquad
-\int \frac{x+1}{x^2-1}\,dx.</md>
+\int \frac{x+1}{x^2-1}\,dx.</me></p>
 
   <p>Some have antiderivatives that require special functions:</p>
 
-  <md>\int e^{-x^2}\,dx.</md>
+  <p><me>\int e^{-x^2}\,dx.</me></p>
 
   <p>Some come from data instead of formulas.  A speedometer may give readings every
 second.  A thermometer may give temperatures every hour.  A sensor may give force
@@ -816,30 +796,28 @@ antidifferentiate.</p>
 
   <p>But the accumulated amount may still be exactly what we need.</p>
 
-  <md>\int_0^1 e^{-x^2}\,dx</md>
+  <p><me>\int_0^1 e^{-x^2}\,dx</me></p>
 
   <p>is a real number.  The length</p>
 
-  <md>\int_0^\pi \sqrt{1+\cos^2x}\,dx</md>
+  <p><me>\int_0^\pi \sqrt{1+\cos^2x}\,dx</me></p>
 
   <p>is a real length.  The work computed from measured force data is real work.</p>
 
   <p>So the next question is not</p>
 
-  <md>\text{Can we always find an exact antiderivative?}</md>
+  <p><me>\text{Can we always find an exact antiderivative?}</me></p>
 
   <p>The answer is no.</p>
 
   <p>The better question is</p>
 
-  <md>
-\text{How can we approximate an integral, and how can we know how accurate the approximation is?}
-</md>
+  <p><em>How can we approximate an integral, and how can we know how accurate the approximation is?</em></p>
 
   <p>That question leads to numerical integration, error estimates, and computation.</p>
 
   <exercise xml:id="checkpoint-11-9-elementary-versus-meaning">
-        <title>Why is an exact antiderivative not the whole story?</title>
+        <title>When is numerical integration needed?</title>
         <statement>
           <p>
             Some integrals have elementary antiderivatives, some require special functions, and some come from data with no formula at all. In your own words, why can the accumulated amount still be exactly what we need even when no elementary antiderivative exists?

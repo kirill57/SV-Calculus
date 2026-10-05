@@ -1,47 +1,37 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-3-7-warning-examples">
   <title>Warning examples</title>
 
-  <p>Continuity gave us two promises.  The Intermediate Value Theorem says that a continuous graph cannot skip a height.  The Extreme Value Theorem says that a continuous function on a closed finite interval reaches a highest and lowest value.</p>
-
-  <p>Those promises are strong because their hypotheses are strong.  If we remove a hypothesis, the conclusion may fail.</p>
-
-  <p>This section gathers the warnings in one place.  Each example is small, but each one protects a theorem from being used illegally.</p>
-
-  <subsection xml:id="subsec-no-limit-at-jump-warning">
-    <title>A function with no limit at a jump</title>
+  <introduction><p>The Intermediate Value Theorem requires continuity on an interval. The Extreme Value Theorem requires continuity on a closed, bounded interval. The examples below show how their conclusions can fail when these conditions are removed. We will also distinguish a function value from its nearby limit.</p></introduction><subsection xml:id="subsec-no-limit-at-jump-warning">
+    <title>Jump discontinuity: unequal one-sided limits</title>
 
   <p>A two-sided limit needs one target.  A jump gives two targets.</p>
 
   <p>Define</p>
 
-  <md>
-    <mrow>J(x)=
+  <p><me>J(x)=
 \begin{cases}
-0, \amp x&lt;0,</mrow>
-    <mrow>1, \amp x\ge 0.
-\end{cases}</mrow>
-  </md>
+0, \amp x&lt;0,\\
+1, \amp x\ge 0.
+\end{cases}</me></p>
 
   <p>As <m>x\to0^-</m>, the values of <m>J(x)</m> are always <m>0</m>.  So</p>
 
-  <md>\lim_{x\to0^-}J(x)=0.</md>
+  <p><me>\lim_{x\to0^-}J(x)=0.</me></p>
 
   <p>As <m>x\to0^+</m>, the values of <m>J(x)</m> are always <m>1</m>.  So</p>
 
-  <md>\lim_{x\to0^+}J(x)=1.</md>
+  <p><me>\lim_{x\to0^+}J(x)=1.</me></p>
 
   <p>The one-sided limits disagree.  Therefore</p>
 
-  <md>\lim_{x\to0}J(x)</md>
+  <p><me>\lim_{x\to0}J(x)</me></p>
 
   <p>does not exist.</p>
 
   <figure xml:id="fig-jump-warning-no-limit">
     <caption>A jump creates two different one-sided limits, so the two-sided limit fails.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A jump creates two different one-sided limits, so the two-sided limit fails.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.68\textwidth,
@@ -70,7 +60,7 @@
 
   <p>Changing the value at <m>x=0</m> cannot repair the two-sided limit.  The problem is not the point itself.  The problem is that the nearby values on the two sides head toward different numbers.</p>
 
-  <md>\text{A two-sided limit is about agreement from both sides.}</md>
+  <p><me>\text{A two-sided limit is about agreement from both sides.}</me></p>
 
   <exercise xml:id="checkpoint-3-7-jump-two-targets">
         <title>Why can changing the value at a jump never repair a two-sided limit?</title>
@@ -95,34 +85,32 @@
 
   <p>Consider</p>
 
-  <md>f(x)=\frac{1}{x^2},
-\qquad x\neq0.</md>
+  <p><me>f(x)=\frac{1}{x^2},
+\qquad x\neq0.</me></p>
 
   <p>As <m>x</m> gets close to <m>0</m>, the denominator <m>x^2</m> gets close to <m>0</m>, but stays positive.  The quotient grows larger and larger.</p>
 
-  <md>
-    <mrow>\begin{array}{c|cccccc}
-x \amp -0.1 \amp -0.01 \amp -0.001 \amp 0.001 \amp 0.01 \amp 0.1</mrow>
-    <mrow>\hline
+  <p><me>\begin{array}{c|cccccc}
+x \amp -0.1 \amp -0.01 \amp -0.001 \amp 0.001 \amp 0.01 \amp 0.1\\
+\hline
 \dfrac1{x^2} \amp 100 \amp 10{,}000 \amp 1{,}000{,}000
 \amp 1{,}000{,}000 \amp 10{,}000 \amp 100
-\end{array}</mrow>
-  </md>
+\end{array}</me></p>
 
   <p>We write</p>
 
-  <md>\lim_{x\to0}\frac1{x^2}=\infty.</md>
+  <p><me>\lim_{x\to0}\frac1{x^2}=\infty.</me></p>
 
   <p>This notation does not mean that the function has a finite limit.  It means the values grow beyond every fixed positive bound.</p>
 
   <p>There is no real number <m>L</m> such that</p>
 
-  <md>\lim_{x\to0}\frac1{x^2}=L.</md>
+  <p><me>\lim_{x\to0}\frac1{x^2}=L.</me></p>
 
   <figure xml:id="fig-infinite-limit-warning">
     <caption>The values of <m>1/x^2</m> grow without bound near <m>0</m>.  This is infinite behavior, not a finite limit.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The values of <m>1/x^2</m> grow without bound near <m>0</m>.  This is infinite behavior, not a finite limit.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.70\textwidth,
@@ -149,7 +137,7 @@ x \amp -0.1 \amp -0.01 \amp -0.001 \amp 0.001 \amp 0.01 \amp 0.1</mrow>
 
   <p>A removable discontinuity can be repaired by filling in one value.  Infinite divergent behavior cannot.  No choice of <m>f(0)</m> can keep the nearby values close to a finite number.</p>
 
-  <md>\infty\text{ describes unbounded behavior.  It is not a real-number target.}</md>
+  <p><me>\infty\text{ describes unbounded behavior.  It is not a real-number target.}</me></p>
 
   <exercise xml:id="checkpoint-3-7-infinity-not-a-finite-target">
         <title>Why is <m>\infty</m> not a real-number target?</title>
@@ -172,38 +160,34 @@ x \amp -0.1 \amp -0.01 \amp -0.001 \amp 0.001 \amp 0.01 \amp 0.1</mrow>
 
   <p>The Intermediate Value Theorem said:</p>
 
-  <md>\text{continuous graph}+\text{endpoint values}
-\quad\Longrightarrow\quad
-\text{all intermediate values are hit.}</md>
+  <p><em>continuous graph+endpoint values <m>\Longrightarrow</m> all intermediate values are hit.</em></p>
 
   <p>The word <em>continuous</em> cannot be removed.</p>
 
   <p>Define</p>
 
-  <md>
-    <mrow>S(x)=
+  <p><me>S(x)=
 \begin{cases}
-0, \amp x&lt;0,</mrow>
-    <mrow>2, \amp x\ge0.
-\end{cases}</mrow>
-  </md>
+0, \amp x&lt;0,\\
+2, \amp x\ge0.
+\end{cases}</me></p>
 
   <p>On the interval <m>[-1,1]</m>,</p>
 
-  <md>S(-1)=0
+  <p><me>S(-1)=0
 \qquad\text{and}\qquad
-S(1)=2.</md>
+S(1)=2.</me></p>
 
   <p>The number <m>1</m> lies between <m>0</m> and <m>2</m>.  If we tried to use the Intermediate Value Theorem, we might expect some <m>c\in[-1,1]</m> such that</p>
 
-  <md>S(c)=1.</md>
+  <p><me>S(c)=1.</me></p>
 
   <p>But no such <m>c</m> exists.  The function takes only the values <m>0</m> and <m>2</m>.  It jumps over <m>1</m>.</p>
 
   <figure xml:id="fig-ivt-warning-fails">
     <caption>Without continuity, a function can jump over an intermediate value.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Without continuity, a function can jump over an intermediate value.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.68\textwidth,
@@ -232,10 +216,10 @@ S(1)=2.</md>
 
   <p>The theorem fails because <m>S</m> is not continuous at <m>0</m>.</p>
 
-  <md>\text{The Intermediate Value Theorem is a no-jump theorem.}</md>
+  <p><me>\text{The Intermediate Value Theorem is a no-jump theorem.}</me></p>
 
   <exercise xml:id="checkpoint-3-7-ivt-no-jump">
-        <title>What illegal use of the Intermediate Value Theorem do the warnings protect against?</title>
+        <title>Which hypothesis of the Intermediate Value Theorem must be checked?</title>
         <statement>
           <p>
             The Intermediate Value Theorem is a no-jump theorem: continuous graph plus endpoint values imply that intermediate heights are hit. In your own words, why does dropping continuity let a function skip a height, and what should you check before using the theorem to prove that an equation has a solution?
@@ -255,19 +239,17 @@ S(1)=2.</md>
 
   <p>The Extreme Value Theorem said:</p>
 
-  <md>\text{continuous on }[a,b]
-\quad\Longrightarrow\quad
-\text{absolute maximum and minimum are reached.}</md>
+  <p><em>continuous on [a,b] <m>\Longrightarrow</m> absolute maximum and minimum are reached.</em></p>
 
   <p>The closed interval <m>[a,b]</m> includes its endpoints.  If the endpoints are missing, the conclusion can fail.</p>
 
   <p>Consider</p>
 
-  <md>f(x)=x</md>
+  <p><me>f(x)=x</me></p>
 
   <p>on the open interval</p>
 
-  <md>(0,1).</md>
+  <p><me>(0,1).</me></p>
 
   <p>The function is continuous at every point of its domain.  Its values get close to <m>1</m>, but never equal <m>1</m>, because <m>x=1</m> is not in the interval.</p>
 
@@ -280,7 +262,7 @@ S(1)=2.</md>
   <figure xml:id="fig-evt-warning-open-interval">
     <caption>On <m>(0,1)</m>, the function <m>f(x)=x</m> approaches its lowest and highest possible values but never reaches them.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>On <m>(0,1)</m>, the function <m>f(x)=x</m> approaches its lowest and highest possible values but never reaches them.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.68\textwidth,
@@ -307,10 +289,10 @@ S(1)=2.</md>
 
   <p>The problem is not the formula.  The formula <m>f(x)=x</m> is perfectly continuous.  The problem is the domain.  The endpoints are missing.</p>
 
-  <md>\text{For the Extreme Value Theorem, endpoints matter.}</md>
+  <p><me>\text{For the Extreme Value Theorem, endpoints matter.}</me></p>
 
   <exercise xml:id="checkpoint-3-7-evt-hypotheses">
-        <title>Which Extreme Value Theorem hypotheses can quietly fail?</title>
+        <title>Which Extreme Value Theorem hypotheses fail in these examples?</title>
         <statement>
           <p>
             On an open interval, <m>f(x)=x</m> approaches its apparent highest and lowest values without reaching them. On <m>[0,\infty)</m>, the same formula has no largest value. In your own words, why do both <q>closed</q> and <q>bounded</q> matter, and what does it mean to say that a theorem’s output is no longer guaranteed when a condition is missing?
@@ -332,38 +314,38 @@ S(1)=2.</md>
 
   <p>Consider</p>
 
-  <md>f(x)=x</md>
+  <p><me>f(x)=x</me></p>
 
   <p>on</p>
 
-  <md>[0,\infty).</md>
+  <p><me>[0,\infty).</me></p>
 
   <p>The function is continuous on its domain.  The interval includes its left endpoint <m>0</m>, so <m>f</m> has an absolute minimum:</p>
 
-  <md>f(0)=0.</md>
+  <p><me>f(0)=0.</me></p>
 
   <p>But <m>f</m> has no absolute maximum.  Given any value <m>f(x)=x</m>, we can choose a larger input, such as <m>x+1</m>, and get</p>
 
-  <md>f(x+1)=x+1&gt;f(x).</md>
+  <p><me>f(x+1)=x+1&gt;f(x).</me></p>
 
   <p>So no largest value exists.</p>
 
   <p>A physical version is also common.  Recall the cooling model</p>
 
-  <md>T(t)=70+\frac{90}{t+1},
-\qquad t\ge0.</md>
+  <p><me>T(t)=70+\frac{90}{t+1},
+\qquad t\ge0.</me></p>
 
   <p>The interval <m>[0,\infty)</m> is unbounded.  The temperature starts at</p>
 
-  <md>T(0)=160,</md>
+  <p><me>T(0)=160,</me></p>
 
   <p>and approaches <m>70</m> as <m>t\to\infty</m>.  It never reaches <m>70</m> for any finite <m>t</m>, because</p>
 
-  <md>\frac{90}{t+1}&gt;0.</md>
+  <p><me>\frac{90}{t+1}&gt;0.</me></p>
 
   <p>So this continuous function has an absolute maximum on <m>[0,\infty)</m>, but no absolute minimum.</p>
 
-  <md>\text{A function can approach a best value forever without reaching it.}</md>
+  <p><me>\text{A function can approach a best value forever without reaching it.}</me></p>
 
   <p>The word “bounded” in the Extreme Value Theorem prevents this escape to infinity.</p>
   </subsection>
@@ -374,40 +356,40 @@ S(1)=2.</md>
   <p>The examples above are not exceptions to the theorems.  They are reminders of what the theorems actually say.</p>
 
   <table xml:id="tab-sec-3-7-warning-examples-4">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>claim we want</strong></cell>
-        <cell><strong>missing hypothesis</strong></cell>
-        <cell><strong>what breaks</strong></cell>
+    <title>A map of the warnings</title><tabular halign="left" width="100%">
+      <col width="33.3%"/><col width="33.3%"/><col width="33.4%"/><row bottom="minor">
+        <cell><p><alert>claim we want</alert></p></cell>
+        <cell><p><alert>missing hypothesis</alert></p></cell>
+        <cell><p><alert>what breaks</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell><m>\lim_{x\to a}f(x)</m> exists</cell>
-        <cell>left and right sides agree</cell>
-        <cell>jump gives two targets</cell>
+        <cell><p><m>\lim_{x\to a}f(x)</m> exists</p></cell>
+        <cell><p>left and right sides agree</p></cell>
+        <cell><p>jump gives two targets</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-finite limit exists</cell>
-        <cell>values stay bounded near <m>a</m></cell>
-        <cell>vertical asymptote</cell>
+        <cell><p>
+finite limit exists</p></cell>
+        <cell><p>values stay bounded near <m>a</m></p></cell>
+        <cell><p>vertical asymptote</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-IVT conclusion</cell>
-        <cell>continuity</cell>
-        <cell>intermediate value can be skipped</cell>
+        <cell><p>
+IVT conclusion</p></cell>
+        <cell><p>continuity</p></cell>
+        <cell><p>intermediate value can be skipped</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-EVT conclusion</cell>
-        <cell>closed interval</cell>
-        <cell>endpoint value may not be reached</cell>
+        <cell><p>
+EVT conclusion</p></cell>
+        <cell><p>closed interval</p></cell>
+        <cell><p>endpoint value may not be reached</p></cell>
       </row>
       <row>
-        <cell>
-EVT conclusion</cell>
-        <cell>bounded interval</cell>
-        <cell>largest or smallest value may escape to infinity</cell>
+        <cell><p>
+EVT conclusion</p></cell>
+        <cell><p>bounded interval</p></cell>
+        <cell><p>largest or smallest value may escape to infinity</p></cell>
       </row>
     </tabular>
   </table>
@@ -416,11 +398,11 @@ EVT conclusion</cell>
 
   <p>Limits and continuity have now given us a careful language for functions of a real variable <m>x</m>.  But some limiting processes arrive as lists:</p>
 
-  <md>1,\quad \frac12,\quad \frac13,\quad \frac14,\quad \ldots</md>
+  <p><me>1,\quad \frac12,\quad \frac13,\quad \frac14,\quad \ldots</me></p>
 
   <p>or</p>
 
-  <md>1.4,\quad 1.41,\quad 1.414,\quad 1.4142,\quad \ldots</md>
+  <p><me>1.4,\quad 1.41,\quad 1.414,\quad 1.4142,\quad \ldots</me></p>
 
   <p>The input is no longer every nearby real number.  The input is the whole-number step <m>n</m>.  That leads to sequences.</p>
   </subsection>

@@ -1,95 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-11-7-improper-integrals">
   <title>Improper integrals</title>
 
-  <p>The last section ended with a warning.  A definite integral over a closed, finite interval is
-safe when the integrand is continuous.  The interval has finite length, the function stays
-bounded, and the accumulated amount is a finite number.</p>
-
-  <p>But many natural accumulations do not fit that safe pattern.</p>
-
-  <p>A radioactive particle may decay forever.  A probability density may stretch over the
-whole real line.  A force law may blow up near a point.  A curve may enclose an infinite
-region whose area is still finite.</p>
-
-  <p>So we have to ask a more careful question:</p>
-
-  <md>
-\text{When does an infinite or singular accumulation have a finite value?}
-</md>
-
-  <p>That is the question of improper integrals.</p>
-
-  <p>An improper integral is not wrong or badly formed.  The word <em>improper</em> means
-that the integral lies outside the original definition and must be interpreted as a limit.</p>
-
-  <subsection xml:id="subsec-infinite-intervals">
+  <introduction><p>An integral over an infinite interval, or with an unbounded integrand near an endpoint or interior point, is defined using limits of integrals over finite nonsingular intervals. It converges when every required limit is finite. This section develops comparison tests and distinguishes absolute convergence from convergence caused by cancellation.</p></introduction><subsection xml:id="subsec-infinite-intervals">
     <title>Infinite intervals</title>
 
   <p>Start with an infinite interval.</p>
 
   <p>The expression</p>
 
-  <md>\int_1^\infty \frac{1}{x^2}\,dx</md>
+  <p><me>\int_1^\infty \frac{1}{x^2}\,dx</me></p>
 
   <p>asks for the area under <m>1/x^2</m> from <m>x=1</m> onward forever.  We cannot add area all
 the way to infinity in one step.  Instead, we stop at a finite number <m>t</m>, compute</p>
 
-  <md>\int_1^t \frac{1}{x^2}\,dx,</md>
+  <p><me>\int_1^t \frac{1}{x^2}\,dx,</me></p>
 
   <p>and then let <m>t</m> move farther and farther to the right.</p>
 
   <p>For <m>t&gt;1</m>,</p>
 
-  <md>\int_1^t \frac{1}{x^2}\,dx
+  <p><me>\int_1^t \frac{1}{x^2}\,dx
 =
 \int_1^t x^{-2}\,dx
 =
 \left[-\frac1x\right]_1^t
 =
--\frac1t+1.</md>
+-\frac1t+1.</me></p>
 
   <p>Now let <m>t\to\infty</m>:</p>
 
-  <md>\lim_{t\to\infty}\left(1-\frac1t\right)=1.</md>
+  <p><me>\lim_{t\to\infty}\left(1-\frac1t\right)=1.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{1}{x^2}\,dx=1.
-</md>
+</me></p>
 
   <p>This infinite region has finite area.</p>
 
   <p>Now compare</p>
 
-  <md>\int_1^\infty \frac1x\,dx.</md>
+  <p><me>\int_1^\infty \frac1x\,dx.</me></p>
 
   <p>Again stop at <m>t</m>:</p>
 
-  <md>\int_1^t \frac1x\,dx
+  <p><me>\int_1^t \frac1x\,dx
 =
 \ln x\Big|_1^t
 =
-\ln t.</md>
+\ln t.</me></p>
 
   <p>As <m>t\to\infty</m>,</p>
 
-  <md>\ln t\to\infty.</md>
+  <p><me>\ln t\to\infty.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac1x\,dx
 \text{ diverges.}
-</md>
+</me></p>
 
   <p>Both functions</p>
 
-  <md>\frac1x
+  <p><me>\frac1x
 \qquad\text{and}\qquad
-\frac1{x^2}</md>
+\frac1{x^2}</me></p>
 
   <p>approach <m>0</m>.  But only <m>1/x^2</m> approaches <m>0</m> fast enough to have finite total
 area on the infinite interval.</p>
@@ -98,7 +75,7 @@ area on the infinite interval.</p>
     <caption>Both curves approach <m>0</m>, but the tail of <m>1/x</m> has infinite area while the tail of <m>1/x^2</m> has finite area.</caption>
             <sidebyside widths="48% 48%" valign="bottom">
     <image xml:id="fig-one-over-x-vs-one-over-x-squared-panel-1">
-      <latex-image>
+      <description><p>Panel 1 of 2. Both curves approach <m>0</m>, but the tail of <m>1/x</m> has infinite area while the tail of <m>1/x^2</m> has finite area.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=\textwidth,
@@ -122,7 +99,7 @@ area on the infinite interval.</p>
       </latex-image>
     </image>
     <image xml:id="fig-one-over-x-vs-one-over-x-squared-panel-2">
-      <latex-image>
+      <description><p>Panel 2 of 2. Both curves approach <m>0</m>, but the tail of <m>1/x</m> has infinite area while the tail of <m>1/x^2</m> has finite area.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=\textwidth,
@@ -153,11 +130,11 @@ area on the infinite interval.</p>
   <note xml:id="note-sec-11-7-improper-integrals-133">
     <title>Improper integral on an infinite interval</title>
       <p>If <m>f</m> is continuous on <m>[a,t]</m> for every <m>t&gt;a</m>, then</p>
-        <md>
+        <p><me>
 \int_a^\infty f(x)\,dx
 =
 \lim_{t\to\infty}\int_a^t f(x)\,dx
-</md>
+</me></p>
       <p>provided the limit exists as a finite number.</p>
       <p>If the limit exists as a finite number, the improper integral <em>converges</em>.  If the
 limit does not exist as a finite number, the improper integral <em>diverges</em>.</p>
@@ -165,23 +142,23 @@ limit does not exist as a finite number, the improper integral <em>diverges</em>
 
   <p>Similarly,</p>
 
-  <md>
+  <p><me>
 \int_{-\infty}^b f(x)\,dx
 =
 \lim_{t\to-\infty}\int_t^b f(x)\,dx
-</md>
+</me></p>
 
   <p>provided the limit exists as a finite number.</p>
 
   <p>For an integral over the whole real line, split at any convenient point <m>c</m>:</p>
 
-  <md>
+  <p><me>
 \int_{-\infty}^{\infty} f(x)\,dx
 =
 \int_{-\infty}^{c} f(x)\,dx
 +
 \int_c^{\infty} f(x)\,dx.
-</md>
+</me></p>
 
   <p>Both pieces must converge.  If either piece diverges, then the whole improper integral
 diverges.</p>
@@ -203,61 +180,59 @@ diverges.</p>
 
   <example xml:id="ex-sec-11-7-improper-integrals-1">
     <title>an infinite interval in both directions</title>
-    <statement>
-  <p>Evaluate</p>
+    <p>Evaluate</p>
 
-  <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx.</md>
+  <p><me>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx.</me></p>
 
   <p>Split at <m>0</m>:</p>
 
-  <md>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx
+  <p><me>\int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx
 =
 \int_{-\infty}^{0} \frac{1}{1+x^2}\,dx
 +
-\int_0^{\infty} \frac{1}{1+x^2}\,dx.</md>
+\int_0^{\infty} \frac{1}{1+x^2}\,dx.</me></p>
 
   <p>For the right half,</p>
 
-  <md>\int_0^\infty \frac{1}{1+x^2}\,dx
+  <p><me>\int_0^\infty \frac{1}{1+x^2}\,dx
 =
-\lim_{t\to\infty}\int_0^t \frac{1}{1+x^2}\,dx.</md>
+\lim_{t\to\infty}\int_0^t \frac{1}{1+x^2}\,dx.</me></p>
 
   <p>Since</p>
 
-  <md>\int \frac{1}{1+x^2}\,dx=\arctan x+C,</md>
+  <p><me>\int \frac{1}{1+x^2}\,dx=\arctan x+C,</me></p>
 
   <p>we get</p>
 
-  <md>\int_0^\infty \frac{1}{1+x^2}\,dx
+  <p><me>\int_0^\infty \frac{1}{1+x^2}\,dx
 =
 \lim_{t\to\infty}\bigl(\arctan t-\arctan 0\bigr)
 =
-\frac{\pi}{2}.</md>
+\frac{\pi}{2}.</me></p>
 
   <p>For the left half,</p>
 
-  <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
+  <p><me>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
 =
-\lim_{t\to-\infty}\int_t^0 \frac{1}{1+x^2}\,dx.</md>
+\lim_{t\to-\infty}\int_t^0 \frac{1}{1+x^2}\,dx.</me></p>
 
   <p>Thus</p>
 
-  <md>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
+  <p><me>\int_{-\infty}^0 \frac{1}{1+x^2}\,dx
 =
 \lim_{t\to-\infty}\bigl(\arctan 0-\arctan t\bigr)
 =
-\frac{\pi}{2}.</md>
+\frac{\pi}{2}.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \int_{-\infty}^{\infty} \frac{1}{1+x^2}\,dx=\pi.
-</md>
+</me></p>
 
   <p>This integral appears in probability.  It is also a reminder that finite area can stretch
 across an infinite line.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-infinite-discontinuities">
@@ -267,73 +242,73 @@ across an infinite line.</p>
 
   <p>Consider</p>
 
-  <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx.</md>
+  <p><me>\int_0^1 \frac{1}{\sqrt{x}}\,dx.</me></p>
 
   <p>The interval <m>[0,1]</m> is finite, but the integrand is not defined at <m>x=0</m>, and</p>
 
-  <md>\frac{1}{\sqrt{x}}\to\infty
+  <p><me>\frac{1}{\sqrt{x}}\to\infty
 \qquad\text{as}\qquad
-x\to0^+.</md>
+x\to0^+.</me></p>
 
   <p>So we approach the endpoint by a limit:</p>
 
-  <md>\int_0^1 \frac{1}{\sqrt{x}}\,dx
+  <p><me>\int_0^1 \frac{1}{\sqrt{x}}\,dx
 =
-\lim_{t\to0^+}\int_t^1 \frac{1}{\sqrt{x}}\,dx.</md>
+\lim_{t\to0^+}\int_t^1 \frac{1}{\sqrt{x}}\,dx.</me></p>
 
   <p>Compute:</p>
 
-  <md>\int_t^1 x^{-1/2}\,dx
+  <p><me>\int_t^1 x^{-1/2}\,dx
 =
 \left[2\sqrt{x}\right]_t^1
 =
-2-2\sqrt{t}.</md>
+2-2\sqrt{t}.</me></p>
 
   <p>Let <m>t\to0^+</m>:</p>
 
-  <md>\lim_{t\to0^+}(2-2\sqrt{t})=2.</md>
+  <p><me>\lim_{t\to0^+}(2-2\sqrt{t})=2.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \int_0^1 \frac{1}{\sqrt{x}}\,dx=2.
-</md>
+</me></p>
 
   <p>The graph shoots upward near <m>0</m>, but the spike is narrow enough to have finite area.</p>
 
   <p>Now compare</p>
 
-  <md>\int_0^1 \frac1x\,dx.</md>
+  <p><me>\int_0^1 \frac1x\,dx.</me></p>
 
   <p>Again,</p>
 
-  <md>\int_0^1 \frac1x\,dx
+  <p><me>\int_0^1 \frac1x\,dx
 =
-\lim_{t\to0^+}\int_t^1 \frac1x\,dx.</md>
+\lim_{t\to0^+}\int_t^1 \frac1x\,dx.</me></p>
 
   <p>For <m>0&lt;t&lt;1</m>,</p>
 
-  <md>\int_t^1 \frac1x\,dx
+  <p><me>\int_t^1 \frac1x\,dx
 =
 \left[\ln x\right]_t^1
 =
--\ln t.</md>
+-\ln t.</me></p>
 
   <p>As <m>t\to0^+</m>,</p>
 
-  <md>-\ln t\to\infty.</md>
+  <p><me>-\ln t\to\infty.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int_0^1 \frac1x\,dx
 \text{ diverges.}
-</md>
+</me></p>
 
   <figure xml:id="fig-infinite-discontinuity-comparison">
     <caption>A function may become infinite near an endpoint and still have finite area.  The rate of blowup matters.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A function may become infinite near an endpoint and still have finite area.  The rate of blowup matters.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.82\textwidth,
@@ -364,27 +339,27 @@ x\to0^+.</md>
   <note xml:id="note-sec-11-7-improper-integrals-134">
     <title>Improper integral with an infinite endpoint discontinuity</title>
       <p>If <m>f</m> is continuous on <m>(a,b]</m>, but has an infinite discontinuity at <m>a</m>, then</p>
-        <md>
+        <p><me>
 \int_a^b f(x)\,dx
 =
 \lim_{t\to a^+}\int_t^b f(x)\,dx
-</md>
+</me></p>
       <p>provided the limit exists as a finite number.</p>
       <p>If <m>f</m> is continuous on <m>[a,b)</m>, but has an infinite discontinuity at <m>b</m>, then</p>
-        <md>
+        <p><me>
 \int_a^b f(x)\,dx
 =
 \lim_{t\to b^-}\int_a^t f(x)\,dx.
-</md>
+</me></p>
   </note>
 
   <p>If the infinite discontinuity occurs at an interior point <m>c</m>, split the integral:</p>
 
-  <md>
+  <p><me>
 \int_a^b f(x)\,dx
 =
 \int_a^c f(x)\,dx+\int_c^b f(x)\,dx.
-</md>
+</me></p>
 
   <p>Both pieces must converge.  If either one diverges, the original integral diverges.</p>
 
@@ -405,46 +380,44 @@ x\to0^+.</md>
 
   <example xml:id="ex-sec-11-7-improper-integrals-2">
     <title>a singularity inside the interval</title>
-    <statement>
-  <p>Decide whether</p>
+    <p>Decide whether</p>
 
-  <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx</md>
+  <p><me>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx</me></p>
 
   <p>converges.</p>
 
   <p>The integrand is singular at <m>x=0</m>.  Split there:</p>
 
-  <md>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx
+  <p><me>\int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx
 =
 \int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx
 +
-\int_0^{1} \frac{1}{\sqrt{|x|}}\,dx.</md>
+\int_0^{1} \frac{1}{\sqrt{|x|}}\,dx.</me></p>
 
   <p>On <m>(0,1]</m>,</p>
 
-  <md>\frac{1}{\sqrt{|x|}}=\frac1{\sqrt{x}},</md>
+  <p><me>\frac{1}{\sqrt{|x|}}=\frac1{\sqrt{x}},</me></p>
 
   <p>so</p>
 
-  <md>\int_0^1 \frac{1}{\sqrt{|x|}}\,dx=2.</md>
+  <p><me>\int_0^1 \frac{1}{\sqrt{|x|}}\,dx=2.</me></p>
 
   <p>On <m>[-1,0)</m>, use the substitution <m>u=-x</m>.  Then <m>du=-dx</m>, and</p>
 
-  <md>\int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx
+  <p><me>\int_{-1}^{0} \frac{1}{\sqrt{|x|}}\,dx
 =
 \int_1^0 \frac{1}{\sqrt{u}}(-du)
 =
 \int_0^1 \frac{1}{\sqrt{u}}\,du
 =
-2.</md>
+2.</me></p>
 
   <p>Both pieces converge, so the original integral converges and</p>
 
-  <md>
+  <p><me>
 \int_{-1}^{1} \frac{1}{\sqrt{|x|}}\,dx=4.
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-convergence-divergence-improper">
@@ -457,28 +430,28 @@ antiderivative.</p>
 number.  It diverges if the limiting accumulated amount does not approach a finite
 number.</p>
 
-  <md>
+  <p><me>
 \text{convergent means finite accumulated amount.}
-</md>
+</me></p>
 
-  <md>
+  <p><me>
 \text{divergent means no finite accumulated amount.}
-</md>
+</me></p>
 
   <p>The antiderivative may exist on every finite subinterval and the improper integral may
 still diverge.</p>
 
   <p>For example,</p>
 
-  <md>\int_1^t \frac1x\,dx=\ln t</md>
+  <p><me>\int_1^t \frac1x\,dx=\ln t</me></p>
 
   <p>exists for every finite <m>t&gt;1</m>.  But</p>
 
-  <md>\lim_{t\to\infty}\ln t=\infty.</md>
+  <p><me>\lim_{t\to\infty}\ln t=\infty.</me></p>
 
   <p>So</p>
 
-  <md>\int_1^\infty \frac1x\,dx</md>
+  <p><me>\int_1^\infty \frac1x\,dx</me></p>
 
   <p>diverges.</p>
 
@@ -499,95 +472,91 @@ still diverge.</p>
 
   <example xml:id="ex-sec-11-7-improper-integrals-3">
     <title>exponential decay</title>
-    <statement>
-  <p>Evaluate</p>
+    <p>Evaluate</p>
 
-  <md>\int_0^\infty e^{-x}\,dx.</md>
+  <p><me>\int_0^\infty e^{-x}\,dx.</me></p>
 
   <p>By definition,</p>
 
-  <md>\int_0^\infty e^{-x}\,dx
+  <p><me>\int_0^\infty e^{-x}\,dx
 =
-\lim_{t\to\infty}\int_0^t e^{-x}\,dx.</md>
+\lim_{t\to\infty}\int_0^t e^{-x}\,dx.</me></p>
 
   <p>Now</p>
 
-  <md>\int_0^t e^{-x}\,dx
+  <p><me>\int_0^t e^{-x}\,dx
 =
 \left[-e^{-x}\right]_0^t
 =
-1-e^{-t}.</md>
+1-e^{-t}.</me></p>
 
   <p>As <m>t\to\infty</m>,</p>
 
-  <md>e^{-t}\to0.</md>
+  <p><me>e^{-t}\to0.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \int_0^\infty e^{-x}\,dx=1.
-</md>
+</me></p>
 
   <p>Exponential decay wins easily against an infinite interval.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-7-improper-integrals-4">
     <title>a mean waiting time</title>
-    <statement>
-  <p>Evaluate</p>
+    <p>Evaluate</p>
 
-  <md>\int_0^\infty x e^{-x}\,dx.</md>
+  <p><me>\int_0^\infty x e^{-x}\,dx.</me></p>
 
   <p>Stop at <m>t</m>:</p>
 
-  <md>\int_0^\infty x e^{-x}\,dx
+  <p><me>\int_0^\infty x e^{-x}\,dx
 =
-\lim_{t\to\infty}\int_0^t x e^{-x}\,dx.</md>
+\lim_{t\to\infty}\int_0^t x e^{-x}\,dx.</me></p>
 
   <p>Use integration by parts on the finite integral.  Let</p>
 
-  <md>u=x,
+  <p><me>u=x,
 \qquad
-dv=e^{-x}\,dx.</md>
+dv=e^{-x}\,dx.</me></p>
 
   <p>Then</p>
 
-  <md>du=dx,
+  <p><me>du=dx,
 \qquad
-v=-e^{-x}.</md>
+v=-e^{-x}.</me></p>
 
   <p>So</p>
 
-  <md>\int_0^t x e^{-x}\,dx
+  <p><me>\int_0^t x e^{-x}\,dx
 =
-\left[-xe^{-x}\right]_0^t+\int_0^t e^{-x}\,dx.</md>
+\left[-xe^{-x}\right]_0^t+\int_0^t e^{-x}\,dx.</me></p>
 
   <p>This gives</p>
 
-  <md>\int_0^t x e^{-x}\,dx
+  <p><me>\int_0^t x e^{-x}\,dx
 =
--te^{-t}+1-e^{-t}.</md>
+-te^{-t}+1-e^{-t}.</me></p>
 
   <p>Now let <m>t\to\infty</m>.  We know</p>
 
-  <md>e^{-t}\to0</md>
+  <p><me>e^{-t}\to0</me></p>
 
   <p>and</p>
 
-  <md>te^{-t}\to0.</md>
+  <p><me>te^{-t}\to0.</me></p>
 
   <p>Therefore</p>
 
-  <md>
+  <p><me>
 \int_0^\infty x e^{-x}\,dx=1.
-</md>
+</me></p>
 
   <p>This integral appears as an expected value for an exponential waiting-time model.  The
 calculus statement is simple: the tail decays fast enough that the total weighted area is
 finite.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-comparison-tests-improper-integrals">
@@ -598,19 +567,19 @@ than exact value.</p>
 
   <p>For example,</p>
 
-  <md>\int_1^\infty e^{-x^2}\,dx</md>
+  <p><me>\int_1^\infty e^{-x^2}\,dx</me></p>
 
   <p>has no elementary antiderivative.  Still, it converges.  For <m>x\ge1</m>,</p>
 
-  <md>x^2\ge x,</md>
+  <p><me>x^2\ge x,</me></p>
 
   <p>so</p>
 
-  <md>e^{-x^2}\le e^{-x}.</md>
+  <p><me>e^{-x^2}\le e^{-x}.</me></p>
 
   <p>Since</p>
 
-  <md>\int_1^\infty e^{-x}\,dx</md>
+  <p><me>\int_1^\infty e^{-x}\,dx</me></p>
 
   <p>converges, the smaller nonnegative function <m>e^{-x^2}</m> also has finite area.</p>
 
@@ -618,20 +587,21 @@ than exact value.</p>
 
   <note xml:id="note-sec-11-7-improper-integrals-135">
     <title>Direct Comparison Test for improper integrals</title>
-      <p>Suppose</p>
-        <md>0\le f(x)\le g(x)</md>
+      <p>Suppose <m>f</m> and <m>g</m> are continuous on <m>[a,\infty)</m>, and</p>
+
+  <p><me>0\le f(x)\le g(x)</me></p>
       <p>for all sufficiently large <m>x</m>.</p>
       <p>If</p>
-        <md>\int_a^\infty g(x)\,dx</md>
+        <p><me>\int_a^\infty g(x)\,dx</me></p>
       <p>converges, then</p>
-        <md>\int_a^\infty f(x)\,dx</md>
+        <p><me>\int_a^\infty f(x)\,dx</me></p>
       <p>also converges.</p>
       <p>If</p>
-        <md>0\le g(x)\le f(x)</md>
+        <p><me>0\le g(x)\le f(x)</me></p>
       <p>for all sufficiently large <m>x</m>, and</p>
-        <md>\int_a^\infty g(x)\,dx</md>
+        <p><me>\int_a^\infty g(x)\,dx</me></p>
       <p>diverges, then</p>
-        <md>\int_a^\infty f(x)\,dx</md>
+        <p><me>\int_a^\infty f(x)\,dx</me></p>
       <p>also diverges.</p>
   </note>
 
@@ -656,192 +626,184 @@ tail has finite area.</p>
 
   <example xml:id="ex-sec-11-7-improper-integrals-5">
     <title>convergence without an antiderivative</title>
-    <statement>
-  <p>Show that</p>
+    <p>Show that</p>
 
-  <md>\int_1^\infty e^{-x^2}\,dx</md>
+  <p><me>\int_1^\infty e^{-x^2}\,dx</me></p>
 
   <p>converges.</p>
 
   <p>For <m>x\ge1</m>,</p>
 
-  <md>x^2\ge x.</md>
+  <p><me>x^2\ge x.</me></p>
 
   <p>Multiplying by <m>-1</m> reverses the inequality:</p>
 
-  <md>-x^2\le -x.</md>
+  <p><me>-x^2\le -x.</me></p>
 
   <p>Since the exponential function is increasing,</p>
 
-  <md>e^{-x^2}\le e^{-x}.</md>
+  <p><me>e^{-x^2}\le e^{-x}.</me></p>
 
   <p>Also,</p>
 
-  <md>0\le e^{-x^2}.</md>
+  <p><me>0\le e^{-x^2}.</me></p>
 
   <p>We know</p>
 
-  <md>\int_1^\infty e^{-x}\,dx=e^{-1},</md>
+  <p><me>\int_1^\infty e^{-x}\,dx=e^{-1},</me></p>
 
   <p>so the comparison test gives</p>
 
-  <md>
+  <p><me>
 \int_1^\infty e^{-x^2}\,dx
 \text{ converges.}
-</md>
+</me></p>
 
   <p>We have proved convergence without finding an elementary antiderivative.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-7-improper-integrals-6">
     <title>divergence by comparison</title>
-    <statement>
-  <p>Show that</p>
+    <p>Show that</p>
 
-  <md>\int_1^\infty \frac{1+\cos^2 x}{x}\,dx</md>
+  <p><me>\int_1^\infty \frac{1+\cos^2 x}{x}\,dx</me></p>
 
   <p>diverges.</p>
 
   <p>Since</p>
 
-  <md>\cos^2x\ge0,</md>
+  <p><me>\cos^2x\ge0,</me></p>
 
   <p>we have</p>
 
-  <md>1+\cos^2x\ge1.</md>
+  <p><me>1+\cos^2x\ge1.</me></p>
 
   <p>Therefore</p>
 
-  <md>\frac{1+\cos^2x}{x}\ge\frac1x</md>
+  <p><me>\frac{1+\cos^2x}{x}\ge\frac1x</me></p>
 
   <p>for <m>x\ge1</m>.</p>
 
   <p>But</p>
 
-  <md>\int_1^\infty \frac1x\,dx</md>
+  <p><me>\int_1^\infty \frac1x\,dx</me></p>
 
   <p>diverges.  The integrand is nonnegative and at least as large as a divergent tail.
 Therefore</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{1+\cos^2 x}{x}\,dx
 \text{ diverges.}
-</md>
+</me></p>
 
   <p>Comparison needs nonnegative functions.  If signs cancel, the situation is more delicate.
 The warning examples in the next section show why.</p>
 
+  </example>
+
   <note xml:id="note-sec-11-7-improper-integrals-136">
     <title>Limit Comparison Test for improper integrals</title>
-      <p>Suppose <m>f(x)&gt;0</m> and <m>g(x)&gt;0</m> for all sufficiently large <m>x</m>.  If</p>
-        <md>\lim_{x\to\infty}\frac{f(x)}{g(x)}=L</md>
+      <p>Suppose <m>f</m> and <m>g</m> are continuous on <m>[a,\infty)</m>, with <m>f(x)&gt;0</m> and <m>g(x)&gt;0</m> for all sufficiently large <m>x</m>.  If</p>
+        <p><me>\lim_{x\to\infty}\frac{f(x)}{g(x)}=L</me></p>
       <p>where</p>
-        <md>0&lt;L&lt;\infty,</md>
+        <p><me>0&lt;L&lt;\infty,</me></p>
       <p>then</p>
-        <md>\int_a^\infty f(x)\,dx</md>
+        <p><me>\int_a^\infty f(x)\,dx</me></p>
       <p>and</p>
-        <md>\int_a^\infty g(x)\,dx</md>
+        <p><me>\int_a^\infty g(x)\,dx</me></p>
       <p>either both converge or both diverge.</p>
   </note>
 
   <p>The reason is that, far out in the tail, <m>f</m> behaves like a constant multiple of <m>g</m>.  A
 constant multiple changes the size of the area, but not whether the total area is finite.</p>
-    </statement>
-  </example>
-
-  <example xml:id="ex-sec-11-7-improper-integrals-7">
+    <example xml:id="ex-sec-11-7-improper-integrals-7">
     <title>a rational tail</title>
-    <statement>
-  <p>Determine whether</p>
+    <p>Determine whether</p>
 
-  <md>\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx</md>
+  <p><me>\int_1^\infty \frac{3x^2+1}{x^3+5}\,dx</me></p>
 
   <p>converges or diverges.</p>
 
   <p>For large <m>x</m>, the integrand behaves like</p>
 
-  <md>\frac{3x^2}{x^3}=\frac3x.</md>
+  <p><me>\frac{3x^2}{x^3}=\frac3x.</me></p>
 
   <p>Use limit comparison with</p>
 
-  <md>g(x)=\frac1x.</md>
+  <p><me>g(x)=\frac1x.</me></p>
 
   <p>Compute</p>
 
-  <md>\lim_{x\to\infty}
+  <p><me>\lim_{x\to\infty}
 \frac{\frac{3x^2+1}{x^3+5}}{\frac1x}
 =
 \lim_{x\to\infty}
-\frac{x(3x^2+1)}{x^3+5}.</md>
+\frac{x(3x^2+1)}{x^3+5}.</me></p>
 
   <p>The highest powers dominate:</p>
 
-  <md>\lim_{x\to\infty}
+  <p><me>\lim_{x\to\infty}
 \frac{3x^3+x}{x^3+5}
 =
-3.</md>
+3.</me></p>
 
   <p>Since</p>
 
-  <md>0&lt;3&lt;\infty</md>
+  <p><me>0&lt;3&lt;\infty</me></p>
 
   <p>and</p>
 
-  <md>\int_1^\infty \frac1x\,dx</md>
+  <p><me>\int_1^\infty \frac1x\,dx</me></p>
 
   <p>diverges, the given integral also diverges:</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{3x^2+1}{x^3+5}\,dx
 \text{ diverges.}
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
 
   <example xml:id="ex-sec-11-7-improper-integrals-8">
     <title>a convergent rational tail</title>
-    <statement>
-  <p>Determine whether</p>
+    <p>Determine whether</p>
 
-  <md>\int_1^\infty \frac{2x+1}{x^3+4}\,dx</md>
+  <p><me>\int_1^\infty \frac{2x+1}{x^3+4}\,dx</me></p>
 
   <p>converges.</p>
 
   <p>For large <m>x</m>,</p>
 
-  <md>\frac{2x+1}{x^3+4}
+  <p><me>\frac{2x+1}{x^3+4}
 \sim
 \frac{2x}{x^3}
 =
-\frac2{x^2}.</md>
+\frac2{x^2}.</me></p>
 
   <p>Use limit comparison with</p>
 
-  <md>g(x)=\frac1{x^2}.</md>
+  <p><me>g(x)=\frac1{x^2}.</me></p>
 
   <p>Then</p>
 
-  <md>\lim_{x\to\infty}
+  <p><me>\lim_{x\to\infty}
 \frac{\frac{2x+1}{x^3+4}}{\frac1{x^2}}
 =
 \lim_{x\to\infty}
 \frac{x^2(2x+1)}{x^3+4}
 =
-2.</md>
+2.</me></p>
 
   <p>Since</p>
 
-  <md>\int_1^\infty \frac1{x^2}\,dx</md>
+  <p><me>\int_1^\infty \frac1{x^2}\,dx</me></p>
 
   <p>converges, the given integral converges:</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{2x+1}{x^3+4}\,dx
 \text{ converges.}
-</md>
-    </statement>
-  </example>
+</me></p>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-p-integrals">
@@ -849,98 +811,98 @@ constant multiple changes the size of the area, but not whether the total area i
 
   <p>The most useful comparison family is</p>
 
-  <md>\frac1{x^p}.</md>
+  <p><me>\frac1{x^p}.</me></p>
 
   <p>The power <m>p</m> decides whether the tail is thin enough.</p>
 
   <p>First consider the infinite interval:</p>
 
-  <md>\int_1^\infty \frac1{x^p}\,dx.</md>
+  <p><me>\int_1^\infty \frac1{x^p}\,dx.</me></p>
 
   <p>If <m>p\neq1</m>, then</p>
 
-  <md>\int_1^t x^{-p}\,dx
+  <p><me>\int_1^t x^{-p}\,dx
 =
 \left[\frac{x^{1-p}}{1-p}\right]_1^t
 =
-\frac{t^{1-p}-1}{1-p}.</md>
+\frac{t^{1-p}-1}{1-p}.</me></p>
 
   <p>If <m>p&gt;1</m>, then <m>1-p&lt;0</m>, so</p>
 
-  <md>t^{1-p}\to0
+  <p><me>t^{1-p}\to0
 \qquad\text{as}\qquad
-t\to\infty.</md>
+t\to\infty.</me></p>
 
   <p>The integral converges, and</p>
 
-  <md>\int_1^\infty \frac1{x^p}\,dx
+  <p><me>\int_1^\infty \frac1{x^p}\,dx
 =
-\frac1{p-1}.</md>
+\frac1{p-1}.</me></p>
 
   <p>If <m>p&lt;1</m>, then <m>1-p&gt;0</m>, so</p>
 
-  <md>t^{1-p}\to\infty.</md>
+  <p><me>t^{1-p}\to\infty.</me></p>
 
   <p>The integral diverges.</p>
 
   <p>If <m>p=1</m>, then</p>
 
-  <md>\int_1^\infty \frac1x\,dx</md>
+  <p><me>\int_1^\infty \frac1x\,dx</me></p>
 
   <p>diverges logarithmically.</p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac1{x^p}\,dx
 \text{ converges exactly when } p&gt;1.
-</md>
+</me></p>
 
   <p>Now consider the endpoint singularity:</p>
 
-  <md>\int_0^1 \frac1{x^p}\,dx.</md>
+  <p><me>\int_0^1 \frac1{x^p}\,dx.</me></p>
 
   <p>If <m>p\neq1</m>, then</p>
 
-  <md>\int_t^1 x^{-p}\,dx
+  <p><me>\int_t^1 x^{-p}\,dx
 =
 \left[\frac{x^{1-p}}{1-p}\right]_t^1
 =
-\frac{1-t^{1-p}}{1-p}.</md>
+\frac{1-t^{1-p}}{1-p}.</me></p>
 
   <p>If <m>p&lt;1</m>, then <m>1-p&gt;0</m>, so</p>
 
-  <md>t^{1-p}\to0
+  <p><me>t^{1-p}\to0
 \qquad\text{as}\qquad
-t\to0^+.</md>
+t\to0^+.</me></p>
 
   <p>The integral converges, and</p>
 
-  <md>\int_0^1 \frac1{x^p}\,dx
+  <p><me>\int_0^1 \frac1{x^p}\,dx
 =
-\frac1{1-p}.</md>
+\frac1{1-p}.</me></p>
 
   <p>If <m>p&gt;1</m>, then <m>1-p&lt;0</m>, so <m>t^{1-p}\to\infty</m>, and the integral diverges.</p>
 
   <p>If <m>p=1</m>, then</p>
 
-  <md>\int_0^1 \frac1x\,dx</md>
+  <p><me>\int_0^1 \frac1x\,dx</me></p>
 
   <p>also diverges.</p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \int_0^1 \frac1{x^p}\,dx
 \text{ converges exactly when } p&lt;1.
-</md>
+</me></p>
 
   <table xml:id="tab-sec-11-7-improper-integrals-2">
-    <tabular halign="left">
+    <title>The  p -integrals</title><tabular halign="left" width="100%">
       <row bottom="minor">
-        <cell><strong>Integral</strong></cell>
-        <cell><strong>Converges when</strong></cell>
-        <cell><strong>Diverges when</strong></cell>
+        <cell><alert>Integral</alert></cell>
+        <cell><alert>Converges when</alert></cell>
+        <cell><alert>Diverges when</alert></cell>
       </row>
       <row bottom="minor">
         <cell><m>\displaystyle \int_1^\infty \frac1{x^p}\,dx</m></cell>
@@ -960,92 +922,87 @@ t\to0^+.</md>
 
   <p>On</p>
 
-  <md>[1,\infty),</md>
+  <p><me>[1,\infty),</me></p>
 
   <p>the danger is the infinite length of the interval.  We need the function to decay faster
 than <m>1/x</m>.</p>
 
   <p>On</p>
 
-  <md>(0,1],</md>
+  <p><me>(0,1],</me></p>
 
   <p>the danger is the blowup at <m>0</m>.  We need the blowup to be milder than <m>1/x</m>.</p>
 
   <example xml:id="ex-sec-11-7-improper-integrals-9">
     <title>Example</title>
-    <statement>
-  <p>Determine whether</p>
+    <p>Determine whether</p>
 
-  <md>\int_2^\infty \frac{1}{x\sqrt{x}}\,dx</md>
+  <p><me>\int_2^\infty \frac{1}{x\sqrt{x}}\,dx</me></p>
 
   <p>converges.</p>
 
   <p>Rewrite the integrand:</p>
 
-  <md>\frac{1}{x\sqrt{x}}
+  <p><me>\frac{1}{x\sqrt{x}}
 =
-\frac1{x^{3/2}}.</md>
+\frac1{x^{3/2}}.</me></p>
 
   <p>This is a <m>p</m>-integral with</p>
 
-  <md>p=\frac32.</md>
+  <p><me>p=\frac32.</me></p>
 
   <p>Since</p>
 
-  <md>\frac32&gt;1,</md>
+  <p><me>\frac32&gt;1,</me></p>
 
   <p>the integral converges.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-7-improper-integrals-10">
     <title>Example</title>
-    <statement>
-  <p>Determine whether</p>
+    <p>Determine whether</p>
 
-  <md>\int_0^1 \frac{1}{x^{4/3}}\,dx</md>
+  <p><me>\int_0^1 \frac{1}{x^{4/3}}\,dx</me></p>
 
   <p>converges.</p>
 
   <p>This is a <m>p</m>-integral near <m>0</m> with</p>
 
-  <md>p=\frac43.</md>
+  <p><me>p=\frac43.</me></p>
 
   <p>Since</p>
 
-  <md>\frac43\ge1,</md>
+  <p><me>\frac43\ge1,</me></p>
 
   <p>the integral diverges.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-7-improper-integrals-11">
     <title>comparison with a <m>p</m>-integral</title>
-    <statement>
-  <p>Determine whether</p>
+    <p>Determine whether</p>
 
-  <md>\int_1^\infty \frac{dx}{x^2+\sqrt{x}}</md>
+  <p><me>\int_1^\infty \frac{dx}{x^2+\sqrt{x}}</me></p>
 
   <p>converges.</p>
 
   <p>For <m>x\ge1</m>,</p>
 
-  <md>x^2+\sqrt{x}\ge x^2.</md>
+  <p><me>x^2+\sqrt{x}\ge x^2.</me></p>
 
   <p>Therefore</p>
 
-  <md>0\le \frac{1}{x^2+\sqrt{x}}\le \frac1{x^2}.</md>
+  <p><me>0\le \frac{1}{x^2+\sqrt{x}}\le \frac1{x^2}.</me></p>
 
   <p>Since</p>
 
-  <md>\int_1^\infty \frac1{x^2}\,dx</md>
+  <p><me>\int_1^\infty \frac1{x^2}\,dx</me></p>
 
   <p>converges, the comparison test gives</p>
 
-  <md>
+  <p><me>
 \int_1^\infty \frac{dx}{x^2+\sqrt{x}}
 \text{ converges.}
-</md>
+</me></p>
 
   <p>The exact value is not needed.  We only need enough information to know that the
 tail has finite accumulated area.</p>
@@ -1055,10 +1012,32 @@ later.  First ask where the integral is improper.  Then replace the dangerous en
 or discontinuity by a limit.  Then decide whether the limit is finite.</p>
 
   <p>The next section collects the mistakes this discipline prevents.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
 
 
-</section>
+<subsection xml:id="subsec-absolute-conditional-improper-integrals">
+    <title>Absolute and conditional convergence</title>
+    <p>Cancellation can make a signed accumulation finite even when the total unsigned area is infinite. An improper integral <m>\int_a^\infty f(x)\,dx</m> is <em>absolutely convergent</em> if <m>\int_a^\infty|f(x)|\,dx</m> converges. It is <em>conditionally convergent</em> if the signed integral converges but the absolute-value integral diverges. Use the same definitions at a singular endpoint, and require convergence on every piece when several endpoints or singularities are involved.</p>
+    <note xml:id="note-absolute-improper-implies-convergence"><title>Absolute convergence implies convergence</title><p>Assume <m>f</m> is continuous on each finite subinterval. Put <m>f_+=\max(f,0)</m> and <m>f_-=\max(-f,0)</m>. Both are nonnegative and bounded above by <m>|f|</m>. Comparison shows that their improper integrals converge if the integral of <m>|f|</m> does. Since <m>f=f_+-f_-</m>, the signed integral then converges too. Moreover, for any tail beginning at <m>R</m>,</p><p><me>\left|\int_R^\infty f(x)\,dx\right|\le\int_R^\infty|f(x)|\,dx.</me></p></note>
+    <example xml:id="ex-absolutely-integrable-oscillation"><title>Oscillation with finite unsigned area</title><p>For <m>x\ge1</m>, <m>|\sin x|/x^2\le1/x^2</m>. Thus <m>\int_1^\infty \sin x/x^2\,dx</m> converges absolutely, and its tail after <m>R\ge1</m> has magnitude at most <m>1/R</m>.</p></example>
+    <example xml:id="ex-conditionally-integrable-sine"><title>A convergent oscillation with infinite unsigned area</title><p>Consider <m>\int_1^\infty \sin x/x\,dx</m>. Integration by parts on a finite interval gives</p><p><me>\int_R^T\frac{\sin x}{x}\,dx=-\frac{\cos T}{T}+\frac{\cos R}{R}-\int_R^T\frac{\cos x}{x^2}\,dx.</me></p><p>The boundary term at <m>T</m> tends to zero, and the last integral converges absolutely by comparison with <m>1/x^2</m>. This proves convergence and the tail bound</p><p><me>\left|\int_R^\infty\frac{\sin x}{x}\,dx\right|\le\frac2R.</me></p><p>To test absolute convergence, use the disjoint intervals</p><p><me>J_k=[k\pi+\pi/6,k\pi+5\pi/6],\qquad k=1,2,\ldots.</me></p><p>On each <m>J_k</m>, <m>|\sin x|\ge1/2</m> and <m>x\le(k+1)\pi</m>. Therefore</p><p><me>\int_{J_k}\frac{|\sin x|}{x}\,dx\ge\frac{1}{3(k+1)}.</me></p><p>The partial sums of these lower bounds grow without bound: among indices with <m>2^j\le k+1&lt;2^{j+1}</m>, there are <m>2^j</m> terms, each at least <m>1/(3\cdot2^{j+1})</m>, so each group contributes at least <m>1/6</m>. The unsigned integral diverges. The original integral is conditionally convergent.</p></example>
+    <figure xml:id="fig-conditional-improper-lobes"><caption>The signed lobes of <m>\sin x/x</m> cancel in the improper integral. Replacing the integrand by its absolute value turns every lobe upward and gives infinite area.</caption><image width="80%"><description><p>The graph of sine x divided by x from one to four pi, with positive lobes shaded blue and negative lobes shaded red, and a dashed absolute-value curve above the axis.</p></description><latex-image>
+\begin{tikzpicture}
+\begin{axis}[width=0.85\textwidth,height=0.36\textwidth,xmin=1,xmax=12.57,ymin=-0.3,ymax=0.95,axis lines=middle,xlabel={$x$},xtick={3.14159,6.28318,9.42478,12.56637},xticklabels={$\pi$,$2\pi$,$3\pi$,$4\pi$},ytick={0,0.5},legend style={draw=none,at={(0.98,0.98)},anchor=north east}]
+\addplot[draw=none,fill=blue!15,domain=1:3.14159,samples=80]{sin(deg(x))/x}\closedcycle;
+\addplot[draw=none,fill=red!15,domain=3.14159:6.28318,samples=80]{sin(deg(x))/x}\closedcycle;
+\addplot[draw=none,fill=blue!15,domain=6.28318:9.42478,samples=80]{sin(deg(x))/x}\closedcycle;
+\addplot[draw=none,fill=red!15,domain=9.42478:12.56637,samples=80]{sin(deg(x))/x}\closedcycle;
+\addplot[thick,domain=1:12.56637,samples=300]{sin(deg(x))/x};\addlegendentry{$\sin x/x$}
+\addplot[dashed,domain=1:12.56637,samples=300]{abs(sin(deg(x)))/x};\addlegendentry{$|\sin x|/x$}
+\end{axis}
+\end{tikzpicture}
+    </latex-image></image></figure>
+    <p>This example also produces a singular oscillation: substituting <m>t=1/x</m> on truncated intervals shows that <m>\int_0^1 \sin(1/x)/x\,dx=\int_1^\infty\sin t/t\,dt</m>. Thus it converges conditionally at zero. By contrast, <m>\int_1^\infty\sin x\,dx</m> diverges because <m>\cos1-\cos T</m> has no limit. Oscillation by itself does not ensure convergence.</p>
+    <warning xml:id="warn-conditional-not-principal-value"><title>Keep the two tails separate</title><p>Conditional convergence still requires each improper piece to converge. The symmetric values <m>\int_{-R}^R\sin x\,dx=0</m> do not make <m>\int_{-\infty}^\infty\sin x\,dx</m> convergent. Such a symmetric limiting procedure is called a <em>Cauchy principal value</em>; it is a different definition.</p></warning>
+    <exercise xml:id="exr-conditional-improper"><title>Classify oscillatory integrals</title><statement><p>Classify <m>\int_1^\infty\cos x/x\,dx</m>, <m>\int_1^\infty\cos x/x^2\,dx</m>, and <m>\int_0^1\sin(1/x)\,dx</m> as absolutely convergent, conditionally convergent, or divergent.</p></statement><hint><p>The first is conditional: integrate by parts using the bounded antiderivative <m>\sin x</m>, and adapt the lobe lower bound for <m>|\cos x|</m>. The other two are absolute; bound by <m>1/x^2</m> and by <m>1</m>, respectively.</p></hint></exercise>
+  </subsection>
+
+  </section>

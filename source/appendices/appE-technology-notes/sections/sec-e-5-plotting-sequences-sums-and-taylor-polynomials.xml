@@ -1,36 +1,34 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-e-5-plotting-sequences-sums-and-taylor-polynomials">
   <title>Plotting sequences, sums, and Taylor polynomials</title>
 
-  <p>Plots are especially helpful for infinite processes.</p>
+  <introduction><p>Plots are especially helpful for infinite processes.</p>
 
   <p>A sequence is a list of points:</p>
 
-  <md>a_1,\ a_2,\ a_3,\ldots.</md>
+  <p><me>a_1,\ a_2,\ a_3,\ldots.</me></p>
 
   <p>A series has partial sums:</p>
 
-  <md>S_n=a_1+a_2+\cdots+a_n.</md>
+  <p><me>S_n=a_1+a_2+\cdots+a_n.</me></p>
 
-  <p>A Taylor polynomial is a sequence of polynomial approximations:</p>
+  <p>Taylor polynomials form a sequence of polynomial approximations:</p>
 
-  <md>T_1(x),\quad T_3(x),\quad T_5(x),\quad \ldots.</md>
+  <p><me>T_1(x),\quad T_3(x),\quad T_5(x),\quad \ldots.</me></p>
 
   <p>Plotting these objects helps us see convergence, divergence, and local approximation.</p>
 
-  <subsection xml:id="appsubsec-plotting-sequence">
+  </introduction><subsection xml:id="appsubsec-plotting-sequence">
     <title>Plotting a sequence</title>
 
   <p>Consider</p>
 
-  <md>a_n=1-\frac1n.</md>
+  <p><me>a_n=1-\frac1n.</me></p>
 
   <p>The terms approach</p>
 
-  <md>1.</md>
+  <p><me>1.</me></p>
 
-  <p>In a Python environment with \texttt{matplotlib}, one could plot the first several terms:</p>
+  <p>In a Python environment with <c>matplotlib</c>, one could plot the first several terms:</p>
 
   <pre>
 import matplotlib.pyplot as plt
@@ -62,24 +60,23 @@ meaning.</p>
 
   <p>For a series</p>
 
-  <md>\sum_{k=1}^{\infty} a_k,</md>
+  <p><me>\sum_{k=1}^{\infty} a_k,</me></p>
 
   <p>the partial sums are</p>
 
-  <md>S_n=\sum_{k=1}^{n}a_k.</md>
+  <p><me>S_n=\sum_{k=1}^{n}a_k.</me></p>
 
   <p>The series converges exactly when the sequence of partial sums converges.</p>
 
   <example xml:id="ex-sec-e-5-plotting-sequences-sums-and-taylor-polynomials-1">
     <title>alternating harmonic partial sums</title>
-    <statement>
-  <p>The alternating harmonic series is</p>
+    <p>The alternating harmonic series is</p>
 
-  <md>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k.</md>
+  <p><me>\sum_{k=1}^{\infty}(-1)^{k-1}\frac1k.</me></p>
 
   <p>The partial sums are</p>
 
-  <md>S_n=\sum_{k=1}^{n}(-1)^{k-1}\frac1k.</md>
+  <p><me>S_n=\sum_{k=1}^{n}(-1)^{k-1}\frac1k.</me></p>
 
   <p>A program can compute and plot them.</p>
 
@@ -106,14 +103,13 @@ plt.show()
 
   <p>The dashed line marks</p>
 
-  <md>\ln2,</md>
+  <p><me>\ln2,</me></p>
 
   <p>the exact sum of the alternating harmonic series.</p>
 
   <p>This plot shows a typical alternating pattern: the partial sums bounce above and below
 the limit, while the error shrinks.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="appsubsec-plotting-taylor-polynomials">
@@ -121,11 +117,11 @@ the limit, while the error shrinks.</p>
 
   <p>The Maclaurin polynomials for <m>\sin x</m> are</p>
 
-  <md>T_1(x)=x,</md>
+  <p><me>T_1(x)=x,</me></p>
 
-  <md>T_3(x)=x-\frac{x^3}{3!},</md>
+  <p><me>T_3(x)=x-\frac{x^3}{3!},</me></p>
 
-  <md>T_5(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!},</md>
+  <p><me>T_5(x)=x-\frac{x^3}{3!}+\frac{x^5}{5!},</me></p>
 
   <p>and so on.</p>
 
@@ -135,7 +131,7 @@ polynomials drift away.</p>
   <figure xml:id="fig-technology-taylor-polynomials-sine">
     <caption>Taylor polynomials approximate <m>\sin x</m> best near their center <m>0</m>.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>Taylor polynomials approximate <m>\sin x</m> best near their center <m>0</m>.</p></description><latex-image>
 \begin{tikzpicture}
 \begin{axis}[
     width=0.84\textwidth,
@@ -204,9 +200,9 @@ evidence.  Taylor’s theorem gives the error estimate.</p>
 
   <p>For example, for <m>\sin x</m>,</p>
 
-  <md>\sin x
+  <p><me>\sin x
 =
-x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots.</md>
+x-\frac{x^3}{3!}+\frac{x^5}{5!}-\frac{x^7}{7!}+\cdots.</me></p>
 
   <p>The following function computes the Maclaurin polynomial through the term
 <m>x^{2N+1}</m>:</p>
@@ -229,9 +225,9 @@ for N in [0, 1, 2, 3, 4]:
   <p>For <m>x=1</m>, the series is alternating with decreasing term sizes.  The alternating error
 estimate says that the error is at most the first omitted term:</p>
 
-  <md>\left|\sin 1-\sum_{n=0}^{N}(-1)^n\frac{1^{2n+1}}{(2n+1)!}\right|
+  <p><me>\left|\sin 1-\sum_{n=0}^{N}(-1)^n\frac{1^{2n+1}}{(2n+1)!}\right|
 \le
-\frac{1^{2N+3}}{(2N+3)!}.</md>
+\frac{1^{2N+3}}{(2N+3)!}.</me></p>
 
   <p>So the code can be paired with a proof-based error bound.</p>
 

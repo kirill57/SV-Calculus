@@ -1,0 +1,102 @@
+<section xml:id="sec-additional-adaptive-quadrature">
+  <title>Additional topics: a complete adaptive quadrature algorithm</title>
+  <introduction><p>The computing experiments refined a uniform grid. Adaptive quadrature instead subdivides individual intervals where an error indicator is large. This optional section supplies a complete adaptive Simpson algorithm, an absolute-tolerance stopping rule, and explicit failure safeguards. Its Richardson estimate uses <xref ref="sec-additional-richardson-romberg"/>.</p></introduction>
+  <subsection xml:id="subsec-adaptive-simpson-estimate"><title>Compare one panel with two</title>
+    <p>On <m>[a,b]</m>, put <m>m=(a+b)/2</m> and</p><p><me>S(a,b)=\frac{b-a}{6}\bigl(f(a)+4f(m)+f(b)\bigr).</me></p><p>Compare <m>S_1=S(a,b)</m> with <m>S_2=S(a,m)+S(m,b)</m>. In the smooth asymptotic regime, halving the mesh reduces the leading Simpson error by a factor of <m>16</m>. Therefore</p><p><me>E\approx\frac{|S_2-S_1|}{15},\qquad Q=S_2+\frac{S_2-S_1}{15}.</me></p><p>The difference divided by <m>15</m> estimates the error of <m>S_2</m>; the correction <m>Q</m> cancels its leading term. With a smooth enough integrand, <m>Q</m> has a higher order than <m>S_2</m>. We retain the more conservative indicator <m>E</m> for accepting the interval.</p>
+    <p>Give the whole interval an absolute error budget <m>\tau&gt;0</m>. When an interval is split, give each child half its parent's budget. Accept a leaf when its indicator is at most its budget. The leaf budgets sum to <m>\tau</m>, so the sum of the accepted indicators is at most <m>\tau</m>. This is an accounting guarantee for the indicators, not a theorem that every possible integrand has that actual error.</p>
+  </subsection>
+  <subsection xml:id="subsec-adaptive-simpson-algorithm"><title>An implementation with explicit outcomes</title>
+    <p>The following Python implementation assumes a finite-valued integrand throughout a finite interval <m>a&lt;b</m>. It returns the approximation, the summed error indicator, the number of function evaluations, and the accepted intervals. It uses a stack rather than unbounded recursion, reuses parent samples, and performs at least two subdivision levels by default to reduce premature acceptance. Exhausting the depth or evaluation budget, encountering a nonfinite value, or losing representable midpoints raises a failure instead of reporting success. The roundoff indicator <m>50\epsilon_{\rm mach}(|S_L|+|S_R|)</m> is a practical scale check, where <m>\epsilon_{\rm mach}</m> is the spacing from one to the next larger floating-point number. It is not a bound on all floating-point errors.</p>
+    <pre>&quot;&quot;&quot;Executable numerical examples accompanying the selected PreTeXt additions.&quot;&quot;&quot;
+from math import isfinite, fsum
+from sys import float_info
+
+
+def adaptive_simpson(f, a, b, tol, max_depth=20,
+                     max_evals=100000, min_depth=2):
+    &quot;&quot;&quot;Return (value, estimated_error, evaluations, accepted_intervals).
+
+    Error is an estimator, not a rigorous bound for arbitrary functions.
+    Fail explicitly on invalid inputs or exhausted safeguards.
+    &quot;&quot;&quot;
+    if not all(isfinite(v) for v in (a, b, tol, b-a)):
+        raise ValueError(&quot;Require finite endpoints, width, and tolerance&quot;)
+    if not a &lt; b or not tol &gt; 0:
+        raise ValueError(&quot;Require a &lt; b and tol &gt; 0&quot;)
+    if (type(min_depth) is not int or type(max_depth) is not int
+            or not 0 &lt;= min_depth &lt;= max_depth
+            or type(max_evals) is not int or max_evals &lt; 3):
+        raise ValueError(&quot;Invalid depth or evaluation budget&quot;)
+    evaluations = 0
+
+    def sample(x):
+        nonlocal evaluations
+        if evaluations &gt;= max_evals:
+            raise ArithmeticError(&quot;Evaluation budget exhausted&quot;)
+        evaluations += 1
+        value = f(x)
+        if not isfinite(value):
+            raise ArithmeticError(&quot;Nonfinite function value&quot;)
+        return value
+
+    def midpoint(left, right):
+        mid = left + (right-left)/2
+        if not left &lt; mid &lt; right:
+            raise ArithmeticError(&quot;No representable midpoint&quot;)
+        return mid
+
+    def simpson(left, right, fl, fm, fr):
+        value = ((right-left)/6)*fsum((fl, 4*fm, fr))
+        if not isfinite(value):
+            raise ArithmeticError(&quot;Nonfinite quadrature value&quot;)
+        return value
+
+    m = midpoint(a, b)
+    fa, fm, fb = sample(a), sample(m), sample(b)
+    coarse = simpson(a, b, fa, fm, fb)
+    stack = [(a, b, fa, fm, fb, coarse, tol, 0)]
+    values, errors, intervals = [], [], []
+    while stack:
+        left, right, fl, fm, fr, old, budget, depth = stack.pop()
+        mid = midpoint(left, right)
+        lm, rm = midpoint(left, mid), midpoint(mid, right)
+        f_lm, f_rm = sample(lm), sample(rm)
+        sl = simpson(left, mid, fl, f_lm, fm)
+        sr = simpson(mid, right, fm, f_rm, fr)
+        fine = fsum((sl, sr))
+        delta = fine-old
+        floor = 50*float_info.epsilon*(abs(sl)+abs(sr))
+        estimate = max(abs(delta)/15, floor)
+        corrected = fine+delta/15
+        if not all(isfinite(v) for v in (fine, estimate, corrected)):
+            raise ArithmeticError(&quot;Nonfinite refinement result&quot;)
+        if depth &gt;= min_depth and estimate &lt;= budget:
+            values.append(corrected)
+            errors.append(estimate)
+            intervals.append((left, right))
+            continue
+        if depth &gt;= max_depth:
+            raise ArithmeticError(&quot;Maximum subdivision depth reached&quot;)
+        if depth &gt;= min_depth and budget &lt; floor:
+            raise ArithmeticError(&quot;Tolerance below roundoff indicator&quot;)
+        half_budget = budget/2
+        if half_budget == 0:
+            raise ArithmeticError(&quot;Tolerance budget underflow&quot;)
+        # Right child first: the left child is processed next.
+        stack.append((mid, right, fm, f_rm, fr, sr,
+                      half_budget, depth+1))
+        stack.append((left, mid, fl, f_lm, fm, sl,
+                      half_budget, depth+1))
+    value, error = fsum(values), fsum(errors)
+    if not isfinite(value) or not isfinite(error) or error &gt; tol:
+        raise ArithmeticError(&quot;Final accumulation failed&quot;)
+    return value, error, evaluations, intervals</pre>
+    <p>The stopping rule is implemented in the acceptance branch and checked again after accumulation. The minimum depth does not override the maximum depth, and all resource limits have explicit outcomes. If the routine fails, increase resources only after examining the reason; a singularity or unattainable tolerance may require a change of variables or an analytic treatment.</p>
+  </subsection>
+  <subsection xml:id="subsec-adaptive-safeguards"><title>Test cases and the limits of sampling</title>
+    <example xml:id="ex-adaptive-pi"><title>A known integral</title><p>Calling <c>adaptive_simpson(lambda x: 4/(1+x*x), 0, 1, 1e-8)</c> approximates <m>\pi</m>. Compare the returned value with <m>\pi</m> and record the indicator and evaluation count. For a more localized problem, try <m>f(x)=e^{-2500(x-0.37)^2}</m> on <m>[0,1]</m> and plot the accepted interval widths. Small intervals should cluster near the peak. Compare with a high-accuracy reference calculation; do not infer accuracy from the indicator alone.</p></example>
+    <warning xml:id="warn-adaptive-aliasing"><title>A small indicator cannot certify an arbitrary function</title><p>On <m>[0,1]</m>, the nonnegative polynomial</p><p><me>g(x)=\prod_{j=0}^{16}(x-j/16)^2</me></p><p>vanishes at every point sampled before the default minimum-depth acceptance decisions. The algorithm can return zero with zero indicator, although the integral is positive. This is <em>sampling aliasing</em>: the data miss the behavior between samples. More initial panels, independent shifted samples, and known breakpoints reduce the risk; no finite sampling scheme alone certifies all continuous functions.</p></warning>
+    <paragraphs><title>How a derivative bound changes the guarantee</title><p>If a valid bound <m>|f^{(4)}|\le K</m> is known on a leaf of width <m>w</m>, the two-panel Simpson value <m>S_2</m> has the rigorous exact-arithmetic bound</p><p><me>\left|\int_a^b f-S_2\right|\le\frac{Kw^5}{46080}.</me></p><p>Each half-panel contributes at most <m>K(w/2)^5/2880</m>, and adding the two bounds gives this constant. A certified variant accepts leaves using this derivative bound and returns the uncorrected <m>S_2</m>, summing the valid leaf bounds. It must also account for floating-point evaluation and accumulation errors. The corrected value <m>Q</m> requires its own error analysis; the bound for <m>S_2</m> cannot simply be attached to it.</p></paragraphs>
+    <exercise xml:id="exr-adaptive-safeguards"><title>Test success and failure paths</title><statement><p>Check the routine on <m>1,x,x^2,x^3,x^4</m> over <m>[0,1]</m>. Force separate failures with an evaluation budget of three, maximum depth zero, a nonfinite function value, and adjacent floating-point endpoints. Use <m>\int_0^1x^k\,dx=1/(k+1)</m> as the reference. Explain why the aliasing example is a more demanding test than the cubic examples.</p></statement><hint><p>For the depth test set <c>min_depth=0</c> and use a noncubic integrand with a small tolerance. Cubics are exactly integrated by Simpson's rule in exact arithmetic. The aliasing polynomial has positive area but supplies zeros at all sampled points, so exact sample arithmetic would still miss it.</p></hint></exercise>
+  </subsection>
+</section>

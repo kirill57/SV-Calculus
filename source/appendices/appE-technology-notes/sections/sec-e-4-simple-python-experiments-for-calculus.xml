@@ -1,32 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-e-4-simple-python-experiments-for-calculus">
   <title>Simple Python experiments for calculus</title>
 
-  <p>A short program can make a calculus idea visible.</p>
-
-  <p>The goal is not to turn this book into a programming course.  The goal is to give a
-few readable experiments that show what the mathematics is doing.</p>
-
-  <p>The examples below use plain Python.  Some use the built-in \texttt{math} module.
-Plotting examples appear in the next section.</p>
-
-  <subsection xml:id="appsubsec-python-difference-quotients">
+  <introduction><p>These short Python examples implement numerical calculations from the book. Some use the built-in <c>math</c> module. Check their results against the known formulas and error estimates; plotting examples appear in the next section.</p></introduction><subsection xml:id="appsubsec-python-difference-quotients">
     <title>Experiment 1: difference quotients</title>
 
   <p>The derivative</p>
 
-  <md>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</md>
+  <p><me>f'(a)=\lim_{h\to0}\frac{f(a+h)-f(a)}{h}</me></p>
 
   <p>comes from shrinking <m>h</m>.  A short program lets us watch the quotient change.</p>
 
   <p>For</p>
 
-  <md>f(x)=x^2,</md>
+  <p><me>f(x)=x^2,</me></p>
 
   <p>the derivative at <m>a=2</m> is</p>
 
-  <md>f'(2)=4.</md>
+  <p><me>f'(2)=4.</me></p>
 
   <pre>
 def f(x):
@@ -41,15 +31,15 @@ for h in [1, 0.1, 0.01, 0.001, 0.0001]:
 
   <p>The output should approach</p>
 
-  <md>4.</md>
+  <p><me>4.</me></p>
 
   <p>For this particular function,</p>
 
-  <md>\frac{(2+h)^2-2^2}{h}=4+h,</md>
+  <p><me>\frac{(2+h)^2-2^2}{h}=4+h,</me></p>
 
   <p>so the output is exactly</p>
 
-  <md>5,\quad 4.1,\quad 4.01,\quad 4.001,\quad 4.0001</md>
+  <p><me>5,\quad 4.1,\quad 4.01,\quad 4.001,\quad 4.0001</me></p>
 
   <p>apart from floating-point representation.</p>
 
@@ -68,15 +58,15 @@ there is a root inside.  Bisection turns that theorem into an algorithm.</p>
 
   <p>Find a root of</p>
 
-  <md>f(x)=x^3-x-1</md>
+  <p><me>f(x)=x^3-x-1</me></p>
 
   <p>in</p>
 
-  <md>[1,2].</md>
+  <p><me>[1,2].</me></p>
 
-  <md>f(1)=-1,
+  <p><me>f(1)=-1,
 \qquad
-f(2)=5.</md>
+f(2)=5.</me></p>
 
   <p>So there is at least one root in <m>(1,2)</m>.</p>
 
@@ -99,11 +89,11 @@ for step in range(20):
 
   <p>Each step cuts the interval length in half.  After <m>N</m> bisections, the interval length is</p>
 
-  <md>\frac{2-1}{2^N}=\frac1{2^N}.</md>
+  <p><me>\frac{2-1}{2^N}=\frac1{2^N}.</me></p>
 
   <p>The midpoint error is at most</p>
 
-  <md>\frac1{2^{N+1}}.</md>
+  <p><me>\frac1{2^{N+1}}.</me></p>
 
   <p>The code is not only producing decimals.  It is carrying out the proof idea from
 Bolzano’s Theorem.</p>
@@ -114,21 +104,21 @@ Bolzano’s Theorem.</p>
 
   <p>The integral</p>
 
-  <md>\pi=4\int_0^1 \frac{1}{1+x^2}\,dx</md>
+  <p><me>\pi=4\int_0^1 \frac{1}{1+x^2}\,dx</me></p>
 
   <p>gives a way to approximate <m>\pi</m>.</p>
 
   <p>Let</p>
 
-  <md>f(x)=\frac{4}{1+x^2}.</md>
+  <p><me>f(x)=\frac{4}{1+x^2}.</me></p>
 
   <p>The midpoint rule with <m>n</m> equal subintervals is</p>
 
-  <md>M_n=\Delta x\sum_{k=1}^n f\left(a+\left(k-\frac12\right)\Delta x\right),</md>
+  <p><me>M_n=\Delta x\sum_{k=1}^n f\left(a+\left(k-\frac12\right)\Delta x\right),</me></p>
 
   <p>where</p>
 
-  <md>\Delta x=\frac{b-a}{n}.</md>
+  <p><me>\Delta x=\frac{b-a}{n}.</me></p>
 
   <pre>
 def f(x):
@@ -148,14 +138,14 @@ for n in [4, 8, 16, 32, 64, 128]:
 
   <p>The outputs should approach</p>
 
-  <md>\pi.</md>
+  <p><me>\pi.</me></p>
 
   <p>A useful extension is to print the error:</p>
 
-  <md>|M_n-\pi|.</md>
+  <p><me>|M_n-\pi|.</me></p>
 
   <p>In Python, after importing the math module, the number <m>\pi</m> is available as
-\texttt{math.pi}.</p>
+<c>math.pi</c>.</p>
 
   <pre>
 import math
@@ -168,11 +158,11 @@ for n in [4, 8, 16, 32, 64, 128]:
 
   <p>This experiment connects three chapters:</p>
 
-  <md>\text{definite integrals},
+  <p><me>\text{definite integrals},
 \qquad
 \text{numerical approximation},
 \qquad
-\text{error}.</md>
+\text{error}.</me></p>
   </subsection>
 
   <subsection xml:id="appsubsec-python-euler-method">
@@ -182,17 +172,17 @@ for n in [4, 8, 16, 32, 64, 128]:
 
   <p>For the initial value problem</p>
 
-  <md>y'=1-y,
+  <p><me>y'=1-y,
 \qquad
-y(0)=0,</md>
+y(0)=0,</me></p>
 
   <p>the exact solution is</p>
 
-  <md>y(t)=1-e^{-t}.</md>
+  <p><me>y(t)=1-e^{-t}.</me></p>
 
   <p>Euler’s method with step size <m>h</m> uses</p>
 
-  <md>y_{n+1}=y_n+h(1-y_n).</md>
+  <p><me>y_{n+1}=y_n+h(1-y_n).</me></p>
 
   <pre>
 def euler(h, steps):
@@ -211,11 +201,11 @@ for h in [0.5, 0.25, 0.1, 0.05]:
 
   <p>The values approximate the solution at</p>
 
-  <md>t=2.</md>
+  <p><me>t=2.</me></p>
 
   <p>The exact value is</p>
 
-  <md>1-e^{-2}.</md>
+  <p><me>1-e^{-2}.</me></p>
 
   <p>A program can compare them:</p>
 
@@ -241,15 +231,15 @@ The same tradeoff appeared in numerical integration.</p>
 
   <p>For</p>
 
-  <md>f(x)=x^3-x-1,</md>
+  <p><me>f(x)=x^3-x-1,</me></p>
 
   <p>we have</p>
 
-  <md>f'(x)=3x^2-1.</md>
+  <p><me>f'(x)=3x^2-1.</me></p>
 
   <p>Newton’s iteration is</p>
 
-  <md>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.</md>
+  <p><me>x_{n+1}=x_n-\frac{f(x_n)}{f'(x_n)}.</me></p>
 
   <pre>
 def f(x):
@@ -268,7 +258,7 @@ for n in range(8):
 
   <p>The output should show <m>x_n</m> approaching the real root near</p>
 
-  <md>1.3247.</md>
+  <p><me>1.3247.</me></p>
 
   <p>A safer version checks whether the derivative is too close to zero:</p>
 
@@ -285,21 +275,21 @@ change is known.  A good computational habit is to know which kind of method you
 using.</p>
 
   <table xml:id="tab-sec-e-4-simple-python-experiments-for-calculus-0">
-    <tabular halign="left">
-      <row header="yes" bottom="medium">
-        <cell><strong>method</strong></cell>
-        <cell><strong>strength</strong></cell>
-        <cell><strong>weakness</strong></cell>
+    <title>Experiment 5: Newton’s method</title><tabular halign="left" width="100%">
+      <col width="33.3%"/><col width="33.3%"/><col width="33.4%"/><row header="yes" bottom="medium">
+        <cell><p><alert>method</alert></p></cell>
+        <cell><p><alert>strength</alert></p></cell>
+        <cell><p><alert>weakness</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>Bisection</cell>
-        <cell>reliable with a sign change</cell>
-        <cell>slower convergence</cell>
+        <cell><p>Bisection</p></cell>
+        <cell><p>reliable with a sign change</p></cell>
+        <cell><p>slower convergence</p></cell>
       </row>
       <row>
-        <cell>Newton</cell>
-        <cell>often very fast</cell>
-        <cell>can fail with bad starting points or small derivatives</cell>
+        <cell><p>Newton</p></cell>
+        <cell><p>often very fast</p></cell>
+        <cell><p>can fail with bad starting points or small derivatives</p></cell>
       </row>
     </tabular>
   </table>

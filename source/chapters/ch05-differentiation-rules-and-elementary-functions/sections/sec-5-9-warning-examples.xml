@@ -1,73 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-5-9-warning-examples">
   <title>Warning examples</title>
 
-  <p>This chapter has given us speed.  We no longer need to return to the limit definition every time we differentiate.  We have rules.</p>
-
-  <p>That speed is useful, but it also creates a danger.  A rule that is remembered only as a symbol can be used in the wrong place.</p>
-
-  <p>The safest way to use derivative rules is to keep asking:</p>
-
-  <md>\text{How was this function built?}</md>
-
-  <p>A sum, a product, a quotient, a composition, and an inverse are different constructions.  Their derivatives are different because their changes are different.</p>
-
-  <subsection xml:id="subsec-product-rule-not-product-of-derivatives">
+  <introduction><p>Sums, products, quotients, compositions, and inverses require different differentiation rules. These examples show common errors in choosing a rule, applying the chain rule, and ignoring a function's domain.</p></introduction><subsection xml:id="subsec-product-rule-not-product-of-derivatives">
     <title>The product rule is not <m>(fg)'=f'g'</m></title>
 
   <p>A common mistake is to guess that the derivative of a product is the product of the derivatives:</p>
 
-  <md>(fg)' \stackrel{\text{wrong}}{=} f'g'.</md>
+  <p><me>(fg)' \stackrel{\text{wrong}}{=} f'g'.</me></p>
 
   <p>This is false.</p>
 
   <p>Take the simplest possible example:</p>
 
-  <md>f(x)=x,
+  <p><me>f(x)=x,
 \qquad
-g(x)=x.</md>
+g(x)=x.</me></p>
 
   <p>Then</p>
 
-  <md>f(x)g(x)=x^2.</md>
+  <p><me>f(x)g(x)=x^2.</me></p>
 
   <p>So</p>
 
-  <md>(fg)'(x)=2x.</md>
+  <p><me>(fg)'(x)=2x.</me></p>
 
   <p>But</p>
 
-  <md>f'(x)g'(x)=1\cdot1=1.</md>
+  <p><me>f'(x)g'(x)=1\cdot1=1.</me></p>
 
   <p>These are not the same.  For example, at <m>x=3</m>,</p>
 
-  <md>(fg)'(3)=6,
+  <p><me>(fg)'(3)=6,
 \qquad
-f'(3)g'(3)=1.</md>
+f'(3)g'(3)=1.</me></p>
 
   <p>The correct rule is</p>
 
-  <md>
+  <p><me>
 (fg)'=f'g+fg'.
-</md>
+</me></p>
 
   <p>This rule has a geometric picture visualization.  If a rectangle has side lengths <m>f(x)</m> and <m>g(x)</m>, then its area is</p>
 
-  <md>A(x)=f(x)g(x).</md>
+  <p><me>A(x)=f(x)g(x).</me></p>
 
   <p>When <m>x</m> changes a little, both sides may change.  The new area comes from two first-order strips:</p>
 
-  <md>f'(x)g(x)\Delta x
+  <p><me>f'(x)g(x)\Delta x
 \qquad\text{and}\qquad
-f(x)g'(x)\Delta x.</md>
+f(x)g'(x)\Delta x.</me></p>
 
   <p>That is why two terms appear.</p>
 
   <figure xml:id="fig-product-rule-warning-strips">
     <caption>A changing product has two first-order contributions, not one.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>A changing product has two first-order contributions, not one.</p></description><latex-image>
 \begin{tikzpicture}[scale=0.95, every node/.style={font=\small}]
   % original rectangle
   \draw[thick] (0,0) rectangle (4.5,2.8);
@@ -99,19 +87,19 @@ f(x)g'(x)\Delta x.</md>
     </image>
   </figure>
 
-  <p>In differential notation,</p>
+  <p>For exact finite changes, write <m>\Delta f=f(x+\Delta x)-f(x)</m> and <m>\Delta g=g(x+\Delta x)-g(x)</m>. Then</p>
 
-  <md>d(fg)
+  <p><me>\Delta(fg)
 =
-(f+df)(g+dg)-fg.</md>
+(f+\Delta f)(g+\Delta g)-fg.</me></p>
 
   <p>Expanding,</p>
 
-  <md>d(fg)=f\,dg+g\,df+df\,dg.</md>
+  <p><me>\Delta(fg)=f\,\Delta g+g\,\Delta f+\Delta f\,\Delta g.</me></p>
 
-  <p>The term <m>df\,dg</m> is much smaller than the first-order terms when the change is tiny.  Dividing by <m>dx</m> and passing to the limit gives</p>
+  <p>For differentiable factors, <m>\Delta f\,\Delta g</m> divided by <m>\Delta x</m> approaches zero. Dividing the exact identity by <m>\Delta x</m> and passing to the limit gives</p>
 
-  <md>(fg)'=fg'+gf'.</md>
+  <p><me>(fg)'=fg'+gf'.</me></p>
 
   <p>The false rule <m>f'g'</m> forgets the original sizes <m>f</m> and <m>g</m>.  But the original sizes matter.  A small change in the width of a large rectangle adds more area than the same change in the width of a small rectangle.</p>
 
@@ -120,26 +108,26 @@ f(x)g'(x)\Delta x.</md>
 
   <p>Let</p>
 
-  <md>f(x)=x^2,
+  <p><me>f(x)=x^2,
 \qquad
-g(x)=\sin x.</md>
+g(x)=\sin x.</me></p>
 
   <p>Then</p>
 
-  <md>(fg)'=2x\sin x+x^2\cos x.</md>
+  <p><me>(fg)'=2x\sin x+x^2\cos x.</me></p>
 
   <p>But</p>
 
-  <md>f'g'=(2x)(\cos x)=2x\cos x.</md>
+  <p><me>f'g'=(2x)(\cos x)=2x\cos x.</me></p>
 
   <p>The false rule loses the term <m>2x\sin x</m> and changes the other term.  It is not a small error.  It is a different derivative.</p>
 
   <warning xml:id="warn-sec-5-9-warning-examples-55">
     <title>Product warning</title>
       <p>Do not multiply derivatives.  Differentiate the product by letting each factor change once:</p>
-        <md>
+        <p><me>
 (fg)'=f'g+fg'.
-</md>
+</me></p>
   </warning>
   </paragraphs>
 
@@ -166,24 +154,24 @@ g(x)=\sin x.</md>
 
   <p>Let</p>
 
-  <md>f(u)=\sin u,
+  <p><me>f(u)=\sin u,
 \qquad
-g(x)=x^2.</md>
+g(x)=x^2.</me></p>
 
   <p>There are two different composites:</p>
 
-  <md>f(g(x))=\sin(x^2),</md>
+  <p><me>f(g(x))=\sin(x^2),</me></p>
 
   <p>and</p>
 
-  <md>g(f(x))=(\sin x)^2.</md>
+  <p><me>g(f(x))=(\sin x)^2.</me></p>
 
   <p>They use the same two functions, but in different orders.</p>
 
   <figure xml:id="fig-chain-rule-order-warning">
     <caption>The same two functions in different orders produce different chains.</caption>
     <image width="75%">
-      <latex-image>
+      <description><p>The same two functions in different orders produce different chains.</p></description><latex-image>
 \begin{tikzpicture}[every node/.style={font=\small}, node distance=2.6cm]
   % first chain
   \node (x1) at (0,1.3) {\(\boxed{x}\)};
@@ -208,93 +196,93 @@ g(x)=x^2.</md>
 
   <p>Differentiate the first one:</p>
 
-  <md>\frac{d}{dx}\sin(x^2)
+  <p><me>\frac{d}{dx}\sin(x^2)
 =
-\cos(x^2)\cdot 2x.</md>
+\cos(x^2)\cdot 2x.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}\sin(x^2)=2x\cos(x^2).
-</md>
+</me></p>
 
   <p>Differentiate the second one:</p>
 
-  <md>\frac{d}{dx}(\sin x)^2
+  <p><me>\frac{d}{dx}(\sin x)^2
 =
-2\sin x\cdot\cos x.</md>
+2\sin x\cdot\cos x.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}(\sin x)^2=2\sin x\cos x.
-</md>
+</me></p>
 
   <p>These are not the same derivative because the original functions are not the same function.</p>
 
   <p>The chain rule says</p>
 
-  <md>
+  <p><me>
 \frac{d}{dx}f(g(x))=f'(g(x))g'(x).
-</md>
+</me></p>
 
   <p>The outside derivative is evaluated at the inside value.  That detail is easy to miss.</p>
 
   <p>For</p>
 
-  <md>y=\sin(x^2),</md>
+  <p><me>y=\sin(x^2),</me></p>
 
   <p>the outside function is</p>
 
-  <md>f(u)=\sin u.</md>
+  <p><me>f(u)=\sin u.</me></p>
 
   <p>Its derivative is</p>
 
-  <md>f'(u)=\cos u.</md>
+  <p><me>f'(u)=\cos u.</me></p>
 
   <p>At the current inside value</p>
 
-  <md>u=x^2,</md>
+  <p><me>u=x^2,</me></p>
 
   <p>this becomes</p>
 
-  <md>\cos(x^2).</md>
+  <p><me>\cos(x^2).</me></p>
 
   <p>Then we multiply by the inside derivative</p>
 
-  <md>\frac{d}{dx}(x^2)=2x.</md>
+  <p><me>\frac{d}{dx}(x^2)=2x.</me></p>
 
   <p>So the derivative is</p>
 
-  <md>2x\cos(x^2).</md>
+  <p><me>2x\cos(x^2).</me></p>
 
   <paragraphs>
     <title>A wrong answer and why it is wrong</title>
 
   <p>For</p>
 
-  <md>y=\sin(x^2),</md>
+  <p><me>y=\sin(x^2),</me></p>
 
   <p>a common wrong answer is</p>
 
-  <md>2\sin x\cos x.</md>
+  <p><me>2\sin x\cos x.</me></p>
 
   <p>But that is the derivative of</p>
 
-  <md>(\sin x)^2,</md>
+  <p><me>(\sin x)^2,</me></p>
 
   <p>not of</p>
 
-  <md>\sin(x^2).</md>
+  <p><me>\sin(x^2).</me></p>
 
   <p>The mistake changed the order of construction.</p>
 
   <warning xml:id="warn-sec-5-9-warning-examples-56">
     <title>Chain warning</title>
       <p>Differentiate from the outside inward, but keep the layers in their original order.</p>
-        <md>\text{outside derivative at the inside value}
+        <p><me>\text{outside derivative at the inside value}
 \quad \times \quad
-\text{inside derivative}.</md>
+\text{inside derivative}.</me></p>
   </warning>
   </paragraphs>
 
@@ -319,65 +307,65 @@ g(x)=x^2.</md>
 
   <p>The inverse derivative formula says:</p>
 
-  <md>(f^{-1})'(b)=\frac1{f'(a)}
+  <p><me>(f^{-1})'(b)=\frac1{f'(a)}
 \qquad
-\text{when } b=f(a).</md>
+\text{when } b=f(a).</me></p>
 
   <p>But this formula has a condition:</p>
 
-  <md>f'(a)\neq0.</md>
+  <p><me>f'(a)\neq0.</me></p>
 
   <p>The condition matters.</p>
 
   <p>Let</p>
 
-  <md>f(x)=x^3.</md>
+  <p><me>f(x)=x^3.</me></p>
 
   <p>This function is strictly increasing, so it has an inverse:</p>
 
-  <md>f^{-1}(x)=\sqrt[3]{x}.</md>
+  <p><me>f^{-1}(x)=\sqrt[3]{x}.</me></p>
 
   <p>At</p>
 
-  <md>a=0,</md>
+  <p><me>a=0,</me></p>
 
   <p>we have</p>
 
-  <md>f'(x)=3x^2,</md>
+  <p><me>f'(x)=3x^2,</me></p>
 
   <p>so</p>
 
-  <md>f'(0)=0.</md>
+  <p><me>f'(0)=0.</me></p>
 
   <p>The inverse derivative formula would require division by zero.  That is already a warning.</p>
 
   <p>Check directly.  Let</p>
 
-  <md>g(x)=\sqrt[3]{x}.</md>
+  <p><me>g(x)=\sqrt[3]{x}.</me></p>
 
   <p>Then</p>
 
-  <md>g(0)=0.</md>
+  <p><me>g(0)=0.</me></p>
 
   <p>The difference quotient at <m>0</m> is</p>
 
-  <md>\frac{g(0+h)-g(0)}{h}
+  <p><me>\frac{g(0+h)-g(0)}{h}
 =
-\frac{\sqrt[3]{h}}{h}.</md>
+\frac{\sqrt[3]{h}}{h}.</me></p>
 
   <p>For <m>h\neq0</m>,</p>
 
-  <md>\frac{\sqrt[3]{h}}{h}
+  <p><me>\frac{\sqrt[3]{h}}{h}
 =
-\frac{1}{h^{2/3}}.</md>
+\frac{1}{h^{2/3}}.</me></p>
 
   <p>As</p>
 
-  <md>h\to0,</md>
+  <p><me>h\to0,</me></p>
 
   <p>this quotient becomes unbounded.  It does not approach a finite number.  Therefore</p>
 
-  <md>g'(0)</md>
+  <p><me>g'(0)</me></p>
 
   <p>does not exist as a finite derivative.</p>
 
@@ -390,7 +378,7 @@ g(x)=x^2.</md>
 
   <p>The condition</p>
 
-  <md>f'(a)\neq0</md>
+  <p><me>f'(a)\neq0</me></p>
 
   <p>does not say that <m>f</m> must be steep.  It says that, to first order, <m>f</m> must actually change.  If the original function flattens completely at a point, reversing it may create an infinite slope.</p>
 
@@ -415,37 +403,21 @@ g(x)=x^2.</md>
 
   <p>When a derivative gets complicated, do not start by writing symbols quickly.  Start by reading the structure.</p>
 
-  <md>
-    <mrow>\begin{array}{c|c|c}
-<strong>structure</strong> \amp <strong>example</strong> \amp <strong>rule to use</strong></mrow>
-    <mrow>\hline
-\text{sum} \amp x^2+\sin x \amp \text{sum rule}</mrow>
-    <mrow>
-\text{constant multiple} \amp 7e^x \amp \text{constant multiple rule}</mrow>
-    <mrow>
-\text{product} \amp x^2\ln x \amp \text{product rule}</mrow>
-    <mrow>
-\text{quotient} \amp \dfrac{\sin x}{1+x^2} \amp \text{quotient rule}</mrow>
-    <mrow>
-\text{composition} \amp \sin(x^2) \amp \text{chain rule}</mrow>
-    <mrow>
-\text{implicit relation} \amp x^2+y^2=25 \amp \text{implicit differentiation}</mrow>
-    <mrow>
+  <p><me>\begin{array}{c|c|c}
+\textbf{structure} \amp \textbf{example} \amp \textbf{rule to use}\\
+\hline
+\text{sum} \amp x^2+\sin x \amp \text{sum rule}\\
+\text{constant multiple} \amp 7e^x \amp \text{constant multiple rule}\\
+\text{product} \amp x^2\ln x \amp \text{product rule}\\
+\text{quotient} \amp \dfrac{\sin x}{1+x^2} \amp \text{quotient rule}\\
+\text{composition} \amp \sin(x^2) \amp \text{chain rule}\\
+\text{implicit relation} \amp x^2+y^2=25 \amp \text{implicit differentiation}\\
 \text{inverse} \amp \arctan x \amp \text{inverse function rule}
-\end{array}</mrow>
-  </md>
+\end{array}</me></p>
 
   <p>The most useful questions are:</p>
 
-  <md>
-    <mrow>\begin{array}{l}
-\text{1. Is this built by addition, multiplication, division, or composition?}</mrow>
-    <mrow>\text{2. If it is a composition, what is the inside function?}</mrow>
-    <mrow>\text{3. If it is a product or quotient, have all factors been differentiated correctly?}</mrow>
-    <mrow>\text{4. If it is an inverse or logarithm, are the domain conditions satisfied?}</mrow>
-    <mrow>\text{5. Does the final answer have the right rough behavior and units?}
-\end{array}</mrow>
-  </md>
+  <p><ol><li><p>Is this built by addition, multiplication, division, or composition?</p></li><li><p>If it is a composition, what is the inside function?</p></li><li><p>If it is a product or quotient, have all factors been differentiated correctly?</p></li><li><p>If it is an inverse or logarithm, are the domain conditions satisfied?</p></li><li><p>Does the final answer have the right rough behavior and units?</p></li></ol></p>
 
   <p>A derivative formula is not only an answer.  It is a record of how the function was built.</p>
   </subsection>

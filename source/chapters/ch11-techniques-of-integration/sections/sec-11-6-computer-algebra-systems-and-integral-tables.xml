@@ -1,42 +1,24 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!-- CONVERTED — VISUALLY VERIFIED -->
 <section xml:id="sec-11-6-computer-algebra-systems-and-integral-tables">
   <title>Computer algebra systems and integral tables</title>
 
-  <p>A computer algebra system can differentiate, integrate, simplify, factor, expand, and
-solve equations.  An integral table can list thousands of antiderivative patterns.</p>
-
-  <p>These tools are useful.  They are also dangerous when used passively.</p>
-
-  <p>A tool may give an answer that is correct on one interval but not another.  It may return
-an expression that looks different from yours.  It may use a special function you have not
-seen before.  It may hide an absolute value.  It may even produce a form that is harder to
-understand than the original problem.</p>
-
-  <p>So the rule is:</p>
-
-  <md>
-\text{Use tools to check and explore, not to surrender judgment.}
-</md>
-
-  <subsection xml:id="subsec-checking-without-surrendering-thought">
+  <introduction><p>Integral tables and computer algebra systems can suggest antiderivatives and simplify expressions. Check a proposed answer by differentiating it on the relevant domain. Pay particular attention to absolute values, branch choices, singularities, and assumptions that may be implicit in the output.</p></introduction><subsection xml:id="subsec-checking-without-surrendering-thought">
     <title>Checking without surrendering thought</title>
 
   <p>The simplest way to check an antiderivative is to differentiate it.</p>
 
   <p>If a tool says</p>
 
-  <md>\int f(x)\,dx=F(x)+C,</md>
+  <p><me>\int f(x)\,dx=F(x)+C,</me></p>
 
   <p>then check whether</p>
 
-  <md>F'(x)=f(x).</md>
+  <p><me>F'(x)=f(x).</me></p>
 
   <p>This works no matter how complicated <m>F</m> looks.</p>
 
 
   <exercise xml:id="checkpoint-11-6-differentiate-check">
-        <title>Why is differentiating the honest check of an antiderivative?</title>
+        <title>How does differentiation check an antiderivative?</title>
         <statement>
           <p>
             A table or computer may return a complicated formula. In your own words, why does checking whether <m>F'(x)=f(x)</m> work no matter how complicated <m>F</m> looks, and why should a good tool answer make the structure more visible after you inspect it?
@@ -51,124 +33,122 @@ understand than the original problem.</p>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-1">
     <title>Example</title>
-    <statement>
-  <p>Suppose a table or computer gives</p>
+    <p>Suppose a table or computer gives</p>
 
-  <md>\int x\cos(x^2)\,dx=\frac12\sin(x^2)+C.</md>
+  <p><me>\int x\cos(x^2)\,dx=\frac12\sin(x^2)+C.</me></p>
 
   <p>Check by differentiating:</p>
 
-  <md>\frac{d}{dx}\left(\frac12\sin(x^2)\right)
+  <p><me>\frac{d}{dx}\left(\frac12\sin(x^2)\right)
 =
 \frac12\cos(x^2)\cdot 2x
 =
-x\cos(x^2).</md>
+x\cos(x^2).</me></p>
 
   <p>The derivative matches the integrand, so the answer is correct.</p>
 
   <p>Notice what the check also teaches.  The integral came from substitution:</p>
 
-  <md>u=x^2,
+  <p><me>u=x^2,
 \qquad
-du=2x\,dx.</md>
+du=2x\,dx.</me></p>
 
   <p>A good tool answer should make the structure more visible after we inspect it.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-2">
     <title>checking a table formula</title>
-    <statement>
-  <p>A table may list</p>
+    <p>For real constants <m>a,b</m> with <m>a^2+b^2&gt;0</m>, a table may list</p>
 
-  <md>\int e^{ax}\cos(bx)\,dx
+  <p><me>\int e^{ax}\cos(bx)\,dx
 =
-\frac{e^{ax}}{a^2+b^2}\bigl(a\cos bx+b\sin bx\bigr)+C.</md>
+\frac{e^{ax}}{a^2+b^2}\bigl(a\cos bx+b\sin bx\bigr)+C.</me></p>
 
   <p>Use it to find</p>
 
-  <md>\int e^{2x}\cos(3x)\,dx.</md>
+  <p><me>\int e^{2x}\cos(3x)\,dx.</me></p>
 
   <p>Here</p>
 
-  <md>a=2,
+  <p><me>a=2,
 \qquad
-b=3.</md>
+b=3.</me></p>
 
   <p>So</p>
 
-  <md>\int e^{2x}\cos(3x)\,dx
+  <p><me>\int e^{2x}\cos(3x)\,dx
 =
-\frac{e^{2x}}{2^2+3^2}\bigl(2\cos 3x+3\sin 3x\bigr)+C.</md>
+\frac{e^{2x}}{2^2+3^2}\bigl(2\cos 3x+3\sin 3x\bigr)+C.</me></p>
 
   <p>Thus</p>
 
-  <md>
+  <p><me>
 \int e^{2x}\cos(3x)\,dx
 =
 \frac{e^{2x}}{13}\bigl(2\cos 3x+3\sin 3x\bigr)+C.
-</md>
+</me></p>
 
   <p>A table formula should still be checked.  Differentiate</p>
 
-  <md>F(x)=\frac{e^{2x}}{13}\bigl(2\cos 3x+3\sin 3x\bigr).</md>
+  <p><me>F(x)=\frac{e^{2x}}{13}\bigl(2\cos 3x+3\sin 3x\bigr).</me></p>
 
   <p>Using the product rule,</p>
 
-  <md>F'(x)
+  <p><me>F'(x)
 =
 \frac{e^{2x}}{13}\cdot 2\bigl(2\cos 3x+3\sin 3x\bigr)
 +
-\frac{e^{2x}}{13}\bigl(-6\sin 3x+9\cos 3x\bigr).</md>
+\frac{e^{2x}}{13}\bigl(-6\sin 3x+9\cos 3x\bigr).</me></p>
 
   <p>Collect terms:</p>
 
-  <md>F'(x)
+  <p><me>F'(x)
 =
 \frac{e^{2x}}{13}
-\bigl(4\cos 3x+6\sin 3x-6\sin 3x+9\cos 3x\bigr).</md>
+\bigl(4\cos 3x+6\sin 3x-6\sin 3x+9\cos 3x\bigr).</me></p>
 
   <p>So</p>
 
-  <md>F'(x)
+  <p><me>F'(x)
 =
 \frac{e^{2x}}{13}(13\cos 3x)
 =
-e^{2x}\cos 3x.</md>
+e^{2x}\cos 3x.</me></p>
 
   <p>The check confirms the formula.</p>
 
+  </example>
   <note xml:id="note-sec-11-6-computer-algebra-systems-and-integral-tables-96">
     <title>How to use a table or CAS answer</title>
         <table xml:id="tab-sec-11-6-computer-algebra-systems-and-integral-tables-0">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>Step</strong></cell>
-        <cell><strong>Question</strong></cell>
+    <title>How to use a table or CAS answer</title><tabular halign="left" width="100%">
+      <col width="50%"/><col width="50%"/><row bottom="minor">
+        <cell><p><alert>Step</alert></p></cell>
+        <cell><p><alert>Question</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>1</cell>
-        <cell>Does the answer differentiate back to the integrand?</cell>
+        <cell><p>1</p></cell>
+        <cell><p>Does the answer differentiate back to the integrand?</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-2</cell>
-        <cell>On what interval is the formula valid?</cell>
+        <cell><p>
+2</p></cell>
+        <cell><p>On what interval is the formula valid?</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-3</cell>
-        <cell>Are absolute values needed in logarithms?</cell>
+        <cell><p>
+3</p></cell>
+        <cell><p>Are absolute values needed in logarithms?</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-4</cell>
-        <cell>Is the answer equivalent to a simpler form?</cell>
+        <cell><p>
+4</p></cell>
+        <cell><p>Is the answer equivalent to a simpler form?</p></cell>
       </row>
       <row>
-        <cell>
-5</cell>
-        <cell>Does the definite integral require checking endpoints or discontinuities?</cell>
+        <cell><p>
+5</p></cell>
+        <cell><p>Does the definite integral require checking endpoints or discontinuities?</p></cell>
       </row>
     </tabular>
   </table>
@@ -176,9 +156,7 @@ e^{2x}\cos 3x.</md>
 
   <p>The derivative check is powerful, but it does not answer every question.  Domains and
 branches still matter.</p>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-equivalent-antiderivatives">
     <title>Equivalent antiderivatives can look different</title>
@@ -186,9 +164,9 @@ branches still matter.</p>
   <p>Two correct antiderivatives of the same function may look different.  If they differ only
 by a constant on an interval, they represent the same family of antiderivatives.</p>
 
-  <md>F'(x)=G'(x)
+  <p><me>F'(x)=G'(x)
 \quad\Longrightarrow\quad
-F(x)-G(x)=\text{constant}</md>
+F(x)-G(x)=\text{constant}</me></p>
 
   <p>on any interval where both functions are differentiable.</p>
 
@@ -209,119 +187,113 @@ F(x)-G(x)=\text{constant}</md>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-3">
     <title>two forms for <m>\int \tan x\,dx</m></title>
-    <statement>
-  <p>One method gives</p>
+    <p>One method gives</p>
 
-  <md>\int \tan x\,dx
+  <p><me>\int \tan x\,dx
 =
--\ln|\cos x|+C.</md>
+-\ln|\cos x|+C.</me></p>
 
   <p>Another form is</p>
 
-  <md>\int \tan x\,dx
+  <p><me>\int \tan x\,dx
 =
-\ln|\sec x|+C.</md>
+\ln|\sec x|+C.</me></p>
 
   <p>These are the same because</p>
 
-  <md>\sec x=\frac1{\cos x}.</md>
+  <p><me>\sec x=\frac1{\cos x}.</me></p>
 
   <p>Therefore</p>
 
-  <md>\ln|\sec x|
+  <p><me>\ln|\sec x|
 =
 \ln\left|\frac1{\cos x}\right|
 =
--\ln|\cos x|.</md>
+-\ln|\cos x|.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 -\ln|\cos x|
 \quad\text{and}\quad
 \ln|\sec x|
-</md>
+</me></p>
 
   <p>are equivalent antiderivatives.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-4">
     <title>partial fractions can be written in one logarithm</title>
-    <statement>
-  <p>From partial fractions,</p>
+    <p>From partial fractions,</p>
 
-  <md>\int \frac{dx}{x^2-1}
+  <p><me>\int \frac{dx}{x^2-1}
 =
-\frac12\ln|x-1|-\frac12\ln|x+1|+C.</md>
+\frac12\ln|x-1|-\frac12\ln|x+1|+C.</me></p>
 
   <p>Using logarithm rules,</p>
 
-  <md>\frac12\ln|x-1|-\frac12\ln|x+1|
+  <p><me>\frac12\ln|x-1|-\frac12\ln|x+1|
 =
-\frac12\ln\left|\frac{x-1}{x+1}\right|.</md>
+\frac12\ln\left|\frac{x-1}{x+1}\right|.</me></p>
 
   <p>So an equivalent answer is</p>
 
-  <md>
+  <p><me>
 \int \frac{dx}{x^2-1}
 =
 \frac12\ln\left|\frac{x-1}{x+1}\right|+C.
-</md>
+</me></p>
 
   <p>A computer may give either form.  A table may give another equivalent form.  The
 right response is not to panic, but to differentiate or simplify.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-5">
     <title>inverse trigonometric forms can differ</title>
-    <statement>
-  <p>Consider</p>
+    <p>Consider</p>
 
-  <md>\int \frac{dx}{\sqrt{1-x^2}}.</md>
+  <p><me>\int \frac{dx}{\sqrt{1-x^2}}.</me></p>
 
   <p>One antiderivative is</p>
 
-  <md>\arcsin x+C.</md>
+  <p><me>\arcsin x+C.</me></p>
 
   <p>Another is</p>
 
-  <md>-\arccos x+C.</md>
+  <p><me>-\arccos x+C.</me></p>
 
   <p>They are equivalent because</p>
 
-  <md>\frac{d}{dx}\arcsin x=\frac1{\sqrt{1-x^2}},</md>
+  <p><me>\frac{d}{dx}\arcsin x=\frac1{\sqrt{1-x^2}},</me></p>
 
   <p>and</p>
 
-  <md>\frac{d}{dx}\bigl(-\arccos x\bigr)
+  <p><me>\frac{d}{dx}\bigl(-\arccos x\bigr)
 =
 -\left(-\frac1{\sqrt{1-x^2}}\right)
 =
-\frac1{\sqrt{1-x^2}}.</md>
+\frac1{\sqrt{1-x^2}}.</me></p>
 
   <p>In fact,</p>
 
-  <md>\arcsin x+\arccos x=\frac{\pi}{2}</md>
+  <p><me>\arcsin x+\arccos x=\frac{\pi}{2}</me></p>
 
   <p>for <m>-1\le x\le1</m>, so the two antiderivatives differ by a constant:</p>
 
-  <md>\arcsin x
+  <p><me>\arcsin x
 =
--\arccos x+\frac{\pi}{2}.</md>
+-\arccos x+\frac{\pi}{2}.</me></p>
 
   <p>The same derivative can wear different costumes.</p>
 
+  </example>
   <note xml:id="note-sec-11-6-computer-algebra-systems-and-integral-tables-97">
     <title>Equivalent answers</title>
       <p>If your answer and a tool’s answer look different, compare them by</p>
-        <md>\text{simplifying, using identities, or differentiating their difference.}</md>
+        <p><me>\text{simplifying, using identities, or differentiating their difference.}</me></p>
       <p>If the difference is constant on the interval, both answers are correct.</p>
   </note>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-branch-domain-issues">
     <title>Branch and domain issues</title>
@@ -348,152 +320,146 @@ usually a family of antiderivatives on intervals where the integrand is defined.
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-6">
     <title>the missing absolute value</title>
-    <statement>
-  <p>A computer system might return</p>
+    <p>A computer system might return</p>
 
-  <md>\ln x</md>
+  <p><me>\ln x</me></p>
 
   <p>for</p>
 
-  <md>\int \frac{dx}{x}.</md>
+  <p><me>\int \frac{dx}{x}.</me></p>
 
   <p>That is correct on the interval</p>
 
-  <md>(0,\infty).</md>
+  <p><me>(0,\infty).</me></p>
 
   <p>But in real calculus, the function <m>1/x</m> is also defined on</p>
 
-  <md>(-\infty,0).</md>
+  <p><me>(-\infty,0).</me></p>
 
   <p>On that interval, an antiderivative is</p>
 
-  <md>\ln(-x),</md>
+  <p><me>\ln(-x),</me></p>
 
   <p>because</p>
 
-  <md>\frac{d}{dx}\ln(-x)=\frac1{-x}\cdot(-1)=\frac1x.</md>
+  <p><me>\frac{d}{dx}\ln(-x)=\frac1{-x}\cdot(-1)=\frac1x.</me></p>
 
   <p>The compact real formula is</p>
 
-  <md>
+  <p><me>
 \int \frac{dx}{x}=\ln|x|+C.
-</md>
+</me></p>
 
   <p>The absolute value combines the two intervals into one notation.</p>
 
   <p>But the domain is still split.  The integrand is not defined at <m>x=0</m>, and no
 antiderivative crosses through <m>0</m>.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-7">
     <title>logarithms from substitution</title>
-    <statement>
-  <p>Find</p>
+    <p>Find</p>
 
-  <md>\int \frac{x}{x^2-1}\,dx.</md>
+  <p><me>\int \frac{x}{x^2-1}\,dx.</me></p>
 
   <p>Use</p>
 
-  <md>u=x^2-1,
+  <p><me>u=x^2-1,
 \qquad
-du=2x\,dx.</md>
+du=2x\,dx.</me></p>
 
   <p>Then</p>
 
-  <md>\int \frac{x}{x^2-1}\,dx
+  <p><me>\int \frac{x}{x^2-1}\,dx
 =
 \frac12\int \frac{du}{u}
 =
-\frac12\ln|u|+C.</md>
+\frac12\ln|u|+C.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int \frac{x}{x^2-1}\,dx
 =
 \frac12\ln|x^2-1|+C.
-</md>
+</me></p>
 
   <p>A tool may return</p>
 
-  <md>\frac12\ln(x^2-1).</md>
+  <p><me>\frac12\ln(x^2-1).</me></p>
 
   <p>That expression is real only where</p>
 
-  <md>x^2-1&gt;0,</md>
+  <p><me>x^2-1&gt;0,</me></p>
 
   <p>which means</p>
 
-  <md>x&lt;-1
+  <p><me>x&lt;-1
 \qquad\text{or}\qquad
-x&gt;1.</md>
+x&gt;1.</me></p>
 
   <p>But the original integrand is also defined on</p>
 
-  <md>(-1,1),</md>
+  <p><me>(-1,1),</me></p>
 
   <p>where</p>
 
-  <md>x^2-1&lt;0.</md>
+  <p><me>x^2-1&lt;0.</me></p>
 
   <p>On that interval, the real antiderivative needs</p>
 
-  <md>\ln|x^2-1|.</md>
+  <p><me>\ln|x^2-1|.</me></p>
 
   <p>The absolute value is not decoration.  It preserves the real antiderivative on every
 interval where the integrand is defined.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-8">
     <title>square-root domains</title>
-    <statement>
-  <p>The antiderivative</p>
+    <p>The antiderivative</p>
 
-  <md>\int \frac{dx}{\sqrt{1-x^2}}
+  <p><me>\int \frac{dx}{\sqrt{1-x^2}}
 =
-\arcsin x+C</md>
+\arcsin x+C</me></p>
 
   <p>is a real formula on</p>
 
-  <md>-1&lt;x&lt;1.</md>
+  <p><me>-1&lt;x&lt;1.</me></p>
 
   <p>The integrand itself requires</p>
 
-  <md>1-x^2&gt;0,</md>
+  <p><me>1-x^2&gt;0,</me></p>
 
   <p>so the natural open interval is <m>(-1,1)</m>.  At <m>x=\pm1</m>, the denominator is zero.</p>
 
   <p>When a tool returns an inverse trigonometric expression, always ask:</p>
 
-  <md>\text{On what interval is the original integrand real and finite?}</md>
+  <p><me>\text{On what interval is the original integrand real and finite?}</me></p>
 
   <p>and</p>
 
-  <md>\text{Which branch of the inverse trigonometric function is being used?}</md>
+  <p><me>\text{Which branch of the inverse trigonometric function is being used?}</me></p>
 
   <p>In a first calculus course, we usually choose the standard branches:</p>
 
-  <md>-\frac{\pi}{2}\le \arcsin x\le \frac{\pi}{2},</md>
+  <p><me>-\frac{\pi}{2}\le \arcsin x\le \frac{\pi}{2},</me></p>
 
-  <md>0\le \arccos x\le \pi,</md>
+  <p><me>0\le \arccos x\le \pi,</me></p>
 
-  <md>-\frac{\pi}{2}&lt;\arctan x&lt;\frac{\pi}{2}.</md>
+  <p><me>-\frac{\pi}{2}&lt;\arctan x&lt;\frac{\pi}{2}.</me></p>
 
   <p>Those choices make inverse trigonometric functions into genuine functions.  They also
 control the signs that appear when returning from a trigonometric substitution.</p>
 
+  </example>
   <warning xml:id="warn-sec-11-6-computer-algebra-systems-and-integral-tables-98">
     <title>Domain warning</title>
       <p>A symbolic answer may be correct only on part of the domain.  For real-valued calculus,
 always check</p>
-        <md>\text{zeros of denominators, signs inside square roots,}</md>
-        <md>\text{absolute values in logarithms, and inverse-function branches.}</md>
+        <p><me>\text{zeros of denominators, signs inside square roots,}</me></p>
+        <p><me>\text{absolute values in logarithms, and inverse-function branches.}</me></p>
   </warning>
-    </statement>
-  </example>
-  </subsection>
+    </subsection>
 
   <subsection xml:id="subsec-integral-tables">
     <title>Integral tables</title>
@@ -503,128 +469,124 @@ not only a list of answers.  It is a catalog of patterns.</p>
 
   <p>For example, a table may list</p>
 
-  <md>\int \frac{du}{a^2+u^2}
+  <p><me>\int \frac{du}{a^2+u^2}
 =
 \frac1a\arctan\left(\frac{u}{a}\right)+C,
-\qquad a&gt;0.</md>
+\qquad a&gt;0.</me></p>
 
   <p>To use the table, we must match the pattern.</p>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-9">
     <title>Example</title>
-    <statement>
-  <p>Find</p>
+    <p>Find</p>
 
-  <md>\int \frac{dx}{9+(2x-1)^2}.</md>
+  <p><me>\int \frac{dx}{9+(2x-1)^2}.</me></p>
 
   <p>The denominator has the form</p>
 
-  <md>a^2+u^2</md>
+  <p><me>a^2+u^2</me></p>
 
   <p>with</p>
 
-  <md>a=3,
+  <p><me>a=3,
 \qquad
-u=2x-1.</md>
+u=2x-1.</me></p>
 
-  <p>But the numerator is <m>dx</m>, while the table formula wants <m>du</m>.  Since</p>
+  <p>The numerator uses <m>dx</m>, whereas the table formula requires <m>du</m>.  Since</p>
 
-  <md>du=2\,dx,</md>
+  <p><me>du=2\,dx,</me></p>
 
   <p>we have</p>
 
-  <md>dx=\frac12\,du.</md>
+  <p><me>dx=\frac12\,du.</me></p>
 
   <p>Therefore</p>
 
-  <md>\int \frac{dx}{9+(2x-1)^2}
+  <p><me>\int \frac{dx}{9+(2x-1)^2}
 =
-\frac12\int \frac{du}{9+u^2}.</md>
+\frac12\int \frac{du}{9+u^2}.</me></p>
 
   <p>Using the table formula with <m>a=3</m>,</p>
 
-  <md>\frac12\int \frac{du}{9+u^2}
+  <p><me>\frac12\int \frac{du}{9+u^2}
 =
-\frac12\cdot\frac13\arctan\left(\frac{u}{3}\right)+C.</md>
+\frac12\cdot\frac13\arctan\left(\frac{u}{3}\right)+C.</me></p>
 
   <p>So</p>
 
-  <md>
+  <p><me>
 \int \frac{dx}{9+(2x-1)^2}
 =
 \frac16\arctan\left(\frac{2x-1}{3}\right)+C.
-</md>
+</me></p>
 
   <p>The table did not replace substitution.  It worked together with substitution.</p>
-    </statement>
-  </example>
+    </example>
 
   <example xml:id="ex-sec-11-6-computer-algebra-systems-and-integral-tables-10">
     <title>a table formula with a square root</title>
-    <statement>
-  <p>A table may list</p>
+    <p>A table may list</p>
 
-  <md>\int \sqrt{a^2-u^2}\,du
+  <p><me>\int \sqrt{a^2-u^2}\,du
 =
 \frac{u}{2}\sqrt{a^2-u^2}
 +
 \frac{a^2}{2}\arcsin\left(\frac{u}{a}\right)
-+C.</md>
++C.</me></p>
 
   <p>Use it to find</p>
 
-  <md>\int \sqrt{25-4x^2}\,dx.</md>
+  <p><me>\int \sqrt{25-4x^2}\,dx.</me></p>
 
   <p>Rewrite the square root as</p>
 
-  <md>\sqrt{25-(2x)^2}.</md>
+  <p><me>\sqrt{25-(2x)^2}.</me></p>
 
   <p>Let</p>
 
-  <md>u=2x,
+  <p><me>u=2x,
 \qquad
 du=2\,dx,
 \qquad
-dx=\frac12\,du.</md>
+dx=\frac12\,du.</me></p>
 
   <p>Then</p>
 
-  <md>\int \sqrt{25-4x^2}\,dx
+  <p><me>\int \sqrt{25-4x^2}\,dx
 =
-\frac12\int \sqrt{25-u^2}\,du.</md>
+\frac12\int \sqrt{25-u^2}\,du.</me></p>
 
   <p>Here <m>a=5</m>.  Apply the formula:</p>
 
-  <md>\frac12\left[
+  <p><me>\frac12\left[
 \frac{u}{2}\sqrt{25-u^2}
 +
 \frac{25}{2}\arcsin\left(\frac{u}{5}\right)
-\right]+C.</md>
+\right]+C.</me></p>
 
   <p>So</p>
 
-  <md>\int \sqrt{25-4x^2}\,dx
+  <p><me>\int \sqrt{25-4x^2}\,dx
 =
 \frac{u}{4}\sqrt{25-u^2}
 +
 \frac{25}{4}\arcsin\left(\frac{u}{5}\right)
-+C.</md>
++C.</me></p>
 
   <p>Return to <m>x</m>:</p>
 
-  <md>
+  <p><me>
 \int \sqrt{25-4x^2}\,dx
 =
 \frac{x}{2}\sqrt{25-4x^2}
 +
 \frac{25}{4}\arcsin\left(\frac{2x}{5}\right)
 +C.
-</md>
+</me></p>
 
   <p>The factor <m>1/2</m> from <m>du=2\,dx</m> is the kind of detail that tables do not manage for
 us.  We must manage the change of variable.</p>
-    </statement>
-  </example>
+    </example>
   </subsection>
 
   <subsection xml:id="subsec-special-functions-born-from-integrals">
@@ -635,8 +597,8 @@ We define a new function by accumulation.</p>
 
   <p>This has already happened in ordinary calculus.  The natural logarithm can be defined by</p>
 
-  <md>\ln x=\int_1^x \frac{dt}{t},
-\qquad x&gt;0.</md>
+  <p><me>\ln x=\int_1^x \frac{dt}{t},
+\qquad x&gt;0.</me></p>
 
   <p>So a function born from an integral is not strange.  It is one of the oldest ideas in the
 subject.</p>
@@ -646,23 +608,23 @@ subject.</p>
 
   <p>The function</p>
 
-  <md>e^{-x^2}</md>
+  <p><me>e^{-x^2}</me></p>
 
   <p>has no elementary antiderivative.  But the accumulation</p>
 
-  <md>\int_0^x e^{-t^2}\,dt</md>
+  <p><me>\int_0^x e^{-t^2}\,dt</me></p>
 
   <p>is important in probability and statistics.  A standard scaled version is</p>
 
-  <md>
+  <p><me>
 \operatorname{erf}(x)=\frac{2}{\sqrt{\pi}}\int_0^x e^{-t^2}\,dt.
-</md>
+</me></p>
 
   <p>By the Fundamental Theorem,</p>
 
-  <md>\operatorname{erf}'(x)
+  <p><me>\operatorname{erf}'(x)
 =
-\frac{2}{\sqrt{\pi}}e^{-x^2}.</md>
+\frac{2}{\sqrt{\pi}}e^{-x^2}.</me></p>
 
   <p>So the derivative is completely clear, even though the function is not elementary.</p>
   </paragraphs>
@@ -672,32 +634,32 @@ subject.</p>
 
   <p>Another important example is</p>
 
-  <md>
+  <p><me>
 \operatorname{Si}(x)=\int_0^x \frac{\sin t}{t}\,dt.
-</md>
+</me></p>
 
   <p>The integrand appears to have a problem at <m>t=0</m>, but</p>
 
-  <md>\lim_{t\to0}\frac{\sin t}{t}=1.</md>
+  <p><me>\lim_{t\to0}\frac{\sin t}{t}=1.</me></p>
 
   <p>So we define the integrand at <m>0</m> by its limiting value <m>1</m>.  Then the accumulation
 makes sense.</p>
 
   <p>For <m>x\neq0</m>,</p>
 
-  <md>\operatorname{Si}'(x)=\frac{\sin x}{x}.</md>
+  <p><me>\operatorname{Si}'(x)=\frac{\sin x}{x}.</me></p>
 
   <p>With the continuous extension at <m>x=0</m>,</p>
 
-  <md>\operatorname{Si}'(0)=1.</md>
+  <p><me>\operatorname{Si}'(0)=1.</me></p>
 
   <p>Special functions are not failures.  They are named accumulations that occur often
 enough to deserve their own notation.</p>
 
   <note xml:id="note-sec-11-6-computer-algebra-systems-and-integral-tables-99">
-    <title>A new function is sometimes the honest answer</title>
+    <title>Defining a function by an integral</title>
       <p>If</p>
-        <md>F(x)=\int_a^x f(t)\,dt</md>
+        <p><me>F(x)=\int_a^x f(t)\,dt</me></p>
       <p>cannot be written with elementary functions, <m>F</m> is still a function.  It can be
 graphed, approximated, differentiated, tabulated, and used in models.</p>
   </note>
@@ -727,38 +689,38 @@ not necessarily less useful than a decimal.</p>
 
   <p>For example,</p>
 
-  <md>\int_0^1 e^{-x^2}\,dx</md>
+  <p><me>\int_0^1 e^{-x^2}\,dx</me></p>
 
   <p>can be written as</p>
 
-  <md>\frac{\sqrt{\pi}}{2}\operatorname{erf}(1).</md>
+  <p><me>\frac{\sqrt{\pi}}{2}\operatorname{erf}(1).</me></p>
 
   <p>This is an exact expression in terms of a special function.  A decimal approximation is
 also useful:</p>
 
-  <md>\int_0^1 e^{-x^2}\,dx\approx0.7468.</md>
+  <p><me>\int_0^1 e^{-x^2}\,dx\approx0.7468.</me></p>
 
   <p>The exact form and the decimal form answer different needs.</p>
 
   <table xml:id="tab-sec-11-6-computer-algebra-systems-and-integral-tables-1">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>Form</strong></cell>
-        <cell><strong>What it is good for</strong></cell>
+    <title>Definite integrals and symbolic answers</title><tabular halign="left" width="100%">
+      <col width="50%"/><col width="50%"/><row bottom="minor">
+        <cell><p><alert>Form</alert></p></cell>
+        <cell><p><alert>What it is good for</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>Exact elementary expression</cell>
-        <cell>Algebraic manipulation, exact comparison, symbolic work.</cell>
+        <cell><p>Exact elementary expression</p></cell>
+        <cell><p>Algebraic manipulation, exact comparison, symbolic work.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-Special-function expression</cell>
-        <cell>Exact naming of a non-elementary accumulation.</cell>
+        <cell><p>
+Special-function expression</p></cell>
+        <cell><p>Exact naming of a non-elementary accumulation.</p></cell>
       </row>
       <row>
-        <cell>
-Decimal approximation</cell>
-        <cell>Measurement, computation, practical estimation.</cell>
+        <cell><p>
+Decimal approximation</p></cell>
+        <cell><p>Measurement, computation, practical estimation.</p></cell>
       </row>
     </tabular>
   </table>
@@ -766,7 +728,7 @@ Decimal approximation</cell>
   <p>The important question is not always “Can we find an elementary antiderivative?”  Often
 the better question is:</p>
 
-  <md>\text{How accurately do we need the accumulated amount?}</md>
+  <p><me>\text{How accurately do we need the accumulated amount?}</me></p>
 
   <p>That question leads naturally to numerical integration.</p>
   </subsection>
@@ -779,44 +741,44 @@ the better question is:</p>
   <note xml:id="note-sec-11-6-computer-algebra-systems-and-integral-tables-100">
     <title>Responsible use of symbolic integration</title>
         <table xml:id="tab-sec-11-6-computer-algebra-systems-and-integral-tables-2">
-    <tabular halign="left">
-      <row bottom="minor">
-        <cell><strong>Step</strong></cell>
-        <cell><strong>Action</strong></cell>
+    <title>Responsible use of symbolic integration</title><tabular halign="left" width="100%">
+      <col width="50%"/><col width="50%"/><row bottom="minor">
+        <cell><p><alert>Step</alert></p></cell>
+        <cell><p><alert>Action</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell>1</cell>
-        <cell>Inspect the integrand first.  Identify possible structure.</cell>
+        <cell><p>1</p></cell>
+        <cell><p>Inspect the integrand first.  Identify possible structure.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-2</cell>
-        <cell>Try a human method if the structure is clear.</cell>
+        <cell><p>
+2</p></cell>
+        <cell><p>Try a human method if the structure is clear.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-3</cell>
-        <cell>Use a table or CAS to check, compare, or explore.</cell>
+        <cell><p>
+3</p></cell>
+        <cell><p>Use a table or CAS to check, compare, or explore.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-4</cell>
-        <cell>Differentiate the returned antiderivative.</cell>
+        <cell><p>
+4</p></cell>
+        <cell><p>Differentiate the returned antiderivative.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-5</cell>
-        <cell>Check the interval, branch, and absolute values.</cell>
+        <cell><p>
+5</p></cell>
+        <cell><p>Check the interval, branch, and absolute values.</p></cell>
       </row>
       <row bottom="minor">
-        <cell>
-6</cell>
-        <cell>For a definite integral, check whether endpoints or discontinuities cause trouble.</cell>
+        <cell><p>
+6</p></cell>
+        <cell><p>For a definite integral, check whether endpoints or discontinuities cause trouble.</p></cell>
       </row>
       <row>
-        <cell>
-7</cell>
-        <cell>Decide whether an exact form, special-function form, or decimal approximation is most useful.</cell>
+        <cell><p>
+7</p></cell>
+        <cell><p>Decide whether an exact form, special-function form, or decimal approximation is most useful.</p></cell>
       </row>
     </tabular>
   </table>
@@ -829,21 +791,21 @@ may exist while the accumulated amount is not finite.</p>
 
   <p>For example,</p>
 
-  <md>\int_1^\infty \frac{dx}{x}</md>
+  <p><me>\int_1^\infty \frac{dx}{x}</me></p>
 
   <p>has the antiderivative</p>
 
-  <md>\ln x,</md>
+  <p><me>\ln x,</me></p>
 
   <p>but the accumulated area grows without bound.</p>
 
   <p>So the next question is not how to find an antiderivative.  It is more basic:</p>
 
-  <md>
+  <p><me>
 \text{When does an infinite or singular accumulation have a finite value?}
-</md>
+</me></p>
 
-  <p>That is the problem of improper integrals.\Computing</p>
+  <p>That is the problem of improper integrals.</p>
   </subsection>
 
 
