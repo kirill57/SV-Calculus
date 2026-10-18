@@ -98,7 +98,7 @@ def local_receipt():
             if (WEB/rel).is_file(): assets.add(rel)
     manifest={p:sha(WEB/p) for p in sorted(assets)}
     write(QA/'referenced-assets.json',manifest)
-    for group in ['early','middle','late','front']:
+    for group in ['early','middle','late','front','root']:
         review=read(QA/(group+'-local-visual.json'))
         assert not review.get('remaining_visual_issues') and not review.get('other_visible_issues')
         assert not review.get('unresolvedFindings'), group+' visual review pending'
@@ -113,7 +113,7 @@ def local_receipt():
         'sourceFingerprint':hashlib.sha256(json.dumps(inputs,sort_keys=True).encode()).hexdigest(),
         'referencedAssetCount':len(manifest),
         'htmlSha256':{r['page']+'.html':r['htmlSha256'] for r in rows},
-        'visualReviews':['early-local-visual.json','middle-local-visual.json','late-local-visual.json','front-local-visual.json'],
+        'visualReviews':['early-local-visual.json','middle-local-visual.json','late-local-visual.json','front-local-visual.json','root-local-visual.json'],
         'independentProofReview':['5.6 exponential defining limit and unique base e',
                                   '12.8 repeated-integration finite remainder before Taylor chapter',
                                   '17.6 supported C2 variations and zero extension'],

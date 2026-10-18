@@ -8,10 +8,12 @@ QA=ROOT/'qa/audit-2026-10-17'
 ID='{http://www.w3.org/XML/1998/namespace}id'
 tree=E.parse(str(ROOT/'source/main.ptx')); tree.xinclude()
 ids={e.get(ID):e for e in tree.iter() if e.get(ID)}
-unnumbered=[]; raw=[]; spacing=[]
+unnumbered=[]; raw=[]; spacing=[]; inline_tabs=[]
 skip={'m','me','men','md','mdn','mrow','macros','latex-image-preamble','latex-image','asymptote','pre','c'}
 for e in tree.iter():
     if not isinstance(e.tag,str):continue
+    if e.tag=='m' and chr(9) in ''.join(e.itertext()):
+        inline_tabs.append({'file':e.base,'line':e.sourceline,'text':''.join(e.itertext())})
     if e.tag=='xref' and not e.get('text') and e.get('ref') in ids:
         if ids[e.get('ref')].tag in {'subsection','paragraphs','introduction'}:
             unnumbered.append({'file':e.base,'line':e.sourceline,'ref':e.get('ref')})
@@ -28,7 +30,7 @@ for p in (ROOT/'source').rglob('*'):
             if re.match(r'\[[0-9.]+(?:mm|pt|ex|em)\]',line.strip()):
                 spacing.append({'file':str(p.relative_to(ROOT)),'line':i+1,'text':line.strip()})
 result={'unnumberedReferencesWithoutTitles':unnumbered,'detachedArraySpacing':spacing,
-        'rawTexInOrdinaryTextCandidates':raw}
+        'rawTexInOrdinaryTextCandidates':raw,'tabsInInlineMath':inline_tabs}
 (QA/'markup-sanity.json').write_text(json.dumps(result,indent=2),encoding='utf-8')
 print(json.dumps(result,indent=2))
-assert not unnumbered and not spacing
+assert not unnumbered and not spacing and not inline_tabs
