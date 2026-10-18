@@ -44,10 +44,10 @@ f(b)&gt;0,</me></p>
     grid style={line width=.1pt, draw=gray!25},
 ]
 \addplot[very thick, domain=0.55:3.6, samples=150] {0.55*(x-2.1)^3 + 0.35*(x-2.1)};
-\addplot[only marks, mark=*] coordinates {(0.8,-1.29) (3.4,1.55)};
-\draw[dashed] (axis cs:0.8,0) -- (axis cs:0.8,-1.29);
-\draw[dashed] (axis cs:3.4,0) -- (axis cs:3.4,1.55);
-\node[anchor=north east] at (axis cs:2.1,0) {\(c\)};
+\addplot[only marks, mark=*] coordinates {(0.8,-1.66335) (3.4,1.66335)};
+\draw[dashed] (axis cs:0.8,0) -- (axis cs:0.8,-1.66335);
+\draw[dashed] (axis cs:3.4,0) -- (axis cs:3.4,1.66335);
+\node[anchor=west, fill=white, inner sep=1pt] at (axis cs:2.1,0) {\(c\)};
 \node[anchor=west] at (axis cs:2.45,1.25) {continuous graph};
 \end{axis}
 \end{tikzpicture}
@@ -214,47 +214,50 @@ is at most half an interval length away.  Therefore the midpoint error is at mos
 
   <p>So there is a root in <m>(1,2)</m>.</p>
 
+  <p>Each row uses <m>M=(L+R)/2</m>. The displayed values of <m>p(M)</m> are rounded to nine decimal places when necessary.</p>
+
   <table xml:id="tab-sec-d-3-bolzano-s-theorem-and-bisection-2">
-    <title>Example</title><tabular halign="left" width="100%">
+    <title>First four bisections</title><tabular halign="left" width="100%">
+      <col width="10%"/><col width="12%"/><col width="12%"/><col width="13%"/><col width="23%"/><col width="30%"/>
       <row header="yes" bottom="medium">
-        <cell><alert>step</alert></cell>
-        <cell><m>L</m></cell>
-        <cell><m>R</m></cell>
-        <cell><m>M=\dfrac{L+R}{2}</m></cell>
-        <cell><m>p(M)</m></cell>
-        <cell><alert>next interval</alert></cell>
+        <cell><p><alert>step</alert></p></cell>
+        <cell><p><m>L</m></p></cell>
+        <cell><p><m>R</m></p></cell>
+        <cell><p><m>M</m></p></cell>
+        <cell><p><m>p(M)</m></p></cell>
+        <cell><p><alert>next interval</alert></p></cell>
       </row>
       <row bottom="minor">
-        <cell><m>0</m></cell>
-        <cell><m>1</m></cell>
-        <cell><m>2</m></cell>
-        <cell><m>1.5</m></cell>
-        <cell><m>0.875</m></cell>
-        <cell><m>[1,1.5]</m></cell>
+        <cell><p><m>0</m></p></cell>
+        <cell><p><m>1</m></p></cell>
+        <cell><p><m>2</m></p></cell>
+        <cell><p><m>1.5</m></p></cell>
+        <cell><p><m>0.875</m></p></cell>
+        <cell><p><m>[1,1.5]</m></p></cell>
       </row>
       <row bottom="minor">
-        <cell><m>1</m></cell>
-        <cell><m>1</m></cell>
-        <cell><m>1.5</m></cell>
-        <cell><m>1.25</m></cell>
-        <cell><m>-0.296875</m></cell>
-        <cell><m>[1.25,1.5]</m></cell>
+        <cell><p><m>1</m></p></cell>
+        <cell><p><m>1</m></p></cell>
+        <cell><p><m>1.5</m></p></cell>
+        <cell><p><m>1.25</m></p></cell>
+        <cell><p><m>-0.296875</m></p></cell>
+        <cell><p><m>[1.25,1.5]</m></p></cell>
       </row>
       <row bottom="minor">
-        <cell><m>2</m></cell>
-        <cell><m>1.25</m></cell>
-        <cell><m>1.5</m></cell>
-        <cell><m>1.375</m></cell>
-        <cell><m>0.224609375</m></cell>
-        <cell><m>[1.25,1.375]</m></cell>
+        <cell><p><m>2</m></p></cell>
+        <cell><p><m>1.25</m></p></cell>
+        <cell><p><m>1.5</m></p></cell>
+        <cell><p><m>1.375</m></p></cell>
+        <cell><p><m>0.224609375</m></p></cell>
+        <cell><p><m>[1.25,1.375]</m></p></cell>
       </row>
       <row>
-        <cell><m>3</m></cell>
-        <cell><m>1.25</m></cell>
-        <cell><m>1.375</m></cell>
-        <cell><m>1.3125</m></cell>
-        <cell><m>-0.051513672</m></cell>
-        <cell><m>[1.3125,1.375]</m></cell>
+        <cell><p><m>3</m></p></cell>
+        <cell><p><m>1.25</m></p></cell>
+        <cell><p><m>1.375</m></p></cell>
+        <cell><p><m>1.3125</m></p></cell>
+        <cell><p><m>-0.051513672</m></p></cell>
+        <cell><p><m>[1.3125,1.375]</m></p></cell>
       </row>
     </tabular>
   </table>
@@ -324,7 +327,7 @@ J(1)=1&gt;0.</me></p>
 ]
 \addplot[very thick, domain=-1.35:-0.04, samples=2] {-1};
 \addplot[very thick, domain=0:1.35, samples=2] {1};
-\addplot[only marks, mark=o, mark size=3pt, thick] coordinates {(0,-1)};
+\addplot[only marks, mark=*, mark options={fill=white}, mark size=3pt, thick] coordinates {(0,-1)};
 \addplot[only marks, mark=*, mark size=2.5pt] coordinates {(0,1)};
 \draw[dashed] (axis cs:-1.35,0) -- (axis cs:1.35,0);
 \node[anchor=west] at (axis cs:0.15,0.15) {skipped \(0\)};

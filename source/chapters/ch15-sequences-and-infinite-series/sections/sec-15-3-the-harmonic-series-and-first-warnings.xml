@@ -219,8 +219,8 @@ It only says that the first obstacle to convergence has been passed.</p>
  1 \amp 1\\
 2 \amp 1.5\\
 4 \amp 2.083\ldots\\
-8 \amp 2.718\ldots\\
-16 \amp 3.381\ldots
+8 \amp 2.717857\ldots\\
+16 \amp 3.380728\ldots
 \end{array}</me></p>
 
   <p>Slow growth can look like convergence if we only compute a few terms.  This is a
@@ -304,7 +304,7 @@ diverges.</p>
       <description><p>Grouping the harmonic series into doubled blocks shows that the partial sums keep gaining at least <m>1/2</m>.</p></description><latex-image>
 \begin{tikzpicture}[xscale=1.05, yscale=2.6, every node/.style={font=\normalsize}]
   \draw[-&gt;, very thick] (0,0) -- (13.2,0) node[right] {terms};
-  \draw[-&gt;, very thick] (0,0) -- (0,2.15) node[above] {block size};
+  \draw[-&gt;, very thick] (0,0) -- (0,2.15) node[above] {term size};
 
   % first block
   \draw[fill=blue!50, draw=blue!40!black, line width=1.1pt] (0.3,0) rectangle (1.0,1.6);
@@ -329,7 +329,8 @@ diverges.</p>
 
   % fifth block eight stylized terms at common lower height
   \foreach \i in {0,...,7} {
-    \draw[fill=blue!50, draw=blue!40!black, line width=1.1pt] ({7.7+0.55*\i},0) rectangle +(0.55,0.2);
+    \pgfmathsetmacro{\termheight}{1.6/(9+\i)}
+    \draw[fill=blue!50, draw=blue!40!black, line width=1.1pt] ({7.7+0.55*\i},0) rectangle +(0.55,\termheight);
   }
   \draw[decorate, decoration={brace, amplitude=6pt, raise=1pt}] (7.7,-0.12) -- (12.1,-0.12);
   \node[below] at (9.9,-0.32) {\(\ge \frac12\)};

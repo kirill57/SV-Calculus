@@ -26,7 +26,7 @@ x_2=x_0+2\Delta x.</me></p>
 
   <p><me>(x_0,f(x_0)),\qquad (x_1,f(x_1)),\qquad (x_2,f(x_2)),</me></p>
 
-  <p>there is exactly one quadratic polynomial.  Simpson’s Rule integrates that quadratic
+  <p>there is exactly one polynomial of degree at most two. Simpson’s Rule integrates that interpolant
 instead of the original function.</p>
 
   <figure xml:id="fig-simpson-quadratic-through-three-points">
@@ -45,15 +45,18 @@ instead of the original function.</p>
     xtick={0,1,2},
     xticklabels={\(x_0\),\(x_1\),\(x_2\)},
     ytick=\empty,
+    legend style={draw=none, at={(0.5,-0.20)}, anchor=north, legend columns=2, font=\small},
     grid=both,
     grid style={line width=.1pt, draw=gray!25},
 ]
 % Quadratic fill/interpolant
-\addplot[domain=0:2, samples=100, fill=gray!16, draw=none] {1+0.95*x-0.3*x^2} \closedcycle;
+\addplot[forget plot, domain=0:2, samples=100, fill=gray!16, draw=none] {1+0.95*x-0.3*x^2} \closedcycle;
 \addplot[very thick, dashed, domain=0:2, samples=100] {1+0.95*x-0.3*x^2};
+\addlegendentry{quadratic interpolant}
 
 % A nearby non-quadratic function with same values at 0,1,2
 \addplot[very thick, domain=0:2, samples=150] {1+0.15*x+0.9*x^2-0.4*x^3};
+\addlegendentry{actual graph}
 
 \addplot[only marks, mark=*] coordinates {
     (0,1)
@@ -61,8 +64,7 @@ instead of the original function.</p>
     (2,1.70)
 };
 
-\node[anchor=west] at (axis cs:0.22,1.9) {actual graph};
-\node[anchor=west] at (axis cs:1.02,1.15) {quadratic through three points};
+
 \end{axis}
 \end{tikzpicture}
       </latex-image>

@@ -117,7 +117,7 @@ slope is <m>1</m>.  So <m>A'(0)</m> does not exist.</p>
 \addplot[very thick, domain=-2:-0.02, samples=2] {0};
 \addplot[very thick, domain=0.02:2, samples=2] {1};
 \addplot[only marks, mark=*, mark size=2pt] coordinates {(0,1)};
-\addplot[only marks, mark=o, mark size=2.5pt, thick] coordinates {(0,0)};
+\addplot[only marks, mark=*, mark options={fill=white}, mark size=2.5pt, thick] coordinates {(0,0)};
 \end{axis}
 \end{tikzpicture}
       </latex-image>
@@ -225,9 +225,9 @@ to <m>f(x)</m>.</p>
     grid style={line width=.1pt, draw=gray!25},
 ]
 % curve
-\addplot[very thick, domain=0.4:4.0, samples=150] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x};
+\addplot[very thick, domain=0.4:4.0, samples=150] {2.8 + 0.35*(sin(deg(1.4*x))-sin(deg(1.4*1.8))) + 0.18*(x-1.8)};
 % strip under curve
-\addplot[domain=1.8:2.4, samples=80, fill=gray!28, draw=none] {2.2 + 0.35*sin(deg(1.4*x)) + 0.18*x} \closedcycle;
+\addplot[domain=1.8:2.4, samples=80, fill=gray!28, draw=none] {2.8 + 0.35*(sin(deg(1.4*x))-sin(deg(1.4*1.8))) + 0.18*(x-1.8)} \closedcycle;
 % bounding rectangles over strip
 \draw[thick, dashed] (axis cs:1.8,2.25) rectangle (axis cs:2.4,3.35);
 \draw[dotted, thick] (axis cs:1.8,2.8) -- (axis cs:2.4,2.8);

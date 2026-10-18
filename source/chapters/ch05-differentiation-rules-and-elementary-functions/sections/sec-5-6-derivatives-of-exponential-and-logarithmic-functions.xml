@@ -56,7 +56,7 @@ a^t\lim_{h\to0}\frac{a^h-1}{h}.</me></p>
 
   <p><me>\lim_{h\to0}\frac{a^h-1}{h}</me></p>
 
-  <p>is the slope of the graph <m>y=a^x</m> at <m>x=0</m>.  Call that number <m>\lambda(a)</m>:</p>
+  <p>is the slope of the graph <m>y=a^x</m> at <m>x=0</m>, if it exists. We will justify its existence below. Write it as <m>\lambda(a)</m>:</p>
 
   <p><me>\lambda(a)=\lim_{h\to0}\frac{a^h-1}{h}.</me></p>
 
@@ -92,6 +92,22 @@ a^t\lim_{h\to0}\frac{a^h-1}{h}.</me></p>
 
   <subsection xml:id="subsec-special-base-e">
     <title>The special base <m>e</m></title>
+
+  <paragraphs>
+    <title>Why the defining limit exists</title>
+    <p>Here is a justification using completeness, the exponent laws, and the continuity of real powers already stated in <xref ref="sec-3-5-continuity"/>. It does not use derivatives of exponentials, integrals, or infinite series.</p>
+    <p>Put <m>F(x)=2^x</m>. For any real <m>u,v</m>, the inequality <m>(\sqrt{F(u)}-\sqrt{F(v)})^2\ge0</m> gives</p>
+    <p><me>F\!\left(\frac{u+v}{2}\right)=\sqrt{F(u)F(v)}\le\frac{F(u)+F(v)}2.</me></p>
+    <p>Repeated bisection gives the corresponding inequality at every fraction <m>t=j/2^n</m> between zero and one. Approximating any <m>t\in[0,1]</m> by these fractions and using continuity gives</p>
+    <p><me>F((1-t)u+tv)\le(1-t)F(u)+tF(v),\qquad 0\le t\le1.</me></p>
+    <p>For <m>h&gt;0</m>, define <m>S(h)=(F(h)-1)/h</m>. If <m>0&lt;h&lt;k</m>, apply the preceding inequality with <m>u=0</m>, <m>v=k</m>, and <m>t=h/k</m>. It gives <m>S(h)\le S(k)</m>. Applying it at the point <m>0</m> between <m>-1</m> and <m>h</m> gives <m>F(h)\ge1+h/2</m>. Consequently,</p>
+    <p><me>\frac12\le S(h)\le S(1)=1,\qquad 0&lt;h\le1.</me></p>
+    <p>Let <m>c=\inf\{S(h):0&lt;h\le1\}</m>, where <m>\inf</m> means the greatest lower bound. It exists by completeness: it is the negative of the supremum of <m>\{-S(h):0&lt;h\le1\}</m>. Given <m>\varepsilon&gt;0</m>, some <m>h_0&gt;0</m> satisfies <m>S(h_0)&lt;c+\varepsilon</m>, and every <m>0&lt;h&lt;h_0</m> then satisfies <m>c\le S(h)\le S(h_0)&lt;c+\varepsilon</m>. Thus <m>S(h)\to c</m> as <m>h\to0^+</m>, with <m>1/2\le c\le1</m>. For the other side, the exponent law gives</p>
+    <p><me>\frac{2^{-h}-1}{-h}=\frac{S(h)}{2^h}\longrightarrow c\qquad(h\to0^+).</me></p>
+    <p>The two-sided limit therefore exists. Every <m>a&gt;0</m> has a unique expression <m>a=2^r</m>. Rescaling the input gives <m>\lambda(a)=rc</m>, including <m>\lambda(1)=0</m>. In particular, the unique base with <m>\lambda(a)=1</m> is</p>
+    <p><me>e=2^{1/c}.</me></p>
+    <p>This proves that choosing the base by its slope at zero is possible and unambiguous.</p>
+  </paragraphs>
 
   <p>The number <m>e</m> is the base for which</p>
 
@@ -131,14 +147,14 @@ a^t\lim_{h\to0}\frac{a^h-1}{h}.</me></p>
 \addplot[thick, dashed, domain=-1.3:1.8, samples=2] {1+x};
 \addlegendentry{\(y=1+x\)}
 \addplot[only marks, mark=*] coordinates {(0,1)};
-\node[fill=white, inner sep=1pt, anchor=south east] at (axis cs:-0.08,1.12) {\((0,1)\)};
+\node[fill=white, inner sep=1pt, anchor=west] at (axis cs:0,1) {\((0,1)\)};
 \end{axis}
 \end{tikzpicture}
       </latex-image>
     </image>
   </figure>
 
-  <p>This choice may look small, but it controls the whole function.  From the formula above,</p>
+  <p>Substituting the defining limit into the general derivative formula gives</p>
 
   <p><me>\frac{d}{dx}e^x
 =

@@ -1,6 +1,8 @@
 # Single-Variable Calculus: PreTeXt edition
 
-The complete PreTeXt audit is documented in [qa/PRETEXT-AUDIT-REPORT.md](qa/PRETEXT-AUDIT-REPORT.md). The ten selected additions are documented in [qa/SELECTED-TOPICS-REPORT.md](qa/SELECTED-TOPICS-REPORT.md), and the subsequent language revisions in [qa/LANGUAGE-AUDIT.md](qa/LANGUAGE-AUDIT.md). [qa/MISSING-TOPICS.md](qa/MISSING-TOPICS.md) lists the four remaining proposals. The separate original LaTeX edition was preserved.
+The latest complete source and live-HTML audit is documented in [qa/AUDIT-2026-10-17.md](qa/AUDIT-2026-10-17.md), with detailed correction journals and validation receipts. The [live book](https://kirill57.github.io/SV-Calculus/single-variable-calculus.html) records its published source commit in [audit-build.json](https://kirill57.github.io/SV-Calculus/audit-build.json).
+
+The earlier audit is retained in [qa/PRETEXT-AUDIT-REPORT.md](qa/PRETEXT-AUDIT-REPORT.md). The ten selected additions are documented in [qa/SELECTED-TOPICS-REPORT.md](qa/SELECTED-TOPICS-REPORT.md), and the subsequent language revisions in [qa/LANGUAGE-AUDIT.md](qa/LANGUAGE-AUDIT.md). [qa/MISSING-TOPICS.md](qa/MISSING-TOPICS.md) lists the four remaining proposals. The separate original LaTeX edition was preserved.
 
 
 The main source file is `source/main.ptx`.  This includes the other chapters of the book.
@@ -9,11 +11,11 @@ To compile the book as an accessible website, run `pretext build web` in a termi
 
 To preview your output, run `pretext view web`.
 
-To deploy your output to GitHub pages, run `pretext deploy`.
+To deploy your output to GitHub Pages, run `pretext deploy`. This is the publication command in the pinned PreTeXt 2.53.0 CLI; that version has no `pretext publish` command.
 
 To compile a pdf, run `pretext build print`.
 
-On this workstation, native Asymptote PDF rendering requires the [documented sphere-export workflow](qa/PRETEXT-AUDIT-REPORT.md#rebuilding-and-local-toolchain-limitations). The verified corrected outputs are `output/web/index.html` and `output/print/main.pdf`.
+On this workstation, native Asymptote PDF rendering requires the [documented sphere-export workflow](qa/PRETEXT-AUDIT-REPORT.md#rebuilding-and-local-toolchain-limitations). The latest audit validates `output/web/index.html`; the PDF verification recorded in the earlier report applies to that earlier build.
 
 ---
 

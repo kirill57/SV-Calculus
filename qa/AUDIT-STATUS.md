@@ -1,4 +1,12 @@
-# PreTeXt audit, additions, and language pass completed
+# Latest PreTeXt audit
+
+The complete 17 October 2026 source and HTML audit is documented in [AUDIT-2026-10-17.md](AUDIT-2026-10-17.md). It covers all 17 chapters, Appendices A–F, all 188 sections, 614 worked examples, 592 exercises and hints, 327 figures, 159 tables, and 112 displayed arrays. Source and live-browser review was followed by corrections, a local HTML build, full rendered verification, and a release comparison against the published files.
+
+[audit-2026-10-17/final-validation.json](audit-2026-10-17/final-validation.json) records the validated source fingerprint and HTML hashes. Exact before/after journals and detailed reviews are linked from the report. The [live build record](https://kirill57.github.io/SV-Calculus/audit-build.json) identifies the published source commit and file hashes. The original LaTeX edition's 34 files remain unchanged.
+
+The earlier audit, ten selected additions, and language pass below are retained as dated history. Their PDF verification applies to their earlier print build; this latest round validates HTML.
+
+## Earlier audit, additions, and language pass — 5 October 2026
 
 Completed 5 October 2026. Scope: the PreTeXt edition, its figures, HTML, and PDF print rendering. The separate original LaTeX edition is preserved: all 34 files match their starting SHA-256 hashes.
 
